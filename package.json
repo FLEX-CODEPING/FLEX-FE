@@ -10,8 +10,6 @@
     "format:fix": "prettier --write --ignore-path .gitignore .",
     "lint": "eslint './src/**/*.{ts,tsx,js,jsx}'",
     "lint:fix": "eslint --fix './src/**/*.{ts,tsx,js,jsx}'",
-    "init-husky": "npx husky install .husky",
-    "lint-front": "lint-staged",
     "prepare": "husky",
     "postinstall": "husky install"
   },
@@ -43,9 +41,9 @@
     "typescript": "^5"
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx,json,md}": [
+    "*.{js,jsx,ts,tsx}": [
       "prettier --write",
-      "git add"
+      "eslint --fix"
     ]
   }
 }
