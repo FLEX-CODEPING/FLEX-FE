@@ -12,10 +12,22 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
+    "import/prefer-default-export": "off",
     "no-unused-imports": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
       { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["_types/**/*.ts"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": [
+          "warn",
+          { "varsIgnorePattern": "^_" }
+        ]
+      }
+    }
+  ]
 }
