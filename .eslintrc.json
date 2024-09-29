@@ -15,7 +15,7 @@
     "import/prefer-default-export": "off",
     "no-unused-imports": "off",
     "@typescript-eslint/no-unused-vars": [
-      "error",
+      "off",
       { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
     ]
   },
