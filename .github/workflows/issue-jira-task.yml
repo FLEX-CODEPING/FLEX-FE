@@ -19,7 +19,7 @@ jobs: # 3
       uses: atlassian/gajira-create@v3
       with:
         project: ${{ secrets.JIRA_PROJECT_KEY }} # 10 - 프로젝트 key
-        issuetype: Task # 11 - 이슈 타입
+        issuetype: 작업 # 11 - 이슈 타입
         summary: '[FE] ${{ github.event.issue.title }}'
         description: |
           GitHub Issue: ${{ github.event.issue.html_url }}
