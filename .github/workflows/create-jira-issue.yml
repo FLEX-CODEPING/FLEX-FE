@@ -1,28 +1,77 @@
-name: Create Jira issue task # 1
-on: # 2
-  issues: 
-    types: [opened] 
-    
-jobs: # 3
-  create-issue:  # 4
-    name: Create Jira issue # 5
-    runs-on: ubuntu-latest # 6
-    steps: # 7
-    - name:  Login to Jira
-      uses: atlassian/gajira-login@v3 # 8
-      env: 
-        JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }} # 9
-        JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-        JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
-    - name: Create Issue 
-      uses: atlassian/gajira-create@v3
-      with:
-        project: ${{ secrets.JIRA_PROJECT_KEY }} # 10 - 프로젝트 key
-        issuetype: 작업 # 11 - 이슈 타입
-        summary: '[FE] ${{ github.event.issue.title }}'
-        description: |
-          GitHub Issue: ${{ github.event.issue.html_url }}
-          Created by: ${{ github.event.issue.user.login }}
-          
-          Description:
-          ${{ github.event.issue.body }}
+name: Create Jira issue
+on:
+  issues:
+    types:
+      - opened
+jobs:
+  create-issue:
+    name: Create Jira issue
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login
+        uses: atlassian/gajira-login@v3
+        env:
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+
+      - name: Checkout main code
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Issue Parser
+        uses: stefanbuck/github-issue-praser@v3
+        id: issue-parser
+        with:
+          template-path: .github/ISSUE_TEMPLATE/issue_form.yml
+
+      - name: Log Issue Parser
+        run: |
+          echo '${{ steps.issue-parser.outputs.jsonString }}'
+
+      - name: Convert markdown to Jira Syntax
+        uses: peter-evans/jira2md@v1
+        id: md2jira
+        with:
+          input-text: |
+            ### Github Issue Link
+            - ${{ github.event.issue.html_url }}
+
+            ${{ github.event.issue.body }}
+          mode: md2jira
+
+      - name: Create Issue
+        id: create
+        uses: atlassian/gajira-create@v3
+        with:
+          project: FLEX
+          issuetype: 하위 작업
+          summary: "${{ github.event.issue.title }}"
+          description: "${{ steps.md2jira.outputs.output-text }}"
+          fields: |
+            {
+              "parent": {
+                "key": "${{ steps.issue-parser.outputs.issueparser_parentKey }}"
+              }
+            }
+
+      - name: Log created issue
+        run: echo "Jira Issue ${{ steps.issue-parser.outputs.parentKey }}/${{ steps.create.outputs.issue }} was created"
+
+      - name: Checkout develop code
+        uses: actions/checkout@v4
+        with:
+          ref: develop
+
+      - name: Create branch with Ticket number
+        run: |
+          git checkout -b ${{ steps.create.outputs.issue }}
+          git push origin ${{ steps.create.outputs.issue }}
+
+      - name: Update issue title
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: "update-issue"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: "${{ steps.create.outputs.issue }} ${{ github.event.issue.title }}"
