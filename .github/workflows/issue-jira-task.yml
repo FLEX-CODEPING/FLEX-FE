@@ -14,11 +14,6 @@ jobs: # 3
         JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }} # 9
         JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
         JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
-    - name: Get Jira user account
-      id: get-user
-      uses: atlassian/gajira-find-user-account-id@v1
-      with:
-        user: ${{ github.event.issue.user.login }}
     - name: Create Issue 
       uses: atlassian/gajira-create@v3
       with:
