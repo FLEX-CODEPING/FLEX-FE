@@ -74,3 +74,10 @@ jobs:
           git push origin ${{ steps.create.outputs.issue }}
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
+          
+      - name: Update issue title
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: "update-issue"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: "${{ steps.create.outputs.issue }} ${{ github.event.issue.title }}"
