@@ -8,9 +8,28 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        pretendard: ['var(--font-pretendard)'],
+      },
       colors: {
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
+        main: {
+          1: '#F95700',
+          2: '#FFA474',
+          3: '#FFF3EC',
+        },
+        red: {
+          1: '#FF0000',
+          2: '#FF6A6A',
+        },
+        blue: {
+          1: '#0065D1',
+          2: '#6AB2FF',
+        },
+        gray: {
+          1: '#7A7A7A',
+          2: '#CBCACA',
+          3: '#EEEEEE',
+        },
       },
     },
   },
