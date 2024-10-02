@@ -26,7 +26,6 @@ jobs:
         with:
           template-path: |
               .github/ISSUE_TEMPLATE/feature_issue_form.yml
-              .github/ISSUE_TEMPLATE/bug_issue_form.yml
 
       - name: Log Issue Parser
         run: |
