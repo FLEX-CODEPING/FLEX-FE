@@ -47,7 +47,7 @@ jobs:
         uses: atlassian/gajira-create@v3
         with:
           project: FLEX
-          issuetype: 하위 작업
+          issuetype: 스토리
           summary: "${{ github.event.issue.title }}"
           description: "${{ steps.md2jira.outputs.output-text }}"
           fields: |
@@ -73,7 +73,7 @@ jobs:
           git checkout -b ${{ steps.create.outputs.issue }}
           git push origin ${{ steps.create.outputs.issue }}
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
           
       - name: Update issue title
         uses: actions-cool/issues-helper@v3
