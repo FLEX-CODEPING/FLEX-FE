@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import '../styles/globals.css';
 
 export const metadata: Metadata = {
   title: 'Flex',
@@ -11,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" className="min-h-screen min-w-[800px] mx-auto">
       <body>{children}</body>
     </html>
   );
