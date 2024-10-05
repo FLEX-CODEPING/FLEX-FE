@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 function SignInContainer() {
   return (
-    <div className="gap-y-[84px] flex flex-col mt-4">
+    <div className="gap-y-[84px] flex flex-col mt-12">
       <div className="flex flex-col gap-y-3">
         {MAIN_FEAT.map((feat, i) => (
           <div className="flex items-center" key={feat}>

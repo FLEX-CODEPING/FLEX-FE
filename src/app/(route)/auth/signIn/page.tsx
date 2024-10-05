@@ -4,7 +4,7 @@ import { CATCHPHRASE, TITLE } from '@/app/constants/main';
 
 function SignInPage() {
   return (
-    <section className="w-full h-full flex items-center flex-col mt-[80px] gap-y-4">
+    <section className="w-full h-full flex items-center flex-col mt-[40px]">
       <p className={`${dela.className} text-[96px] text-main-1`}>{TITLE}</p>
       <p className="text-4xl font-bold">{CATCHPHRASE}</p>
       <SignInContainer />
