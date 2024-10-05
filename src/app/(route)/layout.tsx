@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import Header from '../components/common/layout/Header';
 import '../styles/globals.css';
 
 export const metadata: Metadata = {
@@ -24,7 +25,10 @@ export default function RootLayout({
       lang="ko"
       className={`${pretendard.variable} min-h-screen min-w-[800px] mx-auto font-pretendard`}
     >
-      <body>{children}</body>
+      <body className="w-full h-full">
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }

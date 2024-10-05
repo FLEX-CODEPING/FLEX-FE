@@ -3,7 +3,7 @@ import { Dela_Gothic_One } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const noto = Dela_Gothic_One({
+export const dela = Dela_Gothic_One({
   subsets: ['latin'],
   weight: '400',
 });
@@ -13,7 +13,7 @@ function Header() {
     <header className="w-full flex items-center justify-between h-[108px] px-[5%] text-2xl">
       <div className="flex gap-x-2 items-center">
         <Image width={40} height={40} src="/Images/logo.png" alt="logo" />
-        <p className={`${noto.className} text-[28px] text-main-1`}>FLEX</p>
+        <p className={`${dela.className} text-[28px] text-main-1`}>FLEX</p>
       </div>
       <div className="flex">
         {HEADER_TEXT.map((text, i) => (
