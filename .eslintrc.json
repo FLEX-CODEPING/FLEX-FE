@@ -16,6 +16,10 @@
     "no-unused-imports": "off",
     "react/require-default-props": "off",
     "react/jsx-props-no-spreading": "off",
+    "functional/functional-parameters": "off",
+    "react/function-component-definition": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
     "@typescript-eslint/no-unused-vars": [
       "off",
       { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
