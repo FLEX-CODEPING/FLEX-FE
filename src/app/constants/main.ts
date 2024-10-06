@@ -1,4 +1,5 @@
 export const TITLE = 'FLEX';
+
 export const CATCHPHRASE = '재테크가 낯선 당신의 첫 재테크 친구';
 
 export const MAIN_FEAT = [

@@ -54,3 +54,29 @@ export const INTEREST_LIST = [
   '부동산',
   '지수',
 ];
+
+export const COMPLETE_TITLE = '회원가입 완료';
+
+export const COMPLETE_TEXT = [
+  '님, 환영해요!',
+  '를 지금 바로 이용해보세요',
+  '시작하기',
+];
+
+export const COMPLETE_RECOMMEND_T = [
+  '블로그로 이동',
+  '주가예측으로 이동',
+  '뉴스요약으로 이동',
+];
+
+export const COMPLETE_RECOMMEND_D = [
+  '다른 사람들은 어떻게 재테크 관리를 할까?',
+  '내 주식의 가격은 오를까, 내릴까?',
+  '오늘은 세계에 어떤 소식이 있었을까?',
+];
+
+export const COMPLETE_RECOMMEND_IMG = [
+  'complete1.png',
+  'complete2.png',
+  'complete3.png',
+];
