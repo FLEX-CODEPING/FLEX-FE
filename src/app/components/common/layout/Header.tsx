@@ -25,12 +25,12 @@ function Header() {
       <div className="flex items-center gap-x-4">
         <Link
           className="flex-center w-[72px] h-[36px] px-1.5 py-1 bg-main-1 text-white text-base font-semibold rounded-[15px]"
-          href="/login"
+          href="/auth/signIn"
         >
           {LOGIN_TEXT[0]}
         </Link>
         <div className="text-main-1 text-[28px] font-light">|</div>
-        <Link className="text-base font-bold" href="/login">
+        <Link className="text-base font-bold" href="/auth/signUp">
           {LOGIN_TEXT[1]}
         </Link>
       </div>
