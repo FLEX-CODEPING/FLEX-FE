@@ -1,7 +1,7 @@
 name: 'Bug 이슈 생성'
 description: '오류에 대한 이슈를 생성합니다.'
 labels: [order]
-title: '[Bug] 이슈 제목을 입력해주세요'
+title: '버그 이슈 제목을 입력해주세요'
 body:
   - type: input
     id: parentKey
