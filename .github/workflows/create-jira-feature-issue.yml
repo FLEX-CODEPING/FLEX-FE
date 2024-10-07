@@ -1,4 +1,4 @@
-name: Create Jira issue
+name: Create Jira Feature issue
 on:
   issues:
     types:
@@ -48,7 +48,7 @@ jobs:
         with:
           project: FLEX
           issuetype: 스토리
-          summary: "${{ github.event.issue.title }}"
+          summary: "[FE] ${{ github.event.issue.title }}"
           description: "${{ steps.md2jira.outputs.output-text }}"
           fields: |
             {
