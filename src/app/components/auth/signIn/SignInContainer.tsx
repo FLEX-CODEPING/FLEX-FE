@@ -1,14 +1,19 @@
+'use client';
+
 import {
   MAIN_FEAT,
   MAIN_FEAT_DETAIL,
   MAIN_FEAT_IMG,
 } from '@/app/constants/main';
+import { signIn, useSession } from 'next-auth/react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 function SignInContainer() {
+  const { data: session } = useSession();
+  console.log(session);
+
   return (
-    <div className="gap-y-[84px] flex flex-col mt-12">
+    <div className="gap-y-[84px] flex flex-col mt-">
       <div className="flex flex-col gap-y-3">
         {MAIN_FEAT.map((feat, i) => (
           <div className="flex items-center" key={feat}>
@@ -25,14 +30,15 @@ function SignInContainer() {
           </div>
         ))}
       </div>
-      <Link href="/login">
+      {session?.user?.name}님 반갑습니다 <br />
+      <div onClick={() => signIn('kakao')}>
         <Image
           src="/images/kakao_login.png"
           alt="loginImg"
           width={360}
           height={55}
         />
-      </Link>
+      </div>
     </div>
   );
 }
