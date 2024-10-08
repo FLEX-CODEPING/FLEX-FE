@@ -1,4 +1,4 @@
-name: Create Jira issue
+name: Create Jira Bug issue
 on:
   issues:
     types:
@@ -8,6 +8,20 @@ jobs:
     name: Create Jira issue
     runs-on: ubuntu-latest
     steps:
+      - name: Check if issue uses feature template
+        id: check_template
+        run: |
+          BODY="${{ github.event.issue.body }}"
+          if [[ $BODY == *"Bug 상위 작업 Ticket Number"* ]]; then
+            echo "is_feature_template=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_feature_template=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Exit if not feature template
+        if: steps.check_template.outputs.is_feature_template != 'true'
+        run: exit 0
+
       - name: Login
         uses: atlassian/gajira-login@v3
         env:
@@ -25,7 +39,7 @@ jobs:
         id: issue-parser
         with:
           template-path: |
-              .github/ISSUE_TEMPLATE/bug_issue_form.yml
+            .github/ISSUE_TEMPLATE/bug_issue_form.yml
 
       - name: Log Issue Parser
         run: |
@@ -74,7 +88,7 @@ jobs:
           git push origin ${{ steps.create.outputs.issue }}
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-          
+
       - name: Update issue title
         uses: actions-cool/issues-helper@v3
         with:
