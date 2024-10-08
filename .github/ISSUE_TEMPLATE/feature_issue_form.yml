@@ -1,12 +1,12 @@
 name: 'Feature 이슈 생성'
-description: '기능 구현에 대한 이슈를 생성합니다.'
+description: '기능 구현에 대한 이슈를 생성합니다.	'
 labels: [order]
-title: '이슈 제목을 입력해주세요'
+title: '이슈 이름을 작성해주세요'
 body:
   - type: input
     id: parentKey
     attributes:
-      label: '상위 작업 Ticket Number'
+      label: 'Feature 상위 작업 Ticket Number'
       description: '상위 작업의 Ticket Number를 기입해주세요'
       placeholder: 'FLEX-00'
     validations:
