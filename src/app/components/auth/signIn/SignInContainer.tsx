@@ -5,12 +5,15 @@ import {
   MAIN_FEAT_DETAIL,
   MAIN_FEAT_IMG,
 } from '@/app/constants/main';
-import { signIn, useSession } from 'next-auth/react';
+import { getCsrfToken, signIn, useSession } from 'next-auth/react';
 import Image from 'next/image';
 
 function SignInContainer() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+  const csrfToken = getCsrfToken();
   console.log(session);
+  console.log('토큰 :', csrfToken);
+  console.log('상태 :', status);
 
   return (
     <div className="gap-y-[84px] flex flex-col mt-10">
