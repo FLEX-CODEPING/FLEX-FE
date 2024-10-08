@@ -14,7 +14,7 @@ import Link from 'next/link';
 
 function Complete() {
   return (
-    <section className="w-full h-full flex items-center flex-col mt-[80px] gap-y-[120px]">
+    <section className="w-full h-full flex items-center flex-col mt-[2%] gap-y-[120px]">
       <p className="text-6xl font-semibold">{COMPLETE_TITLE}</p>
       <div className="flex flex-col items-center text-3xl gap-y-2">
         <div className="flex">

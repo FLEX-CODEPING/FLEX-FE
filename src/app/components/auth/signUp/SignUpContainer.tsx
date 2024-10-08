@@ -16,13 +16,13 @@ function SignInContainer() {
       [key]: value,
     }));
   };
-  // 임시함수
+
   const handleSignUpClick = () => {
     updateFormData('year', 2000);
   };
 
   return (
-    <div className="w-[500px] gap-y-10 flex flex-col mt-12">
+    <div className="w-[500px] gap-y-6 flex flex-col mt-8">
       <PersonalInfoForm formData={formData} updateFormData={updateFormData} />
       <IncomeInterestForm formData={formData} updateFormData={updateFormData} />
       <Button

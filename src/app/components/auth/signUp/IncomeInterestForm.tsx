@@ -32,9 +32,9 @@ const IncomeInterestForm = ({
   };
 
   return (
-    <div className="w-full flex flex-col gap-y-10">
+    <div className="w-full flex flex-col gap-y-10 mb-[4%]">
       <div className="w-full relative flex flex-col gap-y-1">
-        <div className="text-sm pl-2.5 mb-3">{INCOME_TITLE}</div>
+        <div className="text-sm pl-2.5 mb-1">{INCOME_TITLE}</div>
         <input
           type="range"
           min={0}
