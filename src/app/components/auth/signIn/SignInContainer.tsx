@@ -13,7 +13,7 @@ function SignInContainer() {
   console.log(session);
 
   return (
-    <div className="gap-y-[84px] flex flex-col mt-">
+    <div className="gap-y-[84px] flex flex-col mt-10">
       <div className="flex flex-col gap-y-3">
         {MAIN_FEAT.map((feat, i) => (
           <div className="flex items-center" key={feat}>
@@ -30,8 +30,7 @@ function SignInContainer() {
           </div>
         ))}
       </div>
-      {session?.user?.name}님 반갑습니다 <br />
-      <div onClick={() => signIn('kakao')}>
+      <div className="cursor-pointer" onClick={() => signIn('kakao')}>
         <Image
           src="/images/kakao_login.png"
           alt="loginImg"
