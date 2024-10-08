@@ -1,6 +1,7 @@
 'use client';
 
 import { HEADER_PROFILE_TEXT, LOGIN_TEXT } from '@/app/constants/layout';
+import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -36,7 +37,10 @@ const ProfileDropdown = () => {
                 <div className="w-[90px] h-[32px] flex-center border-b border-gray-2 hover:text-main-1">
                   {HEADER_PROFILE_TEXT[1]}
                 </div>
-                <div className="w-[90px] h-[32px] flex-center border-b border-gray-2 hover:text-main-1">
+                <div
+                  className="w-[90px] h-[32px] flex-center border-b border-gray-2 hover:text-main-1"
+                  onClick={() => signOut({ callbackUrl: '/' })}
+                >
                   {HEADER_PROFILE_TEXT[2]}
                 </div>
                 <div className="w-[90px] h-[32px] flex-center hover:text-main-1">

@@ -30,7 +30,15 @@ function SignInContainer() {
           </div>
         ))}
       </div>
-      <div className="cursor-pointer" onClick={() => signIn('kakao')}>
+
+      <div className="text-sm font-semibold">
+        <p>로그인 상태 : {session ? '로그인 완료' : '로그아웃 상태'}</p>
+        현재 로그인한 이메일 : {session?.user?.email}
+      </div>
+      <div
+        className="cursor-pointer"
+        onClick={() => signIn('kakao', { callbackUrl: '/' })}
+      >
         <Image
           src="/images/kakao_login.png"
           alt="loginImg"
