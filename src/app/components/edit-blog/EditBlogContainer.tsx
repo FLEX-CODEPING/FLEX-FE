@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
 import dynamic from 'next/dynamic';
-import BlogContentContainer from './BlogContentContainer';
 import BlogInfoContainer from './BlogInfoContainer';
+import Button from '../common/Button';
 
 const MyEditor = dynamic(() => import('../markdown/MyEditor'), {
   ssr: false,
@@ -11,10 +11,10 @@ const MyEditor = dynamic(() => import('../markdown/MyEditor'), {
 
 const EditBlogContainer = () => {
   return (
-    <div>
+    <div className='mb-[50px]'>
       <BlogInfoContainer />
       <div className="mt-[50px] mb-10">
-        <MyEditor/>
+        <MyEditor />
       </div>
     </div>
   );
