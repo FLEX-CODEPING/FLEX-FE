@@ -14,13 +14,15 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@toast-ui/editor": "^3.2.2",
     "@toast-ui/editor-plugin-color-syntax": "^3.1.0",
-    "@toast-ui/react-editor": "^3.2.3",
+    "@toast-ui/react-editor": "^3.1.8",
     "next": "14.2.13",
     "react": "^18",
     "react-dom": "^18",
     "zustand": "^5.0.0-rc.2"
+  },
+  "resolutions": {
+    "@toast-ui/editor": "^3.1.8"
   },
   "devDependencies": {
     "@types/node": "^20",
