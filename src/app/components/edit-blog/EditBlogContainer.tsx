@@ -2,7 +2,6 @@
 
 import dynamic from 'next/dynamic';
 import BlogInfoContainer from './BlogInfoContainer';
-import Button from '../common/Button';
 
 const MyEditor = dynamic(() => import('../markdown/MyEditor'), {
   ssr: false,
@@ -11,7 +10,7 @@ const MyEditor = dynamic(() => import('../markdown/MyEditor'), {
 
 const EditBlogContainer = () => {
   return (
-    <div className='mb-[50px]'>
+    <div className="mb-[50px]">
       <BlogInfoContainer />
       <div className="mt-[50px] mb-10">
         <MyEditor />

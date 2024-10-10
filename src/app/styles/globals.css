@@ -26,7 +26,6 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  
 }
 
 @layer utilities {
