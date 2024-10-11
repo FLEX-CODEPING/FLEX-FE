@@ -1,203 +1,220 @@
-/* 전체 레이아웃 설정 */
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #FFFFFF;
 }
-  
-.nav-section {
+
+.nav-options {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px;
-    border-bottom: 1px solid #D9D9D9;
-    background-color: white;
+    gap: 6px;
+    justify-content: flex-start;
+    padding-right: 1200px;
+    margin-top: 55px;
 }
-  
+
 .nav-button {
-    font-size: 18px;
-    font-weight: 500;
-    color: #000;
-    background-color: transparent;
-    border: none;
+    padding: 8px 16px;
+    border: 1px solid transparent;
     cursor: pointer;
+    background-color: white;
+    font-weight: normal;
+    margin-right: 10px;
 }
-  
+
+.nav-button.selected {
+    font-weight: bold;
+}
+
+.filter-button {
+    padding: 8px 16px;
+    border: 1px solid #F95700;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: normal;
+}
+
 .nav-button:hover {
     color: #F95700;
 }
-  
-.filter-section {
-    padding: 20px;
-    border-bottom: 1px solid #D9D9D9;
-    background-color: white;
+
+.filter-button.selected {
+    font-weight: bold;
 }
-  
-.filter-container {
+
+.age-filter-container {
+    border: 1px solid #F95700;
+    border-radius: 30px;
+    padding: 8px 20px;
+    background-color: rgb(255, 255, 255);
+    margin-right: 20px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
+    width: auto;
 }
-  
+
+.salary-filter-container {
+    border: 1px solid #F95700;
+    border-radius: 30px;
+    padding: 8px 20px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+}
+
+.filter-section {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+.filter-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+}
+
 .filter-options {
     display: flex;
-    align-items: center;
-    gap: 15px; 
+    gap: 10px;
+    justify-content: center;
 }
-  
-.filter-options h3 {
-    font-weight: 600;
-    margin-right: 10px;
-}
-  
+
 .filter-button {
-    padding: 2px 15px; 
-    border: 1px solid #F95700;
-    border-radius: 20px; 
-    background-color: white;
+    padding: 5px 15px;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
 }
-  
+
 .filter-button.selected {
-    background-color: #F95700;
-    color: white;
+    background-color: #FFEBE0;
+    color: rgb(0, 0, 0);
 }
-  
+
+.filter-button:hover {
+    color: #F95700;
+}
+
+.relative-container {
+    position: relative;
+}
+
 .filter-dropdown-button {
-    border: 1px solid #757575;
-    border-radius: 20px; 
-    padding: 2px 4px; 
+    padding: 8px 16px;
+    border: 1px solid #F95700;
+    border-radius: 20px;
     cursor: pointer;
+    background-color: white;
+    position: absolute;
+    top: -140px;
+    right: -810px;
+    white-space: nowrap;
+    display: inline-block;
 }
-  
+
 .dropdown-menu {
     position: absolute;
-    right: 0;
-    margin-top: 8px;
+    top: calc(-120px + 18px);
+    right: -820px;
+    width: 100px;
     background-color: white;
     border: 1px solid #D9D9D9;
     border-radius: 5px;
-    width: 150px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
 }
-  
+
 .dropdown-item {
     padding: 10px;
     border-bottom: 1px solid #E9E9E9;
     cursor: pointer;
+    text-align: left;
+    width: 100%;
 }
-  
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
 .dropdown-item:hover {
     background-color: #F0F0F0;
 }
-  
-/* 포스트 카드 */
+
+/* 포스트 컨테이너 */
 .posts-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px; 
+    gap: 15px;
     padding: 30px;
 }
-  
-.post-card {
-    background-color: white;
-    border: 1px solid #E0E0E0;
-    border-radius: 20px; 
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: box-shadow 0.3s ease-in-out;
-}
-  
-.post-card:hover {
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-}
-  
+
+/* 이미지에만 테두리 적용, 포스트 전체에는 적용하지 않음 */
 .post-image {
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
     width: 100%;
     height: 180px;
     object-fit: cover;
-    position: relative;
 }
-  
-.post-card .category {
-    position: absolute;
-    top: 12px;
-    left: 12px;
+
+/* 포스트 전체 테두리 제거 */
+.post-card {
     background-color: white;
-    border-radius: 20px; 
-    padding: 5px 10px;
-    font-size: 12px;
+    padding: 0;
+    margin-bottom: 20px;
+    border: none;
+    box-shadow: none;
 }
-  
+
+/* 카테고리와 좋아요를 이미지 아래에 표시 */
+.post-card .category,
 .post-card .likes {
-    position: absolute;
-    top: 12px;
-    right: 12px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.post-card .category {
+    background-color: #f1f1f1;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #757575;
+}
+
+.post-card .likes {
     display: flex;
     align-items: center;
     gap: 6px;
 }
-  
+
 .likes img {
     width: 16px;
     height: 16px;
 }
-  
+
 .post-content {
     padding: 16px;
 }
-  
+
 .post-content h2 {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 8px;
     color: #000;
 }
-  
+
 .post-content p {
     font-size: 14px;
     color: #757575;
     margin-bottom: 16px;
 }
-  
-.post-content .author, .post-content .date {
-    font-size: 12px;
-    color: #B0B0B0;
-}
-  
 
-.search-result-box {
-    margin-top: 30px;
-    padding: 20px;
-    border: 1px solid #E0E0E0;
-    background-color: #F9F9F9;
-    border-radius: 20px; 
-}
-  
-.search-result-box.active {
-    display: block;
-}
-  
-.search-result-title {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-  
-.search-result-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid #E9E9E9;
-}
-  
-.search-result-item:last-child {
-    border-bottom: none;
-}
-  
-.result-text {
-    font-size: 14px;
-}
-  
-.result-date {
+.post-content .author, .post-content .date {
     font-size: 12px;
     color: #B0B0B0;
 }

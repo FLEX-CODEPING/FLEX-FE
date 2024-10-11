@@ -7,5 +7,6 @@ interface BlogPost {
     likes: number;
     imageUrl: string; 
     author: string;
+    authorImageUrl: string;
   }
   
