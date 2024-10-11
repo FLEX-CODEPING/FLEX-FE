@@ -5,15 +5,32 @@ import {
   MAIN_FEAT_DETAIL,
   MAIN_FEAT_IMG,
 } from '@/app/constants/main';
-import { getCsrfToken, signIn, useSession } from 'next-auth/react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 
 function SignInContainer() {
-  const { data: session, status } = useSession();
-  const csrfToken = getCsrfToken();
-  console.log(session);
-  console.log('토큰 :', csrfToken);
-  console.log('상태 :', status);
+  const searchParams = useSearchParams();
+  const code = searchParams.get('code');
+  console.log(code);
+  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KAKAO_API_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}&scope=account_email`;
+
+  useEffect(() => {
+    if (code) {
+      fetch(`/api/login?code=${code}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log('카카오 로그인 응답:', data);
+        })
+        .catch((error) => console.error('Error:', error));
+    }
+  }, [code]);
 
   return (
     <div className="gap-y-[84px] flex flex-col mt-10">
@@ -33,22 +50,14 @@ function SignInContainer() {
           </div>
         ))}
       </div>
-
-      <div className="text-sm font-semibold">
-        <p>로그인 상태 : {session ? '로그인 완료' : '로그아웃 상태'}</p>
-        현재 로그인한 이메일 : {session?.user?.email}
-      </div>
-      <div
-        className="cursor-pointer"
-        onClick={() => signIn('kakao', { callbackUrl: '/' })}
-      >
+      <Link className="cursor-pointer" href={KAKAO_AUTH_URL}>
         <Image
           src="/images/kakao_login.png"
           alt="loginImg"
           width={360}
           height={55}
         />
-      </div>
+      </Link>
     </div>
   );
 }
