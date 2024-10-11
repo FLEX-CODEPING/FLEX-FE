@@ -16,11 +16,17 @@ function Header() {
         <p className={`${dela.className} text-[28px] text-main-1`}>FLEX</p>
       </div>
       <div className="flex">
-        {HEADER_TEXT.map((text, i) => (
-          <p className="mr-[50px]" key={text}>
-            {text}
-          </p>
-        ))}
+        {HEADER_TEXT.map((text) => {
+          // 'blog'일 경우 '블로그'로 표시하고, 링크는 '/blog'로 유지
+          const displayText = text === 'blog' ? '블로그' : text;
+          const href = text === 'blog' ? '/blog' : `/${text.toLowerCase()}`;
+
+          return (
+            <Link href={href} key={text}>
+              <span className="mr-[50px] cursor-pointer">{displayText}</span>
+            </Link>
+          );
+        })}
       </div>
       <div className="flex items-center gap-x-4">
         <Link
