@@ -50,10 +50,10 @@ const MyEditor = () => {
           </button>
         </div>
       </form>
-      <div className="w-[983px] flex gap-8 mt-[40px] justify-center mb-[10px]">
+      <div className="w-[1200px] flex gap-8 mt-[40px] justify-center mb-[10px]">
         <div className="text-xl font-bold">출력된 HTML</div>
       </div>
-      <div className="w-[983px] flex gap-8 justify-center">{getContent}</div>
+      <div className="w-[1200px] flex gap-8 justify-center">{getContent}</div>
     </div>
   );
 };
