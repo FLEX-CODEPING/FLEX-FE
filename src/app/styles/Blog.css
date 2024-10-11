@@ -41,7 +41,7 @@ body {
 .filter-options {
     display: flex;
     align-items: center;
-    gap: 15px; /* gap 조정 */
+    gap: 15px; 
 }
   
 .filter-options h3 {
@@ -50,9 +50,9 @@ body {
 }
   
 .filter-button {
-    padding: 2px 15px; /* padding과 높이 조정 */
+    padding: 2px 15px; 
     border: 1px solid #F95700;
-    border-radius: 20px; /* 동일한 border-radius 적용 */
+    border-radius: 20px; 
     background-color: white;
     cursor: pointer;
 }
@@ -64,8 +64,8 @@ body {
   
 .filter-dropdown-button {
     border: 1px solid #757575;
-    border-radius: 20px; /* border-radius를 20px로 조정 */
-    padding: 2px 4px; /* padding 조정 */
+    border-radius: 20px; 
+    padding: 2px 4px; 
     cursor: pointer;
 }
   
@@ -93,14 +93,14 @@ body {
 .posts-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px; /* gap을 15px로 조정 */
+    gap: 15px; 
     padding: 30px;
 }
   
 .post-card {
     background-color: white;
     border: 1px solid #E0E0E0;
-    border-radius: 20px; /* border-radius를 20px로 조정 */
+    border-radius: 20px; 
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: box-shadow 0.3s ease-in-out;
@@ -122,7 +122,7 @@ body {
     top: 12px;
     left: 12px;
     background-color: white;
-    border-radius: 20px; /* 동일한 border-radius 적용 */
+    border-radius: 20px; 
     padding: 5px 10px;
     font-size: 12px;
 }
@@ -163,13 +163,13 @@ body {
     color: #B0B0B0;
 }
   
-/* 검색 결과 */
+
 .search-result-box {
     margin-top: 30px;
     padding: 20px;
     border: 1px solid #E0E0E0;
     background-color: #F9F9F9;
-    border-radius: 20px; /* 동일한 border-radius 적용 */
+    border-radius: 20px; 
 }
   
 .search-result-box.active {
