@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from "react";
-import { useRouter } from 'next/navigation';  // useRouter를 사용하여 링크 이동 처리
+import { useRouter } from 'next/navigation';  
 import Header, { dela } from "@/app/components/common/layout/Header"; 
 import "@/app/styles/Blogstyles.css"; 
 import '@/app/styles/globals.css';
@@ -15,7 +15,7 @@ const BlogSearch = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 6;
 
-  const router = useRouter(); // useRouter 사용
+  const router = useRouter(); 
 
   const handleSearch = async () => {
     if (!query) return;
@@ -29,7 +29,7 @@ const BlogSearch = () => {
       );
       setResults(filteredPosts);
 
-      // 검색 결과가 있으면 blogsearch 페이지로 이동
+      
       router.push('/blogsearch');
 
     } catch (error) {
@@ -89,7 +89,7 @@ const BlogSearch = () => {
             <div className="posts-container">
               {currentPosts.map((post) => (
                 <div key={post.id} className="post-card">
-                  {/* 포스트 이미지 */}
+                  {}
                   <div className="relative w-full h-48 border border-gray-300 rounded-lg overflow-hidden">
                     <img
                       src={post.imageUrl || "/images/3c.png"}
@@ -97,7 +97,7 @@ const BlogSearch = () => {
                       className="post-image"
                       style={{ objectFit: "cover", width: "100%", height: "100%" }}
                     />
-                    {/* 카테고리 및 좋아요를 이미지 위에 표시 */}
+                    {}
                     <div className="absolute top-2 left-2 bg-white px-2 py-1 rounded-md shadow-md text-xs">
                       #{post.category}
                     </div>
@@ -111,14 +111,14 @@ const BlogSearch = () => {
                       />
                     </div>
                   </div>
-                  {/* 포스트 내용 (테두리 없이) */}
+                  {}
                   <div className="post-content p-4">
                     <h2 className={dela.className}>{post.title}</h2>
                     <p>{post.content}</p>
                     <div className="flex justify-between items-center">
                       <div className="flex items-center">
                         <img
-                          src={post.authorImageUrl || "/images/4c.png"} // 저자 이미지
+                          src={post.authorImageUrl || "/images/4c.png"} 
                           alt={post.author}
                           width={20}
                           height={20}
