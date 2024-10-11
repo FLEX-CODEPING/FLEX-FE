@@ -1,7 +1,9 @@
+'use client'
 import { HEADER_TEXT, LOGIN_TEXT } from '@/app/constants/layout';
 import { Dela_Gothic_One } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export const dela = Dela_Gothic_One({
   subsets: ['latin'],
@@ -9,6 +11,11 @@ export const dela = Dela_Gothic_One({
 });
 
 function Header() {
+
+  const pathname = usePathname();
+
+  if (pathname === '/edit-blog') return null;
+
   return (
     <header className="w-full flex items-center justify-between h-[108px] px-[5%] text-2xl">
       <div className="flex gap-x-2 items-center">
