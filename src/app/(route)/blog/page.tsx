@@ -1,12 +1,13 @@
-'use client';
 
-import BlogContainer from '@/app/components/blog/BlogContainer';  
+import React from 'react';
+import BlogContainer from '@/app/components/blog/BlogContainer'; // BlogContainer 불러오기
 
-export default function BlogPage() {
+const BlogPage = () => {
   return (
     <div>
-      <h1>블로그 페이지</h1>
-      <BlogContainer />  
+      <BlogContainer />
     </div>
   );
-}
+};
+
+export default BlogPage;
