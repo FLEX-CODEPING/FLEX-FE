@@ -22,7 +22,7 @@ const BlogPage = () => {
 
   // 검색 페이지로 이동
   const handleSearchRedirect = () => {
-    router.push('/blogsearch');
+    router.push('/blog/blogsearch');
   };
 
   // 네비 버튼 클릭 시 상태 변경
