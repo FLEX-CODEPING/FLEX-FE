@@ -1,10 +1,10 @@
-import EditBlogContainer from '@/app/components/edit-blog/EditBlogContainer';
+import EditBlogContainer from '@/app/components/blog/post/EditBlogContainer';
 
-const EditBlogPage = () => {
+const PostBlogPage = () => {
   return (
     <section className="w-full h-full flex items-center flex-col mt-[40px]">
       <EditBlogContainer />
     </section>
   );
 };
-export default EditBlogPage;
+export default PostBlogPage;

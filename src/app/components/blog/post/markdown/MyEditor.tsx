@@ -10,7 +10,7 @@ import { TOOLBAR_ITEMS } from '@/app/constants/blog';
 
 const MyEditor = () => {
   const editorRef = useRef<Editor>(null);
-  const [getContent, setGetContent] = useState('');
+  const [getContent, setGetContent] = useState(''); 
 
   const handleImageUpload = (blob: File, callback: Function) => {
     

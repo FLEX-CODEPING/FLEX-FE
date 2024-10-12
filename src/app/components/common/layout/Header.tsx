@@ -14,7 +14,7 @@ function Header() {
 
   const pathname = usePathname();
 
-  if (pathname === '/edit-blog') return null;
+  if (pathname === '/blog/post') return null;
 
   return (
     <header className="w-full flex items-center justify-between h-[108px] px-[5%] text-2xl">
