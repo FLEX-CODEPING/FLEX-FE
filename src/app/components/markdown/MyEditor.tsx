@@ -1,7 +1,7 @@
 'use client';
 
-import React, { FormEventHandler, useEffect, useRef, useState } from 'react';
-import { Editor, Viewer } from '@toast-ui/react-editor';
+import React, { FormEventHandler, useRef, useState } from 'react';
+import { Editor } from '@toast-ui/react-editor';
 import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
@@ -25,7 +25,7 @@ const MyEditor = () => {
       <form onSubmit={onSubmit}>
         <Editor
           ref={editorRef}
-          height="600px"
+          height="800px"
           initialEditType="markdown"
           initialValue="### 본문 내용을 작성해 주세요."
           hideModeSwitch={true}
@@ -44,16 +44,16 @@ const MyEditor = () => {
         <div className="mt-10 flex justify-end">
           <button
             type="submit"
-            className="w-36 h-10 bg-[#cbcaca] text-white rounded-[10px] font-bold text-xl "
+            className="w-36 h-10 bg-[#000000] text-white rounded-[10px] font-bold text-xl "
           >
             출간하기
           </button>
         </div>
       </form>
-      <div className="w-[1200px] flex gap-8 mt-[40px] justify-center mb-[10px]">
+      {/* <div className="w-[1200px] flex gap-8 mt-[40px] justify-center mb-[10px]">
         <div className="text-xl font-bold">출력된 HTML</div>
       </div>
-      <div className="w-[1200px] flex gap-8 justify-center">{getContent}</div>
+      <div className="w-[1200px] flex gap-8 justify-center">{getContent}</div> */}
     </div>
   );
 };

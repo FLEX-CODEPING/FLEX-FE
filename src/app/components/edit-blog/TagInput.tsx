@@ -35,7 +35,7 @@ export default function TagInput() {
         {tags.map((tag, index) => (
           <div
             key={index}
-            className="bg-gray-200 text-main-1 px-3 py-1 rounded-full cursor-pointer hover:bg-gray-300"
+            className="bg-main-1 text-white px-3 py-1 rounded-full cursor-pointer hover:bg-gray-300"
             onClick={() => removeTag(index)}
           >
             {tag}
@@ -50,7 +50,7 @@ export default function TagInput() {
           className="focus:outline-none focus:ring-0 w-[200px] text-black text-xl ml-[17px]"
         />
       </div>
-      <p className="text-gray-400 mt-3 ml-[17px] text-sm">{EDITBLOG_TEXT[2]}</p>
+      <p className="text-gray-400 mt-4 ml-[17px] mb-2 text-sm">{EDITBLOG_TEXT[2]}</p>
     </div>
   );
 }
