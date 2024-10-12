@@ -31,8 +31,12 @@ const config: Config = {
           3: '#EEEEEE',
         },
       },
+      spacing: {
+        '12.5': '50px', // 12.5를 50px로 정의하여 커스텀 gap 추가
+      },
     },
   },
   plugins: [],
 };
+
 export default config;
