@@ -11,6 +11,12 @@ const MyEditor = () => {
   const editorRef = useRef<Editor>(null);
   const [getContent, setGetContent] = useState('');
 
+  const handleImageUpload = (blob: File, callback: Function) => {
+    
+    const dummyUrl = 'https://i.namu.wiki/i/Vj5qbEFSnNirgU_WzuKbQmLd20hbM6QyNGHb8f87wB4iUuMA-OliDHoQMBnxu7jSowmBl5R-wBKXIb5Voe1bxw.webp'; 
+    callback(dummyUrl, 'image'); 
+  };
+
   const onSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
@@ -40,6 +46,9 @@ const MyEditor = () => {
             ['image'],
             ['scrollSync'],
           ]}
+          hooks={{
+            addImageBlobHook: handleImageUpload, 
+          }}
         />
         <div className="mt-10 flex justify-end">
           <button
