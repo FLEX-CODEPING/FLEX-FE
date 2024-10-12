@@ -1,12 +1,12 @@
-interface BlogPost {
-    id: number;
-    title: string;
-    date: string;
-    content: string;
+export interface BlogPost {
+    id: number; 
     category: string;
     likes: number;
-    imageUrl: string; 
+    imageUrl: string;
+    title: string;
+    content: string;
     author: string;
     authorImageUrl: string;
+    date: string;
   }
   
