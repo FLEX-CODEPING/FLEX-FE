@@ -12,7 +12,7 @@ const EditBlogContainer = () => {
   return (
     <div className="mb-[50px]">
       <BlogInfoContainer />
-      <div className="mt-[10px] mb-10">
+      <div className="mt-[20px] mb-10">
         <MyEditor />
       </div>
     </div>
