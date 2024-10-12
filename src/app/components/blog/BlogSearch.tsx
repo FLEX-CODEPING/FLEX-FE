@@ -6,6 +6,7 @@ import Header, { dela } from "@/app/components/common/layout/Header";
 import "@/app/styles/Blogstyles.css"; 
 import '@/app/styles/globals.css';
 import { dummyPosts } from "../../(route)/blog/BlogData";
+import { BlogPost } from '../../_types/blog'; // 정확한 경로 확인
 
 const BlogSearch = () => {
   const [query, setQuery] = useState("");
@@ -28,9 +29,7 @@ const BlogSearch = () => {
         post.title.toLowerCase().includes(query.toLowerCase())            
       );
       setResults(filteredPosts);
-
-      
-      router.push('/blogsearch');
+      router.push('/blog/blogsearch');
 
     } catch (error) {
       console.error("Error fetching the data", error);
@@ -89,20 +88,13 @@ const BlogSearch = () => {
             <div className="posts-container">
               {currentPosts.map((post) => (
                 <div key={post.id} className="post-card">
-                  {}
-                  <div className="relative w-full h-48 border border-gray-300 rounded-lg overflow-hidden">
-                    <img
-                      src={post.imageUrl || "/images/3c.png"}
-                      alt={post.title}
-                      className="post-image"
-                      style={{ objectFit: "cover", width: "100%", height: "100%" }}
-                    />
-                    {}
-                    <div className="absolute top-2 left-2 bg-white px-2 py-1 rounded-md shadow-md text-xs">
+                  {/* 포스트 카드 상단에 카테고리와 좋아요 표시 */}
+                  <div className="post-header">
+                    <div className="category">
                       #{post.category}
                     </div>
-                    <div className="absolute top-2 right-2 flex items-center gap-2">
-                      <p className="text-xs text-gray-500">{post.likes} 좋아요</p>
+                    <div className="likes">
+                      <p>{post.likes} 좋아요</p>
                       <img
                         src="/images/like.png"
                         alt="좋아요"
@@ -111,7 +103,15 @@ const BlogSearch = () => {
                       />
                     </div>
                   </div>
-                  {}
+                  <div className="relative w-full h-48 border border-gray-300 rounded-lg overflow-hidden">
+                    <img
+                      src={post.imageUrl || "/images/3c.png"}
+                      alt={post.title}
+                      className="post-image"
+                      style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                    />
+                  </div>
+
                   <div className="post-content p-4">
                     <h2 className={dela.className}>{post.title}</h2>
                     <p>{post.content}</p>
