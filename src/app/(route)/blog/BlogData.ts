@@ -1,9 +1,5 @@
-interface BlogData {
-  formData: BlogPost;
-  updateFormData: (key: string, value: any) => void;
-}
+import { BlogPost } from '../../_types/blog'; // 타입 불러오기
 
-// 더미 포스트 데이터
 export const dummyPosts: BlogPost[] = [
   {
     id: 1,
