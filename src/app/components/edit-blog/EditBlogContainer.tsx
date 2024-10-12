@@ -1,12 +1,7 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import BlogInfoContainer from './BlogInfoContainer';
-
-const MyEditor = dynamic(() => import('../markdown/MyEditor'), {
-  ssr: false,
-  loading: () => <p>Loading Editor...</p>,
-});
+import MyEditor from '../markdown/MyEditor';
 
 const EditBlogContainer = () => {
   return (

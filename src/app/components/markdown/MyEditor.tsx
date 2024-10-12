@@ -6,6 +6,7 @@ import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
+import { TOOLBAR_ITEMS } from '@/app/constants/blog';
 
 const MyEditor = () => {
   const editorRef = useRef<Editor>(null);
@@ -14,7 +15,8 @@ const MyEditor = () => {
   const handleImageUpload = (blob: File, callback: Function) => {
     
     const dummyUrl = 'https://i.namu.wiki/i/Vj5qbEFSnNirgU_WzuKbQmLd20hbM6QyNGHb8f87wB4iUuMA-OliDHoQMBnxu7jSowmBl5R-wBKXIb5Voe1bxw.webp'; 
-    callback(dummyUrl, 'image'); 
+    const fileName = blob.name; 
+    callback(dummyUrl, '이미지 설명');
   };
 
   const onSubmit: FormEventHandler<HTMLFormElement> = (event) => {
@@ -37,15 +39,7 @@ const MyEditor = () => {
           hideModeSwitch={true}
           previewStyle="vertical"
           plugins={[colorSyntax]}
-          toolbarItems={[
-            ['heading', 'bold', 'italic', 'strike'],
-            ['ul', 'ol'],
-            ['code', 'codeblock'],
-            ['table'],
-            ['link'],
-            ['image'],
-            ['scrollSync'],
-          ]}
+          toolbarItems={TOOLBAR_ITEMS}
           hooks={{
             addImageBlobHook: handleImageUpload, 
           }}
@@ -59,10 +53,6 @@ const MyEditor = () => {
           </button>
         </div>
       </form>
-      {/* <div className="w-[1200px] flex gap-8 mt-[40px] justify-center mb-[10px]">
-        <div className="text-xl font-bold">출력된 HTML</div>
-      </div>
-      <div className="w-[1200px] flex gap-8 justify-center">{getContent}</div> */}
     </div>
   );
 };
