@@ -1,23 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AGE_OPTIONS, SALARY_OPTIONS } from '@/app/constants/BlogConstants'; // 상수 불러오기
 
-interface FilterProps {
-  selectedAges: string[];
-  selectedSalaries: string[];
-  handleAgeClick: (age: string) => void;
-  handleSalaryClick: (salary: string) => void;
-  toggleFilterDropdown: () => void;
-  dropdownOpen: boolean;
-}
+const Filters = () => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [selectedAges, setSelectedAges] = useState<string[]>([]);
+  const [selectedSalaries, setSelectedSalaries] = useState<string[]>([]);
 
-const Filters: React.FC<FilterProps> = ({
-  selectedAges,
-  selectedSalaries,
-  handleAgeClick,
-  handleSalaryClick,
-  toggleFilterDropdown,
-  dropdownOpen
-}) => {
+  const handleAgeClick = (age: string) => {
+    setSelectedAges(prev => prev.includes(age) ? prev.filter(a => a !== age) : [...prev, age]);
+  };
+
+  const handleSalaryClick = (salary: string) => {
+    setSelectedSalaries(prev => prev.includes(salary) ? prev.filter(s => s !== salary) : [...prev, salary]);
+  };
+
+  const toggleFilterDropdown = () => {
+    setDropdownOpen(prev => !prev);
+  };
+
   return (
     <div className="w-full flex-center flex-col">
       <div className="filter-section flex justify-between items-start">
@@ -56,7 +56,7 @@ const Filters: React.FC<FilterProps> = ({
         </div>
       </div>
 
-      {/* 검색 필터 드롭다운 버튼 */}
+     
       <div className="relative-container relative">
         <button className="filter-dropdown-button" onClick={toggleFilterDropdown}>검색 필터</button>
         {dropdownOpen && (
