@@ -82,3 +82,5 @@ export const COMPLETE_RECOMMEND_IMG = [
   'complete2.png',
   'complete3.png',
 ];
+
+export const RECOMMEND_PATH = ['/blog', '/predict', 'summarize'];
