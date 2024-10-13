@@ -1,13 +1,15 @@
 'use client';
 
 import { AUTH_BTN_TEXT, INITIAL_SIGNUP_DATA } from '@/app/constants/auth';
-import { useState } from 'react';
 import { isCorrect } from '@/app/utils/qualify';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import Button from '../../common/Button';
 import IncomeInterestForm from './IncomeInterestForm';
 import PersonalInfoForm from './PersonalInfoForm';
 
 function SignInContainer() {
+  const router = useRouter();
   const [formData, setFormData] =
     useState<SignUpFormTypes>(INITIAL_SIGNUP_DATA);
 
@@ -15,7 +17,6 @@ function SignInContainer() {
     isCorrect(formData.blogName) &&
     isCorrect(formData.nickName) &&
     formData.interest.length !== 0;
-  console.log(isSatisfied, '상태');
 
   const updateFormData = (key: string, value: any) => {
     setFormData((prev) => ({
@@ -23,9 +24,11 @@ function SignInContainer() {
       [key]: value,
     }));
   };
-
+  console.log(isSatisfied);
   const handleSignUpClick = () => {
-    updateFormData('year', 2000);
+    if (isSatisfied) {
+      router.push('/auth/complete');
+    } else alert('입력정보를 확인해주세요!');
   };
 
   return (
