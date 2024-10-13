@@ -15,7 +15,7 @@ function Header() {
         <Image width={40} height={40} src="/Images/logo.png" alt="logo" />
         <p className={`${dela.className} text-[28px] text-main-1`}>FLEX</p>
       </div>
-      <div className="flex">
+      <div className="flex gap-x-[50px]">
         {HEADER_TEXT.map((text) => {
           // 'blog'일 경우 '블로그'로 표시하고, 링크는 '/blog'로 유지
           const displayText = text === 'blog' ? '블로그' : text;
@@ -23,7 +23,7 @@ function Header() {
 
           return (
             <Link href={href} key={text}>
-              <span className="mr-[50px] cursor-pointer">{displayText}</span>
+              <span className="cursor-pointer">{displayText}</span>
             </Link>
           );
         })}
