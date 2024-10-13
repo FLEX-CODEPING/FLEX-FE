@@ -18,7 +18,7 @@ const PersonalInfoForm = ({
   updateFormData,
 }: PersonalInfoFormProps) => {
   return (
-    <div className="w-full flex flex-col gap-y-5">
+    <div className="w-full flex flex-col gap-y-4">
       <div className="w-full flex flex-col gap-x-2.5 gap-y-1">
         <div className="text-sm pl-2.5">{BIRTH[0]}</div>
         <div className="w-full flex gap-x-2.5">
