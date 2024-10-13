@@ -1,6 +1,6 @@
 
 import React from 'react';
-import BlogContainer from '@/app/components/blog/BlogContainer'; // BlogContainer 불러오기
+import BlogContainer from '@/app/components/blog/BlogContainer'; 
 
 const BlogPage = () => {
   return (
