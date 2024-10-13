@@ -27,11 +27,6 @@
     background-color: var(--background);
   }
 
-  /* Roboto 폰트 */
-  .font-roboto {
-    font-family: 'Roboto', sans-serif;
-  }
-
   /* 스크롤바 제거 */
   .hide-scrollbar {
     -ms-overflow-style: none; /* IE and Edge */
@@ -55,20 +50,20 @@
     @apply flex justify-center items-center;
   }
 
-  /* 네비게이션 옵션 */
-  .nav-options {
+ /* 네비게이션 옵션 */
+.nav-options {
     @apply flex gap-6 justify-start pr-[1200px] mt-[55px];
   }
-
+  
   /* 네비게이션 버튼 */
   .nav-button {
     @apply px-4 py-2 border-transparent cursor-pointer bg-white font-normal mr-2;
   }
-
+  
   .nav-button.selected {
     @apply font-bold;
   }
-
+  
   .nav-button:hover {
     @apply text-[#F95700];
   }
