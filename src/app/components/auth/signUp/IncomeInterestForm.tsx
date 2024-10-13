@@ -37,8 +37,8 @@ const IncomeInterestForm = ({
         <div className="flex gap-x-4 pl-2.5 mb-1 text-sm">
           <div>{INCOME_TITLE}</div>
           <div>
-            {Number(formData.income) === 10000
-              ? '1억초과'
+            {Number(formData.income) >= 10000
+              ? `${(Number(formData.income) / 10000).toFixed(2)}억`
               : `약 ${formData.income} 만원`}
           </div>
         </div>
@@ -46,23 +46,27 @@ const IncomeInterestForm = ({
         <input
           type="range"
           min={0}
-          max={10000}
-          step={100}
+          max={2000}
+          step={10}
           value={formData.income}
           onChange={handleIncomeChange}
           className="custom-range"
         />
-        <div className="flex w-full gap-x-[30px] justify-center text-xs text-gray-1 relative px-[64px]">
+        <div className="flex w-full justify-between text-xs text-gray-1 relative px-[10px]">
           {INCOME_RANGE.map((income) => (
-            <p className="w-[54px] text-center text-[11px]" key={income}>
+            <p className="flex w-[22px] text-[10px] text-center" key={income}>
               {income}
             </p>
           ))}
-          <div className="absolute bottom-7 left-[85px] w-1 h-1 rounded-full bg-main-1" />
-          <div className="absolute bottom-7 left-[165px] w-1 h-1 rounded-full bg-main-1" />
-          <div className="absolute bottom-7 left-[245px] w-1 h-1 rounded-full bg-main-1" />
-          <div className="absolute bottom-7 left-[325px] w-1 h-1 rounded-full bg-main-1" />
-          <div className="absolute bottom-7 left-[405px] w-1 h-1 rounded-full bg-main-1" />
+          <div className="absolute bottom-7 left-[10px] w-1 h-1 rounded-full bg-main-1" />
+          <div className="absolute bottom-7 left-[66px] w-1 h-1 rounded-full bg-main-1" />
+          <div className="absolute bottom-7 left-[122px] w-1 h-1 rounded-full bg-main-1" />
+          <div className="absolute bottom-7 left-[178px] w-1 h-1 rounded-full bg-main-1" />
+          <div className="absolute bottom-7 left-[232px] w-1 h-1 rounded-full bg-main-1" />
+          <div className="absolute bottom-7 left-[290px] w-1 h-1 rounded-full bg-main-1" />
+          <div className="absolute bottom-7 left-[352px] w-1 h-1 rounded-full bg-main-1" />
+          <div className="absolute bottom-7 left-[412px] w-1 h-1 rounded-full bg-main-1" />
+          <div className="absolute bottom-7 left-[480px] w-1 h-1 rounded-full bg-main-1" />
         </div>
       </div>
       <div className="w-full relative flex flex-col">
