@@ -1,7 +1,5 @@
 interface SignUpFormTypes {
-  year: string;
-  month: string;
-  day: string;
+  date: string;
   nickName: string;
   blogName: string;
   income: string;

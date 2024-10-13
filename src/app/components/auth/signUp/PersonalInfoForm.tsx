@@ -1,7 +1,6 @@
 import {
   BIRTH,
   BIRTH_DATE,
-  BIRTH_TYPE,
   BLOGNAME_TEXT,
   NICKNAME_TEXT,
 } from '@/app/constants/auth';
@@ -17,24 +16,26 @@ const PersonalInfoForm = ({
   formData,
   updateFormData,
 }: PersonalInfoFormProps) => {
+  const regex2 = /^[a-zA-Z0-9가-힣]{2,8}$/;
+  const isWrong = (text: string) => {
+    return !regex2.test(text) && text.length !== 0;
+  };
+
   return (
     <div className="w-full flex flex-col gap-y-5">
       <div className="w-full flex flex-col gap-x-2.5 gap-y-1">
         <div className="text-sm pl-2.5">{BIRTH[0]}</div>
         <div className="w-full flex gap-x-2.5">
-          {BIRTH_TYPE.map((type, index) => {
-            const value = formData[type as keyof SignUpFormTypes];
-            return (
-              <Input
-                key={type}
-                type="signUp"
-                textValue={typeof value === 'string' ? value : ''}
-                onChange={(e) => updateFormData(type, e.target.value)}
-                placeholder={BIRTH_DATE[index]}
-                maxLength={type === 'year' ? 4 : 2}
-              />
-            );
-          })}
+          <Input
+            type="signUp"
+            inputType="date"
+            min="1900-01-01"
+            max={new Date().toISOString().split('T')[0]}
+            textValue={formData.date}
+            onFocus={(e) => e.target.showPicker()}
+            onChange={(e) => updateFormData('date', e.target.value)}
+            placeholder={BIRTH_DATE[0]}
+          />
         </div>
         <div className="text-xs pl-2.5 text-gray-1">{BIRTH[1]}</div>
       </div>
@@ -46,8 +47,13 @@ const PersonalInfoForm = ({
           onChange={(e) => updateFormData('nickName', e.target.value)}
           placeholder={NICKNAME_TEXT[1]}
           maxLength={8}
+          className="pr-8"
         />
-        <div className="text-xs pl-2.5 text-gray-1">{NICKNAME_TEXT[2]}</div>
+        <div
+          className={`text-xs pl-2.5 text-gray-1 ${isWrong(formData.nickName) && 'text-red-1'}`}
+        >
+          {NICKNAME_TEXT[2]}
+        </div>
       </div>
       <div className="w-full flex flex-col gap-x-2.5 gap-y-1">
         <div className="text-sm pl-2.5">{BLOGNAME_TEXT[0]}</div>
@@ -58,7 +64,11 @@ const PersonalInfoForm = ({
           placeholder={BLOGNAME_TEXT[1]}
           maxLength={8}
         />
-        <div className="text-xs pl-2.5 text-gray-1">{BLOGNAME_TEXT[2]}</div>
+        <div
+          className={`text-xs pl-2.5 text-gray-1 ${isWrong(formData.blogName) && 'text-red-1'}`}
+        >
+          {BLOGNAME_TEXT[2]}
+        </div>
       </div>
     </div>
   );

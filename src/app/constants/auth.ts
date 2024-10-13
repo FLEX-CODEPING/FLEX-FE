@@ -3,20 +3,16 @@ export const AUTH_TITLE = '회원가입';
 export const AUTH_BTN_TEXT = '가입하기';
 
 export const INITIAL_SIGNUP_DATA: SignUpFormTypes = {
-  year: '',
-  month: '',
-  day: '',
+  date: '2000.10.04',
   nickName: '',
   blogName: '',
   income: '',
   interest: [],
 };
 
-export const BIRTH = ['생년월일', '연, 월, 일을 모두 기입해주세요'];
+export const BIRTH = ['생년월일', '본인의 생년월일을 기입해주세요'];
 
-export const BIRTH_TYPE = ['year', 'month', 'day'];
-
-export const BIRTH_DATE = ['YYYY', 'MM', 'DD'];
+export const BIRTH_DATE = 'YYYY. MM. DD';
 
 export const NICKNAME_TEXT = [
   '닉네임',
@@ -32,13 +28,7 @@ export const BLOGNAME_TEXT = [
 
 export const INCOME_TITLE = '수입';
 
-export const INCOME_RANGE = [
-  '3000이하',
-  '5000이하',
-  '7500이하',
-  '1억 이하',
-  '1.5억 이상',
-];
+export const INCOME_RANGE = ['0', '3000', '5000', '7500', '1억 초과'];
 
 export const INTEREST_TITLE = '내 관심사';
 
