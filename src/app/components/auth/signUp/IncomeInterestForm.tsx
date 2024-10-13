@@ -34,12 +34,20 @@ const IncomeInterestForm = ({
   return (
     <div className="w-full flex flex-col gap-y-10 mb-[4%]">
       <div className="w-full relative flex flex-col gap-y-1">
-        <div className="text-sm pl-2.5 mb-1">{INCOME_TITLE}</div>
+        <div className="flex gap-x-4 pl-2.5 mb-1 text-sm">
+          <div>{INCOME_TITLE}</div>
+          <div>
+            {Number(formData.income) === 10000
+              ? '1억초과'
+              : `약 ${formData.income} 만원`}
+          </div>
+        </div>
+
         <input
           type="range"
           min={0}
-          max={80}
-          step={20}
+          max={10000}
+          step={100}
           value={formData.income}
           onChange={handleIncomeChange}
           className="custom-range"

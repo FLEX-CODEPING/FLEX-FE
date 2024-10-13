@@ -7,7 +7,7 @@ import {
 } from '@/app/constants/main';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { redirect, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
 function SignInContainer() {
@@ -18,6 +18,7 @@ function SignInContainer() {
 
   useEffect(() => {
     if (code) {
+      redirect('/auth/signUp');
       fetch(`/api/login?code=${code}`, {
         method: 'POST',
         headers: {
