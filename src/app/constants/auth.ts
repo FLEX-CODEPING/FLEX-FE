@@ -10,9 +10,13 @@ export const INITIAL_SIGNUP_DATA: SignUpFormTypes = {
   interest: [],
 };
 
-export const BIRTH = ['생년월일', '본인의 생년월일을 기입해주세요'];
+export const BIRTH = [
+  '생년월일',
+  '달력 이모티콘을 클릭해 본인의 생년월일을 기입해주세요',
+];
 
 export const BIRTH_DATE = 'YYYY. MM. DD';
+export const BIRTH_GUIDE = '';
 
 export const NICKNAME_TEXT = [
   '닉네임',
@@ -28,7 +32,17 @@ export const BLOGNAME_TEXT = [
 
 export const INCOME_TITLE = '수입';
 
-export const INCOME_RANGE = ['0', '3000', '5000', '7500', '1억 초과'];
+export const INCOME_RANGE = [
+  '0',
+  '2.5',
+  '5',
+  '7.5',
+  '10',
+  '12.5',
+  '15',
+  '17.5',
+  '20+',
+];
 
 export const INTEREST_TITLE = '내 관심사';
 

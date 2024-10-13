@@ -23,14 +23,14 @@ const PersonalInfoForm = ({
         <div className="text-sm pl-2.5">{BIRTH[0]}</div>
         <div className="w-full flex gap-x-2.5">
           <Input
+            className="cursor-pointer pr-8"
             type="signUp"
             inputType="date"
             min="1900-01-01"
             max={new Date().toISOString().split('T')[0]}
             textValue={formData.date}
-            onFocus={(e) => e.target.showPicker()}
             onChange={(e) => updateFormData('date', e.target.value)}
-            placeholder={BIRTH_DATE[0]}
+            placeholder={BIRTH_DATE}
           />
         </div>
         <div className="text-xs pl-2.5 text-gray-1">{BIRTH[1]}</div>
