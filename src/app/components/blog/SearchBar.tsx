@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Image from 'next/image';
 interface SearchBarProps {
   query: string;
   setQuery: (query: string) => void;
@@ -10,7 +10,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ query, setQuery, handleSearch }) 
   return (
     <div className="search-bar">
       <div className="icon-container">
-        <img src="/images/logo.png" alt="search-icon" className="icon" />
+      <Image
+          src="/images/logo.png"
+          alt="salaryImg"
+          width={18}
+          height={18}
+        />
       </div>
       <input
         type="text"
