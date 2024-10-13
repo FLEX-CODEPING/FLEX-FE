@@ -3,7 +3,7 @@ export const AUTH_TITLE = '회원가입';
 export const AUTH_BTN_TEXT = '가입하기';
 
 export const INITIAL_SIGNUP_DATA: SignUpFormTypes = {
-  date: '2000.10.04',
+  date: '2000-01-01',
   nickName: '',
   blogName: '',
   income: '',

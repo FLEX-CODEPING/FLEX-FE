@@ -5,6 +5,7 @@ import {
   NICKNAME_TEXT,
 } from '@/app/constants/auth';
 import '@/app/styles/slider.css';
+import { isCorrect } from '@/app/utils/qualify';
 import Input from '../../common/Input';
 
 interface PersonalInfoFormProps {
@@ -16,11 +17,6 @@ const PersonalInfoForm = ({
   formData,
   updateFormData,
 }: PersonalInfoFormProps) => {
-  const regex2 = /^[a-zA-Z0-9가-힣]{2,8}$/;
-  const isWrong = (text: string) => {
-    return !regex2.test(text) && text.length !== 0;
-  };
-
   return (
     <div className="w-full flex flex-col gap-y-5">
       <div className="w-full flex flex-col gap-x-2.5 gap-y-1">
@@ -50,7 +46,7 @@ const PersonalInfoForm = ({
           className="pr-8"
         />
         <div
-          className={`text-xs pl-2.5 text-gray-1 ${isWrong(formData.nickName) && 'text-red-1'}`}
+          className={`text-xs pl-2.5 text-gray-1 ${!isCorrect(formData.nickName) && 'text-red-1'}`}
         >
           {NICKNAME_TEXT[2]}
         </div>
@@ -65,7 +61,7 @@ const PersonalInfoForm = ({
           maxLength={8}
         />
         <div
-          className={`text-xs pl-2.5 text-gray-1 ${isWrong(formData.blogName) && 'text-red-1'}`}
+          className={`text-xs pl-2.5 text-gray-1 ${!isCorrect(formData.blogName) && 'text-red-1'}`}
         >
           {BLOGNAME_TEXT[2]}
         </div>
