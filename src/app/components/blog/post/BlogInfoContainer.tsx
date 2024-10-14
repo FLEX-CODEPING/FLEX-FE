@@ -10,7 +10,7 @@ const BlogInfoContainer = () => {
           type="text"
           placeholder={EDITBLOG_TEXT[0]}
           className="w-[400.29px] h-[26.83px] left-[17.23px] top-[16.33px] absolute text-[#414141] text-[28px] font-medium border-none outline-none"
-        ></input>
+        />
       </div>
       <TagInput />
     </div>

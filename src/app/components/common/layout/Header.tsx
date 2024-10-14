@@ -1,5 +1,6 @@
-'use client'
-import { HEADER_TEXT, LOGIN_TEXT } from '@/app/constants/layout';
+'use client';
+
+import { HEADER_TEXT } from '@/app/constants/layout';
 import { Dela_Gothic_One } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,7 +13,6 @@ export const dela = Dela_Gothic_One({
 });
 
 function Header() {
-
   const pathname = usePathname();
 
   if (pathname === '/blog/post') return null;
