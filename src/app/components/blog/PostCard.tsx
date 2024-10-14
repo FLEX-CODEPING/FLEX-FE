@@ -1,26 +1,28 @@
-import React from 'react';
 import Image from 'next/image';
-import { BlogPost } from '../../_types/blog'; // BlogPost 타입 불러오기
+import { BlogPost } from '../../_types/blog'; 
+import Icons from '@/app/components/common/Icons'
+import {likeSmall} from '@/app/constants/iconPath'
 
 interface PostCardProps {
-  post: BlogPost; // BlogPost 타입 사용
+  post: BlogPost; 
 }
 
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
   return (
-    <div className="post-card">
+    <div className="post-card cursor-pointer">
       <div className="flex justify-between items-center mb-2">
         <div className="bg-gray-200 px-2 py-1 rounded-md text-sm font-semibold text-gray-700">
           #{post.category}
         </div>
         <div className="flex items-center text-sm text-gray-500">
           <p>{post.likes}</p>
-          <Image
+          {/* <Image
             src="/images/like.png"
             alt="좋아요"
             width={20}
             height={20}
-          />
+          /> */}
+          <Icons name={likeSmall}/>
         </div>
       </div>
 
