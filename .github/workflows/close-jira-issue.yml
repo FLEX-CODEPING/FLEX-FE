@@ -33,7 +33,7 @@ jobs:
         uses: atlassian/gajira-transition@v3
         with:
           issue: ${{ steps.extract-key.outputs.jira_key }}
-          transition: "완료"
+          transition: '완료'
 
       - name: Log Jira issue update
         if: steps.extract-key.outputs.jira_key
