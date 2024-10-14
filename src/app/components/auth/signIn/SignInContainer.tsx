@@ -5,6 +5,7 @@ import {
   MAIN_FEAT_DETAIL,
   MAIN_FEAT_IMG,
 } from '@/app/constants/main';
+import { callPost } from '@/app/utils/callApi';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect, useSearchParams } from 'next/navigation';
@@ -19,12 +20,7 @@ function SignInContainer() {
   useEffect(() => {
     if (code) {
       redirect('/auth/signUp');
-      fetch(`/api/login?code=${code}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+      callPost(`/api/login?code=${code}`)
         .then((res) => res.json())
         .then((data) => {
           console.log('카카오 로그인 응답:', data);
