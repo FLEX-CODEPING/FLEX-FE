@@ -12,9 +12,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ query, setQuery, handleSearch }) 
       <div className="icon-container">
       <Image
           src="/images/logo.png"
-          alt="salaryImg"
-          width={18}
-          height={18}
+          alt="logoImg"
+          width={40}
+          height={40}
         />
       </div>
       <input
@@ -25,7 +25,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ query, setQuery, handleSearch }) 
         className="input"
       />
       <button onClick={handleSearch} className="search-button">
-        <img src="/images/1c.png" alt="search-button" className="button-icon" />
+      <Image
+            src="/images/1c.png"
+            alt="search-button"
+            width={27}
+            height={27}
+          />
       </button>
     </div>
   );
