@@ -30,7 +30,7 @@
 
   /* 결과 카운트 */
   .result-count {
-    @apply flex justify-center my-6 text-[20px] text-black font-semibold;
+    @apply flex justify-center my-6 text-[20px];
   }
 
   /* 로딩 컨테이너 */
