@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import SearchBar from '@/app/components/blog/SearchBar';
-import Results from '@/app/components/blog/Result';  // Results 컴포넌트 사용
+import Results from '@/app/components/blog/Result';  
 import Pagination from '@/app/components/blog/Pagination';
 import { dummyPosts } from '../../(route)/blog/BlogData';
 import { BlogPost } from '../../_types/blog';
