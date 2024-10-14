@@ -40,7 +40,7 @@ export const dummyPosts: BlogPost[] = [
     content: '장기적인 주식 투자의 중요성과 전략에 대해 설명합니다.',
     date: '2024.10.03',
     imageUrl: '/images/3c.png',
-    category: '장기투자',
+    category: '장기투자', 
     likes: 85,
     author: '주식핑',
     authorImageUrl: '/images/4c.png', // 저자 이미지 경로 추가
