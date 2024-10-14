@@ -28,7 +28,7 @@ jobs:
         uses: atlassian/gajira-transition@v3
         with:
           issue: ${{ env.JIRA_KEY }}
-          transition: "완료"
+          transition: '완료'
 
       - name: Log closed issue
         if: env.JIRA_KEY != ''
