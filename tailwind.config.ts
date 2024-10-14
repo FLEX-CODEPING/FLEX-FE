@@ -32,7 +32,7 @@ const config: Config = {
         },
       },
       spacing: {
-        '12.5': '50px', // 12.5를 50px로 정의하여 커스텀 gap 추가
+        '12.5': '50px', 
       },
     },
   },
