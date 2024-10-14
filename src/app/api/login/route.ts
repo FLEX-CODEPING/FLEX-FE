@@ -1,34 +1,23 @@
 import { NextResponse } from 'next/server';
 
-export async function GET() {
+export async function POST(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const code = searchParams.get('code') || '';
+
   try {
-    const db: any = {};
-    const response = await db.collection('article').find().toArray();
-
-    return NextResponse.json(response);
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-export async function POST(request: Request) {
-  try {
-    const body = await request.json();
-
-    const db: any = {};
-    const collection = db.collection('article');
-
-    const result = await collection.insertOne(body);
-
-    return NextResponse.json(
-      { message: 'Article created successfully', data: result },
-      { status: 201 },
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER}/api/auth/login/${code}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code }),
+      },
     );
-  } catch (e) {
-    console.error('Error creating article:', e);
-    return NextResponse.json(
-      { message: 'Failed to create article' },
-      { status: 500 },
-    );
+
+    const data = await response.json();
+
+    return NextResponse.json(data);
+  } catch (error) {
+    return NextResponse.error();
   }
 }

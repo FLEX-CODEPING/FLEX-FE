@@ -11,7 +11,7 @@ interface InputProps {
   className?: string;
   accept?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocus?: () => void;
+  onFocus?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: () => void;
   onEnterPress?: () => void;
   isDisabled?: boolean;

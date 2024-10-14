@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 function TestContainer() {
   const [stockData, setStockData] = useState<any | null>(null);
+  const [stockMinData, setStockMinData] = useState<any | null>(null);
 
   const callStock = async () => {
     try {
@@ -13,7 +14,6 @@ function TestContainer() {
           'Content-Type': 'application/json',
         },
       });
-      console.log(tokenData, '중간 데이터 타입 처리');
 
       const data = await tokenData.json();
       setStockData(data);
@@ -21,10 +21,27 @@ function TestContainer() {
       console.log(error);
     }
   };
-  console.log(stockData, '컨테이너에서 가져온 데이터');
+
+  const callStockMin = async () => {
+    try {
+      const minData = await fetch('/api/stock/min', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const data = await minData.json();
+      setStockMinData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log(stockData, '기본 주식 정보 컨테이너에서 가져온 데이터');
+  console.log(stockMinData, '분봉 데이터');
 
   return (
-    <div>
+    <div className="flex flex-col gap-y-5">
       <button
         className="w-[380px] h-[60px] bg-[#F95700] text-white"
         type="button"
@@ -32,8 +49,18 @@ function TestContainer() {
       >
         api 가져오기
       </button>
+      <button
+        className="w-[380px] h-[60px] bg-[#F95700] text-white"
+        type="button"
+        onClick={callStockMin}
+      >
+        stockMinData 가져오기
+      </button>
       <div className="text-2xl">
-        <p>{stockData?.output.bstp_kor_isnm}</p>
+        <p>기본 데이터 : {stockData?.output.bstp_kor_isnm}</p>
+      </div>
+      <div className="text-2xl">
+        <p>분봉데이터 : {stockMinData?.output2}</p>
       </div>
     </div>
   );

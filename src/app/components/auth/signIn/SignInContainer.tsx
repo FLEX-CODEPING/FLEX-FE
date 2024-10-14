@@ -1,15 +1,37 @@
+'use client';
+
 import {
   MAIN_FEAT,
   MAIN_FEAT_DETAIL,
   MAIN_FEAT_IMG,
 } from '@/app/constants/main';
+import { callPost } from '@/app/utils/callApi';
 import Image from 'next/image';
 import Link from 'next/link';
+import { redirect, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 
 function SignInContainer() {
+  const searchParams = useSearchParams();
+  const code = searchParams.get('code');
+  console.log(code);
+  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KAKAO_API_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}&scope=account_email`;
+
+  useEffect(() => {
+    if (code) {
+      redirect('/auth/signUp');
+      callPost(`/api/login?code=${code}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log('카카오 로그인 응답:', data);
+        })
+        .catch((error) => console.error('Error:', error));
+    }
+  }, [code]);
+
   return (
-    <div className="gap-y-[84px] flex flex-col mt-12">
-      <div className="flex flex-col gap-y-3">
+    <div className="gap-y-[64px] flex flex-col mt-8">
+      <div className="flex flex-col gap-y-1 items-center">
         {MAIN_FEAT.map((feat, i) => (
           <div className="flex items-center" key={feat}>
             <Image
@@ -25,7 +47,7 @@ function SignInContainer() {
           </div>
         ))}
       </div>
-      <Link href="/login">
+      <Link className="cursor-pointer" href={KAKAO_AUTH_URL}>
         <Image
           src="/images/kakao_login.png"
           alt="loginImg"
