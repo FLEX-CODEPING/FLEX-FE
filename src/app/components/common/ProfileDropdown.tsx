@@ -1,6 +1,6 @@
 'use client';
 
-import { HEADER_PROFILE_TEXT, LOGIN_TEXT } from '@/app/constants/layout';
+import { HEADER_PROFILE_TEXT, LOGIN_TEXT } from '@/app/constants/common';
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { useState } from 'react';
