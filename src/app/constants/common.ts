@@ -8,3 +8,5 @@ export const HEADER_PROFILE_TEXT = [
   '로그아웃',
   '회원탈퇴',
 ];
+
+export const HEADER_PATH = ['/blog', '/predict', '/simulate', '/news'];
