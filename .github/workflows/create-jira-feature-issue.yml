@@ -1,13 +1,28 @@
-name: Create Jira issue
+name: Create Feature Jira issue
 on:
   issues:
     types:
       - opened
+
 jobs:
   create-issue:
     name: Create Jira issue
     runs-on: ubuntu-latest
     steps:
+      - name: Check if issue uses feature template
+        id: check_template
+        run: |
+          BODY="${{ github.event.issue.body }}"
+          if [[ $BODY == *"Feature 상위 작업 Ticket Number"* ]]; then
+            echo "is_feature_template=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_feature_template=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Exit if not feature template
+        if: steps.check_template.outputs.is_feature_template != 'true'
+        run: exit 0
+
       - name: Login
         uses: atlassian/gajira-login@v3
         env:
@@ -48,7 +63,7 @@ jobs:
         with:
           project: FLEX
           issuetype: 스토리
-          summary: '${{ github.event.issue.title }}'
+          summary: '[FE] ${{ github.event.issue.title }}'
           description: '${{ steps.md2jira.outputs.output-text }}'
           fields: |
             {

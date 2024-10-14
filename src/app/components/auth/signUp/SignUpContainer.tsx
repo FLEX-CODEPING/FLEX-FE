@@ -8,7 +8,7 @@ import Button from '../../common/Button';
 import IncomeInterestForm from './IncomeInterestForm';
 import PersonalInfoForm from './PersonalInfoForm';
 
-function SignInContainer() {
+function SignUpContainer() {
   const router = useRouter();
   const [formData, setFormData] =
     useState<SignUpFormTypes>(INITIAL_SIGNUP_DATA);
@@ -44,4 +44,4 @@ function SignInContainer() {
   );
 }
 
-export default SignInContainer;
+export default SignUpContainer;
