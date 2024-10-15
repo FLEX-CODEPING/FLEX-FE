@@ -17,10 +17,12 @@
     "@toast-ui/editor": "^3.2.2",
     "@toast-ui/editor-plugin-color-syntax": "^3.1.0",
     "@toast-ui/react-editor": "^3.2.3",
+    "apexcharts": "^3.54.1",
     "cookie": "^1.0.1",
     "next": "14.2.13",
     "next-auth": "^4.24.8",
     "react": "^18",
+    "react-apexcharts": "^1.4.1",
     "react-dom": "^18",
     "tui-color-picker": "^2.2.8",
     "zustand": "^5.0.0-rc.2"
