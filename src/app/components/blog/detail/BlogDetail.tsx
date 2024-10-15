@@ -1,12 +1,12 @@
-import BlogHeader from "./BlogHeader";
+import BlogHeader from './BlogHeader';
 
 const tags = ['전기차', '테슬라', '2차 전지'];
-const likesCount = 98;
+const initialLikesCount = 71;
 
 const BlogDetail = () => {
   return (
     <div>
-      <BlogHeader tags={tags} likesCount={likesCount}/>
+      <BlogHeader tags={tags} initialLikesCount={initialLikesCount} />
     </div>
   );
 };
