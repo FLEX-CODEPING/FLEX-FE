@@ -37,4 +37,7 @@ body {
   .flex-center {
     @apply flex justify-center items-center;
   }
+  .flex-col-center {
+    @apply flex flex-col items-center;
+  }
 }

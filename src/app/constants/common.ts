@@ -9,4 +9,4 @@ export const HEADER_PROFILE_TEXT = [
   '회원탈퇴',
 ];
 
-export const HEADER_PATH = ['/blog', '/predict', '/simulate', '/news'];
+export const HEADER_PATH = ['/blog', '/prediction', '/simulation', '/news'];
