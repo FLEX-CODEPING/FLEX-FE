@@ -50,7 +50,7 @@ jobs:
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
-      - name: Deploy to GCP
+      - name: Deploy to Kakao Cloud
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.KAKAO_HOST }}
@@ -62,6 +62,6 @@ jobs:
             docker rm flex-frontend || true
             docker run -d --name flex-frontend \
               -e TZ=Asia/Seoul \
-              -p 60005:3000 \
+              -p 3000:3000 \
               ${{ secrets.DOCKER_USERNAME }}/flex-frontend:latest
             docker image prune -af
