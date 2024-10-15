@@ -10,8 +10,8 @@ import Input from '../../common/Input';
 const SearchBar = () => {
   const [searchText, setSearchText] = useState('');
   return (
-    <div className="flex w-[66%] justify-between items-end">
-      <div className="flex px-[15.5px] py-[18px] justify-between w-[360px] items-end">
+    <div className="flex w-[66%] justify-between items-end pb-3 ">
+      <div className="flex px-[15.5px] justify-between w-[360px] items-end">
         <div className="flex gap-x-2.5">
           <div className="w-[40px] h-[40px] relative">
             <Image
