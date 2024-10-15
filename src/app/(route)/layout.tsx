@@ -23,9 +23,9 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${pretendard.variable} min-h-screen min-w-[800px] mx-auto font-pretendard`}
+      className={`${pretendard.variable} h-screen min-w-[800px] mx-auto font-pretendard`}
     >
-      <body className="w-full h-full">
+      <body className="w-full h-screen">
         <Header />
         {children}
       </body>

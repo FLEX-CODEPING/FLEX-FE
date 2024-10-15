@@ -7,7 +7,7 @@ import StockChart from './Chart';
 const ChartContainer = () => {
   const [clickedType, setClickedType] = useState<ChartViewType>('일');
   return (
-    <div className="flex w-full h-[683px] px-10 py-5 rounded-[10px] border border-[#7a7a7a] flex-col justify-start items-start gap-y-10">
+    <div className="flex w-full px-10 py-5 rounded-[10px] border border-[#7a7a7a] flex-col justify-start items-start gap-y-10">
       <div className="flex w-full justify-between">
         <p className="text-2xl font-bold">{CHART_TITLE}</p>
         <div className="flex gap-x-3">
