@@ -1,3 +1,5 @@
+'use client';
+
 import SignInContainer from '@/app/components/auth/signIn/SignInContainer';
 import { dela } from '@/app/components/common/layout/Header';
 import { CATCHPHRASE, TITLE } from '@/app/constants/main';
