@@ -33,11 +33,20 @@ body {
     text-wrap: balance;
   }
 }
+
 @layer components {
   .flex-center {
     @apply flex justify-center items-center;
   }
   .flex-col-center {
     @apply flex flex-col items-center;
+  }
+}
+
+@layer base {
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 }

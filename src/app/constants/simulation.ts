@@ -40,3 +40,5 @@ export const ANALYZEBAR_TEXT = [
   '나의  모의투자를 통한 재테크 분석 결과 보기',
   '분석하기',
 ];
+
+export const AMOUNT_TYPES: AmountType[] = ['10%', '25%', '50%', '최대'];
