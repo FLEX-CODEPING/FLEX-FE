@@ -1,6 +1,6 @@
 'use client';
 
-import BlogRecommend from '@/app/components/blogmain/BlogRecommend'; 
+import BlogRecommend from '@/app/components/blogmain/blogrecommend/BlogRecommend'; 
 
 export default function BlogRecommendPage() {
   return (

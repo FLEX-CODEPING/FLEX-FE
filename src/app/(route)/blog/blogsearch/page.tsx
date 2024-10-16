@@ -1,6 +1,6 @@
 'use client';
 
-import BlogSearch from '@/app/components/blogmain/BlogSearch';  
+import BlogSearch from '@/app/components/blogmain/blogsearch/BlogSearch';  
 
 export default function BlogSearchPage() {
   return (

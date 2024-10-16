@@ -1,6 +1,6 @@
 
 import React from 'react';
-import BlogContainer from '@/app/components/blogmain/BlogContainer'; 
+import BlogContainer from '@/app/components/blogmain/blogpostmain/BlogContainer'; 
 
 const BlogPage = () => {
   return (
