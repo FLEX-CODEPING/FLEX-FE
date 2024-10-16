@@ -9,7 +9,7 @@ export async function GET(req: Request) {
     const data = await getMain(req);
     return NextResponse.json(data);
   } catch (error) {
-    return error;
+    return NextResponse.json({ error: 'Internal Server Error' });
   }
 }
 
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(data);
   } catch (error) {
-    return NextResponse.error();
+    return NextResponse.json({ error: 'Internal Server Error' });
   }
 }
 
@@ -37,7 +37,7 @@ export async function PATCH(req: Request) {
 
     return NextResponse.json(data);
   } catch (error) {
-    return NextResponse.error();
+    return NextResponse.json({ error: 'Internal Server Error' });
   }
 }
 
@@ -51,6 +51,6 @@ export async function DELETE(
 
     return NextResponse.json(data);
   } catch (error) {
-    return NextResponse.json('Internal Server Error');
+    return NextResponse.json({ error: 'Internal Server Error' });
   }
 }

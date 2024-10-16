@@ -42,7 +42,7 @@ export default function TagInput() {
         />
         {tags.map((tag, index) => (
           <div
-            key={index}
+            key={tag}
             className="bg-main-1 text-white px-3 py-1 rounded-full cursor-pointer"
             onClick={() => removeTag(index)}
           >
