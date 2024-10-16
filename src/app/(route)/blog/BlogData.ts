@@ -1,4 +1,4 @@
-import { BlogPost } from '../../_types/blog'; // 타입 불러오기
+import { BlogPost } from '../../_types/blog'; 
 
 export const dummyPosts: BlogPost[] = [
   {
@@ -10,7 +10,7 @@ export const dummyPosts: BlogPost[] = [
     category: '주식투자',
     likes: 100,
     author: '주식핑',
-    authorImageUrl: '/images/4c.png', // 저자 이미지 경로 추가
+    authorImageUrl: '/images/4c.png', 
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ export const dummyPosts: BlogPost[] = [
     category: '주식투자',
     likes: 98,
     author: '주식핑',
-    authorImageUrl: '/images/4c.png', // 저자 이미지 경로 추가
+    authorImageUrl: '/images/4c.png', 
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ export const dummyPosts: BlogPost[] = [
     category: '배당주투자',
     likes: 95,
     author: '주식핑',
-    authorImageUrl: '/images/4c.png', // 저자 이미지 경로 추가
+    authorImageUrl: '/images/4c.png', 
   },
   {
     id: 4,
@@ -43,7 +43,7 @@ export const dummyPosts: BlogPost[] = [
     category: '장기투자', 
     likes: 85,
     author: '주식핑',
-    authorImageUrl: '/images/4c.png', // 저자 이미지 경로 추가
+    authorImageUrl: '/images/4c.png', 
   },
   {
     id: 5,
@@ -54,7 +54,7 @@ export const dummyPosts: BlogPost[] = [
     category: '주식용어',
     likes: 90,
     author: '주식핑',
-    authorImageUrl: '/images/4c.png', // 저자 이미지 경로 추가
+    authorImageUrl: '/images/4c.png', 
   },
   {
     id: 6,
@@ -65,7 +65,7 @@ export const dummyPosts: BlogPost[] = [
     category: '테크주',
     likes: 120,
     author: '주식핑',
-    authorImageUrl: '/images/4c.png', // 저자 이미지 경로 추가
+    authorImageUrl: '/images/4c.png', 
   },
   {
     id: 7,
@@ -76,7 +76,7 @@ export const dummyPosts: BlogPost[] = [
     category: '단기매매',
     likes: 70,
     author: '주식핑',
-    authorImageUrl: '/images/4c.png', // 저자 이미지 경로 추가
+    authorImageUrl: '/images/4c.png', 
   },
   {
     id: 8,
@@ -87,7 +87,7 @@ export const dummyPosts: BlogPost[] = [
     category: '재테크',
     likes: 110,
     author: '주식핑',
-    authorImageUrl: '/images/4c.png', // 저자 이미지 경로 추가
+    authorImageUrl: '/images/4c.png', 
   },
   {
     id: 9,
@@ -98,6 +98,6 @@ export const dummyPosts: BlogPost[] = [
     category: '시장비교',
     likes: 80,
     author: '주식핑',
-    authorImageUrl: '/images/4c.png', // 저자 이미지 경로 추가
+    authorImageUrl: '/images/4c.png', 
   },
 ];
