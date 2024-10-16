@@ -29,6 +29,3 @@ export const likeIcon = {
     transform: 'scale(1.5)',
   },
 };
-
-
-

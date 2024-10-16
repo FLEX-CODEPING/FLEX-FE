@@ -3,7 +3,6 @@ import BlogContent from './BlogContent';
 import BlogHeader from './BlogHeader';
 import BlogTitle from './BlogTitle';
 
-
 const BlogDetailContainer = () => {
   const blogData: BlogInfoTypes = {
     title: '주식이란 뭘까?',
@@ -17,8 +16,16 @@ const BlogDetailContainer = () => {
 
   return (
     <div>
-      <BlogHeader tags={blogData.tags} initialLikesCount={blogData.likeCount} likeStatus={blogData.likeStatus} />
-      <BlogTitle title={blogData.title} membername={blogData.membername} date={blogData.date} />
+      <BlogHeader
+        tags={blogData.tags}
+        initialLikesCount={blogData.likeCount}
+        likeStatus={blogData.likeStatus}
+      />
+      <BlogTitle
+        title={blogData.title}
+        membername={blogData.membername}
+        date={blogData.date}
+      />
       <BlogContent content={blogData.content} />
     </div>
   );
