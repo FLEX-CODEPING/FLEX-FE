@@ -30,6 +30,9 @@ const config: Config = {
           2: '#CBCACA',
           3: '#EEEEEE',
         },
+        black: {
+          1: '#434343',
+        },
       },
     },
   },

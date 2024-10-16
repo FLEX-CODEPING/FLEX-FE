@@ -21,3 +21,22 @@ export const SIDE_NAV_ICONS: IconPathTypes[] = [
   status,
   trade,
 ];
+
+export const TRADEBAR_TEXT = [
+  '주문하기',
+  '매수',
+  '매도',
+  '구매가격',
+  '수량',
+  '총 금액',
+  '보유크레딧',
+  '총 금액',
+  '거래 후 잔여 크레딧',
+  '구매하기',
+];
+
+export const ANALYZEBAR_TEXT = [
+  '재테크 타입 분석',
+  '나의  모의투자를 통한 재테크 분석 결과 보기',
+  '분석하기',
+];
