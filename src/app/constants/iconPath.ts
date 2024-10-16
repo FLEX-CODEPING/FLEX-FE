@@ -17,3 +17,15 @@ export const rightArrow = {
     stroke: 'black',
   },
 };
+
+export const likeIcon = {
+  path: 'M16 5C16 5 13 5 12 8C11 5 8 5 8 5C5.8 5 4 6.8 4 9C4 13.1 12 18 12 18C12 18 20 13 20 9C20 6.8 18.2 5 16 5Z',
+  width: 36,
+  height: 36,
+  fill: 'gray',
+  viewBox: '0 0 36 36',
+  options: {
+    stroke: 'gray',
+    transform: 'scale(1.5)',
+  },
+};
