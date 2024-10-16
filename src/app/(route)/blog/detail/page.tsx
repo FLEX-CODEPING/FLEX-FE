@@ -1,4 +1,4 @@
-import BlogDetail from '@/app/components/blog/detail/BlogDetail';
+import BlogDetail from '@/app/components/blog/detail/BlogDetailContainer';
 
 const BlogDetailPage = () => {
   return (

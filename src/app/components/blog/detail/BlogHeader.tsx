@@ -7,12 +7,14 @@ import { likeIcon } from '@/app/constants/iconPath';
 interface BlogHeaderProps {
   tags: string[];
   initialLikesCount: number;
+  likeStatus: 'ACTIVE' | 'INACTIVE';
 }
 
-const BlogHeader = ({ tags, initialLikesCount }: BlogHeaderProps) => {
+const BlogHeader = ({ tags, initialLikesCount, likeStatus }: BlogHeaderProps) => {
   const [likeCount, setLikeCount] = useState(initialLikesCount);
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(likeStatus === 'ACTIVE');
   const [isHovered, setIsHovered] = useState(false);
+  
 
   const handleLikeClick = () => {
     if (isLiked) {
@@ -60,7 +62,7 @@ const BlogHeader = ({ tags, initialLikesCount }: BlogHeaderProps) => {
           onClick={handleLikeClick}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className={`w-[48px] h-[48px] rounded-full flex items-center justify-center border-[1px] cursor-pointer ${getButtonBorderColor()} ${getButtonBackgroundColor()}`}
+          className={`mt-2 w-[48px] h-[48px] rounded-full flex items-center justify-center border-[1px] cursor-pointer ${getButtonBorderColor()} ${getButtonBackgroundColor()}`}
         >
           <div className="w-[34px] h-[34px] relative">
           <Icons
