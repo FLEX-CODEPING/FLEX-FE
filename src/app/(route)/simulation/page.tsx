@@ -5,7 +5,7 @@ import TradeContainer from '@/app/components/simulation/trade/TradeContainer';
 
 function SimulationPage() {
   return (
-    <section className="flex w-full flex-col h-full justify-between">
+    <section className="flex w-full flex-col h-full justify-between relative">
       <div className="w-full h-full pl-[5%] flex mt-[1%] items-stretch justify-between">
         <SimulationContainer />
         <TradeContainer />

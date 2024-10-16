@@ -56,7 +56,7 @@ export function Chart() {
           },
         ]}
         width="100%"
-        height={580}
+        height={500}
         options={{
           theme: {
             mode: 'light',

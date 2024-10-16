@@ -83,7 +83,7 @@ export const analyze = {
   height: 20,
   fill: 'black',
   options: {
-    fillRule: 'evenodd',
-    clipRule: 'evenodd',
+    fillRule: 'evenodd' as 'evenodd',
+    clipRule: 'evenodd' as 'evenodd',
   },
 };

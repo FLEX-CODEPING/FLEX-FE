@@ -3,7 +3,7 @@ import TradeBar from './TradeBar';
 
 const TradeContainer = () => {
   return (
-    <div className="w-[300px] flex flex-col">
+    <div className="w-[300px] flex flex-col pt-[57px] gap-y-2">
       <TradeBar />
       <AnalyzeBar />
     </div>

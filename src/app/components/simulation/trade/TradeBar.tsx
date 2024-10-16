@@ -26,10 +26,10 @@ const TradeBar = () => {
     tradeType === type && 'bg-white rounded-[15px]';
 
   return (
-    <div className="w-[300px] h-[489px] px-10 py-3 flex flex-col rounded-[10px] border border-gray-1">
+    <div className="w-[300px] h-[475px] px-8 py-4 flex flex-col rounded-[10px] border border-gray-1">
       <div className="flex flex-col gap-y-4">
         <p>{TRADE_BUY_TEXT[0]}</p>
-        <div className="w-full flex px-5 py-1 bg-[#e6e6e6] rounded-[25px] justify-between font-semibold">
+        <div className="w-full flex px-5 py-1 bg-[#e6e6e6] rounded-[25px] justify-between text-sm font-semibold">
           <div
             className={`w-[84px] h-[30px] flex-center cursor-pointer ${sellStyles} ${selectedStyle('매수')}`}
             onClick={() => setTradeType('매수')}
@@ -43,7 +43,7 @@ const TradeBar = () => {
             {TRADE_BUY_TEXT[2]}
           </div>
         </div>
-        <div className="flex w-full flex-col gap-y-3">
+        <div className="flex w-full flex-col gap-y-3 text-sm">
           <div className=" flex w-full justify-between items-center">
             <p>
               {tradeType === '매수' ? TRADE_BUY_TEXT[3] : TRADE_SELL_TEXT[3]}

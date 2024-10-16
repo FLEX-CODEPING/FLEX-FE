@@ -10,17 +10,17 @@ interface SellCalculationProps {
 const SellCalculation = ({ total, assets, stockId }: SellCalculationProps) => {
   const isQualified = total > 0;
   return (
-    <div className="flex w-full flex-col gap-y-4">
-      <div className="w-full border border-gray-3 my-2" />
-      <div className="flex items-center text-sm justify-between">
+    <div className="flex w-full flex-col gap-y-3 text-sm">
+      <div className="w-full border border-gray-3" />
+      <div className="flex items-center justify-between">
         <p>{TRADE_SELL_TEXT[6]}</p>
         <p>{assets}</p>
       </div>
-      <div className="flex items-center text-sm justify-between">
+      <div className="flex items-center justify-between">
         <p>{TRADE_SELL_TEXT[7]}</p>
         <p>{total}</p>
       </div>
-      <div className="flex items-center text-sm justify-between mb-2">
+      <div className="flex items-center justify-between mb-2">
         <p>{TRADE_SELL_TEXT[8]}</p>
         <p>{assets + total}</p>
       </div>

@@ -7,12 +7,12 @@ import Icons from '../../common/Icons';
 
 const AnalyzeBar = () => {
   return (
-    <div className="w-[300px] px-10 py-7 h-[159px] flex flex-col rounded-[10px] border border-gray-1">
-      <div className="flex gap-1 items-center">
+    <div className="w-[300px] px-8 py-5 h-[140px] flex flex-col items-center rounded-[10px] border border-gray-1">
+      <div className="flex w-full justify-start gap-x-1 items-center">
         <Icons name={analyze} />
         <p className="text-base font-bold">{ANALYZEBAR_TEXT[0]}</p>
       </div>
-      <p className="text-xs">{ANALYZEBAR_TEXT[1]}</p>
+      <p className="text-xs flex w-full ">{ANALYZEBAR_TEXT[1]}</p>
       <Button
         buttonText={ANALYZEBAR_TEXT[2]}
         type="trade"

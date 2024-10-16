@@ -9,7 +9,7 @@ const ChartContainer = () => {
   return (
     <div className="flex w-full px-10 py-5 rounded-[10px] border border-[#7a7a7a] flex-col justify-start items-start gap-y-10">
       <div className="flex w-full justify-between">
-        <p className="text-2xl font-bold">{CHART_TITLE}</p>
+        <p className="text-xl font-semibold">{CHART_TITLE}</p>
         <div className="flex gap-x-3">
           {CHART_VIEWTYPE.map((viewType, i) => (
             <div

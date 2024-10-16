@@ -11,9 +11,8 @@ export const dela = Dela_Gothic_One({
 
 function Header() {
   return (
-    <header className="w-full flex items-center justify-between h-[108px] px-[5%] text-xl">
+    <header className="w-full flex items-center justify-between h-[80px] px-[5%] text-xl">
       <Link className="flex gap-x-2 items-center" href="/">
-        <Image width={40} height={40} src="/Images/logo.png" alt="logo" />
         <p className={`${dela.className} text-[28px] text-main-1`}>FLEX</p>
       </Link>
       <div className="flex">
