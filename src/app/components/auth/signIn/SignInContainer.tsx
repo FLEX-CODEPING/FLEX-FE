@@ -14,7 +14,6 @@ import { useEffect } from 'react';
 function SignInContainer() {
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
-  console.log(code);
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KAKAO_API_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}&scope=account_email`;
 
   useEffect(() => {

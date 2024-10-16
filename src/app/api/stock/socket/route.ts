@@ -1,3 +1,5 @@
+import { NextResponse } from 'next/server';
+
 export async function POST() {
   const webSocketResponse = await fetch(
     `https://openapivts.koreainvestment.com:29443/oauth2/Approval`,
@@ -18,7 +20,7 @@ export async function POST() {
     'ws://ops.koreainvestment.com:21000/tryitout/H0STCNT0',
   );
 
-  return new Promise((resolve, reject) => {
+  return new Promise<NextResponse>((resolve, reject) => {
     socket.onopen = () => {
       const requestData = {
         header: {
@@ -49,12 +51,16 @@ export async function POST() {
           const { key } = jsonData.body.output;
 
           console.log('복호화에 필요한 IV:', iv);
-          console.log(' 복호화에 필요한 Key:', key);
+          console.log('복호화에 필요한 Key:', key);
+
+          resolve(NextResponse.json({ iv, key }));
         } else {
           console.log('응답 데이터:', message);
+          resolve(NextResponse.json({ message }));
         }
       } catch (error) {
         console.error('응답 파싱 중 오류 발생:', error);
+        reject(error);
       }
     };
 

@@ -1,3 +1,5 @@
+'use client';
+
 import Icons from '@/app/components/common/Icons';
 import { dela } from '@/app/components/common/layout/Header';
 import {
