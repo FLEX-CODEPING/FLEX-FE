@@ -10,16 +10,19 @@ export default function DownSideBar() {
   const settings = {
     dots: false,
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: 4,
     autoplay: true,
     speed: 3000,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 3000,
     arrows: false,
     cssEase: 'linear',
   };
   return (
     <div className="w-[100%] h-10 flex">
-      <Slider {...settings} className="w-full bg-[#fdfafa] flex items-center">
+      <Slider
+        {...settings}
+        className="w-full px-4 bg-[#fdfafa] flex items-center"
+      >
         {MARKET_CONDITIONS.map((data, index) => (
           <DownSideItem
             key={data.title}
