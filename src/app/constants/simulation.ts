@@ -1,4 +1,15 @@
-import { backtest, interest, possession, status, trade } from './iconPath';
+import {
+  backtest,
+  backtestActive,
+  interest,
+  interestActive,
+  possession,
+  possessionActive,
+  status,
+  statusActive,
+  trade,
+  tradeActive,
+} from './iconPath';
 
 export const SEARCH_STOCK = '원하는 종목을 검색';
 
@@ -6,7 +17,7 @@ export const CHART_TITLE = '차트';
 
 export const CHART_VIEWTYPE: ChartViewType[] = ['일', '주', '월', '년'];
 
-export const SIDE_NAV_TYPES = [
+export const SIDE_NAV_TYPES: SideNavType[] = [
   '관심종목',
   '보유종목',
   '백테스팅',
@@ -20,6 +31,14 @@ export const SIDE_NAV_ICONS: IconPathTypes[] = [
   backtest,
   status,
   trade,
+];
+
+export const SIDE_NAV_ICONS_SELECTED: IconPathTypes[] = [
+  interestActive,
+  possessionActive,
+  backtestActive,
+  statusActive,
+  tradeActive,
 ];
 
 export const TRADE_BUY_TEXT = [
