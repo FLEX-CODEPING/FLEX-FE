@@ -6,7 +6,7 @@ export const SALARY_OPTIONS = [
   '5천 이하',
   '7천 이하',
   '1억 이하',
-  '2억 이상',
+  '1억 초과',
 ];
 
 export const NAV_OPTIONS = ['전체', '추천', '팔로잉'];
