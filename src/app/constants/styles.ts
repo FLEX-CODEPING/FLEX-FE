@@ -2,6 +2,8 @@ export const BUTTON_STYLE = {
   default: (className: string) => `w-full ${className}`,
   signUp: (className: string) =>
     `w-full bg-main-1 text-white h-10 rounded-lg ${className}`,
+  trade: (className: string) =>
+    `w-[240px] h-9 text-white h-10 rounded-lg ${className}`,
 } as const;
 
 export const INPUT_STYLE = {

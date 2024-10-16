@@ -3,17 +3,20 @@
 import { AMOUNT_TYPES, TRADEBAR_TEXT } from '@/app/constants/simulation';
 import { useState } from 'react';
 import Input from '../../common/Input';
+import TradeCalculation from './TradeCalculation';
 
 const TradeBar = () => {
   const [tradeType, setTradeType] = useState<TradeType>('매수');
   const [tradeCnt, setTradeCnt] = useState('0');
   const [amountType, setAmountType] = useState<AmountType | null>(null);
+
+  const sellStyles = tradeType === '매수' ? 'text-red-1' : 'text-gray-1';
+  const buyStyles = tradeType === '매도' ? 'text-blue-1' : 'text-gray-1';
+
   const selectAmountType = (type: AmountType) => {
     amountType === type ? setAmountType(null) : setAmountType(type);
   };
 
-  const sellStyles = tradeType === '매수' ? 'text-red-1' : 'text-gray-1';
-  const buyStyles = tradeType === '매도' ? 'text-blue-1' : 'text-gray-1';
   const selectedStyle = (type: TradeType) =>
     tradeType === type && 'bg-white rounded-[15px]';
 
@@ -70,6 +73,11 @@ const TradeBar = () => {
             </div>
           </div>
         </div>
+        <TradeCalculation
+          total={Number(tradeCnt) * 72000}
+          assets={100000}
+          stockId="005930"
+        />
       </div>
     </div>
   );
