@@ -62,7 +62,7 @@ const BlogHeader = ({
           onClick={handleLikeClick}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className={`mt-2 w-[48px] h-[48px] rounded-full flex items-center justify-center border-[1px] cursor-pointer ${getButtonBorderColor()} ${getButtonBackgroundColor()}`}
+          className={`w-[48px] h-[48px] mt-2 rounded-full flex items-center justify-center border cursor-pointer ${getButtonBorderColor()} ${getButtonBackgroundColor()}`}
         >
           <div className="w-[34px] h-[34px] relative">
             <Icons
