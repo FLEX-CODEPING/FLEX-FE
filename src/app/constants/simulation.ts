@@ -22,7 +22,7 @@ export const SIDE_NAV_ICONS: IconPathTypes[] = [
   trade,
 ];
 
-export const TRADEBAR_TEXT = [
+export const TRADE_BUY_TEXT = [
   '주문하기',
   '매수',
   '매도',
@@ -33,6 +33,19 @@ export const TRADEBAR_TEXT = [
   '총 금액',
   '거래 후 잔여 크레딧',
   '구매하기',
+];
+
+export const TRADE_SELL_TEXT = [
+  '주문하기',
+  '매수',
+  '매도',
+  '판매가격',
+  '수량',
+  '총 금액', // index 5
+  '보유크레딧',
+  '총 금액',
+  '거래 후 잔여 크레딧',
+  '판매하기',
 ];
 
 export const ANALYZEBAR_TEXT = [

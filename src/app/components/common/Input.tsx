@@ -15,6 +15,7 @@ interface InputProps {
   onBlur?: () => void;
   onEnterPress?: () => void;
   isDisabled?: boolean;
+  pattern?: string;
   min?: string | number;
   max?: string | number;
   maxLength?: number;
@@ -34,6 +35,7 @@ function Input({
   onEnterPress,
   onChange,
   isDisabled,
+  pattern,
   min,
   max,
   maxLength,
@@ -54,6 +56,7 @@ function Input({
       className={buttonStyles}
       accept={accept}
       disabled={isDisabled}
+      pattern={pattern}
       min={min}
       max={max}
       maxLength={maxLength}
