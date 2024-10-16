@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
-import Icons from '../../common/Icons';
 import { likeIcon } from '@/app/constants/iconPath';
+import { useState } from 'react';
+import Icons from '../../common/Icons';
 
 interface BlogHeaderProps {
   tags: string[];
@@ -59,6 +59,7 @@ const BlogHeader = ({
 
       <div className="flex flex-col items-center">
         <button
+          type="button"
           onClick={handleLikeClick}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
