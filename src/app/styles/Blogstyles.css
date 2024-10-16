@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer components {
-  /* 검색 바 */
+  
   .search-bar {
     @apply flex items-center border border-[#F95700] rounded-full p-4 w-[687px] h-[58px] mx-auto my-2.5;
   }
@@ -28,47 +28,25 @@
     @apply w-9 h-9;
   }
 
-  /* 결과 카운트 */
+  
   .result-count {
-    @apply flex justify-center my-6 text-[20px];
+    @apply flex justify-center mr-[379px] mt-[27px] mb-[0px] text-[20px];
   }
 
-  /* 로딩 컨테이너 */
+  
   .loading-container {
     @apply flex justify-center items-center h-[60px];
   }
 
-  /* 검색 결과 없음 */
+  
   .no-results-container {
     @apply flex flex-col items-center text-center mt-[193px];
   }
 
   .no-results-image {
-    @apply w-[120px] h-[120px] mb-2.5;
+    @apply w-[90px] h-[90px] mb-6;
   }
 
-  /* 포스트 컨테이너 */
-  .posts-container {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 w-full mt-10 px-4 md:px-0;
-  }
-
-  .post-card {
-    @apply bg-white p-0 mb-5 shadow-none border border-[#ffffff] rounded-lg relative transition-all duration-300 ease-in-out;
-  }
-
-  /* 마우스를 올렸을 때 테두리와 그림자가 입체적으로 나타나게 설정 */
-  .post-card:hover {
-    @apply border-[#F95700] shadow-lg;
-  }
-
-  .post-image {
-    @apply border-none w-full h-[180px] object-cover rounded-t-lg;
-  }
-
-  /* 카테고리와 좋아요를 포스트 이미지와 겹치지 않도록 상단에 배치 */
-  .post-header {
-    @apply flex justify-between items-center mt-2 px-4;
-  }
 
   .category {
     @apply bg-[#f1f1f1] px-2.5 py-1.5 rounded text-xs text-[#757575];
@@ -94,7 +72,7 @@
     @apply text-base font-light leading-[18px] text-black;
   }
 
-  /* 페이지네이션 */
+  
   .pagination {
     @apply flex justify-center mt-5;
   }
@@ -103,12 +81,11 @@
     @apply mx-1 px-4 py-2 border border-[#ddd] rounded-md cursor-pointer transition-colors duration-300 ease-in-out;
   }
 
-  /* 활성화된 페이지 */
   .active-page {
     @apply bg-[#F95700] text-white;
   }
 
-  /* 비활성화된 페이지 */
+  
   .page-button:hover:not(.active-page) {
     @apply bg-gray-200;
   }
