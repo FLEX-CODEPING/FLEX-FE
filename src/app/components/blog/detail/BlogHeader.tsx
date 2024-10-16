@@ -45,12 +45,12 @@ const BlogHeader = ({ tags, initialLikesCount, likeStatus }: BlogHeaderProps) =>
   
 
   return (
-    <div className="w-[780px] flex justify-between items-center py-4">
+    <div className="w-[880px] flex justify-between items-center py-4">
       <div className="flex flex-wrap gap-4">
         {tags.map((tag, index) => (
           <div
             key={tag}
-            className="bg-main-1 text-white px-3 py-1 rounded-full cursor-pointer"
+            className="bg-main-1/40 text-black font-semibold px-3 py-1 rounded-full cursor-pointer"
           >
             {tag}
           </div>
