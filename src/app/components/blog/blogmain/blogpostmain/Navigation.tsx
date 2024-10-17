@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { NAV_OPTIONS } from '@/app/constants/BlogConstants';
+import { NAV_OPTIONS } from '@/app/constants/blogconstants';
 import Image from 'next/image';
 import ViewTypeDropDown from './ViewTypeDropDown';
 
