@@ -5,10 +5,9 @@ on:
     branches: ['develop']
 
 jobs:
-  deploy:
-    name: Deployment
+  build:
+    name: Build Docker Image
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -50,6 +49,11 @@ jobs:
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
+  deploy:
+    name: Deploy to Kakao Cloud
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy to Kakao Cloud
         uses: appleboy/ssh-action@master
         with:
