@@ -14,11 +14,15 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@toast-ui/editor": "^3.2.2",
     "@toast-ui/editor-plugin-color-syntax": "^3.1.0",
     "@toast-ui/react-editor": "^3.2.3",
+    "cookie": "^1.0.1",
     "next": "14.2.13",
+    "next-auth": "^4.24.8",
     "react": "^18",
     "react-dom": "^18",
+    "tui-color-picker": "^2.2.8",
     "zustand": "^5.0.0-rc.2"
   },
   "overrides": {
@@ -33,6 +37,7 @@
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
+    "autoprefixer": "^10.4.20",
     "eslint": "^8.57.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
