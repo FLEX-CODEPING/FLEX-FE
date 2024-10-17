@@ -7,8 +7,6 @@ import Results from '@/app/components/blog/blogmain/blogsearch/Result';
 import Pagination from '@/app/components/blog/blogmain/blogpostmain/Pagination';
 import { dummyPosts } from '../../../../constants/BlogData';
 import { BlogPost } from '../../../../_types/blog';
-
-import PostCard from '@/app/components/blog/blogmain/blogpostmain/PostCard'; 
 import "@/app/styles/Blogstyles.css"; 
 import '@/app/styles/globals.css';
 
@@ -44,21 +42,10 @@ const BlogSearch = () => {
   const totalPages = Math.ceil(results.length / postsPerPage);
 
   return (
-    <div className="w-full flex-center flex-col mt-[104px]">
+    <div className="w-full flex-center flex-col mt-[99px]">
       <div className="container ">
         <h1 className="text-4xl font-bold"></h1>
         <SearchBar query={query} setQuery={setQuery} handleSearch={handleSearch} />
-        
-       
-
-        <div className="w-full flex flex-col items-center">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[44px] p-4">
-            {dummyPosts.map((post: BlogPost) => (
-              <PostCard key={post.id} post={post} />
-            ))}
-          </div>
-        </div>
-
       
         <Results
           results={results}
@@ -67,8 +54,6 @@ const BlogSearch = () => {
           searchExecuted={searchExecuted}
           loading={loading}
         />
-
-       
         {totalPages > 1 && (
           <Pagination totalPages={totalPages} currentPage={currentPage} handlePageChange={setCurrentPage} />
         )}
