@@ -8,11 +8,11 @@ const Interest = () => {
   const textColor = (value: number) =>
     value < 0 ? 'text-blue-1' : 'text-red-1';
   return (
-    <div className="w-[254px] h-[620px] flex-col flex px-5 py-3.5 border border-gray-4 rounded-[10px] gap-y-3">
+    <div className="w-[260px] h-[620px] flex-col flex px-4 py-3.5 border border-gray-4 rounded-[10px] gap-y-3">
       <p className="text-base">{SIDE_NAV_TYPES[0]}</p>
       {STOCK_DATA.map((stock, i) => (
-        <div className="pr-3 py-1.5 w-full flex justify-between">
-          <div className="flex items-center gap-x-1">
+        <div className="py-1.5 w-full flex justify-between">
+          <div className="flex items-center gap-x-2">
             <Image
               src={stock.image_path}
               alt={stock.name}
@@ -20,11 +20,11 @@ const Interest = () => {
               height={32}
               className="rounded-[25px]"
             />
-            <p className="text-xs font-bold ">{stock.name}</p>
+            <p className="text-xs font-medium">{stock.name}</p>
           </div>
           <div className="flex-col">
-            <div className="flex text-sm items-center font-medium">
-              <p>{stock.price}</p>
+            <div className="flex text-xs items-center font-medium gap-x-0.5">
+              <p>{stock.price}원</p>
               <Icons name={interestLike} className="cursor-pointer" />
             </div>
             <div
