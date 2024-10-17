@@ -42,7 +42,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
         ))}
       </div>
 
-      {/* 뉴스 검색 버튼 */}
+
       <div>
           <button className="bg-black text-white w-[160px] h-[40px] rounded-[5px] flex items-center justify-center gap-2">
             <Icons name={news} />

@@ -1,5 +1,3 @@
-import { BlogPost } from '../_types/blog'; 
-
 export const dummyPosts: BlogPost[] = [
   {
     id: 1,

@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState } from 'react';
-import FilterBar from '@/app/components/news/FilterBar'; // 필터 바 컴포넌트
+import FilterBar from '@/app/components/news/FilterBar';
 import { newsSummaries, additionalNews } from '@/app/constants/newsdata';
-import { filterOptions } from '@/app/constants/news'; // 뉴스 데이터와 필터 옵션
+import { filterOptions } from '@/app/constants/news'; 
 
 const News = (): JSX.Element => {
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([]); // 선택된 필터를 배열로 관리
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]); 
 
   const handleFilterClick = (option: string) => {
     if (selectedFilters.includes(option)) {
@@ -22,25 +22,25 @@ const News = (): JSX.Element => {
 
   return (
     <div className="news-page-container bg-white w-full max-w-[1400px] mx-auto py-12">
-      {/* 뉴스 제목 */}
+     
       <div className="news-title text-center mt-12">
-        <h2 className=" text-[36px] font-normal text-black text-center leading-[60px]">
+        <h2 className=" text-[36px] font-normal text-black text-center leading-[60px] mb-12">
           키워드를 선택하여 <br />
           <span className="text-[#F95700] font-bold text-[50px]">AI 종합 뉴스 요약</span>을 받아보세요
         </h2>
       </div>
 
-      {/* 필터 바 컴포넌트 */}
+     
       <FilterBar
         selectedFilters={selectedFilters}
         handleFilterClick={handleFilterClick}
         filterOptions={filterOptions}
       />
 
-      {/* 뉴스 요약 */}
-      <div className=" bg-white p-8 rounded-lg shadow-lg max-w-[1200px] mx-auto mt-12">
+     
+      <div className="max-w-[1200px] mx-auto mt-12">
         <h3 className="text-xl font-bold mb-4">{newsSummaries[0].title}</h3>
-        <div className="news-items p-4 border border-gray-300 rounded-lg">
+        <div className="news-items p-4 border border-[#7a7a7a] rounded-[15px]">
           <ul className="list-decimal ml-5 space-y-2">
             {newsSummaries[0].content.map((item, index) => (
               <li key={index}>{item}</li>
@@ -49,7 +49,7 @@ const News = (): JSX.Element => {
         </div>
       </div>
 
-      {/* 추가 뉴스 */}
+      
       <div className="mt-12 max-w-[1200px] mx-auto">
         <ul className="space-y-4">
           {additionalNews.map((news, index) => (
