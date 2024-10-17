@@ -1,5 +1,5 @@
 import React, { useState, BaseSyntheticEvent } from 'react';
-import { AGE_OPTIONS, SALARY_OPTIONS } from '@/app/constants/BlogConstants'; 
+import { AGE_OPTIONS, SALARY_OPTIONS } from '@/app/constants/blogconstants'; 
 import Icons from '@/app/components/common/Icons';
 import { age, salary } from '@/app/constants/iconPath';
 
