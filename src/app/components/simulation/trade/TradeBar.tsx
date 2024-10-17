@@ -26,7 +26,7 @@ const TradeBar = () => {
     tradeType === type && 'bg-white rounded-[15px]';
 
   return (
-    <div className="w-[300px] h-[475px] px-8 py-4 flex flex-col rounded-[10px] border border-gray-1">
+    <div className="w-[300px] h-[475px] px-8 py-4 flex flex-col rounded-[10px] border border-gray-4">
       <div className="flex flex-col gap-y-4">
         <p>{TRADE_BUY_TEXT[0]}</p>
         <div className="w-full flex px-5 py-1 bg-[#e6e6e6] rounded-[25px] justify-between text-sm font-semibold">
