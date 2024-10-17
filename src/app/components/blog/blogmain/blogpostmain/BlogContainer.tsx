@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState } from 'react';
-import Navigation from '@/app/components/blogmain/blogpostmain/Navigation'; 
-import Filters from '@/app/components/blogmain/blogpostmain/Filters';
+import Navigation from '@/app/components/blog/blogmain//blogpostmain/Navigation'; 
+import Filters from '@/app/components/blog/blogmain/blogpostmain/Filters';
 import PostCard from './PostCard';
-import { dummyPosts } from '../../../constants/BlogData';
-import { BlogPost } from '../../../_types/blog';
+import { dummyPosts } from '../../../../constants/BlogData';
+import { BlogPost } from '../../../../_types/blog';
 import { useRouter } from 'next/navigation'; 
 import '@/app/styles/globals.css'; 
 import '@/app/styles/Blog.css'; 

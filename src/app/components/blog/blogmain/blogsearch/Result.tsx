@@ -1,6 +1,6 @@
 import React from 'react';
-import { BlogPost } from '../../_types/blog'; 
-import PostCard from './PostCard';
+import { BlogPost } from '../../../../_types/blog'; 
+import PostCard from '../blogpostmain/PostCard';
 
 interface ResultsProps {
   results: BlogPost[];

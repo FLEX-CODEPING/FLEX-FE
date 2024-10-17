@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Navigation from '@/app/components/blogmain/Navigation'; 
-import PostCard from './PostCard';
+import Navigation from '@/app/components/blog/blogmain/blogpostmain/Navigation'; 
+import PostCard from '../blogpostmain/PostCard';
 import FilterBar from './FilterBar'; 
-import { dummyPosts } from '../../(route)/blog/BlogData';
-import { BlogPost } from '../../_types/blog';
+import { dummyPosts } from '../../../../constants/BlogData';
+import { BlogPost } from '../../../../_types/blog';
 import { useRouter } from 'next/navigation'; 
 import '@/app/styles/globals.css'; 
 import '@/app/styles/Blog.css'; 
@@ -28,7 +28,7 @@ const BlogRecommend = () => {
       />
       <FilterBar /> 
       <div className='w-full flex flex-col items-center'>
-        <div className="flex-wrap flex  gap-x-[3%] p-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[44px] p-4">
           {dummyPosts.map((post: BlogPost) => (
             <PostCard key={post.id} post={post} />
           ))}

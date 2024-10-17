@@ -1,5 +1,5 @@
 import { BaseSyntheticEvent, useState } from "react";
-import Icons from "../../common/Icons";
+import Icons from "../../../common/Icons";
 import { fillter } from "@/app/constants/iconPath";
 
 const ViewTypeDropDown = () => {
