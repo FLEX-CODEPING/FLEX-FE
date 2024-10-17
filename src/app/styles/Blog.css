@@ -134,11 +134,6 @@
   }
 
   
-  .post-card {
-    @apply bg-white p-5 mb-5 border-0 ml-[68px] shadow-none;
-  }
-
-  
   .post-card .category {
     @apply bg-[#f1f1f1] px-2.5 py-1.5 rounded text-xs text-[#757575] inline-block mt-2.5;
   }
