@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import SearchBar from '@/app/components/blog/blogmain/blogsearch/SearchBar';
 import Results from '@/app/components/blog/blogmain/blogsearch/Result';  
 import Pagination from '@/app/components/blog/blogmain/blogpostmain/Pagination';
-import { dummyPosts } from '../../../../constants/BlogData';
+import { dummyPosts } from '../../../../constants/blogdata';
 import { BlogPost } from '../../../../_types/blog';
 import "@/app/styles/Blogstyles.css"; 
 import '@/app/styles/globals.css';
