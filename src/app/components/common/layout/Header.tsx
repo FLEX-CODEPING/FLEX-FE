@@ -24,12 +24,9 @@ function Header() {
       </div>
       <div className="flex gap-x-[50px]">
         {HEADER_TEXT.map((text) => {
+          let displayText = text === 'blog' ? '블로그' : text === 'news' ? '뉴스 요약' : text;
+          let href = text === 'blog' ? '/blog' : text === 'news' ? '/news' : `/${text.toLowerCase()}`;
           
-          const displayText = text === 'blog' ? '블로그' : text;
-          const href = text === 'blog' ? '/blog' : `/${text.toLowerCase()}`;
-
-          
-
           return (
             <Link href={href} key={text}>
               <span className="cursor-pointer">{displayText}</span>
