@@ -25,6 +25,7 @@ const ActiveSide = () => {
         return null;
     }
   };
+
   return <div className="pt-[57px] mr-[1.5%]">{activeComponenet()}</div>;
 };
 

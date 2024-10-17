@@ -10,7 +10,6 @@ import Icons from '../../common/Icons';
 
 const SideNav = () => {
   const { selectedItem, setSelectedItem } = useSidebarStore();
-  console.log(selectedItem);
 
   return (
     <div className="w-16 flex flex-col items-center pt-9 bg-white rounded-tl-lg border-l border-t border-gray-4 gap-y-6">
