@@ -1,7 +1,7 @@
 import React, { useState, BaseSyntheticEvent } from 'react';
 import { AGE_OPTIONS, SALARY_OPTIONS } from '@/app/constants/BlogConstants'; 
 import Icons from '@/app/components/common/Icons';
-import { age, fillter } from '@/app/constants/iconPath';
+import { age, salary } from '@/app/constants/iconPath';
 
 const Filters = () => {
   const [selectedAges, setSelectedAges] = useState<string[]>([]);
@@ -48,7 +48,7 @@ const Filters = () => {
 
         
         <div className="salary-filter-container flex items-center gap-2.5 border border-orange-400 rounded-full h-10">
-          <Icons name={fillter} />
+          <Icons name={salary} />
           <h3 className="font-semibold text-[12px]">급여</h3>
           <div className="filter-options flex gap-[17px] text-[12px]">
             {SALARY_OPTIONS.map((salary) => (
