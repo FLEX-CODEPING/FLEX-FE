@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 
 interface PaginationProps {
@@ -22,4 +23,4 @@ const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage, handle
   );
 };
 
-export default Pagination;
+export default Pagination;*/
