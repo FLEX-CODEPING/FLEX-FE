@@ -26,9 +26,9 @@ const ViewTypeDropDown = () => {
   };
 
     return (
-        <div className="relative flex bg-black text-sm">
+        <div className="relative flex text-sm">
         <button
-          className="flex w-[119px] h-[30px] items-center px-4 py-[10px]  rounded-none border bg-white border-gray-300"
+          className="flex w-[119px] h-[30px] items-center px-4 py-[10px]  rounded-[5px] border bg-white border-gray-300"
           onClick={toggleFilterDropdown}
           
         >
@@ -37,7 +37,7 @@ const ViewTypeDropDown = () => {
         </button>
         {dropdownOpen && (
           <div
-            className="absolute w-[119px] top-[30px] bg-white border border-gray-300 rounded-md shadow-lg z-10"
+            className="absolute w-[119px] top-[30px] bg-white border border-gray-300 rounded-[5px] shadow-lg z-10"
             
           >
             {options.map(option => (
