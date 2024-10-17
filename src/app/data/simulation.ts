@@ -153,3 +153,136 @@ export const STOCK_DATA = [
     avg_purchase_price: 59000,
   },
 ];
+
+export const TRADE_DATA = [
+  {
+    trade_time: '09:15:23',
+    trade_price: 68450,
+    trade_amount: 8,
+  },
+  {
+    trade_time: '09:45:50',
+    trade_price: 72010,
+    trade_amount: 15,
+  },
+  {
+    trade_time: '10:12:35',
+    trade_price: 70500,
+    trade_amount: 20,
+  },
+  {
+    trade_time: '10:58:10',
+    trade_price: 73050,
+    trade_amount: 12,
+  },
+  {
+    trade_time: '11:34:22',
+    trade_price: 71020,
+    trade_amount: 17,
+  },
+  {
+    trade_time: '12:05:48',
+    trade_price: 74300,
+    trade_amount: 9,
+  },
+  {
+    trade_time: '12:45:11',
+    trade_price: 72580,
+    trade_amount: 22,
+  },
+  {
+    trade_time: '13:15:36',
+    trade_price: 69040,
+    trade_amount: 11,
+  },
+  {
+    trade_time: '13:55:59',
+    trade_price: 75310,
+    trade_amount: 7,
+  },
+  {
+    trade_time: '14:25:47',
+    trade_price: 74025,
+    trade_amount: 18,
+  },
+  {
+    trade_time: '14:58:30',
+    trade_price: 71560,
+    trade_amount: 14,
+  },
+  {
+    trade_time: '15:35:20',
+    trade_price: 73100,
+    trade_amount: 16,
+  },
+  {
+    trade_time: '15:55:30',
+    trade_price: 74230,
+    trade_amount: 10,
+  },
+  {
+    trade_time: '16:20:45',
+    trade_price: 72850,
+    trade_amount: 12,
+  },
+  {
+    trade_time: '16:45:59',
+    trade_price: 73690,
+    trade_amount: 19,
+  },
+  {
+    trade_time: '17:10:21',
+    trade_price: 75340,
+    trade_amount: 6,
+  },
+  {
+    trade_time: '17:35:33',
+    trade_price: 74580,
+    trade_amount: 14,
+  },
+  {
+    trade_time: '18:00:14',
+    trade_price: 73020,
+    trade_amount: 13,
+  },
+  {
+    trade_time: '18:30:22',
+    trade_price: 75010,
+    trade_amount: 11,
+  },
+  {
+    trade_time: '19:00:01',
+    trade_price: 73850,
+    trade_amount: 9,
+  },
+  {
+    trade_time: '18:00:14',
+    trade_price: 73020,
+    trade_amount: 13,
+  },
+  {
+    trade_time: '18:30:22',
+    trade_price: 75010,
+    trade_amount: 11,
+  },
+  {
+    trade_time: '19:00:01',
+    trade_price: 73850,
+    trade_amount: 9,
+  },
+  {
+    trade_time: '18:00:14',
+    trade_price: 73020,
+    trade_amount: 13,
+  },
+  {
+    trade_time: '18:30:22',
+    trade_price: 75010,
+    trade_amount: 11,
+  },
+  {
+    trade_time: '19:00:01',
+    trade_price: 73850,
+    trade_amount: 9,
+  },
+];

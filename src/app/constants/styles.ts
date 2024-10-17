@@ -4,6 +4,10 @@ export const BUTTON_STYLE = {
     `w-full bg-main-1 text-white h-10 rounded-lg ${className}`,
   trade: (className: string) =>
     `w-[240px] h-9 text-white rounded-lg ${className}`,
+  statusClicked: (className: string) =>
+    `w-10 h-5 text-main-1 bg-main-3 rounded-lg text-[10px] ${className}`,
+  status: (className: string) =>
+    `w-10 h-5 text-black-1 bg-gray-2 rounded-lg text-[10px] ${className}`,
 } as const;
 
 export const INPUT_STYLE = {

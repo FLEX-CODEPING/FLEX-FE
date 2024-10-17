@@ -74,3 +74,5 @@ export const ANALYZEBAR_TEXT = [
 ];
 
 export const AMOUNT_TYPES: AmountType[] = ['10%', '25%', '50%', '최대'];
+
+export const SIDE_STATUS_TEXT = ['실시간', '일간', '시간', '체결가', '체결량'];

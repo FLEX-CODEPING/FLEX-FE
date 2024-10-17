@@ -16,6 +16,7 @@ const config: Config = {
           1: '#F95700',
           2: '#FFA474',
           3: '#FFF3EC',
+          4: '#ffeae0',
         },
         red: {
           1: '#FF0000',
