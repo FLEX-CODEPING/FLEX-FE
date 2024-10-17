@@ -70,5 +70,15 @@ export const salary = {
     
   },
 };
+export const news = {
+  path: 'M11.1761 10.9583L16.1761 15.9583M2.84277 2.625L8.73444 16.7667L10.8261 10.6083L16.9844 8.51667L2.84277 2.625Z',
+  width: 21,
+  height: 21,
+  fill: 'none',
+  options: {
+    stroke: 'white',
+    
+  },
+};
 
 
