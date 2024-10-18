@@ -66,7 +66,9 @@ const BlogComment = () => {
                   />
                   <span className="font-bold text-lg">{comment.author}</span>
                 </div>
-                <span className="text-gray-500 text-sm flex items-end">{comment.date}</span>
+                <span className="text-gray-500 text-sm flex items-end">
+                  {comment.date}
+                </span>
               </div>
             </div>
             <div className="py-[18px] font-normal border-b border-gray-3">
