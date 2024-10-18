@@ -33,13 +33,13 @@ export const BLOGNAME_TEXT = [
 export const INCOME_TITLE = '수입';
 
 export const INCOME_RANGE = [
-  '3000이하',
-  '5000이하',
-  '7500이하',
-  '1억이하',
-  '1억5천이하',
-  '2억이하',
-  '2억초과',
+  '3000 이하',
+  '5000 이하',
+  '7500 이하',
+  '1억 이하',
+  '1억5천 이하',
+  '2억 이하',
+  '2억 초과',
 ];
 
 export const INTEREST_TITLE = '내 관심사';

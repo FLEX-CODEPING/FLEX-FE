@@ -26,6 +26,7 @@ const PersonalInfoForm = ({
             className="cursor-pointer pr-8"
             type="signUp"
             inputType="date"
+            onClick={(e) => (e.target as HTMLInputElement).showPicker()}
             min="1900-01-01"
             max={new Date().toISOString().split('T')[0]}
             textValue={formData.date}

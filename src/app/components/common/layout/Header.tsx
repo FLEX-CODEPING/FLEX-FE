@@ -1,6 +1,9 @@
+'use client';
+
 import { HEADER_PATH, HEADER_TEXT } from '@/app/constants/common';
 import { Dela_Gothic_One } from 'next/font/google';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import ProfileDropdown from '../ProfileDropdown';
 
 export const dela = Dela_Gothic_One({
@@ -9,6 +12,9 @@ export const dela = Dela_Gothic_One({
 });
 
 function Header() {
+  const path = usePathname();
+  if (path === '/blog/post') return null;
+
   return (
     <header className="w-full flex items-center justify-between h-[80px] px-[5%] text-xl">
       <Link className="flex gap-x-2 items-center" href="/">

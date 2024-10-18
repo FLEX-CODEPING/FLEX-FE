@@ -5,13 +5,21 @@ import { INPUT_STYLE } from '@/app/constants/styles';
 interface InputProps {
   type: keyof typeof INPUT_STYLE;
   textValue?: string | number;
-  inputType?: string;
+  inputType?:
+    | 'text'
+    | 'number'
+    | 'password'
+    | 'email'
+    | 'file'
+    | 'checkbox'
+    | 'radio'
+    | 'date'; // Add other valid input types if needed
   name?: string;
   placeholder?: string;
   className?: string;
   accept?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocus?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: () => void;
   onEnterPress?: () => void;
   isDisabled?: boolean;
@@ -19,7 +27,7 @@ interface InputProps {
   min?: string | number;
   max?: string | number;
   maxLength?: number;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
 }
 
 function Input({
@@ -28,7 +36,7 @@ function Input({
   textValue,
   placeholder,
   className,
-  inputType,
+  inputType = 'text', // default to 'text' input type
   accept,
   onFocus,
   onBlur,
