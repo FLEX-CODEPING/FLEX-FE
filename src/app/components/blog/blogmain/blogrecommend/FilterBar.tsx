@@ -1,5 +1,5 @@
 import React from 'react';
-import { filterOptions } from '@/app/constants/FilterBar'; 
+import { filterOptions } from '@/app/constants/filterbar'; 
 import Image from 'next/image'; 
 
 export const FilterBar = (): JSX.Element => {

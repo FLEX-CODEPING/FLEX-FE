@@ -1,5 +1,3 @@
-// FilterBar.ts
-
 interface FilterOption {
     label: string;
     value: string;
