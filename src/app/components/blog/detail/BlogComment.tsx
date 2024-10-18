@@ -1,8 +1,7 @@
 'use client';
 
+import { COMMENT } from '@/app/constants/blog';
 import { useState } from 'react';
-import Input from '../../common/Input';
-
 interface Comment {
   id: number;
   author: string;
@@ -11,64 +10,66 @@ interface Comment {
 }
 
 const BlogComment = () => {
-  const [commentInput, setCommentInput] = useState(''); // 댓글 입력 상태
-  const [comments, setComments] = useState<Comment[]>([]); // 댓글 목록 상태
+  const [commentInput, setCommentInput] = useState('');
+  const [comments, setComments] = useState<Comment[]>([]);
 
-  // 댓글 입력 핸들러
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentInput(e.target.value);
   };
 
-  // 댓글 추가 핸들러
   const handleAddComment = () => {
     if (commentInput.trim() !== '') {
       const newComment: Comment = {
         id: comments.length + 1,
         author: '낙도핑',
-        date: new Date().toISOString().slice(0, 10), // 현재 날짜 (간단히 지정)
+        date: new Date().toISOString().slice(0, 10),
         content: commentInput,
       };
       setComments([...comments, newComment]);
-      setCommentInput(''); // 입력 필드 초기화
+      setCommentInput('');
     }
   };
 
   return (
     <div className="w-[880px] mt-5 mb-[100px]">
-      <div className="text-xl font-bold ">{comments.length}개의 댓글</div>
-      <div className="flex items-center gap-4 mt-4">
-        <Input
-          type="comment"
-          placeholder="댓글을 작성"
-          textValue={commentInput}
-          onChange={handleChange}
-        />
+      <div className="text-xl font-bold mb-2 ml-1">
+        {comments.length}
+        {COMMENT[0]}
+      </div>
+      <textarea
+        value={commentInput}
+        placeholder={COMMENT[1]}
+        onChange={(e) => handleChange(e)}
+        className="w-full h-[80px] pl-3 pt-2 pr-2 pb-2 text-sm rounded-[10px] border border-gray-2 outline-none focus:border-main-1"
+      />
+      <div className="flex justify-end mt-3">
         <button
           type="button"
           onClick={handleAddComment}
-          className="bg-main-1 text-white px-4 py-2 rounded-lg font-semibold"
+          className="bg-black text-white px-8 py-2 rounded-lg font-semibold "
         >
-          작성
+          {COMMENT[2]}
         </button>
       </div>
 
-      {/* 댓글 목록 */}
-      <div className="mt-6">
+      <div className="mt-[60px] mb-[100px]">
         {comments.map((comment) => (
-          <div key={comment.id} className="flex items-start gap-4 mb-4">
-            {/* 작성자 이미지 (임시 이미지) */}
-            <img
-              src="https://via.placeholder.com/40"
-              alt="프로필 이미지"
-              className="w-10 h-10 rounded-full"
-            />
-            {/* 댓글 내용 */}
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-bold">{comment.author}</span>
-                <span className="text-gray-500 text-sm">{comment.date}</span>
+          <div key={comment.id} className="mb-10 ">
+            <div className="flex items-start gap-4 ">
+              <div className="inline-flex gap-3">
+                <img
+                  src="https://bff-images.bemypet.kr/media/medias/all/993-image_picker152967371293908462.jpg"
+                  alt="프로필 이미지"
+                  className="w-10 h-10 rounded-full"
+                />
+                <div className="flex items-center gap-3">
+                  <span className="font-bold text-lg">{comment.author}</span>
+                  <span className="text-gray-500 text-sm">{comment.date}</span>
+                </div>
               </div>
-              <p className="mt-1">{comment.content}</p>
+            </div>
+            <div className="py-[18px] font-normal border-b border-gray-3 ">
+              {comment.content}
             </div>
           </div>
         ))}
