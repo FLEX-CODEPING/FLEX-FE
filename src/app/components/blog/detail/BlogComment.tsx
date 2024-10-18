@@ -41,7 +41,7 @@ const BlogComment = () => {
         value={commentInput}
         placeholder={COMMENT[1]}
         onChange={(e) => handleChange(e)}
-        className="w-full h-[80px] pl-3 pt-2 pr-2 pb-2 text-sm rounded-[10px] border resize-none border-gray-2 outline-none focus:border-main-1"
+        className="w-full h-[80px] pl-3 pt-2 pr-2 pb-2 text-sm rounded-[10px] border resize-none border-gray-2 outline-none focus:border-main-1 scrollbar-hide"
       />
       <div className="flex justify-end mt-3">
         <button
