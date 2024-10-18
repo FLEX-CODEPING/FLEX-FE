@@ -30,6 +30,10 @@ const Navigation: React.FC<NavigationProps> = ({ selectedNav, handleNavClick }) 
               <button
                 className={`nav-button ${selectedNav === nav ? 'selected' : ''}`}
                 onClick={() => handleNavSelect(nav)}
+                style={{
+                  fontWeight: selectedNav === nav ? 'bold' : 'normal', 
+                  borderBottom: selectedNav === nav ? '3px solid black' : 'none', 
+                }}
               >
                 {nav}
               </button>
