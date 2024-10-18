@@ -3,7 +3,6 @@
 import { COMMENT } from '@/app/constants/blog';
 import { useState } from 'react';
 
-
 const BlogComment = () => {
   const [commentInput, setCommentInput] = useState('');
   const [comments, setComments] = useState<CommentTypes[]>([]);

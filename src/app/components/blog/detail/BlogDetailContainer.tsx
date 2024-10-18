@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
+import { useEffect } from 'react';
 import { CONTENT } from '@/app/constants/blog';
 import BlogContent from './BlogContent';
 import BlogHeader from './BlogHeader';
 import BlogTitle from './BlogTitle';
 import BlogComment from './BlogComment';
-import { useEffect } from 'react';
 
 const BlogDetailContainer = () => {
   const blogData: BlogInfoTypes = {
