@@ -93,3 +93,17 @@ export const TRADE_EMPTY = [
   '존재하지 않는 거래내역',
   '새롭게 거래를 시작해보세요',
 ];
+
+export const MODAL_TEXT_BUY = [
+  '정말 매수하시겠습니까?',
+  '매수',
+  '닫기',
+  '매수가 체결되었습니다.',
+];
+
+export const MODAL_TEXT_SELL = [
+  '정말 매도하시겠습니까?',
+  '매도',
+  '닫기',
+  '매도가 체결되었습니다.',
+];

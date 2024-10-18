@@ -10,3 +10,9 @@ type SideNavType =
   | '백테스팅'
   | '거래현황'
   | '내 거래내역';
+
+interface TrainDataType {
+  stockName: string;
+  stockQuantity: number;
+  stockPrice: number;
+}

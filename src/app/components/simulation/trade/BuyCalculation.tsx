@@ -1,5 +1,8 @@
-import { TRADE_BUY_TEXT } from '@/app/constants/simulation';
+import { MODAL_TEXT_BUY, TRADE_BUY_TEXT } from '@/app/constants/simulation';
+import { MODALDATA } from '@/app/data/simulation';
+import { useModal } from '@/app/hooks/useModal';
 import Button from '../../common/Button';
+import DoubleCheckModal from '../modal/DoubleCheckModal';
 
 interface BuyCalculationProps {
   total: number;
@@ -8,10 +11,20 @@ interface BuyCalculationProps {
 }
 
 const BuyCalculation = ({ total, assets, stockId }: BuyCalculationProps) => {
+  const { isOpen, openModal, closeModal } = useModal(false);
   const isLacked = assets - total < 0;
   const isQualified = !isLacked && total > 0;
+
   return (
     <div className="flex w-full flex-col gap-y-3 text-sm">
+      {isOpen && (
+        <DoubleCheckModal
+          textArr={MODAL_TEXT_BUY}
+          tradeData={MODALDATA}
+          tradeType="매수"
+          closeModal={closeModal}
+        />
+      )}
       <div className="w-full border border-gray-3" />
       <div className="flex items-center justify-between">
         <p>{TRADE_BUY_TEXT[6]}</p>
@@ -30,7 +43,7 @@ const BuyCalculation = ({ total, assets, stockId }: BuyCalculationProps) => {
         isDisabled={!isQualified}
         type="trade"
         className={isQualified ? 'bg-red-1' : 'cursor-not-allowed bg-gray-1'}
-        onClickHandler={() => console.log('거래 주식 id :', stockId)}
+        onClickHandler={openModal}
       />
     </div>
   );

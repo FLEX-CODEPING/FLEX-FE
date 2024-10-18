@@ -8,6 +8,8 @@ export const BUTTON_STYLE = {
     `w-10 h-5 text-main-1 bg-main-3 rounded-lg text-[10px] ${className}`,
   status: (className: string) =>
     `w-10 h-5 text-black-1 bg-gray-2 rounded-lg text-[10px] ${className}`,
+  tradeModal: (className: string) =>
+    `w-[120px] h-9 text-sm font-medium rounded-md ${className}`,
 } as const;
 
 export const INPUT_STYLE = {
