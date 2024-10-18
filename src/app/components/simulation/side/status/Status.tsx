@@ -1,9 +1,14 @@
 'use client';
 
 import Button from '@/app/components/common/Button';
-import { SIDE_NAV_TYPES, SIDE_STATUS_TEXT } from '@/app/constants/simulation';
+import {
+  SIDE_NAV_TYPES,
+  SIDE_STATUS_TEXT,
+  STATUS_EMPTY,
+} from '@/app/constants/simulation';
 import { TRADE_DATA } from '@/app/data/simulation';
 import { useState } from 'react';
+import EmptyGuide from '../EmptyGuide';
 
 const Status = () => {
   const [isNow, setIsNow] = useState(true);
@@ -30,15 +35,19 @@ const Status = () => {
         <p>{SIDE_STATUS_TEXT[4]}</p>
       </div>
       <div className="w-full flex flex-col py-3 px-5 gap-y-2 overflow-y-auto">
-        {TRADE_DATA.map((data, i) => (
-          <div className="w-full flex text-[11px] text-black-1 justify-between">
-            <p className="w-[44px] font-medium text-center">
-              {data.trade_time}
-            </p>
-            <p className="w-[54px] text-center">{data.trade_price}원</p>
-            <p className="w-[50px] text-center">{data.trade_amount}개</p>
-          </div>
-        ))}
+        {TRADE_DATA.length === 0 ? (
+          <EmptyGuide phraseArr={STATUS_EMPTY} />
+        ) : (
+          TRADE_DATA.map((data, i) => (
+            <div className="w-full flex text-[11px] text-black-1 justify-between">
+              <p className="w-[44px] font-medium text-center">
+                {data.trade_time}
+              </p>
+              <p className="w-[54px] text-center">{data.trade_price}원</p>
+              <p className="w-[50px] text-center">{data.trade_amount}개</p>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

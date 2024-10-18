@@ -76,3 +76,20 @@ export const ANALYZEBAR_TEXT = [
 export const AMOUNT_TYPES: AmountType[] = ['10%', '25%', '50%', '최대'];
 
 export const SIDE_STATUS_TEXT = ['실시간', '일간', '시간', '체결가', '체결량'];
+
+export const INTEREST_EMPTY = [
+  '0개의 관심종목',
+  '관심이 가는 종목을 찾아 등록해보세요!',
+];
+
+export const POSESSION_EMPTY = [
+  '0개의 보유종목',
+  '원하는 종목을 찾아 거래해보세요!',
+];
+
+export const STATUS_EMPTY = ['존재하지 않는 거래내역', '잠시후 시도해보세요'];
+
+export const TRADE_EMPTY = [
+  '존재하지 않는 거래내역',
+  '새롭게 거래를 시작해보세요',
+];
