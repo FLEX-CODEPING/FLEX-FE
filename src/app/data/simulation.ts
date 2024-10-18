@@ -152,6 +152,36 @@ export const STOCK_DATA = [
     quantity: 12,
     avg_purchase_price: 59000,
   },
+  {
+    image_path: '/images/stocks/kb금융.png',
+    name: 'kb금융',
+    price: 60125,
+    change_amount: 1305,
+    change_percent: 2.17,
+    liked: false,
+    quantity: 12,
+    avg_purchase_price: 59000,
+  },
+  {
+    image_path: '/images/stocks/kb금융.png',
+    name: 'kb금융',
+    price: 60125,
+    change_amount: 1305,
+    change_percent: 2.17,
+    liked: false,
+    quantity: 12,
+    avg_purchase_price: 59000,
+  },
+  {
+    image_path: '/images/stocks/kb금융.png',
+    name: 'kb금융',
+    price: 60125,
+    change_amount: 1305,
+    change_percent: 2.17,
+    liked: false,
+    quantity: 12,
+    avg_purchase_price: 59000,
+  },
 ];
 
 export const TRADE_DATA = [

@@ -29,7 +29,7 @@ const BuyCalculation = ({ total, assets, stockId }: BuyCalculationProps) => {
         buttonText={TRADE_BUY_TEXT[9]}
         isDisabled={!isQualified}
         type="trade"
-        className={isQualified ? 'bg-red-1' : 'bg-gray-1'}
+        className={isQualified ? 'bg-red-1' : 'cursor-not-allowed bg-gray-1'}
         onClickHandler={() => console.log('거래 주식 id :', stockId)}
       />
     </div>

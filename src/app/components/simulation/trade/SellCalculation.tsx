@@ -28,7 +28,7 @@ const SellCalculation = ({ total, assets, stockId }: SellCalculationProps) => {
         buttonText={TRADE_SELL_TEXT[9]}
         isDisabled={!isQualified}
         type="trade"
-        className={isQualified ? 'bg-blue-1' : 'bg-gray-1'}
+        className={isQualified ? 'bg-blue-1' : 'bg-gray-1 cursor-not-allowed'}
         onClickHandler={() => console.log('거래 주식 id :', stockId)}
       />
     </div>
