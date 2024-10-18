@@ -22,3 +22,9 @@ export const MAIN_FEAT_IMG = [
   'mail.png',
   'schedule.png',
 ];
+
+export const CATCH_PHRASE = [
+  '우리들의 재테크 정보, 재테크 전용 블로그',
+  'FLEX',
+  '와 함께',
+];

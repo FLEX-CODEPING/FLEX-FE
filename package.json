@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run prettier && next build",
     "start": "next start",
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettier --write --ignore-path .gitignore .",
@@ -22,6 +23,7 @@
     "next-auth": "^4.24.8",
     "react": "^18",
     "react-dom": "^18",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "tui-color-picker": "^2.2.8",
     "zustand": "^5.0.0-rc.2"
   },
