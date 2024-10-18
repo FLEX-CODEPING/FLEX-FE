@@ -3,12 +3,10 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import SearchBar from '@/app/components/blog/blogmain/blogsearch/SearchBar';
-import Results from '@/app/components/blog/blogmain/blogsearch/Result';  // Results 컴포넌트 임포트
+import Results from '@/app/components/blog/blogmain/blogsearch/Result';
 import Pagination from '@/app/components/blog/blogmain/blogpostmain/Pagination';
 import { dummyPosts } from '../../../../constants/BlogData';
 import { BlogPost } from '../../../../_types/blog';
-import "@/app/styles/Blogstyles.css"; 
-import '@/app/styles/globals.css';
 
 const BlogSearch = () => {
   const [query, setQuery] = useState('');
@@ -42,17 +40,12 @@ const BlogSearch = () => {
   const totalPages = Math.ceil(results.length / postsPerPage);
 
   return (
-    <div className="w-full flex-center flex-col mt-[99px]">
-      <div className="container">
+    <div className="w-full flex flex-col items-center mt-[99px]">
+      <div className="w-full max-w-[1400px]">
         <h1 className="text-4xl font-bold"></h1>
         <SearchBar query={query} setQuery={setQuery} handleSearch={handleSearch} />
-        
-        
-        <Results
-          results={results}
-          searchExecuted={searchExecuted}
-          loading={loading}
-        />
+
+        <Results results={results} searchExecuted={searchExecuted} loading={loading} />
 
         {totalPages > 1 && (
           <Pagination totalPages={totalPages} currentPage={currentPage} handlePageChange={setCurrentPage} />

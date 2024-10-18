@@ -30,7 +30,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
         />
       </div>
 
-      <div className="post-content">
+      <div className="">
         <h2 className="font-bold text-lg mb-2">{post.title}</h2>
         <p className="text-sm text-gray-700 mb-2">{post.content}</p>
         <div className="flex justify-between items-center">

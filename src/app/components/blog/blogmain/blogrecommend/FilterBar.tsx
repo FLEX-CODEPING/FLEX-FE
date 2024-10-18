@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export const FilterBar = (): JSX.Element => {
   return (
-    <div className="ml-[68px] mt-[36px] mb-[4px] px-[20px] text-[13px] flex items-center h-[36px] justify-center gap-[15px] py-[2px] border-[1px] border-[#F95700] rounded-[20px] w-[436px]"> {/* 사이즈 및 스타일 수정 */}
+    <div className="ml-[68px] mt-[36px] mb-[4px] px-[20px] text-[13px] flex items-center h-[36px] justify-center gap-[15px] py-[2px] border-[1px] border-[#F95700] rounded-[20px] w-[436px]"> 
       <div className="flex items-center gap-[10px]">
        
         <Image
