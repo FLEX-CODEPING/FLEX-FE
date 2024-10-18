@@ -23,6 +23,7 @@
     "next-auth": "^4.24.8",
     "react": "^18",
     "react-dom": "^18",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "tui-color-picker": "^2.2.8",
     "zustand": "^5.0.0-rc.2"
   },

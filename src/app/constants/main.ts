@@ -1,10 +1,6 @@
 export const TITLE = 'FLEX';
 
-export const CATCHPHRASE = [
-  '우리들의 재테크 정보, 재테크 전용 블로그',
-  'FLEX',
-  '와 함께',
-];
+export const CATCHPHRASE = '재테크가 낯선 당신의 첫 재테크 친구';
 
 export const MAIN_FEAT = [
   '모의 투자',
@@ -25,4 +21,10 @@ export const MAIN_FEAT_IMG = [
   'cursor.png',
   'mail.png',
   'schedule.png',
+];
+
+export const CATCH_PHRASE = [
+  '우리들의 재테크 정보, 재테크 전용 블로그',
+  'FLEX',
+  '와 함께',
 ];
