@@ -7,3 +7,10 @@ interface BlogInfoTypes {
   likeStatus: 'ACTIVE' | 'INACTIVE';
   membername: string;
 }
+
+interface CommentTypes {
+  id: number;
+  author: string;
+  date: string;
+  content: string;
+}

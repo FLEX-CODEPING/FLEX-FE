@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect } from 'react';
 import { CONTENT } from '@/app/constants/blog';
 import BlogContent from './BlogContent';
 import BlogHeader from './BlogHeader';
@@ -14,6 +17,10 @@ const BlogDetailContainer = () => {
     likeStatus: 'ACTIVE',
     membername: 'nakdo',
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div>

@@ -3,24 +3,13 @@
 import { COMMENT } from '@/app/constants/blog';
 import { useState } from 'react';
 
-interface Comment {
-  id: number;
-  author: string;
-  date: string;
-  content: string;
-}
-
 const BlogComment = () => {
   const [commentInput, setCommentInput] = useState('');
-  const [comments, setComments] = useState<Comment[]>([]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCommentInput(e.target.value);
-  };
+  const [comments, setComments] = useState<CommentTypes[]>([]);
 
   const handleAddComment = () => {
     if (commentInput.trim() !== '') {
-      const newComment: Comment = {
+      const newComment: CommentTypes = {
         id: comments.length + 1,
         author: '낙도핑',
         date: new Date().toISOString().slice(0, 10),
@@ -40,8 +29,8 @@ const BlogComment = () => {
       <textarea
         value={commentInput}
         placeholder={COMMENT[1]}
-        onChange={(e) => handleChange(e)}
-        className="w-full h-[80px] pl-3 pt-2 pr-2 pb-2 text-sm rounded-[10px] border resize-none border-gray-2 outline-none focus:border-main-1 scrollbar-hide"
+        onChange={(e) => setCommentInput(e.target.value)}
+        className="w-full h-[80px] pl-3 pr-2 py-2 text-sm rounded-[10px] border resize-none border-gray-2 outline-none focus:border-main-1 scrollbar-hide"
       />
       <div className="flex justify-end mt-3">
         <button
