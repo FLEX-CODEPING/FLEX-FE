@@ -22,10 +22,9 @@ const BlogComment = () => {
   // 댓글 추가 핸들러
   const handleAddComment = () => {
     if (commentInput.trim() !== '') {
-      
       const newComment: Comment = {
         id: comments.length + 1,
-        author: '낙도핑', 
+        author: '낙도핑',
         date: new Date().toISOString().slice(0, 10), // 현재 날짜 (간단히 지정)
         content: commentInput,
       };
@@ -45,6 +44,7 @@ const BlogComment = () => {
           onChange={handleChange}
         />
         <button
+          type="button"
           onClick={handleAddComment}
           className="bg-main-1 text-white px-4 py-2 rounded-lg font-semibold"
         >

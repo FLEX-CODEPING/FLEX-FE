@@ -28,7 +28,7 @@ const BlogDetailContainer = () => {
         date={blogData.date}
       />
       <BlogContent content={blogData.content} />
-      <BlogComment/>
+      <BlogComment />
     </div>
   );
 };

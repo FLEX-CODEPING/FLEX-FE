@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run prettier && next build",
     "start": "next start",
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettier --write --ignore-path .gitignore .",

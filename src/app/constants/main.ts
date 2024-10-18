@@ -4,7 +4,7 @@ export const CATCHPHRASE = [
   '우리들의 재테크 정보, 재테크 전용 블로그',
   'FLEX',
   '와 함께',
-]
+];
 
 export const MAIN_FEAT = [
   '모의 투자',
@@ -26,5 +26,3 @@ export const MAIN_FEAT_IMG = [
   'mail.png',
   'schedule.png',
 ];
-
-
