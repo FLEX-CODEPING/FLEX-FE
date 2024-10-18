@@ -1,4 +1,4 @@
-interface BlogInfoTypes {
+/*interface BlogInfoTypes {
   title: string;
   date: string;
   tags: string[];
@@ -7,6 +7,7 @@ interface BlogInfoTypes {
   likeStatus: 'ACTIVE' | 'INACTIVE';
   membername: string;
 }
+*/
 interface BlogPost {
     id: number; 
     category: string;
