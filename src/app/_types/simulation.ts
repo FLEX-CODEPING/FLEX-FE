@@ -11,7 +11,7 @@ type SideNavType =
   | '거래현황'
   | '내 거래내역';
 
-interface TrainDataType {
+interface TradeDataType {
   stockName: string;
   stockQuantity: number;
   stockPrice: number;

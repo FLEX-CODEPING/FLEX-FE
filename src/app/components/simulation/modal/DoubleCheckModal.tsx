@@ -5,7 +5,7 @@ import Button from '../../common/Button';
 
 interface DoubleCheckModalProps {
   textArr: string[];
-  tradeData: TrainDataType;
+  tradeData: TradeDataType;
   tradeType: TradeType;
   closeModal: () => void;
 }

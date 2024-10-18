@@ -317,7 +317,7 @@ export const TRADE_DATA = [
   },
 ];
 
-export const MODALDATA: TrainDataType = {
+export const MODALDATA: TradeDataType = {
   stockName: '삼성전자',
   stockQuantity: 12,
   stockPrice: 723000,
