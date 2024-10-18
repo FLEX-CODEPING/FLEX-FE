@@ -55,21 +55,21 @@ const BlogComment = () => {
 
       <div className="mt-[60px] mb-[100px]">
         {comments.map((comment) => (
-          <div key={comment.id} className="mb-10 ">
-            <div className="flex items-start gap-4 ">
-              <div className="inline-flex gap-3">
-                <img
-                  src="https://bff-images.bemypet.kr/media/medias/all/993-image_picker152967371293908462.jpg"
-                  alt="프로필 이미지"
-                  className="w-10 h-10 rounded-full"
-                />
-                <div className="flex items-center gap-3">
+          <div key={comment.id} className="mb-10">
+            <div className="flex items-start gap-4">
+              <div className="flex justify-between w-full">
+                <div className="inline-flex items-center gap-3">
+                  <img
+                    src="https://bff-images.bemypet.kr/media/medias/all/993-image_picker152967371293908462.jpg"
+                    alt="프로필 이미지"
+                    className="w-8 h-8 rounded-full"
+                  />
                   <span className="font-bold text-lg">{comment.author}</span>
-                  <span className="text-gray-500 text-sm">{comment.date}</span>
                 </div>
+                <span className="text-gray-500 text-sm flex items-end">{comment.date}</span>
               </div>
             </div>
-            <div className="py-[18px] font-normal border-b border-gray-3 ">
+            <div className="py-[18px] font-normal border-b border-gray-3">
               {comment.content}
             </div>
           </div>
