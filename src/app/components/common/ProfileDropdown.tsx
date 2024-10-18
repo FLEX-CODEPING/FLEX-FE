@@ -1,6 +1,6 @@
 'use client';
 
-import { HEADER_PROFILE_TEXT, LOGIN_TEXT } from '@/app/constants/layout';
+import { HEADER_PROFILE_TEXT, LOGIN_TEXT } from '@/app/constants/common';
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -14,7 +14,7 @@ const ProfileDropdown = () => {
       <div className="flex items-center gap-x-4">
         <Link
           className="flex-center w-[64px] h-[28px] px-1.5 py-1 bg-main-1 text-white text-xs font-semibold rounded-[15px]"
-          href="/auth/signIn"
+          href="/blog/post"
         >
           {LOGIN_TEXT[0]}
         </Link>
@@ -30,7 +30,7 @@ const ProfileDropdown = () => {
               민규핑
             </Link>
             {isHover && (
-              <div className="absolute flex flex-col top-[26px] left-[103px] border border-gray-2 text-xs rounded-[8px] cursor-pointer">
+              <div className="absolute flex flex-col top-[26px] left-[103px] border border-gray-2 text-xs rounded-[8px] cursor-pointer z-10 bg-white">
                 <div className="w-[90px] h-[32px] flex-center border-b border-gray-2 hover:text-main-1">
                   {HEADER_PROFILE_TEXT[0]}
                 </div>

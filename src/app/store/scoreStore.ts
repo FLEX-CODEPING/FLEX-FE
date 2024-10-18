@@ -6,7 +6,7 @@ interface ScoreListState {
   subtractScore: (amount: number) => void;
 }
 
-const useScoreStore = create<ScoreListState>((set) => ({
+export const useScoreStore = create<ScoreListState>((set) => ({
   score: 0,
 
   addScore: (amount) =>
@@ -20,4 +20,15 @@ const useScoreStore = create<ScoreListState>((set) => ({
     })),
 }));
 
-export default useScoreStore;
+interface SidebarState {
+  selectedItem: SideNavType | null;
+  setSelectedItem: (item: SideNavType) => void;
+}
+
+export const useSidebarStore = create<SidebarState>((set) => ({
+  selectedItem: null,
+  setSelectedItem: (item: SideNavType) =>
+    set((state) => ({
+      selectedItem: state.selectedItem === item ? null : item,
+    })),
+}));

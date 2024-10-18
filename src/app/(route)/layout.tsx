@@ -21,11 +21,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ko"
-      className={`${pretendard.variable} min-h-screen min-w-[800px] mx-auto font-pretendard`}
-    >
-      <body className="w-full h-full">
+    <html lang="ko">
+      <body
+        className={`${pretendard.variable} min-w-[1100px] mx-auto font-pretendard`}
+      >
         <Header />
         {children}
       </body>
