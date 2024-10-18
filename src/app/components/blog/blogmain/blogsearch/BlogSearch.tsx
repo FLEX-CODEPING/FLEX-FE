@@ -3,9 +3,9 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import SearchBar from '@/app/components/blog/blogmain/blogsearch/SearchBar';
-import Results from '@/app/components/blog/blogmain/blogsearch/Result';  
+import Results from '@/app/components/blog/blogmain/blogsearch/Result';  // Results 컴포넌트 임포트
 import Pagination from '@/app/components/blog/blogmain/blogpostmain/Pagination';
-import { dummyPosts } from '../../../../constants/blogdata';
+import { dummyPosts } from '../../../../constants/BlogData';
 import { BlogPost } from '../../../../_types/blog';
 import "@/app/styles/Blogstyles.css"; 
 import '@/app/styles/globals.css';
@@ -43,17 +43,17 @@ const BlogSearch = () => {
 
   return (
     <div className="w-full flex-center flex-col mt-[99px]">
-      <div className="container ">
+      <div className="container">
         <h1 className="text-4xl font-bold"></h1>
         <SearchBar query={query} setQuery={setQuery} handleSearch={handleSearch} />
-      
+        
+        
         <Results
           results={results}
-          currentPage={currentPage}
-          postsPerPage={postsPerPage}
           searchExecuted={searchExecuted}
           loading={loading}
         />
+
         {totalPages > 1 && (
           <Pagination totalPages={totalPages} currentPage={currentPage} handlePageChange={setCurrentPage} />
         )}
