@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run prettier && next build",
     "start": "next start",
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettier --write --ignore-path .gitignore .",
@@ -24,6 +25,7 @@
     "react": "^18",
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "react-slick": "^0.30.2",
     "slick-carousel": "^1.8.1",
     "tui-color-picker": "^2.2.8",

@@ -6,9 +6,9 @@ import TradeContainer from '@/app/components/simulation/trade/TradeContainer';
 
 function SimulationPage() {
   return (
-    <section className="flex w-full flex-col h-full justify-between relative">
-      <div className="flex w-full h-full pl-[5%] mt-[1%] items-stretch justify-between ">
-        <div className="flex w-full pb-[5%] gap-x-[1%] justify-between">
+    <section className="relative w-full h-[calc(100vh-140px)] justify-between ">
+      <div className="flex w-full h-full pl-[5%] mt-[1%] justify-between ">
+        <div className="flex w-full gap-x-[1%] pt-[2%] justify-between">
           <SimulationContainer />
           <TradeContainer />
           <ActiveSide />
