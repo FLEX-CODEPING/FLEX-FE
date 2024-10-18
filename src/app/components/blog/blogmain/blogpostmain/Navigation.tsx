@@ -22,14 +22,18 @@ const Navigation: React.FC<NavigationProps> = ({ selectedNav, handleNavClick }) 
   };
 
   return (
-    <div className="w-full flex ">
-      <div className="flex w-full ml-[80px] mr-[38px] mt-[54px] justify-between items-center gap-[10px]">
-        <div className="flex items-center gap-6">
+    <div className="w-full flex  ">
+      <div className="flex w-full ml-[80px] mr-[38px] mt-[54px] justify-between items-center gap-[10px] ">
+        <div className="flex items-center gap-6 ">
           {NAV_OPTIONS.map((nav) => (
             <Link href={nav === '추천' ? '/blog/recommend' : nav === '전체' ? '/blog/all' : `/${nav.toLowerCase()}`} key={nav}>
               <button
                 className={`nav-button ${selectedNav === nav ? 'selected' : ''}`}
                 onClick={() => handleNavSelect(nav)}
+                style={{
+                  fontWeight: selectedNav === nav ? 'bold' : 'normal', 
+                  borderBottom: selectedNav === nav ? '3px solid black' : 'none', 
+                }}
               >
                 {nav}
               </button>
