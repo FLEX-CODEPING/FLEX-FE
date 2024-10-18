@@ -7,12 +7,14 @@ import { Suspense } from 'react';
 
 function SignInPage() {
   return (
-    <section className="w-full h-full flex items-center flex-col mt-[1%]">
-      <p className={`${dela.className} text-[84px] text-main-1`}>{TITLE}</p>
-      <p className="text-3xl font-bold">{CATCHPHRASE}</p>
-      <Suspense fallback={<div>Loading...</div>}>
-        <SignInContainer />
-      </Suspense>
+    <section className="relative w-full h-[calc(100vh-80px)]">
+      <div className="relative w-full h-full flex-center flex-col">
+        <p className={`${dela.className} text-[84px] text-main-1`}>{TITLE}</p>
+        <p className="text-3xl font-bold">{CATCHPHRASE}</p>
+        <Suspense fallback={<div>Loading...</div>}>
+          <SignInContainer />
+        </Suspense>
+      </div>
     </section>
   );
 }

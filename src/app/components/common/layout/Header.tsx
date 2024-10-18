@@ -1,6 +1,5 @@
 import { HEADER_PATH, HEADER_TEXT } from '@/app/constants/common';
 import { Dela_Gothic_One } from 'next/font/google';
-import Image from 'next/image';
 import Link from 'next/link';
 import ProfileDropdown from '../ProfileDropdown';
 
