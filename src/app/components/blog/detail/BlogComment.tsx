@@ -2,6 +2,7 @@
 
 import { COMMENT } from '@/app/constants/blog';
 import { useState } from 'react';
+
 interface Comment {
   id: number;
   author: string;
