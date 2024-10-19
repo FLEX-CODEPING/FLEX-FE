@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { filterOptions } from '@/app/constants/filterbar'; 
 import Image from 'next/image'; 
 

@@ -1,25 +1,33 @@
+'use client';
+
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import { NAV_OPTIONS } from '@/app/constants/blogconstants';
 import Image from 'next/image';
 import ViewTypeDropDown from './ViewTypeDropDown';
 
-interface NavigationProps {
-  selectedNav: string;
-  handleNavClick: (nav: string) => void;
-}
-
-const Navigation: React.FC<NavigationProps> = ({ selectedNav, handleNavClick }) => {
-  const [showLabelNormal, setShowLabelNormal] = useState(false);
+const Navigation = () => {
+  const [selectedNav, setSelectedNav] = useState('전체'); 
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleNavSelect = (nav: string) => {
-    handleNavClick(nav);
+    setSelectedNav(nav);
     if (nav === '추천') {
-      setShowLabelNormal(true);
-    } else {
-      setShowLabelNormal(false);
+      router.push('/blog/recommend');
+    } else if (nav === '전체') {
+      router.push('/blog/all');
     }
   };
+
+  useEffect(() => {
+    if (pathname === '/blog/recommend') {
+      setSelectedNav('추천');
+    } else if (pathname === '/blog/all') {
+      setSelectedNav('전체');
+    }
+  }, [pathname]);
 
   return (
     <div className="w-full flex">
@@ -31,8 +39,8 @@ const Navigation: React.FC<NavigationProps> = ({ selectedNav, handleNavClick }) 
                 className={`text-[24px] px-4 py-2 cursor-pointer bg-white mr-2 ${selectedNav === nav ? 'selected' : ''}`}
                 onClick={() => handleNavSelect(nav)}
                 style={{
-                  fontWeight: selectedNav === nav ? 'bold' : 'normal', 
-                  borderBottom: selectedNav === nav ? '2px solid black' : 'none', 
+                  fontWeight: selectedNav === nav ? 'bold' : 'normal',
+                  borderBottom: selectedNav === nav ? '2px solid black' : 'none',
                 }}
               >
                 {nav}
