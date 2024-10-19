@@ -1,4 +1,3 @@
-'use client';
 
 import BlogRecommend from '@/app/components/blog/blogmain/blogrecommend/BlogRecommend'; 
 
