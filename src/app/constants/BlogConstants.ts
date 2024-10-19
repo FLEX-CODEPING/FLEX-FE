@@ -1,4 +1,4 @@
-export const AGE_OPTIONS = ['~20', '21-30', '31-40', '41-50', '50+'];
+export const AGE_OPTIONS = ['~20', '21~30', '31~40', '41~50', '50+'];
 
 export const SALARY_OPTIONS = [
   '소득 없음',

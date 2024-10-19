@@ -20,7 +20,7 @@ const Filters = () => {
   };
 
   return (
-    <div className="w-full flex-col space-y-4 mt-[36px]">
+    <div className="w-full flex-col space-y-4 mt-9">
       <div className="flex items-start space-x-8 ml-[68px] ">
         <div className="border-[#F95700] bg-white flex justify-center mr-5; items-center border rounded-[20px] h-[40px] px-[20px] py-[1px]">
           <Icons name={age} />
@@ -31,8 +31,8 @@ const Filters = () => {
                 key={age}
                 className={`px-4 py-1 rounded-full border ${
                   selectedAges.includes(age)
-                    ? 'bg-[#FFEBE0] border-[#ffffff]'
-                    : 'bg-white border-[#ffffff]'
+                    ? 'bg-[#FFEBE0] border-white'
+                    : 'bg-white border-white'
                 }`}
                 onClick={() => handleAgeClick(age)}
               >
@@ -51,8 +51,8 @@ const Filters = () => {
                 key={salary}
                 className={` px-4 py-1 border-[#F95700] rounded-full cursor-pointer font-normal transition-colors duration-300 ease-in-out  border ${
                   selectedSalaries.includes(salary)
-                    ? 'bg-[#FFEBE0] border-[#ffffff]'
-                    : 'bg-white border-[#ffffff]'
+                    ? 'bg-[#FFEBE0] border-white'
+                    : 'bg-white border-white'
                 }`}
                 onClick={() => handleSalaryClick(salary)}
               >

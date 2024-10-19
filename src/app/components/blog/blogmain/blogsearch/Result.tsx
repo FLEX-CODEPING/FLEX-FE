@@ -1,5 +1,5 @@
 import React from 'react';
-import { BlogPost } from '../../../../_types/blog'; 
+import { BlogPost } from '../../../../_types/blog/blog'; 
 import PostCard from '../blogpostmain/PostCard';
 
 interface ResultsProps {

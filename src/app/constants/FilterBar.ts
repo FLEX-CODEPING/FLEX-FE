@@ -1,8 +1,4 @@
-interface FilterOption {
-    label: string;
-    value: string;
-  }
-  
+
   export const filterOptions: FilterOption[] = [
     {
       label: "3천 이하",

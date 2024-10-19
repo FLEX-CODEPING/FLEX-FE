@@ -17,7 +17,7 @@ export const FilterBar = (): JSX.Element => {
       </div>
 
       {filterOptions.map((option) => (
-        <div key={option.value} className="relative w-[62px] h-[28px]  flex items-center justify-center bg-[#FFEBE0] rounded-[15px] px-0">
+        <div key={option.value} className="relative w-[62px] h-[28px]  flex items-center justify-center bg-[#FFEBE0] rounded-[15px]">
           <span className="font-medium text-[#000000] text-[12px] tracking-[1.08px] leading-[20.5px]">
             {option.label}
           </span>

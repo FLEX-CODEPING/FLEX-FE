@@ -4,9 +4,8 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import SearchBar from '@/app/components/blog/blogmain/blogsearch/SearchBar';
 import Results from '@/app/components/blog/blogmain/blogsearch/Result';
-import Pagination from '@/app/components/blog/blogmain/blogpostmain/Pagination';
 import { dummyPosts } from '../../../../constants/BlogData';
-import { BlogPost } from '../../../../_types/blog';
+import { BlogPost } from '../../../../_types/blog/blog';
 
 const BlogSearch = () => {
   const [query, setQuery] = useState('');
