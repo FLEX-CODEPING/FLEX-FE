@@ -20,3 +20,8 @@ interface BlogPost {
     date: string;
   }
   
+  interface FilterOption {
+    label: string;
+    value: string;
+  }
+  
