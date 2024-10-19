@@ -12,14 +12,12 @@ const BlogSearch = () => {
   const [results, setResults] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(false);
   const [searchExecuted, setSearchExecuted] = useState(false);
-  
   const router = useRouter();
 
   const handleSearch = async () => {
     if (!query) return;
     setLoading(true);
     setSearchExecuted(true);
-    
 
     try {
       const filteredPosts = dummyPosts.filter((post) =>
@@ -42,10 +40,6 @@ const BlogSearch = () => {
         <SearchBar query={query} setQuery={setQuery} handleSearch={handleSearch} />
 
         <Results results={results} searchExecuted={searchExecuted} loading={loading} />
-
-        {totalPages > 1 && (
-          <Pagination totalPages={totalPages} currentPage={currentPage} handlePageChange={setCurrentPage} />
-        )}
       </div>
     </div>
   );
