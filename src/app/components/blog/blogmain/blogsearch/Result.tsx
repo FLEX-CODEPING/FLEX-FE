@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+
 import { BlogPost } from '../../../../_types/blog/blog'; 
 import PostCard from '../blogpostmain/PostCard';
 
