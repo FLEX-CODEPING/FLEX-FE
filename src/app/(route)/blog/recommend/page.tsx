@@ -4,9 +4,9 @@ import BlogRecommend from '@/app/components/blog/blogmain/blogrecommend/BlogReco
 
 export default function BlogRecommendPage() {
   return (
-    <div>
-      <h1></h1>
+    
+      
       <BlogRecommend /> 
-    </div>
+    
   );
 }

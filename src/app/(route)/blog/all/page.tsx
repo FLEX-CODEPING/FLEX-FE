@@ -4,9 +4,9 @@ import BlogContainer from '@/app/components/blog/blogmain/blogpostmain/BlogConta
 
 const BlogPage = () => {
   return (
-    <div>
+    
       <BlogContainer />
-    </div>
+    
   );
 };
 
