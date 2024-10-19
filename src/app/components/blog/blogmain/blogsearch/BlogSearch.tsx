@@ -12,15 +12,14 @@ const BlogSearch = () => {
   const [results, setResults] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(false);
   const [searchExecuted, setSearchExecuted] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 6;
+  
   const router = useRouter();
 
   const handleSearch = async () => {
     if (!query) return;
     setLoading(true);
     setSearchExecuted(true);
-    setCurrentPage(1);
+    
 
     try {
       const filteredPosts = dummyPosts.filter((post) =>
@@ -35,8 +34,6 @@ const BlogSearch = () => {
       setLoading(false);
     }
   };
-
-  const totalPages = Math.ceil(results.length / postsPerPage);
 
   return (
     <div className="w-full flex flex-col items-center mt-[99px]">
