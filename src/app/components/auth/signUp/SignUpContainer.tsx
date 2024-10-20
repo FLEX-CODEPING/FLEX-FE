@@ -1,6 +1,7 @@
 'use client';
 
 import { AUTH_BTN_TEXT, INITIAL_SIGNUP_DATA } from '@/app/constants/auth';
+import { callPost } from '@/app/utils/callApi';
 import { isCorrect } from '@/app/utils/qualify';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -25,10 +26,9 @@ function SignUpContainer() {
     }));
   };
 
-  const handleSignUpClick = () => {
-    console.log(formData);
-
+  const handleSignUpClick = async () => {
     if (isSatisfied) {
+      const response = await callPost('/api/auth/sinup', { formData });
       // router.push('/auth/complete');
     } else alert('입력정보를 확인해주세요!');
   };

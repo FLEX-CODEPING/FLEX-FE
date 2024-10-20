@@ -4,6 +4,7 @@ interface SignUpFormTypes {
   blogName: string;
   income: string;
   interest: string[];
+  code:string
 }
 
 type InterestTypes =

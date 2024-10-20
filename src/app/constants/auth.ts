@@ -8,6 +8,7 @@ export const INITIAL_SIGNUP_DATA: SignUpFormTypes = {
   blogName: '',
   income: '',
   interest: [],
+  code: '',
 };
 
 export const BIRTH = [
@@ -68,16 +69,16 @@ export const INTEREST_LIST = [
 ];
 
 export const INTEREST_MAP: Record<string, InterestTypes> = {
-  '국내주식': 'DOMESTIC_STOCK',
-  '해외주식': 'FOREIGN_STOCK',
-  '크립토': 'CRYPTO',
-  '선물': 'FUTURES',
-  'ETF': 'ETF',
-  '정치': 'POLITICS',
-  '경제': 'ECONOMY',
-  '환율': 'EXCHANGE_RATE',
-  '부동산': 'REAL_ESTATE',
-  '지수': 'INDEX',
+  국내주식: 'DOMESTIC_STOCK',
+  해외주식: 'FOREIGN_STOCK',
+  크립토: 'CRYPTO',
+  선물: 'FUTURES',
+  ETF: 'ETF',
+  정치: 'POLITICS',
+  경제: 'ECONOMY',
+  환율: 'EXCHANGE_RATE',
+  부동산: 'REAL_ESTATE',
+  지수: 'INDEX',
 };
 
 export const COMPLETE_TITLE = '회원가입 완료';
