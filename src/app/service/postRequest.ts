@@ -8,8 +8,8 @@ const commonHeaders = {
 
 export const postRequest = async (
   url: string,
-  req: Request,
   body: any = null,
+  req: Request,
 ) => {
   const token = getCookie(req, 'accessToken');
 
@@ -18,7 +18,7 @@ export const postRequest = async (
     ...(token && { 'access-token': token }),
   };
 
-  const response = await fetch(`${SERVER_URL}/${url}`, {
+  const response = await fetch(`${SERVER_URL}${url}`, {
     method: 'POST',
     headers,
     body: JSON.stringify(body),
@@ -28,4 +28,8 @@ export const postRequest = async (
 
 export const postMain = async (mainContent: any, req: Request) => {
   return postRequest('/api/v1/main', mainContent, req);
+};
+
+export const postLogin = async (loginContent: any, req: Request) => {
+  return postRequest('/api/auth/login/KAKAO', loginContent, req);
 };

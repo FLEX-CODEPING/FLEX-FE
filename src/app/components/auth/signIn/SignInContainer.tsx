@@ -8,7 +8,7 @@ import {
 import { callPost } from '@/app/utils/callApi';
 import Image from 'next/image';
 import Link from 'next/link';
-import { redirect, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
 function SignInContainer() {
@@ -17,15 +17,16 @@ function SignInContainer() {
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KAKAO_API_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}&scope=account_email`;
 
   useEffect(() => {
-    if (code) {
-      redirect('/auth/signUp');
-      callPost(`/api/login?code=${code}`)
-        .then((res) => res.json())
-        .then((data) => {
-          console.log('카카오 로그인 응답:', data);
-        })
-        .catch((error) => console.error('Error:', error));
-    }
+    const handleLogin = async () => {
+      if (code) {
+        const response = await callPost('/api/login', { code });
+        console.log('서버 응답:', response);
+
+        // 예: redirect('/auth/signUp');
+      }
+    };
+
+    handleLogin();
   }, [code]);
 
   return (

@@ -1,23 +1,14 @@
+import { postLogin } from '@/app/service/postRequest';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
-  const { searchParams } = new URL(req.url);
-  const code = searchParams.get('code') || '';
+  const body = await req.json();
 
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER}/api/auth/login/${code}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code }),
-      },
-    );
+  const response = await postLogin(body, req);
+  console.log(response, '서버응답 res');
 
-    const data = await response.json();
+  const data = await response.json();
+  console.log(response, '서버응답, data');
 
-    return NextResponse.json(data);
-  } catch (error) {
-    return NextResponse.error();
-  }
+  return NextResponse.json(data);
 }
