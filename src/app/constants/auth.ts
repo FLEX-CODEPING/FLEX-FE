@@ -42,6 +42,16 @@ export const INCOME_RANGE = [
   '2억 초과',
 ];
 
+export const INCOME_RANGE_MAP: Record<string, IncomeTypes> = {
+  '3000 이하': 'LESS_3K',
+  '5000 이하': 'LESS_5K',
+  '7500 이하': 'LESS_7.5K',
+  '1억 이하': 'LESS_10K',
+  '1억5천 이하': 'LESS_15K',
+  '2억 이하': 'LESS_2K',
+  '2억 초과': 'OVER_3K',
+};
+
 export const INTEREST_TITLE = '내 관심사';
 
 export const INTEREST_LIST = [
@@ -56,6 +66,19 @@ export const INTEREST_LIST = [
   '부동산',
   '지수',
 ];
+
+export const INTEREST_MAP: Record<string, InterestTypes> = {
+  '국내주식': 'DOMESTIC_STOCK',
+  '해외주식': 'FOREIGN_STOCK',
+  '크립토': 'CRYPTO',
+  '선물': 'FUTURES',
+  'ETF': 'ETF',
+  '정치': 'POLITICS',
+  '경제': 'ECONOMY',
+  '환율': 'EXCHANGE_RATE',
+  '부동산': 'REAL_ESTATE',
+  '지수': 'INDEX',
+};
 
 export const COMPLETE_TITLE = '회원가입 완료';
 

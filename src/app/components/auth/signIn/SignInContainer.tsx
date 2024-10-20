@@ -21,7 +21,6 @@ function SignInContainer() {
       if (code) {
         const response = await callPost('/api/login', { code });
         console.log('서버 응답:', response);
-
         // 예: redirect('/auth/signUp');
       }
     };

@@ -26,8 +26,10 @@ function SignUpContainer() {
   };
 
   const handleSignUpClick = () => {
+    console.log(formData);
+
     if (isSatisfied) {
-      router.push('/auth/complete');
+      // router.push('/auth/complete');
     } else alert('입력정보를 확인해주세요!');
   };
 
