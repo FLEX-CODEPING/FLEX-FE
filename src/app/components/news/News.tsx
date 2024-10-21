@@ -27,7 +27,7 @@ const News = (): JSX.Element => {
       <div className="news-title text-center mt-12">
         <h2 className=" text-[36px] font-normal text-black text-center leading-[60px] mb-12">
           키워드를 선택하여 <br />
-          <span className="text-[#F95700] font-bold text-[50px]">AI 종합 뉴스 요약</span>을 받아보세요
+          <span className="text-black font-bold text-[50px]">AI 종합 뉴스 </span>요약을 받아보세요
         </h2>
       </div>
 

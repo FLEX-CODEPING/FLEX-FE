@@ -14,10 +14,10 @@ const FilterBar: React.FC<FilterBarProps> = ({
   filterOptions,
 }) => {
   return (
-    <>
-      <div className="flex flex-col items-center w-full max-w-[500px] mt-[50px] mx-auto px-4 ml-[410px]"> 
+    <div className='flex items-center w-full mt-[50px] justify-center gap-x-[31px]'>
+      <div className="flex flex-col items-center gap-y-[18px]"> 
         
-        <div className="flex flex-wrap justify-center gap-4 w-full mb-1">
+        <div className="flex flex-wrap justify-center gap-4 w-full" >
           {filterOptions.slice(0, 5).map((option) => (
             <button
               key={option}
@@ -30,9 +30,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
             </button>
           ))}
         </div>
-
-       
-        <div className="flex flex-wrap justify-center gap-4 w-full mt-4 mb-6">
+        <div className="flex flex-wrap justify-center gap-4 w-full">
           {filterOptions.slice(5, 10).map((option) => (
             <button
               key={option}
@@ -46,15 +44,12 @@ const FilterBar: React.FC<FilterBarProps> = ({
           ))}
         </div>
       </div>
-
       
-      <div style={{ position: 'absolute', top: '410px', left: 'calc(80vw - 220px)' }}> {/* 왼쪽으로 최소 80vw에서 160px 이상 이동 못하게 설정 */}
         <button className="bg-black text-white w-[160px] h-[40px] rounded-[5px] flex items-center justify-center gap-2">
           <Icons name={news} />
           뉴스 검색
         </button>
       </div>
-    </>
   );
 };
 
