@@ -24,7 +24,7 @@ function SignUpContainer() {
       [key]: value,
     }));
   };
-  console.log(isSatisfied);
+
   const handleSignUpClick = () => {
     if (isSatisfied) {
       router.push('/auth/complete');
