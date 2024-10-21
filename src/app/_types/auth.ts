@@ -1,10 +1,10 @@
 interface SignUpFormTypes {
-  date: string;
-  nickName: string;
+  birth: string;
+  nickname: string;
   blogName: string;
-  income: string;
-  interest: string[];
-  code:string
+  salary: string;
+  interestKeywords: string[];
+  code: string;
 }
 
 type InterestTypes =

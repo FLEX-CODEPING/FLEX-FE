@@ -8,12 +8,14 @@ import {
 import { callPost } from '@/app/utils/callApi';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
 function SignInContainer() {
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
+  const router = useRouter();
+
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KAKAO_API_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}&scope=account_email`;
 
   useEffect(() => {
@@ -21,11 +23,11 @@ function SignInContainer() {
       if (code) {
         const response = await callPost('/api/auth/login', { code });
         console.log('서버 응답:', response);
-
-        // 예: redirect('/auth/signUp');
+        if (response.code === 'USER_002') {
+          router.push(`/auth/signUp?code=${code}`);
+        }
       }
     };
-
     handleLogin();
   }, [code]);
 
