@@ -27,7 +27,8 @@ const News = (): JSX.Element => {
       <div className="news-title text-center mt-12">
         <h2 className=" text-[36px] font-normal text-black text-center leading-[60px] mb-12">
           키워드를 선택하여 <br />
-          <span className="text-black font-bold text-[50px]">AI 종합 뉴스 </span>요약을 받아보세요
+          <span className="text-black font-bold text-[50px]">AI 종합 뉴스 </span>
+          <span className="text-black text-[50px]"> 요약을 받아보세요</span>
         </h2>
       </div>
 
@@ -44,7 +45,7 @@ const News = (): JSX.Element => {
           <Icons name={title} /> 
           <h3 className="text-xl font-bold ml-2">{newsSummaries[0].title}</h3>
         </div>
-        <div className="news-items p-4 border border-[#7a7a7a] rounded-[15px]">
+        <div className="news-items p-6 border border-[#7a7a7a] rounded-[15px]">
           <ul className="list-none space-y-2">
             {newsSummaries[0].content.map((item, index) => (
               <li key={index} className="flex">
