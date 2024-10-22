@@ -4,13 +4,12 @@ const headers = {
 
 export async function callGet(url: string) {
   const response = await fetch(url, { headers });
+  console.log('요청 url', url);
   const data = await response.json();
   return data;
 }
 
 export async function callPost(url: string, body?: any) {
-  console.log('요청 url', url);
-
   const response = await fetch(url, {
     method: 'POST',
     headers,

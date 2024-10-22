@@ -30,3 +30,12 @@ export const CATCH_PHRASE = [
 ];
 
 export const MAIN_POST_TAG: MainPostViewTypes[] = ['최신', '인기', '팔로잉'];
+
+export const LANDING_VIEWTYPE_MAP: Record<
+  MainPostViewTypes,
+  MainPostViewApiTypes
+> = {
+  최신: 'CREATED_AT',
+  인기: 'LIKE_COUNT',
+  팔로잉: 'FOLLOWING',
+};
