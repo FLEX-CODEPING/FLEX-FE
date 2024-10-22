@@ -15,7 +15,7 @@ function SignUpContainer() {
   const router = useRouter();
   const [formData, setFormData] =
     useState<SignUpFormTypes>(INITIAL_SIGNUP_DATA);
-  const code = searchParams.get('code');
+  const id = searchParams.get('id');
   const isSatisfied =
     isCorrect(formData.blogName) &&
     isCorrect(formData.nickname) &&
@@ -29,14 +29,15 @@ function SignUpContainer() {
   };
 
   useEffect(() => {
-    updateFormData('code', code);
-  }, [code]);
+    updateFormData('socialId', Number(id));
+    console.log(id);
+  }, [id]);
 
   const handleSignUpClick = async () => {
     if (isSatisfied) {
       const response = await callPost('/api/auth/signup', { ...formData });
       console.log(response);
-      if (response.code === 'SUCCESS') {
+      if (response.isSuccess) {
         setTokens(response.result.accessToken, response.result.refreshToken);
         router.push('/auth/complete');
       }

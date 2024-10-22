@@ -8,7 +8,7 @@ export const INITIAL_SIGNUP_DATA: SignUpFormTypes = {
   blogName: '',
   salary: '',
   interestKeywords: [],
-  code: '',
+  socialId: 0,
 };
 
 export const BIRTH = [

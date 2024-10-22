@@ -8,8 +8,8 @@ const commonHeaders = {
 
 export const postRequest = async (
   url: string,
-  body: any = null,
   req: Request,
+  body: any = null,
 ) => {
   const token = getCookie(req, 'accessToken');
 
@@ -31,12 +31,12 @@ export const postMain = async (mainContent: any, req: Request) => {
 };
 
 export const postLogin = async (loginContent: any, req: Request) => {
-  return postRequest('/api/auth/login/KAKAO', loginContent, req);
+  return postRequest('/api/auth/login/KAKAO', req, loginContent);
 };
 
 export const postSignUp = async (
   signUpContent: SignUpFormTypes,
   req: Request,
 ) => {
-  return postRequest('/api/auth/signup/KAKAO', signUpContent, req);
+  return postRequest('/api/auth/signup', req, signUpContent);
 };

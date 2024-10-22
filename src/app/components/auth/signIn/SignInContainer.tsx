@@ -23,8 +23,8 @@ function SignInContainer() {
       if (code) {
         const response = await callPost('/api/auth/login', { code });
         console.log('서버 응답:', response);
-        if (response.code === 'USER_002') {
-          router.push(`/auth/signUp?code=${code}`);
+        if (response.result.userStatus === 'PENDING') {
+          router.push(`/auth/signUp?id=${response.result.socialId}`);
         }
       }
     };
