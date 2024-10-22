@@ -1,11 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import SearchBar from '@/app/components/blog/blogmain/blogsearch/SearchBar';
 import Results from '@/app/components/blog/blogmain/blogsearch/Result';
-import { dummyPosts } from '../../../../constants/blogdata';
-import { BlogPost } from '../../../../_types/blog/blog';
+import SearchBar from '@/app/components/blog/blogmain/blogsearch/SearchBar';
+import { dummyPosts } from '@/app/constants/BlogData';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 const BlogSearch = () => {
   const [query, setQuery] = useState('');
@@ -36,7 +35,6 @@ const BlogSearch = () => {
   return (
     <div className="w-full flex flex-col items-center mt-[99px]">
       <div className="w-full max-w-[1400px]">
-        <h1 className="text-4xl font-bold"></h1>
         <SearchBar
           query={query}
           setQuery={setQuery}

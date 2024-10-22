@@ -1,4 +1,4 @@
-/*interface BlogInfoTypes {
+interface BlogInfoTypes {
   title: string;
   date: string;
   tags: string[];
@@ -7,7 +7,7 @@
   likeStatus: 'ACTIVE' | 'INACTIVE';
   membername: string;
 }
-*/
+
 interface BlogPost {
   id: number;
   category: string;
@@ -23,4 +23,11 @@ interface BlogPost {
 interface FilterOption {
   label: string;
   value: string;
+}
+
+interface CommentTypes {
+  id: number;
+  author: string;
+  date: string;
+  content: string;
 }

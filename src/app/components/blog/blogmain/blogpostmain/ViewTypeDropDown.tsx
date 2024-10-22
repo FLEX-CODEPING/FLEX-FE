@@ -1,9 +1,9 @@
 'use client';
 
-import { BaseSyntheticEvent, useState } from 'react';
-import Icons from '../../../common/Icons';
+import Icons from '@/app/components/common/Icons';
+import { FILTER_OPTIONS } from '@/app/constants/filterOptions'; // 상수 가져오기
 import { fillter } from '@/app/constants/iconPath';
-import { FILTER_OPTIONS, REPLACE_VALUE } from '@/app/constants/filterOptions'; // 상수 가져오기
+import { BaseSyntheticEvent, useState } from 'react';
 
 const ViewTypeDropDown = () => {
   const [selectedOption, setSelectedOption] = useState('검색필터');
@@ -22,6 +22,7 @@ const ViewTypeDropDown = () => {
   return (
     <div className="relative flex text-sm">
       <button
+        type="button"
         className="flex w-[119px] h-[30px] items-center px-4 py-[10px]  rounded-[5px] border bg-white border-gray-300"
         onClick={toggleFilterDropdown}
       >
@@ -32,6 +33,7 @@ const ViewTypeDropDown = () => {
         <div className="absolute w-[119px] top-[30px] bg-white border border-gray-300 rounded-[5px] shadow-lg z-10">
           {FILTER_OPTIONS.map((option) => (
             <button
+              type="button"
               key={option}
               value={option}
               className="w-full text-left px-4 py-1 hover:bg-gray-100"

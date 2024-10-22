@@ -1,10 +1,10 @@
 'use client';
 
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import { NAV_OPTIONS } from '@/app/constants/blogconstants';
+import { BLOG_NAV_PATH, NAV_OPTIONS } from '@/app/constants/BlogConstants';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import ViewTypeDropDown from './ViewTypeDropDown';
 
 const Navigation = () => {
@@ -33,18 +33,10 @@ const Navigation = () => {
     <div className="w-full flex">
       <div className="flex w-full ml-[80px] mr-[38px] mt-[54px] justify-between items-center gap-[10px]">
         <div className="flex items-center gap-6">
-          {NAV_OPTIONS.map((nav) => (
-            <Link
-              href={
-                nav === '추천'
-                  ? '/blog/recommend'
-                  : nav === '전체'
-                    ? '/blog/all'
-                    : `/${nav.toLowerCase()}`
-              }
-              key={nav}
-            >
+          {NAV_OPTIONS.map((nav, i) => (
+            <Link href={BLOG_NAV_PATH[i]} key={nav}>
               <button
+                type="button"
                 className={`text-[24px] px-4 py-2 cursor-pointer bg-white mr-2 ${selectedNav === nav ? 'selected' : ''}`}
                 onClick={() => handleNavSelect(nav)}
                 style={{
