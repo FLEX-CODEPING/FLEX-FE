@@ -9,7 +9,9 @@ interface MainPostProps {
 }
 
 const MainPost = ({ post }: MainPostProps) => {
-  const formattedTags = post.tags.split(',').map((tag: string) => `#${tag}`);
+  const formattedTags = post.tags
+    ? post.tags.split(',').map((tag: string) => `#${tag}`)
+    : [];
 
   return (
     <div
@@ -19,7 +21,10 @@ const MainPost = ({ post }: MainPostProps) => {
       <div className="flex justify-between items-center">
         <div className="flex gap-x-1">
           {formattedTags.map((tag, i) => (
-            <div className="bg-gray-200 px-2 py-1 mb-[5px] rounded-md text-sm font-semibold text-gray-700">
+            <div
+              key={tag + i}
+              className="bg-gray-200 px-2 py-1 mb-[5px] rounded-md text-sm font-semibold text-gray-700"
+            >
               {tag}
             </div>
           ))}
