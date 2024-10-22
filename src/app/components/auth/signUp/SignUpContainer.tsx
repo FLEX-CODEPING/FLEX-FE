@@ -3,21 +3,23 @@
 import { AUTH_BTN_TEXT, INITIAL_SIGNUP_DATA } from '@/app/constants/auth';
 import { callPost } from '@/app/utils/callApi';
 import { isCorrect } from '@/app/utils/qualify';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { setTokens } from '@/app/utils/setToken';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import Button from '../../common/Button';
 import IncomeInterestForm from './IncomeInterestForm';
 import PersonalInfoForm from './PersonalInfoForm';
 
 function SignUpContainer() {
+  const searchParams = useSearchParams();
   const router = useRouter();
   const [formData, setFormData] =
     useState<SignUpFormTypes>(INITIAL_SIGNUP_DATA);
-
+  const code = searchParams.get('code');
   const isSatisfied =
     isCorrect(formData.blogName) &&
-    isCorrect(formData.nickName) &&
-    formData.interest.length !== 0;
+    isCorrect(formData.nickname) &&
+    formData.interestKeywords.length !== 0;
 
   const updateFormData = (key: string, value: any) => {
     setFormData((prev) => ({
@@ -26,10 +28,19 @@ function SignUpContainer() {
     }));
   };
 
+  useEffect(() => {
+    updateFormData('code', code);
+  }, [code]);
+
   const handleSignUpClick = async () => {
     if (isSatisfied) {
-      const response = await callPost('/api/auth/sinup', { formData });
-      // router.push('/auth/complete');
+      const response = await callPost('/api/auth/signup', { ...formData });
+      console.log(response);
+      if (response.code === 'SUCCESS') {
+        setTokens(response.result.accessToken, response.result.refreshToken);
+        router.push('/auth/complete');
+      }
+      console.log(formData, '회원가입 요청 데이터');
     } else alert('입력정보를 확인해주세요!');
   };
 

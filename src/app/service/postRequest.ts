@@ -34,6 +34,9 @@ export const postLogin = async (loginContent: any, req: Request) => {
   return postRequest('/api/auth/login/KAKAO', loginContent, req);
 };
 
-export const postSignUp = async (signUpContent: SignUpFormTypes, req: Request) => {
+export const postSignUp = async (
+  signUpContent: SignUpFormTypes,
+  req: Request,
+) => {
   return postRequest('/api/auth/signup/KAKAO', signUpContent, req);
 };

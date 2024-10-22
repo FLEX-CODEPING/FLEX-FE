@@ -19,12 +19,12 @@ export const setTokens = (
   isRefresh: boolean = false,
 ) => {
   const accessTokenExpires = isRefresh
-    ? new Date(Date.now() + 1000 * 60 * 120) // 연장된 토큰 시간 (120분)
-    : new Date(Date.now() + 1000 * 60 * 30); // 기본 토큰 시간 (30분)
+    ? new Date(Date.now() + 1000 * 60 * 120)
+    : new Date(Date.now() + 1000 * 60 * 30);
 
   const accessTokenExpiresUTC = accessTokenExpires.toUTCString();
 
-  const refreshTokenExpires = new Date(Date.now() + 1000 * 60 * 120); // 120분
+  const refreshTokenExpires = new Date(Date.now() + 1000 * 60 * 120);
   const refreshTokenExpiresUTC = refreshTokenExpires.toUTCString();
 
   document.cookie = `accessToken=${accessToken}; expires=${accessTokenExpiresUTC}; path=/; secure;`;

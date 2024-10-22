@@ -17,14 +17,14 @@ const IncomeInterestForm = ({
   updateFormData,
 }: IncomeInterestProps) => {
   const handleInterestClick = (interest: string) => {
-    const currentInterests = formData.interest;
+    const currentInterests = formData.interestKeywords;
     if (currentInterests.includes(interest)) {
       updateFormData(
-        'interest',
+        'interestKeywords',
         currentInterests.filter((item) => item !== interest),
       );
     } else {
-      updateFormData('interest', [...currentInterests, interest]);
+      updateFormData('interestKeywords', [...currentInterests, interest]);
     }
   };
 
@@ -36,9 +36,9 @@ const IncomeInterestForm = ({
           {INCOME_RANGE.map((income) => (
             <div
               key={income}
-              onClick={() => updateFormData('income', INCOME_RANGE_MAP[income])}
+              onClick={() => updateFormData('salary', INCOME_RANGE_MAP[income])}
               className={`w-20 h-8 flex-center text-[11px] border rounded-2xl cursor-pointer ${
-                formData.income === INCOME_RANGE_MAP[income]
+                formData.salary === INCOME_RANGE_MAP[income]
                   ? 'border-main-1 bg-main-1 text-white'
                   : 'border-gray-1'
               }`}
@@ -56,7 +56,7 @@ const IncomeInterestForm = ({
               key={interest}
               onClick={() => handleInterestClick(INTEREST_MAP[interest])}
               className={`w-16 h-8 flex-center text-[11px] border rounded-2xl cursor-pointer ${
-                formData.interest.includes(INTEREST_MAP[interest])
+                formData.interestKeywords.includes(INTEREST_MAP[interest])
                   ? 'border-main-1 bg-main-1 text-white'
                   : 'border-gray-1'
               }`}
