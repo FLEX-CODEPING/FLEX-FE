@@ -28,3 +28,5 @@ export const CATCH_PHRASE = [
   'FLEX',
   '와 함께',
 ];
+
+export const MAIN_POST_TAG: MainPostViewTypes[] = ['최신', '인기', '팔로잉'];
