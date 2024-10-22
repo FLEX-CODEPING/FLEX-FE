@@ -61,7 +61,7 @@ export const MARKET_CONDITIONS = [
   },
 ];
 
-export const STOCK_DATA: StockInfo[]= [
+export const STOCK_DATA: StockInfo[] = [
   {
     image_path: '/images/stocks/네이버.png',
     name: '네이버',

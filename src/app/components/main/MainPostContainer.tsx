@@ -1,12 +1,7 @@
 'use client';
 
-import {
-  LANDING_VIEWTYPE_MAP,
-  MAIN_BLOG_BTN,
-  MAIN_POST_TAG,
-} from '@/app/constants/main';
+import { LANDING_VIEWTYPE_MAP, MAIN_POST_TAG } from '@/app/constants/main';
 import { callGet } from '@/app/utils/callApi';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import MainPost from './MainPost';
 
@@ -48,7 +43,7 @@ const MainPostContainer = () => {
       >
         {MAIN_BLOG_BTN}
       </Link> */}
-      <div className="w-[1280px] border-b-2 border-gray-3"></div>
+      <div className="w-[1280px] border-b-2 border-gray-3" />
     </div>
   );
 };

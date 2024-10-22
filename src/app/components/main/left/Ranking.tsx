@@ -25,7 +25,7 @@ const Ranking = () => {
               <p className="text-3xl font-semibold">{i + 1}</p>
               <Image
                 src={ranker.thumbnail}
-                alt={''}
+                alt={ranker.title}
                 width={40}
                 height={40}
                 className="rounded-full"
@@ -36,10 +36,10 @@ const Ranking = () => {
                 <p className="text-base">{ranker.title}</p>
                 <Link
                   className="text-xs text-gray-1 flex gap-x-1 items-center"
-                  href={'/blog'}
+                  href="/blog"
                 >
                   {MAIN_LEFT_ETC[1]}
-                  <Icons name={mainRightArrow}  className='pb-0.5'/>
+                  <Icons name={mainRightArrow} className="pb-0.5" />
                 </Link>
               </div>
               <p className="text-xs text-gray-1 font-semibold">

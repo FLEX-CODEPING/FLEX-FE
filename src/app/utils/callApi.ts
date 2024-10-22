@@ -4,7 +4,6 @@ const headers = {
 
 export async function callGet(url: string) {
   const response = await fetch(url, { headers });
-  console.log('요청 url', url);
   const data = await response.json();
   return data;
 }

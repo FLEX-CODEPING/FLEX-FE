@@ -22,7 +22,7 @@ interface DailyArticleTypes {
 }
 
 interface RankingTypes {
-  title: string
-  profit: number
-  thumbnail: string
+  title: string;
+  profit: number;
+  thumbnail: string;
 }
