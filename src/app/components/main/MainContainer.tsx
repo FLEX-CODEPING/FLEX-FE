@@ -1,26 +1,16 @@
-import { CATCH_PHRASE } from '@/app/constants/main';
-import { Dela_Gothic_One } from 'next/font/google';
-
-export const dela = Dela_Gothic_One({
-  subsets: ['latin'],
-  weight: '400',
-});
+import MainDownLeft from './left/MainDownLeft';
+import MainHeader from './MainHeader';
+import MainBlogContainer from './MainPostContainer';
+import MainDownRight from './right/MainDownRight';
 
 const MainContainer = () => {
   return (
-    <div className="w-full h-44 mt-[50px] px-[5%] pb-[30px] justify-center items-center flex flex-col">
-      <div>
-        <span className="text-[#424242] text-[40px] font-normal">
-          {CATCH_PHRASE[0]}
-        </span>
-      </div>
-      <div>
-        <span className={`text-main-1 text-[64px] ${dela.className}`}>
-          {CATCH_PHRASE[1]}
-        </span>
-        <span className="text-[#424242] text-[64px] font-normal">
-          {CATCH_PHRASE[2]}
-        </span>
+    <div className="w-full flex-col-center pb-20">
+      <MainHeader />
+      <MainBlogContainer />
+      <div className="flex gap-x-[60px] mt-10">
+        <MainDownLeft />
+        <MainDownRight />
       </div>
     </div>
   );
