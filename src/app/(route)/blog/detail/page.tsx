@@ -4,7 +4,7 @@ import BlogDetail from '@/app/components/blog/detail/BlogDetailContainer';
 import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
-const BlogDetailPage = () => {
+const ClientOnlyBlogDetail = () => {
   const searchParams = useSearchParams();
   const postId = Number(searchParams.get('id'));
 
@@ -13,11 +13,18 @@ const BlogDetailPage = () => {
   }
 
   return (
+    <section className="w-full h-full flex items-center flex-col mt-[40px]">
+      <BlogDetail postId={postId} likeStatus="INACTIVE" />
+    </section>
+  );
+};
+
+const BlogDetailPage = () => {
+  return (
     <Suspense fallback={<div>Loading...</div>}>
-      <section className="w-full h-full flex items-center flex-col mt-[40px]">
-        <BlogDetail postId={postId} likeStatus="INACTIVE" />
-      </section>
+      <ClientOnlyBlogDetail />
     </Suspense>
   );
 };
+
 export default BlogDetailPage;
