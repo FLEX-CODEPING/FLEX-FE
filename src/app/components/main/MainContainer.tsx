@@ -5,7 +5,7 @@ import MainDownRight from './right/MainDownRight';
 
 const MainContainer = () => {
   return (
-    <div className="w-full flex-col-center">
+    <div className="w-full flex-col-center pb-20">
       <MainHeader />
       <MainBlogContainer />
       <div className="flex gap-x-[60px] mt-10">
