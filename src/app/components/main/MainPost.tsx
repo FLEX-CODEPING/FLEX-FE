@@ -1,5 +1,6 @@
 import Icons from '@/app/components/common/Icons';
 import { likeSmall } from '@/app/constants/iconPath';
+import { formatDate } from '@/app/utils/date';
 import Image from 'next/image';
 
 interface MainPostProps {
@@ -12,17 +13,20 @@ const MainPost = ({ post }: MainPostProps) => {
   return (
     <div
       key={post.id}
-      className="w-[402px] cursor-pointer bg-white shadow-none rounded-lg relative transition-all duration-300 ease-in-out hover:shadow-lg  mb-10"
+      className="w-[382px] cursor-pointer px-2.5 py-2 bg-white rounded-lg relative transition-all duration-300 ease-in-out hover:shadow-lg"
     >
-      <div className="flex justify-between items-center mt-5 px-[1px]">
-        {formattedTags.map((tag, i) => (
-          <div className="bg-gray-200 px-2 py-1 mb-[5px] rounded-md text-sm font-semibold text-gray-700">
-            {tag}
-          </div>
-        ))}
+      <div className="flex justify-between items-center">
+        <div className="flex gap-x-1">
+          {formattedTags.map((tag, i) => (
+            <div className="bg-gray-200 px-2 py-1 mb-[5px] rounded-md text-sm font-semibold text-gray-700">
+              {tag}
+            </div>
+          ))}
+        </div>
+
         <div className="flex items-center text-sm text-gray-500 gap-x-2.5">
-          <p>{post.likeCount}</p>
           <Icons name={likeSmall} />
+          <p>{post.likeCount}</p>
         </div>
       </div>
 
@@ -49,7 +53,7 @@ const MainPost = ({ post }: MainPostProps) => {
             />
             <span className="ml-2  text-gray-500">코드핑</span>
           </div>
-          <span className=" text-gray-500">{post.createdAt}</span>
+          <span className=" text-gray-500">{formatDate(post.createdAt)}</span>
         </div>
       </div>
     </div>
