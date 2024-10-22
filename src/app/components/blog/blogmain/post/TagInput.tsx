@@ -16,10 +16,10 @@ export default function TagInput({ tags, setTags }: TagInputProps) {
 
   const addTag = () => {
     if (inputValue.trim() !== '' && !tags.includes(inputValue.trim())) {
-      setTags([...tags, inputValue.trim()]);
+      const updatedTags = [...tags, inputValue.trim()];
+      setTags(updatedTags); // 여기서 EditBlogContainer로 전달된 setTags 함수를 사용합니다.
       console.log(tags)
       setInputValue('');
-      
     }
   };
 
@@ -31,7 +31,8 @@ export default function TagInput({ tags, setTags }: TagInputProps) {
   };
 
   const removeTag = (indexToRemove: number) => {
-    setTags(tags.filter((_, index) => index !== indexToRemove));
+    const updatedTags = tags.filter((_, index) => index !== indexToRemove);
+    setTags(updatedTags);
   };
 
   const handleCompositionStart = () => {
