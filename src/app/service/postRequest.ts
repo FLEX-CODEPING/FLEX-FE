@@ -4,6 +4,8 @@ const SERVER_URL = process.env.NEXT_PUBLIC_SERVER;
 
 const commonHeaders = {
   'Content-Type': 'application/json',
+  Authorization:
+  'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZSI6InVzZXIiLCJ0eXBlIjoiQUNDRVNTIiwiZW1haWwiOiJqb293b2pyQGdtYWlsLmNvbSIsImV4cCI6MTcyOTY4MzQ1NH0.n-bbnxcI40j0SUeOAk1iU7Vwy-8mroFvVf4hQ23fKQY',
 };
 
 export const postRequest = async (
@@ -15,7 +17,7 @@ export const postRequest = async (
 
   const headers = {
     ...commonHeaders,
-    ...(token && { 'access-token': token }),
+    // ...(token && { 'access-token': token }),
   };
 
   const response = await fetch(`${SERVER_URL}${url}`, {
@@ -39,4 +41,11 @@ export const postSignUp = async (
   req: Request,
 ) => {
   return postRequest('/api/auth/signup', req, signUpContent);
+};
+
+export const postBlog = async (
+  postContent: PostTypes,
+  req: Request,
+) => {
+  return postRequest('/api/posts', req, postContent);
 };

@@ -16,3 +16,14 @@ interface TradeDataType {
   stockQuantity: number;
   stockPrice: number;
 }
+
+interface StockInfo {
+  image_path: string;
+  name: string;
+  price: number;
+  change_amount: number;
+  change_percent: number;
+  liked: boolean;
+  quantity: number;
+  avg_purchase_price: number;
+}

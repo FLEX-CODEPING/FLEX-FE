@@ -1,15 +1,17 @@
-import { Dela_Gothic_One } from 'next/font/google';
+import MainDownLeft from './left/MainDownLeft';
 import MainHeader from './MainHeader';
-
-export const dela = Dela_Gothic_One({
-  subsets: ['latin'],
-  weight: '400',
-});
+import MainBlogContainer from './MainPostContainer';
+import MainDownRight from './right/MainDownRight';
 
 const MainContainer = () => {
   return (
-    <div>
+    <div className="w-full flex-col-center pb-20">
       <MainHeader />
+      <MainBlogContainer />
+      <div className="flex gap-x-[60px] mt-10">
+        <MainDownLeft />
+        <MainDownRight />
+      </div>
     </div>
   );
 };

@@ -10,6 +10,7 @@ interface BlogInfoTypes {
   createdAt?: string;
   updatedAt?: string;
 }
+
 interface BlogPost {
   id: number;
   category: string;

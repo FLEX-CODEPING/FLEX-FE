@@ -8,7 +8,7 @@ export const dela = Dela_Gothic_One({
 
 const MainHeader = () => {
   return (
-    <div className="w-full h-44 mt-[50px] px-[5%] pb-[30px] justify-center items-center flex flex-col">
+    <div className="w-full h-44 mt-4 px-[5%] pb-6 justify-center items-center flex flex-col">
       <div>
         <span className="text-[#424242] text-[40px] font-normal">
           {CATCH_PHRASE[0]}
