@@ -1,0 +1,8 @@
+/* 불필요한 코드 제거 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+
+}
