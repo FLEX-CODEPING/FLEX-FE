@@ -3,11 +3,12 @@ export const AUTH_TITLE = '회원가입';
 export const AUTH_BTN_TEXT = '가입하기';
 
 export const INITIAL_SIGNUP_DATA: SignUpFormTypes = {
-  date: '2000-01-01',
-  nickName: '',
+  birth: '2000-01-01',
+  nickname: '',
   blogName: '',
-  income: '',
-  interest: [],
+  salary: '',
+  interestKeywords: [],
+  socialId: 0,
 };
 
 export const BIRTH = [
@@ -33,14 +34,24 @@ export const BLOGNAME_TEXT = [
 export const INCOME_TITLE = '수입';
 
 export const INCOME_RANGE = [
-  '3000이하',
-  '5000이하',
-  '7500이하',
-  '1억이하',
-  '1억5천이하',
-  '2억이하',
-  '2억초과',
+  '3000 이하',
+  '5000 이하',
+  '7500 이하',
+  '1억 이하',
+  '1억5천 이하',
+  '2억 이하',
+  '2억 초과',
 ];
+
+export const INCOME_RANGE_MAP: Record<string, IncomeTypes> = {
+  '3000 이하': 'LESS_3K',
+  '5000 이하': 'LESS_5K',
+  '7500 이하': 'LESS_7.5K',
+  '1억 이하': 'LESS_10K',
+  '1억5천 이하': 'LESS_15K',
+  '2억 이하': 'LESS_2K',
+  '2억 초과': 'OVER_3K',
+};
 
 export const INTEREST_TITLE = '내 관심사';
 
@@ -56,6 +67,19 @@ export const INTEREST_LIST = [
   '부동산',
   '지수',
 ];
+
+export const INTEREST_MAP: Record<string, InterestTypes> = {
+  국내주식: 'DOMESTIC_STOCK',
+  해외주식: 'FOREIGN_STOCK',
+  크립토: 'CRYPTO',
+  선물: 'FUTURES',
+  ETF: 'ETF',
+  정치: 'POLITICS',
+  경제: 'ECONOMY',
+  환율: 'EXCHANGE_RATE',
+  부동산: 'REAL_ESTATE',
+  지수: 'INDEX',
+};
 
 export const COMPLETE_TITLE = '회원가입 완료';
 

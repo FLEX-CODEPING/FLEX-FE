@@ -1,29 +1,29 @@
-import React, { useState, useEffect } from 'react';
+'use client';
+
 import Navigation from '@/app/components/blog/blogmain/blogpostmain/Navigation';
+import { dummyPosts } from '@/app/constants/BlogData';
 import PostCard from '../blogpostmain/PostCard';
-import FilterBar from './FilterBar';
-import { dummyPosts } from '../../../../constants/BlogData';
-import { BlogPost } from '../../../../_types/blog/blog';
-import { useRouter, usePathname } from 'next/navigation';
+import BlogFilterBar from './BlogFilterBar';
 
 const BlogRecommend = () => {
-  const router = useRouter();
-  const pathname = usePathname();
+  const router = useRouter(); 
+  const pathname = usePathname(); 
   const [selectedNav, setSelectedNav] = useState<string>('전체');
 
+  
   useEffect(() => {
     if (pathname === '/blog/recommend') {
       setSelectedNav('추천');
     } else if (pathname === '/blog/all') {
       setSelectedNav('전체');
     } else {
-      setSelectedNav('전체');
+      setSelectedNav('전체'); 
     }
   }, [pathname]);
 
   const handleNavClick = (nav: string) => {
     setSelectedNav(nav);
-
+  
     if (nav === '추천') {
       router.push('/blog/recommend');
     } else if (nav === '전체') {
@@ -32,9 +32,12 @@ const BlogRecommend = () => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center">
-      <div className="w-full flex flex-col items-start max-w-[1440px]">
-        <Navigation selectedNav={selectedNav} handleNavClick={handleNavClick} />
+    <div className="w-full flex flex-col items-center"> 
+      <div className="w-full flex flex-col items-start max-w-[1440px]"> 
+        <Navigation
+          selectedNav={selectedNav}
+          handleNavClick={handleNavClick}
+        />
         <FilterBar />
       </div>
 

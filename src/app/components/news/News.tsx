@@ -1,4 +1,5 @@
 'use client';
+
 import Icons from '@/app/components/common/Icons';
 import { likeSmall } from '@/app/constants/iconPath';
 import React, { useState } from 'react';
@@ -13,6 +14,8 @@ const News = (): JSX.Element => {
   const handleFilterClick = (option: string) => {
     if (selectedFilters.includes(option)) {
       setSelectedFilters(selectedFilters.filter((filter) => filter !== option));
+    } else if (selectedFilters.length < 2) {
+      setSelectedFilters([...selectedFilters, option]);
     } else {
       if (selectedFilters.length < 1) {
         setSelectedFilters([...selectedFilters, option]);

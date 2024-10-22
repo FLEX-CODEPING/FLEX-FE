@@ -1,4 +1,3 @@
-import React from 'react';
 import Image from 'next/image';
 
 interface SearchBarProps {
@@ -25,6 +24,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         className="flex-1 border-none outline-none p-3 text-base rounded-full"
       />
       <button
+        type="button"
         onClick={handleSearch}
         className="bg-transparent border-none cursor-pointer"
       >

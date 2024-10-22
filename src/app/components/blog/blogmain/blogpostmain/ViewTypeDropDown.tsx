@@ -1,19 +1,13 @@
-import { BaseSyntheticEvent, useState } from 'react';
-import Icons from '../../../common/Icons';
+'use client';
+
+import Icons from '@/app/components/common/Icons';
+import { FILTER_OPTIONS } from '@/app/constants/filterOptions'; // 상수 가져오기
 import { fillter } from '@/app/constants/iconPath';
+import { BaseSyntheticEvent, useState } from 'react';
 
 const ViewTypeDropDown = () => {
-  const options = ['최신순', '오래된순', '좋아요순', '조회수순'];
   const [selectedOption, setSelectedOption] = useState('검색필터');
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const replaceValue = {
-    정렬: [
-      { view: '최신순', replace: 'newest' },
-      { view: '오래된순', replace: 'oldest' },
-      { view: '좋아요순', replace: 'mostlike' },
-      { view: '조회수순', replace: 'mostview' },
-    ],
-  };
 
   const handleSelectValue = (e: BaseSyntheticEvent) => {
     const current = e.target.getAttribute('value');
@@ -28,6 +22,7 @@ const ViewTypeDropDown = () => {
   return (
     <div className="relative flex text-sm">
       <button
+        type="button"
         className="flex w-[119px] h-[30px] items-center px-4 py-[10px]  rounded-[5px] border bg-white border-gray-300"
         onClick={toggleFilterDropdown}
       >
@@ -36,8 +31,9 @@ const ViewTypeDropDown = () => {
       </button>
       {dropdownOpen && (
         <div className="absolute w-[119px] top-[30px] bg-white border border-gray-300 rounded-[5px] shadow-lg z-10">
-          {options.map((option) => (
+          {FILTER_OPTIONS.map((option) => (
             <button
+              type="button"
               key={option}
               value={option}
               className="w-full text-left px-4 py-1 hover:bg-gray-100"

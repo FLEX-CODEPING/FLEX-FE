@@ -1,7 +1,6 @@
-import Image from 'next/image';
-import { BlogPost } from '../../../../_types/blog/blog';
 import Icons from '@/app/components/common/Icons';
 import { likeSmall } from '@/app/constants/iconPath';
+import Image from 'next/image';
 
 interface PostCardProps {
   post: BlogPost;

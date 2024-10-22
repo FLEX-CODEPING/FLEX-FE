@@ -4,6 +4,7 @@ import { useState } from 'react';
 export default function TagInput() {
   const [inputValue, setInputValue] = useState('');
   const [tags, setTags] = useState<string[]>([]);
+  const [isComposing, setIsComposing] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -17,7 +18,7 @@ export default function TagInput() {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && inputValue.trim() !== '') {
+    if (e.key === 'Enter' && inputValue.trim() !== '' && !isComposing) {
       e.preventDefault();
       addTag();
     }
@@ -29,6 +30,14 @@ export default function TagInput() {
     );
   };
 
+  const handleCompositionStart = () => {
+    setIsComposing(true);
+  };
+
+  const handleCompositionEnd = () => {
+    setIsComposing(false);
+  };
+
   return (
     <div className="w-[1200px] h-[80px] mt-[10px] ">
       <div className="flex items-center flex-wrap space-x-2 py-3 border-b border-black/25">
@@ -37,13 +46,15 @@ export default function TagInput() {
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
+          onCompositionStart={handleCompositionStart}
+          onCompositionEnd={handleCompositionEnd}
           placeholder={EDITBLOG_TEXT[1]}
           className="focus:outline-none focus:ring-0 w-[200px] h-[32px] text-black text-xl ml-[17px] "
         />
         {tags.map((tag, index) => (
           <div
             key={tag}
-            className="bg-main-1 text-white px-3 py-1 rounded-full cursor-pointer"
+            className="bg-main-1/20 text-black px-3 py-1 rounded-full cursor-pointer"
             onClick={() => removeTag(index)}
           >
             {tag}

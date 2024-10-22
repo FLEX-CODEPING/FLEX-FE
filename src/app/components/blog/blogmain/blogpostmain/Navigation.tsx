@@ -1,45 +1,42 @@
-import Link from 'next/link';
-import React, { useState } from 'react';
-import { NAV_OPTIONS } from '@/app/constants/blogconstants';
+'use client';
+
+import { BLOG_NAV_PATH, NAV_OPTIONS } from '@/app/constants/BlogConstants';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import ViewTypeDropDown from './ViewTypeDropDown';
 
-interface NavigationProps {
-  selectedNav: string;
-  handleNavClick: (nav: string) => void;
-}
-
-const Navigation: React.FC<NavigationProps> = ({
-  selectedNav,
-  handleNavClick,
-}) => {
-  const [showLabelNormal, setShowLabelNormal] = useState(false);
+const Navigation = () => {
+  const [selectedNav, setSelectedNav] = useState('전체');
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleNavSelect = (nav: string) => {
-    handleNavClick(nav);
+    setSelectedNav(nav);
     if (nav === '추천') {
-      setShowLabelNormal(true);
-    } else {
-      setShowLabelNormal(false);
+      router.push('/blog/recommend');
+    } else if (nav === '전체') {
+      router.push('/blog/all');
     }
   };
+
+  useEffect(() => {
+    if (pathname === '/blog/recommend') {
+      setSelectedNav('추천');
+    } else if (pathname === '/blog/all') {
+      setSelectedNav('전체');
+    }
+  }, [pathname]);
 
   return (
     <div className="w-full flex">
       <div className="flex w-full ml-[80px] mr-[38px] mt-[54px] justify-between items-center gap-[10px]">
         <div className="flex items-center gap-6">
-          {NAV_OPTIONS.map((nav) => (
-            <Link
-              href={
-                nav === '추천'
-                  ? '/blog/recommend'
-                  : nav === '전체'
-                    ? '/blog/all'
-                    : `/${nav.toLowerCase()}`
-              }
-              key={nav}
-            >
+          {NAV_OPTIONS.map((nav, i) => (
+            <Link href={BLOG_NAV_PATH[i]} key={nav}>
               <button
+                type="button"
                 className={`text-[24px] px-4 py-2 cursor-pointer bg-white mr-2 ${selectedNav === nav ? 'selected' : ''}`}
                 onClick={() => handleNavSelect(nav)}
                 style={{

@@ -1,5 +1,5 @@
-import React from 'react';
-import { BlogPost } from '../../../../_types/blog/blog';
+'use client';
+
 import PostCard from '../blogpostmain/PostCard';
 
 interface ResultsProps {

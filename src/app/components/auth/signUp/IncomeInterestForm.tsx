@@ -1,7 +1,9 @@
 import {
   INCOME_RANGE,
+  INCOME_RANGE_MAP,
   INCOME_TITLE,
   INTEREST_LIST,
+  INTEREST_MAP,
   INTEREST_TITLE,
 } from '@/app/constants/auth';
 
@@ -15,14 +17,14 @@ const IncomeInterestForm = ({
   updateFormData,
 }: IncomeInterestProps) => {
   const handleInterestClick = (interest: string) => {
-    const currentInterests = formData.interest;
+    const currentInterests = formData.interestKeywords;
     if (currentInterests.includes(interest)) {
       updateFormData(
-        'interest',
+        'interestKeywords',
         currentInterests.filter((item) => item !== interest),
       );
     } else {
-      updateFormData('interest', [...currentInterests, interest]);
+      updateFormData('interestKeywords', [...currentInterests, interest]);
     }
   };
 
@@ -34,9 +36,9 @@ const IncomeInterestForm = ({
           {INCOME_RANGE.map((income) => (
             <div
               key={income}
-              onClick={() => updateFormData('income', income)}
+              onClick={() => updateFormData('salary', INCOME_RANGE_MAP[income])}
               className={`w-20 h-8 flex-center text-[11px] border rounded-2xl cursor-pointer ${
-                formData.income === income
+                formData.salary === INCOME_RANGE_MAP[income]
                   ? 'border-main-1 bg-main-1 text-white'
                   : 'border-gray-1'
               }`}
@@ -52,9 +54,9 @@ const IncomeInterestForm = ({
           {INTEREST_LIST.map((interest) => (
             <div
               key={interest}
-              onClick={() => handleInterestClick(interest)}
+              onClick={() => handleInterestClick(INTEREST_MAP[interest])}
               className={`w-16 h-8 flex-center text-[11px] border rounded-2xl cursor-pointer ${
-                formData.interest.includes(interest)
+                formData.interestKeywords.includes(INTEREST_MAP[interest])
                   ? 'border-main-1 bg-main-1 text-white'
                   : 'border-gray-1'
               }`}

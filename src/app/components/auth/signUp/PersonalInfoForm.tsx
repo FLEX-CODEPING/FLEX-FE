@@ -26,10 +26,11 @@ const PersonalInfoForm = ({
             className="cursor-pointer pr-8"
             type="signUp"
             inputType="date"
+            onClick={(e) => (e.target as HTMLInputElement).showPicker()}
             min="1900-01-01"
             max={new Date().toISOString().split('T')[0]}
-            textValue={formData.date}
-            onChange={(e) => updateFormData('date', e.target.value)}
+            textValue={formData.birth}
+            onChange={(e) => updateFormData('birth', e.target.value)}
             placeholder={BIRTH_DATE}
           />
         </div>
@@ -39,14 +40,14 @@ const PersonalInfoForm = ({
         <div className="text-sm pl-2.5">{NICKNAME_TEXT[0]}</div>
         <Input
           type="signUp"
-          textValue={formData.nickName}
-          onChange={(e) => updateFormData('nickName', e.target.value)}
+          textValue={formData.nickname}
+          onChange={(e) => updateFormData('nickname', e.target.value)}
           placeholder={NICKNAME_TEXT[1]}
           maxLength={8}
           className="pr-8"
         />
         <div
-          className={`text-xs pl-2.5 text-gray-1 ${!isCorrect(formData.nickName) && 'text-red-1'}`}
+          className={`text-xs pl-2.5 text-gray-1 ${!isCorrect(formData.nickname) && 'text-red-1'}`}
         >
           {NICKNAME_TEXT[2]}
         </div>

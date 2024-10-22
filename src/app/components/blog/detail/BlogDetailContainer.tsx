@@ -1,7 +1,11 @@
+'use client';
+
+import { useEffect } from 'react';
 import { CONTENT } from '@/app/constants/blog';
 import BlogContent from './BlogContent';
 import BlogHeader from './BlogHeader';
 import BlogTitle from './BlogTitle';
+import BlogComment from './BlogComment';
 
 const BlogDetailContainer = () => {
   const blogData: BlogInfoTypes = {
@@ -13,6 +17,10 @@ const BlogDetailContainer = () => {
     likeStatus: 'ACTIVE',
     membername: 'nakdo',
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div>
@@ -27,6 +35,7 @@ const BlogDetailContainer = () => {
         date={blogData.date}
       />
       <BlogContent content={blogData.content} />
+      <BlogComment />
     </div>
   );
 };
