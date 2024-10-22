@@ -8,24 +8,27 @@ import {
 import { callPost } from '@/app/utils/callApi';
 import Image from 'next/image';
 import Link from 'next/link';
-import { redirect, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
 function SignInContainer() {
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
+  const router = useRouter();
+
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KAKAO_API_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}&scope=account_email`;
 
   useEffect(() => {
-    if (code) {
-      redirect('/auth/signUp');
-      callPost(`/api/login?code=${code}`)
-        .then((res) => res.json())
-        .then((data) => {
-          console.log('카카오 로그인 응답:', data);
-        })
-        .catch((error) => console.error('Error:', error));
-    }
+    const handleLogin = async () => {
+      if (code) {
+        const response = await callPost('/api/auth/login', { code });
+        console.log('서버 응답:', response);
+        if (response.result.userStatus === 'PENDING') {
+          router.push(`/auth/signUp?id=${response.result.socialId}`);
+        }
+      }
+    };
+    handleLogin();
   }, [code]);
 
   return (

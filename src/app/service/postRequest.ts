@@ -18,7 +18,7 @@ export const postRequest = async (
     ...(token && { 'access-token': token }),
   };
 
-  const response = await fetch(`${SERVER_URL}/${url}`, {
+  const response = await fetch(`${SERVER_URL}${url}`, {
     method: 'POST',
     headers,
     body: JSON.stringify(body),
@@ -28,4 +28,15 @@ export const postRequest = async (
 
 export const postMain = async (mainContent: any, req: Request) => {
   return postRequest('/api/v1/main', mainContent, req);
+};
+
+export const postLogin = async (loginContent: any, req: Request) => {
+  return postRequest('/api/auth/login/KAKAO', req, loginContent);
+};
+
+export const postSignUp = async (
+  signUpContent: SignUpFormTypes,
+  req: Request,
+) => {
+  return postRequest('/api/auth/signup', req, signUpContent);
 };

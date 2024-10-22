@@ -1,17 +1,17 @@
 'use client';
 
-import { BaseSyntheticEvent, useState } from "react";
-import Icons from "../../../common/Icons";
-import { fillter } from "@/app/constants/iconPath";
-import { FILTER_OPTIONS, REPLACE_VALUE } from "@/app/constants/filterOptions"; // 상수 가져오기
+import { BaseSyntheticEvent, useState } from 'react';
+import Icons from '../../../common/Icons';
+import { fillter } from '@/app/constants/iconPath';
+import { FILTER_OPTIONS, REPLACE_VALUE } from '@/app/constants/filterOptions'; // 상수 가져오기
 
 const ViewTypeDropDown = () => {
-  const [selectedOption, setSelectedOption] = useState("검색필터");
+  const [selectedOption, setSelectedOption] = useState('검색필터');
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleSelectValue = (e: BaseSyntheticEvent) => {
-    const current = e.target.getAttribute("value");
-    setSelectedOption(current);  
+    const current = e.target.getAttribute('value');
+    setSelectedOption(current);
     setDropdownOpen(false);
   };
 
@@ -29,10 +29,8 @@ const ViewTypeDropDown = () => {
         <Icons name={fillter} />
       </button>
       {dropdownOpen && (
-        <div
-          className="absolute w-[119px] top-[30px] bg-white border border-gray-300 rounded-[5px] shadow-lg z-10"
-        >
-          {FILTER_OPTIONS.map(option => (
+        <div className="absolute w-[119px] top-[30px] bg-white border border-gray-300 rounded-[5px] shadow-lg z-10">
+          {FILTER_OPTIONS.map((option) => (
             <button
               key={option}
               value={option}

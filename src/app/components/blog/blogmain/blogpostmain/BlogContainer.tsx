@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
-import Navigation from '@/app/components/blog/blogmain/blogpostmain/Navigation'; 
+import Navigation from '@/app/components/blog/blogmain/blogpostmain/Navigation';
 import Filters from '@/app/components/blog/blogmain/blogpostmain/Filters';
 import PostCard from './PostCard';
 import { dummyPosts } from '../../../../constants/blogdata';
@@ -23,14 +23,14 @@ const BlogContainer = () => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center"> 
-      <div className="w-full flex flex-col items-start max-w-[1440px]"> 
+    <div className="w-full flex flex-col items-center">
+      <div className="w-full flex flex-col items-start max-w-[1440px]">
         <Navigation selectedNav={selectedNav} handleNavClick={handleNavClick} />
         <Filters />
       </div>
-      
-      <div className="w-full flex flex-col items-center"> 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[44px] p-4"> 
+
+      <div className="w-full flex flex-col items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[44px] p-4">
           {dummyPosts.map((post: BlogPost) => (
             <PostCard key={post.id} post={post} />
           ))}
