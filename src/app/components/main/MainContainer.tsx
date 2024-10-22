@@ -8,7 +8,7 @@ const MainContainer = () => {
     <div className="w-full flex-col-center">
       <MainHeader />
       <MainBlogContainer />
-      <div className="flex gap-x-[60px]">
+      <div className="flex gap-x-[60px] mt-10">
         <MainDownLeft />
         <MainDownRight />
       </div>

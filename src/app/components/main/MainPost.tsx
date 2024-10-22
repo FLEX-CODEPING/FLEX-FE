@@ -1,6 +1,7 @@
 import Icons from '@/app/components/common/Icons';
 import { likeSmall } from '@/app/constants/iconPath';
 import { formatDate } from '@/app/utils/date';
+import { truncateString } from '@/app/utils/truncate';
 import Image from 'next/image';
 
 interface MainPostProps {
@@ -41,7 +42,9 @@ const MainPost = ({ post }: MainPostProps) => {
 
       <div className="">
         <h2 className="font-bold text-lg mb-2 ">{post.title}</h2>
-        <p className="text-sm text-gray-700 mb-2 ">{post.content}</p>
+        <p className="text-sm text-gray-700 mb-2 ">
+          {truncateString(post.content, 64)}
+        </p>
         <div className="flex justify-between items-center text-xs ">
           <div className="flex items-center text-xs">
             <Image

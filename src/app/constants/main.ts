@@ -39,6 +39,7 @@ export const LANDING_VIEWTYPE_MAP: Record<
   인기: 'LIKE_COUNT',
   팔로잉: 'FOLLOWING',
 };
+export const MAIN_BLOG_BTN = '글 더 보러가기';
 
 export const MAIN_LEFT_TITLE = ['오늘의 뉴스', '오늘의 모의투자 랭킹'];
 
