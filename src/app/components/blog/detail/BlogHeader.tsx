@@ -6,38 +6,32 @@ import Icons from '../../common/Icons';
 
 interface BlogHeaderProps {
   tags?: string[];
-  initialLikesCount?: number;
+  likeCount?: number;
   likeStatus?: 'ACTIVE' | 'INACTIVE';
-  likeCount?:number
 }
 
-const BlogHeader = ({
-  tags,
-  initialLikesCount,
-  likeStatus,
-  likeCount,
-}: BlogHeaderProps) => {
-  const [likeCounts, setLikeCount] = useState(initialLikesCount) || 0;
+const BlogHeader = ({ tags, likeCount = 0, likeStatus }: BlogHeaderProps) => {
+  const [currentLikeCount, setCurrentLikeCount] = useState(likeCount);
   const [isLiked, setIsLiked] = useState(likeStatus === 'ACTIVE');
   const [isHovered, setIsHovered] = useState(false);
 
   const handleLikeClick = () => {
     if (isLiked) {
-      setLikeCount(Number(likeCounts) - 1);
+      setCurrentLikeCount(currentLikeCount - 1);
     } else {
-      setLikeCount(Number(likeCounts) + 1);
+      setCurrentLikeCount(currentLikeCount + 1);
     }
     setIsLiked(!isLiked);
   };
 
   const getButtonBorderColor = () => {
     if (isLiked && isHovered) return 'border-none';
-    return isHovered ? 'border-black' : 'border-gray-2';
+    return isHovered ? 'border-black-0' : 'border-gray-2';
   };
 
   const getIconFillColor = () => {
     if (isLiked) return 'white';
-    return isHovered ? 'black' : 'gray';
+    return isHovered ? 'black-0' : 'gray';
   };
 
   const getButtonBackgroundColor = () => {
@@ -52,7 +46,7 @@ const BlogHeader = ({
         {tags?.map((tag, index) => (
           <div
             key={tag}
-            className="bg-main-1/20 text-black font-semibold px-3 py-1 rounded-full cursor-pointer"
+            className="bg-main-1/20 text-black-0/70 font-semibold px-3 py-1 rounded-full cursor-pointer"
           >
             {tag}
           </div>
@@ -77,11 +71,12 @@ const BlogHeader = ({
             />
           </div>
         </button>
-        <span className="text-black font-semibold text-sm mt-[2px]">
-          {likeCount}
+        <span className="text-black-0 font-semibold text-sm mt-[2px]">
+          {currentLikeCount}
         </span>
       </div>
     </div>
   );
 };
+
 export default BlogHeader;

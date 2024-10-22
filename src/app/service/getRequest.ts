@@ -8,7 +8,7 @@ const getRequest = async (url: string, accessToken?: string) => {
   // const token = getCookie(req, 'accessToken');
 
   const headers = accessToken
-    ? { ...commonHeaders, accessToken }
+    ? { ...commonHeaders, Authorization: `Bearer ${accessToken}` }
     : commonHeaders;
   console.log(url);
 

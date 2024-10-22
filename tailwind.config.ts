@@ -37,8 +37,12 @@ const config: Config = {
           1: '#434343',
         },
       },
+      spacing: {
+        '12.5': '50px',
+      },
     },
   },
   plugins: [require('tailwind-scrollbar-hide')],
 };
+
 export default config;

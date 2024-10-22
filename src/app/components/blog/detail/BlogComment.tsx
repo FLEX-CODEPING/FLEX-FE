@@ -36,7 +36,7 @@ const BlogComment = () => {
         <button
           type="button"
           onClick={handleAddComment}
-          className="bg-black text-white px-8 py-2 rounded-lg font-semibold "
+          className="bg-black-0 text-white px-8 py-2 rounded-lg font-semibold "
         >
           {COMMENT[2]}
         </button>
