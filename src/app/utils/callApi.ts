@@ -9,8 +9,6 @@ export async function callGet(url: string) {
 }
 
 export async function callPost(url: string, body?: any) {
-  console.log('요청 url', url);
-
   const response = await fetch(url, {
     method: 'POST',
     headers,

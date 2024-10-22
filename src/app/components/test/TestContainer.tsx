@@ -37,9 +37,6 @@ function TestContainer() {
       console.log(error);
     }
   };
-  console.log(stockData, '기본 주식 정보 컨테이너에서 가져온 데이터');
-  console.log(stockMinData, '분봉 데이터');
-
   return (
     <div className="flex flex-col gap-y-5">
       <button

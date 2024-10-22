@@ -1,10 +1,11 @@
 'use client';
+
 import Icons from '@/app/components/common/Icons';
-import { likeSmall, title, k } from '@/app/constants/iconPath';
-import React, { useState } from 'react';
-import FilterBar from '@/app/components/news/FilterBar';
-import { newsSummaries, additionalNews } from '@/app/constants/newsdata';
+import { k, title } from '@/app/constants/iconPath';
 import { filterOptions } from '@/app/constants/news';
+import { additionalNews, newsSummaries } from '@/app/constants/newsdata';
+import { useState } from 'react';
+import NewsFilterBar from './NewsFilterBar';
 
 const News = (): JSX.Element => {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
@@ -12,12 +13,10 @@ const News = (): JSX.Element => {
   const handleFilterClick = (option: string) => {
     if (selectedFilters.includes(option)) {
       setSelectedFilters(selectedFilters.filter((filter) => filter !== option));
+    } else if (selectedFilters.length < 2) {
+      setSelectedFilters([...selectedFilters, option]);
     } else {
-      if (selectedFilters.length < 2) {
-        setSelectedFilters([...selectedFilters, option]);
-      } else {
-        alert('최대 2개의 필터만 선택할 수 있습니다.');
-      }
+      alert('최대 2개의 필터만 선택할 수 있습니다.');
     }
   };
 
@@ -33,7 +32,7 @@ const News = (): JSX.Element => {
         </h2>
       </div>
 
-      <FilterBar
+      <NewsFilterBar
         selectedFilters={selectedFilters}
         handleFilterClick={handleFilterClick}
         filterOptions={filterOptions}
@@ -47,7 +46,7 @@ const News = (): JSX.Element => {
         <div className="news-items p-4 border border-[#7a7a7a] rounded-[15px]">
           <ul className="list-none space-y-2">
             {newsSummaries[0].content.map((item, index) => (
-              <li key={index} className="flex">
+              <li key={item.title} className="flex">
                 <span className="font-bold">{item.title}</span>
                 <span className="ml-2">{item.description}</span>
               </li>
@@ -59,7 +58,10 @@ const News = (): JSX.Element => {
       <div className="mt-12 max-w-[1200px] mx-auto">
         <ul className="space-y-4">
           {additionalNews.map((news, index) => (
-            <li key={index} className="flex justify-between items-start pb-2">
+            <li
+              key={news.headline}
+              className="flex justify-between items-start pb-2"
+            >
               <span
                 className="text-sm text-gray-500 text-left"
                 style={{ width: '150px' }}

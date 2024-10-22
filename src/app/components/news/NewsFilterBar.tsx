@@ -1,14 +1,14 @@
-import React from 'react';
 import Icons from '@/app/components/common/Icons';
 import { news } from '@/app/constants/iconPath';
+import React from 'react';
 
-interface FilterBarProps {
+interface NewsFilterBaProps {
   selectedFilters: string[];
   handleFilterClick: (option: string) => void;
   filterOptions: string[];
 }
 
-const FilterBar: React.FC<FilterBarProps> = ({
+const NewsFilterBar: React.FC<NewsFilterBaProps> = ({
   selectedFilters,
   handleFilterClick,
   filterOptions,
@@ -19,6 +19,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
         <div className="flex flex-wrap justify-center gap-4 w-full mb-1">
           {filterOptions.slice(0, 5).map((option) => (
             <button
+              type="button"
               key={option}
               onClick={() => handleFilterClick(option)}
               className={`w-[80px] py-2 px-2 rounded-full ${
@@ -35,6 +36,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
         <div className="flex flex-wrap justify-center gap-4 w-full mt-4 mb-6">
           {filterOptions.slice(5, 10).map((option) => (
             <button
+              type="button"
               key={option}
               onClick={() => handleFilterClick(option)}
               className={`w-[80px] py-2 px-4 rounded-full ${
@@ -56,9 +58,10 @@ const FilterBar: React.FC<FilterBarProps> = ({
           left: 'calc(80vw - 220px)',
         }}
       >
-        {' '}
-        {/* 왼쪽으로 최소 80vw에서 160px 이상 이동 못하게 설정 */}
-        <button className="bg-black text-white w-[160px] h-[40px] rounded-[5px] flex items-center justify-center gap-2">
+        <button
+          type="button"
+          className="bg-black text-white w-[160px] h-[40px] rounded-[5px] flex items-center justify-center gap-2"
+        >
           <Icons name={news} />
           뉴스 검색
         </button>
@@ -67,4 +70,4 @@ const FilterBar: React.FC<FilterBarProps> = ({
   );
 };
 
-export default FilterBar;
+export default NewsFilterBar;

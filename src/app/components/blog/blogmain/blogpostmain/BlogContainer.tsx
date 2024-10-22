@@ -1,31 +1,15 @@
 'use client';
 
-import { useState } from 'react';
-import Navigation from '@/app/components/blog/blogmain/blogpostmain/Navigation';
 import Filters from '@/app/components/blog/blogmain/blogpostmain/Filters';
+import Navigation from '@/app/components/blog/blogmain/blogpostmain/Navigation';
+import { dummyPosts } from '@/app/constants/BlogData';
 import PostCard from './PostCard';
-import { dummyPosts } from '../../../../constants/blogdata';
-import { BlogPost } from '../../../../_types/blog/blog';
-import { useRouter, usePathname } from 'next/navigation';
 
 const BlogContainer = () => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const [selectedNav, setSelectedNav] = useState('전체');
-
-  const handleNavClick = (nav: string) => {
-    setSelectedNav(nav);
-    if (nav === '전체') {
-      router.push('/blog/all');
-    } else if (nav === '추천') {
-      router.push('/blog/recommend');
-    }
-  };
-
   return (
     <div className="w-full flex flex-col items-center">
       <div className="w-full flex flex-col items-start max-w-[1440px]">
-        <Navigation selectedNav={selectedNav} handleNavClick={handleNavClick} />
+        <Navigation />
         <Filters />
       </div>
 
