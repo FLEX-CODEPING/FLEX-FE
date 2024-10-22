@@ -31,3 +31,8 @@ export const getLandingPost = async (req: Request, filter: string) => {
   const url = `/api/blogs/landing?filter=${filter}`;
   return getRequest(url, req);
 };
+
+export const getBlogsMain = async (req: Request, filter?: string) => {
+  const url = `/api/blogs/main`;
+  return getRequest(url, req);
+};
