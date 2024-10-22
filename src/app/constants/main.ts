@@ -39,3 +39,9 @@ export const LANDING_VIEWTYPE_MAP: Record<
   인기: 'LIKE_COUNT',
   팔로잉: 'FOLLOWING',
 };
+
+export const MAIN_LEFT_TITLE = ['오늘의 뉴스', '오늘의 모의투자 랭킹'];
+
+export const MAIN_LEFT_ETC = ['다른 뉴스 보러가기', '블로그 구경가기'];
+
+export const MAIN_RIGHT_TITLE = '2024년 X월 XX일 차트 뉴스';

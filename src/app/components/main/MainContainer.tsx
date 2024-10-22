@@ -1,6 +1,6 @@
 import MainDownLeft from './left/MainDownLeft';
-import MainBlogContainer from './MainPostContainer';
 import MainHeader from './MainHeader';
+import MainBlogContainer from './MainPostContainer';
 import MainDownRight from './right/MainDownRight';
 
 const MainContainer = () => {
@@ -8,8 +8,10 @@ const MainContainer = () => {
     <div className="w-full flex-col-center">
       <MainHeader />
       <MainBlogContainer />
-      <MainDownLeft />
-      <MainDownRight />
+      <div className="flex gap-x-[60px]">
+        <MainDownLeft />
+        <MainDownRight />
+      </div>
     </div>
   );
 };

@@ -1,5 +1,11 @@
+import DailyNews from './DailyNews';
+
 const MainDownLeft = () => {
-  return <div>왼</div>;
+  return (
+    <div className="w-[580px] flex-col-center">
+      <DailyNews />
+    </div>
+  );
 };
 
 export default MainDownLeft;

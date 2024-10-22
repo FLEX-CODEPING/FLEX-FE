@@ -13,3 +13,10 @@ interface LandingPostTypes {
   imageUrls: string[];
   likeCount: 0;
 }
+
+interface DailyArticleTypes {
+  title: string;
+  content: string;
+  media: string;
+  thumbnail: string;
+}
