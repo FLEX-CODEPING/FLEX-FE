@@ -2,6 +2,7 @@
 
 import BlogDetail from '@/app/components/blog/detail/BlogDetailContainer';
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 const BlogDetailPage = () => {
   const searchParams = useSearchParams();
@@ -12,9 +13,11 @@ const BlogDetailPage = () => {
   }
 
   return (
-    <section className="w-full h-full flex items-center flex-col mt-[40px]">
-      <BlogDetail postId={postId} likeStatus="INACTIVE" />
-    </section>
+    <Suspense fallback={<div>Loading...</div>}>
+      <section className="w-full h-full flex items-center flex-col mt-[40px]">
+        <BlogDetail postId={postId} likeStatus="INACTIVE" />
+      </section>
+    </Suspense>
   );
 };
 export default BlogDetailPage;
