@@ -31,3 +31,8 @@ interface CommentTypes {
   date: string;
   content: string;
 }
+interface PostTypes {
+  title: string;
+  content: string;
+  tags: string[];
+}

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import BlogDetail from '@/app/components/blog/detail/BlogDetailContainer';
 import { useSearchParams } from 'next/navigation';

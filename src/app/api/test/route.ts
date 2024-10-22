@@ -1,17 +1,16 @@
 import { deleteMain } from '@/app/service/deleteRequest';
-import { getMain } from '@/app/service/getRequest';
 import { patchMain } from '@/app/service/patchRequest';
 import { postMain } from '@/app/service/postRequest';
 import { NextResponse } from 'next/server';
 
-export async function GET(req: Request) {
-  try {
-    const data = await getMain(req);
-    return NextResponse.json(data);
-  } catch (error) {
-    return NextResponse.json({ error: 'Internal Server Error' });
-  }
-}
+// export async function GET(req: Request) {
+//   try {
+//     const data = await getMain(req);
+//     return NextResponse.json(data);
+//   } catch (error) {
+//     return NextResponse.json({ error: 'Internal Server Error' });
+//   }
+// }
 
 export async function POST(req: Request) {
   const { searchParams } = new URL(req.url);

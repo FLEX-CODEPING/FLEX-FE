@@ -10,8 +10,8 @@ interface BlogHeaderProps {
   likeStatus?: 'ACTIVE' | 'INACTIVE';
 }
 
-const BlogHeader = ({ tags, likeCount = 0, likeStatus }: BlogHeaderProps) => {
-  const [currentLikeCount, setCurrentLikeCount] = useState(likeCount);
+const BlogHeader = ({ tags, likeCount, likeStatus }: BlogHeaderProps) => {
+  const [currentLikeCount, setCurrentLikeCount] = useState(likeCount || 0);
   const [isLiked, setIsLiked] = useState(likeStatus === 'ACTIVE');
   const [isHovered, setIsHovered] = useState(false);
 
