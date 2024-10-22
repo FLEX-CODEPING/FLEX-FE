@@ -20,3 +20,9 @@ interface DailyArticleTypes {
   media: string;
   thumbnail: string;
 }
+
+interface RankingTypes {
+  title: string
+  profit: number
+  thumbnail: string
+}

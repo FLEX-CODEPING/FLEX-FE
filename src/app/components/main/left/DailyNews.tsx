@@ -1,11 +1,14 @@
-import { MAIN_LEFT_TITLE } from '@/app/constants/main';
+import { mainRightArrow } from '@/app/constants/iconPath';
+import { MAIN_LEFT_ETC, MAIN_LEFT_TITLE } from '@/app/constants/main';
 import { MOOK_ARTICLES } from '@/app/data/main';
 import Image from 'next/image';
+import Link from 'next/link';
+import Icons from '../../common/Icons';
 
 const DailyNews = () => {
   return (
     <div className="px-6 py-4 flex-col flex w-full">
-      <div className="flex w-full justify-between items-end">
+      <div className="flex w-full justify-between items-end mb-4">
         <p className="text-xl font-bold">{MAIN_LEFT_TITLE[0]}</p>
         <p className="text-xs">2024.10.04</p>
       </div>
@@ -22,6 +25,12 @@ const DailyNews = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="w-full flex flex-row-reverse pr-2">
+        <Link className="text-xs flex gap-x-1 items-center" href={'/news'}>
+          {MAIN_LEFT_ETC[0]}
+          <Icons name={mainRightArrow} />
+        </Link>
       </div>
     </div>
   );
