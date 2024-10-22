@@ -1,12 +1,21 @@
 import Icons from '@/app/components/common/Icons';
 import { AGE_OPTIONS, SALARY_OPTIONS } from '@/app/constants/BlogConstants';
 import { ageIcon, salaryIcon } from '@/app/constants/iconPath';
-import { useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
-const Filters = () => {
-  const [selectedAges, setSelectedAges] = useState<string[]>([]);
-  const [selectedSalaries, setSelectedSalaries] = useState<string[]>([]);
+interface FiltersProps {
+  selectedAges: string[];
+  setSelectedAges: Dispatch<SetStateAction<string[]>>;
+  selectedSalaries: string[];
+  setSelectedSalaries: Dispatch<SetStateAction<string[]>>;
+}
 
+const Filters = ({
+  selectedAges,
+  setSelectedAges,
+  selectedSalaries,
+  setSelectedSalaries,
+}: FiltersProps) => {
   const handleAgeClick = (age: string) => {
     setSelectedAges((prev) =>
       prev.includes(age) ? prev.filter((a) => a !== age) : [...prev, age],

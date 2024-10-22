@@ -18,3 +18,12 @@ export const NAV_OPTIONS_WITH_PATH = [
   { nav: '추천', path: '/blog/recommend' },
   { nav: '팔로우', path: '/blog/follow' },
 ];
+
+export const LANDING_VIEWTYPE_MAP: Record<
+  MainPostViewTypes,
+  MainPostViewApiTypes
+> = {
+  최신: 'CREATED_AT',
+  인기: 'LIKE_COUNT',
+  팔로잉: 'FOLLOWING',
+};

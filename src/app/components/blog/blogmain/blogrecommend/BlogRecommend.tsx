@@ -2,6 +2,7 @@
 
 import Navigation from '@/app/components/blog/blogmain/blogpostmain/Navigation';
 import { dummyPosts } from '@/app/constants/BlogData';
+import { SetStateAction } from 'react';
 import PostCard from '../blogpostmain/PostCard';
 import BlogFilterBar from './BlogFilterBar';
 
@@ -9,7 +10,12 @@ const BlogRecommend = () => {
   return (
     <div className="w-full flex flex-col items-center">
       <div className="w-full flex flex-col items-start max-w-[1440px]">
-        <Navigation />
+        <Navigation
+          selectedNav={''}
+          setSelectedNav={function (value: SetStateAction<string>): void {
+            throw new Error('Function not implemented.');
+          }}
+        />
         <BlogFilterBar />
       </div>
 
