@@ -32,7 +32,15 @@ export const getLandingPost = async (req: Request, filter: string) => {
   return getRequest(url, req);
 };
 
-export const getBlogsMain = async (req: Request, filter?: string) => {
-  const url = `/api/blogs/main`;
+export const getBlogsMain = async (req: Request, salary?: any, age?: any) => {
+  const queryParams = new URLSearchParams();
+  let url = '/api/blogs/main';
+  if (salary !== 'undefined') {
+    url += `?salary=${salary}`;
+  }
+  if (age !== 'undefined') {
+    url += salary ? `&age=${age}` : `?age=${age}`;
+  }
+
   return getRequest(url, req);
 };

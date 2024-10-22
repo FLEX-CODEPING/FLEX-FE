@@ -23,7 +23,6 @@ const Navigation = ({ selectedNav, setSelectedNav }: NavigationProps) => {
               {nav}
             </Link>
           ))}
-
           <Link href="/blog/blogsearch" className="nav-button">
             <Image src="/images/2c.png" alt="2cImg" width={18} height={18} />
           </Link>
