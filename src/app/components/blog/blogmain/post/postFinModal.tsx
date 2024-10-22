@@ -1,4 +1,4 @@
-import { MODAL_TEXT } from "@/app/constants/blog";
+import { MODAL_TEXT } from '@/app/constants/blog';
 
 interface PostFinModalProps {
   onClose: () => void;

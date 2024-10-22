@@ -1,12 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { CONTENT } from '@/app/constants/blog';
+import { callGet } from '@/app/utils/callApi';
 import BlogContent from './BlogContent';
 import BlogHeader from './BlogHeader';
 import BlogTitle from './BlogTitle';
 import BlogComment from './BlogComment';
-import { callGet } from '@/app/utils/callApi';
 
 interface PostDetailProps {
   postId: number;

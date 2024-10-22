@@ -34,5 +34,5 @@ export const getLandingPost = async (req: Request, filter: string) => {
 
 export const getPostDetail = async (req: Request, id: string) => {
   const url = `/api/posts/${id}`;
-  return await getRequest(url, req);
+  return getRequest(url, req);
 };

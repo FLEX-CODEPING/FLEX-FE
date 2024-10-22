@@ -1,9 +1,9 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import BlogInfoContainer from './BlogInfoContainer';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import BlogInfoContainer from './BlogInfoContainer';
 import PostModal from './postModal';
 import PostFinModal from './postFinModal';
 
@@ -30,8 +30,6 @@ const EditBlogContainer = () => {
     );
   };
 
-  
-
   const setContent = (content: string) => {
     setPostData(
       (prevPost) =>
@@ -48,7 +46,11 @@ const EditBlogContainer = () => {
       tags: tags.join(', '),
     };
 
-    if (!postDataToSubmit.title || !postDataToSubmit.content || postDataToSubmit.tags === '') {
+    if (
+      !postDataToSubmit.title ||
+      !postDataToSubmit.content ||
+      postDataToSubmit.tags === ''
+    ) {
       alert('필수정보를 입력해주세요!');
       return;
     }

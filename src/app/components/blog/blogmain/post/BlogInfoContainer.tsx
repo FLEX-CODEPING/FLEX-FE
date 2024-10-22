@@ -1,6 +1,6 @@
 import { EDITBLOG_TEXT } from '@/app/constants/blog';
-import TagInput from './TagInput';
 import { useState } from 'react';
+import TagInput from './TagInput';
 
 interface BlogInfo {
   setTitle: (value: string) => void;
@@ -8,7 +8,7 @@ interface BlogInfo {
   tags: string[];
 }
 
-const BlogInfoContainer = ({ setTitle,tags, setTags }: BlogInfo) => {
+const BlogInfoContainer = ({ setTitle, tags, setTags }: BlogInfo) => {
   const [title, updateTitle] = useState('');
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
