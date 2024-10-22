@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Navigation from '@/app/components/blog/blogmain/blogpostmain/Navigation';
 import Filters from '@/app/components/blog/blogmain/blogpostmain/Filters';
 import PostCard from './PostCard';
-import { dummyPosts } from '../../../../constants/blogdata';
+import { dummyPosts } from '../../../../constants/BlogData';
 import { BlogPost } from '../../../../_types/blog/blog';
 import { useRouter } from 'next/navigation';
 

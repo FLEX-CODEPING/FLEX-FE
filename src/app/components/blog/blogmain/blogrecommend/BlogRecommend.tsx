@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navigation from '@/app/components/blog/blogmain/blogpostmain/Navigation';
 import PostCard from '../blogpostmain/PostCard';
 import FilterBar from './FilterBar';
-import { dummyPosts } from '../../../../constants/blogdata';
+import { dummyPosts } from '../../../../constants/BlogData';
 import { BlogPost } from '../../../../_types/blog/blog';
 import { useRouter, usePathname } from 'next/navigation';
 
