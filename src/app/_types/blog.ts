@@ -1,11 +1,14 @@
 interface BlogInfoTypes {
-  title: string;
-  date: string;
-  tags: string[];
-  content: string;
-  likeCount: number;
-  likeStatus: 'ACTIVE' | 'INACTIVE';
-  membername: string;
+  id: number;
+  userid?: number;
+  title?: string;
+  nickname?: string;
+  content?: string;
+  tags?: string[];
+  likeCount?: number;
+  commentCount?: number;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 interface CommentTypes {

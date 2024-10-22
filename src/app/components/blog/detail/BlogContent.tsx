@@ -1,7 +1,7 @@
 'use client';
 
 interface BlogContentProps {
-  content: string;
+  content?: string;
 }
 
 const BlogContent = ({ content }: BlogContentProps) => {

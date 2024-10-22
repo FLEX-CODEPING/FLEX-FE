@@ -5,25 +5,27 @@ import { useState } from 'react';
 import Icons from '../../common/Icons';
 
 interface BlogHeaderProps {
-  tags: string[];
-  initialLikesCount: number;
-  likeStatus: 'ACTIVE' | 'INACTIVE';
+  tags?: string[];
+  initialLikesCount?: number;
+  likeStatus?: 'ACTIVE' | 'INACTIVE';
+  likeCount?:number
 }
 
 const BlogHeader = ({
   tags,
   initialLikesCount,
   likeStatus,
+  likeCount,
 }: BlogHeaderProps) => {
-  const [likeCount, setLikeCount] = useState(initialLikesCount);
+  const [likeCounts, setLikeCount] = useState(initialLikesCount) || 0;
   const [isLiked, setIsLiked] = useState(likeStatus === 'ACTIVE');
   const [isHovered, setIsHovered] = useState(false);
 
   const handleLikeClick = () => {
     if (isLiked) {
-      setLikeCount(likeCount - 1);
+      setLikeCount(Number(likeCounts) - 1);
     } else {
-      setLikeCount(likeCount + 1);
+      setLikeCount(Number(likeCounts) + 1);
     }
     setIsLiked(!isLiked);
   };
@@ -47,7 +49,7 @@ const BlogHeader = ({
   return (
     <div className="w-[880px] flex justify-between items-center py-4">
       <div className="flex flex-wrap gap-4">
-        {tags.map((tag, index) => (
+        {tags?.map((tag, index) => (
           <div
             key={tag}
             className="bg-main-1/20 text-black font-semibold px-3 py-1 rounded-full cursor-pointer"
