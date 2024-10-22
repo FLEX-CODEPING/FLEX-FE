@@ -1,13 +1,7 @@
-
-
-import BlogContainer from '@/app/components/blog/blogmain/blogpostmain/BlogContainer'; 
+import BlogContainer from '@/app/components/blog/blogmain/blogpostmain/BlogContainer';
 
 const BlogPage = () => {
-  return (
-    
-      <BlogContainer />
-    
-  );
+  return <BlogContainer />;
 };
 
 export default BlogPage;
