@@ -1,12 +1,26 @@
-import { useState } from 'react';
+import { BaseSyntheticEvent, useState } from 'react';
 import Icons from '@/app/components/common/Icons';
-import { news } from '@/app/constants/iconPath';
+import { fillter, news } from '@/app/constants/iconPath';
 
 const NewsPick: React.FC = () => {
   const [selectedNews, setSelectedNews] = useState<string>('한국경제');
+  const [selectedOption, setSelectedOption] = useState<string>('기간 선택');
+  const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
+
+  const options = ['1일', '1주', '1개월', '1년'];
 
   const handleNewsClick = (news: string) => {
     setSelectedNews(news);
+  };
+
+  const handleSelectValue = (e: BaseSyntheticEvent) => {
+    const current = e.target.getAttribute('value');
+    setSelectedOption(current);
+    setDropdownOpen(false);
+  };
+
+  const toggleFilterDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
   };
 
   return (
@@ -44,13 +58,30 @@ const NewsPick: React.FC = () => {
         </button>
       </div>
 
-      <select className="border border-gray-300 rounded-[5px]  w-[119px] h-[30px] p-1 text-sm">
-        <option value="">기간 선택</option>
-        <option value="1d">1일</option>
-        <option value="1w">1주</option>
-        <option value="1m">1개월</option>
-        <option value="1y">1년</option>
-      </select>
+      
+      <div className="relative flex text-sm">
+        <button
+          className="flex w-[119px] h-[30px] items-center px-3 py-[10px] rounded-[5px] border bg-white border-gray-300"
+          onClick={toggleFilterDropdown}
+        >
+          <span className="mr-4">{selectedOption}</span>
+          <Icons name={fillter} />
+        </button>
+        {dropdownOpen && (
+          <div className="absolute w-[119px] top-[30px] bg-white border border-gray-300 rounded-[5px] shadow-lg z-10">
+            {options.map((option) => (
+              <button
+                key={option}
+                value={option}
+                className="w-full text-left px-4 py-1 hover:bg-gray-100"
+                onClick={handleSelectValue}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
 
       <button className="bg-black text-white w-[120px] h-[40px] rounded-full flex items-center justify-center gap-2">
         <Icons name={news} />
