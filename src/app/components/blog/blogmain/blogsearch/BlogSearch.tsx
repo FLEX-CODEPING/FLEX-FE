@@ -24,7 +24,7 @@ const BlogSearch = () => {
 
     try {
       const filteredPosts = dummyPosts.filter((post) =>
-        post.title.toLowerCase().includes(query.toLowerCase())
+        post.title.toLowerCase().includes(query.toLowerCase()),
       );
       setResults(filteredPosts);
       router.push('/blog/blogsearch');
@@ -42,12 +42,24 @@ const BlogSearch = () => {
     <div className="w-full flex flex-col items-center mt-[99px]">
       <div className="w-full max-w-[1400px]">
         <h1 className="text-4xl font-bold"></h1>
-        <SearchBar query={query} setQuery={setQuery} handleSearch={handleSearch} />
+        <SearchBar
+          query={query}
+          setQuery={setQuery}
+          handleSearch={handleSearch}
+        />
 
-        <Results results={results} searchExecuted={searchExecuted} loading={loading} />
+        <Results
+          results={results}
+          searchExecuted={searchExecuted}
+          loading={loading}
+        />
 
         {totalPages > 1 && (
-          <Pagination totalPages={totalPages} currentPage={currentPage} handlePageChange={setCurrentPage} />
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            handlePageChange={setCurrentPage}
+          />
         )}
       </div>
     </div>

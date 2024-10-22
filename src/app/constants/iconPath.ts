@@ -57,7 +57,7 @@ export const age = {
   fill: 'none',
   options: {
     stroke: 'black',
-    strokeWidth:1.5
+    strokeWidth: 1.5,
   },
 };
 export const salary = {
@@ -67,7 +67,6 @@ export const salary = {
   fill: 'black',
   options: {
     stroke: 'none',
-    
   },
 };
 export const news = {
@@ -77,7 +76,6 @@ export const news = {
   fill: 'none',
   options: {
     stroke: 'white',
-    
   },
 };
 export const title = {
@@ -87,7 +85,6 @@ export const title = {
   fill: '#F95700',
   options: {
     stroke: 'none',
-    
   },
 };
 
@@ -98,8 +95,5 @@ export const k = {
   fill: '#7A7A7A',
   options: {
     stroke: 'none',
-    
   },
 };
-
-

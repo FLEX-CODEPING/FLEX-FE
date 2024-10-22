@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AGE_OPTIONS, SALARY_OPTIONS } from '@/app/constants/blogconstants'; 
+import { AGE_OPTIONS, SALARY_OPTIONS } from '@/app/constants/blogconstants';
 import Icons from '@/app/components/common/Icons';
 import { age, salary } from '@/app/constants/iconPath';
 
@@ -8,14 +8,16 @@ const Filters = () => {
   const [selectedSalaries, setSelectedSalaries] = useState<string[]>([]);
 
   const handleAgeClick = (age: string) => {
-    setSelectedAges(prev =>
-      prev.includes(age) ? prev.filter(a => a !== age) : [...prev, age]
+    setSelectedAges((prev) =>
+      prev.includes(age) ? prev.filter((a) => a !== age) : [...prev, age],
     );
   };
 
   const handleSalaryClick = (salary: string) => {
-    setSelectedSalaries(prev =>
-      prev.includes(salary) ? prev.filter(s => s !== salary) : [...prev, salary]
+    setSelectedSalaries((prev) =>
+      prev.includes(salary)
+        ? prev.filter((s) => s !== salary)
+        : [...prev, salary],
     );
   };
 

@@ -1,8 +1,7 @@
 'use client';
 
-import { HEADER_TEXT } from '@/app/constants/layout';
+import { HEADER_PATH, HEADER_TEXT } from '@/app/constants/common';
 import { Dela_Gothic_One } from 'next/font/google';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import ProfileDropdown from '../ProfileDropdown';
@@ -13,34 +12,20 @@ export const dela = Dela_Gothic_One({
 });
 
 function Header() {
-  const pathname = usePathname();
-
-  if (pathname === '/blog/post') return null;
+  const path = usePathname();
+  if (path === '/blog/post') return null;
 
   return (
-    <header className="w-full flex items-center justify-between h-[108px] px-[5%] text-xl">
+    <header className="w-full flex items-center justify-between h-[80px] px-[5%] text-[20px]">
       <Link className="flex gap-x-2 items-center" href="/">
-        <Image width={40} height={40} src="/Images/logo.png" alt="logo" />
         <p className={`${dela.className} text-[28px] text-main-1`}>FLEX</p>
       </Link>
-      <div className="flex">
-        {HEADER_TEXT.map((text, i) => (
-          <p className="mr-[50px]" key={text}>
-            {text}
-          </p>
-        ))}
-      </div>
       <div className="flex gap-x-[50px]">
-        {HEADER_TEXT.map((text) => {
-          let displayText = text === 'blog' ? '블로그' : text === 'news' ? '뉴스 요약' : text;
-          let href = text === 'blog' ? '/blog' : text === 'news' ? '/news' : `/${text.toLowerCase()}`;
-          
-          return (
-            <Link href={href} key={text}>
-              <span className="cursor-pointer">{displayText}</span>
-            </Link>
-          );
-        })}
+        {HEADER_TEXT.map((text, i) => (
+          <Link key={text} href={HEADER_PATH[i]}>
+            {text}
+          </Link>
+        ))}
       </div>
       <ProfileDropdown />
     </header>

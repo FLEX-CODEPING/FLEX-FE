@@ -9,7 +9,10 @@ interface NavigationProps {
   handleNavClick: (nav: string) => void;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ selectedNav, handleNavClick }) => {
+const Navigation: React.FC<NavigationProps> = ({
+  selectedNav,
+  handleNavClick,
+}) => {
   const [showLabelNormal, setShowLabelNormal] = useState(false);
 
   const handleNavSelect = (nav: string) => {
@@ -26,13 +29,23 @@ const Navigation: React.FC<NavigationProps> = ({ selectedNav, handleNavClick }) 
       <div className="flex w-full ml-[80px] mr-[38px] mt-[54px] justify-between items-center gap-[10px]">
         <div className="flex items-center gap-6">
           {NAV_OPTIONS.map((nav) => (
-            <Link href={nav === '추천' ? '/blog/recommend' : nav === '전체' ? '/blog/all' : `/${nav.toLowerCase()}`} key={nav}>
+            <Link
+              href={
+                nav === '추천'
+                  ? '/blog/recommend'
+                  : nav === '전체'
+                    ? '/blog/all'
+                    : `/${nav.toLowerCase()}`
+              }
+              key={nav}
+            >
               <button
                 className={`text-[24px] px-4 py-2 cursor-pointer bg-white mr-2 ${selectedNav === nav ? 'selected' : ''}`}
                 onClick={() => handleNavSelect(nav)}
                 style={{
-                  fontWeight: selectedNav === nav ? 'bold' : 'normal', 
-                  borderBottom: selectedNav === nav ? '2px solid black' : 'none', 
+                  fontWeight: selectedNav === nav ? 'bold' : 'normal',
+                  borderBottom:
+                    selectedNav === nav ? '2px solid black' : 'none',
                 }}
               >
                 {nav}
@@ -41,12 +54,7 @@ const Navigation: React.FC<NavigationProps> = ({ selectedNav, handleNavClick }) 
           ))}
 
           <Link href="/blog/blogsearch" className="nav-button">
-            <Image
-              src="/images/2c.png"
-              alt="2cImg"
-              width={18}
-              height={18}
-            />
+            <Image src="/images/2c.png" alt="2cImg" width={18} height={18} />
           </Link>
         </div>
         <ViewTypeDropDown />
