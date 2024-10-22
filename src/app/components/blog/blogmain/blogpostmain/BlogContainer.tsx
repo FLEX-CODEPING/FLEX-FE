@@ -9,8 +9,8 @@ import PostCard from './PostCard';
 const BlogContainer = () => {
   const [postData, setPostData] = useState<LandingPostTypes[]>([]);
   const [selectedNav, setSelectedNav] = useState('전체');
-  const [selectedAges, setSelectedAges] = useState<string[]>([]);
-  const [selectedSalaries, setSelectedSalaries] = useState<string[]>([]);
+  const [selectedAges, setSelectedAges] = useState('');
+  const [selectedSalaries, setSelectedSalaries] = useState('');
 
   // useEffect(() => {
   //   const fetchPost = async () => {

@@ -22,8 +22,8 @@ type InterestTypes =
 type IncomeTypes =
   | 'LESS_3K'
   | 'LESS_5K'
-  | 'LESS_7.5K'
-  | 'LESS_10K'
-  | 'LESS_15K'
-  | 'LESS_2K'
-  | 'OVER_3K';
+  | 'LESS_8K'
+  | 'LESS_100K'
+  | 'LESS_150K'
+  | 'LESS_200K'
+  | 'OVER_200K';

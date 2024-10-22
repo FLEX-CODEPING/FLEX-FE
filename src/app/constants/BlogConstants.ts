@@ -1,12 +1,13 @@
 export const AGE_OPTIONS = ['~20', '21~30', '31~40', '41~50', '50+'];
 
 export const SALARY_OPTIONS = [
-  '소득 없음',
   '3천 이하',
   '5천 이하',
   '7천 이하',
   '1억 이하',
-  '1억 초과',
+  '1억5천 이하',
+  '2억 이하',
+  '2억 초과',
 ];
 
 export const NAV_OPTIONS = ['전체', '추천', '팔로잉'];
@@ -19,11 +20,20 @@ export const NAV_OPTIONS_WITH_PATH = [
   { nav: '팔로우', path: '/blog/follow' },
 ];
 
-export const LANDING_VIEWTYPE_MAP: Record<
-  MainPostViewTypes,
-  MainPostViewApiTypes
-> = {
-  최신: 'CREATED_AT',
-  인기: 'LIKE_COUNT',
-  팔로잉: 'FOLLOWING',
+export const SALARY_RANGE_MAP: Record<string, IncomeTypes> = {
+  '3천 이하': 'LESS_3K',
+  '5천 이하': 'LESS_5K',
+  '7천 이하': 'LESS_8K',
+  '1억 이하': 'LESS_100K',
+  '1억5천 이하': 'LESS_150K',
+  '2억 이하': 'LESS_200K',
+  '2억 초과': 'OVER_200K',
+};
+
+export const AGE_RANGE_MAP: Record<string, AgeTypes> = {
+  '~20': 'AGE_0_20',
+  '21~30': 'AGE_21_30',
+  '31~40': 'AGE_31_40',
+  '41~50': 'AGE_41_50',
+  '50+': 'AGE_51_100',
 };

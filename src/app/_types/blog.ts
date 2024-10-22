@@ -31,3 +31,10 @@ interface CommentTypes {
   date: string;
   content: string;
 }
+
+type AgeTypes =
+  | 'AGE_0_20'
+  | 'AGE_21_30'
+  | 'AGE_31_40'
+  | 'AGE_41_50'
+  | 'AGE_51_100';
