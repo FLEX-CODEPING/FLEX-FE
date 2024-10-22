@@ -50,7 +50,7 @@ const BlogHeader = ({
         {tags.map((tag, index) => (
           <div
             key={tag}
-            className="bg-main-1/40 text-black font-semibold px-3 py-1 rounded-full cursor-pointer"
+            className="bg-main-1/20 text-black font-semibold px-3 py-1 rounded-full cursor-pointer"
           >
             {tag}
           </div>
