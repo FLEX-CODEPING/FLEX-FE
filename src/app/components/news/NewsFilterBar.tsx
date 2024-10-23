@@ -1,8 +1,6 @@
-import Icons from '@/app/components/common/Icons';
-import { news } from '@/app/constants/iconPath';
-import React from 'react';
+import { useState } from 'react';
 
-interface NewsFilterBaProps {
+interface FilterBarProps {
   selectedFilters: string[];
   handleFilterClick: (option: string) => void;
   filterOptions: string[];
@@ -14,9 +12,9 @@ const NewsFilterBar: React.FC<NewsFilterBaProps> = ({
   filterOptions,
 }) => {
   return (
-    <>
-      <div className="flex flex-col items-center w-full max-w-[500px] mt-[50px] mx-auto px-4 ml-[410px]">
-        <div className="flex flex-wrap justify-center gap-4 w-full mb-1">
+    <div className="flex flex-col items-center w-full mt-[50px] justify-center gap-y-[30px]">
+      <div className="flex flex-col items-center gap-y-[18px]">
+        <div className="flex flex-wrap justify-center gap-4 w-full">
           {filterOptions.slice(0, 5).map((option) => (
             <button
               type="button"
@@ -33,7 +31,7 @@ const NewsFilterBar: React.FC<NewsFilterBaProps> = ({
           ))}
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 w-full mt-4 mb-6">
+        <div className="flex flex-wrap justify-center gap-4 w-full">
           {filterOptions.slice(5, 10).map((option) => (
             <button
               type="button"
@@ -50,23 +48,7 @@ const NewsFilterBar: React.FC<NewsFilterBaProps> = ({
           ))}
         </div>
       </div>
-
-      <div
-        style={{
-          position: 'absolute',
-          top: '410px',
-          left: 'calc(80vw - 220px)',
-        }}
-      >
-        <button
-          type="button"
-          className="bg-black text-white w-[160px] h-[40px] rounded-[5px] flex items-center justify-center gap-2"
-        >
-          <Icons name={news} />
-          뉴스 검색
-        </button>
-      </div>
-    </>
+    </div>
   );
 };
 
