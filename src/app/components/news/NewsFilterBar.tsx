@@ -1,49 +1,37 @@
-import { useState } from 'react';
+'use client';
+
+import { INTEREST_LIST } from '@/app/constants/auth';
+import { Dispatch, SetStateAction } from 'react';
 
 interface FilterBarProps {
-  selectedFilters: string[];
-  handleFilterClick: (option: string) => void;
-  filterOptions: string[];
+  selectedFilters: string;
+  setSelectedFilter: Dispatch<SetStateAction<string>>;
 }
 
-const NewsFilterBar: React.FC<NewsFilterBaProps> = ({
+const NewsFilterBar: React.FC<FilterBarProps> = ({
   selectedFilters,
-  handleFilterClick,
-  filterOptions,
+  setSelectedFilter,
 }) => {
   return (
     <div className="flex flex-col items-center w-full mt-[50px] justify-center gap-y-[30px]">
       <div className="flex flex-col items-center gap-y-[18px]">
-        <div className="flex flex-wrap justify-center gap-4 w-full">
-          {filterOptions.slice(0, 5).map((option) => (
+        <div className="flex flex-wrap justify-center gap-x-10 gap-y-5 w-[580px]">
+          {INTEREST_LIST.map((interest) => (
             <button
               type="button"
-              key={option}
-              onClick={() => handleFilterClick(option)}
+              key={interest}
+              onClick={() =>
+                selectedFilters === interest
+                  ? setSelectedFilter('')
+                  : setSelectedFilter(interest)
+              }
               className={`w-[80px] py-2 px-2 rounded-full ${
-                selectedFilters.includes(option)
+                selectedFilters.includes(interest)
                   ? 'bg-[#F95700] text-white'
                   : 'bg-[#E8E8E8] text-black'
               } text-base font-medium text-center`}
             >
-              {option}
-            </button>
-          ))}
-        </div>
-
-        <div className="flex flex-wrap justify-center gap-4 w-full">
-          {filterOptions.slice(5, 10).map((option) => (
-            <button
-              type="button"
-              key={option}
-              onClick={() => handleFilterClick(option)}
-              className={`w-[80px] py-2 px-4 rounded-full ${
-                selectedFilters.includes(option)
-                  ? 'bg-[#F95700] text-white'
-                  : 'bg-[#E8E8E8] text-black'
-              } text-base font-medium text-center`}
-            >
-              {option}
+              {interest}
             </button>
           ))}
         </div>

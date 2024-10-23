@@ -9,7 +9,7 @@ const MainPostContainer = () => {
   const [viewType, setViewType] = useState<MainPostViewTypes>('최신');
   const [postData, setPostData] = useState<LandingPostTypes[]>([]);
   const filteredPosts = postData.slice(0, 6);
-  
+
   useEffect(() => {
     const fetchPost = async () => {
       const response = await callGet(

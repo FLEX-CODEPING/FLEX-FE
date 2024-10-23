@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { fetchBlogPosts } from '@/app/api/blog/route'; // API 호출 함수 임포트
 
@@ -10,7 +9,7 @@ const BlogApi = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const posts = await fetchBlogPosts();  // API 호출
+        const posts = await fetchBlogPosts(); // API 호출
         setData(posts);
       } catch (err) {
         setError(err.message);
@@ -27,11 +26,7 @@ const BlogApi = () => {
   return (
     <div>
       <h1>블로그 포스트 목록</h1>
-      <ul>
-        {data && data.map(post => (
-          <li key={post.id}>{post.title}</li>
-        ))}
-      </ul>
+      <ul>{data && data.map((post) => <li key={post.id}>{post.title}</li>)}</ul>
     </div>
   );
 };

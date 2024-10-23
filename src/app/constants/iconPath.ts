@@ -254,7 +254,7 @@ export const blogSearch = {
   height: 24,
   fill: 'none',
   options: {
-    stroke: 'black'
+    stroke: 'black',
   },
 };
 
