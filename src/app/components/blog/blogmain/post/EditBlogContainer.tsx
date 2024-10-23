@@ -3,11 +3,11 @@
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Button from '@/app/components/common/Button';
+import { POST_BTN_TEXT } from '@/app/constants/blog';
 import BlogInfoContainer from './BlogInfoContainer';
 import PostModal from './postModal';
 import PostFinModal from './postFinModal';
-import Button from '@/app/components/common/Button';
-import { POST_BTN_TEXT } from '@/app/constants/blog';
 
 const MyEditor = dynamic(() => import('./markdown/MyEditor'), { ssr: false });
 

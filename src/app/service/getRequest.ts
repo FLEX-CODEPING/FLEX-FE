@@ -25,10 +25,6 @@ export const getLandingPost = async (req: Request, filter: string) => {
   return getRequest(url, req);
 };
 
-<<<<<<< HEAD
-export const getPostDetail = async (req: Request, id: string) => {
-  const url = `/api/posts/${id}`;
-=======
 export const getBlogsMain = async (req: Request, salary?: any, age?: any) => {
   let url = '/api/blogs/main';
   if (salary !== 'undefined') {
@@ -59,6 +55,10 @@ export const getNews = async (
     url += `&period=${Number(period)}`;
   }
 
->>>>>>> 7d277968e18e7fd02b970b8db9eea1eb81329617
+  return getRequest(url, req);
+};
+
+export const getPostDetail = async (req: Request, id: string) => {
+  const url = `/api/posts/${id}`;
   return getRequest(url, req);
 };

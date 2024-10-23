@@ -10,6 +10,18 @@ interface BlogContentProps {
   content: string;
 }
 
+const CustomUl = ({ node, ...props }: any) => (
+  <ul className="list-disc ml-3 my-3" {...props} />
+);
+
+const CustomOl = ({ node, ...props }: any) => (
+  <ol className="list-decimal ml-3 my-3" {...props} />
+);
+
+const CustomLi = ({ node, ...props }: any) => (
+  <li className="mb-1" {...props} />
+);
+
 const BlogContent = ({ content }: BlogContentProps) => {
   const sanitizedContent = content ? DOMPurify.sanitize(content) : '';
   console.log(content);
@@ -20,13 +32,9 @@ const BlogContent = ({ content }: BlogContentProps) => {
         rehypePlugins={[rehypeRaw]}
         className="markdown-body"
         components={{
-          ul: ({ node, ...props }) => (
-            <ul className="list-disc ml-3 my-3" {...props} />
-          ),
-          ol: ({ node, ...props }) => (
-            <ol className="list-decimal ml-3 my-3" {...props} />
-          ),
-          li: ({ node, ...props }) => <li className="mb-1" {...props} />,
+          ul: CustomUl,
+          ol: CustomOl,
+          li: CustomLi,
         }}
       >
         {content}

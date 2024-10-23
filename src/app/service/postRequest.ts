@@ -11,11 +11,7 @@ const postRequest = async (url: string, req: Request, body: any = null) => {
   const token = getCookie(req, 'accessToken');
   const headers = {
     ...commonHeaders,
-<<<<<<< HEAD
-    // ...(token && { 'access-token': token }),
-=======
     ...(token && { Authorization: `Bearer ${token}` }),
->>>>>>> 7d277968e18e7fd02b970b8db9eea1eb81329617
   };
 
   const response = await fetch(`${SERVER_URL}${url}`, {
