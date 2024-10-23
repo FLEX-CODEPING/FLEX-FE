@@ -1,16 +1,31 @@
-import { BaseSyntheticEvent, useState } from 'react';
 import Icons from '@/app/components/common/Icons';
 import { fillter, news } from '@/app/constants/iconPath';
+import { NEWS_VIEW_TYPE, PRESS_TYPES } from '@/app/constants/news';
+import { BaseSyntheticEvent, Dispatch, SetStateAction, useState } from 'react';
 
-const NewsPick: React.FC = () => {
-  const [selectedNews, setSelectedNews] = useState<string>('한국경제');
-  const [selectedOption, setSelectedOption] = useState<string>('기간 선택');
+interface NewsPickProps {
+  selectedNews: string[];
+  setSelectedNews: Dispatch<SetStateAction<string[]>>;
+  selectedOption: string;
+  setSelectedOption: Dispatch<SetStateAction<string>>;
+  getNews: () => Promise<void>;
+}
+
+const NewsPick = ({
+  selectedNews,
+  setSelectedNews,
+  selectedOption,
+  setSelectedOption,
+  getNews,
+}: NewsPickProps) => {
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
 
-  const options = ['1일', '1주', '1개월', '1년'];
-
-  const handleNewsClick = (news: string) => {
-    setSelectedNews(news);
+  const handleNewsClick = (press: string) => {
+    if (selectedNews.includes(press)) {
+      setSelectedNews(selectedNews.filter((item) => item !== press));
+    } else {
+      setSelectedNews([...selectedNews, press]);
+    }
   };
 
   const handleSelectValue = (e: BaseSyntheticEvent) => {
@@ -26,40 +41,24 @@ const NewsPick: React.FC = () => {
   return (
     <div className="flex items-center gap-x-[24px] justify-center mt-8">
       <div className="flex gap-x-[24px]">
-        <button
-          onClick={() => handleNewsClick('한국경제')}
-          className={`font-medium ${
-            selectedNews === '한국경제'
-              ? 'text-black border-b-2 border-black'
-              : 'text-gray-500'
-          }`}
-        >
-          한국경제
-        </button>
-        <button
-          onClick={() => handleNewsClick('매일경제')}
-          className={`font-medium ${
-            selectedNews === '매일경제'
-              ? 'text-black border-b-2 border-black'
-              : 'text-gray-500'
-          }`}
-        >
-          매일경제
-        </button>
-        <button
-          onClick={() => handleNewsClick('서울경제')}
-          className={`font-medium ${
-            selectedNews === '서울경제'
-              ? 'text-black border-b-2 border-black'
-              : 'text-gray-500'
-          }`}
-        >
-          서울경제
-        </button>
+        {PRESS_TYPES.map((press, i) => (
+          <button
+            type="button"
+            onClick={() => handleNewsClick(press)}
+            className={`font-medium ${
+              selectedNews.includes(press)
+                ? 'text-black border-b-2 border-black'
+                : 'text-gray-500'
+            }`}
+          >
+            {press}
+          </button>
+        ))}
       </div>
 
       <div className="relative flex text-sm">
         <button
+          type="button"
           className="flex w-[119px] h-[30px] items-center px-3 py-[10px] rounded-[5px] border bg-white border-gray-300"
           onClick={toggleFilterDropdown}
         >
@@ -68,8 +67,9 @@ const NewsPick: React.FC = () => {
         </button>
         {dropdownOpen && (
           <div className="absolute w-[119px] top-[30px] bg-white border border-gray-300 rounded-[5px] shadow-lg z-10">
-            {options.map((option) => (
+            {NEWS_VIEW_TYPE.map((option) => (
               <button
+                type="button"
                 key={option}
                 value={option}
                 className="w-full text-left px-4 py-1 hover:bg-gray-100"
@@ -82,7 +82,11 @@ const NewsPick: React.FC = () => {
         )}
       </div>
 
-      <button className="bg-black-0 text-white w-[120px] h-[40px] rounded-full flex items-center justify-center gap-2">
+      <button
+        className="bg-black-0 text-white w-[120px] h-[40px] rounded-full flex items-center justify-center gap-2"
+        onClick={getNews}
+        type="button"
+      >
         <Icons name={news} />
         검색
       </button>

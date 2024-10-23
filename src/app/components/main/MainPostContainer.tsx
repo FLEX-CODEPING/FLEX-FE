@@ -9,14 +9,15 @@ const MainPostContainer = () => {
   const [viewType, setViewType] = useState<MainPostViewTypes>('최신');
   const [postData, setPostData] = useState<LandingPostTypes[]>([]);
   const filteredPosts = postData.slice(0, 6);
+
   useEffect(() => {
-    const handleLogin = async () => {
+    const fetchPost = async () => {
       const response = await callGet(
         `/api/main/landing?viewType=${LANDING_VIEWTYPE_MAP[viewType]}`,
       );
       setPostData(response.result);
     };
-    handleLogin();
+    fetchPost();
   }, [viewType]);
 
   return (
@@ -37,12 +38,6 @@ const MainPostContainer = () => {
           <MainPost key={post.id} post={post} />
         ))}
       </div>
-      {/* <Link
-        className="w-[250px] h-[60px] flex-center bg-main-1 rounded-[30px] shadow-xl text-white text-xl font-semibold mt-8"
-        href={'/blog'}
-      >
-        {MAIN_BLOG_BTN}
-      </Link> */}
       <div className="w-[1280px] border-b-2 border-gray-3" />
     </div>
   );

@@ -46,11 +46,11 @@ export const INCOME_RANGE = [
 export const INCOME_RANGE_MAP: Record<string, IncomeTypes> = {
   '3000 이하': 'LESS_3K',
   '5000 이하': 'LESS_5K',
-  '7500 이하': 'LESS_7.5K',
-  '1억 이하': 'LESS_10K',
-  '1억5천 이하': 'LESS_15K',
-  '2억 이하': 'LESS_2K',
-  '2억 초과': 'OVER_3K',
+  '7500 이하': 'LESS_8K',
+  '1억 이하': 'LESS_100K',
+  '1억5천 이하': 'LESS_150K',
+  '2억 이하': 'LESS_200K',
+  '2억 초과': 'OVER_200K',
 };
 
 export const INTEREST_TITLE = '내 관심사';

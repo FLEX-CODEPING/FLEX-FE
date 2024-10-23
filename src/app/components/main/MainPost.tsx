@@ -9,17 +9,22 @@ interface MainPostProps {
 }
 
 const MainPost = ({ post }: MainPostProps) => {
-  const formattedTags = post.tags.split(',').map((tag: string) => `#${tag}`);
+  const formattedTags = post.tags
+    ? post.tags.split(',').map((tag: string) => `#${tag}`)
+    : [];
 
   return (
     <div
       key={post.id}
       className="w-[382px] cursor-pointer px-2.5 py-2 bg-white rounded-lg relative transition-all duration-300 ease-in-out hover:shadow-lg"
     >
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center h-[30px]">
         <div className="flex gap-x-1">
           {formattedTags.map((tag, i) => (
-            <div className="bg-gray-200 px-2 py-1 mb-[5px] rounded-md text-sm font-semibold text-gray-700">
+            <div
+              key={tag}
+              className="bg-gray-200 px-2 py-1 mb-[5px] rounded-md text-sm font-semibold text-gray-700"
+            >
               {tag}
             </div>
           ))}
@@ -42,7 +47,7 @@ const MainPost = ({ post }: MainPostProps) => {
 
       <div className="">
         <h2 className="font-bold text-lg mb-2 ">{post.title}</h2>
-        <p className="text-sm text-gray-700 mb-2 ">
+        <p className="text-sm text-gray-700 mb-2 h-10">
           {truncateString(post.content, 64)}
         </p>
         <div className="flex justify-between items-center text-xs ">
@@ -54,7 +59,7 @@ const MainPost = ({ post }: MainPostProps) => {
               height={20}
               className="rounded-full"
             />
-            <span className="ml-2  text-gray-500">코드핑</span>
+            <span className="ml-2 text-gray-500">코드핑</span>
           </div>
           <span className=" text-gray-500">{formatDate(post.createdAt)}</span>
         </div>

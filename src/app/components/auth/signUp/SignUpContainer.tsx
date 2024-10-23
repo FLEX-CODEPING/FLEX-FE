@@ -36,12 +36,10 @@ function SignUpContainer() {
   const handleSignUpClick = async () => {
     if (isSatisfied) {
       const response = await callPost('/api/auth/signup', { ...formData });
-      console.log(response);
       if (response.isSuccess) {
         setTokens(response.result.accessToken, response.result.refreshToken);
         router.push('/auth/complete');
       }
-      console.log(formData, '회원가입 요청 데이터');
     } else alert('입력정보를 확인해주세요!');
   };
 

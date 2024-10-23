@@ -6,6 +6,7 @@ import {
   MAIN_FEAT_IMG,
 } from '@/app/constants/main';
 import { callPost } from '@/app/utils/callApi';
+import { setTokens } from '@/app/utils/setToken';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -22,9 +23,11 @@ function SignInContainer() {
     const handleLogin = async () => {
       if (code) {
         const response = await callPost('/api/auth/login', { code });
-        console.log('서버 응답:', response);
         if (response.result.userStatus === 'PENDING') {
           router.push(`/auth/signUp?id=${response.result.socialId}`);
+        } else if (response.isSuccess) {
+          setTokens(response.result.accessToken, response.result.refreshToken);
+          router.push('/');
         }
       }
     };
