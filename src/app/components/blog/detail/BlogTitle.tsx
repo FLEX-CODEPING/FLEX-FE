@@ -3,12 +3,12 @@
 import { useState } from 'react';
 
 interface BlogTitleProps {
-  title: string;
-  membername: string;
-  date: string;
+  title?: string;
+  nickname?: string;
+  createdAt?: string;
 }
 
-const BlogTitle = ({ title, membername, date }: BlogTitleProps) => {
+const BlogTitle = ({ title, nickname, createdAt }: BlogTitleProps) => {
   const [isFollowing, setIsFollowing] = useState(false);
 
   const handleFollowClick = () => {
@@ -20,20 +20,20 @@ const BlogTitle = ({ title, membername, date }: BlogTitleProps) => {
       <div className="w-full text-5xl font-bold">{title}</div>
       <div className="ml-1 w-full flex justify-between items-center">
         <div className="flex items-center font-bold">
-          <span className="text-black/80 text-xl mr-2">{membername}</span>
+          <span className="text-black-0/80 text-lg mr-4">{nickname}</span>
           <button
             type="button"
             onClick={handleFollowClick}
             className={`px-2 py-1 text-sm rounded-md border bg-white ${
               isFollowing
-                ? ' border-black text-black'
-                : ' border-black/20 text-black/60'
+                ? ' border-black-0 text-black-0'
+                : ' border-black-0/20 text-black-0/60'
             }`}
           >
             {isFollowing ? '팔로잉' : '팔로우'}
           </button>
         </div>
-        <div className="text-black/60 text-sm mr-1">{date}</div>
+        <div className="text-black-0/60 text-sm mr-1">{createdAt}</div>
       </div>
     </div>
   );

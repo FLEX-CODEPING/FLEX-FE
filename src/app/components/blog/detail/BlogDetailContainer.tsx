@@ -1,38 +1,63 @@
 'use client';
 
-import { useEffect } from 'react';
-import { CONTENT } from '@/app/constants/blog';
+import { useEffect, useState } from 'react';
+import { callGet } from '@/app/utils/callApi';
 import BlogContent from './BlogContent';
 import BlogHeader from './BlogHeader';
 import BlogTitle from './BlogTitle';
 import BlogComment from './BlogComment';
 
-const BlogDetailContainer = () => {
-  const blogData: BlogInfoTypes = {
-    title: '주식이란 뭘까?',
-    date: '2024.10.04',
-    tags: ['전기차', '테슬라', '2차 전지'],
-    content: CONTENT,
-    likeCount: 71,
-    likeStatus: 'ACTIVE',
-    membername: 'nakdo',
-  };
+interface PostDetailProps {
+  postId: number;
+  likeStatus: 'ACTIVE' | 'INACTIVE';
+}
+
+const BlogDetailContainer = ({ postId, likeStatus }: PostDetailProps) => {
+  const [blogData, setBlogData] = useState<BlogInfoTypes | null>(null);
 
   useEffect(() => {
+    console.log(postId, '받아온 아이디');
+
+    const fetchData = async () => {
+      try {
+        const resData = await callGet(`/api/detail?id=${postId}`);
+
+        const tagsArray = resData.result.tags
+          .split(',')
+          .map((tag: string) => tag.trim());
+        const formattedCreatedAt = resData.result.createdAt.split('T')[0];
+
+        setBlogData({
+          ...resData.result,
+          tags: tagsArray,
+          createdAt: formattedCreatedAt,
+        });
+        console.log(resData.result.content);
+      } catch (error) {
+        console.error('Error fetching post details:', error);
+      }
+    };
+    fetchData();
+
     window.scrollTo(0, 0);
-  }, []);
+  }, [postId]);
+
+  if (!blogData) {
+    console.log(blogData);
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
       <BlogHeader
         tags={blogData.tags}
-        initialLikesCount={blogData.likeCount}
-        likeStatus={blogData.likeStatus}
+        likeStatus={likeStatus}
+        likeCount={blogData.likeCount}
       />
       <BlogTitle
         title={blogData.title}
-        membername={blogData.membername}
-        date={blogData.date}
+        nickname={blogData.nickname}
+        createdAt={blogData.createdAt}
       />
       <BlogContent content={blogData.content} />
       <BlogComment />

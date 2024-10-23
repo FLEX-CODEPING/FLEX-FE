@@ -57,3 +57,8 @@ export const getNews = async (
 
   return getRequest(url, req);
 };
+
+export const getPostDetail = async (req: Request, id: string) => {
+  const url = `/api/posts/${id}`;
+  return getRequest(url, req);
+};

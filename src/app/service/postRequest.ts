@@ -34,3 +34,7 @@ export const postSignUp = async (
 ) => {
   return postRequest('/api/auth/signup', req, signUpContent);
 };
+
+export const postBlog = async (postContent: PostTypes, req: Request) => {
+  return postRequest('/api/posts', req, postContent);
+};

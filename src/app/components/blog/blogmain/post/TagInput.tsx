@@ -1,9 +1,13 @@
 import { EDITBLOG_TEXT } from '@/app/constants/blog';
 import { useState } from 'react';
 
-export default function TagInput() {
+interface TagInputProps {
+  tags: string[];
+  setTags: (tags: string[]) => void;
+}
+
+export default function TagInput({ tags, setTags }: TagInputProps) {
   const [inputValue, setInputValue] = useState('');
-  const [tags, setTags] = useState<string[]>([]);
   const [isComposing, setIsComposing] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -12,7 +16,9 @@ export default function TagInput() {
 
   const addTag = () => {
     if (inputValue.trim() !== '' && !tags.includes(inputValue.trim())) {
-      setTags((prevTags) => [...prevTags, inputValue.trim()]);
+      const updatedTags = [...tags, inputValue.trim()];
+      setTags(updatedTags); // 여기서 EditBlogContainer로 전달된 setTags 함수를 사용합니다.
+      console.log(tags);
       setInputValue('');
     }
   };
@@ -25,9 +31,8 @@ export default function TagInput() {
   };
 
   const removeTag = (indexToRemove: number) => {
-    setTags((prevTags) =>
-      prevTags.filter((_, index) => index !== indexToRemove),
-    );
+    const updatedTags = tags.filter((_, index) => index !== indexToRemove);
+    setTags(updatedTags);
   };
 
   const handleCompositionStart = () => {
@@ -54,7 +59,7 @@ export default function TagInput() {
         {tags.map((tag, index) => (
           <div
             key={tag}
-            className="bg-main-1/20 text-black px-3 py-1 rounded-full cursor-pointer"
+            className="bg-main-1/20 text-black-0 px-3 py-1 rounded-full cursor-pointer"
             onClick={() => removeTag(index)}
           >
             {tag}
