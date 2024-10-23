@@ -247,3 +247,23 @@ export const mainRightArrow = {
   height: 15,
   fill: 'black',
 };
+
+export const blogSearch = {
+  path: 'M15 15L21 21M10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10C17 13.866 13.866 17 10 17Z',
+  width: 24,
+  height: 24,
+  fill: 'none',
+  options: {
+    stroke: 'black'
+  },
+};
+
+export const newsRightArrow = {
+  path: 'M6.33301 4L10.333 8L6.33301 12',
+  width: 12,
+  height: 14,
+  fill: 'none',
+  options: {
+    stroke: 'black',
+  },
+};

@@ -1,7 +1,7 @@
 'use client';
 
 import Icons from '@/app/components/common/Icons';
-import { k, title } from '@/app/constants/iconPath';
+import { newsRightArrow, title } from '@/app/constants/iconPath';
 import { filterOptions } from '@/app/constants/news';
 import { additionalNews, newsSummaries } from '@/app/constants/newsdata';
 import { useState } from 'react';
@@ -80,7 +80,7 @@ const News = (): JSX.Element => {
               >
                 {news.summary}
               </span>
-              <Icons name={k} />
+              <Icons name={newsRightArrow} />
             </li>
           ))}
         </ul>
