@@ -22,7 +22,7 @@ const MainPost = ({ post }: MainPostProps) => {
         <div className="flex gap-x-1">
           {formattedTags.map((tag, i) => (
             <div
-              key={tag + i}
+              key={tag}
               className="bg-gray-200 px-2 py-1 mb-[5px] rounded-md text-sm font-semibold text-gray-700"
             >
               {tag}

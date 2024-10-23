@@ -43,6 +43,7 @@ const NewsPick = ({
       <div className="flex gap-x-[24px]">
         {PRESS_TYPES.map((press, i) => (
           <button
+            type="button"
             onClick={() => handleNewsClick(press)}
             className={`font-medium ${
               selectedNews.includes(press)
@@ -57,6 +58,7 @@ const NewsPick = ({
 
       <div className="relative flex text-sm">
         <button
+          type="button"
           className="flex w-[119px] h-[30px] items-center px-3 py-[10px] rounded-[5px] border bg-white border-gray-300"
           onClick={toggleFilterDropdown}
         >
@@ -67,6 +69,7 @@ const NewsPick = ({
           <div className="absolute w-[119px] top-[30px] bg-white border border-gray-300 rounded-[5px] shadow-lg z-10">
             {NEWS_VIEW_TYPE.map((option) => (
               <button
+                type="button"
                 key={option}
                 value={option}
                 className="w-full text-left px-4 py-1 hover:bg-gray-100"
@@ -82,6 +85,7 @@ const NewsPick = ({
       <button
         className="bg-black-0 text-white w-[120px] h-[40px] rounded-full flex items-center justify-center gap-2"
         onClick={getNews}
+        type="button"
       >
         <Icons name={news} />
         검색

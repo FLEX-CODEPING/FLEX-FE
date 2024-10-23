@@ -46,15 +46,14 @@ export const getNews = async (
   let url = `/api/news-summary/?keyword=${keyword}`;
 
   if (!pressArray || pressArray.length === 0) {
-    url += '&press=hk';
+    url += `&press=hk`;
   } else {
-    url += '&' + pressArray.map((press) => `press=${press}`).join('&');
+    url += `&${pressArray.map((press) => `press=${press}`).join('&')}`;
   }
 
   if (period !== 'undefined') {
     url += `&period=${Number(period)}`;
   }
-  console.log(url, '최종 요청 url');
 
   return getRequest(url, req);
 };

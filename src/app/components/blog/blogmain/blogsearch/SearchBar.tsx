@@ -1,6 +1,7 @@
 import Icons from '@/app/components/common/Icons';
 import { blogSearch } from '@/app/constants/iconPath';
 import Image from 'next/image';
+
 interface SearchBarProps {
   query: string;
   setQuery: (query: string) => void;

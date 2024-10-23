@@ -1,4 +1,5 @@
 'use client';
+
 import Icons from '@/app/components/common/Icons';
 import { k, title } from '@/app/constants/iconPath';
 import { formatDate } from '@/app/utils/date';
@@ -21,7 +22,7 @@ const NewsList = ({ newsData, keyword }: NewsListProps) => {
       <div className="news-items p-6 border border-[#7a7a7a] rounded-[15px]">
         <ul className="list-none space-y-2">
           {newsData.summaries.map((summary, index) => (
-            <li key={index} className="flex">
+            <li key={summary.title} className="flex">
               <span className="font-bold">{summary.title}</span>
               <span className="ml-2">
                 {truncateString(summary.content, 60)}
@@ -35,7 +36,7 @@ const NewsList = ({ newsData, keyword }: NewsListProps) => {
         <ul className="space-y-4">
           {newsData.sources.map((news, index) => (
             <li
-              key={index}
+              key={news.title}
               className="flex justify-between items-start pb-2 text-sm text-gray-500"
             >
               <span className="text-left w-[150px]">
