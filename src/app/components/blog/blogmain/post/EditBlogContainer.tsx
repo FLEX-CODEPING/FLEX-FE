@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 import BlogInfoContainer from './BlogInfoContainer';
 import PostModal from './postModal';
 import PostFinModal from './postFinModal';
+import Button from '@/app/components/common/Button';
+import { POST_BTN_TEXT } from '@/app/constants/blog';
 
 const MyEditor = dynamic(() => import('./markdown/MyEditor'), { ssr: false });
 
@@ -72,7 +74,7 @@ const EditBlogContainer = () => {
 
       setTimeout(() => {
         router.push('/blog');
-      }, 5000);
+      }, 3000);
     } catch (error) {
       console.error('Error submitting post:', error);
     }
@@ -83,25 +85,21 @@ const EditBlogContainer = () => {
   };
 
   return (
-    <div className="mb-[50px]">
+    <div className="mb-12.5">
       <BlogInfoContainer setTitle={setTitle} setTags={setTags} tags={tags} />
-      <div className="mt-[20px] mb-10">
+      <div className="mt-5 mb-10">
         <MyEditor setContent={setContent} />
         <div className="mt-10 flex justify-between">
-          <button
-            type="submit"
-            onClick={goBack}
-            className="w-36 h-10 bg-[#000000] text-white rounded-[10px] font-bold text-xl "
-          >
-            뒤로가기
-          </button>
-          <button
-            type="button"
-            onClick={() => setIsPostModalOpen(true)}
-            className="w-36 h-10 bg-[#000000] text-white rounded-[10px] font-bold text-xl "
-          >
-            출간하기
-          </button>
+          <Button
+            buttonText={POST_BTN_TEXT[0]}
+            type="blogPost"
+            onClickHandler={goBack}
+          />
+          <Button
+            buttonText={POST_BTN_TEXT[1]}
+            type="blogPost"
+            onClickHandler={() => setIsPostModalOpen(true)}
+          />
         </div>
       </div>
       {isPostModalOpen && (

@@ -34,3 +34,5 @@ export const MODAL_TEXT = [
   '변경된 내용이 저장되었습니다.',
   '블로그 게시판으로 이동합니다.',
 ];
+
+export const POST_BTN_TEXT = ['뒤로가기', '출간하기'];

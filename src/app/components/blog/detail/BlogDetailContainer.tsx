@@ -41,19 +41,24 @@ const BlogDetailContainer = ({ postId, likeStatus }: PostDetailProps) => {
     window.scrollTo(0, 0);
   }, [postId]);
 
+  if (!blogData) {
+    console.log(blogData)
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
       <BlogHeader
-        tags={blogData?.tags}
+        tags={blogData.tags}
         likeStatus={likeStatus}
-        likeCount={blogData?.likeCount}
+        likeCount={blogData.likeCount}
       />
       <BlogTitle
-        title={blogData?.title}
-        nickname={blogData?.nickname}
-        createdAt={blogData?.createdAt}
+        title={blogData.title}
+        nickname={blogData.nickname}
+        createdAt={blogData.createdAt}
       />
-      <BlogContent content={blogData?.content} />
+      <BlogContent content={blogData.content} />
       <BlogComment />
     </div>
   );
