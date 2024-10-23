@@ -39,3 +39,9 @@ export const getCookie = (req: Request, name: string) => {
   const cookies = parse(cookieHeader || '');
   return cookies[name];
 };
+
+export const handleLogout = async () => {
+  document.cookie = `accessToken=; expires=0; path=/;`;
+  document.cookie = `refreshToken=; expires=0; path=/;`;
+  window.location.href = '/';
+};

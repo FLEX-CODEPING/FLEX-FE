@@ -1,23 +1,16 @@
 import { getCookie } from '@/app/utils/setToken';
 
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER;
-
 const commonHeaders = {
   'Content-Type': 'application/json',
-  Authorization:
-    'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZSI6InVzZXIiLCJ0eXBlIjoiQUNDRVNTIiwiZW1haWwiOiJqb293b2pyQGdtYWlsLmNvbSIsImV4cCI6MTcyOTY4MzQ1NH0.n-bbnxcI40j0SUeOAk1iU7Vwy-8mroFvVf4hQ23fKQY',
 };
 
 const getRequest = async (url: string, req: Request) => {
   const token = getCookie(req, 'accessToken');
-  console.log(url, '요청 경로');
-
   const headers = {
     ...commonHeaders,
-    // ...(token && { 'access-token': 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZSI6InVzZXIiLCJ0eXBlIjoiQUNDRVNTIiwiZW1haWwiOiJqb293b2pyQGdtYWlsLmNvbSIsImV4cCI6MTcyOTY4MzQ1NH0.n-bbnxcI40j0SUeOAk1iU7Vwy-8mroFvVf4hQ23fKQY' }),
+    ...(token && { Authorization: `Bearer ${token}` }),
   };
-  console.log(headers, '헤더 조회');
-
   const response = await fetch(`${SERVER_URL}${url}`, { headers });
   return response.json();
 };
