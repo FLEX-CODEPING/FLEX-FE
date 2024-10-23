@@ -16,4 +16,3 @@ interface NewsDataTypes {
   status: string;
   task_id: string;
 }
-

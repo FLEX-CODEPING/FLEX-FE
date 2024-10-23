@@ -22,4 +22,3 @@ export const formatDate = (dateString: string) => {
 
   return `${year}-${month}-${day}`;
 };
-

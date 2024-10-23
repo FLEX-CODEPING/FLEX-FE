@@ -35,7 +35,6 @@ const News = () => {
           `/api/news/?keyword=${selectedFilter}&period=${NEWS_VIEW_TYPE_MAP[selectedOption]}&${formatQuery(selectedNews)}`,
         );
         setNewsDatas(response.result);
-        console.log(response.result, '뉴스 응답');
       } catch (error) {
         console.error('뉴스 데이터 로딩 중 오류 발생:', error);
       } finally {
@@ -52,7 +51,6 @@ const News = () => {
         `/api/news/?keyword=${selectedFilter}&period=${NEWS_VIEW_TYPE_MAP[selectedOption]}&${formatQuery(selectedNews)}`,
       );
       setNewsDatas(response.result);
-      console.log(response.result, '뉴스 응답');
     } catch (error) {
       console.error('뉴스 데이터 로딩 중 오류 발생:', error);
     } finally {

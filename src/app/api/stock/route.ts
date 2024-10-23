@@ -18,7 +18,6 @@ export async function POST() {
   );
 
   const tokenData = await tokenResponse.json();
-  console.log(tokenData);
 
   const stockResponse = await fetch(
     `https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-price?FID_COND_MRKT_DIV_CODE=J&FID_INPUT_ISCD=035720`,
