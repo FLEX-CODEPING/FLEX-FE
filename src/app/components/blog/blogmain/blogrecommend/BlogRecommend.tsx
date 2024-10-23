@@ -2,6 +2,8 @@
 
 import Navigation from '@/app/components/blog/blogmain/blogpostmain/Navigation';
 import { dummyPosts } from '@/app/constants/BlogData';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import PostCard from '../blogpostmain/PostCard';
 import BlogFilterBar from './BlogFilterBar';
 
@@ -33,8 +35,8 @@ const BlogRecommend = () => {
   return (
     <div className="w-full flex flex-col items-center">
       <div className="w-full flex flex-col items-start max-w-[1440px]">
-        <Navigation selectedNav={selectedNav} handleNavClick={handleNavClick} />
-        <FilterBar />
+        <Navigation selectedNav={selectedNav} setSelectedNav={setSelectedNav} />
+        <BlogFilterBar />
       </div>
 
       <div className="w-full flex flex-col items-center">

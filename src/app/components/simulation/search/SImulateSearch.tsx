@@ -7,7 +7,7 @@ import { useState } from 'react';
 import Icons from '../../common/Icons';
 import Input from '../../common/Input';
 
-const SearchBar = () => {
+const SImulateSearch = () => {
   const [searchText, setSearchText] = useState('');
   return (
     <div className="flex w-full justify-between items-end pb-2">
@@ -48,4 +48,4 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+export default SImulateSearch;

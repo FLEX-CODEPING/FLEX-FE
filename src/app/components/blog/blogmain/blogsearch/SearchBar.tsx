@@ -1,3 +1,5 @@
+import Icons from '@/app/components/common/Icons';
+import { blogSearch } from '@/app/constants/iconPath';
 import Image from 'next/image';
 
 interface SearchBarProps {
@@ -5,7 +7,6 @@ interface SearchBarProps {
   setQuery: (query: string) => void;
   handleSearch: () => void;
 }
-
 const SearchBar: React.FC<SearchBarProps> = ({
   query,
   setQuery,
@@ -28,15 +29,9 @@ const SearchBar: React.FC<SearchBarProps> = ({
         onClick={handleSearch}
         className="bg-transparent border-none cursor-pointer"
       >
-        <Image
-          src="/images/1c.png"
-          alt="search-button"
-          width={27}
-          height={27}
-        />
+        <Icons name={blogSearch} />
       </button>
     </div>
   );
 };
-
 export default SearchBar;

@@ -14,7 +14,7 @@ const DailyNews = () => {
       </div>
       <div className="w-full px-5 py-5 flex-col-center gap-y-5">
         {MOOK_ARTICLES.map((article, i) => (
-          <div className="flex gap-x-4 w-full justify-between">
+          <div className="flex gap-x-4 w-full pb-2 justify-between cursor-pointer border-b border-b-gray-3">
             <Image
               src={article.thumbnail}
               alt={article.title}

@@ -1,23 +1,21 @@
 import { getCookie } from '@/app/utils/setToken';
 
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER;
-
 const commonHeaders = {
   'Content-Type': 'application/json',
   Authorization:
     'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZSI6InVzZXIiLCJ0eXBlIjoiQUNDRVNTIiwiZW1haWwiOiJqb293b2pyQGdtYWlsLmNvbSIsImV4cCI6MTcyOTY4MzQ1NH0.n-bbnxcI40j0SUeOAk1iU7Vwy-8mroFvVf4hQ23fKQY',
 };
 
-export const postRequest = async (
-  url: string,
-  req: Request,
-  body: any = null,
-) => {
+const postRequest = async (url: string, req: Request, body: any = null) => {
   const token = getCookie(req, 'accessToken');
-
   const headers = {
     ...commonHeaders,
+<<<<<<< HEAD
     // ...(token && { 'access-token': token }),
+=======
+    ...(token && { Authorization: `Bearer ${token}` }),
+>>>>>>> 7d277968e18e7fd02b970b8db9eea1eb81329617
   };
 
   const response = await fetch(`${SERVER_URL}${url}`, {

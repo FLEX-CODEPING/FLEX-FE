@@ -32,8 +32,18 @@ interface CommentTypes {
   date: string;
   content: string;
 }
+<<<<<<< HEAD
 interface PostTypes {
   title: string;
   content: string;
   tags: string[];
 }
+=======
+
+type AgeTypes =
+  | 'AGE_0_20'
+  | 'AGE_21_30'
+  | 'AGE_31_40'
+  | 'AGE_41_50'
+  | 'AGE_51_100';
+>>>>>>> 7d277968e18e7fd02b970b8db9eea1eb81329617

@@ -32,7 +32,7 @@ const BlogDetailContainer = ({ postId, likeStatus }: PostDetailProps) => {
           tags: tagsArray,
           createdAt: formattedCreatedAt,
         });
-        console.log(resData.result.content)
+        console.log(resData.result.content);
       } catch (error) {
         console.error('Error fetching post details:', error);
       }
@@ -43,7 +43,7 @@ const BlogDetailContainer = ({ postId, likeStatus }: PostDetailProps) => {
   }, [postId]);
 
   if (!blogData) {
-    console.log(blogData)
+    console.log(blogData);
     return <div>Loading...</div>;
   }
 
