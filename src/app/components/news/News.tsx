@@ -42,7 +42,7 @@ const News = () => {
       }
     };
     fetchNews();
-  }, [selectedFilter, selectedOption, selectedNews]); // 의존성 배열 추가/
+  }, []); // 의존성 배열 추가/
 
   const getNews = async () => {
     setLoading(true); // 로딩 시작

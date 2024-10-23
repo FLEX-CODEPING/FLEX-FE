@@ -26,3 +26,14 @@ interface RankingTypes {
   profit: number;
   thumbnail: string;
 }
+
+interface UserResultTypes {
+  nickname: string;
+  profileImageUrl: string;
+}
+interface UserTypes {
+  isSuccess: boolean;
+  code: string;
+  message: string;
+  result: UserResultTypes;
+}
