@@ -16,10 +16,7 @@ function Header() {
   const router = useRouter();
   const path = usePathname();
   const { user } = useUser();
-  
-  if (!user) {
-    router.push('/auth/signIn');
-  }
+  console.log(user);
 
   if (path === '/blog/post') return null;
 
