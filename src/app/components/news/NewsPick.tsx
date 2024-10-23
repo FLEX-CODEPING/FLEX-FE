@@ -58,7 +58,6 @@ const NewsPick: React.FC = () => {
         </button>
       </div>
 
-      
       <div className="relative flex text-sm">
         <button
           className="flex w-[119px] h-[30px] items-center px-3 py-[10px] rounded-[5px] border bg-white border-gray-300"
@@ -83,7 +82,7 @@ const NewsPick: React.FC = () => {
         )}
       </div>
 
-      <button className="bg-black text-white w-[120px] h-[40px] rounded-full flex items-center justify-center gap-2">
+      <button className="bg-black-0 text-white w-[120px] h-[40px] rounded-full flex items-center justify-center gap-2">
         <Icons name={news} />
         검색
       </button>

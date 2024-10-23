@@ -2,8 +2,8 @@
 
 import Icons from '@/app/components/common/Icons';
 import { likeSmall } from '@/app/constants/iconPath';
-import React, { useState } from 'react';
-import FilterBar from '@/app/components/news/FilterBar';
+import { useState } from 'react';
+import FilterBar from '@/app/components/news/NewsFilterBar';
 import { filterOptions } from '@/app/constants/news';
 import NewsPick from '@/app/components/news/NewsPick';
 import NewsList from '@/app/components/news/NewList';
@@ -14,12 +14,12 @@ const News = (): JSX.Element => {
   const handleFilterClick = (option: string) => {
     if (selectedFilters.includes(option)) {
       setSelectedFilters(selectedFilters.filter((filter) => filter !== option));
-    } else if (selectedFilters.length < 2) {
+    } else if (selectedFilters.length < 1) {
       setSelectedFilters([...selectedFilters, option]);
     } else {
       if (selectedFilters.length < 1) {
         setSelectedFilters([...selectedFilters, option]);
-      } 
+      }
     }
   };
 
