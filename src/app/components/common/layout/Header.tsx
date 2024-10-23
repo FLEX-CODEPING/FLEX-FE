@@ -1,9 +1,10 @@
 'use client';
 
 import { HEADER_PATH, HEADER_TEXT } from '@/app/constants/common';
+import { useUser } from '@/app/utils/useUser';
 import { Dela_Gothic_One } from 'next/font/google';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import ProfileDropdown from '../ProfileDropdown';
 
 export const dela = Dela_Gothic_One({
@@ -12,7 +13,14 @@ export const dela = Dela_Gothic_One({
 });
 
 function Header() {
+  const router = useRouter();
   const path = usePathname();
+  const { user } = useUser();
+  
+  if (!user) {
+    router.push('/auth/signIn');
+  }
+
   if (path === '/blog/post') return null;
 
   return (
@@ -31,5 +39,4 @@ function Header() {
     </header>
   );
 }
-
 export default Header;
