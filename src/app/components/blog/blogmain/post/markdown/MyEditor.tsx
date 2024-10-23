@@ -23,7 +23,7 @@ const MyEditor = ({ setContent }: MyEditorProps) => {
   };
 
   const handleContentChange = () => {
-    const content = editorRef.current?.getInstance().getHTML() || '';
+    const content = editorRef.current?.getInstance().getMarkdown() || '';
     setContent(content);
   };
 

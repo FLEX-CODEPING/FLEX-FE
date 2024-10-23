@@ -18,6 +18,7 @@ const EditBlogContainer = () => {
     tags: [],
   });
   const [tags, setTags] = useState<string[]>([]);
+  const [newPostId, setNewPostId] = useState<number | null>(null);
   const router = useRouter();
   const [isPostModalOpen, setIsPostModalOpen] = useState(false);
   const [isPostFinModalOpen, setIsPostFinModalOpen] = useState(false);
@@ -69,11 +70,15 @@ const EditBlogContainer = () => {
       if (!response.ok) {
         throw new Error('Failed to post data');
       }
+      const resData = await response.json();
+      const newId = resData.result;
+
+      setNewPostId(newId);
       setIsPostModalOpen(false);
       setIsPostFinModalOpen(true);
 
       setTimeout(() => {
-        router.push('/blog');
+        router.push(`/blog/detail?id=${newId}`);
       }, 3000);
     } catch (error) {
       console.error('Error submitting post:', error);
@@ -114,7 +119,7 @@ const EditBlogContainer = () => {
         <PostFinModal
           onClose={() => {
             setIsPostFinModalOpen(false);
-            router.push('/blog');
+            router.push(`/blog/detail?id=${newPostId}`);
           }}
         />
       )}

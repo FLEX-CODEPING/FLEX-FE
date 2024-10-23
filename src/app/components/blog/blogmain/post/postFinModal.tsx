@@ -12,9 +12,6 @@ const PostFinModal = ({ onClose }: PostFinModalProps) => {
           <div className="text-gray-800 text-2xl font-semibold">
             {MODAL_TEXT[4]}
           </div>
-          <div className="text-gray-600 text-base font-normal">
-            {MODAL_TEXT[5]}
-          </div>
         </div>
         <div className="flex w-full justify-end gap-x-4">
           <button
