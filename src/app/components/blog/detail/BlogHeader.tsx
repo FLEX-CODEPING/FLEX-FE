@@ -48,7 +48,7 @@ const BlogHeader = ({ tags, likeCount, likeStatus }: BlogHeaderProps) => {
             key={tag}
             className="bg-main-1/20 text-black-0/70 font-semibold px-3 py-1 rounded-full cursor-pointer"
           >
-            {tag}
+            #{tag}
           </div>
         ))}
       </div>
