@@ -26,7 +26,6 @@ export const getLandingPost = async (req: Request, filter: string) => {
 };
 
 export const getBlogsMain = async (req: Request, salary?: any, age?: any) => {
-  const queryParams = new URLSearchParams();
   let url = '/api/blogs/main';
   if (salary !== 'undefined') {
     url += `?salary=${salary}`;
@@ -34,6 +33,28 @@ export const getBlogsMain = async (req: Request, salary?: any, age?: any) => {
   if (age !== 'undefined') {
     url += salary ? `&age=${age}` : `?age=${age}`;
   }
+
+  return getRequest(url, req);
+};
+
+export const getNews = async (
+  req: Request,
+  keyword?: string,
+  pressArray?: string[],
+  period?: string,
+) => {
+  let url = `/api/news-summary/?keyword=${keyword}`;
+
+  if (!pressArray || pressArray.length === 0) {
+    url += '&press=hk';
+  } else {
+    url += '&' + pressArray.map((press) => `press=${press}`).join('&');
+  }
+
+  if (period !== 'undefined') {
+    url += `&period=${Number(period)}`;
+  }
+  console.log(url, '최종 요청 url');
 
   return getRequest(url, req);
 };
