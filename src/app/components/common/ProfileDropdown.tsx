@@ -30,8 +30,8 @@ const ProfileDropdown = () => {
             onMouseLeave={() => setIsHover(false)}
           >
             <Image
-              src={'/images/complete1.png'}
-              alt={'profile'}
+              src="/images/complete1.png"
+              alt="profile"
               width={20}
               height={20}
             />

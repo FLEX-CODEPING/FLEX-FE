@@ -1,4 +1,4 @@
-import { useUserStore } from "../store/scoreStore";
+import { useUserStore } from '../store/scoreStore';
 
 export function useUser() {
   const { user, isLoading, error } = useUserStore();
