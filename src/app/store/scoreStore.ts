@@ -1,23 +1,26 @@
 import { create } from 'zustand';
+import { callGet } from '../utils/callApi';
 
-interface ScoreListState {
-  score: number;
-  addScore: (amount: number) => void;
-  subtractScore: (amount: number) => void;
+interface UserState {
+  user: UserTypes | null;
+  isLoading: boolean;
+  error: string | null;
+  fetchUser: () => Promise<void>;
 }
 
-export const useScoreStore = create<ScoreListState>((set) => ({
-  score: 0,
-
-  addScore: (amount) =>
-    set((state) => ({
-      score: state.score + amount,
-    })),
-
-  subtractScore: (amount) =>
-    set((state) => ({
-      score: state.score - amount,
-    })),
+export const useUserStore = create<UserState>((set) => ({
+  user: null,
+  isLoading: false,
+  error: null,
+  fetchUser: async () => {
+    set({ isLoading: true });
+    try {
+      const data = await callGet('/api/auth/user');
+      set({ user: data, isLoading: false, error: null });
+    } catch (err) {
+      set({ error: '유저 정보를 가져오는 데 실패했습니다.', isLoading: false });
+    }
+  },
 }));
 
 interface SidebarState {
