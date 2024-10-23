@@ -267,3 +267,16 @@ export const newsRightArrow = {
     stroke: 'black',
   },
 };
+
+export const loadingCircle = {
+  path: 'M7 42C7 61.3305 22.6695 77 42 77C61.3305 77 77 61.3305 77 42C77 22.6695 61.3305 7 42 7',
+  width: 84,
+  height: 84,
+  fill: 'none',
+  options: {
+    stroke: 'black',
+    strokeWidth: 6,
+    strokeLineCap: 'round' as 'round',
+    strokeLinejoin: 'round' as 'round',
+  },
+};

@@ -23,4 +23,3 @@ export const formatDate = (dateString: string) => {
   return `${year}-${month}-${day}`;
 };
 
-const formattedDate = formatDate('2024-10-22T03:52:24');

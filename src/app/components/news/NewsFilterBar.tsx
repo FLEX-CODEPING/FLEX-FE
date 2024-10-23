@@ -20,11 +20,7 @@ const NewsFilterBar: React.FC<FilterBarProps> = ({
             <button
               type="button"
               key={interest}
-              onClick={() =>
-                selectedFilters === interest
-                  ? setSelectedFilter('')
-                  : setSelectedFilter(interest)
-              }
+              onClick={() => setSelectedFilter(interest)}
               className={`w-[80px] py-2 px-2 rounded-full ${
                 selectedFilters.includes(interest)
                   ? 'bg-[#F95700] text-white'
