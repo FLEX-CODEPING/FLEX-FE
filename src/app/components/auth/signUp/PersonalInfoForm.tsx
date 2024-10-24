@@ -1,9 +1,4 @@
-import {
-  BIRTH,
-  BIRTH_DATE,
-  BLOGNAME_TEXT,
-  NICKNAME_TEXT,
-} from '@/app/constants/auth';
+import { BIRTH, BLOGNAME_TEXT, NICKNAME_TEXT } from '@/app/constants/auth';
 import '@/app/styles/slider.css';
 import { isCorrect } from '@/app/utils/qualify';
 import Input from '../../common/Input';
@@ -18,7 +13,7 @@ const PersonalInfoForm = ({
   updateFormData,
 }: PersonalInfoFormProps) => {
   return (
-    <div className="w-full flex flex-col gap-y-4">
+    <div className="w-full flex flex-col gap-y-3">
       <div className="w-full flex flex-col gap-x-2.5 gap-y-1">
         <div className="text-sm pl-2.5">{BIRTH[0]}</div>
         <div className="w-full flex gap-x-2.5">
@@ -31,7 +26,6 @@ const PersonalInfoForm = ({
             max={new Date().toISOString().split('T')[0]}
             textValue={formData.birth}
             onChange={(e) => updateFormData('birth', e.target.value)}
-            placeholder={BIRTH_DATE}
           />
         </div>
         <div className="text-xs pl-2.5 text-gray-1">{BIRTH[1]}</div>

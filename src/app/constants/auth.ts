@@ -11,10 +11,7 @@ export const INITIAL_SIGNUP_DATA: SignUpFormTypes = {
   socialId: 0,
 };
 
-export const BIRTH = [
-  '생년월일',
-  '달력 이모티콘을 클릭해 본인의 생년월일을 기입해주세요',
-];
+export const BIRTH = ['생년월일', '본인의 생년월일을 기입해주세요'];
 
 export const BIRTH_DATE = 'YYYY. MM. DD';
 export const BIRTH_GUIDE = '';
