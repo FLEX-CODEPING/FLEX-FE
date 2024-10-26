@@ -42,7 +42,7 @@ const BlogContent = ({ content }: BlogContentProps) => {
 
       <img
         className="w-full"
-        src="https://stockboy.co.kr/wp-content/uploads/2023/11/Screenshot-2023-11-18-at-11.35.59-PM-1024x550-optimized.png"
+        src="https://www.tradingview.com/x/L7vASBaQ/"
         alt=""
       />
     </div>
