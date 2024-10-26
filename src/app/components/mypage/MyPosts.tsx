@@ -17,15 +17,15 @@ const MyPosts = () => {
           />
           <Input
             type="search"
-            onChange={function (
-              e: React.ChangeEvent<HTMLInputElement>,
-            ): void {}}
+            onChange={(e) => {}}
             className="ml-1"
           />
         </div>
       </div>
-      <div className='mt-8'>
-        <MyPostCard />
+      <div className='mt-8 gap-y-10 flex flex-col'>
+      {[1, 2, 3].map((_, index) => (
+          <MyPostCard key={index} />
+        ))}
       </div>
     </div>
   );

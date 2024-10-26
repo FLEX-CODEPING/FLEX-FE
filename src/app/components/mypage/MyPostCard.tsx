@@ -2,11 +2,11 @@ import { likeSmall } from '@/app/constants/iconPath';
 import Icons from '../common/Icons';
 
 const MyPostCard = () => {
-  const likeCount = 827;
+  const likeCount = 27;
   const tags = ['주식', '투자']
 
   return (
-    <div className="w-full h-[590px] flex-col  inline-flex">
+    <div className="w-full h-[590px] flex-col  inline-flex transition-all rounded-lg duration-300 ease-in-out hover:shadow-lg">
       <img className="w-full h-[400px] rounded-[10px]" src="/images/3c.png" />
       <div className="w-full  px-3 py-[18px] flex-col gap-2 flex">
       <div className="pt-[5px] pb-1 gap-2 flex justify-between items-center text-black-0 text-lg font-bold">
@@ -27,7 +27,7 @@ const MyPostCard = () => {
           </div>
         </div>
         <div className="flex justify-between items-center mt-7">
-          <div className="flex gap-x-1">
+          <div className="flex gap-x-2">
             {tags.map((tag, index) => (
               <span
                 key={index}

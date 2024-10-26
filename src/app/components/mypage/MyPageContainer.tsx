@@ -2,7 +2,7 @@ import MyPageHeader from './MyPageHeader';
 
 const MyPageContainer = () => {
   return (
-    <div>
+    <div className='mb-[200px]'>
       <MyPageHeader />
     </div>
   );
