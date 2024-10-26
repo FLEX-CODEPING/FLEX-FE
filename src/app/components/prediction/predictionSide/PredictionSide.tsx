@@ -12,7 +12,7 @@ const PredictionSide = () => {
   const isQualified = 11 > 0;
 
   return (
-    <div className="w-[300px] flex flex-col pt-[57px] gap-y-2">
+    <div className="w-[300px] flex flex-col pt-[85px] gap-y-2">
       {predictData ? (
         <div className="w-[300px] h-[623px] px-8 py-4 flex flex-col rounded-[10px] border border-gray-4">
           <div className="flex flex-col gap-y-4">
