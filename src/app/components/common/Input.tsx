@@ -13,7 +13,7 @@ interface InputProps {
     | 'file'
     | 'checkbox'
     | 'radio'
-    | 'date'; // Add other valid input types if needed
+    | 'date';
   name?: string;
   placeholder?: string;
   className?: string;
@@ -36,7 +36,7 @@ function Input({
   textValue,
   placeholder,
   className,
-  inputType = 'text', // default to 'text' input type
+  inputType = 'text',
   accept,
   onFocus,
   onBlur,
@@ -49,7 +49,7 @@ function Input({
   maxLength,
   onClick,
 }: InputProps) {
-  const buttonStyles = INPUT_STYLE[type](className || '');
+  const inputStyles = INPUT_STYLE[type](className || '');
 
   return (
     <input
@@ -61,7 +61,7 @@ function Input({
       onBlur={onBlur}
       onKeyDown={(e) => e.key === 'Enter' && onEnterPress && onEnterPress()}
       onChange={onChange}
-      className={buttonStyles}
+      className={inputStyles}
       accept={accept}
       disabled={isDisabled}
       pattern={pattern}
