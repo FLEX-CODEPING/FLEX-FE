@@ -2,12 +2,16 @@
 
 import { HEADER_PROFILE_TEXT, LOGIN_TEXT } from '@/app/constants/common';
 import { handleLogout } from '@/app/utils/setToken';
+import { useUser } from '@/app/utils/useUser';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
 const ProfileDropdown = () => {
   const [isHover, setIsHover] = useState(false);
-  const isLogin = true;
+  const { user } = useUser();
+
+  const isLogin = user?.isSuccess;
 
   return (
     <div className="flex flex-col relative">
@@ -19,15 +23,20 @@ const ProfileDropdown = () => {
           {LOGIN_TEXT[0]}
         </Link>
         <div className="text-main-1 text-[24px] font-light">|</div>
-        {!isLogin ? (
+        {isLogin ? (
           <div
             className="flex gap-x-2 items-center pb-1 pt-1"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
           >
-            <div className="w-5 h-5 rounded-full bg-gray-1" />
-            <Link className="text-xs font-bold" href="/auth/signUp">
-              민규핑
+            <Image
+              src="/images/complete1.png"
+              alt="profile"
+              width={20}
+              height={20}
+            />
+            <Link className="text-xs font-bold" href="/">
+              {user?.result.nickname}
             </Link>
             {isHover && (
               <div className="absolute flex flex-col top-[26px] left-[103px] border border-gray-2 text-xs rounded-[8px] cursor-pointer z-10 bg-white">

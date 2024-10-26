@@ -3,8 +3,8 @@
 import DOMPurify from 'dompurify';
 import 'github-markdown-css';
 import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+import remarkGfm from 'remark-gfm';
 
 interface BlogContentProps {
   content: string;
