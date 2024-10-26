@@ -1,5 +1,5 @@
 import PredictionConatiner from '@/app/components/prediction/PredictionConatiner';
-import PredictionSide from '@/app/components/prediction/predictionSide/PredictionSide';
+import PredictionSideContainer from '@/app/components/prediction/predictionSide/PredictionSideContainer';
 import DownSideBar from '@/app/components/simulation/side/DownSideBar';
 
 function SimulationPage() {
@@ -8,7 +8,7 @@ function SimulationPage() {
       <div className="flex w-full h-full px-[5%] mt-[1%] justify-between ">
         <div className="flex w-full gap-x-[1%] pt-[2%] justify-between">
           <PredictionConatiner />
-          <PredictionSide />
+          <PredictionSideContainer />
         </div>
       </div>
       <DownSideBar />

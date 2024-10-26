@@ -24,7 +24,7 @@ const ChartContainer = () => {
           ))}
         </div>
       </div>
-      {chartData.length === 0 ? <ChartEmpty /> : <StockChart />}
+      {chartData.length !== 0 ? <ChartEmpty /> : <StockChart />}
     </div>
   );
 };
