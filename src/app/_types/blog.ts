@@ -44,3 +44,13 @@ type AgeTypes =
   | 'AGE_31_40'
   | 'AGE_41_50'
   | 'AGE_51_100';
+
+interface PostCardTypes {
+  id: number;
+  likes: number;
+  imageUrl: string;
+  title: string;
+  content: string;
+  date: string;
+  tags: string[];
+}

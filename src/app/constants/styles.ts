@@ -22,4 +22,6 @@ export const INPUT_STYLE = {
     `w-80 pl-3 pr-12 h-10 rounded-xl border border-gray-4 font-light text-sm outline-none ${className}`,
   trade: (className: string) =>
     `w-[140px] h-[33px] px-3 py-2 rounded-md border border-gray-2 font-light text-black-1 text-sm ${className}`,
+  search: (className: string) =>
+    `w-[150px] h-[24px] px-3 rounded-md border-none font-light text-black-0 text-base outline-none ${className}`,
 } as const;

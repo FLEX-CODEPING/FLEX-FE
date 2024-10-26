@@ -1,22 +1,27 @@
-'use client'
+'use client';
 
 import { FOLLOW_TEXT, MYPAGE_TEXT } from '@/app/constants/mypage';
-import MyPosts from './MyPosts'
+import MyPosts from './MyPosts';
 import LikedPosts from './LikedPosts';
 import { useState } from 'react';
+import Image from 'next/image';
 
 const MyPageHeader = () => {
-  const [activeTab, setActiveTab] = useState<'myPosts' | 'likedPosts'>('myPosts');
+  const [activeTab, setActiveTab] = useState<'myPosts' | 'likedPosts'>(
+    'myPosts',
+  );
 
   return (
     <div className="w-full flex flex-col  px-[5%] text-[20px] relative">
       <div className="text-black text-[24px] font-bold ">낙도의 블로그</div>
       <div className="h-[130px] flex items-center justify-center gap-[70px]">
         <div className="flex flex-col items-center justify-center ">
-          <img
-            src="images\profile.png"
-            alt="Profile"
-            className="w-[80px] h-[80px] rounded-[32px] object-cover"
+          <Image
+            src="/images/profile.png"
+            alt="profile"
+            width={80}
+            height={80}
+            className="rounded-[32px]"
           />
           <div className="text-black font-semibold">nakdo</div>
         </div>
@@ -69,7 +74,7 @@ const MyPageHeader = () => {
         </div>
       </div>
 
-      <div className="mt-6">
+      <div className="mt-[60px]">
         {activeTab === 'myPosts' && <MyPosts />}
         {activeTab === 'likedPosts' && <LikedPosts />}
       </div>
