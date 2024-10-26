@@ -50,7 +50,7 @@ const PredictResultAlert = ({
           </div>
           <p className={`text-xl font-semibold ${mainColor}`}>{result}</p>
         </div>
-        <div className="flex px-2 w-full justify-between items-end mb-5 mt-2 text-xs">
+        <div className="flex px-2 w-full justify-between items-end mb-3 mt-2.5 text-xs">
           <p>{PREDICTION_SIDEBAR_RESULT[3]}</p>
           <div className={`flex gap-1 ${mainColor} items-center`}>
             <Icons name={blueArrow} />
@@ -64,7 +64,7 @@ const PredictResultAlert = ({
           onClickHandler={() => console.log('분석 중...')}
         />
       </div>
-      <div className="w-full px-5 py-3.5 flex-col-center gap-y-4 rounded-[10px] border border-gray-4">
+      <div className="w-full px-5 py-3.5 flex-col-center gap-y-2.5 rounded-[10px] border border-gray-4">
         <div className="flex w-full justify-between items-end border-b border-b-gray-2 pb-1 px-1">
           <p>{PREDICTION_ALARM_TEXT[0]}</p>
           <p className="text-[10px] text-gray-1 flex gap-0.5">
