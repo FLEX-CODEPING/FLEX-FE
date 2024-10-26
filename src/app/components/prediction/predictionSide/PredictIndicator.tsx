@@ -22,7 +22,7 @@ const PredictIndicator = () => {
 
   return (
     <div className="w-full px-5 py-3.5 flex-col-center rounded-[10px] border border-gray-4">
-      <div className="flex w-full justify-between items-end border-b border-b-gray-2 pb-1">
+      <div className="flex w-full justify-between items-end border-b border-b-gray-2 pb-1 px-1">
         <p>{PREDICTION_SIDEBAR_TEXT[0]}</p>
         <p className="text-[10px] text-gray-1">{PREDICTION_SIDEBAR_TEXT[1]}</p>
       </div>

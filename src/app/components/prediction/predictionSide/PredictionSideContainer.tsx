@@ -16,7 +16,12 @@ const PredictionSideContainer = () => {
       {predictData ? (
         <div className="w-full flex flex-col gap-y-3">
           <PredictIndicator />
-          <PredictResultAlert />
+          <PredictResultAlert
+            stockName="삼성전자"
+            result="하락"
+            resultPrice={59000}
+            resultPercent={-2.73}
+          />
         </div>
       ) : (
         <PredictionEmpty />

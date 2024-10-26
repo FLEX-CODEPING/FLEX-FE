@@ -308,3 +308,29 @@ export const checkBox = {
   height: 16,
   fill: '#F95700',
 };
+
+export const blueArrow = {
+  path: 'M9.5 9.5L3.5 3.5M9.5 4.5V9.5H4.5',
+  width: 13,
+  height: 13,
+  fill: 'none',
+  options: {
+    stroke: '#0065D1',
+    strokeWidth: 2,
+    strokeLineCap: 'round' as 'round',
+    strokeLinejoin: 'round' as 'round',
+  },
+};
+
+export const redArrow = {
+  path: 'M9.5 9.5L3.5 3.5M9.5 4.5V9.5H4.5',
+  width: 13,
+  height: 13,
+  fill: 'none',
+  options: {
+    stroke: '#FF2626',
+    strokeWidth: 2,
+    strokeLineCap: 'round' as 'round',
+    strokeLinejoin: 'round' as 'round',
+  },
+};
