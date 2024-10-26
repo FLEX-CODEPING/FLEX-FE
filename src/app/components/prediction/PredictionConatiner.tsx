@@ -6,7 +6,7 @@ import SImulateSearch from '../simulation/search/SImulateSearch';
 const PredictionConatiner = () => {
   return (
     <div className="w-[80%] h-full flex flex-col">
-      <div className="w-full flex-col flex gap-y-1">
+      <div className="w-full flex-col flex h-full gap-y-1">
         <SImulateSearch />
         <ChartContainer />
       </div>

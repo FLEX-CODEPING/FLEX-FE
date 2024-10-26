@@ -1,5 +1,5 @@
 import { noneInfo } from '@/app/constants/iconPath';
-import { PREDICTION_EMPTY_TEXT } from '@/app/constants/Prediction';
+import { PREDICTION_EMPTY_TEXT } from '@/app/constants/prediction';
 import Icons from '../../common/Icons';
 
 const PredictionEmpty = () => {
