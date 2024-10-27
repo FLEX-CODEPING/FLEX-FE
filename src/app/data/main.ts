@@ -117,3 +117,26 @@ export const MOOK_DAILY_POSTS: LandingPostTypes[] = [
     likeCount: 18,
   },
 ];
+
+export const POPULAR_ARTICLES: PopularPostTypes[] = [
+  {
+    title: '기술주 강세로 나스닥 최고치 기록',
+    nickname: '재테크왕',
+    likeCount: 152,
+  },
+  {
+    title: '미국 금리 동결, 시장 반응 미미',
+    nickname: '투자고수',
+    likeCount: 89,
+  },
+  {
+    title: '유럽 증시 회복세, 경제 전망 밝아져',
+    nickname: '경제박사',
+    likeCount: 134,
+  },
+  {
+    title: '아시아 시장, 코로나 이후 경제 성장 가속',
+    nickname: '머니트리',
+    likeCount: 102,
+  },
+];

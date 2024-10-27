@@ -2,6 +2,7 @@ import DailyNews from '../left/DailyNews';
 import MainPostContainer from '../left/MainPostContainer';
 import StockRank from '../left/StockRank';
 import MainMyInfo from './MainMyInfo';
+import PopularPost from './PopularPost';
 
 const MainDownRight = () => {
   return (
@@ -13,7 +14,7 @@ const MainDownRight = () => {
         profit={+172000}
         views={932}
       />
-      <MainPostContainer />
+      <PopularPost />
       <DailyNews />
       <StockRank />
     </div>

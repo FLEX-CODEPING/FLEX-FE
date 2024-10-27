@@ -36,3 +36,9 @@ interface UserTypes {
   message: string;
   result: UserResultTypes;
 }
+
+interface PopularPostTypes {
+  title: string;
+  likeCount: number;
+  nickname: string;
+}
