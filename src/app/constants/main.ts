@@ -54,3 +54,18 @@ export const MAIN_CONTENTS_TITLE = [
   '추천 게시물',
   '모의투자 랭킹',
 ];
+
+export const MAIN_MYINFO = [
+  '로그인 후 ',
+  'FLEX ',
+  '의  다양한 기능들을 이용해보세요!',
+];
+
+export const KAKAO_BTN_TEXT = ['카카오 로그인'];
+
+export const MAIN_MYINFO_TEXT = [
+  '팔로워',
+  '내 블로그',
+  '모의투자 수익',
+  '누적 조회수',
+];

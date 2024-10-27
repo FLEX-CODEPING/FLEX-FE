@@ -6,7 +6,7 @@ const MainContainer = () => {
   return (
     <div className="w-full flex-col-center pb-20 gap-y-20">
       <MainHeader />
-      <div className="flex gap-x-[60px]">
+      <div className="flex gap-x-16">
         <MainDownLeft />
         <MainDownRight />
       </div>
