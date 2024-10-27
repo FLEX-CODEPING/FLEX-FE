@@ -11,7 +11,7 @@ interface LandingPostTypes {
   createdAt: string;
   updatedAt: string;
   imageUrls: string[];
-  likeCount: 0;
+  likeCount: number;
 }
 
 interface DailyArticleTypes {

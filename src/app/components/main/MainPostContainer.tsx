@@ -1,44 +1,36 @@
 'use client';
 
-import { LANDING_VIEWTYPE_MAP, MAIN_POST_TAG } from '@/app/constants/main';
-import { callGet } from '@/app/utils/callApi';
-import { useEffect, useState } from 'react';
+import { MAIN_CONTENTS_TITLE } from '@/app/constants/main';
+import { MOOK_DAILY_POSTS } from '@/app/data/main';
+import { formatDate } from '@/app/utils/date';
+import { useState } from 'react';
 import MainPost from './MainPost';
 
 const MainPostContainer = () => {
-  const [viewType, setViewType] = useState<MainPostViewTypes>('최신');
-  const [postData, setPostData] = useState<LandingPostTypes[]>([]);
-  const filteredPosts = postData.slice(0, 6);
+  const [postData, setPostData] =
+    useState<LandingPostTypes[]>(MOOK_DAILY_POSTS);
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      const response = await callGet(
-        `/api/main/landing?viewType=${LANDING_VIEWTYPE_MAP[viewType]}`,
-      );
-      setPostData(response.result);
-    };
-    fetchPost();
-  }, [viewType]);
+  // useEffect(() => {
+  //   const fetchPost = async () => {
+  //     const response = await callGet(
+  //       `/api/main/landing?viewType=${LANDING_VIEWTYPE_MAP[viewType]}`,
+  //     );
+  //     setPostData(response.result);
+  //   };
+  //   fetchPost();
+  // }, [viewType]);
 
   return (
-    <div className="flex-col-center w-full mt-20 gap-y-12">
-      <div className="w-80 flex gap-x-[45px]">
-        {MAIN_POST_TAG.map((tag, i) => (
-          <div
-            key={tag}
-            className={`w-20 h-12 flex-center text-2xl font-medium cursor-pointer box-content	 ${viewType === tag && 'border-b border-main-1'}`}
-            onClick={() => setViewType(tag)}
-          >
-            {tag}
-          </div>
-        ))}
+    <div className="flex-col-center w-full gap-y-5">
+      <div className="w-full flex items-end justify-between px-3 py-4 border-b border-[#cbcaca]">
+        <p className="text-2xl font-semibold">{MAIN_CONTENTS_TITLE[0]}</p>
+        <p className="text-xs">{formatDate(postData[0].createdAt)}</p>
       </div>
-      <div className="w-[1280px] flex-wrap flex gap-x-9 gap-y-5 mx-auto items-center justify-center">
-        {filteredPosts.map((post, i) => (
+      <div className="w-full flex-wrap flex gap-x-12 gap-y-5">
+        {postData.map((post, i) => (
           <MainPost key={post.id} post={post} />
         ))}
       </div>
-      <div className="w-[1280px] border-b-2 border-gray-3" />
     </div>
   );
 };

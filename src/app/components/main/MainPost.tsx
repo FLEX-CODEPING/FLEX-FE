@@ -1,14 +1,13 @@
 import Icons from '@/app/components/common/Icons';
 import { likeSmall } from '@/app/constants/iconPath';
-import { formatDate } from '@/app/utils/date';
 import { truncateString } from '@/app/utils/truncate';
 import Image from 'next/image';
 
-interface MainPostProps {
+interface DailyPostProps {
   post: LandingPostTypes;
 }
 
-const MainPost = ({ post }: MainPostProps) => {
+const DailyPost = ({ post }: DailyPostProps) => {
   const formattedTags = post.tags
     ? post.tags.split(',').map((tag: string) => `#${tag}`)
     : [];
@@ -16,56 +15,41 @@ const MainPost = ({ post }: MainPostProps) => {
   return (
     <div
       key={post.id}
-      className="w-[382px] cursor-pointer px-2.5 py-2 bg-white rounded-lg relative transition-all duration-300 ease-in-out hover:shadow-lg"
+      className="w-[344px] flex flex-col gap-y-2.5 cursor-pointer bg-white rounded"
     >
-      <div className="flex justify-between items-center h-[30px]">
-        <div className="flex gap-x-1">
-          {formattedTags.map((tag, i) => (
-            <div
-              key={tag}
-              className="bg-gray-200 px-2 py-1 mb-[5px] rounded-md text-sm font-semibold text-gray-700"
-            >
-              {tag}
-            </div>
-          ))}
-        </div>
-
-        <div className="flex items-center text-sm text-gray-500 gap-x-2.5">
-          <Icons name={likeSmall} />
-          <p>{post.likeCount}</p>
-        </div>
-      </div>
-
-      <div className="relative w-full h-56 border border-gray-300 rounded-md">
+      <div className="relative w-full h-28 rounded-md">
         <Image
           src={post.imageUrls[0] || '/images/3c.png'}
           alt={post.title}
           layout="fill"
           objectFit="cover"
+          className="rounded"
         />
       </div>
 
-      <div className="">
-        <h2 className="font-bold text-lg mb-2 ">{post.title}</h2>
-        <p className="text-sm text-gray-700 mb-2 h-10">
-          {truncateString(post.content, 64)}
-        </p>
-        <div className="flex justify-between items-center text-xs ">
-          <div className="flex items-center text-xs">
-            <Image
-              src={post.imageUrls[0] || '/images/4c.png'}
-              alt={post.title}
-              width={20}
-              height={20}
-              className="rounded-full"
-            />
-            <span className="ml-2 text-gray-500">코드핑</span>
-          </div>
-          <span className=" text-gray-500">{formatDate(post.createdAt)}</span>
+      <h2 className="font-semibold">{post.title}</h2>
+      <p className="text-base font-light text-gray-700 ">
+        {truncateString(post.content, 57)}
+      </p>
+      <div className="flex justify-between items-center h-5">
+        <div className="flex gap-x-[5px]">
+          {formattedTags.map((tag, i) => (
+            <div
+              key={tag}
+              className="bg-gray-200 px-1 py-0.5 rounded-md text-xs font-semibold text-gray-700"
+            >
+              {tag}
+            </div>
+          ))}
+        </div>
+        <div className="flex items-center text-xs text-black-0 gap-x-0.5">
+          <Icons name={likeSmall} />
+          <p>{post.likeCount}</p>
         </div>
       </div>
+      <div className="w-full border-b border-gray-2 mt-0.5" />
     </div>
   );
 };
 
-export default MainPost;
+export default DailyPost;

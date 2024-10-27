@@ -24,7 +24,7 @@ export const MAIN_FEAT_IMG = [
 ];
 
 export const CATCH_PHRASE = [
-  '우리들의 재테크 정보, 재테크 전용 블로그',
+  '나만을 위한 재테크 전용 블로그',
   'FLEX',
   '와 함께',
 ];
@@ -39,6 +39,7 @@ export const LANDING_VIEWTYPE_MAP: Record<
   인기: 'LIKE_COUNT',
   팔로잉: 'FOLLOWING',
 };
+
 export const MAIN_BLOG_BTN = '글 더 보러가기';
 
 export const MAIN_LEFT_TITLE = ['오늘의 뉴스', '오늘의 모의투자 랭킹'];
@@ -48,3 +49,12 @@ export const MAIN_LEFT_ETC = ['다른 뉴스 보러가기', '블로그 구경가
 export const MAIN_RIGHT_TITLE = '실시간 인기 주식';
 
 export const RANKING_COLOR = ['bg-[#FEEAB4]', 'bg-[#e5e5e5]', 'bg-[#e5cbbc]'];
+
+export const MAIN_CONTENTS_TITLE = [
+  '오늘의 게시물',
+  '오늘의 뉴스',
+  '주식 차트',
+  '️인기 게시물',
+  '추천 게시물',
+  '모의투자 랭킹',
+];
