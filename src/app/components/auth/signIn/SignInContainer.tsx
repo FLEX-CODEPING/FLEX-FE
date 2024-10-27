@@ -35,8 +35,8 @@ function SignInContainer() {
   }, [code]);
 
   return (
-    <div className="gap-y-[64px] flex flex-col mt-8">
-      <div className="flex flex-col gap-y-1 items-center">
+    <div className="gap-y-[48px] flex flex-col mt-4">
+      <div className="flex flex-col gap-y-1 items-center pr-6">
         {MAIN_FEAT.map((feat, i) => (
           <div className="flex items-center" key={feat}>
             <Image
@@ -46,18 +46,18 @@ function SignInContainer() {
               alt="logoImg"
             />
             <div className="flex flex-col">
-              <p className="text-2xl font-bold">{feat}</p>
-              <p className="texl-xl">{MAIN_FEAT_DETAIL[i]}</p>
+              <p className="text-xl font-bold">{feat}</p>
+              <p className="texl-lg">{MAIN_FEAT_DETAIL[i]}</p>
             </div>
           </div>
         ))}
       </div>
-      <Link className="cursor-pointer" href={KAKAO_AUTH_URL}>
+      <Link className="cursor-pointer w-full flex-center" href={KAKAO_AUTH_URL}>
         <Image
           src="/images/kakao_login.png"
           alt="loginImg"
-          width={360}
-          height={55}
+          width={320}
+          height={48}
         />
       </Link>
     </div>

@@ -20,6 +20,7 @@ const News = () => {
     if (selectedPress.length === 0) {
       return `press=hk`;
     }
+
     const selectedPressQueries = selectedPress
       .map((press) => `press=${PRESS_TYPES_MAP[press]}`)
       .filter(Boolean)
@@ -27,25 +28,8 @@ const News = () => {
     return selectedPressQueries;
   };
 
-  useEffect(() => {
-    const fetchNews = async () => {
-      setLoading(true); // 로딩 시작
-      try {
-        const response = await callGet(
-          `/api/news/?keyword=${selectedFilter}&period=${NEWS_VIEW_TYPE_MAP[selectedOption]}&${formatQuery(selectedNews)}`,
-        );
-        setNewsDatas(response.result);
-      } catch (error) {
-        console.error('뉴스 데이터 로딩 중 오류 발생:', error);
-      } finally {
-        setLoading(false); // 로딩 끝
-      }
-    };
-    fetchNews();
-  }, []); // 의존성 배열 추가/
-
   const getNews = async () => {
-    setLoading(true); // 로딩 시작
+    setLoading(true);
     try {
       const response = await callGet(
         `/api/news/?keyword=${selectedFilter}&period=${NEWS_VIEW_TYPE_MAP[selectedOption]}&${formatQuery(selectedNews)}`,
@@ -58,7 +42,10 @@ const News = () => {
     }
   };
 
-  console.log(newsDatas, '뉴스  스테이트');
+  useEffect(() => {
+    getNews();
+  }, []);
+
   return (
     <div className="bg-white w-full mx-auto py-12 flex-col-center gap-y-4">
       <h2 className=" text-[36px] font-normal text-black text-center leading-[60px] my-6">

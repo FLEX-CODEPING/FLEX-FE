@@ -3,9 +3,11 @@
 import { CHART_TITLE, CHART_VIEWTYPE } from '@/app/constants/simulation';
 import { useState } from 'react';
 import StockChart from './Chart';
+import ChartEmpty from './ChartEmpty';
 
 const ChartContainer = () => {
   const [clickedType, setClickedType] = useState<ChartViewType>('일');
+  const [chartData, setChartData] = useState([]);
   return (
     <div className="flex w-full px-10 py-5 rounded-[10px] border border-gray-4 flex-col justify-start items-start gap-y-10">
       <div className="flex w-full justify-between">
@@ -22,7 +24,7 @@ const ChartContainer = () => {
           ))}
         </div>
       </div>
-      <StockChart />
+      {chartData.length !== 0 ? <ChartEmpty /> : <StockChart />}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 'use client';
 
 import { useSidebarStore } from '@/app/store/scoreStore';
-import Chart from './chart/ChartContainer';
+import ChartContainer from './chart/ChartContainer';
 import SImulateSearch from './search/SImulateSearch';
 
 const SimulationContainer = () => {
@@ -11,7 +11,7 @@ const SimulationContainer = () => {
     <div className={`${chartWidth} h-full flex flex-col`}>
       <div className="w-full flex-col flex gap-y-1">
         <SImulateSearch />
-        <Chart />
+        <ChartContainer />
       </div>
     </div>
   );
