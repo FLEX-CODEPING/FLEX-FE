@@ -43,7 +43,7 @@ const MyPageHeader = () => {
         <div className="flex text-black-0">
           <div className="justify-center items-center gap-8 flex">
             <div
-              className={`text-black-0 text-[20px] font-bold cursor-pointer ${
+              className={`text-[20px] font-bold cursor-pointer ${
                 activeTab === 'myPosts' ? 'text-black-0' : 'text-[#a4a4a4]'
               }`}
               onClick={() => setActiveTab('myPosts')}

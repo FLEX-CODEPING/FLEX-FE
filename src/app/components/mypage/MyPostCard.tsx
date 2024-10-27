@@ -22,7 +22,7 @@ const MyPostCard = () => {
           </div>
         </div>
         <div className="justify-start items-start gap-2 inline-flex">
-          <div className="h-9 text-black-0 text-base">
+          <div className="h-[45px] text-black-0 text-base overflow-hidden text-ellipsis">
             2023년은 주식 투자에 있어 많은 변화를 경험한 해였습니다. 글로벌
             경제의 불확실성과 금리 인상 등의 요인이 시장에 큰 영향을 미쳤습니다.
             이러한 환경 속에서 저는 여러 가지 투자 전략을 시도하며 다양한 교훈을
@@ -31,7 +31,7 @@ const MyPostCard = () => {
             돌아보고, 앞으로의 방향
           </div>
         </div>
-        <div className="flex justify-between items-center mt-7">
+        <div className="flex justify-between items-center mt-4">
           <div className="flex gap-x-2">
             {tags.map((tag) => (
               <span
