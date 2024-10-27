@@ -42,3 +42,10 @@ interface PopularPostTypes {
   likeCount: number;
   nickname: string;
 }
+
+interface RecommendPostTypes {
+  title: string;
+  likeCount: number;
+  tags: string;
+  category: string;
+}

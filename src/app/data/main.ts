@@ -140,3 +140,30 @@ export const POPULAR_ARTICLES: PopularPostTypes[] = [
     likeCount: 102,
   },
 ];
+
+export const RECOMMEND_ARTICLES: RecommendPostTypes[] = [
+  {
+    title: '기술주 강세로 나스닥 최고치 기록',
+    category: '부동산',
+    tags: '글로벌,전망,투자전략',
+    likeCount: 152,
+  },
+  {
+    title: '기술주 강세로 나스닥 최고치 기록',
+    tags: '21~30',
+    category: '재테크왕',
+    likeCount: 152,
+  },
+  {
+    title: '미국 연준 금리 동결, 경제 회복 기대',
+    category: '3천 이하',
+    tags: '글로벌,투자전략,금리',
+    likeCount: 98,
+},
+{
+    title: '유럽 경제 회복세, 유로 강세 전망',
+    category: '부동산',
+    tags: '글로벌,경제,환율',
+    likeCount: 120,
+}
+];

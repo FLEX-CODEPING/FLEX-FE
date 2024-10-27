@@ -3,6 +3,7 @@ import MainPostContainer from '../left/MainPostContainer';
 import StockRank from '../left/StockRank';
 import MainMyInfo from './MainMyInfo';
 import PopularPost from './PopularPost';
+import RecommendPost from './RecommendPost';
 
 const MainDownRight = () => {
   return (
@@ -15,7 +16,7 @@ const MainDownRight = () => {
         views={932}
       />
       <PopularPost />
-      <DailyNews />
+      <RecommendPost />
       <StockRank />
     </div>
   );
