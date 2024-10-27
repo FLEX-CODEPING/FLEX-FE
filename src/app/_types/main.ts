@@ -18,7 +18,6 @@ interface DailyArticleTypes {
   title: string;
   content: string;
   media: string;
-  thumbnail: string;
 }
 
 interface RankingTypes {

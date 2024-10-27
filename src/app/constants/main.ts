@@ -42,11 +42,7 @@ export const LANDING_VIEWTYPE_MAP: Record<
 
 export const MAIN_BLOG_BTN = '글 더 보러가기';
 
-export const MAIN_LEFT_TITLE = ['오늘의 뉴스', '오늘의 모의투자 랭킹'];
-
 export const MAIN_LEFT_ETC = ['다른 뉴스 보러가기', '블로그 구경가기'];
-
-export const MAIN_RIGHT_TITLE = '실시간 인기 주식';
 
 export const RANKING_COLOR = ['bg-[#FEEAB4]', 'bg-[#e5e5e5]', 'bg-[#e5cbbc]'];
 

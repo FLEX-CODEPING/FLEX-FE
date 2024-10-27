@@ -1,41 +1,50 @@
-import { mainRightArrow } from '@/app/constants/iconPath';
-import { MAIN_LEFT_ETC, MAIN_LEFT_TITLE } from '@/app/constants/main';
+'use client';
+
+import { rightArrow } from '@/app/constants/iconPath';
+import { MAIN_CONTENTS_TITLE } from '@/app/constants/main';
 import { MOOK_ARTICLES } from '@/app/data/main';
-import Image from 'next/image';
-import Link from 'next/link';
+import { formatDate } from '@/app/utils/date';
+import { truncateString } from '@/app/utils/truncate';
+import { useState } from 'react';
 import Icons from '../../common/Icons';
 
 const DailyNews = () => {
+  const [newsData, setNewsData] = useState<DailyArticleTypes[]>(MOOK_ARTICLES);
+
+  // useEffect(() => {
+  //   const fetchPost = async () => {
+  //     const response = await callGet(
+  //       `/api/main/landing?viewType=${LANDING_VIEWTYPE_MAP[viewType]}`,
+  //     );
+  //     setPostData(response.result);
+  //   };
+  //   fetchPost();
+  // }, [viewType]);
+
   return (
-    <div className="px-6 py-4 flex-col flex w-full">
-      <div className="flex w-full justify-between items-end mb-4">
-        <p className="text-xl font-bold">{MAIN_LEFT_TITLE[0]}</p>
-        <p className="text-xs">2024.10.04</p>
+    <div className="flex-col-center w-full gap-y-5">
+      <div className="w-full flex items-end justify-between px-3 py-4 border-b border-gray-2">
+        <p className="text-2xl font-semibold">{MAIN_CONTENTS_TITLE[1]}</p>
+        <p className="text-xs">{formatDate('2024.10.04')}</p>
       </div>
-      <div className="w-full px-5 py-5 flex-col-center gap-y-5">
-        {MOOK_ARTICLES.map((article, i) => (
-          <div className="flex gap-x-4 w-full pb-2 justify-between cursor-pointer border-b border-b-gray-3">
-            <Image
-              src={article.thumbnail}
-              alt={article.title}
-              width={100}
-              height={69}
-            />
-            <div className="flex flex-col w-full gap-y-1">
-              <div className="flex w-full justify-between">
-                <p className="text-sm font-semibold">{article.title}</p>
-                <p className="text-[10px]">{article.media}</p>
-              </div>
-              <p className="text-xs leading-normal">{article.content}</p>
+      <div className="w-full flex-wrap flex gap-x-12 gap-y-4">
+        {newsData.map((news, i) => (
+          <div
+            className="w-full flex-col-center py-[14px] gap-y-2  border-b border-gray-2 cursor-pointer"
+            key={news.title}
+          >
+            <div className="w-full flex items-center justify-between font-semibold">
+              <p className="text-[15px]">{news.title}</p>
+              <p className="text-[10px]">{news.media}</p>
+            </div>
+            <div className="w-full flex items-end justify-between font-normal">
+              <p className="text-[13px] w-[580px] h-10">
+                {truncateString(news.content, 120)}
+              </p>
+              <Icons name={rightArrow} />
             </div>
           </div>
         ))}
-      </div>
-      <div className="w-full flex flex-row-reverse pr-2">
-        <Link className="text-xs flex gap-x-1 items-center" href="/news">
-          {MAIN_LEFT_ETC[0]}
-          <Icons name={mainRightArrow} />
-        </Link>
       </div>
     </div>
   );
