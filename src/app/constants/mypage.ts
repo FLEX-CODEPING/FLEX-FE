@@ -9,3 +9,9 @@ export const MYPAGE_TEXT = [
     '정보 수정',
     '로그아웃',
 ]
+
+export const ACCOUNT_TEXT = [
+    '개인정보 수정',
+    '변경사항 저장',
+    '중복 확인',
+]
