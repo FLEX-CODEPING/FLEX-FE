@@ -15,12 +15,14 @@ const DailyNews = () => {
       <div className="w-full px-5 py-5 flex-col-center gap-y-5">
         {MOOK_ARTICLES.map((article, i) => (
           <div className="flex gap-x-4 w-full pb-2 justify-between cursor-pointer border-b border-b-gray-3">
-            <Image
-              src={article.thumbnail}
-              alt={article.title}
-              width={100}
-              height={69}
-            />
+            <div className="w-[100px] h-[auto] overflow-hidden relative">
+              <Image
+                className="overflow-hidden transition-transform duration-300 ease-in-out hover:scale-110"
+                src={article.thumbnail}
+                alt={article.title}
+                fill
+              />
+            </div>
             <div className="flex flex-col w-full gap-y-1">
               <div className="flex w-full justify-between">
                 <p className="text-sm font-semibold">{article.title}</p>

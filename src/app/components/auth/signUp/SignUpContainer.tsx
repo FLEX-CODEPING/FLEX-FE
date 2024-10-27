@@ -44,7 +44,7 @@ function SignUpContainer() {
   };
 
   return (
-    <div className="w-[500px] gap-y-5 flex flex-col mt-8">
+    <div className="w-[500px] gap-y-3 flex flex-col mt-4">
       <PersonalInfoForm formData={formData} updateFormData={updateFormData} />
       <IncomeInterestForm formData={formData} updateFormData={updateFormData} />
       <Button

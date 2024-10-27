@@ -73,7 +73,6 @@ const TradeBar = () => {
               textValue={tradeCnt}
               inputType="number"
               placeholder="0"
-              maxLength={4}
               onChange={handleChange}
             />
           </div>
