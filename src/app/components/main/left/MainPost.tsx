@@ -28,8 +28,8 @@ const DailyPost = ({ post }: DailyPostProps) => {
       </div>
 
       <h2 className="font-semibold">{post.title}</h2>
-      <p className="text-base font-light text-gray-700 ">
-        {truncateString(post.content, 57)}
+      <p className="text-sm h-9 font-light text-gray-700 ">
+        {truncateString(post.content, 66)}
       </p>
       <div className="flex justify-between items-center h-5">
         <div className="flex gap-x-[5px]">
