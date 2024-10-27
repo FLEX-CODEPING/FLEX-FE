@@ -6,8 +6,8 @@ import {
 } from '@/app/constants/auth';
 import '@/app/styles/slider.css';
 import { isCorrect } from '@/app/utils/qualify';
-import Input from '../../common/Input';
 import { ACCOUNT_TEXT } from '@/app/constants/mypage';
+import Input from '../../common/Input';
 
 interface MyPersonalInfoProps {
   formData: SignUpFormTypes;

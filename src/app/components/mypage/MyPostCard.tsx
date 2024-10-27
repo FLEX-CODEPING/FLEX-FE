@@ -1,18 +1,23 @@
 import { likeSmall } from '@/app/constants/iconPath';
+import { v4 as uuidv4 } from 'uuid';
 import Icons from '../common/Icons';
 
 const MyPostCard = () => {
   const likeCount = 27;
-  const tags = ['주식', '투자']
+  const tags = ['주식', '투자'];
 
   return (
     <div className="w-full h-[590px] flex-col  inline-flex transition-all rounded-lg duration-300 ease-in-out hover:shadow-lg">
-      <img className="w-full h-[400px] rounded-[10px]" src="/images/3c.png" />
+      <img
+        className="w-full h-[400px] rounded-[10px]"
+        src="/images/3c.png"
+        alt="thumbnail"
+      />
       <div className="w-full  px-3 py-[18px] flex-col gap-2 flex">
-      <div className="pt-[5px] pb-1 gap-2 flex justify-between items-center text-black-0 text-lg font-bold">
+        <div className="pt-[5px] pb-1 gap-2 flex justify-between items-center text-black-0 text-lg font-bold">
           <span>주식 투자 회고: 2023년의 교훈</span>
           <div className="flex items-center gap-1">
-            <Icons name={likeSmall}/>
+            <Icons name={likeSmall} />
             <span className="text-black-0 font-bold">{likeCount}</span>
           </div>
         </div>
@@ -28,9 +33,9 @@ const MyPostCard = () => {
         </div>
         <div className="flex justify-between items-center mt-7">
           <div className="flex gap-x-2">
-            {tags.map((tag, index) => (
+            {tags.map((tag) => (
               <span
-                key={index}
+                key={tag}
                 className="bg-gray-200 px-3 py-1 rounded-full text-gray-800 text-sm font-medium"
               >
                 #{tag}

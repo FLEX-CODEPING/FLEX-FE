@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import MyAccount from '@/app/components/mypage/myaccount/MyAccount';
 import { Suspense } from 'react';

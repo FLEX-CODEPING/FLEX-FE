@@ -6,11 +6,11 @@ import { isCorrect } from '@/app/utils/qualify';
 import { setTokens } from '@/app/utils/setToken';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { ACCOUNT_TEXT } from '@/app/constants/mypage';
+import Image from 'next/image';
 import Button from '../../common/Button';
 import MyPersonalInfo from './MyPersonalInfo';
 import MyInterest from './MyInterest';
-import { ACCOUNT_TEXT } from '@/app/constants/mypage';
-import Image from 'next/image';
 
 function AccountContainer() {
   const searchParams = useSearchParams();
@@ -61,7 +61,7 @@ function AccountContainer() {
       </div>
       <MyPersonalInfo formData={formData} updateFormData={updateFormData} />
       <MyInterest formData={formData} updateFormData={updateFormData} />
-      <div className='flex justify-center'>
+      <div className="flex justify-center">
         <Button
           buttonText={ACCOUNT_TEXT[1]}
           type="account"

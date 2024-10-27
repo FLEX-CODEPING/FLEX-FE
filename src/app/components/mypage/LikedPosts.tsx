@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { v4 as uuidv4 } from 'uuid';
 import Input from '../common/Input';
 import MyPostCard from './MyPostCard';
 
@@ -15,16 +16,12 @@ const MyPosts = () => {
             height={20}
             className="rounded-[32px] ml-3"
           />
-          <Input
-            type="search"
-            onChange={(e) => {}}
-            className="ml-1"
-          />
+          <Input type="search" onChange={(e) => {}} className="ml-1" />
         </div>
       </div>
-      <div className='mt-8 gap-y-10 flex flex-col'>
-      {[1, 2, 3].map((_, index) => (
-          <MyPostCard key={index} />
+      <div className="mt-8 gap-y-10 flex flex-col">
+        {[1, 2, 3].map(() => (
+          <MyPostCard key={uuidv4()} />
         ))}
       </div>
     </div>

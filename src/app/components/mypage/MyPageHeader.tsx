@@ -1,11 +1,11 @@
 'use client';
 
 import { FOLLOW_TEXT, MYPAGE_TEXT } from '@/app/constants/mypage';
-import MyPosts from './MyPosts';
-import LikedPosts from './LikedPosts';
 import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import MyPosts from './MyPosts';
+import LikedPosts from './LikedPosts';
 
 const MyPageHeader = () => {
   const [activeTab, setActiveTab] = useState<'myPosts' | 'likedPosts'>(
@@ -32,7 +32,7 @@ const MyPageHeader = () => {
             <span className="text-black-0 font-bold">256</span>
             <span className="text-black-0 text-sm">{FOLLOW_TEXT[0]}</span>
           </div>
-          <div className="w-[1px] h-8 bg-gray-600"></div>
+          <div className="w-[1px] h-8 bg-gray-600" />
           <div className="flex flex-col items-center">
             <span className="text-black-0 font-bold">244</span>
             <span className="text-black-0 text-sm">{FOLLOW_TEXT[1]}</span>
