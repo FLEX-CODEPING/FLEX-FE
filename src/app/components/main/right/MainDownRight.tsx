@@ -1,4 +1,4 @@
-import { MAIN_RIGHT_TITLE } from '@/app/constants/main';
+import { MAIN_CONTENTS_TITLE } from '@/app/constants/main';
 import { STOCK_DATA } from '@/app/data/simulation';
 import Image from 'next/image';
 
@@ -7,7 +7,7 @@ const MainDownRight = () => {
   return (
     <div className="w-[580px] flex-col-center px-6 py-4">
       <div className="flex w-full justify-between items-end">
-        <p className="text-xl font-bold">{MAIN_RIGHT_TITLE}</p>
+        <p className="text-xl font-bold">{MAIN_CONTENTS_TITLE[3]}</p>
         <p className="text-xs">2024.10.04</p>
       </div>
       <div className="w-full py-6 flex-col-center gap-y-6">
