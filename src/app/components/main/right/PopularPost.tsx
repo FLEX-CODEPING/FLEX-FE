@@ -28,10 +28,10 @@ const PopularPost = () => {
         <p className="text-2xl font-semibold">{MAIN_CONTENTS_TITLE[3]}</p>
         <p className="text-xs">{formatDate('2024.10.04')}</p>
       </div>
-      <div className="w-full flex flex-col gap-y-6">
+      <div className="w-full flex flex-col gap-y-3">
         {populartData.map((data, i) => (
           <div
-            className="w-full flex-col flex py-2.5 px-2 gap-y-1 cursor-pointer"
+            className="w-full flex-col flex py-3 px-2 gap-y-1 cursor-pointer border-b border-b-gray-3 hover:border-b-main-1 transition duration-500"
             key={data.title}
           >
             <div className="w-full flex justify-between">

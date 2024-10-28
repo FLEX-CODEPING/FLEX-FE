@@ -16,7 +16,7 @@ export const dela = Dela_Gothic_One({
 
 const MainFooter = () => {
   return (
-    <div className="flex-col-center w-full px-2 py-2 mt-4 gap-y-[15px] text-sm text-black-0">
+    <div className="flex-col-center w-full px-4 py-[14px] mt-4 gap-y-[15px] text-sm text-black-0">
       <div className="w-full flex items-end gap-x-2">
         <p className={`${dela.className} text-2xl`}>{TITLE}</p>
         <p className="font-semibold">{FOOTER_ETC_TEXT[0]}</p>
@@ -33,11 +33,14 @@ const MainFooter = () => {
           <Icons name={githubICon} />
           <p className="text-sm">{FOOTER_ETC_TEXT[1]}</p>
         </div>
-        <div className="w-full flex gap-x-[15px]">
+        <div className="w-full flex gap-x-2 text-[10px] font-medium">
           {CONTRIBUTORS.map((name, i) => (
-            <p className="flex cursor-pointer text-xs font-semibold" key={name}>
-              {name}
-            </p>
+           <p
+           className="flex cursor-pointer bg-black-1 text-white px-2 py-0.5 rounded-lg hover:bg-white hover:text-black-1 border border-transparent hover:border-black-0 box-border"
+           key={name}
+         >
+           @ {name}
+         </p>
           ))}
         </div>
       </div>
