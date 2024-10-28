@@ -50,7 +50,9 @@ const RecommendPost = () => {
               <div className="flex py-[5px] w-full justify-between items-center mt-2">
                 <div className="flex items-center gap-x-1">
                   {data.tags.split(',').map((tag, i) => (
-                    <div className="bg-gray-3 text-xs px-1 py-0.5 rounded"># {tag}</div>
+                    <div className="bg-gray-3 text-xs px-1 py-0.5 rounded">
+                      # {tag}
+                    </div>
                   ))}
                 </div>
                 <div className="flex w-[48px] justify-between items-center">
@@ -59,13 +61,15 @@ const RecommendPost = () => {
                 </div>
               </div>
             </div>
-            <Image
-              src={'/images/3c.png'}
-              alt={'thumbnail'}
-              width={120}
-              height={70}
-              className='rounded'
-            />
+            <div className="relative overflow-hidden w-[120px] h-[70px]">
+              <Image
+                className="rounded transition-transform duration-300 ease-in-out hover:scale-110 "
+                src={'/images/3c.png'}
+                alt={'thumbnail'}
+                width={120}
+                height={70}
+              />
+            </div>
           </div>
         ))}
       </div>

@@ -12,7 +12,7 @@ const StockRank = () => {
         <p className="text-xs">{formatDate('2024.10.04')}</p>
       </div>
       {filteredStocks.map((stock, i) => (
-        <div className="flex w-full items-center justify-between bg-gray-5 py-5 px-6 rounded-lg shadow-md cursor-pointer">
+        <div className="flex w-full items-center justify-between bg-gray-5 py-5 px-6 rounded-lg hover:shadow-md cursor-pointer transition-shadow duration-500">
           <div className="flex gap-x-3 mr-6">
             <p className="text-3xl font-semibold">{i + 1}</p>
             <Image

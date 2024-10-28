@@ -17,13 +17,13 @@ const DailyPost = ({ post }: DailyPostProps) => {
       key={post.id}
       className="w-[344px] flex flex-col gap-y-2.5 cursor-pointer bg-white rounded"
     >
-      <div className="relative w-full h-28 rounded-md">
+      <div className="relative w-full h-28 overflow-hidden">
         <Image
           src={post.imageUrls[0] || '/images/3c.png'}
           alt={post.title}
           layout="fill"
           objectFit="cover"
-          className="rounded"
+          className="rounded transition-transform duration-300 ease-in-out hover:scale-110"
         />
       </div>
 

@@ -4,9 +4,9 @@ import { MAIN_CONTENTS_TITLE } from '@/app/constants/main';
 import { MOOK_DAILY_POSTS } from '@/app/data/main';
 import { formatDate } from '@/app/utils/date';
 import { useState } from 'react';
-import MainPost from './MainPost';
+import DailyPost from './DailyPost';
 
-const MainPostContainer = () => {
+const DailyPostContainer = () => {
   const [postData, setPostData] =
     useState<LandingPostTypes[]>(MOOK_DAILY_POSTS);
 
@@ -28,11 +28,11 @@ const MainPostContainer = () => {
       </div>
       <div className="w-full flex-wrap flex gap-x-12 gap-y-5">
         {postData.map((post, i) => (
-          <MainPost key={post.id} post={post} />
+          <DailyPost key={post.id} post={post} />
         ))}
       </div>
     </div>
   );
 };
 
-export default MainPostContainer;
+export default DailyPostContainer;
