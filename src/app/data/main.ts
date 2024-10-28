@@ -159,11 +159,11 @@ export const RECOMMEND_ARTICLES: RecommendPostTypes[] = [
     category: '3천 이하',
     tags: '글로벌,투자전략,금리',
     likeCount: 98,
-},
-{
+  },
+  {
     title: '유럽 경제 회복세, 유로 강세 전망',
     category: '부동산',
     tags: '글로벌,경제,환율',
     likeCount: 120,
-}
+  },
 ];

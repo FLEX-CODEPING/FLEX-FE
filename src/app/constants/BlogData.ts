@@ -106,4 +106,3 @@ export const dummyPosts: BlogPost[] = [
     authorImageUrl: '/images/4c.png',
   },
 ];
-
