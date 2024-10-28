@@ -29,7 +29,7 @@ const IncomeInterestForm = ({
   };
 
   return (
-    <div className="w-full flex flex-col gap-y-5 mb-[4%]">
+    <div className="w-full flex flex-col gap-y-3 mb-[4%]">
       <div className="w-full relative flex flex-col gap-y-1">
         <div className="text-sm pl-2.5">{INCOME_TITLE}</div>
         <div className="w-full flex items-center flex-wrap justify-center gap-x-[20px] gap-y-[12px] h-[100px] rounded-2xl border border-gray-2 px-[41px] py-[10px]">

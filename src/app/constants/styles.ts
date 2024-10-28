@@ -12,6 +12,8 @@ export const BUTTON_STYLE = {
     `w-[120px] h-9 text-sm font-medium rounded-md ${className}`,
   blogPost: (className: string) =>
     `w-36 h-10 bg-[#000000] text-white rounded-[10px] font-bold text-xl ${className}`,
+  prediction: (className: string) =>
+    `w-60 h-8 bg-black-1 text-white rounded-lg font-semibold text-[15px] ${className}`,
 } as const;
 
 export const INPUT_STYLE = {

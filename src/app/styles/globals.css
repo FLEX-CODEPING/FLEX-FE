@@ -41,6 +41,9 @@ body {
   .flex-col-center {
     @apply flex flex-col items-center;
   }
+  .wh-fullex {
+    @apply w-full h-full flex;
+  }
 }
 
 @layer base {
