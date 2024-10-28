@@ -47,3 +47,7 @@ export async function POST() {
   // 클라이언트로 최종 응답 반환
   return NextResponse.json(stockData);
 }
+
+        appkey: 'PSQemE10Vl1DvokfVYnpjPdYIWGBlc9oNLMh',
+        appsecret:
+          'N3ip8gjxMARN08tMZUkxno0W4+2JPHLBkXwGqTzbHRsvYeKuIhNpoly2aYQQWTRhk5OgZMqvBNvo9O2Hoa+nKJKcAXVWXiNIAXEynrOF76Qb4FY41VlLhA6nMpubrEm9sOl26jEDZLdtpbMmz0XKKoEe/aTSaiQNU22ee4FXmuDFfK1WsMU=',

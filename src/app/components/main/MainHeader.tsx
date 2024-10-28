@@ -14,13 +14,11 @@ const MainHeader = () => {
           {CATCH_PHRASE[0]}
         </span>
       </div>
-      <div className='text-[50px]'>
+      <div className="text-[50px]">
         <span className={`text-main-1 ${dela.className}`}>
           {CATCH_PHRASE[1]}
         </span>
-        <span className="text-[#424242] font-normal">
-          {CATCH_PHRASE[2]}
-        </span>
+        <span className="text-[#424242] font-normal">{CATCH_PHRASE[2]}</span>
       </div>
     </div>
   );

@@ -69,3 +69,23 @@ export const MAIN_MYINFO_TEXT = [
   '모의투자 수익',
   '누적 조회수',
 ];
+
+export const MAIN_FOOTER_INFO = [
+  'Home',
+  'About',
+  'News',
+  'QnA',
+  'Organization',
+];
+
+export const FOOTER_ETC_TEXT = ['copyright@2024', 'contributors'];
+
+export const CONTRIBUTORS = [
+  'Dana',
+  'J',
+  'Nako',
+  'Wong',
+  'Hwan',
+  'Woong',
+  'Kyu',
+];

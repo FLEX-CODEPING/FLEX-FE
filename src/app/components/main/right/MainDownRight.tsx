@@ -1,3 +1,4 @@
+import MainFooter from './MainFooter';
 import MainMyInfo from './MainMyInfo';
 import PopularPost from './PopularPost';
 import RecommendPost from './RecommendPost';
@@ -15,7 +16,10 @@ const MainDownRight = () => {
       />
       <PopularPost />
       <RecommendPost />
-      <SimulateRank />
+      <div className="w-full flex flex-col">
+        <SimulateRank />
+        <MainFooter />
+      </div>
     </div>
   );
 };
