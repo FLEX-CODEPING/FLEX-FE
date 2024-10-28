@@ -6,7 +6,7 @@ export const dummyPosts: BlogPost[] = [
       '2024년 경제 흐름과 주식시장 분석, 주요 산업의 주식 투자 전략을 제시합니다.',
     date: '2024.10.04',
     imageUrl: '/images/3c.png',
-    category: '주식투자',
+    category: '주식투자,마티니블루',
     likes: 100,
     author: '주식핑',
     authorImageUrl: '/images/4c.png',

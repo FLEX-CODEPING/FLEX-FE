@@ -11,14 +11,13 @@ interface LandingPostTypes {
   createdAt: string;
   updatedAt: string;
   imageUrls: string[];
-  likeCount: 0;
+  likeCount: number;
 }
 
 interface DailyArticleTypes {
   title: string;
   content: string;
   media: string;
-  thumbnail: string;
 }
 
 interface RankingTypes {
@@ -36,4 +35,17 @@ interface UserTypes {
   code: string;
   message: string;
   result: UserResultTypes;
+}
+
+interface PopularPostTypes {
+  title: string;
+  likeCount: number;
+  nickname: string;
+}
+
+interface RecommendPostTypes {
+  title: string;
+  likeCount: number;
+  tags: string;
+  category: string;
 }

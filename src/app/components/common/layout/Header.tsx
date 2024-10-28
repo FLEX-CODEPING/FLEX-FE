@@ -15,8 +15,8 @@ export const dela = Dela_Gothic_One({
 function Header() {
   const router = useRouter();
   const path = usePathname();
-  const { user } = useUser();
-  console.log(user);
+  // const { user } = useUser();
+  // console.log(user);
 
   if (path === '/blog/post') return null;
 
