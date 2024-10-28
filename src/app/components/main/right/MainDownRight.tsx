@@ -1,9 +1,7 @@
-import DailyNews from '../left/DailyNews';
-import MainPostContainer from '../left/MainPostContainer';
-import StockRank from '../left/StockRank';
 import MainMyInfo from './MainMyInfo';
 import PopularPost from './PopularPost';
 import RecommendPost from './RecommendPost';
+import SimulateRank from './SimulateRank';
 
 const MainDownRight = () => {
   return (
@@ -17,7 +15,7 @@ const MainDownRight = () => {
       />
       <PopularPost />
       <RecommendPost />
-      <StockRank />
+      <SimulateRank />
     </div>
   );
 };
