@@ -8,9 +8,9 @@ const MainDownRight = () => {
   return (
     <div className="w-[475px] flex-col-center gap-y-12">
       <MainMyInfo
-        nickname={'코드핑'}
+        nickname="코드핑"
         followers={17}
-        profile={''}
+        profile=""
         profit={+172000}
         views={932}
       />

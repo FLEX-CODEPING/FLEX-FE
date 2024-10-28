@@ -41,7 +41,7 @@ const MainMyInfo = ({
       <div className="w-full flex-col-center gap-y-5">
         <div className="flex gap-x-5 px-2 w-full">
           <Image
-            src={'/images/complete2.png'}
+            src="/images/complete2.png"
             width={54}
             height={54}
             alt="profile"

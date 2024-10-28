@@ -9,6 +9,7 @@ import {
 } from '@/app/constants/main';
 import { Dela_Gothic_One } from 'next/font/google';
 import Icons from '../../common/Icons';
+
 export const dela = Dela_Gothic_One({
   subsets: ['latin'],
   weight: '400',
@@ -35,12 +36,12 @@ const MainFooter = () => {
         </div>
         <div className="w-full flex gap-x-2 text-[10px] font-medium">
           {CONTRIBUTORS.map((name, i) => (
-           <p
-           className="flex cursor-pointer bg-black-1 text-white px-2 py-0.5 rounded-lg hover:bg-white hover:text-black-1 border border-transparent hover:border-black-0 box-border"
-           key={name}
-         >
-           @ {name}
-         </p>
+            <p
+              className="flex cursor-pointer bg-black-1 text-white px-2 py-0.5 rounded-lg hover:bg-white hover:text-black-1 border border-transparent hover:border-black-0 box-border"
+              key={name}
+            >
+              @ {name}
+            </p>
           ))}
         </div>
       </div>
