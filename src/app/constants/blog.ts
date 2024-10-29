@@ -48,15 +48,7 @@ export const SALARY_OPTIONS = [
   '2억 초과',
 ];
 
-export const NAV_OPTIONS = ['전체', '추천', '팔로잉'];
-
-export const BLOG_NAV_PATH = ['/blog', '/blog/recommend', '/blog/followed'];
-
-export const NAV_OPTIONS_WITH_PATH = [
-  { nav: '전체', path: '/blog/all' },
-  { nav: '추천', path: '/blog/recommend' },
-  { nav: '팔로우', path: '/blog/follow' },
-];
+export const NAV_OPTIONS: BlogViewType[] = ['전체', '추천', '팔로잉'];
 
 export const SALARY_RANGE_MAP: Record<string, IncomeTypes> = {
   '3천 이하': 'LESS_3K',

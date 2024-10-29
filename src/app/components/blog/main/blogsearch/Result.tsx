@@ -1,6 +1,6 @@
 'use client';
 
-import PostCard from '../blogpostmain/PostCard';
+import PostCard from '../all/PostCard';
 
 interface ResultsProps {
   results: BlogPost[];

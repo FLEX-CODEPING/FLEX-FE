@@ -1,14 +1,14 @@
 'use client';
 
-import Navigation from '@/app/components/blog/blogmain/blogpostmain/Navigation';
+import Navigation from '@/app/components/blog/main/all/Navigation';
 import { MOOK_DAILY_POSTS } from '@/app/data/main';
 import { useState } from 'react';
 import BlogPost from './BlogPost';
-import Filters from './Filters';
+import Filters from '../recommend/Filters';
 
 const BlogContainer = () => {
   const [postData, setPostData] = useState<LandingPostTypes[]>([]);
-  const [selectedNav, setSelectedNav] = useState('전체');
+  const [selectedNav, setSelectedNav] = useState<BlogViewType>('전체');
   const [selectedAges, setSelectedAges] = useState('');
   const [selectedSalaries, setSelectedSalaries] = useState('');
 
