@@ -8,3 +8,12 @@ export const MYPAGE_TEXT = [
 ];
 
 export const ACCOUNT_TEXT = ['개인정보 수정', '변경사항 저장', '중복 확인'];
+
+export const MY_MODAL_TEXT = [
+  '변경된 내용을 저장하시겠습니까?',
+  '개인정보는 언제든 수정 가능합니다.',
+  '닫기',
+  '저장',
+  '변경된 내용이 저장되었습니다.',
+  '홈화면으로 이동합니다.'
+]
