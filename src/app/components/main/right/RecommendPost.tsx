@@ -39,7 +39,7 @@ const RecommendPost = () => {
       <div className="w-full flex flex-col gap-y-[18px]">
         {populartData.map((data, i) => (
           <div
-            className="w-full flex gap-x-10 py-2 px-4 gap-y-1 cursor-pointer border-b border-b-gray-2"
+            className="w-full flex gap-x-10 py-2 px-4 gap-y-1 cursor-pointer border-b border-b-gray-2 group"
             key={data.title}
           >
             <div className="w-full flex flex-col">
@@ -63,7 +63,7 @@ const RecommendPost = () => {
             </div>
             <div className="relative overflow-hidden w-[120px] h-[70px]">
               <Image
-                className="rounded transition-transform duration-300 ease-in-out hover:scale-110 "
+                className="rounded transition-transform duration-300 ease-in-out group-hover:scale-110 "
                 src="/images/3c.png"
                 alt="thumbnail"
                 width={120}

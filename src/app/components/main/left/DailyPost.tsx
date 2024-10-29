@@ -15,7 +15,7 @@ const DailyPost = ({ post }: DailyPostProps) => {
   return (
     <div
       key={post.id}
-      className="w-[344px] flex flex-col gap-y-2.5 cursor-pointer bg-white rounded"
+      className="w-[344px] flex flex-col gap-y-2.5 cursor-pointer bg-white rounded group"
     >
       <div className="relative w-full h-28 overflow-hidden">
         <Image
@@ -23,7 +23,7 @@ const DailyPost = ({ post }: DailyPostProps) => {
           alt={post.title}
           layout="fill"
           objectFit="cover"
-          className="rounded transition-transform duration-300 ease-in-out hover:scale-110"
+          className="rounded transition-transform duration-300 ease-in-out group-hover:scale-110"
         />
       </div>
 
