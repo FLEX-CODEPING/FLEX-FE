@@ -6,6 +6,7 @@ import { callGet } from '@/app/utils/callApi';
 import { useEffect, useState } from 'react';
 import BlogPost from './BlogPost';
 import Filters from './Filters';
+import { MOOK_DAILY_POSTS } from '@/app/data/main';
 
 const BlogContainer = () => {
   const [postData, setPostData] = useState<LandingPostTypes[]>([]);
@@ -13,15 +14,15 @@ const BlogContainer = () => {
   const [selectedAges, setSelectedAges] = useState('');
   const [selectedSalaries, setSelectedSalaries] = useState('');
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      const response = await callGet(
-        `/api/blog/main?age=${AGE_RANGE_MAP[selectedAges]}&salary=${SALARY_RANGE_MAP[selectedSalaries]}`,
-      );
-      setPostData(response.result);
-    };
-    fetchPost();
-  }, [selectedAges, selectedSalaries]);
+  // useEffect(() => {
+  //   const fetchPost = async () => {
+  //     const response = await callGet(
+  //       `/api/blog/main?age=${AGE_RANGE_MAP[selectedAges]}&salary=${SALARY_RANGE_MAP[selectedSalaries]}`,
+  //     );
+  //     setPostData(response.result);
+  //   };
+  //   fetchPost();
+  // }, [selectedAges, selectedSalaries]);
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -35,8 +36,8 @@ const BlogContainer = () => {
         />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[44px] pt-4 pr-16">
-        {postData &&
-          postData.map((post) => <BlogPost key={post.id} post={post} />)}
+        {MOOK_DAILY_POSTS &&
+          MOOK_DAILY_POSTS.map((post) => <BlogPost key={post.id} post={post} />)}
       </div>
     </div>
   );

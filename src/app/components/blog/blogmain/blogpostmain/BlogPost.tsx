@@ -16,52 +16,52 @@ const BlogPost = ({ post }: BlogPostProps) => {
   return (
     <div
       key={post.id}
-      className="w-[382px] cursor-pointer px-2.5 py-2 bg-white rounded-lg relative transition-all duration-300 ease-in-out hover:shadow-lg"
+      className="w-[382px] cursor-pointer bg-white rounded-lg relative group"
     >
-      <div className="flex justify-between items-center h-[30px]">
-        <div className="flex gap-x-1">
-          {formattedTags.map((tag, i) => (
-            <div
-              key={tag}
-              className="bg-gray-200 px-2 py-1 mb-[5px] rounded-md text-sm font-semibold text-gray-700"
-            >
-              {tag}
-            </div>
-          ))}
-        </div>
-
-        <div className="flex items-center text-sm text-gray-500 gap-x-2.5">
-          <Icons name={likeSmall} />
-          <p>{post.likeCount}</p>
-        </div>
-      </div>
-
-      <div className="relative w-full h-56 border border-gray-300 rounded-md">
+      <div className="relative w-full h-40 overflow-hidden">
         <Image
           src={post.imageUrls[0] || '/images/3c.png'}
           alt={post.title}
           layout="fill"
           objectFit="cover"
+          className="rounded-md transition-transform duration-300 ease-in-out group-hover:scale-110"
         />
       </div>
 
-      <div className="">
-        <h2 className="font-bold text-lg mb-2 ">{post.title}</h2>
-        <p className="text-sm text-gray-700 mb-2 h-10">
-          {truncateString(post.content, 64)}
-        </p>
-        <div className="flex justify-between items-center text-xs ">
-          <div className="flex items-center text-xs">
+      <div className="flex flex-col w-full px-3 py-3 gap-y-2">
+        <div className="flex justify-between items-center text-xs h-6">
+          <div className="flex items-center text-sm gap-x-2 text-black-0">
             <Image
-              src={post.imageUrls[0] || '/images/4c.png'}
+              src={'/images/complete1.png'}
               alt={post.title}
               width={20}
               height={20}
               className="rounded-full"
             />
-            <span className="ml-2 text-gray-500">코드핑</span>
+            <span>코드핑</span>
           </div>
-          <span className=" text-gray-500">{formatDate(post.createdAt)}</span>
+          <span className="text-gray-1">{formatDate(post.createdAt)}</span>
+        </div>
+        <h2 className="font-semibold text-base">{post.title}</h2>
+        <p className="text-sm text-gray-700 h-10">
+          {truncateString(post.content, 68)}
+        </p>
+
+        <div className="flex justify-between items-center h-[30px]">
+          <div className="flex gap-x-1">
+            {formattedTags.map((tag, i) => (
+              <div
+                key={tag}
+                className="bg-gray-200 px-1 py-0.5 rounded text-xs font-semibold text-gray-700"
+              >
+                {tag}
+              </div>
+            ))}
+          </div>
+          <div className="flex w-10 justify-between font-semibold items-center text-[15px] text-black-0 gap-x-2">
+            <Icons name={likeSmall} />
+            <p>{post.likeCount}</p>
+          </div>
         </div>
       </div>
     </div>
