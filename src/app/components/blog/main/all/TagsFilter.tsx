@@ -19,7 +19,7 @@ const TagsFilter = ({
   return (
     <div className="w-full flex-col space-y-4 mt-9">
       <div className="flex items-start space-x-8 text-[12px]">
-        <div className="border-[#F95700] bg-white flex-center border rounded-[20px] h-[40px] px-5">
+        <div className="border-[#F95700] bg-white flex-center border rounded-[20px] h-10 px-5">
           <Icons name={ageIcon} />
           <h3 className="font-semibold ml-2.5">나이</h3>
           <div className="flex pl-2 gap-x-[15px]">
@@ -27,7 +27,7 @@ const TagsFilter = ({
               <button
                 type="button"
                 key={ageOption}
-                className={`px-3 py-1 rounded-full ${
+                className={`px-2.5 py-1 rounded-full ${
                   selectedAges === ageOption ? 'bg-[#FFEBE0]' : 'bg-white'
                 }`}
                 onClick={() =>
@@ -48,7 +48,7 @@ const TagsFilter = ({
               <button
                 type="button"
                 key={salaryOption}
-                className={` px-3 py-1 rounded-full cursor-pointer font-normal transition-colors duration-300 ease-in-out ${
+                className={` px-2.5 py-1 rounded-full cursor-pointer font-normal transition-colors duration-300 ease-in-out ${
                   selectedSalaries === salaryOption
                     ? 'bg-[#FFEBE0]'
                     : 'bg-white'
