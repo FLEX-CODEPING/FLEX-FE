@@ -4,11 +4,11 @@ import { formatDate } from '@/app/utils/date';
 import { truncateString } from '@/app/utils/truncate';
 import Image from 'next/image';
 
-interface MainPostProps {
+interface BlogPostProps {
   post: LandingPostTypes;
 }
 
-const MainPost = ({ post }: MainPostProps) => {
+const BlogPost = ({ post }: BlogPostProps) => {
   const formattedTags = post.tags
     ? post.tags.split(',').map((tag: string) => `#${tag}`)
     : [];
@@ -68,4 +68,4 @@ const MainPost = ({ post }: MainPostProps) => {
   );
 };
 
-export default MainPost;
+export default BlogPost;

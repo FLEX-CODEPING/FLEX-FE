@@ -1,12 +1,13 @@
 import DailyNews from './DailyNews';
-import Ranking from './Ranking';
+import DailyPostContainer from './DailyPostContainer';
+import StockRank from './StockRank';
 
 const MainDownLeft = () => {
   return (
-    <div className="w-[580px] flex-col-center gap-y-">
+    <div className="w-[737px] flex-col-center gap-y-10">
+      <DailyPostContainer />
       <DailyNews />
-      <div className="w-[540px] border-b-2 border-gray-3" />
-      <Ranking />
+      <StockRank />
     </div>
   );
 };
