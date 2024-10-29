@@ -1,7 +1,6 @@
 'use client';
 
 import { HEADER_PATH, HEADER_TEXT } from '@/app/constants/common';
-import { useUser } from '@/app/utils/useUser';
 import { Dela_Gothic_One } from 'next/font/google';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
