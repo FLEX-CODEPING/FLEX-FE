@@ -1,8 +1,9 @@
+import Icons from '@/app/components/common/Icons';
 import { NAV_OPTIONS } from '@/app/constants/blog';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Dispatch, SetStateAction } from 'react';
 import ViewTypeDropDown from './ViewTypeDropDown';
+import { searchSmall } from '@/app/constants/iconPath';
 
 interface NavigationProps {
   selectedNav: string;
@@ -24,7 +25,7 @@ const Navigation = ({ selectedNav, setSelectedNav }: NavigationProps) => {
             </div>
           ))}
           <Link href="/blog/blogsearch" className="nav-button">
-            <Image src="/images/2c.png" alt="2cImg" width={18} height={18} />
+            <Icons name={searchSmall} />
           </Link>
         </div>
         <ViewTypeDropDown />
