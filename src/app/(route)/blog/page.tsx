@@ -3,7 +3,7 @@ import BlogContainer from '@/app/components/blog/blogmain/blogpostmain/BlogConta
 
 const BlogPage = () => {
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center pb-20">
       <BlogContainer />
     </div>
   );

@@ -16,9 +16,9 @@ const BlogPost = ({ post }: BlogPostProps) => {
   return (
     <div
       key={post.id}
-      className="w-[382px] cursor-pointer bg-white rounded-lg relative group"
+      className="w-[382px] cursor-pointer bg-white rounded-md relative group"
     >
-      <div className="relative w-full h-40 overflow-hidden">
+      <div className="relative w-full h-40 overflow-hidden rounded-md">
         <Image
           src={post.imageUrls[0] || '/images/3c.png'}
           alt={post.title}

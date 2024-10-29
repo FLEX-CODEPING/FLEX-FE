@@ -12,7 +12,7 @@ interface NavigationProps {
 const Navigation = ({ selectedNav, setSelectedNav }: NavigationProps) => {
   return (
     <div className="w-full flex">
-      <div className="flex w-full ml-[80px] mr-[38px] mt-[54px] justify-between items-center gap-[10px]">
+      <div className="flex w-full mt-[54px] justify-between items-center gap-[10px]">
         <div className="flex items-center gap-6">
           {NAV_OPTIONS.map((nav, i) => (
             <Link

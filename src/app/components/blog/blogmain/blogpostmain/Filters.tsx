@@ -18,7 +18,7 @@ const Filters = ({
 }: FiltersProps) => {
   return (
     <div className="w-full flex-col space-y-4 mt-9">
-      <div className="flex items-start space-x-8 ml-[68px] ">
+      <div className="flex items-start space-x-8">
         <div className="border-[#F95700] bg-white flex justify-center mr-5; items-center border rounded-[20px] h-[40px] px-[20px] py-[1px]">
           <Icons name={ageIcon} />
           <h3 className="font-semibold text-[12px]">나이</h3>

@@ -12,7 +12,7 @@ export const SALARY_OPTIONS = [
 
 export const NAV_OPTIONS = ['전체', '추천', '팔로잉'];
 
-export const BLOG_NAV_PATH = ['/blog/all', '/blog/recommend', '/blog/followed'];
+export const BLOG_NAV_PATH = ['/blog', '/blog/recommend', '/blog/followed'];
 
 export const NAV_OPTIONS_WITH_PATH = [
   { nav: '전체', path: '/blog/all' },

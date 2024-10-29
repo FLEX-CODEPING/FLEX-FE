@@ -1,12 +1,10 @@
 'use client';
 
 import Navigation from '@/app/components/blog/blogmain/blogpostmain/Navigation';
-import { AGE_RANGE_MAP, SALARY_RANGE_MAP } from '@/app/constants/BlogConstants';
-import { callGet } from '@/app/utils/callApi';
-import { useEffect, useState } from 'react';
+import { MOOK_DAILY_POSTS } from '@/app/data/main';
+import { useState } from 'react';
 import BlogPost from './BlogPost';
 import Filters from './Filters';
-import { MOOK_DAILY_POSTS } from '@/app/data/main';
 
 const BlogContainer = () => {
   const [postData, setPostData] = useState<LandingPostTypes[]>([]);
@@ -26,7 +24,7 @@ const BlogContainer = () => {
 
   return (
     <div className="w-full flex flex-col items-center">
-      <div className="w-full flex flex-col items-start max-w-[1440px]">
+      <div className="w-full flex flex-col items-start max-w-[1280px]">
         <Navigation selectedNav={selectedNav} setSelectedNav={setSelectedNav} />
         <Filters
           selectedAges={selectedAges}
@@ -35,9 +33,11 @@ const BlogContainer = () => {
           setSelectedSalaries={setSelectedSalaries}
         />
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[44px] pt-4 pr-16">
+      <div className="w-full flex flex-wrap max-w-[1280px] gap-y-10 justify-between mt-8">
         {MOOK_DAILY_POSTS &&
-          MOOK_DAILY_POSTS.map((post) => <BlogPost key={post.id} post={post} />)}
+          MOOK_DAILY_POSTS.map((post) => (
+            <BlogPost key={post.id} post={post} />
+          ))}
       </div>
     </div>
   );
