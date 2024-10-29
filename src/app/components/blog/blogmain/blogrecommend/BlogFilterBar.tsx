@@ -1,4 +1,4 @@
-import { filterOptions } from '@/app/constants/FilterBar';
+import { filterOptions } from '@/app/data/blogdata';
 import Image from 'next/image';
 
 const BlogFilterBar = () => {

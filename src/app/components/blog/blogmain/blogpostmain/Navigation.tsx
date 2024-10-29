@@ -1,8 +1,8 @@
-import { BLOG_NAV_PATH, NAV_OPTIONS } from '@/app/constants/BlogConstants';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Dispatch, SetStateAction } from 'react';
 import ViewTypeDropDown from './ViewTypeDropDown';
+import { BLOG_NAV_PATH, NAV_OPTIONS } from '@/app/constants/blog';
 
 interface NavigationProps {
   selectedNav: string;

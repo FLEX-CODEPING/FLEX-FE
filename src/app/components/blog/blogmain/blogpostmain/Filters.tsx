@@ -1,5 +1,5 @@
 import Icons from '@/app/components/common/Icons';
-import { AGE_OPTIONS, SALARY_OPTIONS } from '@/app/constants/BlogConstants';
+import { AGE_OPTIONS, SALARY_OPTIONS } from '@/app/constants/blog';
 import { ageIcon, salaryIcon } from '@/app/constants/iconPath';
 import { Dispatch, SetStateAction } from 'react';
 

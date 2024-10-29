@@ -1,7 +1,7 @@
 'use client';
 
 import Navigation from '@/app/components/blog/blogmain/blogpostmain/Navigation';
-import { dummyPosts } from '@/app/constants/BlogData';
+import { dummyPosts } from '@/app/data/blogdata';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import PostCard from '../blogpostmain/PostCard';
