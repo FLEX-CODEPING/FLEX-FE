@@ -9,7 +9,7 @@ const SaveFinModal = ({ onClose }: SaveFinModalProps) => {
   return (
     <div className="fixed inset-0 flex-center bg-gray-1 bg-opacity-70 z-50">
       <div className="w-[640px] h-[284px] px-11 py-[48px] bg-white rounded-[20px] flex flex-col justify-between">
-      <div className="flex flex-col gap-y-2">
+        <div className="flex flex-col gap-y-2">
           <div className="text-gray-800 text-2xl font-semibold">
             {MY_MODAL_TEXT[4]}
           </div>

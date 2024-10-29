@@ -4,7 +4,6 @@ import {
   BLOGNAME_TEXT,
   NICKNAME_TEXT,
 } from '@/app/constants/auth';
-import '@/app/styles/slider.css';
 import { isCorrect } from '@/app/utils/qualify';
 import { ACCOUNT_TEXT } from '@/app/constants/mypage';
 import Input from '../../common/Input';
