@@ -5,7 +5,7 @@ export async function GET(req: Request) {
   // const data = await getUsers(req);
   // console.log(data);
   const userData: UserTypes = {
-    isSuccess: true,
+    isSuccess: false,
     code: '200',
     message: 'User data retrieved successfully',
     result: {

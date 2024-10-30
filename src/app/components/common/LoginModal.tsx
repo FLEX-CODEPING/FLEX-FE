@@ -1,11 +1,17 @@
+'use client'
+
 import { LOGIN_MODAL_TEXT, LOGIN_TEXT } from '@/app/constants/common';
 import { TITLE } from '@/app/constants/main';
-import { useUser } from '@/app/utils/useUser';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 const LoginModal = () => {
-  const { user } = useUser();
-  console.log(user);
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
 
   return (
     <div className="fixed inset-0 flex-center bg-gray-1 bg-opacity-70 z-50">

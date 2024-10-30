@@ -1,9 +1,11 @@
 'use client';
 
 import { HEADER_PATH, HEADER_TEXT } from '@/app/constants/common';
+import { useUser } from '@/app/utils/useUser';
 import { Dela_Gothic_One } from 'next/font/google';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import LoginModal from '../LoginModal';
 import ProfileDropdown from '../ProfileDropdown';
 
 export const dela = Dela_Gothic_One({
@@ -12,15 +14,21 @@ export const dela = Dela_Gothic_One({
 });
 
 function Header() {
-  const router = useRouter();
   const path = usePathname();
-  // const { user } = useUser();
-  // console.log(user);
+  const { user } = useUser();
 
   if (path === '/blog/post') return null;
 
+  const isChecked =
+    user?.isSuccess ||
+    path === '/' ||
+    path === '/auth/signIn' ||
+    path === '/auth/signUp' ||
+    path === '/auth/complete';
+
   return (
     <header className="w-full flex items-center justify-between h-[80px] px-[5%] text-[20px]">
+      {!isChecked && <LoginModal />}
       <Link className="flex gap-x-2 items-center" href="/">
         <p className={`${dela.className} text-[28px] text-main-1`}>FLEX</p>
       </Link>
