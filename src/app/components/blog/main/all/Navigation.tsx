@@ -1,9 +1,9 @@
 import Icons from '@/app/components/common/Icons';
 import { NAV_OPTIONS } from '@/app/constants/blog';
+import { searchSmall } from '@/app/constants/iconPath';
 import Link from 'next/link';
 import { Dispatch, SetStateAction } from 'react';
 import ViewTypeDropDown from './ViewTypeDropDown';
-import { searchSmall } from '@/app/constants/iconPath';
 
 interface NavigationProps {
   selectedNav: string;

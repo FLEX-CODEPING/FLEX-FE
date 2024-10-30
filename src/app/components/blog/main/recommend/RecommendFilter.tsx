@@ -15,9 +15,7 @@ const RecommendFilter = () => {
           key={option.value}
           className="px-2.5 py-1 flex-center bg-[#FFEBE0] rounded-[15px]"
         >
-          <span className="font-medium text-[12px]">
-            {option.label}
-          </span>
+          <span className="font-medium text-[12px]">{option.label}</span>
         </div>
       ))}
     </div>

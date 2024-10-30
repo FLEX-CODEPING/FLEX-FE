@@ -3,6 +3,7 @@
 import Navigation from '@/app/components/blog/main/all/Navigation';
 import { MOOK_DAILY_POSTS } from '@/app/data/main';
 import { useState } from 'react';
+import FollowerFilter from '../following/FollowerFilter';
 import RecommendFilter from '../recommend/RecommendFilter';
 import BlogPost from './BlogPost';
 import TagsFilter from './TagsFilter';
@@ -23,8 +24,8 @@ const BlogContainer = () => {
   //   fetchPost();
   // }, [selectedAges, selectedSalaries]);
 
-  const optionsBar = (selectedNav: BlogViewType) => {
-    if (selectedNav === '전체')
+  const optionsBar = (selectedType: BlogViewType) => {
+    if (selectedType === '전체')
       return (
         <TagsFilter
           selectedAges={selectedAges}
@@ -33,10 +34,10 @@ const BlogContainer = () => {
           setSelectedSalaries={setSelectedSalaries}
         />
       );
-    else if (selectedNav === '추천') return <RecommendFilter />;
-    else return null;
+    else if (selectedType === '추천') return <RecommendFilter />;
+    else return <FollowerFilter />;
   };
-  
+
   return (
     <div className="w-full flex flex-col items-center">
       <div className="w-full flex flex-col items-start max-w-[1280px]">

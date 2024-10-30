@@ -78,3 +78,9 @@ export const REPLACE_VALUE = {
     { view: '조회수순', replace: 'mostview' },
   ],
 };
+
+export const BLOG_FOLLOWING_TEXT = [
+  '현재 ',
+  '포함',
+  '명의 글 들을 조회중이에요!',
+];
