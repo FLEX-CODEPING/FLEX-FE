@@ -2,6 +2,7 @@
 
 import DOMPurify from 'dompurify';
 import 'github-markdown-css';
+import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
@@ -39,11 +40,10 @@ const BlogContent = ({ content }: BlogContentProps) => {
       >
         {content}
       </ReactMarkdown>
-
-      <img
-        className="w-full"
+      <Image
+        fill
         src="https://www.tradingview.com/x/L7vASBaQ/"
-        alt=""
+        alt={'게시물 썸네일'}
       />
     </div>
   );

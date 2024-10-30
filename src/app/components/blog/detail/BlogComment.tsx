@@ -1,6 +1,7 @@
 'use client';
 
 import { COMMENT } from '@/app/constants/blog';
+import Image from 'next/image';
 import { useState } from 'react';
 
 const BlogComment = () => {
@@ -48,10 +49,12 @@ const BlogComment = () => {
             <div className="flex items-start gap-4">
               <div className="flex justify-between w-full">
                 <div className="inline-flex items-center gap-3">
-                  <img
+                  <Image
                     src="https://bff-images.bemypet.kr/media/medias/all/993-image_picker152967371293908462.jpg"
                     alt="프로필 이미지"
-                    className="w-8 h-8 rounded-full"
+                    width={32}
+                    height={32}
+                    className="rounded-full"
                   />
                   <span className="font-bold text-lg">{comment.author}</span>
                 </div>
