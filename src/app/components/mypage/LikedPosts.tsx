@@ -1,8 +1,8 @@
+import { searchSmall } from '@/app/constants/iconPath';
 import { v4 as uuidv4 } from 'uuid';
+import Icons from '../common/Icons';
 import Input from '../common/Input';
 import MyPostCard from './MyPostCard';
-import { searchSmall } from '@/app/constants/iconPath';
-import Icons from '../common/Icons';
 
 const MyPosts = () => {
   return (

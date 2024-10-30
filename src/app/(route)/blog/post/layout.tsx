@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import LoginModal from '@/app/components/common/LoginModal';
 import { useUser } from '@/app/utils/useUser';

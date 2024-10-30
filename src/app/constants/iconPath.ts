@@ -394,4 +394,3 @@ export const searchBig = {
     strokeLinejoin: 'round' as 'round',
   },
 };
-

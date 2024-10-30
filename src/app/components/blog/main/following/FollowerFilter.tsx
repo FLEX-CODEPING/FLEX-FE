@@ -6,22 +6,22 @@ const FollowerFilter = () => {
     <div className="mt-9  px-6 text-xs flex-center h-10 gap-x-[15px] py-2.5 rounded-xl text-white bg-black-1">
       <div className="relative flex w-12">
         <Image
-          src={'/images/complete1.png'}
-          alt={'profile'}
+          src="/images/complete1.png"
+          alt="profile"
           width={20}
           height={20}
           className="border-white border rounded-full"
         />
         <Image
-          src={'/images/complete2.png'}
-          alt={'profile'}
+          src="/images/complete2.png"
+          alt="profile"
           width={20}
           height={20}
           className="border-white border rounded-full absolute left-3"
         />
         <Image
-          src={'/images/complete3.png'}
-          alt={'profile'}
+          src="/images/complete3.png"
+          alt="profile"
           width={20}
           height={20}
           className="border-white border rounded-full absolute left-6"

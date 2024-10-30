@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { LOGIN_MODAL_TEXT, LOGIN_TEXT } from '@/app/constants/common';
 import { TITLE } from '@/app/constants/main';

@@ -25,7 +25,7 @@ const BlogContainer = () => {
   // }, [selectedAges, selectedSalaries]);
 
   const optionsBar = (selectedType: BlogViewType) => {
-    if (selectedType === '전체')
+    if (selectedType === '전체') {
       return (
         <TagsFilter
           selectedAges={selectedAges}
@@ -34,8 +34,9 @@ const BlogContainer = () => {
           setSelectedSalaries={setSelectedSalaries}
         />
       );
-    else if (selectedType === '추천') return <RecommendFilter />;
-    else return <FollowerFilter />;
+    }
+    if (selectedType === '추천') return <RecommendFilter />;
+    return <FollowerFilter />;
   };
 
   return (
