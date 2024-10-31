@@ -40,7 +40,7 @@ const RecommendPost = () => {
             </div>
           </div>
         ) : (
-          <div className="h-[24.5px]"></div>
+          <div className="h-[24.5px]" />
         )}
       </div>
       {user?.isSuccess ? (

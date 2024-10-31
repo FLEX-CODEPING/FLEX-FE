@@ -2,12 +2,12 @@
 
 import { HEADER_PATH, HEADER_TEXT } from '@/app/constants/common';
 import { TITLE } from '@/app/constants/main';
+import { useUserStore } from '@/app/store/store';
 import { Dela_Gothic_One } from 'next/font/google';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import LoginModal from '../LoginModal';
 import ProfileDropdown from '../ProfileDropdown';
-import { useUserStore } from '@/app/store/store';
 
 export const dela = Dela_Gothic_One({
   subsets: ['latin'],
