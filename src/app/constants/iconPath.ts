@@ -267,7 +267,7 @@ export const loadingCircle = {
   options: {
     stroke: 'black',
     strokeWidth: 6,
-    strokeLineCap: 'round' as 'round',
+    strokeLinecap: 'round' as 'round',
     strokeLinejoin: 'round' as 'round',
   },
 };
@@ -308,7 +308,7 @@ export const blueArrow = {
   options: {
     stroke: '#0065D1',
     strokeWidth: 2,
-    strokeLineCap: 'round' as 'round',
+    strokeLinecap: 'round' as 'round',
     strokeLinejoin: 'round' as 'round',
   },
 };
@@ -321,7 +321,7 @@ export const redArrow = {
   options: {
     stroke: '#FF2626',
     strokeWidth: 2,
-    strokeLineCap: 'round' as 'round',
+    strokeLinecap: 'round' as 'round',
     strokeLinejoin: 'round' as 'round',
   },
 };
@@ -377,7 +377,7 @@ export const searchSmall = {
   options: {
     stroke: 'black',
     strokeWidth: 2,
-    strokeLineCap: 'round' as 'round',
+    strokeLinecap: 'round' as 'round',
     strokeLinejoin: 'round' as 'round',
   },
 };
@@ -390,7 +390,7 @@ export const searchBig = {
   options: {
     stroke: 'black',
     strokeWidth: 6,
-    strokeLineCap: 'round' as 'round',
+    strokeLinecap: 'round' as 'round',
     strokeLinejoin: 'round' as 'round',
   },
 };
