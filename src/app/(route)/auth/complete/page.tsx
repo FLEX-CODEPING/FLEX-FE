@@ -1,7 +1,6 @@
 'use client';
 
 import Icons from '@/app/components/common/Icons';
-import { dela } from '@/app/components/common/layout/Header';
 import {
   COMPLETE_RECOMMEND_D,
   COMPLETE_RECOMMEND_IMG,
@@ -25,7 +24,7 @@ function Complete() {
           <p>{COMPLETE_TEXT[0]}</p>
         </div>
         <div className="flex">
-          <p className={`${dela.className} text-main-1`}>{TITLE}</p>
+          <p className={`font-dela text-main-1`}>{TITLE}</p>
           <p>{COMPLETE_TEXT[1]}</p>
         </div>
       </div>

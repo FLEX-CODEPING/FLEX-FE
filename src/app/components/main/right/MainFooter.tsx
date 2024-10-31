@@ -7,19 +7,13 @@ import {
   MAIN_FOOTER_INFO,
   TITLE,
 } from '@/app/constants/main';
-import { Dela_Gothic_One } from 'next/font/google';
 import Icons from '../../common/Icons';
-
-export const dela = Dela_Gothic_One({
-  subsets: ['latin'],
-  weight: '400',
-});
 
 const MainFooter = () => {
   return (
     <div className="flex-col-center w-full px-4 py-[14px] mt-4 gap-y-[15px] text-sm text-black-0">
       <div className="w-full flex items-end gap-x-2">
-        <p className={`${dela.className} text-2xl`}>{TITLE}</p>
+        <p className={`font-dela text-2xl`}>{TITLE}</p>
         <p className="font-semibold">{FOOTER_ETC_TEXT[0]}</p>
       </div>
       <div className="w-full flex font-semibold gap-x-4">
