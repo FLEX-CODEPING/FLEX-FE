@@ -9,7 +9,7 @@ const MainHeader = () => {
         </span>
       </div>
       <div className="text-[50px]">
-        <span className={`text-main-1 font-dela`}>{CATCH_PHRASE[1]}</span>
+        <span className="text-main-1 font-dela">{CATCH_PHRASE[1]}</span>
         <span className="text-[#424242] font-normal">{CATCH_PHRASE[2]}</span>
       </div>
     </div>

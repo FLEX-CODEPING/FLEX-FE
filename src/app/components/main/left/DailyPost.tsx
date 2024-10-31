@@ -22,6 +22,7 @@ const DailyPost = ({ post }: DailyPostProps) => {
           src={post.imageUrls[0] || '/images/3c.png'}
           alt={post.title}
           fill
+          placeholder="blur"
           className="rounded transition-transform duration-300 ease-in-out group-hover:scale-110"
         />
       </div>

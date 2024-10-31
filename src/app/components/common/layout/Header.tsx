@@ -24,7 +24,7 @@ function Header() {
     <header className="w-full flex items-center justify-between h-[80px] px-[5%] text-[20px]">
       {!isChecked && <LoginModal />}
       <Link className="flex gap-x-2 items-center" href="/">
-        <p className={`font-dela text-[28px] text-main-1`}>FLEX</p>
+        <p className="font-dela text-[28px] text-main-1">FLEX</p>
       </Link>
       <div className="flex gap-x-[50px]">
         {HEADER_TEXT.map((text, i) => (

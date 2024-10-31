@@ -24,7 +24,7 @@ function Complete() {
           <p>{COMPLETE_TEXT[0]}</p>
         </div>
         <div className="flex">
-          <p className={`font-dela text-main-1`}>{TITLE}</p>
+          <p className="font-dela text-main-1">{TITLE}</p>
           <p>{COMPLETE_TEXT[1]}</p>
         </div>
       </div>
