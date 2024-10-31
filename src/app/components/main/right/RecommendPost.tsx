@@ -61,13 +61,13 @@ const RecommendPost = () => {
                 </div>
               </div>
             </div>
-            <div className="relative overflow-hidden w-[120px] h-[70px]">
+            <div className="relative w-[120px] h-[70px] overflow-hidden">
               <Image
+                loading="lazy"
                 className="rounded transition-transform duration-300 ease-in-out group-hover:scale-110 "
                 src="/images/3c.png"
                 alt="thumbnail"
-                width={120}
-                height={70}
+                fill
               />
             </div>
           </div>

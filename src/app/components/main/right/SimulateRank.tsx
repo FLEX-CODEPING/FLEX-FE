@@ -29,6 +29,7 @@ const SimulateRank = () => {
                 width={40}
                 height={40}
                 className="rounded-full"
+                loading="lazy"
               />
             </div>
             <div className="flex flex-col w-full gap-y-1">

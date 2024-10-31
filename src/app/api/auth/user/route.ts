@@ -1,11 +1,10 @@
-import { getUsers } from '@/app/service/getRequest';
 import { NextResponse } from 'next/server';
 
 export async function GET(req: Request) {
   // const data = await getUsers(req);
   // console.log(data);
   const userData: UserTypes = {
-    isSuccess: false,
+    isSuccess: true,
     code: '200',
     message: 'User data retrieved successfully',
     result: {

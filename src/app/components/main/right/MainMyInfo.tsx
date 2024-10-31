@@ -78,7 +78,7 @@ const MainMyInfo = ({
           </div>
         </div>
       ) : (
-        <div className="flex-col-center gap-y-6 py-5">
+        <div className="flex-col-center gap-y-6 pb-5 pt-[34px]">
           <div className="w-full flex text-lg text-black-0 gap-x-1">
             <p>{MAIN_MYINFO[0]}</p>
             <p className="text-main-1">{MAIN_MYINFO[1]}</p>
