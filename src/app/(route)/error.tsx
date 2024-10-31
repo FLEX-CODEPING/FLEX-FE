@@ -1,7 +1,6 @@
 'use client';
 
 export default function ErrorPage({ error }: { error: Error }) {
-  console.log(error);
   return (
     <section className="flex flex-col items-center min-h-screen">
       <div className="flex flex-col items-center justify-center w-[1440px] h-screen gap-y-10">

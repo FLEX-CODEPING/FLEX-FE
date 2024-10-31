@@ -43,7 +43,7 @@ const BlogContent = ({ content }: BlogContentProps) => {
       <Image
         fill
         src="https://www.tradingview.com/x/L7vASBaQ/"
-        alt={'게시물 썸네일'}
+        alt="게시물 썸네일"
       />
     </div>
   );

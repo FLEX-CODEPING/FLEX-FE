@@ -31,7 +31,7 @@ const BlogComment = () => {
         value={commentInput}
         placeholder={COMMENT[1]}
         onChange={(e) => setCommentInput(e.target.value)}
-        className="w-full h-[80px] pl-3 pr-2 py-2 text-sm rounded-[10px] border resize-none border-gray-2 outline-none focus:border-main-1 scrollbar-hide"
+        className="w-full h-[80px] pl-3 pr-2 py-2 text-sm rounded-[10px] border resize-none border-gray-2 outline-none focus:border-main-1 overflow-y-auto hide-scrollbar"
       />
       <div className="flex justify-end mt-3">
         <button
