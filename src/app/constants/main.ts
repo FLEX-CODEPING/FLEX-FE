@@ -89,3 +89,7 @@ export const CONTRIBUTORS = [
   'Woong',
   'Kyu',
 ];
+
+export const RECOMMEND_LOGIN = [
+  '로그인 후 오직 나만을 위한 게시물들을 만나보세요!',
+];

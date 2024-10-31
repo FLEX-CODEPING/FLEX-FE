@@ -6,11 +6,11 @@ import {
   MAIN_MYINFO,
   MAIN_MYINFO_TEXT,
 } from '@/app/constants/main';
+import { useUserStore } from '@/app/store/store';
 import Kakao from '@/app/styles/svgs/Kakao';
 import Image from 'next/image';
 import Link from 'next/link';
 import Icons from '../../common/Icons';
-import { useUserStore } from '@/app/store/store';
 
 interface MainMyInfoProps {
   nickname: string;
@@ -93,7 +93,6 @@ const MainMyInfo = ({
           </Link>
         </div>
       )}
-      {/* */}
     </div>
   );
 };

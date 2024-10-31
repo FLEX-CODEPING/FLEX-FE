@@ -7,6 +7,7 @@ import { useUserStore } from '@/app/store/store';
 import Image from 'next/image';
 import { useState } from 'react';
 import Icons from '../../common/Icons';
+import RecommendBlur from './RecommendBlur';
 
 const RecommendPost = () => {
   const { user } = useUserStore();
@@ -38,45 +39,51 @@ const RecommendPost = () => {
               3천 이하
             </div>
           </div>
-        ) : null}
+        ) : (
+          <div className="h-[24.5px]"></div>
+        )}
       </div>
-      <div className="w-full flex flex-col gap-y-[18px]">
-        {populartData.map((data, i) => (
-          <div
-            className="w-full flex gap-x-5 py-2 px-4 gap-y-1 cursor-pointer border-b border-b-gray-2 group"
-            key={data.title}
-          >
-            <div className="w-[300px] flex flex-col">
-              <p className="text-[10px] font-bold text-main-1">
-                {data.category}
-              </p>
-              <p className="text-[15px] font-semibold">{data.title}</p>
-              <div className="flex py-[5px] w-full justify-between items-center mt-2">
-                <div className="flex items-center gap-x-1">
-                  {data.tags.split(',').map((tag, index) => (
-                    <div className="bg-gray-3 text-xs px-1 py-0.5 rounded">
-                      # {tag}
-                    </div>
-                  ))}
-                </div>
-                <div className="flex w-[48px] justify-between items-center">
-                  <Icons name={likeSmall} />
-                  <p className="text-sm font-bold">{data.likeCount}</p>
+      {user?.isSuccess ? (
+        <div className="w-full flex flex-col gap-y-[18px]">
+          {populartData.map((data, i) => (
+            <div
+              className="w-full flex gap-x-5 py-2 px-4 gap-y-1 cursor-pointer border-b border-b-gray-2 group"
+              key={data.title}
+            >
+              <div className="w-[300px] flex flex-col">
+                <p className="text-[10px] font-bold text-main-1">
+                  {data.category}
+                </p>
+                <p className="text-[15px] font-semibold">{data.title}</p>
+                <div className="flex py-[5px] w-full justify-between items-center mt-2">
+                  <div className="flex items-center gap-x-1">
+                    {data.tags.split(',').map((tag, index) => (
+                      <div className="bg-gray-3 text-xs px-1 py-0.5 rounded">
+                        # {tag}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex w-[48px] justify-between items-center">
+                    <Icons name={likeSmall} />
+                    <p className="text-sm font-bold">{data.likeCount}</p>
+                  </div>
                 </div>
               </div>
+              <div className="relative w-[120px] h-16 overflow-hidden rounded">
+                <Image
+                  fill
+                  className="rounded transition-transform duration-300 ease-in-out group-hover:scale-110 "
+                  src="/images/3c.png"
+                  alt="thumbnail"
+                  loading="lazy"
+                />
+              </div>
             </div>
-            <div className="relative w-[120px] h-16 overflow-hidden rounded">
-              <Image
-                fill
-                className="rounded transition-transform duration-300 ease-in-out group-hover:scale-110 "
-                src="/images/3c.png"
-                alt="thumbnail"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <RecommendBlur />
+      )}
     </div>
   );
 };
