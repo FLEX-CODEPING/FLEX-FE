@@ -16,23 +16,16 @@ const pretendard = localFont({
   variable: '--font-pretendard',
 });
 
-const DelaGothicOne = localFont({
-  src: '../static/fonts/DelaGothicOne-Regular.ttf',
-  display: 'swap',
-  variable: '--font-DelaGothicOne',
-});
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ko"
-      className={`${DelaGothicOne.variable} ${pretendard.className}`}
-    >
-      <body className="min-w-[1100px] mx-auto font-pretendard">
+    <html lang="ko">
+      <body
+        className={`${pretendard.variable} min-w-[1100px] mx-auto font-pretendard`}
+      >
         <UserProvider>
           <Header />
           {children}

@@ -10,7 +10,6 @@ const config: Config = {
     extend: {
       fontFamily: {
         pretendard: ['var(--font-pretendard)'],
-        dela: ['var(--font-DelaGothicOne)'],
       },
       colors: {
         main: {

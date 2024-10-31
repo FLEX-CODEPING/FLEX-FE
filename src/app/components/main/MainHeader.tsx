@@ -1,4 +1,7 @@
+'use client'
+
 import { CATCH_PHRASE } from '@/app/constants/main';
+import { dela } from '../common/layout/Header';
 
 const MainHeader = () => {
   return (
@@ -9,7 +12,9 @@ const MainHeader = () => {
         </span>
       </div>
       <div className="text-[50px]">
-        <span className="text-main-1 font-dela">{CATCH_PHRASE[1]}</span>
+        <span className={`text-main-1 ${dela.className}`}>
+          {CATCH_PHRASE[1]}
+        </span>
         <span className="text-[#424242] font-normal">{CATCH_PHRASE[2]}</span>
       </div>
     </div>
