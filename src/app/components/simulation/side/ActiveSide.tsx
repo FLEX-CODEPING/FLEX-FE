@@ -1,6 +1,6 @@
 'use client';
 
-import { useSidebarStore } from '@/app/store/scoreStore';
+import { useSidebarStore } from '@/app/store/store';
 import BackTest from './backtest/BackTest';
 import Interest from './interest/Interest';
 import Posession from './posession/Posession';

@@ -7,13 +7,8 @@ import {
   MAIN_FOOTER_INFO,
   TITLE,
 } from '@/app/constants/main';
-import { Dela_Gothic_One } from 'next/font/google';
 import Icons from '../../common/Icons';
-
-export const dela = Dela_Gothic_One({
-  subsets: ['latin'],
-  weight: '400',
-});
+import { dela } from '../../common/layout/Header';
 
 const MainFooter = () => {
   return (

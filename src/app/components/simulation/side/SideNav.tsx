@@ -5,7 +5,7 @@ import {
   SIDE_NAV_ICONS_SELECTED,
   SIDE_NAV_TYPES,
 } from '@/app/constants/simulation';
-import { useSidebarStore } from '@/app/store/scoreStore';
+import { useSidebarStore } from '@/app/store/store';
 import Icons from '../../common/Icons';
 
 const SideNav = () => {

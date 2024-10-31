@@ -15,14 +15,16 @@ const StockRank = () => {
         {filteredStocks.map((stock, i) => (
           <div className="flex w-full items-center justify-between bg-gray-5 py-5 px-6 rounded-lg hover:shadow-md cursor-pointer transition-shadow duration-500">
             <div className="flex gap-x-3 mr-6">
-              <p className="text-3xl font-semibold">{i + 1}</p>
-              <Image
-                src={stock.image_path}
-                alt={stock.name}
-                width={40}
-                height={40}
-                className="rounded-full"
-              />
+              <p className="text-3xl font-semibold w-5 text-center">{i + 1}</p>
+              <div className="w-10 h-10 relative">
+                <Image
+                  src={stock.image_path}
+                  alt={stock.name}
+                  fill
+                  loading="lazy"
+                  className="rounded-full"
+                />
+              </div>
             </div>
             <div className="flex flex-col w-full gap-y-1">
               <div className="flex w-full justify-between">

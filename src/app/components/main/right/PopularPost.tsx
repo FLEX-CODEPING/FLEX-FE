@@ -38,7 +38,7 @@ const PopularPost = () => {
               <p className="text-[10px]">{data.nickname}</p>
               <div className="flex w-[48px] justify-between items-center">
                 <Icons name={likeSmall} />
-                <p className="text-sm font-bold">{data.likeCount}</p>
+                <p className="text-sm font-medium">{data.likeCount}</p>
               </div>
             </div>
             <p className="font-semibold">{truncateString(data.title, 120)}</p>

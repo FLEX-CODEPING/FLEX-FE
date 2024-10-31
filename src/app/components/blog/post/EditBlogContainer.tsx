@@ -1,16 +1,15 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Button from '@/app/components/common/Button';
 import { POST_BTN_TEXT } from '@/app/constants/blog';
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import BlogInfoContainer from './BlogInfoContainer';
-import PostModal from './postModal';
 import PostFinModal from './postFinModal';
+import PostModal from './postModal';
 
 const MyEditor = dynamic(() => import('./markdown/MyEditor'), { ssr: false });
-
 const EditBlogContainer = () => {
   const [postData, setPostData] = useState<PostTypes>({
     title: '',

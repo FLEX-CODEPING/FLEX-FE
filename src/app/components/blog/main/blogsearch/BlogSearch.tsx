@@ -1,8 +1,8 @@
 'use client';
 
-import Results from '@/app/components/blog/blogmain/blogsearch/Result';
-import SearchBar from '@/app/components/blog/blogmain/blogsearch/SearchBar';
-import { dummyPosts } from '@/app/constants/BlogData';
+import Results from '@/app/components/blog/main/blogsearch/Result';
+import SearchBar from '@/app/components/blog/main/blogsearch/SearchBar';
+import { dummyPosts } from '@/app/data/blogdata';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 

@@ -1,5 +1,5 @@
 import { likeSmall } from '@/app/constants/iconPath';
-import { v4 as uuidv4 } from 'uuid';
+import Image from 'next/image';
 import Icons from '../common/Icons';
 
 const MyPostCard = () => {
@@ -8,11 +8,14 @@ const MyPostCard = () => {
 
   return (
     <div className="w-full h-[590px] flex-col  inline-flex transition-all rounded-lg duration-300 ease-in-out hover:shadow-lg">
-      <img
-        className="w-full h-[400px] rounded-[10px]"
-        src="/images/3c.png"
-        alt="thumbnail"
-      />
+      <div className="w-full h-[400px] relative rounded-[10px]">
+        <Image
+          fill
+          className="rounded-[10px]"
+          src="/images/3c.png"
+          alt="thumbnail"
+        />
+      </div>
       <div className="w-full  px-3 py-[18px] flex-col gap-2 flex">
         <div className="pt-[5px] pb-1 gap-2 flex justify-between items-center text-black-0 text-lg font-bold">
           <span>주식 투자 회고: 2023년의 교훈</span>

@@ -54,3 +54,5 @@ interface PostCardTypes {
   date: string;
   tags: string[];
 }
+
+type BlogViewType = '전체' | '추천' | '팔로잉';

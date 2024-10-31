@@ -1,6 +1,7 @@
 'use client';
 
 import { COMMENT } from '@/app/constants/blog';
+import Image from 'next/image';
 import { useState } from 'react';
 
 const BlogComment = () => {
@@ -30,7 +31,7 @@ const BlogComment = () => {
         value={commentInput}
         placeholder={COMMENT[1]}
         onChange={(e) => setCommentInput(e.target.value)}
-        className="w-full h-[80px] pl-3 pr-2 py-2 text-sm rounded-[10px] border resize-none border-gray-2 outline-none focus:border-main-1 scrollbar-hide"
+        className="w-full h-[80px] pl-3 pr-2 py-2 text-sm rounded-[10px] border resize-none border-gray-2 outline-none focus:border-main-1 overflow-y-auto hide-scrollbar"
       />
       <div className="flex justify-end mt-3">
         <button
@@ -48,10 +49,12 @@ const BlogComment = () => {
             <div className="flex items-start gap-4">
               <div className="flex justify-between w-full">
                 <div className="inline-flex items-center gap-3">
-                  <img
+                  <Image
                     src="https://bff-images.bemypet.kr/media/medias/all/993-image_picker152967371293908462.jpg"
                     alt="프로필 이미지"
-                    className="w-8 h-8 rounded-full"
+                    width={32}
+                    height={32}
+                    className="rounded-full"
                   />
                   <span className="font-bold text-lg">{comment.author}</span>
                 </div>

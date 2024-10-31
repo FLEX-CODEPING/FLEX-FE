@@ -44,6 +44,7 @@ const NewsPick = ({
         {PRESS_TYPES.map((press, i) => (
           <button
             type="button"
+            key={press}
             onClick={() => handleNewsClick(press)}
             className={`font-medium ${
               selectedNews.includes(press)
@@ -68,15 +69,13 @@ const NewsPick = ({
         {dropdownOpen && (
           <div className="absolute w-[119px] top-[30px] bg-white border border-gray-300 rounded-[5px] shadow-lg z-10">
             {NEWS_VIEW_TYPE.map((option) => (
-              <button
-                type="button"
+              <div
                 key={option}
-                value={option}
                 className="w-full text-left px-4 py-1 hover:bg-gray-100"
                 onClick={handleSelectValue}
               >
                 {option}
-              </button>
+              </div>
             ))}
           </div>
         )}

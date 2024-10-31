@@ -1,15 +1,15 @@
 'use client';
 
 import { HEADER_PROFILE_TEXT, LOGIN_TEXT } from '@/app/constants/common';
+import { useUserStore } from '@/app/store/store';
 import { handleLogout } from '@/app/utils/setToken';
-import { useUser } from '@/app/utils/useUser';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
 const ProfileDropdown = () => {
   const [isHover, setIsHover] = useState(false);
-  const { user } = useUser();
+  const { user } = useUserStore();
 
   const isLogin = user?.isSuccess;
 
@@ -25,7 +25,7 @@ const ProfileDropdown = () => {
         <div className="text-main-1 text-[24px] font-light">|</div>
         {isLogin ? (
           <div
-            className="flex gap-x-2 items-center pb-1 pt-1"
+            className="flex gap-x-2 items-center pb-1 pt-1 w-20"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
           >
@@ -59,7 +59,7 @@ const ProfileDropdown = () => {
             )}
           </div>
         ) : (
-          <Link className="text-xs font-bold" href="/auth/signIn">
+          <Link className="text-xs font-bold w-20" href="/auth/signIn">
             {LOGIN_TEXT[1]}
           </Link>
         )}
