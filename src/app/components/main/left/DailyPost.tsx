@@ -27,7 +27,7 @@ const DailyPost = ({ post }: DailyPostProps) => {
       </div>
 
       <h2 className="font-semibold">{post.title}</h2>
-      <p className="text-sm h-9 font-light text-gray-700 ">
+      <p className="text-sm h-9 font-light text-black-0">
         {truncateString(post.content, 66)}
       </p>
       <div className="flex justify-between items-center h-5">
@@ -35,7 +35,7 @@ const DailyPost = ({ post }: DailyPostProps) => {
           {formattedTags.map((tag, i) => (
             <div
               key={tag}
-              className="bg-gray-200 px-1 py-0.5 rounded-md text-xs font-semibold text-gray-700"
+              className="bg-gray-3 px-1 py-0.5 rounded-md text-xs font-semibold text-black-1"
             >
               {tag}
             </div>
