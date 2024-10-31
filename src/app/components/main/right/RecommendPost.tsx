@@ -3,11 +3,13 @@
 import { likeSmall } from '@/app/constants/iconPath';
 import { MAIN_CONTENTS_TITLE } from '@/app/constants/main';
 import { RECOMMEND_ARTICLES } from '@/app/data/main';
+import { useUserStore } from '@/app/store/store';
 import Image from 'next/image';
 import { useState } from 'react';
 import Icons from '../../common/Icons';
 
 const RecommendPost = () => {
+  const { user } = useUserStore();
   const [populartData, setNewsData] =
     useState<RecommendPostTypes[]>(RECOMMEND_ARTICLES);
   // useEffect(() => {
@@ -24,17 +26,19 @@ const RecommendPost = () => {
     <div className="flex-col-center w-full gap-y-5">
       <div className="w-full flex flex-col gap-y-4 px-3 py-4 border-b border-gray-2">
         <p className="text-2xl font-semibold">{MAIN_CONTENTS_TITLE[4]}</p>
-        <div className="flex gap-x-3 text-[11px] font-medium">
-          <div className="flex-center bg-main-4 px-2.5 py-1 rounded-xl">
-            부동산
+        {user?.isSuccess ? (
+          <div className="flex gap-x-3 text-[11px] font-medium">
+            <div className="flex-center bg-main-4 px-2.5 py-1 rounded-xl">
+              부동산
+            </div>
+            <div className="flex-center bg-main-4 px-2.5 py-1 rounded-xl">
+              21 ~ 30
+            </div>
+            <div className="flex-center bg-main-4 px-2.5 py-1 rounded-xl">
+              3천 이하
+            </div>
           </div>
-          <div className="flex-center bg-main-4 px-2.5 py-1 rounded-xl">
-            21 ~ 30
-          </div>
-          <div className="flex-center bg-main-4 px-2.5 py-1 rounded-xl">
-            3천 이하
-          </div>
-        </div>
+        ) : null}
       </div>
       <div className="w-full flex flex-col gap-y-[18px]">
         {populartData.map((data, i) => (

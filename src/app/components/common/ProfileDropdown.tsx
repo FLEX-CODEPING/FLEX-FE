@@ -1,15 +1,15 @@
 'use client';
 
 import { HEADER_PROFILE_TEXT, LOGIN_TEXT } from '@/app/constants/common';
+import { useUserStore } from '@/app/store/store';
 import { handleLogout } from '@/app/utils/setToken';
-import { useUser } from '@/app/utils/useUser';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
 const ProfileDropdown = () => {
   const [isHover, setIsHover] = useState(false);
-  const { user } = useUser();
+  const { user } = useUserStore();
 
   const isLogin = user?.isSuccess;
 

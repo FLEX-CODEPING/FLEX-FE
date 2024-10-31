@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { CATCH_PHRASE } from '@/app/constants/main';
 import { dela } from '../common/layout/Header';

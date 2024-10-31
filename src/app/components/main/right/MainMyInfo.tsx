@@ -7,10 +7,10 @@ import {
   MAIN_MYINFO_TEXT,
 } from '@/app/constants/main';
 import Kakao from '@/app/styles/svgs/Kakao';
-import { useUser } from '@/app/utils/useUser';
 import Image from 'next/image';
 import Link from 'next/link';
 import Icons from '../../common/Icons';
+import { useUserStore } from '@/app/store/store';
 
 interface MainMyInfoProps {
   nickname: string;
@@ -27,7 +27,7 @@ const MainMyInfo = ({
   profit,
   views,
 }: MainMyInfoProps) => {
-  const { user } = useUser();
+  const { user } = useUserStore();
   return (
     <div className="flex-col flex w-full mt-8">
       {user?.isSuccess ? (
