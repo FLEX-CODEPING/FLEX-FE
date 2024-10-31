@@ -22,15 +22,16 @@ const SimulateRank = () => {
             className={`flex gap-x-4 w-full items-center justify-between px-6 py-4 ${RANKING_COLOR[i]} rounded-lg shadow`}
           >
             <div className="flex gap-x-3 w-[87px]">
-              <p className="text-3xl font-semibold">{i + 1}</p>
-              <Image
-                src={ranker.thumbnail}
-                alt={ranker.title}
-                width={40}
-                height={40}
-                className="rounded-full"
-                loading="lazy"
-              />
+              <p className="w-5 text-3xl font-semibold">{i + 1}</p>
+              <div className="relative w-10 h-10">
+                <Image
+                  src={ranker.thumbnail}
+                  alt={ranker.title}
+                  className="rounded-full"
+                  fill
+                  loading="lazy"
+                />
+              </div>
             </div>
             <div className="flex flex-col w-full gap-y-1">
               <div className="flex w-full justify-between">

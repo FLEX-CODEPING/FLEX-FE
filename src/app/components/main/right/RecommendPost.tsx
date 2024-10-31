@@ -39,10 +39,10 @@ const RecommendPost = () => {
       <div className="w-full flex flex-col gap-y-[18px]">
         {populartData.map((data, i) => (
           <div
-            className="w-full flex gap-x-10 py-2 px-4 gap-y-1 cursor-pointer border-b border-b-gray-2 group"
+            className="w-full flex gap-x-5 py-2 px-4 gap-y-1 cursor-pointer border-b border-b-gray-2 group"
             key={data.title}
           >
-            <div className="w-full flex flex-col">
+            <div className="w-[300px] flex flex-col">
               <p className="text-[10px] font-bold text-main-1">
                 {data.category}
               </p>
@@ -61,13 +61,13 @@ const RecommendPost = () => {
                 </div>
               </div>
             </div>
-            <div className="relative w-[120px] h-[70px] overflow-hidden">
+            <div className="relative w-[120px] h-16 overflow-hidden rounded">
               <Image
-                loading="lazy"
+                fill
                 className="rounded transition-transform duration-300 ease-in-out group-hover:scale-110 "
                 src="/images/3c.png"
                 alt="thumbnail"
-                fill
+                loading="lazy"
               />
             </div>
           </div>

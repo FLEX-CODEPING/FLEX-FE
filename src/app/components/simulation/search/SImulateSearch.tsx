@@ -20,12 +20,11 @@ const SImulateSearch = () => {
       {stockInfo ? (
         <div className="flex px-[15.5px] py-4 justify-between w-[360px] items-end">
           <div className="flex gap-x-2.5">
-            <div className="w-[40px] h-[40px] relative">
+            <div className="w-[40px] h-[40px] relative rounded-[18px]">
               <Image
                 src="/Images/samsung.png"
                 alt="stockImg"
-                layout="fill"
-                objectFit="cover"
+                fill
                 className="rounded-[18px]"
               />
             </div>

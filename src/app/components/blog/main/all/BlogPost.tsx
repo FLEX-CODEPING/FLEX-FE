@@ -22,8 +22,7 @@ const BlogPost = ({ post }: BlogPostProps) => {
         <Image
           src={post.imageUrls[0] || '/images/3c.png'}
           alt={post.title}
-          layout="fill"
-          objectFit="cover"
+          fill
           className="rounded-md transition-transform duration-300 ease-in-out group-hover:scale-110"
         />
       </div>
