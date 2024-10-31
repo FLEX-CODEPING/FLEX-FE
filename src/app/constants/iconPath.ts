@@ -22,8 +22,8 @@ export const likeIcon = {
 
 export const likeSmall = {
   path: 'M7.00395 2.10678C2.89695 -1.71075 -1.20259 3.63272 2.36178 7.45026L7.0047 12.793L11.6484 7.44949C15.1956 3.63273 11.096 -1.71151 7.00395 2.10678Z',
-  width: 15,
-  height: 16,
+  width: 14,
+  height: 13,
   fill: 'white',
   options: {
     strokeWidth: 1,

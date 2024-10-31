@@ -41,7 +41,7 @@ const DailyPost = ({ post }: DailyPostProps) => {
             </div>
           ))}
         </div>
-        <div className="flex items-center text-xs text-black-0 gap-x-0.5">
+        <div className="w-8 justify-between flex items-center text-xs text-black-0 font-medium">
           <Icons name={likeSmall} />
           <p>{post.likeCount}</p>
         </div>

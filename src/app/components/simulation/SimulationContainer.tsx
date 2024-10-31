@@ -1,6 +1,6 @@
 'use client';
 
-import { useSidebarStore } from '@/app/store/scoreStore';
+import { useSidebarStore } from '@/app/store/store';
 import ChartContainer from './chart/ChartContainer';
 import SImulateSearch from './search/SImulateSearch';
 

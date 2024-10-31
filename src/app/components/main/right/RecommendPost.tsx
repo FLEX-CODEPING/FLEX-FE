@@ -65,7 +65,7 @@ const RecommendPost = () => {
                   </div>
                   <div className="flex w-[48px] justify-between items-center">
                     <Icons name={likeSmall} />
-                    <p className="text-sm font-bold">{data.likeCount}</p>
+                    <p className="text-sm font-medium">{data.likeCount}</p>
                   </div>
                 </div>
               </div>
