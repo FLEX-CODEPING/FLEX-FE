@@ -1,96 +1,101 @@
 'use client';
 
-import dynamic from 'next/dynamic';
+import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
+import { init, dispose, KLineData } from 'klinecharts';
 
-const ApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
-
-export function Chart() {
-  return (
-    <div className="w-full flex flex-col">
-      <ApexChart
-        type="candlestick"
-        series={[
-          {
-            data: [
-              [0, 6593.34, 6600, 6582.63, 6600],
-              [30, 6593.34, 6600, 6582.63, 6600], // 00:30
-              [60, 6595.16, 6604.76, 6590.73, 6593.86],
-              [90, 6595.16, 6604.76, 6590.73, 6593.86], // 01:30
-              [120, 6590.42, 6601.21, 6585.12, 6590.57],
-              [150, 6590.42, 6601.21, 6585.12, 6590.57], // 02:30
-              [180, 6587.12, 6598.54, 6582.42, 6595.12],
-              [210, 6587.12, 6598.54, 6582.42, 6595.12], // 03:30
-              [240, 6592.45, 6602.74, 6588.32, 6597.63],
-              [270, 6592.45, 6602.74, 6588.32, 6597.63], // 04:30
-              [300, 6596.21, 6605.32, 6591.23, 6603.12],
-              [330, 6596.21, 6605.32, 6591.23, 6603.12], // 05:30
-              [360, 6602.45, 6610.32, 6598.56, 6608.45],
-              [390, 6602.45, 6610.32, 6598.56, 6608.45], // 06:30
-              [420, 6607.12, 6612.76, 6600.43, 6605.87],
-              [450, 6607.12, 6612.76, 6600.43, 6605.87], // 07:30
-              [480, 6604.34, 6608.92, 6599.12, 6603.45],
-              [510, 6604.34, 6608.92, 6599.12, 6603.45], // 08:30
-              [540, 6602.78, 6607.45, 6595.34, 6600.87],
-              [570, 6602.78, 6607.45, 6595.34, 6600.87], // 09:30
-              [600, 6600.12, 6606.76, 6592.45, 6599.23],
-              [630, 6600.12, 6606.76, 6592.45, 6599.23], // 10:30
-              [660, 6598.45, 6604.12, 6590.34, 6597.12],
-              [690, 6598.45, 6604.12, 6590.34, 6597.12], // 11:30
-              [720, 6596.21, 6602.87, 6589.45, 6595.23],
-              [750, 6596.21, 6602.87, 6589.45, 6595.23], // 12:30
-              [780, 6594.56, 6600.92, 6587.32, 6593.87],
-              [810, 6594.56, 6600.92, 6587.32, 6593.87], // 13:30
-              [840, 6592.87, 6601.34, 6585.43, 6592.45],
-              [870, 6592.87, 6601.34, 6585.43, 6592.45], // 14:30
-              [900, 6590.34, 6599.12, 6583.12, 6590.87],
-              [930, 6590.34, 6599.12, 6583.12, 6590.87], // 15:30
-              [960, 6588.76, 6597.91, 6579.09, 6588.09],
-              [990, 6588.09, 6596.89, 6580.58, 6585.56],
-              [1020, 6585.56, 6593.7, 6575.97, 6577.64],
-              [1050, 6577.64, 6587.41, 6570.35, 6582.95],
-              [1080, 6582.95, 6590.5, 6574.72, 6588.04],
-              [1110, 6588.04, 6596.5, 6578.27, 6583.08],
-              [1140, 6583.08, 6588.8, 6576.21, 6586.45],
-              [1170, 6586.45, 6595.75, 6580.84, 6593.06],
-              [1200, 6593.06, 6602.16, 6587.58, 6590.42],
-              [1230, 6590.42, 6595.53, 6583.81, 6595.24],
-              [1260, 6595.24, 6603.11, 6587.84, 6601.82],
-              [1290, 6601.82, 6611.72, 6595.1, 6601.16],
-              [1320, 6601.16, 6609.64, 6593.83, 6607.69],
-              [1350, 6607.69, 6615.04, 6597.72, 6604.98],
-              [1380, 6604.98, 6613.4, 6597.5, 6608.01],
-              [1410, 6608.01, 6613.16, 6598.12, 6604.01],
-              [1440, 6604.01, 6612.65, 6597.85, 6606.51],
-            ],
-          },
-        ]}
-        width="100%"
-        height={500}
-        options={{
-          theme: {
-            mode: 'light',
-          },
-          chart: {
-            toolbar: {
-              tools: {},
-            },
-            background: 'transparent',
-          },
-          plotOptions: {
-            candlestick: {
-              colors: {
-                upward: '#FF0000',
-                downward: '#0065D1',
-              },
-            },
-          },
-          grid: {
-            show: false,
-          },
-        }}
-      />
-    </div>
-  );
+interface ChartProps {
+  viewType: '일' | '주' | '월' | '년';
+  timeFrame: keyof typeof intervals;
+  predictionData: { dates: string[]; predictions: number[] } | null;
 }
 
-export default Chart;
+const intervals = {
+  '1분': 1,
+  '15분': 15,
+  '1시간': 60,
+  '4시간': 240,
+  '일': 1440,
+} as const;
+
+const periods = {
+  일: 1 * 24 * 60,
+  주: 7 * 24 * 60,
+  월: 30 * 24 * 60,
+  년: 365 * 24 * 60,
+};
+
+const StockChart: React.FC<ChartProps> = ({ viewType, timeFrame, predictionData }) => {
+  const chartRef = useRef<any>(null);
+  const [chartData, setChartData] = useState<KLineData[]>([]);
+
+  const fetchChartData = async (interval: number, period: number) => {
+    const market = 'KRW-BTC';
+
+    try {
+      const response = await axios.get(
+        `https://api.upbit.com/v1/candles/${
+          interval === 1440 ? 'days' : 'minutes/' + interval
+        }`,
+        {
+          params: {
+            market,
+            count: period / interval,
+          },
+        }
+      );
+
+      const data = response.data.map((item: any) => ({
+        open: item.opening_price,
+        high: item.high_price,
+        low: item.low_price,
+        close: item.trade_price,
+        volume: item.candle_acc_trade_volume,
+        timestamp: new Date(item.timestamp).getTime(),
+      }));
+
+      setChartData(data.reverse());
+    } catch (error) {
+      console.error('Error fetching chart data:', error);
+    }
+  };
+
+  useEffect(() => {
+    const interval = intervals[timeFrame];
+    const period = periods[viewType];
+
+    chartRef.current = init('chart');
+    fetchChartData(interval, period);
+
+    return () => {
+      dispose('chart');
+    };
+  }, [viewType, timeFrame]);
+
+  useEffect(() => {
+    if (chartRef.current && chartData.length) {
+      chartRef.current.applyNewData(chartData);
+    }
+
+    if (chartRef.current && predictionData && chartData.length > 0) {
+      const lastTimestamp = chartData[chartData.length - 1].timestamp;
+      const intervalInMs = intervals[timeFrame] * 60 * 1000;
+
+      const predictionSeries = predictionData.predictions.map((value, index) => ({
+        timestamp: lastTimestamp + (index + 1) * intervalInMs,
+        open: value,
+        high: value,
+        low: value,
+        close: value,
+        volume: 0,
+      }));
+
+      const extendedData = [...chartData, ...predictionSeries];
+      chartRef.current.applyNewData(extendedData);
+    }
+  }, [chartData, predictionData]);
+
+  return <div id="chart" style={{ width: '100%', height: 500 }} />;
+};
+
+export default StockChart;
