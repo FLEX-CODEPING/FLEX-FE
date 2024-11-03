@@ -9,15 +9,19 @@ import { useState } from 'react';
 import Button from '../../common/Button';
 import Icons from '../../common/Icons';
 
-const PredictIndicator = () => {
+interface PredictIndicatorProps {
+  onIndicatorsChange: (indicators: string[]) => void;
+}
+
+const PredictIndicator: React.FC<PredictIndicatorProps> = ({ onIndicatorsChange }) => {
   const [indicators, setIndicators] = useState<string[]>([]);
 
   const handleCheckbox = (name: string) => {
-    setIndicators((prevIndicators) =>
-      prevIndicators.includes(name)
-        ? prevIndicators.filter((indicator) => indicator !== name)
-        : [...prevIndicators, name],
-    );
+    const updatedIndicators = indicators.includes(name)
+      ? indicators.filter((indicator) => indicator !== name)
+      : [...indicators, name];
+    setIndicators(updatedIndicators);
+    onIndicatorsChange(updatedIndicators);
   };
 
   return (
@@ -32,8 +36,9 @@ const PredictIndicator = () => {
         </div>
       </div>
       <div className="w-full py-3 px-5 flex-col flex gap-y-3 rounded border border-gray-2 mb-4">
-        {PREDICTION_INDICATION_SORT.map((name, i) => (
+        {PREDICTION_INDICATION_SORT.map((name) => (
           <div
+            key={name}
             className="flex gap-3 cursor-pointer"
             onClick={() => handleCheckbox(name)}
           >
