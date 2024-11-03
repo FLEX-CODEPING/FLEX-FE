@@ -8,21 +8,28 @@ import ChartEmpty from './ChartEmpty';
 
 const timeOptions = ['1분', '15분', '1시간', '4시간', '일'] as const;
 
-type TimeOption = typeof timeOptions[number];
+type TimeOption = (typeof timeOptions)[number];
 
 const ChartContainer = () => {
   const [clickedType, setClickedType] = useState<ChartViewType>('일');
   const [selectedTime, setSelectedTime] = useState<TimeOption>('1분');
   const [chartData, setChartData] = useState([]);
-  const [selectedPrediction, setSelectedPrediction] = useState<number | null>(null);
-  const [predictionData, setPredictionData] = useState<{ dates: string[]; predictions: number[] } | null>(null);
+  const [selectedPrediction, setSelectedPrediction] = useState<number | null>(
+    null,
+  );
+  const [predictionData, setPredictionData] = useState<{
+    dates: string[];
+    predictions: number[];
+  } | null>(null);
 
   const handlePredictionClick = async (number: number) => {
     setSelectedPrediction((prev) => (prev === number ? null : number));
 
     if (selectedPrediction !== number) {
       try {
-        const response = await axios.post(`http://127.0.0.1:5000/predict${number}`);
+        const response = await axios.post(
+          `http://127.0.0.1:5000/predict${number}`,
+        );
         setPredictionData(response.data);
       } catch (error) {
         console.error('Error fetching prediction data:', error);
@@ -44,7 +51,9 @@ const ChartContainer = () => {
                 key={number}
                 onClick={() => handlePredictionClick(number)}
                 className={`mx-1 px-3 py-1 rounded-full cursor-pointer ${
-                  selectedPrediction === number ? 'bg-orange-500 text-white' : 'bg-gray-100 text-black'
+                  selectedPrediction === number
+                    ? 'bg-orange-500 text-white'
+                    : 'bg-gray-100 text-black'
                 }`}
               >
                 {number}
@@ -78,7 +87,11 @@ const ChartContainer = () => {
       {chartData.length !== 0 ? (
         <ChartEmpty />
       ) : (
-        <StockChart viewType={clickedType} timeFrame={selectedTime} predictionData={predictionData} />
+        <StockChart
+          viewType={clickedType}
+          timeFrame={selectedTime}
+          predictionData={predictionData}
+        />
       )}
     </div>
   );

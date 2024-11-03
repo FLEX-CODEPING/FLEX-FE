@@ -15,7 +15,7 @@ const intervals = {
   '15분': 15,
   '1시간': 60,
   '4시간': 240,
-  '일': 1440,
+  일: 1440,
 } as const;
 
 const periods = {
@@ -25,7 +25,11 @@ const periods = {
   년: 365 * 24 * 60,
 };
 
-const StockChart: React.FC<ChartProps> = ({ viewType, timeFrame, predictionData }) => {
+const StockChart: React.FC<ChartProps> = ({
+  viewType,
+  timeFrame,
+  predictionData,
+}) => {
   const chartRef = useRef<any>(null);
   const [chartData, setChartData] = useState<KLineData[]>([]);
 
@@ -42,7 +46,7 @@ const StockChart: React.FC<ChartProps> = ({ viewType, timeFrame, predictionData 
             market,
             count: period / interval,
           },
-        }
+        },
       );
 
       const data = response.data.map((item: any) => ({
@@ -81,14 +85,16 @@ const StockChart: React.FC<ChartProps> = ({ viewType, timeFrame, predictionData 
       const lastTimestamp = chartData[chartData.length - 1].timestamp;
       const intervalInMs = intervals[timeFrame] * 60 * 1000;
 
-      const predictionSeries = predictionData.predictions.map((value, index) => ({
-        timestamp: lastTimestamp + (index + 1) * intervalInMs,
-        open: value,
-        high: value,
-        low: value,
-        close: value,
-        volume: 0,
-      }));
+      const predictionSeries = predictionData.predictions.map(
+        (value, index) => ({
+          timestamp: lastTimestamp + (index + 1) * intervalInMs,
+          open: value,
+          high: value,
+          low: value,
+          close: value,
+          volume: 0,
+        }),
+      );
 
       const extendedData = [...chartData, ...predictionSeries];
       chartRef.current.applyNewData(extendedData);

@@ -13,7 +13,9 @@ interface PredictIndicatorProps {
   onIndicatorsChange: (indicators: string[]) => void;
 }
 
-const PredictIndicator: React.FC<PredictIndicatorProps> = ({ onIndicatorsChange }) => {
+const PredictIndicator: React.FC<PredictIndicatorProps> = ({
+  onIndicatorsChange,
+}) => {
   const [indicators, setIndicators] = useState<string[]>([]);
 
   const handleCheckbox = (name: string) => {
