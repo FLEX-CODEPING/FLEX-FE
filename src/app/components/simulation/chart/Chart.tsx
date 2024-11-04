@@ -38,9 +38,7 @@ const StockChart: React.FC<ChartProps> = ({
 
     try {
       const response = await axios.get(
-        `https://api.upbit.com/v1/candles/${
-          interval === 1440 ? 'days' : 'minutes/' + interval
-        }`,
+        `https://api.upbit.com/v1/candles/${interval === 1440 ? 'days' : `minutes/${interval}`}`,
         {
           params: {
             market,
@@ -60,7 +58,9 @@ const StockChart: React.FC<ChartProps> = ({
 
       setChartData(data.reverse());
     } catch (error) {
-      console.error('Error fetching chart data:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Error fetching chart data:', error);
+      }
     }
   };
 
@@ -99,7 +99,7 @@ const StockChart: React.FC<ChartProps> = ({
       const extendedData = [...chartData, ...predictionSeries];
       chartRef.current.applyNewData(extendedData);
     }
-  }, [chartData, predictionData]);
+  }, [chartData, predictionData, timeFrame]);
 
   return <div id="chart" style={{ width: '100%', height: 500 }} />;
 };

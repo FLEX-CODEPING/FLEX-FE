@@ -11,11 +11,17 @@ const PredictionSideContainer = () => {
   const [predictData, setPredictData] = useState(true);
   const isQualified = 11 > 0;
 
+  // 선택된 지표가 변경될 때 호출될 함수
+  const handleIndicatorsChange = (indicators: string[]) => {
+    console.log('Selected indicators:', indicators);
+    // 필요한 추가 로직을 여기에 작성할 수 있습니다.
+  };
+
   return (
     <div className="w-[320px] flex flex-col pt-[85px] gap-y-2">
       {predictData ? (
         <div className="w-full flex flex-col gap-y-3">
-          <PredictIndicator />
+          <PredictIndicator onIndicatorsChange={handleIndicatorsChange} />
           <PredictResultAlert
             stockName="삼성전자"
             result="하락"
