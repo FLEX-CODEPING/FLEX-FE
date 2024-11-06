@@ -2,8 +2,8 @@
 
 import { FOLLOW_TEXT, USERPAGE_TEXT } from '@/app/constants/mypage';
 import Image from 'next/image';
-import UserPosts from './UserPosts';
 import { useState } from 'react';
+import UserPosts from './UserPosts';
 
 const UserPageHeader = () => {
   const [isFollowing, setIsFollowing] = useState(false);

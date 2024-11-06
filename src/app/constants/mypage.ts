@@ -18,4 +18,4 @@ export const MY_MODAL_TEXT = [
   '홈화면으로 이동합니다.',
 ];
 
-export const USERPAGE_TEXT = ['팔로우', '팔로잉']
+export const USERPAGE_TEXT = ['팔로우', '팔로잉'];
