@@ -17,3 +17,5 @@ export const MY_MODAL_TEXT = [
   '변경된 내용이 저장되었습니다.',
   '홈화면으로 이동합니다.',
 ];
+
+export const USERPAGE_TEXT = ['팔로우', '팔로잉']

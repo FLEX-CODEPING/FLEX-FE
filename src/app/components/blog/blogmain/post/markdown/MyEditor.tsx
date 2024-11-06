@@ -17,7 +17,7 @@ const MyEditor = ({ setContent }: MyEditorProps) => {
 
   const handleImageUpload = (blob: File, callback: Function) => {
     const dummyUrl =
-      'https://i.namu.wiki/i/Vj5qbEFSnNirgU_WzuKbQmLd20hbM6QyNGHb8f87wB4iUuMA-OliDHoQMBnxu7jSowmBl5R-wBKXIb5Voe1bxw.webp';
+      'https://www.kcie.or.kr/webbook_img?file=webbook/MjAyMTA2MzBfMTEg/MDAxNjI1MDE2Mzg0MDQ5.84-tA-RQkkuB_-bTpllTG2J7XQNGGqgxekJTuboeBQEg.8708-QyOZaPOvyf2l_3Z8tA9aZH2BMqAoeq_qeJWZwcg.PNG/Read_theChart_img_04.png';
     const fileName = blob.name;
     callback(dummyUrl, '이미지 설명');
   };
