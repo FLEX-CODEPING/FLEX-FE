@@ -162,7 +162,7 @@ export const RECOMMEND_ARTICLES: RecommendPostTypes[] = [
   },
   {
     title: '유럽 경제 회복세, 유로 강세 전망',
-    category: '부동산',
+    category: '해외 투자',
     tags: '글로벌,경제,환율',
     likeCount: 120,
   },

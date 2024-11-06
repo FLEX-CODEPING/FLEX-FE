@@ -1,4 +1,4 @@
-import EditBlogContainer from '@/app/components/blog/blogmain/post/EditBlogContainer';
+import EditBlogContainer from '@/app/components/blog/post/EditBlogContainer';
 
 const PostBlogPage = () => {
   return (

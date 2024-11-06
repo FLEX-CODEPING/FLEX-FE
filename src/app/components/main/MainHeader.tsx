@@ -1,10 +1,7 @@
-import { CATCH_PHRASE } from '@/app/constants/main';
-import { Dela_Gothic_One } from 'next/font/google';
+'use client';
 
-export const dela = Dela_Gothic_One({
-  subsets: ['latin'],
-  weight: '400',
-});
+import { CATCH_PHRASE } from '@/app/constants/main';
+import { dela } from '../common/layout/Header';
 
 const MainHeader = () => {
   return (

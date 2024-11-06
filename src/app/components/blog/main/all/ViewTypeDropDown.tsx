@@ -1,7 +1,7 @@
 'use client';
 
 import Icons from '@/app/components/common/Icons';
-import { FILTER_OPTIONS } from '@/app/constants/filterOptions'; // 상수 가져오기
+import { FILTER_OPTIONS } from '@/app/constants/blog';
 import { fillter } from '@/app/constants/iconPath';
 import { BaseSyntheticEvent, useState } from 'react';
 

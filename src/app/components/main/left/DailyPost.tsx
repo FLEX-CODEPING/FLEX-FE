@@ -15,20 +15,19 @@ const DailyPost = ({ post }: DailyPostProps) => {
   return (
     <div
       key={post.id}
-      className="w-[344px] flex flex-col gap-y-2.5 cursor-pointer bg-white rounded"
+      className="w-[344px] flex flex-col gap-y-2.5 cursor-pointer bg-white rounded group"
     >
-      <div className="relative w-full h-28 overflow-hidden">
+      <div className="relative w-full h-28 overflow-hidden rounded">
         <Image
           src={post.imageUrls[0] || '/images/3c.png'}
           alt={post.title}
-          layout="fill"
-          objectFit="cover"
-          className="rounded transition-transform duration-300 ease-in-out hover:scale-110"
+          fill
+          className="rounded transition-transform duration-300 ease-in-out group-hover:scale-110"
         />
       </div>
 
       <h2 className="font-semibold">{post.title}</h2>
-      <p className="text-sm h-9 font-light text-gray-700 ">
+      <p className="text-sm h-9 font-light text-black-0">
         {truncateString(post.content, 66)}
       </p>
       <div className="flex justify-between items-center h-5">
@@ -36,13 +35,13 @@ const DailyPost = ({ post }: DailyPostProps) => {
           {formattedTags.map((tag, i) => (
             <div
               key={tag}
-              className="bg-gray-200 px-1 py-0.5 rounded-md text-xs font-semibold text-gray-700"
+              className="bg-gray-3 px-1 py-0.5 rounded-md text-xs font-semibold text-black-1"
             >
               {tag}
             </div>
           ))}
         </div>
-        <div className="flex items-center text-xs text-black-0 gap-x-0.5">
+        <div className="w-8 justify-between flex items-center text-xs text-black-0 font-medium">
           <Icons name={likeSmall} />
           <p>{post.likeCount}</p>
         </div>

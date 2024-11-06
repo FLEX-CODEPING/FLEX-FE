@@ -1,6 +1,6 @@
 'use client';
 
-import { useUserStore } from '@/app/store/scoreStore';
+import { useUserStore } from '@/app/store/store';
 import { ReactNode, useEffect } from 'react';
 
 export default function UserProvider({
