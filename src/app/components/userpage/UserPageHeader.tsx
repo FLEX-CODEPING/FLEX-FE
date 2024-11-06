@@ -48,7 +48,7 @@ const UserPageHeader = () => {
               : 'bg-white text-black-0 border-gray-300'
           }`}
         >
-          {isFollowing ? '팔로잉' : USERPAGE_TEXT[0]}
+          {isFollowing ? USERPAGE_TEXT[1] : USERPAGE_TEXT[0]}
         </button>
       </div>
       <div className="mt-[40px]">
