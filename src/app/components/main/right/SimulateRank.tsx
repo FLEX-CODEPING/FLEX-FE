@@ -7,14 +7,16 @@ import {
 import { MOOK_RANKINGS } from '@/app/data/main';
 import Image from 'next/image';
 import Link from 'next/link';
+import { getTodayDate } from '@/app/utils/date';
 import Icons from '../../common/Icons';
 
 const SimulateRank = () => {
+  const today = getTodayDate();
   return (
     <div className="flex-col-center px-3 w-full gap-y-4">
       <div className="flex w-full justify-between items-end">
         <p className="text-2xl font-semibold">{MAIN_CONTENTS_TITLE[5]}</p>
-        <p className="text-xs">2024.10.04</p>
+        <p className="text-xs">{today}</p>
       </div>
       <div className="w-full flex-col-center gap-y-6">
         {MOOK_RANKINGS.map((ranker, i) => (

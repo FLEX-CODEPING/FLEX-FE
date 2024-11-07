@@ -1,15 +1,17 @@
 import { MAIN_CONTENTS_TITLE } from '@/app/constants/main';
 import { STOCK_DATA } from '@/app/data/simulation';
-import { formatDate } from '@/app/utils/date';
+import { formatDate, getTodayDate } from '@/app/utils/date';
 import Image from 'next/image';
 
 const StockRank = () => {
   const filteredStocks = STOCK_DATA.slice(0, 3);
+  const today = getTodayDate();
+
   return (
     <div className="flex-col-center w-full gap-y-3">
       <div className="w-full flex items-end justify-between px-3 py-2">
         <p className="text-2xl font-semibold">{MAIN_CONTENTS_TITLE[2]}</p>
-        <p className="text-xs">{formatDate('2024.10.04')}</p>
+        <p className="text-xs">{today}</p>
       </div>
       <div className="flex-col-center gap-y-4 w-full">
         {filteredStocks.map((stock, i) => (
