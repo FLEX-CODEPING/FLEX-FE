@@ -43,7 +43,7 @@ export const MOOK_RANKINGS: RankingTypes[] = [
   },
 ];
 
-export const MOOK_DAILY_POSTS: LandingPostTypes[] = [
+export const MOOK_POSTS: LandingPostTypes[] = [
   {
     id: 1,
     userId: 1,
@@ -165,5 +165,92 @@ export const RECOMMEND_ARTICLES: RecommendPostTypes[] = [
     category: '해외 투자',
     tags: '글로벌,경제,환율',
     likeCount: 120,
+  },
+];
+
+export const MOOK_DAILY_POSTS: DailyPostTypes[] = [
+  {
+    id: 1,
+    userId: 1,
+    nickname: '낙도핑',
+    profileImageUrl: '/images/complete1.png',
+    title: '초보자를 위한 최고의 투자 팁',
+    content:
+      '투자는 도전적일 수 있지만, 올바른 마음가짐과 전략을 통해 재정적 성장을 이룰 수 있습니다. 이번 포스트에서는 초보자를 위한 기본 투자 팁을 알아봅니다.',
+    tags: '투자, 초보자, 팁, 재테크',
+    createdAt: '2024-10-27T10:00:00Z',
+    updatedAt: '2024-10-27T10:00:00Z',
+    imageUrls: ['/images/3c.png'],
+    likeCount: 12,
+  },
+  {
+    id: 2,
+    userId: 2,
+    nickname: '코딩챔피언',
+    profileImageUrl: '/images/complete2.png',
+    title: '주식 시장의 기본 이해',
+    content:
+      '주식 시장은 변동성이 크지만 장기적인 성장 가능성이 있는 자산입니다. 이번 글에서는 주식 시장의 기본 개념을 설명합니다.',
+    tags: '주식, 초보자, 재테크, 시장',
+    createdAt: '2024-10-28T11:00:00Z',
+    updatedAt: '2024-10-28T11:00:00Z',
+    imageUrls: ['/images/3c.png'],
+    likeCount: 8,
+  },
+  {
+    id: 3,
+    userId: 3,
+    nickname: '재테크왕',
+    profileImageUrl: '/images/complete3.png',
+    title: '장기 투자와 단기 투자, 어느 쪽이 좋을까?',
+    content:
+      '장기 투자와 단기 투자는 각각의 장점과 단점이 있습니다. 이번 글에서는 두 가지 접근법을 비교합니다.',
+    tags: '투자, 장기, 단기, 재테크',
+    createdAt: '2024-10-29T12:30:00Z',
+    updatedAt: '2024-10-29T12:30:00Z',
+    imageUrls: ['/images/3c.png'],
+    likeCount: 15,
+  },
+  {
+    id: 4,
+    userId: 4,
+    nickname: '머니마스터',
+    profileImageUrl: '/images/complete4.png',
+    title: '초보자가 알아야 할 자산 관리 팁',
+    content:
+      '자산 관리는 재정적 안정과 성장의 필수 요소입니다. 이번 포스트에서는 자산 관리의 기본 개념을 설명합니다.',
+    tags: '자산관리, 초보자, 팁, 재테크',
+    createdAt: '2024-10-30T09:45:00Z',
+    updatedAt: '2024-10-30T09:45:00Z',
+    imageUrls: ['/images/3c.png'],
+    likeCount: 20,
+  },
+  {
+    id: 5,
+    userId: 5,
+    nickname: '재테크달인',
+    profileImageUrl: '/images/complete5.png',
+    title: '투자에서 리스크 관리가 중요한 이유',
+    content:
+      '리스크 관리는 성공적인 투자에 필수적입니다. 이 포스트에서는 리스크 관리의 중요성에 대해 알아봅니다.',
+    tags: '리스크, 투자, 재테크',
+    createdAt: '2024-11-01T14:00:00Z',
+    updatedAt: '2024-11-01T14:00:00Z',
+    imageUrls: ['/images/3c.png'],
+    likeCount: 18,
+  },
+  {
+    id: 6,
+    userId: 6,
+    nickname: '파이낸스박사',
+    profileImageUrl: '/images/complete6.png',
+    title: '효과적인 예산 관리 방법',
+    content:
+      '예산 관리는 재정 목표를 달성하기 위해 필수적입니다. 이번 글에서는 효과적인 예산 관리 방법에 대해 소개합니다.',
+    tags: '예산, 관리, 재테크',
+    createdAt: '2024-11-02T15:30:00Z',
+    updatedAt: '2024-11-02T15:30:00Z',
+    imageUrls: ['/images/3c.png'],
+    likeCount: 10,
   },
 ];

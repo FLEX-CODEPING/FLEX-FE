@@ -1,7 +1,7 @@
 'use client';
 
 import Navigation from '@/app/components/blog/main/all/Navigation';
-import { MOOK_DAILY_POSTS } from '@/app/data/main';
+import { MOOK_POSTS } from '@/app/data/main';
 import { useState } from 'react';
 import FollowerFilter from '../following/FollowerFilter';
 import RecommendFilter from '../recommend/RecommendFilter';
@@ -46,10 +46,8 @@ const BlogContainer = () => {
         {optionsBar(selectedNav)}
       </div>
       <div className="w-full flex flex-wrap max-w-[1280px] gap-y-10 justify-between mt-8">
-        {MOOK_DAILY_POSTS &&
-          MOOK_DAILY_POSTS.map((post) => (
-            <BlogPost key={post.id} post={post} />
-          ))}
+        {MOOK_POSTS &&
+          MOOK_POSTS.map((post) => <BlogPost key={post.id} post={post} />)}
       </div>
     </div>
   );

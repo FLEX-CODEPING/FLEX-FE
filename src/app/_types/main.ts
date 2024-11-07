@@ -14,6 +14,20 @@ interface LandingPostTypes {
   likeCount: number;
 }
 
+interface DailyPostTypes {
+  id: number;
+  userId: number;
+  nickname: string;
+  profileImageUrl: string;
+  title: string;
+  content: string;
+  tags: string;
+  createdAt: string;
+  updatedAt: string;
+  imageUrls: string[];
+  likeCount: number;
+}
+
 interface DailyArticleTypes {
   title: string;
   content: string;

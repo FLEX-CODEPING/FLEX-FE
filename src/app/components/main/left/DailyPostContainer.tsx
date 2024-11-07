@@ -2,23 +2,22 @@
 
 import { MAIN_CONTENTS_TITLE } from '@/app/constants/main';
 import { MOOK_DAILY_POSTS } from '@/app/data/main';
+import { callGet } from '@/app/utils/callApi';
 import { getTodayDate } from '@/app/utils/date';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DailyPost from './DailyPost';
 
 const DailyPostContainer = () => {
-  const [postData, setPostData] =
-    useState<LandingPostTypes[]>(MOOK_DAILY_POSTS);
+  const [postData, setPostData] = useState<DailyPostTypes[]>([]);
   const today = getTodayDate();
-  // useEffect(() => {
-  //   const fetchPost = async () => {
-  //     const response = await callGet(
-  //       `/api/main/landing?viewType=${LANDING_VIEWTYPE_MAP[viewType]}`,
-  //     );
-  //     setPostData(response.result);
-  //   };
-  //   fetchPost();
-  // }, [viewType]);
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      const response = await callGet('/api/main/dailyPost');
+      setPostData(response.result);
+    };
+    fetchPost();
+  }, []);
 
   return (
     <div className="flex-col-center w-full gap-y-5">
