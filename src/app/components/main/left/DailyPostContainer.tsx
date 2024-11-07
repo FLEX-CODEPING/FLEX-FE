@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import DailyPost from './DailyPost';
 
 const DailyPostContainer = () => {
-  const [postData, setPostData] = useState<DailyPostTypes[]>([]);
+  const [postData, setPostData] = useState<MainPostTypes[]>([]);
   const today = getTodayDate();
 
   useEffect(() => {

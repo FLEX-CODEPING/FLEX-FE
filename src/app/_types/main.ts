@@ -14,7 +14,7 @@ interface LandingPostTypes {
   likeCount: number;
 }
 
-interface DailyPostTypes {
+interface MainPostTypes {
   id: number;
   userId: number;
   nickname: string;

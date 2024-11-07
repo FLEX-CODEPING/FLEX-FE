@@ -168,7 +168,7 @@ export const RECOMMEND_ARTICLES: RecommendPostTypes[] = [
   },
 ];
 
-export const MOOK_DAILY_POSTS: DailyPostTypes[] = [
+export const MOOK_DAILY_POSTS: MainPostTypes[] = [
   {
     id: 1,
     userId: 1,
