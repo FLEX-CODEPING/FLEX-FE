@@ -5,6 +5,7 @@ import { MAIN_CONTENTS_TITLE } from '@/app/constants/main';
 import { callGet } from '@/app/utils/callApi';
 import { getTodayDate } from '@/app/utils/date';
 import { truncateString } from '@/app/utils/truncate';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Icons from '../../common/Icons';
 
@@ -28,7 +29,8 @@ const PopularPost = () => {
       </div>
       <div className="w-full flex flex-col gap-y-3">
         {postDatas.map((data, i) => (
-          <div
+          <Link
+            href={`/blog/detail?postId=${data.id}`}
             className="w-full flex-col flex py-3 px-2 gap-y-1 cursor-pointer border-b border-b-gray-3 hover:border-b-main-1 transition duration-500"
             key={data.title}
           >
@@ -40,7 +42,7 @@ const PopularPost = () => {
               </div>
             </div>
             <p className="font-semibold">{truncateString(data.title, 120)}</p>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

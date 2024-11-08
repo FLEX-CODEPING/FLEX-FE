@@ -5,6 +5,7 @@ import { MAIN_CONTENTS_TITLE } from '@/app/constants/main';
 import { useUserStore } from '@/app/store/store';
 import { callGet } from '@/app/utils/callApi';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Icons from '../../common/Icons';
 import RecommendBlur from './RecommendBlur';
@@ -40,7 +41,8 @@ const RecommendPost = () => {
       {user?.isSuccess ? (
         <div className="w-full flex flex-col gap-y-[18px]">
           {datas?.content.map((data, i) => (
-            <div
+            <Link
+              href={`/blog/detail?postId=${data.id}`}
               className="w-full flex gap-x-5 py-2 px-4 gap-y-1 cursor-pointer border-b border-b-gray-2 group"
               key={data.id}
             >
@@ -73,7 +75,7 @@ const RecommendPost = () => {
                   loading="lazy"
                 />
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       ) : (
