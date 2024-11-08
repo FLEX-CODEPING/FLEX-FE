@@ -9,7 +9,7 @@ pipeline {
         REMOTE_USER = credentials('remote-user')
         BASTION_HOST = credentials('bastion-host')
         REMOTE_HOST = credentials('dev-web-host')
-        SLACK_CHANNEL = '#frontend-jenkins'  // 채널 이름 수정
+        SLACK_CHANNEL = '#frontend-jenkins'
         IMAGE_NAME = "${DOCKER_USERNAME}/flex-frontend"
         IMAGE_TAG = "${BUILD_NUMBER}"
     }
@@ -23,22 +23,42 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Set Up Docker Buildx') {
             steps {
+                echo 'Setting up Docker Buildx...'
                 script {
-                    slackSend(channel: SLACK_CHANNEL, message: "🏗️ NEXT.JS Build #${env.BUILD_NUMBER} is starting...")
-                    sh 'chmod +x gradlew'
-                    sh './gradlew clean assemble -x test'
+                    sh '''
+                    docker buildx create --use
+                    '''
                 }
             }
-            post {
-                success {
-                    echo 'Gradle build success'
-                    slackSend(channel: SLACK_CHANNEL, message: "✅ NEXT.JS build succeeded for Build #${env.BUILD_NUMBER}.")
+        }
+
+        stage('Cache Docker Layers') {
+            steps {
+                echo 'Caching Docker layers...'
+                script {
+                    sh '''
+                    docker buildx build --cache-from type=local,src=/tmp/.buildx-cache \
+                    --cache-to type=local,dest=/tmp/.buildx-cache-new,mode=max .
+                    '''
                 }
-                failure {
-                    echo 'Gradle build failed'
-                    slackSend(channel: SLACK_CHANNEL, message: "⛔️ NEXT.JS build failed for Build #${env.BUILD_NUMBER}.")
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                echo 'Building Docker image...'
+                script {
+                    sh '''
+                    docker buildx build \
+                        --build-arg NEXT_PUBLIC_KAKAO_API_KEY=${NEXT_PUBLIC_KAKAO_API_KEY} \
+                        --build-arg NEXT_PUBLIC_KAKAO_SECRET=${NEXT_PUBLIC_KAKAO_SECRET} \
+                        --build-arg NEXT_PUBLIC_KAKAO_REDIRECT_URI=${NEXT_PUBLIC_KAKAO_REDIRECT_URI} \
+                        --build-arg NEXT_PUBLIC_SERVER=${NEXT_PUBLIC_SERVER} \
+                        --build-arg NEXT_PUBLIC_LOCAL_SERVER=${NEXT_PUBLIC_LOCAL_SERVER} \
+                        -t ${IMAGE_NAME}:${IMAGE_TAG} .
+                    '''
                 }
             }
         }
@@ -51,21 +71,21 @@ pipeline {
                         dockerImage.push()
                         dockerImage.push('latest')
                     }
-                    slackSend(channel: SLACK_CHANNEL, message: "🐳 Docker image built and pushed for Build #${env.BUILD_NUMBER}.")
+                    slackSend(channel: SLACK_CHANNEL, message: "🐳 Docker image ${IMAGE_NAME}:${IMAGE_TAG} built and pushed for Build #${env.BUILD_NUMBER}.")
                 }
             }
         }
 
         stage('Deploy to Remote Server') {
             steps {
-                sshagent(credentials: ['flex-server-pem']) {  // PEM 키를 사용하여 SSH 인증
+                sshagent(credentials: ['flex-server-pem']) {
                     script {
                         sh """
                             ssh -J ${REMOTE_USER}@${BASTION_HOST} ${REMOTE_USER}@${REMOTE_HOST} '
                                 set -e
 
-                                # 환경 변수 설정
-                                export IMAGE_TAG=${IMAGE_TAG}
+                                # .env 파일을 사용하여 환경 변수 설정
+                                export $(cat /path/to/.env | xargs)
 
                                 docker compose down --remove-orphans
 
@@ -80,7 +100,7 @@ pipeline {
                                 docker compose ps
                             '
                         """
-                        slackSend(channel: SLACK_CHANNEL, message: "🚀 NEXT.JS Deployment SUCCEED for Build #${env.BUILD_NUMBER}.")
+                        slackSend(channel: SLACK_CHANNEL, message: "🚀 NEXT.JS Deployment SUCCEEDED for Build #${env.BUILD_NUMBER}.")
                     }
                 }
             }
