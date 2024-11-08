@@ -89,7 +89,7 @@ const MyPageHeader = () => {
 
       <div className="mt-[60px]">
       {activeTab === 'myPosts' && myData && <MyPosts posts={myData.posts} />}
-        {activeTab === 'likedPosts' && <LikedPosts />}
+        {activeTab === 'likedPosts' && myData && <LikedPosts posts={myData.posts}/>}
       </div>
     </div>
   );
