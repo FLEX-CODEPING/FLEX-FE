@@ -9,7 +9,7 @@ pipeline {
         REMOTE_USER = credentials('remote-user')
         BASTION_HOST = credentials('bastion-host')
         REMOTE_HOST = credentials('dev-web-host')
-        SLACK_CHANNEL = '#frontend-jenkins'
+        SLACK_CHANNEL = '#frontend-jenkins'  // 채널 이름 수정
         IMAGE_NAME = "${DOCKER_USERNAME}/flex-frontend"
         IMAGE_TAG = "${BUILD_NUMBER}"
     }
@@ -85,7 +85,7 @@ pipeline {
                                 set -e
 
                                 # .env 파일을 사용하여 환경 변수 설정
-                                export $(cat /path/to/.env | xargs)
+                                export \$(cat ./.env | xargs)
 
                                 docker compose down --remove-orphans
 
