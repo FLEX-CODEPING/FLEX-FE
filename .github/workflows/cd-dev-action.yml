@@ -1,4 +1,4 @@
-name: 🚀Deploy
+name: 🚀Develop Deploy
 
 on:
   push:
@@ -50,16 +50,19 @@ jobs:
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
   deploy:
-    name: Deploy to Kakao Cloud
+    name: Deploy to Develop Server
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to Kakao Cloud
+      - name: Deploy to Private Cloud
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.KAKAO_HOST }}
+          host: ${{ secrets.INTERNAL_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
+          proxy_host: ${{ secrets.BASTION_HOST }}
+          proxy_username: ${{ secrets.BASTION_USERNAME }}
+          proxy_key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
           script: |
             docker pull ${{ secrets.DOCKER_USERNAME }}/flex-frontend:latest
             docker stop flex-frontend || true
