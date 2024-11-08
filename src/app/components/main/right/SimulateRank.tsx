@@ -21,7 +21,7 @@ const SimulateRank = () => {
       <div className="w-full flex-col-center gap-y-6">
         {MOOK_RANKINGS.map((ranker, i) => (
           <Link
-            href={'user/user.id'}
+            href="user/user.id"
             className={`flex gap-x-4 w-full items-center justify-between px-6 py-4 ${RANKING_COLOR[i]} rounded-lg shadow`}
           >
             <div className="flex gap-x-3 w-[87px]">
