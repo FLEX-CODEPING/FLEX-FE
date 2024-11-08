@@ -1,8 +1,8 @@
-name: 🚀Develop Deploy
+name: 🚀Production Deploy
 
 on:
   push:
-    branches: ['develop']
+    branches: ['main']
 
 jobs:
   build:
@@ -50,19 +50,16 @@ jobs:
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
   deploy:
-    name: Deploy to Develop Server
+    name: Deploy to Production Server
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to Private Cloud
+      - name: Deploy to AWS Cloud
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.INTERNAL_HOST }}
-          username: ${{ secrets.ON_PREISE_USERNAME }}
-          key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
-          proxy_host: ${{ secrets.BASTION_HOST }}
-          proxy_username: ${{ secrets.ON_PREISE_USERNAME }}
-          proxy_key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             docker pull ${{ secrets.DOCKER_USERNAME }}/flex-frontend:latest
             docker stop flex-frontend || true
