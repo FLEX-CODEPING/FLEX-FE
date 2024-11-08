@@ -34,7 +34,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/flex-frontend:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}:${{ github.run_number }}
           build-args: |
             NEXT_PUBLIC_KAKAO_API_KEY=${{ secrets.NEXT_PUBLIC_KAKAO_API_KEY }}
             NEXT_PUBLIC_KAKAO_SECRET=${{ secrets.NEXT_PUBLIC_KAKAO_SECRET }}
@@ -61,11 +61,11 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            docker pull ${{ secrets.DOCKER_USERNAME }}/flex-frontend:latest
+            docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}:${{ github.run_number }}
             docker stop flex-frontend || true
             docker rm flex-frontend || true
             docker run -d --name flex-frontend \
               -e TZ=Asia/Seoul \
               -p 3000:3000 \
-              ${{ secrets.DOCKER_USERNAME }}/flex-frontend:latest
+              ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}:${{ github.run_number }}
             docker image prune -af
