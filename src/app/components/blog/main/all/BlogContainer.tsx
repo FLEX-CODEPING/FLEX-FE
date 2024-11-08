@@ -9,20 +9,20 @@ import BlogPost from './BlogPost';
 import TagsFilter from './TagsFilter';
 
 const BlogContainer = () => {
-  const [postData, setPostData] = useState<LandingPostTypes[]>([]);
+  const [postDatas, setPostDatas] = useState<BlogDataTypes | null>(null);
   const [selectedNav, setSelectedNav] = useState<BlogViewType>('전체');
   const [selectedAges, setSelectedAges] = useState('');
   const [selectedSalaries, setSelectedSalaries] = useState('');
 
   // useEffect(() => {
-  //   const fetchPost = async () => {
-  //     const response = await callGet(
-  //       `/api/blog/main?age=${AGE_RANGE_MAP[selectedAges]}&salary=${SALARY_RANGE_MAP[selectedSalaries]}`,
-  //     );
-  //     setPostData(response.result);
-  //   };
-  //   fetchPost();
-  // }, [selectedAges, selectedSalaries]);
+  // const fetchPost = async () => {
+  // const response = await callGet(
+  //   `/api/blog/main?age=${AGE_RANGE_MAP[selectedAges]}&salary=${SALARY_RANGE_MAP[selectedSalaries]}`,
+  // );
+  // setPostDatas(response.result);
+  // };
+  // fetchPost();
+  // }, [selectedAges, selectedSalaries, selectedNav]);
 
   const optionsBar = (selectedType: BlogViewType) => {
     if (selectedType === '전체') {
@@ -36,7 +36,12 @@ const BlogContainer = () => {
       );
     }
     if (selectedType === '추천') return <RecommendFilter />;
-    return <FollowerFilter />;
+    return (
+      <FollowerFilter
+        first={postDatas?.firstFollowingNickname || ''}
+        followingCount={postDatas?.followingCount || 10}
+      />
+    );
   };
 
   return (
