@@ -55,7 +55,7 @@ pipeline {
                     docker buildx build \
                         --cache-from type=local,src=/tmp/.buildx-cache \
                         --cache-to type=local,dest=/tmp/.buildx-cache-new,mode=max \
-                        --push \  # 또는 --load 사용
+                        --push  # 또는 --load 사용
                         --build-arg NEXT_PUBLIC_KAKAO_API_KEY=${NEXT_PUBLIC_KAKAO_API_KEY} \
                         --build-arg NEXT_PUBLIC_KAKAO_SECRET=${NEXT_PUBLIC_KAKAO_SECRET} \
                         --build-arg NEXT_PUBLIC_KAKAO_REDIRECT_URI=${NEXT_PUBLIC_KAKAO_REDIRECT_URI} \
