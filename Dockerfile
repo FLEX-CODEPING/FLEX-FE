@@ -51,4 +51,4 @@ USER nextjs
 # 포트 설정
 EXPOSE 3000
 
-CMD ["npx", "next", "start"]
+CMD ["node", "server.js"]
