@@ -36,8 +36,8 @@ ENV NODE_ENV production
 RUN apk add --no-cache libc6-compat
 
 # 애플리케이션 사용자 생성
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+RUN addgroup --system --gid 1001 nodejs \
+    && adduser --system --uid 1001 nextjs
 
 # 필요한 파일만 복사
 COPY --from=builder /app/next.config.mjs ./

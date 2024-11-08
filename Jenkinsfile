@@ -23,45 +23,12 @@ pipeline {
             }
         }
 
-        stage('Set Up Docker Buildx') {
-            steps {
-                echo 'Setting up Docker Buildx...'
-                script {
-                    sh '''
-                    docker buildx create --use
-                    '''
-                }
-            }
-        }
-
-        stage('Cache Docker Layers') {
-            steps {
-                echo 'Caching Docker layers...'
-                script {
-                    sh '''
-                    mkdir -p /tmp/.buildx-cache
-                    docker buildx build --cache-from type=local,src=/tmp/.buildx-cache \
-                    --cache-to type=local,dest=/tmp/.buildx-cache-new,mode=max .
-                    '''
-                }
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image...'
                 script {
                     sh '''
-                    docker buildx build \
-                        --cache-from type=local,src=/tmp/.buildx-cache \
-                        --cache-to type=local,dest=/tmp/.buildx-cache-new,mode=max \
-                        --push  # 또는 --load 사용
-                        --build-arg NEXT_PUBLIC_KAKAO_API_KEY=${NEXT_PUBLIC_KAKAO_API_KEY} \
-                        --build-arg NEXT_PUBLIC_KAKAO_SECRET=${NEXT_PUBLIC_KAKAO_SECRET} \
-                        --build-arg NEXT_PUBLIC_KAKAO_REDIRECT_URI=${NEXT_PUBLIC_KAKAO_REDIRECT_URI} \
-                        --build-arg NEXT_PUBLIC_SERVER=${NEXT_PUBLIC_SERVER} \
-                        --build-arg NEXT_PUBLIC_LOCAL_SERVER=${NEXT_PUBLIC_LOCAL_SERVER} \
-                        -t ${IMAGE_NAME}:${IMAGE_TAG} .
+                    docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
                     '''
                 }
             }
@@ -88,18 +55,23 @@ pipeline {
                             ssh -J ${REMOTE_USER}@${BASTION_HOST} ${REMOTE_USER}@${REMOTE_HOST} '
                                 set -e
 
+                                # .env 파일을 사용하여 환경 변수 설정
                                 export \$(cat ./.env | xargs)
 
+                                # 기존 컨테이너 중지 및 제거
                                 docker compose down --remove-orphans
 
                                 # Docker Compose 파일에 IMAGE_TAG 적용
                                 sed -i "s|image: ${IMAGE_NAME}:.*|image: ${IMAGE_NAME}:${IMAGE_TAG}|" docker-compose.yml
 
+                                # 새로운 이미지 풀 및 시작
                                 docker compose pull
                                 docker compose up -d
 
-                                docker image prune -f
+                                # 불필요한 이미지 정리
+                                docker image prune -a
 
+                                # 현재 컨테이너 상태 확인
                                 docker compose ps
                             '
                         """
