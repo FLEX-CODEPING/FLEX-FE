@@ -58,10 +58,10 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.INTERNAL_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
+          username: ${{ secrets.ON_PREISE_USERNAME }}
           key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
           proxy_host: ${{ secrets.BASTION_HOST }}
-          proxy_username: ${{ secrets.BASTION_USERNAME }}
+          proxy_username: ${{ secrets.ON_PREISE_USERNAME }}
           proxy_key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
           script: |
             docker pull ${{ secrets.DOCKER_USERNAME }}/flex-frontend:latest
