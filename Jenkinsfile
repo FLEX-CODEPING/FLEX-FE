@@ -9,7 +9,7 @@ pipeline {
         REMOTE_USER = credentials('remote-user')
         BASTION_HOST = credentials('bastion-host')
         REMOTE_HOST = credentials('dev-web-host')
-        SLACK_CHANNEL = '#frontend-jenkins'  // 채널 이름 수정
+        SLACK_CHANNEL = '#frontend-jenkins'
         IMAGE_NAME = "${DOCKER_USERNAME}/flex-frontend"
         IMAGE_TAG = "${BUILD_NUMBER}"
     }
@@ -39,6 +39,7 @@ pipeline {
                 echo 'Caching Docker layers...'
                 script {
                     sh '''
+                    mkdir -p /tmp/.buildx-cache
                     docker buildx build --cache-from type=local,src=/tmp/.buildx-cache \
                     --cache-to type=local,dest=/tmp/.buildx-cache-new,mode=max .
                     '''
@@ -52,6 +53,9 @@ pipeline {
                 script {
                     sh '''
                     docker buildx build \
+                        --cache-from type=local,src=/tmp/.buildx-cache \
+                        --cache-to type=local,dest=/tmp/.buildx-cache-new,mode=max \
+                        --push \  # 또는 --load 사용
                         --build-arg NEXT_PUBLIC_KAKAO_API_KEY=${NEXT_PUBLIC_KAKAO_API_KEY} \
                         --build-arg NEXT_PUBLIC_KAKAO_SECRET=${NEXT_PUBLIC_KAKAO_SECRET} \
                         --build-arg NEXT_PUBLIC_KAKAO_REDIRECT_URI=${NEXT_PUBLIC_KAKAO_REDIRECT_URI} \
@@ -84,7 +88,6 @@ pipeline {
                             ssh -J ${REMOTE_USER}@${BASTION_HOST} ${REMOTE_USER}@${REMOTE_HOST} '
                                 set -e
 
-                                # .env 파일을 사용하여 환경 변수 설정
                                 export \$(cat ./.env | xargs)
 
                                 docker compose down --remove-orphans
