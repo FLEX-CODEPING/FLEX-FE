@@ -2,11 +2,11 @@ import { likeSmall } from '@/app/constants/iconPath';
 import Image from 'next/image';
 import Icons from '../common/Icons';
 
-interface MyPostCardsProps{
-  mypost:MyPostCardTypes
+interface MyPostCardsProps {
+  mypost: MyPostCardTypes;
 }
 
-const MyPostCard = ({mypost}:MyPostCardsProps) => {
+const MyPostCard = ({ mypost }: MyPostCardsProps) => {
   const likeCount = 27;
   const tags = ['주식', '투자'];
 

@@ -72,7 +72,7 @@ interface MyResultTypes {
   profileImageUrl: string;
   followingCount: number;
   followerCount: number;
-  posts: MyPostCardTypes[]; 
+  posts: MyPostCardTypes[];
 }
 
 interface MyPostTypes {
@@ -81,4 +81,3 @@ interface MyPostTypes {
   message: string;
   result: MyResultTypes;
 }
-

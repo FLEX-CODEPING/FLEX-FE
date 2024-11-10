@@ -9,7 +9,7 @@ import LikedPosts from './LikedPosts';
 import MyPosts from './MyPosts';
 
 const MyPageHeader = () => {
-  const [myData, setMyData] = useState<MyResultTypes | null>(null)
+  const [myData, setMyData] = useState<MyResultTypes | null>(null);
   const [activeTab, setActiveTab] = useState<'myPosts' | 'likedPosts'>(
     'myPosts',
   );
@@ -25,11 +25,13 @@ const MyPageHeader = () => {
 
   return (
     <div className=" flex flex-col  px-[5%] text-[20px] relative">
-      <div className="text-black text-[24px] font-bold ">{myData?.blogName}</div>
+      <div className="text-black text-[24px] font-bold ">
+        {myData?.blogName}
+      </div>
       <div className="h-[130px] flex items-center justify-center gap-[70px]">
         <div className="flex flex-col items-center justify-center ">
           <Image
-            src={myData?.profileImageUrl||''}
+            src={myData?.profileImageUrl || ''}
             alt="profile"
             width={80}
             height={80}
@@ -39,12 +41,16 @@ const MyPageHeader = () => {
         </div>
         <div className="flex items-center space-x-[50px]">
           <div className="flex flex-col items-center">
-            <span className="text-black-0 font-bold">{myData?.followingCount}</span>
+            <span className="text-black-0 font-bold">
+              {myData?.followingCount}
+            </span>
             <span className="text-black-0 text-sm">{FOLLOW_TEXT[0]}</span>
           </div>
           <div className="w-[1px] h-8 bg-gray-600" />
           <div className="flex flex-col items-center">
-            <span className="text-black-0 font-bold">{myData?.followerCount}</span>
+            <span className="text-black-0 font-bold">
+              {myData?.followerCount}
+            </span>
             <span className="text-black-0 text-sm">{FOLLOW_TEXT[1]}</span>
           </div>
         </div>
@@ -88,8 +94,10 @@ const MyPageHeader = () => {
       </div>
 
       <div className="mt-[60px]">
-      {activeTab === 'myPosts' && myData && <MyPosts posts={myData.posts} />}
-        {activeTab === 'likedPosts' && myData && <LikedPosts posts={myData.posts}/>}
+        {activeTab === 'myPosts' && myData && <MyPosts posts={myData.posts} />}
+        {activeTab === 'likedPosts' && myData && (
+          <LikedPosts posts={myData.posts} />
+        )}
       </div>
     </div>
   );
