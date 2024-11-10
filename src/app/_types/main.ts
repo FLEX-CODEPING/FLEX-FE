@@ -14,6 +14,20 @@ interface LandingPostTypes {
   likeCount: number;
 }
 
+interface MainPostTypes {
+  id: number;
+  userId: number;
+  nickname: string;
+  profileImageUrl: string;
+  title: string;
+  content: string;
+  tags: string;
+  createdAt: string;
+  updatedAt: string;
+  imageUrls: string[];
+  likeCount: number;
+}
+
 interface DailyArticleTypes {
   title: string;
   content: string;
@@ -44,8 +58,16 @@ interface PopularPostTypes {
 }
 
 interface RecommendPostTypes {
+  id: number;
+  userId: number;
   title: string;
-  likeCount: number;
   tags: string;
-  category: string;
+  imageUrls: string[];
+  likeCount: number;
+  commonInterests: string[];
+}
+
+interface RecommendPostResultTypes {
+  content: RecommendPostTypes[];
+  myInterests: string[];
 }

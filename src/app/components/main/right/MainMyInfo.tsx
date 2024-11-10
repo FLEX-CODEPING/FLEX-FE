@@ -47,10 +47,10 @@ const MainMyInfo = ({
                   <p className="font-semibold">{followers}명</p>
                 </div>
               </div>
-              <div className="flex items-center gap-x-2.5">
+              <Link className="flex items-center gap-x-2.5" href="/mypage">
                 <p className="text-[15px]">{MAIN_MYINFO_TEXT[1]}</p>
                 <Icons name={mainRightArrow} />
-              </div>
+              </Link>
             </div>
           </div>
           <div className="flex flex-col gap-y-1.5 px-6 py-3 w-full rounded-xl border border-gray-2">

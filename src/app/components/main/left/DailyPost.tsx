@@ -2,6 +2,7 @@ import Icons from '@/app/components/common/Icons';
 import { likeSmall } from '@/app/constants/iconPath';
 import { truncateString } from '@/app/utils/truncate';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface DailyPostProps {
   post: LandingPostTypes;
@@ -13,7 +14,8 @@ const DailyPost = ({ post }: DailyPostProps) => {
     : [];
 
   return (
-    <div
+    <Link
+      href="/"
       key={post.id}
       className="w-[344px] flex flex-col gap-y-2.5 cursor-pointer bg-white rounded group"
     >
@@ -47,7 +49,7 @@ const DailyPost = ({ post }: DailyPostProps) => {
         </div>
       </div>
       <div className="w-full border-b border-gray-2 mt-0.5" />
-    </div>
+    </Link>
   );
 };
 

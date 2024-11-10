@@ -5,20 +5,23 @@ import {
   RANKING_COLOR,
 } from '@/app/constants/main';
 import { MOOK_RANKINGS } from '@/app/data/main';
+import { getTodayDate } from '@/app/utils/date';
 import Image from 'next/image';
 import Link from 'next/link';
 import Icons from '../../common/Icons';
 
 const SimulateRank = () => {
+  const today = getTodayDate();
   return (
     <div className="flex-col-center px-3 w-full gap-y-4">
       <div className="flex w-full justify-between items-end">
         <p className="text-2xl font-semibold">{MAIN_CONTENTS_TITLE[5]}</p>
-        <p className="text-xs">2024.10.04</p>
+        <p className="text-xs">{today}</p>
       </div>
       <div className="w-full flex-col-center gap-y-6">
         {MOOK_RANKINGS.map((ranker, i) => (
-          <div
+          <Link
+            href="user/user.id"
             className={`flex gap-x-4 w-full items-center justify-between px-6 py-4 ${RANKING_COLOR[i]} rounded-lg shadow`}
           >
             <div className="flex gap-x-3 w-[87px]">
@@ -48,7 +51,7 @@ const SimulateRank = () => {
                 총 수익 : {ranker.profit}원
               </p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

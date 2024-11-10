@@ -56,3 +56,13 @@ interface PostCardTypes {
 }
 
 type BlogViewType = '전체' | '추천' | '팔로잉';
+
+interface BlogDataTypes {
+  content: MainPostTypes[];
+  totalPages: number;
+  totalElements: number;
+  currentPage: number;
+  currentSize: number;
+  firstFollowingNickname?: 'string';
+  followingCount?: number;
+}
