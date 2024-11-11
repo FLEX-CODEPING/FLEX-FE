@@ -25,17 +25,17 @@ const UserPageContainer = () => {
               height={80}
               className="rounded-[32px]"
             />
-            <div className="text-black font-semibold">yng1404</div>
+            <div className="text-black-0 font-semibold">yng1404</div>
           </div>
           <div className="flex items-center space-x-[50px]">
-            <div className="flex flex-col items-center">
-              <span className="text-black-0 font-bold">256</span>
-              <span className="text-black-0 text-sm">{FOLLOW_TEXT[0]}</span>
+            <div className="flex flex-col items-center text-black-0">
+              <span className=" font-bold">256</span>
+              <span className=" text-sm">{FOLLOW_TEXT[0]}</span>
             </div>
             <div className="w-[1px] h-8 bg-gray-600" />
-            <div className="flex flex-col items-center">
-              <span className="text-black-0 font-bold">244</span>
-              <span className="text-black-0 text-sm">{FOLLOW_TEXT[1]}</span>
+            <div className="flex flex-col items-center text-black-0">
+              <span className=" font-bold">244</span>
+              <span className="text-sm">{FOLLOW_TEXT[1]}</span>
             </div>
           </div>
         </div>
