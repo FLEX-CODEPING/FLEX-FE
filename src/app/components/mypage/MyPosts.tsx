@@ -1,8 +1,8 @@
 import { searchSmall } from '@/app/constants/iconPath';
-import { v4 as uuidv4 } from 'uuid';
 import Icons from '../common/Icons';
 import Input from '../common/Input';
 import MyPostCard from './MyPostCard';
+
 interface MyPostsProps {
   posts: MyPostCardTypes[];
 }
@@ -19,8 +19,8 @@ const MyPosts = ({ posts }: MyPostsProps) => {
         </div>
       </div>
       <div className="mt-8 gap-y-10 flex flex-col">
-        {posts.map((post, i) => (
-          <MyPostCard key={i} mypost={post} />
+        {posts.map((post) => (
+          <MyPostCard key={post.postId} mypost={post} />
         ))}
       </div>
     </div>

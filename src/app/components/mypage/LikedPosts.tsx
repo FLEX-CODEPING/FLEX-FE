@@ -21,8 +21,8 @@ const MyPosts = ({ posts }: MyPostsProps) => {
         </div>
       </div>
       <div className="mt-8 gap-y-10 flex flex-col">
-        {posts.map((post, i) => (
-          <MyPostCard key={i} mypost={post} />
+        {posts.map((post) => (
+          <MyPostCard key={post.postId} mypost={post} />
         ))}
       </div>
     </div>
