@@ -23,13 +23,6 @@ ARG NEXT_PUBLIC_KAKAO_REDIRECT_URI
 ARG NEXT_PUBLIC_SERVER
 ARG NEXT_PUBLIC_LOCAL_SERVER
 
-# 환경 변수 설정
-ENV NEXT_PUBLIC_KAKAO_API_KEY=$NEXT_PUBLIC_KAKAO_API_KEY
-ENV NEXT_PUBLIC_KAKAO_SECRET=$NEXT_PUBLIC_KAKAO_SECRET
-ENV NEXT_PUBLIC_KAKAO_REDIRECT_URI=$NEXT_PUBLIC_KAKAO_REDIRECT_URI
-ENV NEXT_PUBLIC_SERVER=$NEXT_PUBLIC_SERVER
-ENV NEXT_PUBLIC_LOCAL_SERVER=$NEXT_PUBLIC_LOCAL_SERVER
-
 # Next.js 애플리케이션 빌드
 RUN npm run build
 
@@ -43,8 +36,8 @@ ENV NODE_ENV production
 RUN apk add --no-cache libc6-compat
 
 # 애플리케이션 사용자 생성
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+RUN addgroup --system --gid 1001 nodejs \
+    && adduser --system --uid 1001 nextjs
 
 # 필요한 파일만 복사
 COPY --from=builder /app/next.config.mjs ./
@@ -58,7 +51,4 @@ USER nextjs
 # 포트 설정
 EXPOSE 3000
 
-ENV PORT 3000
-
-# Next.js 애플리케이션 실행
 CMD ["node", "server.js"]

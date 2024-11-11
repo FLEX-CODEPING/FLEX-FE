@@ -81,3 +81,12 @@ interface MyPostTypes {
   message: string;
   result: MyResultTypes;
 }
+interface BlogDataTypes {
+  content: MainPostTypes[];
+  totalPages: number;
+  totalElements: number;
+  currentPage: number;
+  currentSize: number;
+  firstFollowingNickname?: 'string';
+  followingCount?: number;
+}
