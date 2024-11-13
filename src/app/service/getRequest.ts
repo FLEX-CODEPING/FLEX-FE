@@ -20,15 +20,19 @@ export const getLandingToday = async (req: Request) => {
   return getRequest(url, req);
 };
 
-export const getBlogsMain = async (req: Request, salary?: any, age?: any) => {
-  let url = '/api/blogs/main';
+export const getBlogsMain = async (
+  req: Request,
+  page: string,
+  salary?: any,
+  age?: any,
+) => {
+  let url = `/api/blogs/main?page=${page}&size=9`;
   if (salary !== 'undefined') {
-    url += `?salary=${salary}`;
+    url += `&salary=${salary}`;
   }
   if (age !== 'undefined') {
-    url += salary ? `&age=${age}` : `?age=${age}`;
+    url += `&age=${age}`;
   }
-
   return getRequest(url, req);
 };
 
