@@ -26,7 +26,7 @@ const BlogContainer = () => {
 
   const serverurl =
     selectedNav === '전체'
-      ? `/api/blog/main?age=${AGE_RANGE_MAP[selectedAges]}&salary=${SALARY_RANGE_MAP[selectedSalaries]}&page=${page - 1}`
+      ? `/api/blog/main?age=${AGE_RANGE_MAP[selectedAges]}&salary=${SALARY_RANGE_MAP[selectedSalaries]}&page=${page - 1}&filter=${FILTER_OPTIONS_MAP[selectedOption]}`
       : `/api/blog/recommend?filter=${FILTER_OPTIONS_MAP[selectedOption]}&page=${page - 1}`;
 
   useEffect(() => {

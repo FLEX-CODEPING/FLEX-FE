@@ -25,6 +25,7 @@ export const getBlogsMain = async (
   page: string,
   salary?: any,
   age?: any,
+  filter?: string,
 ) => {
   let url = `/api/blogs/main?page=${page}&size=9`;
   if (salary !== 'undefined') {
@@ -32,6 +33,9 @@ export const getBlogsMain = async (
   }
   if (age !== 'undefined') {
     url += `&age=${age}`;
+  }
+  if (filter !== 'undefined') {
+    url += `&filter=${filter}`;
   }
   return getRequest(url, req);
 };

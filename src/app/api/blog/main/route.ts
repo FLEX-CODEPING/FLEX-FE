@@ -6,7 +6,8 @@ export async function GET(req: Request) {
   const age = searchParams.get('age');
   const salary = searchParams.get('salary');
   const page = searchParams.get('page') || '0';
-  const data = await getBlogsMain(req, page, salary, age);
+  const filter = searchParams.get('filter') || '0';
+  const data = await getBlogsMain(req, page, salary, age, filter);
 
   return NextResponse.json(data);
 }
