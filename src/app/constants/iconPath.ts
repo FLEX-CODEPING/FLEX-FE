@@ -401,3 +401,24 @@ export const kakakoIcon = {
   height: 14,
   fill: 'black',
 };
+
+export const leftAngle = {
+  path: 'M9.99967 10L13.833 13.8333L12.6663 15L7.66634 10L12.6663 5L13.833 6.16667L9.99967 10Z',
+  fill: '#333333',
+  width: 21,
+  height: 20,
+} as const;
+
+export const rightAngle = {
+  path: 'M11.0003 10L7.16699 6.16667L8.33366 5L13.3337 10L8.33366 15L7.16699 13.8333L11.0003 10Z',
+  fill: '#333333',
+  width: 21,
+  height: 20,
+} as const;
+
+export const doubleRightAngle = {
+  path: 'M9.52505 12.5L4.80005 7.775L6.07505 6.5L12.075 12.5L6.07505 18.5L4.80005 17.225L9.52505 12.5ZM16.65 12.5L11.925 7.775L13.2 6.5L19.2 12.5L13.2 18.5L11.925 17.225L16.65 12.5Z',
+  fill: '#333333',
+  width: 21,
+  height: 24,
+} as const;
