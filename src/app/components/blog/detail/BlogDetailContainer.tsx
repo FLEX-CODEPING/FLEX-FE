@@ -6,6 +6,7 @@ import BlogContent from './BlogContent';
 import BlogHeader from './BlogHeader';
 import BlogTitle from './BlogTitle';
 import BlogComment from './BlogComment';
+import { useUserStore } from '@/app/store/store';
 
 interface PostDetailProps {
   postId: number;
@@ -14,6 +15,8 @@ interface PostDetailProps {
 
 const BlogDetailContainer = ({ postId, likeStatus }: PostDetailProps) => {
   const [blogData, setBlogData] = useState<BlogInfoTypes | null>(null);
+  const { user } = useUserStore(); // 로그인된 사용자 정보를 가져옴
+  const currentUserId = user?.result?.nickname;
 
   useEffect(() => {
     console.log(postId, '받아온 아이디');
@@ -60,7 +63,7 @@ const BlogDetailContainer = ({ postId, likeStatus }: PostDetailProps) => {
         createdAt={blogData.createdAt}
       />
       <BlogContent content={blogData.content} />
-      <BlogComment postId={blogData.id}/>
+      <BlogComment postId={blogData.id} currentUserId={currentUserId}/>
     </div>
   );
 };

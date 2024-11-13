@@ -1,7 +1,7 @@
 'use client';
 
 import { COMMENT } from '@/app/constants/blog';
-import { callGet, callPost } from '@/app/utils/callApi';
+import { callGet, callPatch, callPost } from '@/app/utils/callApi';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Icons from '../../common/Icons';
@@ -9,11 +9,14 @@ import { deleteIcon, pencilIcon } from '@/app/constants/iconPath';
 
 interface BlogCommentProps {
   postId: number;
+  currentUserId?: string;
 }
 
-const BlogComment = ({ postId }: BlogCommentProps) => {
+const BlogComment = ({ postId, currentUserId }: BlogCommentProps) => {
   const [commentInput, setCommentInput] = useState<CommentRequestTypes>();
   const [comments, setComments] = useState<CommentTypes[]>([]);
+  const [isEditing, setIsEditing] = useState<number | null>(null); 
+  const [editedCommentInput, setEditedCommentInput] = useState<string>(''); 
 
   const fetchComments = async () => {
     try {
@@ -26,33 +29,55 @@ const BlogComment = ({ postId }: BlogCommentProps) => {
     }
   };
 
-  // 댓글 컴포넌트의 useEffect에서 fetchComments 호출
   useEffect(() => {
-    fetchComments(); // 컴포넌트가 처음 렌더링될 때 전체 댓글을 가져옵니다
+    fetchComments(); 
   }, []);
 
   const handleAddComment = async () => {
     if (commentInput?.content.trim() !== '') {
       try {
-        // 댓글 작성 요청을 보냅니다
+        
         const response = await callPost(`/api/comment/post?id=${postId}`, {
           content: commentInput?.content,
           parentCommentId: commentInput?.parentCommentId,
         });
 
         if (response.isSuccess) {
-          // 댓글 작성 후 입력란 초기화
           setCommentInput({
             content: '',
             parentCommentId: null,
           });
 
-          // 댓글 작성이 성공적으로 완료된 후 전체 댓글을 다시 가져옵니다
           fetchComments();
         }
       } catch (error) {
         console.error('Failed to add comment:', error);
       }
+    }
+  };
+
+  const handleEditClick = (commentId: number, content: string) => {
+    setIsEditing(commentId);
+    setEditedCommentInput(content);
+  };
+
+  const handleSaveEdit = async (commentId: number) => {
+    try {
+      console.log("Trying to save edit for comment ID:", commentId);
+      const response = await callPatch(`/api/comment/patch?postId=${postId}&commentId=${commentId}`, {
+        content: editedCommentInput,
+      });
+      console.log(response)
+      if (response.isSuccess) {
+        console.log("Comment updated successfully");
+        setIsEditing(null);
+        setEditedCommentInput('');
+        fetchComments();
+      }else {
+        console.error("Failed to update comment:", response);
+      }
+    } catch (error) {
+      console.error('Failed to edit comment:', error);
     }
   };
 
@@ -63,12 +88,12 @@ const BlogComment = ({ postId }: BlogCommentProps) => {
         {COMMENT[0]}
       </div>
       <textarea
-        value={commentInput?.content} // commentInput 객체의 content 필드를 value로 설정
+        value={commentInput?.content} 
         placeholder={COMMENT[1]}
         onChange={(e) =>
           setCommentInput({
             ...commentInput,
-            content: e.target.value, // content 필드 업데이트
+            content: e.target.value, 
           })
         }
         className="w-full h-[80px] pl-3 pr-2 py-2 text-sm rounded-[10px] border resize-none border-gray-2 outline-none focus:border-main-1 overflow-y-auto hide-scrollbar"
@@ -100,24 +125,44 @@ const BlogComment = ({ postId }: BlogCommentProps) => {
                     className="rounded-full"
                   />
                   <span className="font-bold text-lg">{comment.nickname}</span>
-                  <span className="text-gray-500 text-sm">
-                    {comment.timeAgo}
-                  </span>
+                  <span className="text-gray-500 text-sm">{comment.timeAgo}</span>
                 </div>
-                <div className="flex items-center gap-1 ml-auto">
-                  <Icons
-                    name={pencilIcon}
-                    className="cursor-pointer w-6 h-6 text-gray-600"
-                  />
-                  <Icons
-                    name={deleteIcon}
-                    className="cursor-pointer w-6 h-6 text-gray-600"
-                  />
-                </div>
+                {currentUserId === comment.nickname && (
+                  <div className="flex items-center gap-1 ml-auto">
+                    <Icons
+                      name={pencilIcon}
+                      className="cursor-pointer w-6 h-6 text-gray-600"
+                      onClick={() => handleEditClick(comment.id, comment.content)}
+                    />
+                    <Icons
+                      name={deleteIcon}
+                      className="cursor-pointer w-6 h-6 text-gray-600"
+                    />
+                  </div>
+                )}
               </div>
             </div>
             <div className="py-[18px] font-normal border-b border-gray-3">
-              {comment.content}
+              {isEditing === comment.id ? (
+                <div>
+                  <textarea
+                    value={editedCommentInput}
+                    onChange={(e) => setEditedCommentInput(e.target.value)}
+                    className="w-full h-[60px] pl-3 pr-2 py-2 text-sm rounded-[10px] border resize-none border-gray-2 outline-none focus:border-main-1 overflow-y-auto hide-scrollbar"
+                  />
+                  <div className="flex justify-end mt-2">
+                    <button
+                      type="button"
+                      onClick={() => handleSaveEdit(comment.id)}
+                      className="border border-gray-1 text-black-0 px-4 py-1 rounded-lg font-semibold text-sm"
+                    >
+                      수정 완료
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                comment.content
+              )}
             </div>
           </div>
         ))}

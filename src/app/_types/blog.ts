@@ -108,3 +108,8 @@ interface CommentRequestTypes {
   content: string;
   parentCommentId?: number | null;
 }
+
+interface CommentRequestTypes2 {
+  content: string;
+  
+}

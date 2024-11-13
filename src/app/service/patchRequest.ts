@@ -11,10 +11,10 @@ const patchRequest = async (url: string, req: Request, body: any = null) => {
 
   const headers = {
     ...commonHeaders,
-    ...(token && { 'access-token': token }),
+    ...(token && { Authorization: `Bearer ${token}` }),
   };
 
-  const response = await fetch(`${SERVER_URL}/${url}`, {
+  const response = await fetch(`${SERVER_URL}${url}`, {
     method: 'PATCH',
     headers,
     body: JSON.stringify(body),
@@ -24,4 +24,17 @@ const patchRequest = async (url: string, req: Request, body: any = null) => {
 
 export const patchMain = async (mainInfo: any, req: Request) => {
   return patchRequest('/api/v1/quotations/quotation/1', mainInfo, req);
+};
+
+export const patchComment = async (
+  commentinfo: CommentRequestTypes,
+  req: Request,
+  postId: string,
+  commentId: string,
+) => {
+  return patchRequest(
+    `/api/posts/${postId}/comments/${commentId}`,
+    req,
+    commentinfo
+  );
 };
