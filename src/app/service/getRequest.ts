@@ -15,13 +15,8 @@ const getRequest = async (url: string, req: Request) => {
   return response.json();
 };
 
-export const getMain = async (req: Request) => {
-  const url = '/api/v1/main';
-  return getRequest(url, req);
-};
-
-export const getLandingPost = async (req: Request, filter: string) => {
-  const url = `/api/blogs/landing?filter=${filter}`;
+export const getLandingToday = async (req: Request) => {
+  const url = `/api/blogs/landings/today`;
   return getRequest(url, req);
 };
 
@@ -65,5 +60,15 @@ export const getPostDetail = async (req: Request, id: string) => {
 
 export const getUsers = async (req: Request) => {
   const url = '/api/users/info';
+  return getRequest(url, req);
+};
+
+export const getLandingPopular = async (req: Request) => {
+  const url = '/api/blogs/landings/popular';
+  return getRequest(url, req);
+};
+
+export const getLandingRecommend = async (req: Request) => {
+  const url = '/api/blogs/landings/recommend';
   return getRequest(url, req);
 };
