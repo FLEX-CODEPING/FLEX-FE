@@ -24,14 +24,19 @@ const BlogContainer = () => {
   const [selectedSalaries, setSelectedSalaries] = useState('');
   console.log(FILTER_OPTIONS_MAP[selectedOption], '태그 매핑');
 
-  const serverurl =
-    selectedNav === '전체'
-      ? `/api/blog/main?age=${AGE_RANGE_MAP[selectedAges]}&salary=${SALARY_RANGE_MAP[selectedSalaries]}&page=${page - 1}&filter=${FILTER_OPTIONS_MAP[selectedOption]}`
-      : `/api/blog/recommend?filter=${FILTER_OPTIONS_MAP[selectedOption]}&page=${page - 1}`;
+  const apiPaths = {
+    전체: `/api/blog/main?age=${AGE_RANGE_MAP[selectedAges]}&salary=${SALARY_RANGE_MAP[selectedSalaries]}&page=${page - 1}&filter=${FILTER_OPTIONS_MAP[selectedOption]}`,
+    추천: `/api/blog/recommend?filter=${FILTER_OPTIONS_MAP[selectedOption]}&page=${page - 1}`,
+    팔로잉: `/api/blog/following?filter=${FILTER_OPTIONS_MAP[selectedOption]}&page=${page - 1}`,
+  };
+
+  const apiPath = apiPaths[selectedNav];
+  console.log(apiPath,'로 요청');
+  
 
   useEffect(() => {
     const fetchPost = async () => {
-      const response = await callGet(serverurl);
+      const response = await callGet(apiPath);
       console.log(response, '응답');
       setPostDatas(response.result);
     };

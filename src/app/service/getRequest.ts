@@ -66,7 +66,19 @@ export const getBlogsRecommend = async (
   page: string,
   filter?: any,
 ) => {
-  let url = `/api/blogs/main?page=${page}&size=9`;
+  let url = `/api/blogs/recommend?page=${page}&size=9`;
+  if (filter !== 'undefined') {
+    url += `&filter=${filter}`;
+  }
+  return getRequest(url, req);
+};
+
+export const getBlogsFollowing = async (
+  req: Request,
+  page: string,
+  filter?: any,
+) => {
+  let url = `/api/blogs/following?page=${page}&size=9`;
   if (filter !== 'undefined') {
     url += `&filter=${filter}`;
   }
