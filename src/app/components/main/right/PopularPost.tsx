@@ -28,7 +28,7 @@ const PopularPost = () => {
         <p className="text-2xl font-semibold">{MAIN_CONTENTS_TITLE[3]}</p>
         <p className="text-xs">{today}</p>
       </div>
-      {postDatas?.length !== 0 ? (
+      {postDatas?.length === 0 ? (
         <div className="w-full h-[328px]">
           <NoneContent />
         </div>
