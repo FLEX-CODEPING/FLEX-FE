@@ -2,7 +2,11 @@
 
 import Navigation from '@/app/components/blog/main/all/Navigation';
 import Pagination from '@/app/components/common/Pagination';
-import { AGE_RANGE_MAP, SALARY_RANGE_MAP } from '@/app/constants/blog';
+import {
+  AGE_RANGE_MAP,
+  FILTER_OPTIONS_MAP,
+  SALARY_RANGE_MAP,
+} from '@/app/constants/blog';
 import { callGet } from '@/app/utils/callApi';
 import { useEffect, useState } from 'react';
 import FollowerFilter from '../following/FollowerFilter';
@@ -18,20 +22,21 @@ const BlogContainer = () => {
   const [page, setPage] = useState(1);
   const [selectedAges, setSelectedAges] = useState('');
   const [selectedSalaries, setSelectedSalaries] = useState('');
+  console.log(FILTER_OPTIONS_MAP[selectedOption], '태그 매핑');
 
-  const serverurl = `/api/blog/recommend?filter=${AGE_RANGE_MAP[selectedAges]}&salary=${SALARY_RANGE_MAP[selectedSalaries]}&page=${page - 1}`;
+  const serverurl =
+    selectedNav === '전체'
+      ? `/api/blog/main?age=${AGE_RANGE_MAP[selectedAges]}&salary=${SALARY_RANGE_MAP[selectedSalaries]}&page=${page - 1}`
+      : `/api/blog/recommend?filter=${FILTER_OPTIONS_MAP[selectedOption]}&page=${page - 1}`;
 
   useEffect(() => {
     const fetchPost = async () => {
-      const response = await callGet(
-        `/api/blog/main?age=${AGE_RANGE_MAP[selectedAges]}&salary=${SALARY_RANGE_MAP[selectedSalaries]}&page=${page - 1}`,
-      );
+      const response = await callGet(serverurl);
       console.log(response, '응답');
-
       setPostDatas(response.result);
     };
     fetchPost();
-  }, [selectedAges, selectedSalaries, selectedNav, page]);
+  }, [selectedAges, selectedOption, selectedSalaries, selectedNav, page]);
 
   const handlePageChange = ({ selected }: { selected: number }) => {
     setPage(() => selected + 1);
@@ -48,7 +53,8 @@ const BlogContainer = () => {
         />
       );
     }
-    if (selectedType === '추천') return <RecommendFilter />;
+    if (selectedType === '추천')
+      return <RecommendFilter myInterests={postDatas?.myInterests || []} />;
     return (
       <FollowerFilter
         first={postDatas?.firstFollowingNickname || ''}

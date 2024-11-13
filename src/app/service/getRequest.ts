@@ -57,6 +57,18 @@ export const getNews = async (
   return getRequest(url, req);
 };
 
+export const getBlogsRecommend = async (
+  req: Request,
+  page: string,
+  filter?: any,
+) => {
+  let url = `/api/blogs/main?page=${page}&size=9`;
+  if (filter !== 'undefined') {
+    url += `&filter=${filter}`;
+  }
+  return getRequest(url, req);
+};
+
 export const getPostDetail = async (req: Request, id: string) => {
   const url = `/api/posts/${id}`;
   return getRequest(url, req);
