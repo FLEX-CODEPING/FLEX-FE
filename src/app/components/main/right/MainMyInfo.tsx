@@ -28,7 +28,6 @@ const MainMyInfo = ({
   views,
 }: MainMyInfoProps) => {
   const { user } = useUserStore();
-  console.log(user, 'user정보');
 
   return (
     <div className="flex-col flex w-full mt-8">

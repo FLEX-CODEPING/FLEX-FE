@@ -19,7 +19,6 @@ const RecommendPost = () => {
     const fetchPost = async () => {
       const response = await callGet(`/api/main/recommend`);
       setDatas(response.result);
-      console.log(response, '추천 응답');
     };
 
     fetchPost();

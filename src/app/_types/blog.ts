@@ -93,5 +93,5 @@ interface BlogDataTypes {
   currentSize: number;
   firstFollowingNickname?: 'string';
   followingCount?: number;
-  myInterests?:string[]
+  myInterests?: string[];
 }

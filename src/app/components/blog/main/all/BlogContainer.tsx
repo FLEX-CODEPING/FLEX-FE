@@ -22,7 +22,7 @@ const BlogContainer = () => {
   const [page, setPage] = useState(1);
   const [selectedAges, setSelectedAges] = useState('');
   const [selectedSalaries, setSelectedSalaries] = useState('');
-  
+
   const commonUrl = `?page=${page - 1}&filter=${FILTER_OPTIONS_MAP[selectedOption]}`;
   const apiPaths = {
     전체: `/api/blog/main${commonUrl}&age=${AGE_RANGE_MAP[selectedAges]}&salary=${SALARY_RANGE_MAP[selectedSalaries]}`,
@@ -31,12 +31,9 @@ const BlogContainer = () => {
   };
 
   const apiPath = apiPaths[selectedNav];
-  console.log(apiPath, '로 요청');
-
   useEffect(() => {
     const fetchPost = async () => {
       const response = await callGet(apiPath);
-      console.log(response, '응답');
       setPostDatas(response.result);
     };
     fetchPost();
