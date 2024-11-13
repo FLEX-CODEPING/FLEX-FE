@@ -67,3 +67,8 @@ export const getUsers = async (req: Request) => {
   const url = `/api/users/info`;
   return getRequest(url, req);
 };
+
+export const getComments = async (req: Request, id: string) => {
+  const url = `/api/posts/${id}/comments`;
+  return getRequest(url, req);
+};

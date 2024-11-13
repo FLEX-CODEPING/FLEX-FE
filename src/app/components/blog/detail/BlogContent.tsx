@@ -40,11 +40,7 @@ const BlogContent = ({ content }: BlogContentProps) => {
       >
         {content}
       </ReactMarkdown>
-      <Image
-        fill
-        src="https://www.tradingview.com/x/L7vASBaQ/"
-        alt="게시물 썸네일"
-      />
+      
     </div>
   );
 };

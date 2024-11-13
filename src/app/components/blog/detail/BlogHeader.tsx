@@ -61,15 +61,14 @@ const BlogHeader = ({ tags, likeCount, likeStatus }: BlogHeaderProps) => {
           onMouseLeave={() => setIsHovered(false)}
           className={`w-[48px] h-[48px] mt-2 rounded-full flex items-center justify-center border cursor-pointer ${getButtonBorderColor()} ${getButtonBackgroundColor()}`}
         >
-          <div className="w-[34px] h-[34px] relative">
-            <Icons
-              name={{
-                ...likeIcon,
-                fill: getIconFillColor(),
-                options: { ...likeIcon.options, stroke: 'none' },
-              }}
-            />
-          </div>
+          <Icons
+            name={{
+              ...likeIcon,
+              fill: getIconFillColor(),
+              options: { ...likeIcon.options, stroke: 'none' },
+            }}
+            className="relative ml-2 mt-2"
+          />
         </button>
         <span className="text-black-0 font-semibold text-sm mt-[2px]">
           {currentLikeCount}

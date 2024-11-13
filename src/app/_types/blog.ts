@@ -28,9 +28,22 @@ interface FilterOption {
 }
 interface CommentTypes {
   id: number;
-  author: string;
-  date: string;
+  userId: number;
+  postId: number;
+  nickname: string;
+  profileImageUrl: string | null;
   content: string;
+  timeAgo: string;
+  childComments: ChildCommentType[];
+}
+
+interface ChildCommentType {
+  id: number;
+  userId: number;
+  nickname: string;
+  profileImageUrl: string | null;
+  content: string;
+  timeAgo: string;
 }
 interface PostTypes {
   title: string;
@@ -89,4 +102,9 @@ interface BlogDataTypes {
   currentSize: number;
   firstFollowingNickname?: 'string';
   followingCount?: number;
+}
+
+interface CommentRequestTypes {
+  content: string;
+  parentCommentId?: number | null;
 }

@@ -38,3 +38,7 @@ export const postSignUp = async (
 export const postBlog = async (postContent: PostTypes, req: Request) => {
   return postRequest('/api/posts', req, postContent);
 };
+
+export const postComment = async (postComment: CommentRequestTypes, req: Request, id:string) => {
+  return postRequest(`/api/posts/${id}/comments`, req, postComment);
+};

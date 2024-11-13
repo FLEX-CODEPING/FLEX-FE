@@ -60,7 +60,7 @@ const BlogDetailContainer = ({ postId, likeStatus }: PostDetailProps) => {
         createdAt={blogData.createdAt}
       />
       <BlogContent content={blogData.content} />
-      <BlogComment />
+      <BlogComment postId={blogData.id}/>
     </div>
   );
 };
