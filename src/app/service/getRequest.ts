@@ -64,6 +64,6 @@ export const getPostDetail = async (req: Request, id: string) => {
 };
 
 export const getUsers = async (req: Request) => {
-  const url = `/api/users/info`;
+  const url = '/api/users/info';
   return getRequest(url, req);
 };
