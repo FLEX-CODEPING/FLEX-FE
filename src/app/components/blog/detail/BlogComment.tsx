@@ -1,7 +1,7 @@
 'use client';
 
 import { COMMENT } from '@/app/constants/blog';
-import { callGet, callPatch, callPost } from '@/app/utils/callApi';
+import { callDelete, callGet, callPatch, callPost } from '@/app/utils/callApi';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Icons from '../../common/Icons';
@@ -15,8 +15,8 @@ interface BlogCommentProps {
 const BlogComment = ({ postId, currentUserId }: BlogCommentProps) => {
   const [commentInput, setCommentInput] = useState<CommentRequestTypes>();
   const [comments, setComments] = useState<CommentTypes[]>([]);
-  const [isEditing, setIsEditing] = useState<number | null>(null); 
-  const [editedCommentInput, setEditedCommentInput] = useState<string>(''); 
+  const [isEditing, setIsEditing] = useState<number | null>(null);
+  const [editedCommentInput, setEditedCommentInput] = useState<string>('');
 
   const fetchComments = async () => {
     try {
@@ -30,13 +30,12 @@ const BlogComment = ({ postId, currentUserId }: BlogCommentProps) => {
   };
 
   useEffect(() => {
-    fetchComments(); 
+    fetchComments();
   }, []);
 
   const handleAddComment = async () => {
     if (commentInput?.content.trim() !== '') {
       try {
-        
         const response = await callPost(`/api/comment/post?id=${postId}`, {
           content: commentInput?.content,
           parentCommentId: commentInput?.parentCommentId,
@@ -63,21 +62,44 @@ const BlogComment = ({ postId, currentUserId }: BlogCommentProps) => {
 
   const handleSaveEdit = async (commentId: number) => {
     try {
-      console.log("Trying to save edit for comment ID:", commentId);
-      const response = await callPatch(`/api/comment/patch?postId=${postId}&commentId=${commentId}`, {
-        content: editedCommentInput,
-      });
-      console.log(response)
+      console.log('Trying to save edit for comment ID:', commentId);
+      const response = await callPatch(
+        `/api/comment/patch?postId=${postId}&commentId=${commentId}`,
+        {
+          content: editedCommentInput,
+        },
+      );
+      console.log(response);
       if (response.isSuccess) {
-        console.log("Comment updated successfully");
+        console.log('Comment updated successfully');
         setIsEditing(null);
         setEditedCommentInput('');
         fetchComments();
-      }else {
-        console.error("Failed to update comment:", response);
+      } else {
+        console.error('Failed to update comment:', response);
       }
     } catch (error) {
       console.error('Failed to edit comment:', error);
+    }
+  };
+
+  const handleDeleteComment = async (commentId: number) => {
+    try {
+      console.log('Trying to delete comment ID:', commentId);
+  
+      const response = await callDelete(
+        `/api/comment/delete?postId=${postId}&commentId=${commentId}`,
+      );
+  
+      // 서버 응답이 성공 상태일 경우에만 fetchComments 호출
+      if (response && response.isSuccess) {
+        console.log('Successfully deleted comment ID:', commentId);
+        await fetchComments();
+      } else {
+        console.error('Failed to delete comment:', response);
+      }
+    } catch (error) {
+      console.error('Failed to delete comment:', error);
     }
   };
 
@@ -88,12 +110,12 @@ const BlogComment = ({ postId, currentUserId }: BlogCommentProps) => {
         {COMMENT[0]}
       </div>
       <textarea
-        value={commentInput?.content} 
+        value={commentInput?.content}
         placeholder={COMMENT[1]}
         onChange={(e) =>
           setCommentInput({
             ...commentInput,
-            content: e.target.value, 
+            content: e.target.value,
           })
         }
         className="w-full h-[80px] pl-3 pr-2 py-2 text-sm rounded-[10px] border resize-none border-gray-2 outline-none focus:border-main-1 overflow-y-auto hide-scrollbar"
@@ -125,18 +147,23 @@ const BlogComment = ({ postId, currentUserId }: BlogCommentProps) => {
                     className="rounded-full"
                   />
                   <span className="font-bold text-lg">{comment.nickname}</span>
-                  <span className="text-gray-500 text-sm">{comment.timeAgo}</span>
+                  <span className="text-gray-500 text-sm">
+                    {comment.timeAgo}
+                  </span>
                 </div>
                 {currentUserId === comment.nickname && (
                   <div className="flex items-center gap-1 ml-auto">
                     <Icons
                       name={pencilIcon}
                       className="cursor-pointer w-6 h-6 text-gray-600"
-                      onClick={() => handleEditClick(comment.id, comment.content)}
+                      onClick={() =>
+                        handleEditClick(comment.id, comment.content)
+                      }
                     />
                     <Icons
                       name={deleteIcon}
                       className="cursor-pointer w-6 h-6 text-gray-600"
+                      onClick={() => handleDeleteComment(comment.id)}
                     />
                   </div>
                 )}
