@@ -40,7 +40,6 @@ const BlogContent = ({ content }: BlogContentProps) => {
       >
         {content}
       </ReactMarkdown>
-      
     </div>
   );
 };

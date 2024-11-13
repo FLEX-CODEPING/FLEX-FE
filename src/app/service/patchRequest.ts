@@ -35,6 +35,6 @@ export const patchComment = async (
   return patchRequest(
     `/api/posts/${postId}/comments/${commentId}`,
     req,
-    commentinfo
+    commentinfo,
   );
 };

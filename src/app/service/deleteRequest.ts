@@ -11,9 +11,9 @@ const deleteRequest = async (url: string, req: Request) => {
 
   const response = await fetch(`${SERVER_URL}${url}`, {
     method: 'DELETE',
-    headers: { 
-      ...commonHeaders, 
-      ...(token && { Authorization: `Bearer ${token}` })  // 토큰을 Bearer 형식으로 보냄
+    headers: {
+      ...commonHeaders,
+      ...(token && { Authorization: `Bearer ${token}` }),
     },
   });
   return response.json();

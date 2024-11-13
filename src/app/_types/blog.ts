@@ -111,5 +111,4 @@ interface CommentRequestTypes {
 
 interface CommentRequestTypes2 {
   content: string;
-  
 }

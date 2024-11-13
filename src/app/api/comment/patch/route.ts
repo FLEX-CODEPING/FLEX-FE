@@ -8,7 +8,13 @@ export async function PATCH(req: Request) {
   const commentId = searchParams.get('commentId');
 
   if (!postId || !commentId) {
-    return NextResponse.json({ isSuccess: false, message: 'Invalid request. postId or commentId missing.' }, { status: 400 });
+    return NextResponse.json(
+      {
+        isSuccess: false,
+        message: 'Invalid request. postId or commentId missing.',
+      },
+      { status: 400 },
+    );
   }
 
   const response = await patchComment(body, req, postId, commentId);

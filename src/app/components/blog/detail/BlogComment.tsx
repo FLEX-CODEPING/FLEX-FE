@@ -4,8 +4,8 @@ import { COMMENT } from '@/app/constants/blog';
 import { callDelete, callGet, callPatch, callPost } from '@/app/utils/callApi';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import Icons from '../../common/Icons';
 import { deleteIcon, pencilIcon } from '@/app/constants/iconPath';
+import Icons from '../../common/Icons';
 
 interface BlogCommentProps {
   postId: number;
@@ -86,12 +86,11 @@ const BlogComment = ({ postId, currentUserId }: BlogCommentProps) => {
   const handleDeleteComment = async (commentId: number) => {
     try {
       console.log('Trying to delete comment ID:', commentId);
-  
+
       const response = await callDelete(
         `/api/comment/delete?postId=${postId}&commentId=${commentId}`,
       );
-  
-      // 서버 응답이 성공 상태일 경우에만 fetchComments 호출
+
       if (response && response.isSuccess) {
         console.log('Successfully deleted comment ID:', commentId);
         await fetchComments();
@@ -183,7 +182,7 @@ const BlogComment = ({ postId, currentUserId }: BlogCommentProps) => {
                       onClick={() => handleSaveEdit(comment.id)}
                       className="border border-gray-1 text-black-0 px-4 py-1 rounded-lg font-semibold text-sm"
                     >
-                      수정 완료
+                      {COMMENT[3]}
                     </button>
                   </div>
                 </div>
