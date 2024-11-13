@@ -38,7 +38,7 @@ const PopularPost = () => {
             <Link
               href={`/blog/detail?postId=${data.id}`}
               className="w-full flex-col flex py-3 px-2 gap-y-1 cursor-pointer border-b border-b-gray-3 hover:border-b-main-1 transition duration-500"
-              key={data.title}
+              key={data.id}
             >
               <div className="w-full flex justify-between">
                 <p className="text-[10px]">{data.nickname}</p>
