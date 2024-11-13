@@ -6,7 +6,7 @@ import SimulateRank from './SimulateRank';
 
 const MainDownRight = () => {
   return (
-    <div className="w-[475px] flex-col-center gap-y-12">
+    <div className="w-[475px] flex-col-center gap-y-[56px]">
       <MainMyInfo
         nickname="코드핑"
         followers={17}

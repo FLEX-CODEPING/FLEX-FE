@@ -1,10 +1,10 @@
 'use client';
 
 import { MAIN_CONTENTS_TITLE } from '@/app/constants/main';
-import { MOOK_DAILY_POSTS } from '@/app/data/main';
 import { callGet } from '@/app/utils/callApi';
 import { getTodayDate } from '@/app/utils/date';
 import { useEffect, useState } from 'react';
+import NoneContent from '../NoneContent';
 import DailyPost from './DailyPost';
 
 const DailyPostContainer = () => {
@@ -16,6 +16,7 @@ const DailyPostContainer = () => {
       const response = await callGet('/api/main/dailyPost');
       setPostData(response.result);
     };
+
     fetchPost();
   }, []);
 
@@ -25,11 +26,17 @@ const DailyPostContainer = () => {
         <p className="text-2xl font-semibold">{MAIN_CONTENTS_TITLE[0]}</p>
         <p className="text-xs">{today}</p>
       </div>
-      <div className="w-full flex-wrap flex gap-x-12 gap-y-5">
-        {postData.map((post, i) => (
-          <DailyPost key={post.id} post={post} />
-        ))}
-      </div>
+      {postData.length === 0 ? (
+        <div className="w-full h-[748px]">
+          <NoneContent />
+        </div>
+      ) : (
+        <div className="w-full flex-wrap flex gap-x-12 gap-y-5">
+          {postData.map((post, i) => (
+            <DailyPost key={post.id} post={post} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
