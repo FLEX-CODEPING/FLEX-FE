@@ -93,3 +93,8 @@ export const CONTRIBUTORS = [
 export const RECOMMEND_LOGIN = [
   '로그인 후 오직 나만을 위한 게시물들을 만나보세요!',
 ];
+
+export const NONE_MAIN_INFO = [
+  '해당 컨텐츠가 존재하지 않습니다',
+  '새로고침 또는 잠시후 시도해보세요',
+];
