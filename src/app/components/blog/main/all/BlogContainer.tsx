@@ -13,9 +13,13 @@ import TagsFilter from './TagsFilter';
 const BlogContainer = () => {
   const [postDatas, setPostDatas] = useState<BlogDataTypes | null>(null);
   const [selectedNav, setSelectedNav] = useState<BlogViewType>('전체');
+  const [selectedOption, setSelectedOption] =
+    useState<BlogFilterType>('최신순');
   const [page, setPage] = useState(1);
   const [selectedAges, setSelectedAges] = useState('');
   const [selectedSalaries, setSelectedSalaries] = useState('');
+
+  const serverurl = `/api/blog/recommend?filter=${AGE_RANGE_MAP[selectedAges]}&salary=${SALARY_RANGE_MAP[selectedSalaries]}&page=${page - 1}`;
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -56,7 +60,12 @@ const BlogContainer = () => {
   return (
     <div className="w-full flex flex-col items-center">
       <div className="w-full flex flex-col items-start max-w-[1280px]">
-        <Navigation selectedNav={selectedNav} setSelectedNav={setSelectedNav} />
+        <Navigation
+          selectedNav={selectedNav}
+          setSelectedNav={setSelectedNav}
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
+        />
         {optionsBar(selectedNav)}
       </div>
       <div className="w-full flex flex-wrap max-w-[1280px] gap-y-10 gap-x-[67px] mt-8">
