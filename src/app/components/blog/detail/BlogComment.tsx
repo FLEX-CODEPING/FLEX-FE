@@ -17,6 +17,8 @@ const BlogComment = ({ postId, currentUserId }: BlogCommentProps) => {
   const [comments, setComments] = useState<CommentTypes[]>([]);
   const [isEditing, setIsEditing] = useState<number | null>(null);
   const [editedCommentInput, setEditedCommentInput] = useState<string>('');
+  const [replyInput, setReplyInput] = useState<string>('');
+  const [activeReplyId, setActiveReplyId] = useState<number | null>(null);
 
   const fetchComments = async () => {
     try {
@@ -99,6 +101,36 @@ const BlogComment = ({ postId, currentUserId }: BlogCommentProps) => {
       }
     } catch (error) {
       console.error('Failed to delete comment:', error);
+    }
+  };
+
+  const handleReplyClick = (commentId: number) => {
+    if (activeReplyId === commentId) {
+      // 이미 활성화된 답글 창이면 닫기
+      setActiveReplyId(null);
+    } else {
+      // 아니면 답글 창 열기
+      setActiveReplyId(commentId);
+    }
+  };
+
+  const handleAddReply = async (parentCommentId: number) => {
+    if (replyInput.trim() !== '') {
+      console.log(parentCommentId);
+      try {
+        const response = await callPost(`/api/comment/post?id=${postId}`, {
+          content: replyInput,
+          parentCommentId,
+        });
+
+        if (response.isSuccess) {
+          setReplyInput('');
+          setActiveReplyId(null);
+          fetchComments();
+        }
+      } catch (error) {
+        console.error('Failed to add reply:', error);
+      }
     }
   };
 
@@ -190,6 +222,63 @@ const BlogComment = ({ postId, currentUserId }: BlogCommentProps) => {
                 comment.content
               )}
             </div>
+            <div className="mt-2">
+              <button
+                type="button"
+                onClick={() => handleReplyClick(comment.id)}
+                className="text-black-0/60 text-sm font-semibold"
+              >
+                {activeReplyId === comment.id ? COMMENT[6] : COMMENT[4]}
+              </button>
+              {activeReplyId === comment.id && (
+                <div className="mt-2">
+                  <textarea
+                    value={replyInput}
+                    onChange={(e) => setReplyInput(e.target.value)}
+                    placeholder="답글을 입력하세요"
+                    className="w-full h-[60px] pl-3 pr-2 py-2 text-sm rounded-[10px] border resize-none border-gray-2 outline-none focus:border-main-1 overflow-y-auto hide-scrollbar"
+                  />
+                  <div className="flex justify-end mt-2">
+                    <button
+                      type="button"
+                      onClick={() => handleAddReply(comment.id)}
+                      className="border border-gray-1 text-black-0 px-4 py-1 rounded-lg font-semibold text-sm"
+                    >
+                      {COMMENT[5]}
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+            {comment.childComments.length > 0 && (
+              <div className="ml-8 mt-[36px] ">
+                {comment.childComments.map((child) => (
+                  <div key={child.id} className="mb-6 ">
+                    <div className="flex items-start gap-3 bg-main-1/5 p-3 rounded-t-[10px]">
+                      <Image
+                        src={
+                          child.profileImageUrl ||
+                          'https://bff-images.bemypet.kr/media/medias/all/993-image_picker152967371293908462.jpg'
+                        }
+                        alt="프로필 이미지"
+                        width={24}
+                        height={24}
+                        className="rounded-full"
+                      />
+                      <span className="font-bold text-md">
+                        {child.nickname}
+                      </span>
+                      <span className="text-gray-500 text-sm">
+                        {child.timeAgo}
+                      </span>
+                    </div>
+                    <div className="pl-3 border-b bg-main-1/5 p-3 rounded-b-[10px]">
+                      {child.content}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>

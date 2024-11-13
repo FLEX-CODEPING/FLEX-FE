@@ -29,6 +29,9 @@ export const COMMENT = [
   '댓글을 작성하세요',
   '댓글 작성',
   '수정 완료',
+  '답글 달기',
+  '답글 작성',
+  '답글 취소',
 ];
 
 export const MODAL_TEXT = [

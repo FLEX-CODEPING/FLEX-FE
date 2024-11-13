@@ -15,7 +15,7 @@ interface PostDetailProps {
 
 const BlogDetailContainer = ({ postId, likeStatus }: PostDetailProps) => {
   const [blogData, setBlogData] = useState<BlogInfoTypes | null>(null);
-  const { user } = useUserStore(); 
+  const { user } = useUserStore();
   const currentUserId = user?.result?.nickname;
 
   useEffect(() => {
