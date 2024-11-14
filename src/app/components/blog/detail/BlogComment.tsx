@@ -106,10 +106,8 @@ const BlogComment = ({ postId, currentUserId }: BlogCommentProps) => {
 
   const handleReplyClick = (commentId: number) => {
     if (activeReplyId === commentId) {
-      // 이미 활성화된 답글 창이면 닫기
       setActiveReplyId(null);
     } else {
-      // 아니면 답글 창 열기
       setActiveReplyId(commentId);
     }
   };

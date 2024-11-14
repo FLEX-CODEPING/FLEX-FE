@@ -1,7 +1,7 @@
 import { likeSmall } from '@/app/constants/iconPath';
 import Image from 'next/image';
-import Icons from '../common/Icons';
 import { useRouter } from 'next/navigation';
+import Icons from '../common/Icons';
 
 interface MyPostCardsProps {
   mypost: MyPostCardTypes;

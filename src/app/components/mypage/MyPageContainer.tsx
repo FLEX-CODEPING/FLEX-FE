@@ -31,7 +31,6 @@ const MyPageContainer = () => {
     fetchPost();
   }, []);
 
-
   return (
     <div className="mb-[200px] px-[10%]">
       <div className=" flex flex-col  px-[5%] text-[20px] relative">
@@ -104,9 +103,7 @@ const MyPageContainer = () => {
         </div>
 
         <div className="mt-[60px]">
-        {activeTab === 'myPosts' && (
-            <MyPosts posts={myPosts} />
-          )}
+          {activeTab === 'myPosts' && <MyPosts posts={myPosts} />}
           {/* {activeTab === 'likedPosts' && myData && (
             <LikedPosts posts={myData.posts} />
           )} */}

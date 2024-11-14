@@ -77,7 +77,7 @@ interface MyPostCardTypes {
   imageUrls: string[];
   tags: string;
   createdAt: string;
-  updatedAt:string;
+  updatedAt: string;
   likeCount: number;
 }
 interface MyBlogInfo {
