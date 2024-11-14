@@ -72,3 +72,13 @@ export const getComments = async (req: Request, id: string) => {
   const url = `/api/posts/${id}/comments`;
   return getRequest(url, req);
 };
+
+export const getMyBlogInfo = async (req: Request) => {
+  const url = `/api/blogs/myBlog/info`;
+  return getRequest(url, req);
+};
+
+export const getMyPosts = async (req: Request) => {
+  const url = `/api/blogs/myBlog/myPosts`;
+  return getRequest(url, req);
+};

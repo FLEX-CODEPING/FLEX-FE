@@ -71,29 +71,24 @@ interface PostCardTypes {
 type BlogViewType = '전체' | '추천' | '팔로잉';
 
 interface MyPostCardTypes {
-  postId: string;
+  postId: number;
   title: string;
   content: string;
-  image: string;
-  tag: string[];
+  imageUrls: string[];
+  tags: string;
   createdAt: string;
-  helpful: number;
+  updatedAt:string;
+  likeCount: number;
 }
-interface MyResultTypes {
+interface MyBlogInfo {
+  userId: number;
   blogName: string;
   nickname: string;
-  profileImageUrl: string;
+  profileImageUrl: string | null;
   followingCount: number;
   followerCount: number;
-  posts: MyPostCardTypes[];
 }
 
-interface MyPostTypes {
-  isSuccess: boolean;
-  code: string;
-  message: string;
-  result: MyResultTypes;
-}
 interface BlogDataTypes {
   content: MainPostTypes[];
   totalPages: number;

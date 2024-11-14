@@ -9,19 +9,28 @@ import LikedPosts from './LikedPosts';
 import MyPosts from './MyPosts';
 
 const MyPageContainer = () => {
-  const [myData, setMyData] = useState<MyResultTypes | null>(null);
+  const [myData, setMyData] = useState<MyBlogInfo | null>(null);
+  const [myPosts, setMyPosts] = useState<MyPostCardTypes[]>([]);
   const [activeTab, setActiveTab] = useState<'myPosts' | 'likedPosts'>(
     'myPosts',
   );
   const router = useRouter();
 
   useEffect(() => {
-    const fetchPost = async () => {
+    const fetchMyBlogInfo = async () => {
       const response = await callGet('/api/mypage');
       setMyData(response.result);
     };
+
+    const fetchPost = async () => {
+      const response = await callGet('/api/mypage/posts');
+      setMyPosts(response.result);
+    };
+
+    fetchMyBlogInfo();
     fetchPost();
   }, []);
+
 
   return (
     <div className="mb-[200px] px-[10%]">
@@ -32,7 +41,7 @@ const MyPageContainer = () => {
         <div className="h-[130px] flex items-center justify-center gap-[70px]">
           <div className="flex flex-col items-center justify-center ">
             <Image
-              src={myData?.profileImageUrl || ''}
+              src={myData?.profileImageUrl || '/images/profile.png'}
               alt="profile"
               width={80}
               height={80}
@@ -95,12 +104,12 @@ const MyPageContainer = () => {
         </div>
 
         <div className="mt-[60px]">
-          {activeTab === 'myPosts' && myData && (
-            <MyPosts posts={myData.posts} />
+        {activeTab === 'myPosts' && (
+            <MyPosts posts={myPosts} />
           )}
-          {activeTab === 'likedPosts' && myData && (
+          {/* {activeTab === 'likedPosts' && myData && (
             <LikedPosts posts={myData.posts} />
-          )}
+          )} */}
         </div>
       </div>
     </div>
