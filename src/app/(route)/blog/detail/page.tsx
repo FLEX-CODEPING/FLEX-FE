@@ -14,7 +14,7 @@ const ClientOnlyBlogDetail = () => {
 
   return (
     <section className="w-full h-full flex items-center flex-col mt-[40px]">
-      <BlogDetail postId={postId} likeStatus="INACTIVE" />
+      <BlogDetail postId={postId} />
     </section>
   );
 };

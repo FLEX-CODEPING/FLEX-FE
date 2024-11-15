@@ -10,10 +10,9 @@ import BlogComment from './BlogComment';
 
 interface PostDetailProps {
   postId: number;
-  likeStatus: 'ACTIVE' | 'INACTIVE';
 }
 
-const BlogDetailContainer = ({ postId, likeStatus }: PostDetailProps) => {
+const BlogDetailContainer = ({ postId }: PostDetailProps) => {
   const [blogData, setBlogData] = useState<BlogInfoTypes | null>(null);
   const { user } = useUserStore();
   const currentUserId = user?.result?.nickname;
@@ -54,8 +53,9 @@ const BlogDetailContainer = ({ postId, likeStatus }: PostDetailProps) => {
     <div>
       <BlogHeader
         tags={blogData.tags}
-        likeStatus={likeStatus}
+        likeStatus={blogData.likeStatus}
         likeCount={blogData.likeCount}
+        postId={blogData.id}
       />
       <BlogTitle
         title={blogData.title}

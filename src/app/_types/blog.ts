@@ -6,6 +6,7 @@ interface BlogInfoTypes {
   content: string;
   tags: string[];
   likeCount: number;
+  likeStatus: boolean;
   commentCount: number;
   createdAt: string;
   updatedAt: string;

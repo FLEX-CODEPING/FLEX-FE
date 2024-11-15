@@ -30,3 +30,7 @@ export const deleteComment = async (
 ) => {
   return deleteRequest(`/api/posts/${postId}/comments/${commentId}`, req);
 };
+
+export const deleteLike = async (id: string, req: Request) => {
+  return deleteRequest(`/api/posts/${id}/like`, req);
+};

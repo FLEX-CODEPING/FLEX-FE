@@ -46,3 +46,7 @@ export const postComment = async (
 ) => {
   return postRequest(`/api/posts/${id}/comments`, req, postCommentInfo);
 };
+
+export const postLike = async (req: Request, id: string) => {
+  return postRequest(`/api/posts/${id}/like`, req);
+};
