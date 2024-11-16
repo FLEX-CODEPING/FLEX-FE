@@ -1,11 +1,12 @@
 'use client';
 
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { blueArrow, infoIcon } from '@/app/constants/iconPath';
 import {
   PREDICTION_ALARM_TEXT,
   PREDICTION_SIDEBAR_RESULT,
 } from '@/app/constants/prediction';
-import { useState } from 'react';
 import Button from '../../common/Button';
 import Icons from '../../common/Icons';
 import Input from '../../common/Input';
@@ -15,6 +16,7 @@ interface PredictResultAlertProps {
   result: string;
   resultPrice: number;
   resultPercent: number;
+  userWebhookUrl?: string;
 }
 
 const PredictResultAlert = ({
@@ -22,15 +24,44 @@ const PredictResultAlert = ({
   result,
   resultPrice,
   resultPercent,
+  userWebhookUrl,
 }: PredictResultAlertProps) => {
   const [targetPrice, setTargetPrice] = useState('');
   const mainColor = result === '하락' ? 'text-blue-1' : 'text-red-1';
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     if (Number(value) <= 9999999) {
       setTargetPrice(value);
     }
+  };
+
+  const handleDiscordNotification = () => {
+    if (userWebhookUrl) {
+      console.log('알림 등록 중...');
+
+      const data = {
+        username: 'FLEX-bot',
+        content: `${stockName}의 목표가 ${targetPrice}원에 도달 시 알림이 전송됩니다.`,
+      };
+      fetch(userWebhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => console.log('알림 전송 성공:', response))
+        .catch((error) => console.error('알림 전송 오류:', error));
+    } else {
+      router.push('/set-webhook');
+    }
+  };
+
+  const handleTelegramNotification = () => {
+    console.log('Telegram 알림 등록 중...');
+    // Telegram 알림 설정 로직 추가
   };
 
   return (
@@ -71,7 +102,7 @@ const PredictResultAlert = ({
             {PREDICTION_ALARM_TEXT[1]}
           </p>
         </div>
-        <div className="flex px-2 w-full justify-between items-center mb-1 mt-2.5 text-xs">
+        <div className="flex px-2 w-full justify-between items-center mb-0.5 mt-2.5 text-xs">
           <p className="text-sm">{PREDICTION_ALARM_TEXT[2]}</p>
           <Input
             className="text-right outline-none"
@@ -82,10 +113,22 @@ const PredictResultAlert = ({
             onChange={handleChange}
           />
         </div>
+        <div className="flex justify-center gap-2">
+          <Button
+            buttonText="Discord"
+            type="notification"
+            onClickHandler={handleDiscordNotification}
+          />
+          <Button
+            buttonText="Telegram"
+            type="notification"
+            onClickHandler={handleTelegramNotification}
+          />
+        </div>
         <Button
           buttonText={PREDICTION_ALARM_TEXT[3]}
           type="prediction"
-          onClickHandler={() => console.log('분석 중...')}
+          onClickHandler={() => console.log('알림 등록...')}
         />
       </div>
     </div>
