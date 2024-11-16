@@ -56,3 +56,42 @@ interface PostCardTypes {
 }
 
 type BlogViewType = '전체' | '추천' | '팔로잉';
+
+type BlogFilterType = '최신순' | '좋아요순';
+
+type ApiFilterType = 'CREATED_AT' | 'LIKE_COUNT';
+
+interface MyPostCardTypes {
+  postId: string;
+  title: string;
+  content: string;
+  image: string;
+  tag: string[];
+  createdAt: string;
+  helpful: number;
+}
+interface MyResultTypes {
+  blogName: string;
+  nickname: string;
+  profileImageUrl: string;
+  followingCount: number;
+  followerCount: number;
+  posts: MyPostCardTypes[];
+}
+
+interface MyPostTypes {
+  isSuccess: boolean;
+  code: string;
+  message: string;
+  result: MyResultTypes;
+}
+interface BlogDataTypes {
+  content: MainPostTypes[];
+  totalPages: number;
+  totalElements: number;
+  currentPage: number;
+  currentSize: number;
+  firstFollowingNickname?: 'string';
+  followingCount?: number;
+  myInterests?: string[];
+}
