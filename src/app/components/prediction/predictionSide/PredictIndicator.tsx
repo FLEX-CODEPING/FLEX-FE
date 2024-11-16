@@ -19,7 +19,7 @@ const PredictIndicator = () => {
   } | null>(null);
 
   const handleCheckboxChange = (method: string) => {
-    setSelectedMethod((prev) => (prev === method ? null : method)); 
+    setSelectedMethod((prev) => (prev === method ? null : method));
   };
 
   const handlePredictionClick = async () => {
@@ -30,7 +30,7 @@ const PredictIndicator = () => {
 
     setLoading(true);
     console.log('분석 중...');
-    const data = await fetchPredictionData([selectedMethod]); 
+    const data = await fetchPredictionData([selectedMethod]);
     setLoading(false);
 
     if (data) {
