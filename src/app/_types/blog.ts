@@ -57,6 +57,10 @@ interface PostCardTypes {
 
 type BlogViewType = '전체' | '추천' | '팔로잉';
 
+type BlogFilterType = '최신순' | '좋아요순';
+
+type ApiFilterType = 'CREATED_AT' | 'LIKE_COUNT';
+
 interface MyPostCardTypes {
   postId: string;
   title: string;
@@ -89,4 +93,5 @@ interface BlogDataTypes {
   currentSize: number;
   firstFollowingNickname?: 'string';
   followingCount?: number;
+  myInterests?: string[];
 }

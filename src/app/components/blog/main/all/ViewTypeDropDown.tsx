@@ -3,10 +3,17 @@
 import Icons from '@/app/components/common/Icons';
 import { FILTER_OPTIONS } from '@/app/constants/blog';
 import { fillter } from '@/app/constants/iconPath';
-import { BaseSyntheticEvent, useState } from 'react';
+import { BaseSyntheticEvent, Dispatch, SetStateAction, useState } from 'react';
 
-const ViewTypeDropDown = () => {
-  const [selectedOption, setSelectedOption] = useState('검색필터');
+interface ViewTypeDropDownProps {
+  selectedOption: BlogFilterType;
+  setSelectedOption: Dispatch<SetStateAction<BlogFilterType>>;
+}
+
+const ViewTypeDropDown = ({
+  selectedOption,
+  setSelectedOption,
+}: ViewTypeDropDownProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleSelectValue = (e: BaseSyntheticEvent) => {
@@ -23,7 +30,7 @@ const ViewTypeDropDown = () => {
     <div className="relative flex text-sm">
       <button
         type="button"
-        className="flex w-[119px] h-[30px] items-center px-4 py-[10px]  rounded-[5px] border bg-white border-gray-300"
+        className="flex w-[119px] justify-between h-[30px] items-center px-4 py-[10px]  rounded-[5px] border bg-white border-gray-300"
         onClick={toggleFilterDropdown}
       >
         <span className="mr-4">{selectedOption}</span>

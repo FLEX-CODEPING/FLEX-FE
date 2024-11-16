@@ -28,6 +28,7 @@ const MainMyInfo = ({
   views,
 }: MainMyInfoProps) => {
   const { user } = useUserStore();
+
   return (
     <div className="flex-col flex w-full mt-8">
       {user?.isSuccess ? (
@@ -41,7 +42,9 @@ const MainMyInfo = ({
             />
             <div className="flex w-full justify-between">
               <div className="flex flex-col gap-y-1">
-                <p className="text-xl font-semibold">{nickname}</p>
+                <p className="text-xl font-semibold">
+                  {user.result.nickname || nickname}
+                </p>
                 <div className="flex text-sm">
                   <p>{MAIN_MYINFO_TEXT[0]}</p>
                   <p className="font-semibold">{followers}명</p>

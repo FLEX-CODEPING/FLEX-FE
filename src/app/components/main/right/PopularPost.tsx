@@ -8,6 +8,7 @@ import { truncateString } from '@/app/utils/truncate';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Icons from '../../common/Icons';
+import NoneContent from '../NoneContent';
 
 const PopularPost = () => {
   const [postDatas, setPostData] = useState<MainPostTypes[]>([]);
@@ -27,24 +28,30 @@ const PopularPost = () => {
         <p className="text-2xl font-semibold">{MAIN_CONTENTS_TITLE[3]}</p>
         <p className="text-xs">{today}</p>
       </div>
-      <div className="w-full flex flex-col gap-y-3">
-        {postDatas.map((data, i) => (
-          <Link
-            href={`/blog/detail?postId=${data.id}`}
-            className="w-full flex-col flex py-3 px-2 gap-y-1 cursor-pointer border-b border-b-gray-3 hover:border-b-main-1 transition duration-500"
-            key={data.title}
-          >
-            <div className="w-full flex justify-between">
-              <p className="text-[10px]">{data.nickname}</p>
-              <div className="flex w-[48px] justify-between items-center">
-                <Icons name={likeSmall} />
-                <p className="text-sm font-medium">{data.likeCount}</p>
+      {postDatas?.length === 0 ? (
+        <div className="w-full h-[328px]">
+          <NoneContent />
+        </div>
+      ) : (
+        <div className="w-full flex flex-col gap-y-3">
+          {postDatas.map((data, i) => (
+            <Link
+              href={`/blog/detail?postId=${data.id}`}
+              className="w-full flex-col flex py-3 px-2 gap-y-1 cursor-pointer border-b border-b-gray-3 hover:border-b-main-1 transition duration-500"
+              key={data.id}
+            >
+              <div className="w-full flex justify-between">
+                <p className="text-[10px]">{data.nickname}</p>
+                <div className="flex w-[48px] justify-between items-center">
+                  <Icons name={likeSmall} />
+                  <p className="text-sm font-medium">{data.likeCount}</p>
+                </div>
               </div>
-            </div>
-            <p className="font-semibold">{truncateString(data.title, 120)}</p>
-          </Link>
-        ))}
-      </div>
+              <p className="font-semibold">{truncateString(data.title, 120)}</p>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

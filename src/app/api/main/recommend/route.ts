@@ -1,15 +1,8 @@
-import { RECOMMEND_RESULT } from '@/app/data/main';
+import { getLandingRecommend } from '@/app/service/getRequest';
 import { NextResponse } from 'next/server';
 
 export async function GET(req: Request) {
-  //   const data = await getRecommendPost(req);
+  const data = await getLandingRecommend(req);
 
-  const recommendResult = {
-    isSuccess: true,
-    code: 'SUCCESS',
-    message: '성공',
-    result: RECOMMEND_RESULT,
-  };
-
-  return NextResponse.json(recommendResult);
+  return NextResponse.json(data);
 }
