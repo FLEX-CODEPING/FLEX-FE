@@ -7,6 +7,7 @@ import {
 } from '@/app/constants/iconPath';
 import { STOCK_SEARCH_EMPTY_TEXT } from '@/app/constants/prediction';
 import { SEARCH_STOCK } from '@/app/constants/simulation';
+import { callGet } from '@/app/utils/callApi';
 import Image from 'next/image';
 import { useState } from 'react';
 import Icons from '../../common/Icons';
@@ -14,24 +15,34 @@ import Input from '../../common/Input';
 
 const SImulateSearch = () => {
   const [searchText, setSearchText] = useState('');
-  const [stockInfo, setStockInfo] = useState<null | string>(null);
+  const [stockInfo, setStockInfo] = useState<null | StockInfoTypes>(null);
+
+  const getStockInfo = async () => {
+    const response = await callGet(`api/stocks?code=${searchText}`);
+    setStockInfo(response.result);
+  };
+
   return (
     <div className="flex w-full justify-between items-end pb-2">
       {stockInfo ? (
         <div className="flex px-[15.5px] py-4 justify-between w-[360px] items-end">
           <div className="flex gap-x-2.5">
             <div className="w-[40px] h-[40px] relative rounded-[18px]">
-              <Image
-                src="/Images/samsung.png"
-                alt="stockImg"
-                fill
-                className="rounded-[18px]"
-              />
+              {stockInfo.symbolImageUrl === null ? (
+                <Icons name={noneStockSearch} />
+              ) : (
+                <Image
+                  src="/Images/samsung.png"
+                  alt="stockImg"
+                  fill
+                  className="rounded-[18px]"
+                />
+              )}
             </div>
             <div className="flex flex-col">
               <div className="flex gap-x-1 items-end">
-                <p className="text-sm font-bold">삼성전자</p>
-                <p className="text-xs font-normal">005930</p>
+                <p className="text-sm font-bold">{stockInfo.corpName}</p>
+                <p className="text-xs font-normal">{stockInfo.stockcode}</p>
               </div>
               <p className="text-base font-medium">75520원</p>
             </div>
@@ -57,6 +68,7 @@ const SImulateSearch = () => {
           type="simulation"
           placeholder={SEARCH_STOCK}
           onChange={(e) => setSearchText(e.target.value)}
+          onEnterPress={getStockInfo}
         />
         <Icons name={searchStock} className="absolute right-5 top-2" />
       </div>

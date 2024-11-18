@@ -104,3 +104,8 @@ export const getLandingRecommend = async (req: Request) => {
   const url = '/api/blogs/landings/recommend';
   return getRequest(url, req);
 };
+
+export const getStockInfo = async (req: Request, code: string) => {
+  const url = `/api/stocks/${code}`;
+  return getRequest(url, req);
+};
