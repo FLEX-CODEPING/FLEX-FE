@@ -4,7 +4,11 @@ const nextConfig = {
   reactStrictMode: false,
   output: 'standalone',
   images: {
-    domains: ['bff-images.bemypet.kr', 'www.tradingview.com'],
+    domains: [
+      'bff-images.bemypet.kr',
+      'www.tradingview.com',
+      '4870-203-249-127-39.ngrok-free.app',
+    ],
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
   },
