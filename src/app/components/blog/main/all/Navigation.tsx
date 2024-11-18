@@ -8,9 +8,16 @@ import ViewTypeDropDown from './ViewTypeDropDown';
 interface NavigationProps {
   selectedNav: string;
   setSelectedNav: Dispatch<SetStateAction<BlogViewType>>;
+  selectedOption: BlogFilterType;
+  setSelectedOption: Dispatch<SetStateAction<BlogFilterType>>;
 }
 
-const Navigation = ({ selectedNav, setSelectedNav }: NavigationProps) => {
+const Navigation = ({
+  selectedNav,
+  setSelectedNav,
+  selectedOption,
+  setSelectedOption,
+}: NavigationProps) => {
   return (
     <div className="w-full flex">
       <div className="flex w-full mt-[54px] justify-between items-center gap-[10px]">
@@ -28,7 +35,10 @@ const Navigation = ({ selectedNav, setSelectedNav }: NavigationProps) => {
             <Icons name={searchSmall} />
           </Link>
         </div>
-        <ViewTypeDropDown />
+        <ViewTypeDropDown
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
+        />
       </div>
     </div>
   );

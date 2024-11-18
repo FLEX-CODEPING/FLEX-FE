@@ -76,15 +76,11 @@ export const AGE_RANGE_MAP: Record<string, AgeTypes> = {
   '50+': 'AGE_51_100',
 };
 
-export const FILTER_OPTIONS = ['최신순', '오래된순', '좋아요순', '조회수순'];
+export const FILTER_OPTIONS = ['최신순', '좋아요순'];
 
-export const REPLACE_VALUE = {
-  정렬: [
-    { view: '최신순', replace: 'newest' },
-    { view: '오래된순', replace: 'oldest' },
-    { view: '좋아요순', replace: 'mostlike' },
-    { view: '조회수순', replace: 'mostview' },
-  ],
+export const FILTER_OPTIONS_MAP: Record<BlogFilterType, ApiFilterType> = {
+  최신순: 'CREATED_AT',
+  좋아요순: 'LIKE_COUNT',
 };
 
 export const BLOG_FOLLOWING_TEXT = [

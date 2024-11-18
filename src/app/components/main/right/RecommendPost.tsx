@@ -8,6 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Icons from '../../common/Icons';
+import NoneContent from '../NoneContent';
 import RecommendBlur from './RecommendBlur';
 
 const RecommendPost = () => {
@@ -19,6 +20,7 @@ const RecommendPost = () => {
       const response = await callGet(`/api/main/recommend`);
       setDatas(response.result);
     };
+
     fetchPost();
   }, []);
 
@@ -39,45 +41,53 @@ const RecommendPost = () => {
         )}
       </div>
       {user?.isSuccess ? (
-        <div className="w-full flex flex-col gap-y-[18px]">
-          {datas?.content.map((data, i) => (
-            <Link
-              href={`/blog/detail?postId=${data.id}`}
-              className="w-full flex gap-x-5 py-2 px-4 gap-y-1 cursor-pointer border-b border-b-gray-2 group"
-              key={data.id}
-            >
-              <div className="w-[300px] flex flex-col">
-                <p className="text-[10px] font-bold text-main-1">{data.tags}</p>
-                <p className="text-[15px] font-semibold">{data.title}</p>
-                <div className="flex py-[5px] w-full justify-between items-center mt-2">
-                  <div className="flex items-center gap-x-1">
-                    {data.commonInterests.map((interest, index) => (
-                      <div
-                        className="bg-gray-3 text-xs px-1 py-0.5 rounded"
-                        key={data.id}
-                      >
-                        # {interest}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex w-[48px] justify-between items-center">
-                    <Icons name={likeSmall} />
-                    <p className="text-sm font-medium">{data.likeCount}</p>
+        datas?.content.length === 0 ? (
+          <div className="w-full flex flex-col gap-y-[18px]">
+            {datas?.content.map((data, i) => (
+              <Link
+                href={`/blog/detail?postId=${data.id}`}
+                className="w-full flex gap-x-5 py-2 px-4 gap-y-1 cursor-pointer border-b border-b-gray-2 group"
+                key={data.id}
+              >
+                <div className="w-[300px] flex flex-col">
+                  <p className="text-[10px] font-bold text-main-1">
+                    {data.tags}
+                  </p>
+                  <p className="text-[15px] font-semibold">{data.title}</p>
+                  <div className="flex py-[5px] w-full justify-between items-center mt-2">
+                    <div className="flex items-center gap-x-1">
+                      {data.commonInterests.map((interest, index) => (
+                        <div
+                          className="bg-gray-3 text-xs px-1 py-0.5 rounded"
+                          key={data.id}
+                        >
+                          # {interest}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="flex w-[48px] justify-between items-center">
+                      <Icons name={likeSmall} />
+                      <p className="text-sm font-medium">{data.likeCount}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="relative w-[120px] h-16 overflow-hidden rounded">
-                <Image
-                  fill
-                  className="rounded transition-transform duration-300 ease-in-out group-hover:scale-110 "
-                  src={data.imageUrls[0] || '/images/3c.png'}
-                  alt="thumbnail"
-                  loading="lazy"
-                />
-              </div>
-            </Link>
-          ))}
-        </div>
+                <div className="relative w-[120px] h-16 overflow-hidden rounded">
+                  <Image
+                    fill
+                    className="rounded transition-transform duration-300 ease-in-out group-hover:scale-110 "
+                    src={data.imageUrls[0] || '/images/3c.png'}
+                    alt="thumbnail"
+                    loading="lazy"
+                  />
+                </div>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="w-full h-[448px]">
+            <NoneContent />
+          </div>
+        )
       ) : (
         <RecommendBlur />
       )}

@@ -15,25 +15,28 @@ const getRequest = async (url: string, req: Request) => {
   return response.json();
 };
 
-export const getMain = async (req: Request) => {
-  const url = '/api/v1/main';
+export const getLandingToday = async (req: Request) => {
+  const url = `/api/blogs/landings/today`;
   return getRequest(url, req);
 };
 
-export const getLandingPost = async (req: Request, filter: string) => {
-  const url = `/api/blogs/landing?filter=${filter}`;
-  return getRequest(url, req);
-};
-
-export const getBlogsMain = async (req: Request, salary?: any, age?: any) => {
-  let url = '/api/blogs/main';
+export const getBlogsMain = async (
+  req: Request,
+  page: string,
+  salary?: any,
+  age?: any,
+  filter?: string,
+) => {
+  let url = `/api/blogs/main?page=${page}&size=9`;
   if (salary !== 'undefined') {
-    url += `?salary=${salary}`;
+    url += `&salary=${salary}`;
   }
   if (age !== 'undefined') {
-    url += salary ? `&age=${age}` : `?age=${age}`;
+    url += `&age=${age}`;
   }
-
+  if (filter !== 'undefined') {
+    url += `&filter=${filter}`;
+  }
   return getRequest(url, req);
 };
 
@@ -58,13 +61,47 @@ export const getNews = async (
   return getRequest(url, req);
 };
 
+export const getBlogsRecommend = async (
+  req: Request,
+  page: string,
+  filter?: any,
+) => {
+  let url = `/api/blogs/recommend?page=${page}&size=9`;
+  if (filter !== 'undefined') {
+    url += `&filter=${filter}`;
+  }
+  return getRequest(url, req);
+};
+
+export const getBlogsFollowing = async (
+  req: Request,
+  page: string,
+  filter?: any,
+) => {
+  let url = `/api/blogs/following?page=${page}&size=9`;
+  if (filter !== 'undefined') {
+    url += `&filter=${filter}`;
+  }
+  return getRequest(url, req);
+};
+
 export const getPostDetail = async (req: Request, id: string) => {
   const url = `/api/posts/${id}`;
   return getRequest(url, req);
 };
 
 export const getUsers = async (req: Request) => {
-  const url = `/api/users/info`;
+  const url = '/api/users/info';
+  return getRequest(url, req);
+};
+
+export const getLandingPopular = async (req: Request) => {
+  const url = '/api/blogs/landings/popular';
+  return getRequest(url, req);
+};
+
+export const getLandingRecommend = async (req: Request) => {
+  const url = '/api/blogs/landings/recommend';
   return getRequest(url, req);
 };
 
