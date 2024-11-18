@@ -25,7 +25,7 @@ const SImulateSearch = () => {
   return (
     <div className="flex w-full justify-between items-end pb-2">
       {stockInfo ? (
-        <div className="flex px-[15.5px] py-4 justify-between w-[360px] items-end">
+        <div className="flex px-[15.5px] py-3 justify-between w-[360px] items-end">
           <div className="flex gap-x-2.5">
             <div className="w-[40px] h-[40px] relative rounded-[18px]">
               {stockInfo.symbolImageUrl === null ? (
@@ -54,7 +54,7 @@ const SImulateSearch = () => {
           </div>
         </div>
       ) : (
-        <div className="flex px-8 py-4 justify-between rounded-xl w-[360px] items-center border-dashed border border-gray-2">
+        <div className="flex px-8 py-[14px] justify-between rounded-xl w-[360px] items-center border-dashed border border-gray-2">
           <Icons name={noneStockSearch} />
           <div className="flex flex-col gap-y-0.5 items-end">
             <p className="text-sm font-medium">{STOCK_SEARCH_EMPTY_TEXT[0]}</p>
