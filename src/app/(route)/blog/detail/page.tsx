@@ -13,7 +13,7 @@ const ClientOnlyBlogDetail = () => {
   }
 
   return (
-    <section className="w-full h-full flex items-center flex-col mt-[40px]">
+    <section className="w-full h-full flex flex-col-center mt-10">
       <BlogDetail postId={postId} />
     </section>
   );

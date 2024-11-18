@@ -11,6 +11,7 @@ import MyPosts from './MyPosts';
 const MyPageContainer = () => {
   const [myData, setMyData] = useState<MyBlogInfo | null>(null);
   const [myPosts, setMyPosts] = useState<MyPostCardTypes[]>([]);
+  const [likedPosts, setLikedPosts] = useState<MyPostCardTypes[]>([]);
   const [activeTab, setActiveTab] = useState<'myPosts' | 'likedPosts'>(
     'myPosts',
   );
@@ -27,8 +28,14 @@ const MyPageContainer = () => {
       setMyPosts(response.result);
     };
 
+    const fetchLikedPost = async () => {
+      const response = await callGet('/api/mypage/liked');
+      setLikedPosts(response.result);
+    };
+
     fetchMyBlogInfo();
     fetchPost();
+    fetchLikedPost();
   }, []);
 
   return (
@@ -104,9 +111,7 @@ const MyPageContainer = () => {
 
         <div className="mt-[60px]">
           {activeTab === 'myPosts' && <MyPosts posts={myPosts} />}
-          {/* {activeTab === 'likedPosts' && myData && (
-            <LikedPosts posts={myData.posts} />
-          )} */}
+          {activeTab === 'likedPosts' && <LikedPosts posts={likedPosts} />}
         </div>
       </div>
     </div>

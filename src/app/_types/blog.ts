@@ -27,14 +27,8 @@ interface FilterOption {
   label: string;
   value: string;
 }
-interface CommentTypes {
-  id: number;
-  userId: number;
+interface CommentTypes extends ChildCommentType {
   postId: number;
-  nickname: string;
-  profileImageUrl: string | null;
-  content: string;
-  timeAgo: string;
   childComments: ChildCommentType[];
 }
 

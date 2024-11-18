@@ -82,3 +82,8 @@ export const getMyPosts = async (req: Request) => {
   const url = `/api/blogs/myBlog/myPosts`;
   return getRequest(url, req);
 };
+
+export const getMyLikedPosts = async (req: Request) => {
+  const url = `/api/blogs/myBlog/likePosts`;
+  return getRequest(url, req);
+};
