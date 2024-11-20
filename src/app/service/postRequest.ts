@@ -42,3 +42,19 @@ export const postBlog = async (postContent: PostTypes, req: Request) => {
 export const interestStock = async (stockcode: string, req: Request) => {
   return postRequest(`/api/interestStocks?stockcode=${stockcode}`, req);
 };
+
+export const postRefresh = async (req: Request) => {
+  const token = getCookie(req, 'refreshToken');
+  const headers = {
+    ...commonHeaders,
+    ...(token && { Authorization: `Bearer ${token}` }),
+  };
+
+  const response = await fetch(`${SERVER_URL}/api/auth/reissue`, {
+    method: 'POST',
+    headers,
+  });
+  console.log(response, '응답');
+
+  return response.json();
+};
