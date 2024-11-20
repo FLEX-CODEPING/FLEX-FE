@@ -118,3 +118,8 @@ export const getStockDetail = async (
   const url = `/api/stocks/market/preOpen?stockcode=${code}&date=${date}`;
   return getRequest(url, req);
 };
+
+export const getInterestedStocks = async (req: Request) => {
+  const url = `/api/interestStocks?page=0&size=12`;
+  return getRequest(url, req);
+};

@@ -15,7 +15,7 @@ const StockRank = () => {
       </div>
       <div className="flex-center gap-y-4 w-full flex-wrap gap-x-[4%]">
         {filteredStocks.map((stock, i) => (
-          <div className="flex w-[48%] items-center justify-between bg-gray-5 py-5 px-6 rounded-lg hover:shadow-md cursor-pointer transition-shadow duration-500">
+          <div className="flex w-[48%] items-center justify-between bg-gray-5 py-5 px-6 rounded-lg sahdow hover:shadow-xl cursor-pointer transition-shadow duration-500">
             <div className="flex gap-x-3 mr-6">
               <p className="text-3xl font-semibold w-6 text-center">{i + 1}</p>
               <div className="w-9 h-9 relative">
