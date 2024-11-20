@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import Header from '../components/common/layout/Header';
-import UserProvider from '../components/common/useProvider';
+import Rum from '../components/common/layout/Rum';
+import UserProvider from '../components/common/layout/useProvider';
 import '../styles/globals.css';
 
 export const metadata: Metadata = {
@@ -26,10 +27,12 @@ export default function RootLayout({
       <body
         className={`${pretendard.variable} min-w-[1100px] mx-auto font-pretendard`}
       >
-        <UserProvider>
-          <Header />
-          {children}
-        </UserProvider>
+        <Rum>
+          <UserProvider>
+            <Header />
+            {children}
+          </UserProvider>
+        </Rum>
       </body>
     </html>
   );
