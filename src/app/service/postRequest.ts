@@ -58,3 +58,7 @@ export const postRefresh = async (req: Request) => {
 
   return response.json();
 };
+
+export const postCheckBlogName = async (blogName: any, req: Request) => {
+  return postRequest('/api/users/checkBlogName', req, blogName);
+};

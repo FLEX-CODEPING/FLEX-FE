@@ -1,5 +1,14 @@
-import { BIRTH, BLOGNAME_TEXT, NICKNAME_TEXT } from '@/app/constants/auth';
+import {
+  BIRTH,
+  BLOGNAME_TEXT,
+  CHECK_STATUS,
+  CHECK_STATUS_TEXT,
+  NICKNAME_TEXT,
+} from '@/app/constants/auth';
+import { callPost } from '@/app/utils/callApi';
 import { isCorrect } from '@/app/utils/qualify';
+import { useState } from 'react';
+import Button from '../../common/Button';
 import Input from '../../common/Input';
 
 interface PersonalInfoFormProps {
@@ -11,6 +20,20 @@ const PersonalInfoForm = ({
   formData,
   updateFormData,
 }: PersonalInfoFormProps) => {
+  const [checkStatus, setCheckStatus] =
+    useState<BlogNameCheckTypes>(CHECK_STATUS_TEXT);
+
+  const interestStock = async () => {
+    const response = await callPost('/api/auth/signup/blogname', {
+      blogName: formData.blogName,
+    });
+    console.log(response);
+
+    const text = response.isSuccess ? CHECK_STATUS[0] : CHECK_STATUS[1];
+    const color = response.isSuccess ? 'blue-1' : 'red-1';
+    setCheckStatus({ text, textColor: color });
+  };
+
   return (
     <div className="w-full flex flex-col gap-y-3">
       <div className="w-full flex flex-col gap-x-2.5 gap-y-1">
@@ -46,14 +69,26 @@ const PersonalInfoForm = ({
         </div>
       </div>
       <div className="w-full flex flex-col gap-x-2.5 gap-y-1">
-        <div className="text-sm pl-2.5">{BLOGNAME_TEXT[0]}</div>
-        <Input
-          type="signUp"
-          textValue={formData.blogName}
-          onChange={(e) => updateFormData('blogName', e.target.value)}
-          placeholder={BLOGNAME_TEXT[1]}
-          maxLength={8}
-        />
+        <div className="flex text-sm pl-2.5 pr-[120px] w-full justify-between">
+          <div>{BLOGNAME_TEXT[0]}</div>
+          <div className={`text-xs text-${checkStatus.textColor}`}>
+            {checkStatus.text}
+          </div>
+        </div>
+        <div className="flex w-full items-center justify-between">
+          <Input
+            type="blogName"
+            textValue={formData.blogName}
+            onChange={(e) => updateFormData('blogName', e.target.value)}
+            placeholder={BLOGNAME_TEXT[1]}
+            maxLength={8}
+          />
+          <Button
+            buttonText={'중복체크'}
+            type={'checkName'}
+            onClickHandler={interestStock}
+          />
+        </div>
         <div
           className={`text-xs pl-2.5 text-gray-1 ${!isCorrect(formData.blogName) && 'text-red-1'}`}
         >

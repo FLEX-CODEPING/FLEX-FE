@@ -14,6 +14,7 @@ export async function callPost(url: string, body?: any) {
     headers,
     body: JSON.stringify(body),
   });
+
   const data = await response.json();
   return data;
 }
