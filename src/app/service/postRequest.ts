@@ -38,3 +38,7 @@ export const postSignUp = async (
 export const postBlog = async (postContent: PostTypes, req: Request) => {
   return postRequest('/api/posts', req, postContent);
 };
+
+export const interestStock = async (stockcode: string, req: Request) => {
+  return postRequest(`/api/interestStocks?stockcode=${stockcode}`, req);
+};

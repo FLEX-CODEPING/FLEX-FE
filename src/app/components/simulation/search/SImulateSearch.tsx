@@ -1,13 +1,13 @@
 'use client';
 
 import {
+  likeSmall,
   noneStockSearch,
   searchStock,
-  stockLike,
 } from '@/app/constants/iconPath';
 import { STOCK_SEARCH_EMPTY_TEXT } from '@/app/constants/prediction';
 import { SEARCH_STOCK } from '@/app/constants/simulation';
-import { callGet } from '@/app/utils/callApi';
+import { callGet, callPost } from '@/app/utils/callApi';
 import Image from 'next/image';
 import { useState } from 'react';
 import Icons from '../../common/Icons';
@@ -16,10 +16,21 @@ import Input from '../../common/Input';
 const SImulateSearch = () => {
   const [searchText, setSearchText] = useState('');
   const [stockInfo, setStockInfo] = useState<null | StockInfoTypes>(null);
+  console.log(stockInfo);
 
   const getStockInfo = async () => {
     const response = await callGet(`api/stocks?code=${searchText}`);
     setStockInfo(response.result);
+  };
+
+  const interestStock = async () => {
+    const response = await callPost(`api/stocks/interest?code=${searchText}`);
+    getStockInfo();
+  };
+
+  const deleteInterest = async () => {
+    const response = await callPost(`api/stocks/interest?code=${searchText}`);
+    getStockInfo();
   };
 
   return (
@@ -50,7 +61,14 @@ const SImulateSearch = () => {
           <div className="flex gap-x-1 text-red-1 text-xs items-center">
             <p>+2200</p>
             <p>(3.72%)</p>
-            <Icons name={stockLike} className="ml-2 cursor-pointer" />
+            <Icons
+              name={{
+                ...likeSmall,
+                fill: stockInfo.isInterested ? '#F95700' : likeSmall.fill,
+              }}
+              className="ml-2 cursor-pointer"
+              onClick={stockInfo.isInterested ? deleteInterest : interestStock}
+            />
           </div>
         </div>
       ) : (

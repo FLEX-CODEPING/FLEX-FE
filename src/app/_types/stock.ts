@@ -5,7 +5,7 @@ interface StockInfoTypes {
   isInterested: boolean;
 }
 
-interface StockInfoTypes {
+interface StockDetailInfoTypes {
   isSuccess: true;
   code: 'string';
   message: 'string';
