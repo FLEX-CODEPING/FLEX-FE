@@ -23,3 +23,17 @@ interface StockDetailInfoTypes {
     changeRate: 0;
   };
 }
+
+interface InterestedStockTypes {
+  id: string;
+  stockcode: string;
+  corpName: string;
+  symbolImageUrl: string;
+}
+
+interface InterestedStockDatasTypes {
+  content: InterestedStockTypes[];
+  hasNext: boolean;
+  first: boolean;
+  last: boolean;
+}

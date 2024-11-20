@@ -7,7 +7,7 @@ import {
 } from '@/app/constants/iconPath';
 import { STOCK_SEARCH_EMPTY_TEXT } from '@/app/constants/prediction';
 import { SEARCH_STOCK } from '@/app/constants/simulation';
-import { callGet, callPost } from '@/app/utils/callApi';
+import { callDelete, callGet, callPost } from '@/app/utils/callApi';
 import Image from 'next/image';
 import { useState } from 'react';
 import Icons from '../../common/Icons';
@@ -29,7 +29,7 @@ const SImulateSearch = () => {
   };
 
   const deleteInterest = async () => {
-    const response = await callPost(`api/stocks/interest?code=${searchText}`);
+    const response = await callDelete(`api/stocks/interest?id=${searchText}`);
     getStockInfo();
   };
 
@@ -43,7 +43,7 @@ const SImulateSearch = () => {
                 <Icons name={noneStockSearch} />
               ) : (
                 <Image
-                  src="/Images/samsung.png"
+                  src={stockInfo.symbolImageUrl || '/images/stocks/none.png'}
                   alt="stockImg"
                   fill
                   className="rounded-[18px]"
