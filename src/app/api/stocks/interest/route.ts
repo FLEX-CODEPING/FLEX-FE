@@ -21,7 +21,6 @@ export async function DELETE(req: Request) {
   const id = searchParams.get('id') || '';
 
   const response = await deleteInterest(id, req);
-  console.log(response,'삭제 후 응답');
   
   return NextResponse.json(response);
 }

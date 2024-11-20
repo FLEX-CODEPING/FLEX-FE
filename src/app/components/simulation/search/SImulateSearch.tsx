@@ -17,8 +17,6 @@ const SImulateSearch = () => {
   const [searchText, setSearchText] = useState('');
   const [stockInfo, setStockInfo] = useState<null | StockInfoTypes>(null);
 
-  console.log(stockInfo);
-
   const getStockInfo = async () => {
     const response = await callGet(`api/stocks?code=${searchText}`);
     const statusRes: InterestedStautsTypes = await callGet(
@@ -35,6 +33,12 @@ const SImulateSearch = () => {
   const deleteInterest = async () => {
     const response = await callDelete(`api/stocks/interest?id=${searchText}`);
     getStockInfo();
+  };
+
+  const getStockDetail = async () => {
+    const response = await callGet(
+      `api/stocks/detail?code=005930&date=${'2024-11-19'}`,
+    );
   };
 
   return (
