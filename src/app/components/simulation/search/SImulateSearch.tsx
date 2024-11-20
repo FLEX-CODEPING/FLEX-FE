@@ -16,11 +16,15 @@ import Input from '../../common/Input';
 const SImulateSearch = () => {
   const [searchText, setSearchText] = useState('');
   const [stockInfo, setStockInfo] = useState<null | StockInfoTypes>(null);
+
   console.log(stockInfo);
 
   const getStockInfo = async () => {
     const response = await callGet(`api/stocks?code=${searchText}`);
-    setStockInfo(response.result);
+    const statusRes: InterestedStautsTypes = await callGet(
+      `api/stocks/interest/status?code=${response.result.stockcode}`,
+    );
+    setStockInfo({ ...response.result, isInterested: statusRes.result });
   };
 
   const interestStock = async () => {

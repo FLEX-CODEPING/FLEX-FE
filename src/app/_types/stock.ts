@@ -37,3 +37,10 @@ interface InterestedStockDatasTypes {
   first: boolean;
   last: boolean;
 }
+
+interface InterestedStautsTypes {
+  isSuccess: boolean;
+  code: string;
+  message: string;
+  result: boolean;
+}
