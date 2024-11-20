@@ -70,7 +70,11 @@ const SImulateSearch = () => {
           onChange={(e) => setSearchText(e.target.value)}
           onEnterPress={getStockInfo}
         />
-        <Icons name={searchStock} className="absolute right-5 top-2" />
+        <Icons
+          name={searchStock}
+          className="absolute right-5 top-2 cursor-pointer"
+          onClick={getStockInfo}
+        />
       </div>
     </div>
   );
