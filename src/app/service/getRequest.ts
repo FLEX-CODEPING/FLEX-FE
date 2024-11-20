@@ -109,3 +109,12 @@ export const getStockInfo = async (req: Request, code: string) => {
   const url = `/api/stocks/${code}`;
   return getRequest(url, req);
 };
+
+export const getStockDetail = async (
+  req: Request,
+  code: string,
+  date: string,
+) => {
+  const url = `/api/stocks/market/preOpen?stockcode=${code}&date=${date}`;
+  return getRequest(url, req);
+};

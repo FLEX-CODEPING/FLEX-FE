@@ -38,10 +38,16 @@ const Compass = () => {
         >
           로그인
         </Link>
-        <Link href='/blog' className="absolute top-1/2 left-5 transform -translate-y-1/2">
+        <Link
+          href="/blog"
+          className="absolute top-1/2 left-5 transform -translate-y-1/2"
+        >
           블로그
         </Link>
-        <Link href='/simulate' className="absolute top-1/2 right-5 transform -translate-y-1/2">
+        <Link
+          href="/simulate"
+          className="absolute top-1/2 right-5 transform -translate-y-1/2"
+        >
           모의투자
         </Link>
       </div>

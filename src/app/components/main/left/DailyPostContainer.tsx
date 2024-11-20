@@ -14,7 +14,7 @@ const DailyPostContainer = () => {
   useEffect(() => {
     const fetchPost = async () => {
       const response = await callGet('/api/main/dailyPost');
-      setPostData(response.result);
+      response.isSuccess && setPostData(response.result);
     };
 
     fetchPost();
