@@ -24,14 +24,19 @@ const PersonalInfoForm = ({
     useState<BlogNameCheckTypes>(CHECK_STATUS_TEXT);
 
   const interestStock = async () => {
-    const response = await callPost('/api/auth/signup/blogname', {
-      blogName: formData.blogName,
-    });
-    console.log(response);
-
-    const text = response.isSuccess ? CHECK_STATUS[0] : CHECK_STATUS[1];
-    const color = response.isSuccess ? 'blue-1' : 'red-1';
-    setCheckStatus({ text, textColor: color });
+    if (!isCorrect(formData.blogName)) return;
+    if (formData.isPossible) {
+      updateFormData('isPossible', false);
+    } else {
+      const response = await callPost('/api/auth/signup/blogname', {
+        blogName: formData.blogName,
+      });
+      console.log(response);
+      const text = response.isSuccess ? CHECK_STATUS[0] : CHECK_STATUS[1];
+      const color = response.isSuccess ? 'blue-1' : 'red-1';
+      setCheckStatus({ text, textColor: color });
+      response.isSuccess && updateFormData('isPossible', true);
+    }
   };
 
   return (
@@ -69,9 +74,9 @@ const PersonalInfoForm = ({
         </div>
       </div>
       <div className="w-full flex flex-col gap-x-2.5 gap-y-1">
-        <div className="flex text-sm pl-2.5 pr-[120px] w-full justify-between">
+        <div className="flex text-sm pl-2.5 pr-[120px] items-end w-full justify-between">
           <div>{BLOGNAME_TEXT[0]}</div>
-          <div className={`text-xs text-${checkStatus.textColor}`}>
+          <div className={`text-[10px] text-${checkStatus.textColor}`}>
             {checkStatus.text}
           </div>
         </div>
@@ -82,9 +87,11 @@ const PersonalInfoForm = ({
             onChange={(e) => updateFormData('blogName', e.target.value)}
             placeholder={BLOGNAME_TEXT[1]}
             maxLength={8}
+            isDisabled={formData.isPossible}
           />
           <Button
-            buttonText="중복체크"
+            buttonText={formData.isPossible ? '재선택' : '중복체크'}
+            className={formData.isPossible ? 'bg-gray-1' : 'bg-main-1'}
             type="checkName"
             onClickHandler={interestStock}
           />

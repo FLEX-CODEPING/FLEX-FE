@@ -17,7 +17,7 @@ export const BUTTON_STYLE = {
   prediction: (className: string) =>
     `w-60 h-8 bg-black-1 text-white rounded-lg font-semibold text-[15px] ${className}`,
   checkName: (className: string) =>
-    `w-[90px] h-9 bg-main-1 text-white text-sm h-10 rounded-lg ${className}`,
+    `w-[90px] h-9 text-white text-sm h-10 rounded-lg ${className}`,
 } as const;
 
 export const INPUT_STYLE = {
