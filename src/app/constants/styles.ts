@@ -32,6 +32,4 @@ export const INPUT_STYLE = {
     `w-[150px] h-[24px] px-3 rounded-md border-none font-light text-black-0 text-base outline-none ${className}`,
   blogName: (className: string) =>
     `w-[80%] pl-4 h-10 rounded-[10px] border border-gray-2 text-sm outline-none focus:border-main-1 ${className}`,
-  discord: (className: string) =>
-    `w-full h-10 pl-4 rounded-lg border border-blue-600 text-sm outline-none focus:border-blue-700 ${className}`,
 } as const;
