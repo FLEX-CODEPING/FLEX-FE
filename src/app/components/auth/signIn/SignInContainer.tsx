@@ -5,6 +5,7 @@ import {
   MAIN_FEAT_DETAIL,
   MAIN_FEAT_IMG,
 } from '@/app/constants/main';
+import { useUserStore } from '@/app/store/store';
 import { callPost } from '@/app/utils/callApi';
 import { setTokens } from '@/app/utils/setToken';
 import Image from 'next/image';
@@ -14,6 +15,7 @@ import { useEffect } from 'react';
 
 function SignInContainer() {
   const searchParams = useSearchParams();
+  const { fetchUser } = useUserStore();
   const code = searchParams.get('code');
   const router = useRouter();
 
@@ -27,6 +29,7 @@ function SignInContainer() {
           router.push(`/auth/signUp?id=${response.result.socialId}`);
         } else if (response.isSuccess) {
           setTokens(response.result.accessToken, response.result.refreshToken);
+          await fetchUser();
           router.push('/');
         }
       }
