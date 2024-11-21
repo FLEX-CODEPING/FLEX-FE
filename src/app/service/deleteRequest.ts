@@ -12,7 +12,7 @@ const deleteRequest = async (url: string, req: Request) => {
     ...commonHeaders,
     ...(token && { Authorization: `Bearer ${token}` }),
   };
-  const response = await fetch(SERVER_URL + `${SERVER_URL}${url}`, {
+  const response = await fetch(`${SERVER_URL}${url}`, {
     method: 'DELETE',
     headers,
   });

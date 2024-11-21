@@ -84,8 +84,8 @@ const PersonalInfoForm = ({
             maxLength={8}
           />
           <Button
-            buttonText={'중복체크'}
-            type={'checkName'}
+            buttonText="중복체크"
+            type="checkName"
             onClickHandler={interestStock}
           />
         </div>
