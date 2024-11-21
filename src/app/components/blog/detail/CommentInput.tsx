@@ -3,7 +3,7 @@ import { callPost } from '@/app/utils/callApi';
 import { COMMENT } from '@/app/constants/blog';
 
 interface CommentInputProps {
-  postId: number;
+  postId: string;
   parentCommentId?: number | null;
   onAddComment: () => void;
 }

@@ -5,7 +5,7 @@ import CommentInput from './CommentInput';
 import CommentList from './CommentList';
 
 interface BlogCommentProps {
-  postId: number;
+  postId: string;
   currentUserId?: string;
 }
 

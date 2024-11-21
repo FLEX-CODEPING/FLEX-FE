@@ -9,7 +9,7 @@ interface BlogHeaderProps {
   tags?: string[];
   likeCount?: number;
   likeStatus?: boolean;
-  postId: number;
+  postId: string;
 }
 
 const BlogHeader = ({

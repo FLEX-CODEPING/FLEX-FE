@@ -110,13 +110,13 @@ export const getComments = async (req: Request, id: string) => {
   return getRequest(url, req);
 };
 
-export const getMyBlogInfo = async (req: Request) => {
-  const url = `/api/blogs/myBlog/info`;
+export const getMyBlogInfo = async (req: Request, blogName: string) => {
+  const url = `/api/blogs/${blogName}/info`;
   return getRequest(url, req);
 };
 
-export const getMyPosts = async (req: Request) => {
-  const url = `/api/blogs/myBlog/myPosts`;
+export const getMyPosts = async (req: Request, blogName: string) => {
+  const url = `/api/blogs/${blogName}/posts`;
   return getRequest(url, req);
 };
 

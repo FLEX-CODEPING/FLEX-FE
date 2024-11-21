@@ -9,6 +9,7 @@ import LikedPosts from './LikedPosts';
 import MyPosts from './MyPosts';
 
 const MyPageContainer = () => {
+  const [blogName, setBlogName] = useState<string>('');
   const [myData, setMyData] = useState<MyBlogInfo | null>(null);
   const [myPosts, setMyPosts] = useState<MyPostCardTypes[]>([]);
   const [likedPosts, setLikedPosts] = useState<MyPostCardTypes[]>([]);
@@ -18,13 +19,24 @@ const MyPageContainer = () => {
   const router = useRouter();
 
   useEffect(() => {
+    const fetchBlogName = async () => {
+      const response = await callGet('/api/auth/user');
+      if (response.isSuccess) {
+        setBlogName(response.result.blogName);
+      }
+    };
+
+    fetchBlogName();
+  }, []);
+
+  useEffect(() => {
     const fetchMyBlogInfo = async () => {
-      const response = await callGet('/api/mypage');
+      const response = await callGet(`/api/mypage?blogName=${blogName}`);
       setMyData(response.result);
     };
 
     const fetchPost = async () => {
-      const response = await callGet('/api/mypage/posts');
+      const response = await callGet(`/api/mypage/posts?blogName=${blogName}`);
       setMyPosts(response.result);
     };
 
@@ -36,7 +48,7 @@ const MyPageContainer = () => {
     fetchMyBlogInfo();
     fetchPost();
     fetchLikedPost();
-  }, []);
+  }, [blogName]);
 
   return (
     <div className="mb-[200px] px-[10%]">

@@ -1,8 +1,10 @@
 interface BlogInfoTypes {
-  id: number;
-  userid: number;
+  id: string;
+  userId: string;
   title: string;
   nickname: string;
+  blogName: string;
+  profileImageUrl: string;
   content: string;
   tags: string[];
   likeCount: number;
@@ -28,7 +30,7 @@ interface FilterOption {
   value: string;
 }
 interface CommentTypes extends ChildCommentType {
-  postId: number;
+  postId: string;
   childComments: ChildCommentType[];
 }
 
@@ -70,7 +72,7 @@ type BlogFilterType = '최신순' | '좋아요순';
 type ApiFilterType = 'CREATED_AT' | 'LIKE_COUNT';
 
 interface MyPostCardTypes {
-  postId: number;
+  postId: string;
   title: string;
   content: string;
   imageUrls: string[];
@@ -80,7 +82,7 @@ interface MyPostCardTypes {
   likeCount: number;
 }
 interface MyBlogInfo {
-  userId: number;
+  userId: string;
   blogName: string;
   nickname: string;
   profileImageUrl: string | null;
