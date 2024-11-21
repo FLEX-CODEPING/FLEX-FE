@@ -1,11 +1,14 @@
 interface BlogInfoTypes {
-  id: number;
-  userid: number;
+  id: string;
+  userId: string;
   title: string;
   nickname: string;
+  blogName: string;
+  profileImageUrl: string;
   content: string;
   tags: string[];
   likeCount: number;
+  likeStatus: boolean;
   commentCount: number;
   createdAt: string;
   updatedAt: string;
@@ -26,11 +29,18 @@ interface FilterOption {
   label: string;
   value: string;
 }
-interface CommentTypes {
+interface CommentTypes extends ChildCommentType {
+  postId: string;
+  childComments: ChildCommentType[];
+}
+
+interface ChildCommentType {
   id: number;
-  author: string;
-  date: string;
+  userId: number;
+  nickname: string;
+  profileImageUrl: string | null;
   content: string;
+  timeAgo: string;
 }
 interface PostTypes {
   title: string;
@@ -65,26 +75,21 @@ interface MyPostCardTypes {
   postId: string;
   title: string;
   content: string;
-  image: string;
-  tag: string[];
+  imageUrls: string[];
+  tags: string;
   createdAt: string;
-  helpful: number;
+  updatedAt: string;
+  likeCount: number;
 }
-interface MyResultTypes {
+interface MyBlogInfo {
+  userId: string;
   blogName: string;
   nickname: string;
-  profileImageUrl: string;
+  profileImageUrl: string | null;
   followingCount: number;
   followerCount: number;
-  posts: MyPostCardTypes[];
 }
 
-interface MyPostTypes {
-  isSuccess: boolean;
-  code: string;
-  message: string;
-  result: MyResultTypes;
-}
 interface BlogDataTypes {
   content: MainPostTypes[];
   totalPages: number;
@@ -94,4 +99,13 @@ interface BlogDataTypes {
   firstFollowingNickname?: 'string';
   followingCount?: number;
   myInterests?: string[];
+}
+
+interface CommentRequestTypes {
+  content: string;
+  parentCommentId?: number | null;
+}
+
+interface CommentRequestTypes2 {
+  content: string;
 }

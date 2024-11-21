@@ -105,6 +105,26 @@ export const getLandingRecommend = async (req: Request) => {
   return getRequest(url, req);
 };
 
+export const getComments = async (req: Request, id: string) => {
+  const url = `/api/posts/${id}/comments`;
+  return getRequest(url, req);
+};
+
+export const getMyBlogInfo = async (req: Request, blogName: string) => {
+  const url = `/api/blogs/${blogName}/info`;
+  return getRequest(url, req);
+};
+
+export const getMyPosts = async (req: Request, blogName: string) => {
+  const url = `/api/blogs/${blogName}/posts`;
+  return getRequest(url, req);
+};
+
+export const getMyLikedPosts = async (req: Request) => {
+  const url = `/api/blogs/myBlog/likePosts`;
+  return getRequest(url, req);
+};
+
 export const getStockInfo = async (req: Request, code: string) => {
   const url = `/api/stocks/${code}`;
   return getRequest(url, req);

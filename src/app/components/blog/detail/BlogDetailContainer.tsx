@@ -2,18 +2,22 @@
 
 import { useEffect, useState } from 'react';
 import { callGet } from '@/app/utils/callApi';
+import { useUserStore } from '@/app/store/store';
+import { useRouter } from 'next/navigation';
 import BlogContent from './BlogContent';
 import BlogHeader from './BlogHeader';
 import BlogTitle from './BlogTitle';
 import BlogComment from './BlogComment';
 
 interface PostDetailProps {
-  postId: number;
-  likeStatus: 'ACTIVE' | 'INACTIVE';
+  postId: string;
 }
 
-const BlogDetailContainer = ({ postId, likeStatus }: PostDetailProps) => {
+const BlogDetailContainer = ({ postId }: PostDetailProps) => {
   const [blogData, setBlogData] = useState<BlogInfoTypes | null>(null);
+  const { user } = useUserStore();
+  const currentUserId = user?.result?.nickname;
+  const router = useRouter();
 
   useEffect(() => {
     console.log(postId, '받아온 아이디');
@@ -47,20 +51,26 @@ const BlogDetailContainer = ({ postId, likeStatus }: PostDetailProps) => {
     return <div>Loading...</div>;
   }
 
+  const handleNicknameClick = () => {
+    router.push(`/user/${blogData.blogName}`);
+  };
+
   return (
     <div>
       <BlogHeader
         tags={blogData.tags}
-        likeStatus={likeStatus}
+        likeStatus={blogData.likeStatus}
         likeCount={blogData.likeCount}
+        postId={blogData.id}
       />
       <BlogTitle
         title={blogData.title}
         nickname={blogData.nickname}
         createdAt={blogData.createdAt}
+        onNicknameClick={handleNicknameClick}
       />
       <BlogContent content={blogData.content} />
-      <BlogComment />
+      <BlogComment postId={blogData.id} currentUserId={currentUserId} />
     </div>
   );
 };

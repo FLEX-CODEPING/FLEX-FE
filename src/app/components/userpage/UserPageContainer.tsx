@@ -1,12 +1,44 @@
 'use client';
 
 import { FOLLOW_TEXT, USERPAGE_TEXT } from '@/app/constants/mypage';
+import { callGet } from '@/app/utils/callApi';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import UserPosts from './UserPosts';
 
-const UserPageContainer = () => {
+interface UserPageContainerProps {
+  blogName: string;
+}
+
+const UserPageContainer = ({ blogName }: UserPageContainerProps) => {
+  const [userData, setUserData] = useState<MyBlogInfo | null>(null);
+  const [userPosts, setUserPosts] = useState<MyPostCardTypes[]>([]);
   const [isFollowing, setIsFollowing] = useState(false);
+
+  // 사용자 블로그 정보 및 작성한 게시물 가져오기
+  useEffect(() => {
+    if (blogName) {
+      const fetchUserBlogInfo = async () => {
+        const response = await callGet(`/api/mypage?blogName=${blogName}`);
+        if (response.isSuccess) {
+          setUserData(response.result);
+        }
+      };
+
+      const fetchUserPosts = async () => {
+        const response = await callGet(
+          `/api/mypage/posts?blogName=${blogName}`,
+        );
+        if (response.isSuccess) {
+          setUserPosts(response.result);
+        }
+      };
+
+      fetchUserBlogInfo();
+      fetchUserPosts();
+    }
+  }, [blogName]);
 
   const handleFollowClick = () => {
     setIsFollowing((prev) => !prev);
@@ -15,26 +47,30 @@ const UserPageContainer = () => {
   return (
     <div className="mb-[200px] px-[10%]">
       <div className="flex flex-col px-[5%] text-[20px] relative">
-        <div className="text-black text-[24px] font-bold">민규의 블로그</div>
+        <div className="text-black text-[24px] font-bold">
+          {userData?.blogName}
+        </div>
         <div className="h-[130px] flex items-center justify-center gap-[70px]">
           <div className="flex flex-col items-center justify-center">
             <Image
-              src="/images/profile.png"
+              src={userData?.profileImageUrl || '/images/profile.png'}
               alt="profile"
               width={80}
               height={80}
               className="rounded-[32px]"
             />
-            <div className="text-black-0 font-semibold">yng1404</div>
+            <div className="text-black-0 font-semibold">
+              {userData?.nickname}
+            </div>
           </div>
           <div className="flex items-center space-x-[50px]">
             <div className="flex flex-col items-center text-black-0">
-              <span className=" font-bold">256</span>
-              <span className=" text-sm">{FOLLOW_TEXT[0]}</span>
+              <span className="font-bold">{userData?.followingCount}</span>
+              <span className="text-sm">{FOLLOW_TEXT[0]}</span>
             </div>
             <div className="w-[1px] h-8 bg-gray-600" />
             <div className="flex flex-col items-center text-black-0">
-              <span className=" font-bold">244</span>
+              <span className="font-bold">{userData?.followerCount}</span>
               <span className="text-sm">{FOLLOW_TEXT[1]}</span>
             </div>
           </div>
@@ -53,7 +89,7 @@ const UserPageContainer = () => {
           </button>
         </div>
         <div className="mt-[40px]">
-          <UserPosts />
+          <UserPosts posts={userPosts} />
         </div>
       </div>
     </div>

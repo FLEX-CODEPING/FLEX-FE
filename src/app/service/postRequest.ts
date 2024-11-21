@@ -39,6 +39,18 @@ export const postBlog = async (postContent: PostTypes, req: Request) => {
   return postRequest('/api/posts', req, postContent);
 };
 
+export const postComment = async (
+  postCommentInfo: CommentRequestTypes,
+  req: Request,
+  id: string,
+) => {
+  return postRequest(`/api/posts/${id}/comments`, req, postCommentInfo);
+};
+
+export const postLike = async (req: Request, id: string) => {
+  return postRequest(`/api/posts/${id}/like`, req);
+};
+
 export const interestStock = async (stockcode: string, req: Request) => {
   return postRequest(`/api/interestStocks?stockcode=${stockcode}`, req);
 };

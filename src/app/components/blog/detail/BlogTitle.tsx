@@ -6,9 +6,15 @@ interface BlogTitleProps {
   title?: string;
   nickname?: string;
   createdAt?: string;
+  onNicknameClick: () => void;
 }
 
-const BlogTitle = ({ title, nickname, createdAt }: BlogTitleProps) => {
+const BlogTitle = ({
+  title,
+  nickname,
+  createdAt,
+  onNicknameClick,
+}: BlogTitleProps) => {
   const [isFollowing, setIsFollowing] = useState(false);
 
   const handleFollowClick = () => {
@@ -20,7 +26,12 @@ const BlogTitle = ({ title, nickname, createdAt }: BlogTitleProps) => {
       <div className="w-full text-5xl font-bold">{title}</div>
       <div className="ml-1 w-full flex justify-between items-center">
         <div className="flex items-center font-bold">
-          <span className="text-black-0/80 text-lg mr-4">{nickname}</span>
+          <span
+            className="text-black-0/80 text-lg mr-4 cursor-pointer"
+            onClick={onNicknameClick}
+          >
+            {nickname}
+          </span>
           <button
             type="button"
             onClick={handleFollowClick}

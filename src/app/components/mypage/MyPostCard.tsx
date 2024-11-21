@@ -1,5 +1,6 @@
 import { likeSmall } from '@/app/constants/iconPath';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import Icons from '../common/Icons';
 
 interface MyPostCardsProps {
@@ -7,16 +8,25 @@ interface MyPostCardsProps {
 }
 
 const MyPostCard = ({ mypost }: MyPostCardsProps) => {
-  const likeCount = 27;
-  const tags = ['주식', '투자'];
+  const tagsArray = mypost.tags.split(',').map((tag) => tag.trim());
+  const router = useRouter();
+
+  const handleCardClick = () => {
+    router.push(`/blog/detail?id=${mypost.postId}`);
+  };
 
   return (
-    <div className="w-full h-[590px] flex-col  inline-flex transition-all rounded-lg duration-300 ease-in-out hover:shadow-lg">
+    <div
+      className="w-full h-[590px] flex-col  inline-flex transition-all rounded-lg duration-300 ease-in-out hover:shadow-lg cursor-pointer"
+      onClick={handleCardClick}
+    >
       <div className="w-full h-[400px] relative rounded-[10px]">
         <Image
           fill
           className="rounded-[10px]"
-          src={mypost.image}
+          src={
+            mypost.imageUrls.length > 0 ? mypost.imageUrls[0] : '/images/3c.png'
+          }
           alt="thumbnail"
         />
       </div>
@@ -25,7 +35,7 @@ const MyPostCard = ({ mypost }: MyPostCardsProps) => {
           <span>{mypost.title}</span>
           <div className="flex items-center gap-1">
             <Icons name={likeSmall} />
-            <span className="text-black-0 font-bold">{mypost.helpful}</span>
+            <span className="text-black-0 font-bold">{mypost.likeCount}</span>
           </div>
         </div>
         <div className="justify-start items-start gap-2 inline-flex">
@@ -35,7 +45,7 @@ const MyPostCard = ({ mypost }: MyPostCardsProps) => {
         </div>
         <div className="flex justify-between items-center mt-4">
           <div className="flex gap-x-2">
-            {mypost.tag.map((tag) => (
+            {tagsArray.map((tag) => (
               <span
                 key={tag}
                 className="bg-gray-200 px-3 py-1 rounded-full text-gray-800 text-sm font-medium"
@@ -46,7 +56,7 @@ const MyPostCard = ({ mypost }: MyPostCardsProps) => {
           </div>
 
           <div className="text-right text-[#7a7a7a] text-sm font-normal">
-            {mypost.createdAt}
+            {mypost.createdAt.split('T')[0]}
           </div>
         </div>
       </div>
