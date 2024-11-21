@@ -1,5 +1,6 @@
 import { create } from 'zustand';
-import { callGet } from '../utils/callApi';
+import { callGet, callPost } from '../utils/callApi';
+import { setTokens } from '../utils/setToken';
 
 interface UserState {
   user: UserTypes | null;
@@ -16,6 +17,13 @@ export const useUserStore = create<UserState>((set) => ({
     set({ isLoading: true });
     try {
       const data = await callGet('/api/auth/user');
+      if (data.code === 'JWT_006') {
+        const response = await callPost('/api/auth/refresh');
+        console.log(response);
+        // const { accessToken: accessToken, refreshToken: newRefreshToken } =
+        //   response.result;
+        // setTokens(accessToken, newRefreshToken, true);
+      }
       set({ user: data, isLoading: false, error: null });
     } catch (err) {
       set({ error: '유저 정보를 가져오는 데 실패했습니다.', isLoading: false });

@@ -4,7 +4,7 @@ import { formatDate, getTodayDate } from '@/app/utils/date';
 import Image from 'next/image';
 
 const StockRank = () => {
-  const filteredStocks = STOCK_DATA.slice(0, 3);
+  const filteredStocks = STOCK_DATA.slice(0, 10);
   const today = getTodayDate();
 
   return (
@@ -13,12 +13,12 @@ const StockRank = () => {
         <p className="text-2xl font-semibold">{MAIN_CONTENTS_TITLE[2]}</p>
         <p className="text-xs">{today}</p>
       </div>
-      <div className="flex-col-center gap-y-4 w-full">
+      <div className="flex-center gap-y-4 w-full flex-wrap gap-x-[4%]">
         {filteredStocks.map((stock, i) => (
-          <div className="flex w-full items-center justify-between bg-gray-5 py-5 px-6 rounded-lg hover:shadow-md cursor-pointer transition-shadow duration-500">
+          <div className="flex w-[48%] items-center justify-between bg-gray-5 py-5 px-6 rounded-lg sahdow hover:shadow-xl cursor-pointer transition-shadow duration-500">
             <div className="flex gap-x-3 mr-6">
-              <p className="text-3xl font-semibold w-5 text-center">{i + 1}</p>
-              <div className="w-10 h-10 relative">
+              <p className="text-3xl font-semibold w-6 text-center">{i + 1}</p>
+              <div className="w-9 h-9 relative">
                 <Image
                   src={stock.image_path}
                   alt={stock.name}

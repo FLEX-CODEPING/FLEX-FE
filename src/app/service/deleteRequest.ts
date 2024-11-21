@@ -8,13 +8,13 @@ const commonHeaders = {
 
 const deleteRequest = async (url: string, req: Request) => {
   const token = getCookie(req, 'accessToken');
-
+  const headers = {
+    ...commonHeaders,
+    ...(token && { Authorization: `Bearer ${token}` }),
+  };
   const response = await fetch(`${SERVER_URL}${url}`, {
     method: 'DELETE',
-    headers: {
-      ...commonHeaders,
-      ...(token && { Authorization: `Bearer ${token}` }),
-    },
+    headers,
   });
   return response.json();
 };
@@ -37,4 +37,7 @@ export const deleteLike = async (id: string, req: Request) => {
 
 export const deleteFollow = async (id: string, req: Request) => {
   return deleteRequest(`/api/blogs/${id}/follow`, req);
+};
+export const deleteInterest = async (id: string, req: Request) => {
+  return deleteRequest(`/api/interestStocks/${id}`, req);
 };

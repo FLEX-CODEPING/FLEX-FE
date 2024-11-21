@@ -1,9 +1,6 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import Header from '../components/common/layout/Header';
-import Rum from '../components/common/layout/Rum';
-import UserProvider from '../components/common/layout/useProvider';
-import '../styles/globals.css';
+import '../../styles/globals.css';
 
 export const metadata: Metadata = {
   title: 'Flex',
@@ -11,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const pretendard = localFont({
-  src: '../static/fonts/PretendardVariable.woff2',
+  src: '../../static/fonts/PretendardVariable.woff2',
   display: 'swap',
   weight: '45 920',
   variable: '--font-pretendard',
@@ -27,12 +24,7 @@ export default function RootLayout({
       <body
         className={`${pretendard.variable} min-w-[1100px] mx-auto font-pretendard`}
       >
-        <Rum>
-          <UserProvider>
-            <Header />
-            {children}
-          </UserProvider>
-        </Rum>
+        <main>{children}</main>
       </body>
     </html>
   );

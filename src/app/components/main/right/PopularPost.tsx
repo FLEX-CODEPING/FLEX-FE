@@ -17,7 +17,7 @@ const PopularPost = () => {
   useEffect(() => {
     const fetchPost = async () => {
       const response = await callGet('/api/main/popular');
-      setPostData(response.result);
+      response.isSuccess && setPostData(response.result);
     };
     fetchPost();
   }, []);

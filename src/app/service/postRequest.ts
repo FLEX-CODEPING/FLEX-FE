@@ -54,3 +54,29 @@ export const postLike = async (req: Request, id: string) => {
 export const postFollow = async (req: Request, id: string) => {
   return postRequest(`/api/blogs/${id}/follow`, req);
 };
+export const interestStock = async (stockcode: string, req: Request) => {
+  return postRequest(`/api/interestStocks?stockcode=${stockcode}`, req);
+};
+
+export const postRefresh = async (req: Request) => {
+  const token = getCookie(req, 'refreshToken');
+  const headers = {
+    ...commonHeaders,
+    ...(token && { Authorization: `Bearer ${token}` }),
+  };
+
+  const response = await fetch(`${SERVER_URL}/api/auth/reissue`, {
+    method: 'POST',
+    headers,
+  });
+
+  return response.json();
+};
+
+export const postCheckBlogName = async (blogName: any, req: Request) => {
+  return postRequest('/api/users/checkBlogName', req, blogName);
+};
+
+export const postLogout = async (req: Request) => {
+  return postRequest('/api/auth/logout', req);
+};
