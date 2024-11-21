@@ -1,4 +1,3 @@
-// ChartContainer.tsx
 'use client';
 
 import { CHART_TITLE, CHART_VIEWTYPE } from '@/app/constants/simulation';
@@ -50,7 +49,10 @@ const ChartContainer = () => {
             </select>
           </div>
 
-          <button className="px-4 py-1 border rounded text-sm bg-gray-100 hover:bg-gray-200">
+          <button
+            type="button"
+            className="px-4 py-1 border rounded text-sm bg-gray-100 hover:bg-gray-200"
+          >
             보조지표
           </button>
         </div>

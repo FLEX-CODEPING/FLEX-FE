@@ -4,7 +4,7 @@ import { useModal } from '@/app/hooks/useModal';
 import { useState } from 'react';
 import PredictIndicator from './PredictIndicator';
 import PredictionEmpty from './PredictionEmpty';
-import PredictResultAlert from './PredictResultAlert';
+import PredictResultAlert from './alert/PredictResultAlert';
 
 const PredictionSideContainer = () => {
   const { isOpen, openModal, closeModal } = useModal(false);

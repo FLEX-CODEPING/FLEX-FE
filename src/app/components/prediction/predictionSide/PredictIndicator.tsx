@@ -1,17 +1,23 @@
 'use client';
 
 import { useState } from 'react';
-import Button from '../../common/Button';
-import Icons from '../../common/Icons';
 import { infoIcon } from '@/app/constants/iconPath';
-import { fetchPredictionData } from './predictionSide';
 import {
   PREDICTION_SIDEBAR_TEXT,
   PREDICTION_INDICATION_SORT,
 } from '@/app/constants/prediction';
+import { fetchPredictionData } from './predictionSide';
+import Button from '../../common/Button';
+import Icons from '../../common/Icons';
 
-const PredictIndicator = () => {
-  const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
+interface PredictIndicatorProps {
+  onIndicatorsChange: (indicators: string[]) => void;
+}
+
+const PredictIndicator: React.FC<PredictIndicatorProps> = ({
+  onIndicatorsChange,
+}) => {
+  const [selectedMethods, setSelectedMethods] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [predictionData, setPredictionData] = useState<{
     dates: string[];
@@ -19,25 +25,30 @@ const PredictIndicator = () => {
   } | null>(null);
 
   const handleCheckboxChange = (method: string) => {
-    setSelectedMethod((prev) => (prev === method ? null : method));
+    const updatedMethods = selectedMethods.includes(method)
+      ? selectedMethods.filter((m) => m !== method)
+      : [...selectedMethods, method];
+
+    setSelectedMethods(updatedMethods);
+    onIndicatorsChange(updatedMethods);
   };
 
   const handlePredictionClick = async () => {
-    if (!selectedMethod) {
-      alert('예측 방법을 선택해 주세요.');
+    if (selectedMethods.length === 0) {
+      window.alert('예측 방법을 선택해 주세요.');
       return;
     }
 
     setLoading(true);
-    console.log('분석 중...');
-    const data = await fetchPredictionData([selectedMethod]);
+    console.info('분석 중...');
+    const data = await fetchPredictionData(selectedMethods);
     setLoading(false);
 
     if (data) {
       setPredictionData(data);
     } else {
       setPredictionData(null);
-      alert('예측 데이터를 가져오지 못했습니다.');
+      window.alert('예측 데이터를 가져오지 못했습니다.');
     }
   };
 
@@ -56,11 +67,15 @@ const PredictIndicator = () => {
         {PREDICTION_INDICATION_SORT.map((method) => (
           <label
             key={method}
-            className={`flex items-center gap-3 cursor-pointer ${selectedMethod === method ? 'text-orange-500' : ''}`}
+            htmlFor={method}
+            className={`flex items-center gap-3 cursor-pointer ${
+              selectedMethods.includes(method) ? 'text-orange-500' : ''
+            }`}
           >
             <input
-              type="radio"
-              checked={selectedMethod === method}
+              id={method}
+              type="checkbox"
+              checked={selectedMethods.includes(method)}
               onChange={() => handleCheckboxChange(method)}
             />
             <span className="text-[11px] font-semibold">{method}</span>
@@ -79,7 +94,7 @@ const PredictIndicator = () => {
           <h3 className="text-sm font-semibold mb-2">예측 결과:</h3>
           <ul>
             {predictionData.dates.map((date, index) => (
-              <li key={index}>
+              <li key={date}>
                 {date}: {predictionData.predictions[index]}
               </li>
             ))}
