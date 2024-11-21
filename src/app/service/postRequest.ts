@@ -50,3 +50,7 @@ export const postComment = async (
 export const postLike = async (req: Request, id: string) => {
   return postRequest(`/api/posts/${id}/like`, req);
 };
+
+export const postFollow = async (req: Request, id: string) => {
+  return postRequest(`/api/blogs/${id}/follow`, req);
+};

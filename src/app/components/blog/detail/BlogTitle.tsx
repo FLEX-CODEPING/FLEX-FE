@@ -1,11 +1,13 @@
 'use client';
 
+import { callDelete, callPost } from '@/app/utils/callApi';
 import { useState } from 'react';
 
 interface BlogTitleProps {
   title?: string;
   nickname?: string;
   createdAt?: string;
+  userId: string;
   onNicknameClick: () => void;
 }
 
@@ -13,12 +15,28 @@ const BlogTitle = ({
   title,
   nickname,
   createdAt,
+  userId,
   onNicknameClick,
 }: BlogTitleProps) => {
-  const [isFollowing, setIsFollowing] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(Boolean);
 
-  const handleFollowClick = () => {
-    setIsFollowing(!isFollowing);
+  const handleFollowClick = async () => {
+    try {
+      if (isFollowing) {
+        const response = await callDelete(`/api/follow/delete?id=${userId}`);
+        if (response.isSuccess) {
+          setIsFollowing(false); 
+        }
+      } else {
+        
+        const response = await callPost(`/api/follow?id=${userId}`);
+        if (response.isSuccess) {
+          setIsFollowing(true); 
+        }
+      }
+    } catch (error) {
+      console.error('팔로우/팔로우 해제 요청 중 오류가 발생했습니다:', error);
+    }
   };
 
   return (
