@@ -54,11 +54,14 @@ export const postRefresh = async (req: Request) => {
     method: 'POST',
     headers,
   });
-  console.log(response, '응답');
 
   return response.json();
 };
 
 export const postCheckBlogName = async (blogName: any, req: Request) => {
   return postRequest('/api/users/checkBlogName', req, blogName);
+};
+
+export const postLogout = async (req: Request) => {
+  return postRequest('/api/auth/logout', req);
 };
