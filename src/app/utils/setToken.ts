@@ -1,5 +1,4 @@
 import { parse } from 'cookie';
-import { redirect } from 'next/dist/server/api-utils';
 import { callPost } from './callApi';
 
 let sessionTimeoutId: number | null = null;
@@ -44,6 +43,7 @@ export const getCookie = (req: Request, name: string) => {
 export const handleLogout = async () => {
   const response = await callPost('/api/auth/logout');
   console.log(response);
-  // document.cookie = `accessToken=; expires=0; path=/;`;
-  // document.cookie = `refreshToken=; expires=0; path=/;`;
+  document.cookie = `accessToken=; expires=0; path=/;`;
+  document.cookie = `refreshToken=; expires=0; path=/;`;
+  window.location.href = '/'; // '/sign-in' 경로로 이동
 };
