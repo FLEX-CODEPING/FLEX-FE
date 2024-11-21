@@ -1,75 +1,45 @@
-'use client';
-
+import { useEffect, useState } from 'react';
+import { callGet } from '@/app/utils/callApi';
 import { COMMENT } from '@/app/constants/blog';
-import Image from 'next/image';
-import { useState } from 'react';
+import CommentInput from './CommentInput';
+import CommentList from './CommentList';
 
-const BlogComment = () => {
-  const [commentInput, setCommentInput] = useState('');
+interface BlogCommentProps {
+  postId: string;
+  currentUserId?: string;
+}
+
+const BlogComment = ({ postId, currentUserId }: BlogCommentProps) => {
   const [comments, setComments] = useState<CommentTypes[]>([]);
 
-  const handleAddComment = () => {
-    if (commentInput.trim() !== '') {
-      const newComment: CommentTypes = {
-        id: comments.length + 1,
-        author: '낙도핑',
-        date: new Date().toISOString().slice(0, 10),
-        content: commentInput,
-      };
-      setComments([...comments, newComment]);
-      setCommentInput('');
+  const fetchComments = async () => {
+    try {
+      const response = await callGet(`/api/comment?id=${postId}`);
+      if (response.isSuccess) {
+        setComments(response.result);
+      }
+    } catch (error) {
+      console.error('Failed to fetch comments:', error);
     }
   };
+
+  useEffect(() => {
+    fetchComments();
+  }, [postId]);
 
   return (
     <div className="w-[880px] mt-5 mb-[100px]">
       <div className="text-xl font-bold mb-2 ml-1">
-        {comments.length}
-        {COMMENT[0]}
+        {comments.length} {COMMENT[0]}
       </div>
-      <textarea
-        value={commentInput}
-        placeholder={COMMENT[1]}
-        onChange={(e) => setCommentInput(e.target.value)}
-        className="w-full h-[80px] pl-3 pr-2 py-2 text-sm rounded-[10px] border resize-none border-gray-2 outline-none focus:border-main-1 overflow-y-auto hide-scrollbar"
+      <CommentInput postId={postId} onAddComment={fetchComments} />
+      <CommentList
+        comments={comments}
+        currentUserId={currentUserId}
+        onUpdateComments={fetchComments}
       />
-      <div className="flex justify-end mt-3">
-        <button
-          type="button"
-          onClick={handleAddComment}
-          className="bg-black-0 text-white px-8 py-2 rounded-lg font-semibold "
-        >
-          {COMMENT[2]}
-        </button>
-      </div>
-
-      <div className="mt-[60px] mb-[100px]">
-        {comments.map((comment) => (
-          <div key={comment.id} className="mb-10">
-            <div className="flex items-start gap-4">
-              <div className="flex justify-between w-full">
-                <div className="inline-flex items-center gap-3">
-                  <Image
-                    src="https://bff-images.bemypet.kr/media/medias/all/993-image_picker152967371293908462.jpg"
-                    alt="프로필 이미지"
-                    width={32}
-                    height={32}
-                    className="rounded-full"
-                  />
-                  <span className="font-bold text-lg">{comment.author}</span>
-                </div>
-                <span className="text-gray-500 text-sm flex items-end">
-                  {comment.date}
-                </span>
-              </div>
-            </div>
-            <div className="py-[18px] font-normal border-b border-gray-3">
-              {comment.content}
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   );
 };
+
 export default BlogComment;
