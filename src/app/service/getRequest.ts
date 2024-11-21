@@ -124,7 +124,7 @@ export const getInterestedStocks = async (req: Request) => {
   return getRequest(url, req);
 };
 
-export const getInterestedStatus = async (req: Request, code:string) => {
+export const getInterestedStatus = async (req: Request, code: string) => {
   const url = `/api/interestStocks/${code}`;
   return getRequest(url, req);
 };

@@ -28,7 +28,7 @@ type IncomeTypes =
   | 'LESS_200K'
   | 'OVER_200K';
 
-  interface BlogNameCheckTypes {
-    text: string;
-    textColor:string
-  }
+interface BlogNameCheckTypes {
+  text: string;
+  textColor: string;
+}
