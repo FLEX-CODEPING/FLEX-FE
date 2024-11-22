@@ -125,12 +125,12 @@ export const getMyLikedPosts = async (req: Request) => {
   return getRequest(url, req);
 };
 
-export const getStockInfo = async (req: Request, code: string) => {
+export const getStock = async (req: Request, code: string) => {
   const url = `/api/stocks/${code}`;
   return getRequest(url, req);
 };
 
-export const getStockDetail = async (
+export const getStockInfo = async (
   req: Request,
   code: string,
   date: string,
@@ -146,5 +146,14 @@ export const getInterestedStocks = async (req: Request) => {
 
 export const getInterestedStatus = async (req: Request, code: string) => {
   const url = `/api/interestStocks/${code}`;
+  return getRequest(url, req);
+};
+
+export const getStockOffHour = async (
+  req: Request,
+  code: string,
+  date: string,
+) => {
+  const url = `/api/stocks/${code}/preOpen?date=${date}`;
   return getRequest(url, req);
 };
