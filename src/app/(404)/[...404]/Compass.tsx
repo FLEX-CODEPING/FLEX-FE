@@ -45,7 +45,7 @@ const Compass = () => {
           블로그
         </Link>
         <Link
-          href="/simulate"
+          href="/simulation"
           className="absolute top-1/2 right-5 transform -translate-y-1/2"
         >
           모의투자

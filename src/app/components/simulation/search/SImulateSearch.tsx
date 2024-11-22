@@ -19,6 +19,7 @@ const SImulateSearch = () => {
 
   const getStockInfo = async () => {
     const response = await callGet(`api/stocks?code=${searchText}`);
+
     const statusRes: InterestedStautsTypes = await callGet(
       `api/stocks/interest/status?code=${response.result.stockcode}`,
     );
@@ -27,11 +28,14 @@ const SImulateSearch = () => {
 
   const interestStock = async () => {
     const response = await callPost(`api/stocks/interest?code=${searchText}`);
+
     getStockInfo();
   };
 
   const deleteInterest = async () => {
-    const response = await callDelete(`api/stocks/interest?id=${searchText}`);
+    const response = await callDelete(
+      `api/stocks/interest?id=${stockInfo?.isInterested}`,
+    );
     getStockInfo();
   };
 

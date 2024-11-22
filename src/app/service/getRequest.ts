@@ -140,7 +140,7 @@ export const getStockDetail = async (
 };
 
 export const getInterestedStocks = async (req: Request) => {
-  const url = `/api/interestStocks?page=0&size=12`;
+  const url = `/api/interestStocks?page=0&size=20`;
   return getRequest(url, req);
 };
 

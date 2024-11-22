@@ -25,7 +25,7 @@ interface StockDetailInfoTypes {
 }
 
 interface InterestedStockTypes {
-  id: string;
+  interestStockId: string;
   stockcode: string;
   corpName: string;
   symbolImageUrl: string;

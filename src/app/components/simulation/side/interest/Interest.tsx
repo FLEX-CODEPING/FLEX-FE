@@ -32,11 +32,14 @@ const Interest = () => {
           <EmptyGuide phraseArr={INTEREST_EMPTY} />
         ) : (
           stocks.map((stock) => (
-            <div className="py-1.5 w-full flex justify-between" key={stock.id}>
+            <div
+              className="py-1.5 w-full flex justify-between"
+              key={stock.interestStockId}
+            >
               <div className="flex items-center gap-x-2">
                 <Image
                   src={stock.symbolImageUrl || '/images/stocks/none.png'}
-                  alt={stock.id}
+                  alt="stockImg"
                   width={32}
                   height={32}
                   className="rounded-[25px]"
@@ -45,18 +48,18 @@ const Interest = () => {
               </div>
               <div className="flex-col">
                 <div className="flex text-xs items-center font-medium gap-x-0.5">
-                  <p>{stock.id}원</p>
+                  <p>{100}원</p>
                   <Icons
                     name={interestLike}
                     className="cursor-pointer"
-                    onClick={() => deleteInterest(stock.id)}
+                    onClick={() => deleteInterest(stock.interestStockId)}
                   />
                 </div>
                 <div
                   className={`flex w-full justify-end text-[10px] gap-x-0.5 ${valueColor(30)}`}
                 >
-                  <p>{stock.id}</p>
-                  <p>({stock.id}%)</p>
+                  <p>{10}</p>
+                  <p>({10}%)</p>
                 </div>
               </div>
             </div>
