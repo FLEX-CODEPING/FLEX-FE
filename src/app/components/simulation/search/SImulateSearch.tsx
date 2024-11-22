@@ -7,27 +7,33 @@ import {
 } from '@/app/constants/iconPath';
 import { STOCK_SEARCH_EMPTY_TEXT } from '@/app/constants/prediction';
 import { SEARCH_STOCK } from '@/app/constants/simulation';
+import useStockCodeStore from '@/app/store/store';
 import { callDelete, callGet, callPost } from '@/app/utils/callApi';
+import { getTodayDateBar } from '@/app/utils/date';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Icons from '../../common/Icons';
 import Input from '../../common/Input';
 
 const SImulateSearch = () => {
-  const [searchText, setSearchText] = useState('');
+  const searchCodeRef = useRef(''); // useRef로 searchCode 관리
   const [stockInfo, setStockInfo] = useState<null | StockInfoTypes>(null);
+  const { setStockCode } = useStockCodeStore();
 
   const getStockInfo = async () => {
-    const response = await callGet(`api/stocks?code=${searchText}`);
+    const searchCode = searchCodeRef.current;
+    const response = await callGet(`api/stocks?code=${searchCode}`);
 
     const statusRes: InterestedStautsTypes = await callGet(
       `api/stocks/interest/status?code=${response.result.stockcode}`,
     );
+    setStockCode(searchCode);
     setStockInfo({ ...response.result, isInterested: statusRes.result });
   };
 
   const interestStock = async () => {
-    const response = await callPost(`api/stocks/interest?code=${searchText}`);
+    const searchCode = searchCodeRef.current;
+    const response = await callPost(`api/stocks/interest?code=${searchCode}`);
 
     getStockInfo();
   };
@@ -40,8 +46,10 @@ const SImulateSearch = () => {
   };
 
   const getStockDetail = async () => {
+    const searchCode = searchCodeRef.current;
+    const date = getTodayDateBar();
     const response = await callGet(
-      `api/stocks/detail?code=005930&date=${'2024-11-19'}`,
+      `api/stocks/detail?code=${searchCode}&date=${date}`,
     );
   };
 
@@ -97,7 +105,9 @@ const SImulateSearch = () => {
         <Input
           type="simulation"
           placeholder={SEARCH_STOCK}
-          onChange={(e) => setSearchText(e.target.value)}
+          onChange={(e) => {
+            searchCodeRef.current = e.target.value;
+          }}
           onEnterPress={getStockInfo}
         />
         <Icons

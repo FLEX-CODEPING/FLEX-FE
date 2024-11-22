@@ -1,6 +1,5 @@
 import { create } from 'zustand';
 import { callGet, callPost } from '../utils/callApi';
-import { setTokens } from '../utils/setToken';
 
 interface UserState {
   user: UserTypes | null;
@@ -43,3 +42,15 @@ export const useSidebarStore = create<SidebarState>((set) => ({
       selectedItem: state.selectedItem === item ? null : item,
     })),
 }));
+
+interface StockCodeStoreState {
+  stockCode: string;
+  setStockCode: (code: string) => void;
+}
+
+const useStockCodeStore = create<StockCodeStoreState>((set) => ({
+  stockCode: '',
+  setStockCode: (code) => set({ stockCode: code }),
+}));
+
+export default useStockCodeStore;
