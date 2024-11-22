@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 
 const ApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
-export function Chart() {
+export function StockChart() {
   return (
     <div className="w-full flex flex-col">
       <ApexChart
@@ -93,4 +93,4 @@ export function Chart() {
   );
 }
 
-export default Chart;
+export default StockChart;
