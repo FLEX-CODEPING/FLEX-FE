@@ -6,20 +6,22 @@ interface StockInfoTypes {
 }
 
 interface StockDetailInfoTypes {
-  isSuccess: true;
-  code: string;
-  message: string;
-  result: {
+  marketCapInfo: {
     stockcode: string;
     date: string;
     marketCap: number;
     volume: number;
     tradingVolume: number;
     listedShares: number;
+  };
+  ohlcvInfo: {
+    stockcode: string;
+    date: string;
     openPrice: number;
     highPrice: number;
     lowPrice: number;
     closePrice: number;
+    volume: number;
     changeRate: number;
   };
 }
