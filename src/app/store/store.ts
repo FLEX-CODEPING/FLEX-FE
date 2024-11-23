@@ -45,12 +45,14 @@ export const useSidebarStore = create<SidebarState>((set) => ({
 
 interface StockCodeStoreState {
   stockCode: string;
-  setStockCode: (code: string) => void;
+  stockName: string;
+  setStockCode: (code: string, name: string) => void;
 }
 
-const useStockCodeStore = create<StockCodeStoreState>((set) => ({
+const useStockStore = create<StockCodeStoreState>((set) => ({
   stockCode: '',
-  setStockCode: (code) => set({ stockCode: code }),
+  stockName: '',
+  setStockCode: (code, name) => set({ stockCode: code, stockName: name }),
 }));
 
-export default useStockCodeStore;
+export default useStockStore;

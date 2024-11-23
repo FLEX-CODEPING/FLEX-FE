@@ -18,23 +18,25 @@ import Input from '../../common/Input';
 const SImulateSearch = () => {
   const searchCodeRef = useRef(''); // useRef로 searchCode 관리
   const [stockInfo, setStockInfo] = useState<null | StockInfoTypes>(null);
-  const { setStockCode } = useStockCodeStore();
+  const { setStockCode, stockCode } = useStockCodeStore();
 
   const getStockInfo = async () => {
     const searchCode = searchCodeRef.current;
     const response = await callGet(`api/stocks?code=${searchCode}`);
-
-    const statusRes: InterestedStautsTypes = await callGet(
-      `api/stocks/interest/status?code=${response.result.stockcode}`,
-    );
-    setStockCode(searchCode);
-    setStockInfo({ ...response.result, isInterested: statusRes.result });
+    if (response.isSuccess) {
+      const statusRes: InterestedStautsTypes = await callGet(
+        `api/stocks/interest/status?code=${response.result.stockcode}`,
+      );
+      setStockCode(searchCode, response.result.corpName);
+      setStockInfo({ ...response.result, isInterested: statusRes.result });
+    } else {
+      setStockCode('null', '');
+    }
   };
 
   const interestStock = async () => {
     const searchCode = searchCodeRef.current;
     const response = await callPost(`api/stocks/interest?code=${searchCode}`);
-
     getStockInfo();
   };
 
@@ -55,7 +57,7 @@ const SImulateSearch = () => {
 
   return (
     <div className="flex w-full justify-between items-end pb-2">
-      {stockInfo ? (
+      {stockInfo && stockCode !== 'wrong' ? (
         <div className="flex px-[15.5px] py-3 justify-between w-[360px] items-end">
           <div className="flex gap-x-2.5">
             <div className="w-[40px] h-[40px] relative rounded-[18px]">
