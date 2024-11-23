@@ -3,9 +3,9 @@
 import { CHART_TITLE, CHART_VIEWTYPE } from '@/app/constants/simulation';
 import useStockCodeStore from '@/app/store/store';
 import { useState } from 'react';
-import StockInfoChart from './\bStockInfoChart';
 import ChartEmpty from './ChartEmpty';
 import { StockChart } from './StockChart';
+import StockInfoChart from './stockInfo/StockInfoChart';
 
 const ChartContainer = () => {
   const [viewType, setViewType] = useState<ChartViewType>('일');

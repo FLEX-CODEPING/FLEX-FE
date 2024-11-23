@@ -5,13 +5,18 @@ import { callGet } from '@/app/utils/callApi';
 import { getTodayDateBar } from '@/app/utils/date';
 import { formatStockData } from '@/app/utils/formatStock';
 import { formatNumberCommas } from '@/app/utils/truncate';
-import { useEffect, useState } from 'react';
-import Icons from '../../common/Icons';
+import { useEffect, useRef, useState } from 'react';
+import { useHover } from 'usehooks-ts';
+import Icons from '../../../common/Icons';
+import StockGuideModal from './StockGuideModal';
 
 const StockInfoChart = () => {
   const [stockInfo, setStockInfo] = useState<null | StockDetailInfoTypes>(null);
   const { stockCode, stockName } = useStockCodeStore();
+  const [hoverRefs, setHoverRefs] = useState<(HTMLDivElement | null)[]>([]);
+
   const StockInfoArr = stockInfo ? formatStockData(stockInfo) : [];
+
   const plusUnit = (index: number) => {
     if (index === 5) return '%';
     if (index === 8) return '주';
@@ -27,6 +32,7 @@ const StockInfoChart = () => {
   };
 
   useEffect(() => {
+    setHoverRefs((prev) => STOCK_INFO_TEXT.map(() => null));
     getStockDetail();
   }, [stockCode]);
 
@@ -46,25 +52,33 @@ const StockInfoChart = () => {
         <p className="text-gray-1 text-sm">{stockInfo?.marketCapInfo.date}</p>
       </div>
       <div className="flex flex-wrap w-full justify-between gap-y-6">
-        {STOCK_INFO_TEXT.map((info, i) => (
-          <div
-            className="w-[48%] h-[72px] bg-gray-6 py-2 px-3 rounded-xl shadow hover:shadow-lg hover:duration-700 flex flex-col gap-y-2"
-            key={info}
-          >
-            <div className="flex gap-x-1 items-center">
-              <p className="text-sm text-black-1">{info}</p>
-              <Icons name={infoIcon} />
+        {STOCK_INFO_TEXT.map((info, i) => {
+          const hoverRef = useRef(null);
+          const isHover = useHover(hoverRef);
+          hoverRefs[i] = hoverRef.current;
+          return (
+            <div
+              className="w-[48%] h-[72px] bg-gray-6 py-2 px-3 rounded-xl shadow-md flex flex-col gap-y-2"
+              key={info}
+            >
+              <div className="flex gap-x-1 items-center">
+                <p className="text-sm text-black-1">{info}</p>
+                <div className="relative flex w-3 h-3" ref={hoverRef}>
+                  <Icons name={infoIcon} />
+                  {isHover && <StockGuideModal index={i} />}
+                </div>
+              </div>
+              <div className="text-xl font-semibold flex gap-x-1">
+                <p
+                  className={`${i === 5 && (Number(info) > 0 ? 'text-red-1' : 'text-blue-1')}`}
+                >
+                  {formatNumberCommas(Number(StockInfoArr[i]))}
+                </p>
+                <p>{plusUnit(i)}</p>
+              </div>
             </div>
-            <div className="text-xl font-semibold flex gap-x-1">
-              <p
-                className={`${i === 5 && (Number(info) > 0 ? 'text-red-1' : 'text-blue-1')}`}
-              >
-                {formatNumberCommas(Number(StockInfoArr[i]))}
-              </p>
-              <p>{plusUnit(i)}</p>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
