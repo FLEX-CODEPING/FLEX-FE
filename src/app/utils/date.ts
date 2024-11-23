@@ -36,9 +36,24 @@ export const getTodayDate = () => {
 export const getTodayDateBar = () => {
   const today = new Date();
 
-  const year = today.getUTCFullYear();
-  const month = String(today.getUTCMonth() + 1).padStart(2, '0');
-  const day = String(today.getUTCDate()).padStart(2, '0');
+  const koreanTimezoneOffset = 9 * 60 * 60 * 1000;
+  const koreanDate = new Date(today.getTime() + koreanTimezoneOffset);
 
-  return `${year}-${month}-${day}`;
+  const year = koreanDate.getUTCFullYear();
+  const month = String(koreanDate.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(koreanDate.getUTCDate()).padStart(2, '0');
+
+  const dayOfWeek = koreanDate.getUTCDay();
+
+  if (dayOfWeek === 0) {
+    koreanDate.setUTCDate(koreanDate.getUTCDate() - 2);
+  } else if (dayOfWeek === 6) {
+    koreanDate.setUTCDate(koreanDate.getUTCDate() - 1);
+  }
+
+  const adjustedYear = koreanDate.getUTCFullYear();
+  const adjustedMonth = String(koreanDate.getUTCMonth() + 1).padStart(2, '0');
+  const adjustedDay = String(koreanDate.getUTCDate()).padStart(2, '0');
+
+  return `${adjustedYear}-${adjustedMonth}-${adjustedDay}`;
 };
