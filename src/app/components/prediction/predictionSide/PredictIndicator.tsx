@@ -17,7 +17,7 @@ interface PredictIndicatorProps {
 const PredictIndicator: React.FC<PredictIndicatorProps> = ({
   onIndicatorsChange,
 }) => {
-  const [selectedMethods, setSelectedMethods] = useState<string[]>([]);
+  const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [predictionData, setPredictionData] = useState<{
     dates: string[];
@@ -25,31 +25,39 @@ const PredictIndicator: React.FC<PredictIndicatorProps> = ({
   } | null>(null);
 
   const handleCheckboxChange = (method: string) => {
-    const updatedMethods = selectedMethods.includes(method)
-      ? selectedMethods.filter((m) => m !== method)
-      : [...selectedMethods, method];
-
-    setSelectedMethods(updatedMethods);
-    onIndicatorsChange(updatedMethods);
+    if (selectedMethod === method) {
+      setSelectedMethod(null);
+      onIndicatorsChange([]);
+    } else {
+      setSelectedMethod(method);
+      onIndicatorsChange([method]);
+    }
   };
 
   const handlePredictionClick = async () => {
-    if (selectedMethods.length === 0) {
+    if (!selectedMethod) {
       window.alert('예측 방법을 선택해 주세요.');
       return;
     }
 
     setLoading(true);
     console.info('분석 중...');
-    const data = await fetchPredictionData(selectedMethods);
+    const results = await fetchPredictionData([selectedMethod]);
     setLoading(false);
 
-    if (data) {
-      setPredictionData(data);
-    } else {
-      setPredictionData(null);
-      window.alert('예측 데이터를 가져오지 못했습니다.');
+    if (results && results.length > 0) {
+      const validResult = results.find((result) => result.data);
+      if (validResult && validResult.data) {
+        setPredictionData({
+          dates: validResult.data.dates,
+          predictions: validResult.data.predictions,
+        });
+        return;
+      }
     }
+
+    setPredictionData(null);
+    window.alert('예측 데이터를 가져오지 못했습니다.');
   };
 
   return (
@@ -69,13 +77,14 @@ const PredictIndicator: React.FC<PredictIndicatorProps> = ({
             key={method}
             htmlFor={method}
             className={`flex items-center gap-3 cursor-pointer ${
-              selectedMethods.includes(method) ? 'text-orange-500' : ''
+              selectedMethod === method ? 'text-orange-500' : ''
             }`}
           >
             <input
               id={method}
-              type="checkbox"
-              checked={selectedMethods.includes(method)}
+              type="radio"
+              name="prediction-method"
+              checked={selectedMethod === method}
               onChange={() => handleCheckboxChange(method)}
             />
             <span className="text-[11px] font-semibold">{method}</span>
