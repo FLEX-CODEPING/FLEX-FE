@@ -1,6 +1,6 @@
 interface StockInfoTypes {
   stockcode: string;
-  corpName: string;
+  stockName: string;
   symbolImageUrl: string;
   isInterested: boolean;
 }
@@ -29,7 +29,7 @@ interface StockDetailInfoTypes {
 interface InterestedStockTypes {
   interestStockId: string;
   stockcode: string;
-  corpName: string;
+  stockName: string;
   symbolImageUrl: string;
 }
 

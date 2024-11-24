@@ -44,7 +44,7 @@ const Interest = () => {
                   height={32}
                   className="rounded-[25px]"
                 />
-                <p className="text-xs font-medium">{stock.corpName}</p>
+                <p className="text-xs font-medium">{stock.stockName}</p>
               </div>
               <div className="flex-col">
                 <div className="flex text-xs items-center font-medium gap-x-0.5">
