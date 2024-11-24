@@ -47,3 +47,27 @@ export const getTodayDateBar = () => {
 
   return `${year}-${month}-${day}`;
 };
+
+export const isPreOpenTime = () => {
+  const now = new Date();
+  const day = now.getDay();
+  if (day < 1 || day > 5) {
+    return false;
+  }
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+
+  const startHour = 9;
+  const endHour = 15;
+  const endMinute = 30;
+
+  if (
+    hours < startHour ||
+    hours > endHour ||
+    (hours === endHour && minutes > endMinute)
+  ) {
+    return false;
+  }
+
+  return true;
+};

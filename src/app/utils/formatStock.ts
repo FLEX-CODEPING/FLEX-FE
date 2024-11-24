@@ -1,4 +1,6 @@
-export function formatStockData(data: StockDetailInfoTypes): (string | number)[] {
+export function formatStockData(
+  data: StockDetailInfoTypes,
+): (string | number)[] {
   const {
     ohlcvInfo: {
       openPrice,

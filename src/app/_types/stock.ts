@@ -4,6 +4,10 @@ interface StockInfoTypes {
   symbolImageUrl: string;
   corpInfo: CorpInfoTypes;
   isInterested: boolean;
+  date: string;
+  closePrice: 0;
+  volume: 0;
+  changeRate: 0;
 }
 
 interface CorpInfoTypes {

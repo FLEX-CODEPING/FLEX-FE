@@ -12,6 +12,7 @@ const ChartContainer = () => {
   const [chartData, setChartData] = useState([]);
   const [isChart, setIsChart] = useState('차트');
   const { stockCode, stockName } = useStockCodeStore();
+
   return (
     <div className="flex w-full px-5 pt-5 pb-9 rounded-[10px] border border-gray-4 flex-col justify-start items-start gap-y-5">
       <div className="flex w-full justify-between">
