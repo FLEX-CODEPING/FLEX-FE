@@ -25,35 +25,25 @@ export const formatDate = (dateString: string) => {
 
 export const getTodayDate = () => {
   const today = new Date();
-
   const year = today.getUTCFullYear();
   const month = String(today.getUTCMonth() + 1).padStart(2, '0');
   const day = String(today.getUTCDate()).padStart(2, '0');
-
   return `${year}.${month}.${day}`;
 };
 
 export const getTodayDateBar = () => {
   const today = new Date();
-
-  const koreanTimezoneOffset = 9 * 60 * 60 * 1000;
-  const koreanDate = new Date(today.getTime() + koreanTimezoneOffset);
-
-  const year = koreanDate.getUTCFullYear();
-  const month = String(koreanDate.getUTCMonth() + 1).padStart(2, '0');
-  const day = String(koreanDate.getUTCDate()).padStart(2, '0');
-
-  const dayOfWeek = koreanDate.getUTCDay();
+  today.setMinutes(today.getMinutes());
+  const dayOfWeek = today.getDay();
 
   if (dayOfWeek === 0) {
-    koreanDate.setUTCDate(koreanDate.getUTCDate() - 2);
+    today.setDate(today.getDate() - 2);
   } else if (dayOfWeek === 6) {
-    koreanDate.setUTCDate(koreanDate.getUTCDate() - 1);
+    today.setDate(today.getDate() - 1);
   }
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
 
-  const adjustedYear = koreanDate.getUTCFullYear();
-  const adjustedMonth = String(koreanDate.getUTCMonth() + 1).padStart(2, '0');
-  const adjustedDay = String(koreanDate.getUTCDate()).padStart(2, '0');
-
-  return `${adjustedYear}-${adjustedMonth}-${adjustedDay}`;
+  return `${year}-${month}-${day}`;
 };
