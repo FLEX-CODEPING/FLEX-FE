@@ -36,10 +36,9 @@ const StockSearchBar = ({
     } else if (e.key === 'Enter') {
       if (selectedIndex !== -1) {
         const selectedStock = autoComplete[selectedIndex];
-        setSearchText(selectedStock.stockcode);
+        getStockInfo(selectedStock.stockcode);
       }
       getStockInfo(searchText);
-      setAutoComplete([]);
     }
   };
 
@@ -65,16 +64,14 @@ const StockSearchBar = ({
         onClick={() => getStockInfo}
       />
       {autoComplete.length !== 0 && (
-        <div className="absolute top-10 bg-white flex-col-center w-full px-2.5 py-3 rounded-lg border-x border-b border-gray-4 z-20">
+        <div className="absolute top-10 bg-white flex-col-center w-full px-2.5 py-3 rounded-lg border-x border-b border-gray-4 z-20 max-h-[312px] overflow-y-auto">
           {autoComplete.map((stockInfo, i) => (
             <div
               className={`flex w-full p-2.5 justify-between cursor-pointer ${selectedIndex === i ? 'bg-gray-200' : ''}`}
               key={stockInfo.stockcode}
               onMouseEnter={() => setSelectedIndex(i)}
               onClick={() => {
-                setSearchText(stockInfo.stockName);
-                setAutoComplete([]);
-                getStockInfo(searchText);
+                getStockInfo(stockInfo.stockcode);
               }}
             >
               <p className="text-xs">{stockInfo.stockName}</p>

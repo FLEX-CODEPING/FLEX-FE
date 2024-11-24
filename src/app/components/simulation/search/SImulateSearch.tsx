@@ -13,7 +13,6 @@ const SImulateSearch = () => {
   const [searchText, setSearchText] = useState('');
   const [stockInfo, setStockInfo] = useState<null | StockInfoTypes>(null);
   const { setStockCode, stockCode } = useStockCodeStore();
-  console.log(searchText, '현재 텍스트');
 
   const getStockInfo = async (code: string) => {
     const response = await callGet(`api/stocks?code=${code}`);
@@ -26,6 +25,7 @@ const SImulateSearch = () => {
     } else {
       setStockCode('null', '');
     }
+    setSearchText('');
   };
 
   const interestStock = async () => {
