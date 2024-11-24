@@ -49,13 +49,13 @@ def predict1():
         predictions = []
         last_window = scaled_data[-window_size:].flatten()
 
-        for _ in range(10):
+        for _ in range(5):
             pred = model.predict(last_window.reshape(1, -1))
             predictions.append(pred[0])
             last_window = np.append(last_window[1:], pred)
 
         predicted_prices = scaler.inverse_transform(np.array(predictions).reshape(-1, 1))
-        future_dates = [(df.index[-1] + timedelta(days=i + 1)).strftime('%Y-%m-%d') for i in range(10)]
+        future_dates = [(df.index[-1] + timedelta(days=i + 1)).strftime('%Y-%m-%d') for i in range(5)]
         return jsonify({"dates": future_dates, "predictions": predicted_prices.flatten().tolist()})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -93,13 +93,13 @@ def predict2():
         predictions = []
         last_window = scaled_data[-window_size:].flatten()
 
-        for _ in range(10):
+        for _ in range(5):
             pred = model.predict(last_window.reshape(1, -1, 1))
             predictions.append(pred[0, 0])
             last_window = np.append(last_window[1:], pred[0, 0])
 
         predicted_prices = scaler.inverse_transform(np.array(predictions).reshape(-1, 1))
-        future_dates = [(df.index[-1] + timedelta(days=i + 1)).strftime('%Y-%m-%d') for i in range(10)]
+        future_dates = [(df.index[-1] + timedelta(days=i + 1)).strftime('%Y-%m-%d') for i in range(5)]
         return jsonify({"dates": future_dates, "predictions": predicted_prices.flatten().tolist()})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -131,13 +131,13 @@ def predict3():
         predictions = []
         last_window = scaled_data[-window_size:].flatten()
 
-        for _ in range(10):
+        for _ in range(5):
             pred = model.predict(last_window.reshape(1, -1, 1))
             predictions.append(pred[0, 0])
             last_window = np.append(last_window[1:], pred[0, 0])
 
         predicted_prices = scaler.inverse_transform(np.array(predictions).reshape(-1, 1))
-        future_dates = [(df.index[-1] + timedelta(days=i + 1)).strftime('%Y-%m-%d') for i in range(10)]
+        future_dates = [(df.index[-1] + timedelta(days=i + 1)).strftime('%Y-%m-%d') for i in range(5)]
         return jsonify({"dates": future_dates, "predictions": predicted_prices.flatten().tolist()})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
