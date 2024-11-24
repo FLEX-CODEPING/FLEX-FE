@@ -1,33 +1,27 @@
 'use client';
 
-import {
-  likeSmall,
-  noneStockSearch,
-  searchStock,
-} from '@/app/constants/iconPath';
+import { likeSmall, noneStockSearch } from '@/app/constants/iconPath';
 import { STOCK_SEARCH_EMPTY_TEXT } from '@/app/constants/prediction';
-import { SEARCH_STOCK } from '@/app/constants/simulation';
 import useStockCodeStore from '@/app/store/store';
 import { callDelete, callGet, callPost } from '@/app/utils/callApi';
-import { getTodayDateBar } from '@/app/utils/date';
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import Icons from '../../common/Icons';
-import Input from '../../common/Input';
+import StockSearchBar from './StockSearchBar';
 
 const SImulateSearch = () => {
-  const searchCodeRef = useRef(''); // useRef로 searchCode 관리
+  const [searchText, setSearchText] = useState('');
   const [stockInfo, setStockInfo] = useState<null | StockInfoTypes>(null);
   const { setStockCode, stockCode } = useStockCodeStore();
+  console.log(searchText, '현재 텍스트');
 
-  const getStockInfo = async () => {
-    const searchCode = searchCodeRef.current;
-    const response = await callGet(`api/stocks?code=${searchCode}`);
+  const getStockInfo = async (code: string) => {
+    const response = await callGet(`api/stocks?code=${code}`);
     if (response.isSuccess) {
       const statusRes: InterestedStautsTypes = await callGet(
         `api/stocks/interest/status?code=${response.result.stockcode}`,
       );
-      setStockCode(searchCode, response.result.corpName);
+      setStockCode(searchText, response.result.stockName);
       setStockInfo({ ...response.result, isInterested: statusRes.result });
     } else {
       setStockCode('null', '');
@@ -35,29 +29,18 @@ const SImulateSearch = () => {
   };
 
   const interestStock = async () => {
-    const searchCode = searchCodeRef.current;
-    const response = await callPost(`api/stocks/interest?code=${searchCode}`);
-    getStockInfo();
+    await callPost(`api/stocks/interest?code=${stockInfo?.stockcode}`);
+    getStockInfo(stockInfo?.stockcode || '');
   };
 
   const deleteInterest = async () => {
-    const response = await callDelete(
-      `api/stocks/interest?id=${stockInfo?.isInterested}`,
-    );
-    getStockInfo();
-  };
-
-  const getStockDetail = async () => {
-    const searchCode = searchCodeRef.current;
-    const date = getTodayDateBar();
-    const response = await callGet(
-      `api/stocks/detail?code=${searchCode}&date=${date}`,
-    );
+    await callDelete(`api/stocks/interest?id=${stockInfo?.isInterested}`);
+    getStockInfo(stockInfo?.stockcode || '');
   };
 
   return (
     <div className="flex w-full justify-between items-end pb-2">
-      {stockInfo && stockCode !== 'wrong' ? (
+      {stockInfo && stockCode !== 'null' ? (
         <div className="flex px-[15.5px] py-3 justify-between w-[360px] items-end">
           <div className="flex gap-x-2.5">
             <div className="w-[40px] h-[40px] relative rounded-[18px]">
@@ -74,7 +57,7 @@ const SImulateSearch = () => {
             </div>
             <div className="flex flex-col">
               <div className="flex gap-x-1 items-end">
-                <p className="text-sm font-bold">{stockInfo.corpName}</p>
+                <p className="text-sm font-bold">{stockInfo.stockName}</p>
                 <p className="text-xs font-normal">{stockInfo.stockcode}</p>
               </div>
               <p className="text-base font-medium">75520원</p>
@@ -102,22 +85,11 @@ const SImulateSearch = () => {
           </div>
         </div>
       )}
-
-      <div className="flex relative">
-        <Input
-          type="simulation"
-          placeholder={SEARCH_STOCK}
-          onChange={(e) => {
-            searchCodeRef.current = e.target.value;
-          }}
-          onEnterPress={getStockInfo}
-        />
-        <Icons
-          name={searchStock}
-          className="absolute right-5 top-2 cursor-pointer"
-          onClick={getStockInfo}
-        />
-      </div>
+      <StockSearchBar
+        searchText={searchText}
+        setSearchText={setSearchText}
+        getStockInfo={getStockInfo}
+      />
     </div>
   );
 };

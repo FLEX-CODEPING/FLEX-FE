@@ -157,3 +157,8 @@ export const getStockOffHour = async (
   const url = `/api/stocks/${code}/preOpen?date=${date}`;
   return getRequest(url, req);
 };
+
+export const getStockSearch = async (req: Request, keyword: string) => {
+  const url = `/api/stocks/search/autoComplete/V1?keyword=${keyword}&size=8`;
+  return getRequest(url, req);
+};

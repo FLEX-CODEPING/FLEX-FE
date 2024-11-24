@@ -46,3 +46,9 @@ interface InterestedStautsTypes {
   message: string;
   result: boolean;
 }
+
+interface AutoCompleteTypes {
+  stockcode: string;
+  stockName: string;
+  market: string;
+}
