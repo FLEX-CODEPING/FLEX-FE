@@ -2,7 +2,20 @@ interface StockInfoTypes {
   stockcode: string;
   stockName: string;
   symbolImageUrl: string;
+  corpInfo: CorpInfoTypes;
   isInterested: boolean;
+}
+
+interface CorpInfoTypes {
+  corpName: string;
+  ceoName: string;
+  corpRegistNo: string;
+  bsRegistNo: string;
+  address: string;
+  homeUrl: string;
+  establishmentDate: string;
+  accountingMonth: string;
+  industryName: string;
 }
 
 interface StockDetailInfoTypes {

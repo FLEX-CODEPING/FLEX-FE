@@ -67,7 +67,7 @@ const StockSearchBar = ({
         <div className="absolute top-10 bg-white flex-col-center w-full px-2.5 py-3 rounded-lg border-x border-b border-gray-4 z-20 max-h-[312px] overflow-y-auto">
           {autoComplete.map((stockInfo, i) => (
             <div
-              className={`flex w-full p-2.5 justify-between cursor-pointer ${selectedIndex === i ? 'bg-gray-200' : ''}`}
+              className={`flex w-full p-2.5 justify-between cursor-pointer rounded ${selectedIndex === i ? 'bg-gray-200' : ''}`}
               key={stockInfo.stockcode}
               onMouseEnter={() => setSelectedIndex(i)}
               onClick={() => {
