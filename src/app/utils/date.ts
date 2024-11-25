@@ -32,23 +32,34 @@ export const getTodayDate = () => {
 };
 
 export const getTodayDateBar = () => {
-  const today = new Date();
-  today.setMinutes(today.getMinutes());
-  const dayOfWeek = today.getDay();
+  const now = new Date();
+  const closeHour = 15;
+  const closeMinute = 30;
+
+  const isBeforeClose =
+    now.getHours() < closeHour ||
+    (now.getHours() === closeHour && now.getMinutes() < closeMinute);
+
+  if (isBeforeClose) {
+    now.setDate(now.getDate() - 1);
+  }
+
+  const dayOfWeek = now.getDay();
 
   if (dayOfWeek === 0) {
-    today.setDate(today.getDate() - 2);
+    now.setDate(now.getDate() - 2);
   } else if (dayOfWeek === 6) {
-    today.setDate(today.getDate() - 1);
+    now.setDate(now.getDate() - 1);
   }
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, '0');
-  const day = String(today.getDate()).padStart(2, '0');
+
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
 
   return `${year}-${month}-${day}`;
 };
 
-export const isPreOpenTime = () => {
+export const isOpenTime = () => {
   const now = new Date();
   const day = now.getDay();
   if (day < 1 || day > 5) {

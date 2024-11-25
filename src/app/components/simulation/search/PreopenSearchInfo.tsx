@@ -5,17 +5,17 @@ import { valueColor } from '@/app/utils/qualify';
 import Image from 'next/image';
 import Icons from '../../common/Icons';
 
-interface SimulateSearchInfoProps {
+interface PreopenSearchInfoProps {
   stockInfo: StockInfoTypes | null;
   stockCode: string | null;
   getStockInfo: (code: string) => Promise<void>;
 }
 
-const SimulateSearchInfo = ({
+const PreopenSearchInfo = ({
   stockInfo,
   stockCode,
   getStockInfo,
-}: SimulateSearchInfoProps) => {
+}: PreopenSearchInfoProps) => {
   const interestStock = async () => {
     await callPost(`api/stocks/interest?code=${stockInfo?.stockcode}`);
     getStockInfo(stockInfo?.stockcode || '');
@@ -87,4 +87,4 @@ const SimulateSearchInfo = ({
   );
 };
 
-export default SimulateSearchInfo;
+export default PreopenSearchInfo;
