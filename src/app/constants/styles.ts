@@ -16,6 +16,8 @@ export const BUTTON_STYLE = {
     `w-[180px] h-[40px] bg-[#000000] text-white rounded-[10px] font-bold text-sm ${className}`,
   prediction: (className: string) =>
     `w-60 h-8 bg-black-1 text-white rounded-lg font-semibold text-[15px] ${className}`,
+  notification: (className: string) =>
+    `px-4 py-2 border border-gray-2 rounded-lg text-sm font-semibold ${className}`,
   checkName: (className: string) =>
     `w-[90px] h-9 bg-main-1 text-white text-sm h-10 rounded-lg ${className}`,
 } as const;

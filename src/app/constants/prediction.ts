@@ -12,18 +12,14 @@ export const STOCK_SEARCH_EMPTY_TEXT = [
 
 export const PREDICTION_SIDEBAR_TEXT = [
   '예측하기',
-  '지표를 선택해 종목의 미래를 예측해요',
-  '원하는 지표를 선택해주세요',
-  '지표',
+  '각기 다른 예측 결과를 확인해보세요',
   '분석하기',
 ];
 
 export const PREDICTION_INDICATION_SORT = [
-  'RSI',
-  '스토캐스틱',
-  'ABCD',
-  'MACD',
-  'OBV',
+  '000을 기반으로 분석하는 예측법1',
+  '000을 기반으로 분석하는 예측법2',
+  '000을 기반으로 분석하는 예측법3',
 ];
 
 export const PREDICTION_SIDEBAR_RESULT = [
@@ -41,4 +37,6 @@ export const PREDICTION_ALARM_TEXT = [
   '목표값에 도달하면 알려드려요',
   '목표값',
   '알림등록',
+  'Discord',
+  'Telegram',
 ];
