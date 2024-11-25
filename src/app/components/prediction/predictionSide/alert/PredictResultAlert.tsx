@@ -10,8 +10,7 @@ import {
 import Button from '../../../common/Button';
 import Icons from '../../../common/Icons';
 import Input from '../../../common/Input';
-import DisSetWebhook from './DisSetWebhook';
-import TeleSetWebhook from './TeleSetWebhook';
+import SetWebhook from './SetWebhook';
 
 interface PredictResultAlertProps {
   stockName: string;
@@ -132,9 +131,12 @@ const PredictResultAlert = ({
         />
       </div>
 
-      {isDiscordModalOpen && <DisSetWebhook onClose={toggleDiscordModal} />}
-
-      {isTelegramModalOpen && <TeleSetWebhook onClose={toggleTelegramModal} />}
+      {isDiscordModalOpen && (
+        <SetWebhook type="discord" onClose={toggleDiscordModal} />
+      )}
+      {isTelegramModalOpen && (
+        <SetWebhook type="telegram" onClose={toggleTelegramModal} />
+      )}
     </div>
   );
 };
