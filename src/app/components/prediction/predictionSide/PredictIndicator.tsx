@@ -10,6 +10,11 @@ import { fetchPredictionData } from './predictionSide';
 import Button from '../../common/Button';
 import Icons from '../../common/Icons';
 
+interface PredictionData {
+  dates: string[];
+  predictions: number[];
+}
+
 interface PredictIndicatorProps {
   onIndicatorsChange: (indicators: string[]) => void;
 }
@@ -19,10 +24,9 @@ const PredictIndicator: React.FC<PredictIndicatorProps> = ({
 }) => {
   const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [predictionData, setPredictionData] = useState<{
-    dates: string[];
-    predictions: number[];
-  } | null>(null);
+  const [predictionData, setPredictionData] = useState<PredictionData | null>(
+    null,
+  );
 
   const handleCheckboxChange = (method: string) => {
     if (selectedMethod === method) {
