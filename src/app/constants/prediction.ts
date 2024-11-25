@@ -42,3 +42,25 @@ export const PREDICTION_ALARM_TEXT = [
   '목표값',
   '알림등록',
 ];
+
+export const ANALYZE_HEADER_TEXT = [
+  '님의 모의투자 내역을 통한',
+  'AI 재테크 분석 결과',
+  '입니다',
+];
+
+export const ANALYZE_CAUTION = [
+  '⚠ ️본 내용은 참고 자료일 뿐 실제 투자 시 리스크가 따를 수 있습니다',
+];
+
+export const ANALYZE_RESULT_TITLE = [
+  '💡 투자자 성향',
+  '🚀  투자 전략',
+  '🔥  투자 트렌드',
+];
+
+export const ANALYZE_RESULT_GUIDE = [
+  '사용자의 투자 스타일을 분석해 투자자의 성향을 보여줍니다.',
+  '사용자의 성향에 맞춘 구체적인 투자 방식을 제안합니다.',
+  '최신 시장 흐름을 반영해 투자 방향을 제공합니다.',
+];
