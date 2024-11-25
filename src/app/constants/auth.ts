@@ -105,3 +105,13 @@ export const COMPLETE_RECOMMEND_IMG = [
 ];
 
 export const RECOMMEND_PATH = ['/blog', '/predict', 'summarize'];
+
+export const CHECK_STATUS_TEXT: BlogNameCheckTypes = {
+  text: '블로그 이름 중복체크를 진행해주세요',
+  textColor: 'black',
+};
+
+export const CHECK_STATUS = [
+  '사용 가능한 블로그 이름입니다',
+  '중복된 블로그 이름입니다',
+];

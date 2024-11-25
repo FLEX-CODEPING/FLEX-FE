@@ -2,26 +2,46 @@
 
 import { likeIcon } from '@/app/constants/iconPath';
 import { useState } from 'react';
+import { callDelete, callPost } from '@/app/utils/callApi';
 import Icons from '../../common/Icons';
 
 interface BlogHeaderProps {
   tags?: string[];
   likeCount?: number;
-  likeStatus?: 'ACTIVE' | 'INACTIVE';
+  likeStatus?: boolean;
+  postId: string;
 }
 
-const BlogHeader = ({ tags, likeCount, likeStatus }: BlogHeaderProps) => {
+const BlogHeader = ({
+  tags,
+  likeCount,
+  likeStatus,
+  postId,
+}: BlogHeaderProps) => {
   const [currentLikeCount, setCurrentLikeCount] = useState(likeCount || 0);
-  const [isLiked, setIsLiked] = useState(likeStatus === 'ACTIVE');
+  const [isLiked, setIsLiked] = useState(!!likeStatus);
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleLikeClick = () => {
-    if (isLiked) {
-      setCurrentLikeCount(currentLikeCount - 1);
-    } else {
-      setCurrentLikeCount(currentLikeCount + 1);
+  const handleLikeClick = async () => {
+    try {
+      if (isLiked) {
+        const response = await callDelete(`/api/like/delete?id=${postId}`);
+        if (response.isSuccess) {
+          setIsLiked(false);
+          setCurrentLikeCount(currentLikeCount - 1);
+        }
+      } else {
+        const response = await callPost(`/api/like?id=${postId}`, {
+          likeStatus: true,
+        });
+        if (response.isSuccess) {
+          setIsLiked(true);
+          setCurrentLikeCount(currentLikeCount + 1);
+        }
+      }
+    } catch (error) {
+      console.error('Failed to update like status:', error);
     }
-    setIsLiked(!isLiked);
   };
 
   const getButtonBorderColor = () => {
@@ -61,15 +81,14 @@ const BlogHeader = ({ tags, likeCount, likeStatus }: BlogHeaderProps) => {
           onMouseLeave={() => setIsHovered(false)}
           className={`w-[48px] h-[48px] mt-2 rounded-full flex items-center justify-center border cursor-pointer ${getButtonBorderColor()} ${getButtonBackgroundColor()}`}
         >
-          <div className="w-[34px] h-[34px] relative">
-            <Icons
-              name={{
-                ...likeIcon,
-                fill: getIconFillColor(),
-                options: { ...likeIcon.options, stroke: 'none' },
-              }}
-            />
-          </div>
+          <Icons
+            name={{
+              ...likeIcon,
+              fill: getIconFillColor(),
+              options: { ...likeIcon.options, stroke: 'none' },
+            }}
+            className="relative ml-2 mt-2"
+          />
         </button>
         <span className="text-black-0 font-semibold text-sm mt-[2px]">
           {currentLikeCount}

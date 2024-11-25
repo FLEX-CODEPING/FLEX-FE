@@ -9,19 +9,46 @@ import LikedPosts from './LikedPosts';
 import MyPosts from './MyPosts';
 
 const MyPageContainer = () => {
-  const [myData, setMyData] = useState<MyResultTypes | null>(null);
+  const [blogName, setBlogName] = useState<string>('');
+  const [myData, setMyData] = useState<MyBlogInfo | null>(null);
+  const [myPosts, setMyPosts] = useState<MyPostCardTypes[]>([]);
+  const [likedPosts, setLikedPosts] = useState<MyPostCardTypes[]>([]);
   const [activeTab, setActiveTab] = useState<'myPosts' | 'likedPosts'>(
     'myPosts',
   );
   const router = useRouter();
 
   useEffect(() => {
-    const fetchPost = async () => {
-      const response = await callGet('/api/mypage');
+    const fetchBlogName = async () => {
+      const response = await callGet('/api/auth/user');
+      if (response.isSuccess) {
+        setBlogName(response.result.blogName);
+      }
+    };
+
+    fetchBlogName();
+  }, []);
+
+  useEffect(() => {
+    const fetchMyBlogInfo = async () => {
+      const response = await callGet(`/api/mypage?blogName=${blogName}`);
       setMyData(response.result);
     };
+
+    const fetchPost = async () => {
+      const response = await callGet(`/api/mypage/posts?blogName=${blogName}`);
+      setMyPosts(response.result);
+    };
+
+    const fetchLikedPost = async () => {
+      const response = await callGet('/api/mypage/liked');
+      setLikedPosts(response.result);
+    };
+
+    fetchMyBlogInfo();
     fetchPost();
-  }, []);
+    fetchLikedPost();
+  }, [blogName]);
 
   return (
     <div className="mb-[200px] px-[10%]">
@@ -32,7 +59,7 @@ const MyPageContainer = () => {
         <div className="h-[130px] flex items-center justify-center gap-[70px]">
           <div className="flex flex-col items-center justify-center ">
             <Image
-              src={myData?.profileImageUrl || ''}
+              src={myData?.profileImageUrl || '/images/profile.png'}
               alt="profile"
               width={80}
               height={80}
@@ -95,12 +122,8 @@ const MyPageContainer = () => {
         </div>
 
         <div className="mt-[60px]">
-          {activeTab === 'myPosts' && myData && (
-            <MyPosts posts={myData.posts} />
-          )}
-          {activeTab === 'likedPosts' && myData && (
-            <LikedPosts posts={myData.posts} />
-          )}
+          {activeTab === 'myPosts' && <MyPosts posts={myPosts} />}
+          {activeTab === 'likedPosts' && <LikedPosts posts={likedPosts} />}
         </div>
       </div>
     </div>

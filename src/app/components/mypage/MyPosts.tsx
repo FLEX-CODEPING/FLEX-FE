@@ -11,7 +11,7 @@ const MyPosts = ({ posts }: MyPostsProps) => {
     <div className="w-full flex-col flex">
       <div className="flex justify-between items-center">
         <div className="text-black-0 font-bold text-xl">
-          포스팅 ({posts.length})
+          포스팅 ({posts ? posts.length : 0})
         </div>
         <div className="w-[200px]  py-2 items-center flex  border-gray-500 border rounded-lg pl-3">
           <Icons name={searchSmall} />
@@ -19,9 +19,7 @@ const MyPosts = ({ posts }: MyPostsProps) => {
         </div>
       </div>
       <div className="mt-8 gap-y-10 flex flex-col">
-        {posts.map((post) => (
-          <MyPostCard key={post.postId} mypost={post} />
-        ))}
+        {posts?.map((post) => <MyPostCard key={post.postId} mypost={post} />)}
       </div>
     </div>
   );

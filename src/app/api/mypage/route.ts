@@ -1,22 +1,17 @@
-import { mockPosts } from '@/app/constants/mypage';
+import { getMyBlogInfo } from '@/app/service/getRequest';
 import { NextResponse } from 'next/server';
 
 export async function GET(req: Request) {
-  // const data = await getMyPosts(req);
-  // console.log(data);
-  const MyPostData: MyPostTypes = {
-    isSuccess: true,
-    code: 'COMMON200',
-    message: '마이페이지 조회 성공',
-    result: {
-      blogName: '민규의 블로그',
-      nickname: 'nakdo',
-      profileImageUrl: '/images/profile.png',
-      followingCount: 124,
-      followerCount: 101,
-      posts: mockPosts,
-    },
-  };
+  const { searchParams } = new URL(req.url);
+  const blogName = searchParams.get('blogName');
 
-  return NextResponse.json(MyPostData);
+  if (!blogName) {
+    return NextResponse.json(
+      { isSuccess: false, message: 'blogName is required' },
+      { status: 400 },
+    );
+  }
+
+  const data = await getMyBlogInfo(req, blogName);
+  return NextResponse.json(data);
 }

@@ -104,3 +104,47 @@ export const getLandingRecommend = async (req: Request) => {
   const url = '/api/blogs/landings/recommend';
   return getRequest(url, req);
 };
+
+export const getComments = async (req: Request, id: string) => {
+  const url = `/api/posts/${id}/comments`;
+  return getRequest(url, req);
+};
+
+export const getMyBlogInfo = async (req: Request, blogName: string) => {
+  const url = `/api/blogs/${blogName}/info`;
+  return getRequest(url, req);
+};
+
+export const getMyPosts = async (req: Request, blogName: string) => {
+  const url = `/api/blogs/${blogName}/posts`;
+  return getRequest(url, req);
+};
+
+export const getMyLikedPosts = async (req: Request) => {
+  const url = `/api/blogs/myBlog/likePosts`;
+  return getRequest(url, req);
+};
+
+export const getStockInfo = async (req: Request, code: string) => {
+  const url = `/api/stocks/${code}`;
+  return getRequest(url, req);
+};
+
+export const getStockDetail = async (
+  req: Request,
+  code: string,
+  date: string,
+) => {
+  const url = `/api/stocks/market/preOpen?stockcode=${code}&date=${date}`;
+  return getRequest(url, req);
+};
+
+export const getInterestedStocks = async (req: Request) => {
+  const url = `/api/interestStocks?page=0&size=12`;
+  return getRequest(url, req);
+};
+
+export const getInterestedStatus = async (req: Request, code: string) => {
+  const url = `/api/interestStocks/${code}`;
+  return getRequest(url, req);
+};
