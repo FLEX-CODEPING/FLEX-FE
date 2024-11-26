@@ -6,7 +6,7 @@ import {
   PREDICTION_SIDEBAR_TEXT,
   PREDICTION_INDICATION_SORT,
 } from '@/app/constants/prediction';
-import { fetchPredictionData } from './predictionSide';
+import { fetchPredictionData } from './PredictionSide';
 import Button from '../../common/Button';
 import Icons from '../../common/Icons';
 
