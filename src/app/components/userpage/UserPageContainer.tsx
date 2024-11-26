@@ -1,7 +1,7 @@
 'use client';
 
 import { FOLLOW_TEXT, USERPAGE_TEXT } from '@/app/constants/mypage';
-import { callGet } from '@/app/utils/callApi';
+import { callDelete, callGet, callPost } from '@/app/utils/callApi';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -14,7 +14,7 @@ interface UserPageContainerProps {
 const UserPageContainer = ({ blogName }: UserPageContainerProps) => {
   const [userData, setUserData] = useState<MyBlogInfo | null>(null);
   const [userPosts, setUserPosts] = useState<MyPostCardTypes[]>([]);
-  const [isFollowing, setIsFollowing] = useState(false);
+  const [isFollowing, setIsFollowing] = useState<boolean | null>(null);
 
   // 사용자 블로그 정보 및 작성한 게시물 가져오기
   useEffect(() => {
@@ -23,6 +23,7 @@ const UserPageContainer = ({ blogName }: UserPageContainerProps) => {
         const response = await callGet(`/api/mypage?blogName=${blogName}`);
         if (response.isSuccess) {
           setUserData(response.result);
+          setIsFollowing(response.result.following);
         }
       };
 
@@ -40,8 +41,42 @@ const UserPageContainer = ({ blogName }: UserPageContainerProps) => {
     }
   }, [blogName]);
 
-  const handleFollowClick = () => {
-    setIsFollowing((prev) => !prev);
+  const handleFollowClick = async () => {
+    try {
+      if (isFollowing) {
+        const response = await callDelete(
+          `/api/follow/delete?id=${userData?.userId}`,
+        );
+        if (response.isSuccess) {
+          setIsFollowing(false);
+          setUserData((prevData) => {
+            if (prevData) {
+              return {
+                ...prevData,
+                followerCount: prevData.followerCount - 1,
+              };
+            }
+            return prevData;
+          });
+        }
+      } else {
+        const response = await callPost(`/api/follow?id=${userData?.userId}`);
+        if (response.isSuccess) {
+          setIsFollowing(true);
+          setUserData((prevData) => {
+            if (prevData) {
+              return {
+                ...prevData,
+                followerCount: prevData.followerCount + 1,
+              };
+            }
+            return prevData;
+          });
+        }
+      }
+    } catch (error) {
+      console.error('팔로우/팔로우 해제 요청 중 오류가 발생했습니다:', error);
+    }
   };
 
   return (

@@ -1,5 +1,6 @@
 'use client';
 
+import { USERPAGE_TEXT } from '@/app/constants/mypage';
 import { callDelete, callPost } from '@/app/utils/callApi';
 import { useState } from 'react';
 
@@ -9,6 +10,7 @@ interface BlogTitleProps {
   createdAt?: string;
   userId: string;
   onNicknameClick: () => void;
+  following: boolean;
 }
 
 const BlogTitle = ({
@@ -17,21 +19,21 @@ const BlogTitle = ({
   createdAt,
   userId,
   onNicknameClick,
+  following,
 }: BlogTitleProps) => {
-  const [isFollowing, setIsFollowing] = useState(Boolean);
+  const [isFollowing, setIsFollowing] = useState(following);
 
   const handleFollowClick = async () => {
     try {
       if (isFollowing) {
         const response = await callDelete(`/api/follow/delete?id=${userId}`);
         if (response.isSuccess) {
-          setIsFollowing(false); 
+          setIsFollowing(false);
         }
       } else {
-        
         const response = await callPost(`/api/follow?id=${userId}`);
         if (response.isSuccess) {
-          setIsFollowing(true); 
+          setIsFollowing(true);
         }
       }
     } catch (error) {
@@ -53,13 +55,13 @@ const BlogTitle = ({
           <button
             type="button"
             onClick={handleFollowClick}
-            className={`px-2 py-1 text-sm rounded-md border bg-white ${
+            className={`py-1 px-4 rounded-[10px] border text-sm font-medium ${
               isFollowing
-                ? ' border-black-0 text-black-0'
-                : ' border-black-0/20 text-black-0/60'
+                ? 'bg-black-0 text-white'
+                : 'bg-white text-black-0 border-gray-300'
             }`}
           >
-            {isFollowing ? '팔로잉' : '팔로우'}
+            {isFollowing ? USERPAGE_TEXT[1] : USERPAGE_TEXT[0]}
           </button>
         </div>
         <div className="text-black-0/60 text-sm mr-1">{createdAt}</div>
