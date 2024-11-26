@@ -1,23 +1,67 @@
 'use client';
 
-import { checkBox, infoIcon } from '@/app/constants/iconPath';
-import {
-  PREDICTION_INDICATION_SORT,
-  PREDICTION_SIDEBAR_TEXT,
-} from '@/app/constants/prediction';
 import { useState } from 'react';
+import { infoIcon } from '@/app/constants/iconPath';
+import {
+  PREDICTION_SIDEBAR_TEXT,
+  PREDICTION_INDICATION_SORT,
+} from '@/app/constants/prediction';
+import { fetchPredictionData } from './predictionSide';
 import Button from '../../common/Button';
 import Icons from '../../common/Icons';
 
-const PredictIndicator = () => {
-  const [indicators, setIndicators] = useState<string[]>([]);
+interface PredictionData {
+  dates: string[];
+  predictions: number[];
+}
 
-  const handleCheckbox = (name: string) => {
-    setIndicators((prevIndicators) =>
-      prevIndicators.includes(name)
-        ? prevIndicators.filter((indicator) => indicator !== name)
-        : [...prevIndicators, name],
-    );
+interface PredictIndicatorProps {
+  onIndicatorsChange: (indicators: string[]) => void;
+}
+
+const PredictIndicator: React.FC<PredictIndicatorProps> = ({
+  onIndicatorsChange,
+}) => {
+  const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [predictionData, setPredictionData] = useState<PredictionData | null>(
+    null,
+  );
+
+  const handleCheckboxChange = (method: string) => {
+    if (selectedMethod === method) {
+      setSelectedMethod(null);
+      onIndicatorsChange([]);
+    } else {
+      setSelectedMethod(method);
+      onIndicatorsChange([method]);
+    }
+  };
+
+  const handlePredictionClick = async () => {
+    if (!selectedMethod) {
+      window.alert('예측 방법을 선택해 주세요.');
+      return;
+    }
+
+    setLoading(true);
+    console.info('분석 중...');
+    const results = await fetchPredictionData([selectedMethod]);
+    setLoading(false);
+
+    if (results && results.length > 0) {
+      const validResult = results.find((result) => result.data);
+      if (validResult && validResult.data) {
+        setPredictionData({
+          dates: validResult.data.dates,
+          predictions: validResult.data.predictions,
+        });
+        return;
+      }
+    }
+
+    setPredictionData(null);
+    window.alert('예측 데이터를 가져오지 못했습니다.');
   };
 
   return (
@@ -32,25 +76,44 @@ const PredictIndicator = () => {
         </div>
       </div>
       <div className="w-full py-3 px-5 flex-col flex gap-y-3 rounded border border-gray-2 mb-4">
-        {PREDICTION_INDICATION_SORT.map((name, i) => (
-          <div
-            className="flex gap-3 cursor-pointer"
-            onClick={() => handleCheckbox(name)}
+        {PREDICTION_INDICATION_SORT.map((method) => (
+          <label
+            key={method}
+            htmlFor={method}
+            className={`flex items-center gap-3 cursor-pointer ${
+              selectedMethod === method ? 'text-orange-500' : ''
+            }`}
           >
-            {indicators.includes(name) ? (
-              <Icons name={checkBox} className="rounded" />
-            ) : (
-              <div className="w-[17px] h-4 rounded border border-gray-2" />
-            )}
-            <p className="text-[11px] font-semibold">{name}</p>
-          </div>
+            <input
+              id={method}
+              type="radio"
+              name="prediction-method"
+              checked={selectedMethod === method}
+              onChange={() => handleCheckboxChange(method)}
+            />
+            <span className="text-[11px] font-semibold">{method}</span>
+          </label>
         ))}
       </div>
       <Button
-        buttonText={PREDICTION_SIDEBAR_TEXT[4]}
+        buttonText={loading ? '분석 중...' : PREDICTION_SIDEBAR_TEXT[2]}
         type="prediction"
-        onClickHandler={() => console.log('분석 중...')}
+        onClickHandler={handlePredictionClick}
+        isDisabled={loading}
       />
+
+      {predictionData && (
+        <div className="mt-4">
+          <h3 className="text-sm font-semibold mb-2">예측 결과:</h3>
+          <ul>
+            {predictionData.dates.map((date, index) => (
+              <li key={date}>
+                {date}: {predictionData.predictions[index]}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

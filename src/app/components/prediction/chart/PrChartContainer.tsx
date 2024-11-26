@@ -2,8 +2,8 @@
 
 import { CHART_TITLE, CHART_VIEWTYPE } from '@/app/constants/simulation';
 import { useState } from 'react';
-import StockChart from './Chart';
-import ChartEmpty from './ChartEmpty';
+import StockChart from '@/app/components/simulation/chart/Chart';
+import ChartEmpty from '@/app/components/simulation/chart/ChartEmpty';
 
 const timeOptions = ['1분', '15분', '1시간', '4시간', '일'] as const;
 type TimeOption = (typeof timeOptions)[number];
