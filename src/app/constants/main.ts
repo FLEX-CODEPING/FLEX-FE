@@ -98,3 +98,10 @@ export const NONE_MAIN_INFO = [
   '해당 컨텐츠가 존재하지 않습니다',
   '새로고침 또는 잠시후 시도해보세요',
 ];
+
+export const STOCK_RANKING_TYPE: StockRankingTypes[] = ['거래량', '등락률'];
+
+export const RANK_TYPE_MAP: Record<StockRankingTypes, string> = {
+  등락률: 'fluctuation',
+  거래량: 'volume',
+};

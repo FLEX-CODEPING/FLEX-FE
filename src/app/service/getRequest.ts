@@ -162,3 +162,8 @@ export const getStockSearch = async (req: Request, keyword: string) => {
   const url = `/api/stocks/search/autoComplete/V1?keyword=${keyword}&size=12`;
   return getRequest(url, req);
 };
+
+export const getStockRank = async (req: Request, type: string) => {
+  const url = `/api/kis/stocks/ranking/${type}`;
+  return getRequest(url, req);
+};

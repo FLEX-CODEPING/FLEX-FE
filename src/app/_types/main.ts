@@ -71,3 +71,47 @@ interface RecommendPostResultTypes {
   content: RecommendPostTypes[];
   myInterests: string[];
 }
+
+type StockRankingTypes = '거래량' | '등락률';
+
+interface VolumeRankTypes {
+  corpName: string;
+  stockCode: string;
+  ranking: string;
+  curPrice: string;
+  priceChangeSign: string;
+  priceChange: string;
+  priceChangeRate: string;
+  accTradingVolume: string;
+  preDayTradingVolume: string;
+  listedShares: string;
+  avgTradingVolume: string;
+  prevPeriodPriceChangeRate: string;
+  volIncreaseRate: string;
+  volTurnoverRate: string;
+  periodVolTurnoverRate: string;
+  avgTradingValue: string;
+  accTradingValue: string;
+}
+
+interface FluctuationRankTypes {
+  rank: string;
+  stockName: string;
+  cumulativeVolume: string;
+  highPrice: string;
+  highPriceTime: string;
+  highPriceDate: string;
+  lowPrice: string;
+  lowPriceTime: string;
+  lowPriceDate: string;
+  currentPriceToLowRate: string;
+  currentPriceToClosingRate: string;
+  consecutiveRisingDays: string;
+  currentPriceToHighRate: string;
+  consecutiveFallingDays: string;
+  priceChangeFromOpenSign: string;
+  priceChangeFromOpen: string;
+  priceChangeFromOpenRate: string;
+  periodPriceChange: string;
+  periodPriceChangeRate: string;
+}
