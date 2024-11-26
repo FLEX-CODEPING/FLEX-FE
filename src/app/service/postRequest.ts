@@ -11,6 +11,8 @@ const postRequest = async (url: string, req: Request, body: any = null) => {
     ...commonHeaders,
     ...(token && { Authorization: `Bearer ${token}` }),
   };
+  console.log(url, '요청 경로');
+  console.log(body, '요청 바디');
 
   const response = await fetch(`${SERVER_URL}${url}`, {
     method: 'POST',
@@ -79,4 +81,8 @@ export const postCheckBlogName = async (blogName: any, req: Request) => {
 
 export const postLogout = async (req: Request) => {
   return postRequest('/api/auth/logout', req);
+};
+
+export const postStockRank = async (body: any, req: Request, type: string) => {
+  return postRequest(`/api/kis/stocks/ranking/${type}`, req, body);
 };

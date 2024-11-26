@@ -163,7 +163,3 @@ export const getStockSearch = async (req: Request, keyword: string) => {
   return getRequest(url, req);
 };
 
-export const getStockRank = async (req: Request, type: string) => {
-  const url = `/api/kis/stocks/ranking/${type}`;
-  return getRequest(url, req);
-};

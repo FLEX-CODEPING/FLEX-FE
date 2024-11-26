@@ -105,3 +105,27 @@ export const RANK_TYPE_MAP: Record<StockRankingTypes, string> = {
   등락률: 'fluctuation',
   거래량: 'volume',
 };
+
+export const VOLUME_PARAMS = {
+  belongCode: '0',
+  classCode: '0',
+  priceMax: '',
+  priceMin: '',
+  stockCode: '0000',
+  volCount: '',
+};
+
+export const FLUCTUATION_PARAMS = {
+  market_code: '',
+  fluctuation_rate_min: '',
+  fluctuation_rate_max: '',
+  market_type: 'string',
+  sort_order: 'string',
+  result_limit: 'string',
+  price_type: '',
+  price_min: '',
+  price_max: '',
+  volume_threshold: '',
+  exclude_type: '0',
+  category_type: '0',
+};

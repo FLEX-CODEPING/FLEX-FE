@@ -1,9 +1,11 @@
 'use client';
 
 import {
+  FLUCTUATION_PARAMS,
   MAIN_CONTENTS_TITLE,
   RANK_TYPE_MAP,
   STOCK_RANKING_TYPE,
+  VOLUME_PARAMS,
 } from '@/app/constants/main';
 import { callPost } from '@/app/utils/callApi';
 import { getTodayDate } from '@/app/utils/date';
@@ -17,20 +19,24 @@ const StockRank = () => {
   const [volumeData, setVolumeData] = useState<VolumeRankTypes[]>([]);
   const [flucData, setFLucData] = useState<FluctuationRankTypes[]>([]);
   const isVolume = rankType === '거래량';
-
+  const requestBody = isVolume ? VOLUME_PARAMS : FLUCTUATION_PARAMS;
+  const tenDatas = volumeData.slice(0, 10);
   useEffect(() => {
     const fetchRank = async () => {
       const response = await callPost(
         `/api/main/stockRank?type=${RANK_TYPE_MAP[rankType]}`,
+        {
+          ...requestBody,
+        },
       );
       response.isSuccess && isVolume
         ? setVolumeData(response.result)
         : setFLucData(response.result);
+      console.log(response);
     };
-  }, [rankType]);
 
-  console.log(volumeData, '거래량 순위 데이터');
-  console.log(flucData, '등락 순위 데이터');
+    fetchRank();
+  }, [rankType]);
 
   return (
     <div className="flex-col-center w-full gap-y-3">
@@ -52,8 +58,12 @@ const StockRank = () => {
       </div>
       <div className="flex-center gap-y-4 w-full flex-wrap flex-col h-[502px] gap-x-[4%]">
         {rankType === '거래량'
-          ? volumeData.map((data) => <VolumeRank rankData={data} />)
-          : flucData.map((data) => <FluctuationRank rankData={data} />)}
+          ? volumeData
+              .slice(0, 10)
+              .map((data) => <VolumeRank rankData={data} />)
+          : flucData
+              .slice(0, 10)
+              .map((data) => <FluctuationRank rankData={data} />)}
       </div>
     </div>
   );
