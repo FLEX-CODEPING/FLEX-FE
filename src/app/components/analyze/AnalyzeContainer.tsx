@@ -5,6 +5,7 @@ import {
   ANALYZE_RESULT_GUIDE,
   ANALYZE_RESULT_TITLE,
 } from '@/app/constants/prediction';
+import { ANALYZE_MOCK } from '@/app/data/simulation';
 import Icons from '../common/Icons';
 
 const AnalyzeContainer = () => {
@@ -32,6 +33,13 @@ const AnalyzeContainer = () => {
             <Icons name={infoIcon} />
             <p>{ANALYZE_RESULT_GUIDE[0]}</p>
           </div>
+        </div>
+        <div className="pl-5">
+          <ol className="list-decimal">
+            <li>{ANALYZE_MOCK}</li>
+            <li>{ANALYZE_MOCK}</li>
+            <li>{ANALYZE_MOCK}</li>
+          </ol>
         </div>
       </div>
     </div>

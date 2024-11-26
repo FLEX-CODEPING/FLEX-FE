@@ -322,3 +322,6 @@ export const MODALDATA: TradeDataType = {
   stockQuantity: 12,
   stockPrice: 723000,
 };
+
+export const ANALYZE_MOCK =
+  '안정성 추구: 이 세 기업은 각 분야에서 선도적인 위치를 차지하고 있는 대기업으로, 상대적으로 안정적인 투자를 선호하는 성향을 보입니다.';
