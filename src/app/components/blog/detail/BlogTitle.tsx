@@ -5,9 +5,9 @@ import { callDelete, callPost } from '@/app/utils/callApi';
 import { useState } from 'react';
 
 interface BlogTitleProps {
-  title?: string;
-  nickname?: string;
-  createdAt?: string;
+  title: string;
+  nickname: string;
+  createdAt: string;
   userId: string;
   onNicknameClick: () => void;
   following: boolean;
