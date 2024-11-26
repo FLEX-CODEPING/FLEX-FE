@@ -3,9 +3,10 @@ interface VolumeRankProps {
 }
 
 const VolumeRank = ({ rankData }: VolumeRankProps) => {
+  const isPlus = Number(rankData.priceChange) > 0;
   return (
     <div
-      className="flex w-[48%] items-center justify-between bg-gray-5 py-5 px-6 rounded-lg sahdow hover:shadow-xl cursor-pointer transition-shadow duration-500"
+      className="flex w-full items-center justify-between bg-gray-5 py-5 px-6 rounded-lg sahdow hover:shadow-xl cursor-pointer transition-shadow duration-500"
       key={rankData.ranking}
     >
       <div className="flex gap-x-3 mr-6">
@@ -31,10 +32,8 @@ const VolumeRank = ({ rankData }: VolumeRankProps) => {
           <p className="text-black-1 text-[13px] font-medium">
             거래량 : {rankData.accTradingVolume}개
           </p>
-          <p
-            className={`text-xs ${Number(rankData.priceChange) > 0 ? 'text-red-1' : 'text-blue-1'} `}
-          >
-            {rankData.priceChange} ({rankData.priceChange}%)
+          <p className={`text-xs ${isPlus ? 'text-red-1' : 'text-blue-1'} `}>
+            {isPlus && '+' + rankData.priceChange} ({rankData.priceChange}%)
           </p>
         </div>
       </div>

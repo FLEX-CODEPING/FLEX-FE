@@ -56,7 +56,7 @@ const StockRank = () => {
         </div>
         <p className="text-xs">{today}</p>
       </div>
-      <div className="flex-center gap-y-4 w-full flex-wrap flex-col h-[502px] gap-x-[4%]">
+      <div className="flex gap-y-4 w-full flex-col">
         {rankType === '거래량'
           ? volumeData
               .slice(0, 10)
