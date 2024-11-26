@@ -1,4 +1,4 @@
-export const FOLLOW_TEXT = ['팔로잉', '필로워'];
+export const FOLLOW_TEXT = ['팔로잉', '팔로워'];
 
 export const MYPAGE_TEXT = [
   '작성한 글',
