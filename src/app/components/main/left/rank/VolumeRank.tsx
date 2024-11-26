@@ -1,3 +1,5 @@
+import { formatNumberCommas } from '@/app/utils/truncate';
+
 interface VolumeRankProps {
   rankData: VolumeRankTypes;
 }
@@ -26,14 +28,17 @@ const VolumeRank = ({ rankData }: VolumeRankProps) => {
       <div className="flex flex-col w-full gap-y-1">
         <div className="flex w-full justify-between">
           <p className="text-base font-normal">{rankData.corpName}</p>
-          <p className="text-base font-medium">{rankData.curPrice}원</p>
+          <p className="text-base font-medium">
+            {formatNumberCommas(Number(rankData.curPrice))}원
+          </p>
         </div>
         <div className="flex w-full justify-between">
           <p className="text-black-1 text-[13px] font-medium">
-            거래량 : {rankData.accTradingVolume}개
+            거래량 : {formatNumberCommas(Number(rankData.accTradingVolume))}개
           </p>
           <p className={`text-xs ${isPlus ? 'text-red-1' : 'text-blue-1'} `}>
-            {isPlus && '+' + rankData.priceChange} ({rankData.priceChange}%)
+            {isPlus && '+' + formatNumberCommas((rankData.priceChange))} (
+            {rankData.prevPeriodPriceChangeRate}%)
           </p>
         </div>
       </div>
