@@ -1,4 +1,4 @@
-import AnalyzeContainer from "@/app/components/analyze/AnalyzeContainer";
+import AnalyzeContainer from '@/app/components/analyze/AnalyzeContainer';
 
 const AnalyzePage = () => {
   return (

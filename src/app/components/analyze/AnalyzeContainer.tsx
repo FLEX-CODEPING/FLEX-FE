@@ -33,9 +33,6 @@ const AnalyzeContainer = () => {
             <p>{ANALYZE_RESULT_GUIDE[0]}</p>
           </div>
         </div>
-        <div className="flex flex-col">
-            
-        </div>
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ const SImulateSearch = () => {
 
   const getStockInfo = async (code: string) => {
     const response = await callGet(apiURL(code));
-    
+
     if (response.isSuccess) {
       const statusRes: InterestedStautsTypes = await callGet(
         `api/stocks/interest/status?code=${response.result.stockcode}`,
