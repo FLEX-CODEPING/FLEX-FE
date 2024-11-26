@@ -1,33 +1,52 @@
 interface StockInfoTypes {
   stockcode: string;
-  corpName: string;
+  stockName: string;
   symbolImageUrl: string;
+  corpInfo: CorpInfoTypes;
   isInterested: boolean;
+  date: string;
+  closePrice: 0;
+  volume: 0;
+  changeRate: 0;
+}
+
+interface CorpInfoTypes {
+  corpName: string;
+  ceoName: string;
+  corpRegistNo: string;
+  bsRegistNo: string;
+  address: string;
+  homeUrl: string;
+  establishmentDate: string;
+  accountingMonth: string;
+  industryName: string;
 }
 
 interface StockDetailInfoTypes {
-  isSuccess: true;
-  code: string;
-  message: string;
-  result: {
+  marketCapInfo: {
     stockcode: string;
     date: string;
     marketCap: number;
     volume: number;
     tradingVolume: number;
     listedShares: number;
+  };
+  ohlcvInfo: {
+    stockcode: string;
+    date: string;
     openPrice: number;
     highPrice: number;
     lowPrice: number;
     closePrice: number;
+    volume: number;
     changeRate: number;
   };
 }
 
 interface InterestedStockTypes {
-  id: string;
+  interestStockId: string;
   stockcode: string;
-  corpName: string;
+  stockName: string;
   symbolImageUrl: string;
 }
 
@@ -43,4 +62,10 @@ interface InterestedStautsTypes {
   code: string;
   message: string;
   result: boolean;
+}
+
+interface AutoCompleteTypes {
+  stockcode: string;
+  stockName: string;
+  market: string;
 }

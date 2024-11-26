@@ -1,6 +1,10 @@
 'use client';
 
-import { AUTH_BTN_TEXT, INITIAL_SIGNUP_DATA } from '@/app/constants/auth';
+import {
+  AUTH_BTN_TEXT,
+  CHECK_STATUS,
+  INITIAL_SIGNUP_DATA,
+} from '@/app/constants/auth';
 import { callPost } from '@/app/utils/callApi';
 import { isCorrect } from '@/app/utils/qualify';
 import { setTokens } from '@/app/utils/setToken';
@@ -19,6 +23,7 @@ function SignUpContainer() {
   const isSatisfied =
     isCorrect(formData.blogName) &&
     isCorrect(formData.nickname) &&
+    formData.isPossible &&
     formData.interestKeywords.length !== 0;
 
   const updateFormData = (key: string, value: any) => {
@@ -30,7 +35,6 @@ function SignUpContainer() {
 
   useEffect(() => {
     updateFormData('socialId', Number(id));
-    console.log(id);
   }, [id]);
 
   const handleSignUpClick = async () => {
@@ -40,7 +44,7 @@ function SignUpContainer() {
         setTokens(response.result.accessToken, response.result.refreshToken);
         router.push('/auth/complete');
       }
-    } else alert('입력정보를 확인해주세요!');
+    } else alert(CHECK_STATUS[2]);
   };
 
   return (

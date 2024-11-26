@@ -9,6 +9,7 @@ export const INITIAL_SIGNUP_DATA: SignUpFormTypes = {
   salary: '',
   interestKeywords: [],
   socialId: 0,
+  isPossible: false,
 };
 
 export const BIRTH = ['생년월일', '본인의 생년월일을 기입해주세요'];
@@ -25,7 +26,7 @@ export const NICKNAME_TEXT = [
 export const BLOGNAME_TEXT = [
   '내 블로그 이름',
   '홍길동의 블로그',
-  '한글, 영문, 숫자로 구성된 2~8글자의블로그 이름을 작성해주세요',
+  '한글, 영문, 숫자로 구성된 3~8글자의블로그 이름을 작성해주세요',
 ];
 
 export const INCOME_TITLE = '수입';
@@ -114,4 +115,5 @@ export const CHECK_STATUS_TEXT: BlogNameCheckTypes = {
 export const CHECK_STATUS = [
   '사용 가능한 블로그 이름입니다',
   '중복된 블로그 이름입니다',
+  '다시 한번 입력 조건을 확인해주세요',
 ];

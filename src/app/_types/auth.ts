@@ -5,6 +5,7 @@ interface SignUpFormTypes {
   salary: string;
   interestKeywords: string[];
   socialId: number;
+  isPossible: boolean;
 }
 
 type InterestTypes =

@@ -1,4 +1,4 @@
-export const HEADER_TEXT = ['블로그', '주가 예측', '모의 투자', '뉴스 요약'];
+export const HEADER_TEXT = ['블로그', '모의 투자', '주가 예측', '뉴스 요약'];
 
 export const LOGIN_TEXT = ['글 작성', '로그인', '홈으로'];
 
@@ -9,7 +9,7 @@ export const HEADER_PROFILE_TEXT = [
   '회원탈퇴',
 ];
 
-export const HEADER_PATH = ['/blog', '/prediction', '/simulation', '/news'];
+export const HEADER_PATH = ['/blog', '/simulation', '/prediction', '/news'];
 
 export const LOGIN_MODAL_TEXT = [
   '아직 회원이 아니신가요?',

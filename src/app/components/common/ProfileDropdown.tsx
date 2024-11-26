@@ -39,20 +39,20 @@ const ProfileDropdown = () => {
               {user?.result.nickname}
             </Link>
             {isHover && (
-              <div className="absolute flex flex-col top-[26px] left-[103px] border border-gray-2 text-xs rounded-[8px] cursor-pointer z-10 bg-white">
-                <div className="w-[90px] h-[32px] flex-center border-b border-gray-2 hover:text-main-1">
+              <div className="absolute flex flex-col top-[26px] left-[103px] border border-gray-2 text-xs rounded-[8px] z-10 bg-white">
+                <div className="w-[90px] cursor-pointer h-[32px] flex-center border-b border-gray-2 hover:text-main-1">
                   {HEADER_PROFILE_TEXT[0]}
                 </div>
-                <div className="w-[90px] h-[32px] flex-center border-b border-gray-2 hover:text-main-1">
+                <div className="w-[90px] cursor-pointer h-[32px] flex-center border-b border-gray-2 hover:text-main-1">
                   {HEADER_PROFILE_TEXT[1]}
                 </div>
                 <div
-                  className="w-[90px] h-[32px] flex-center border-b border-gray-2 hover:text-main-1"
+                  className="w-[90px] cursor-pointer h-[32px] flex-center border-b border-gray-2 hover:text-main-1"
                   onClick={handleLogout}
                 >
                   {HEADER_PROFILE_TEXT[2]}
                 </div>
-                <div className="w-[90px] h-[32px] flex-center hover:text-main-1">
+                <div className="w-[90px] cursor-pointer h-[32px] flex-center hover:text-main-1">
                   {HEADER_PROFILE_TEXT[3]}
                 </div>
               </div>

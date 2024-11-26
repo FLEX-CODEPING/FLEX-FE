@@ -13,7 +13,7 @@ const StockRank = () => {
         <p className="text-2xl font-semibold">{MAIN_CONTENTS_TITLE[2]}</p>
         <p className="text-xs">{today}</p>
       </div>
-      <div className="flex-center gap-y-4 w-full flex-wrap gap-x-[4%]">
+      <div className="flex-center gap-y-4 w-full flex-wrap flex-col h-[502px] gap-x-[4%]">
         {filteredStocks.map((stock, i) => (
           <div className="flex w-[48%] items-center justify-between bg-gray-5 py-5 px-6 rounded-lg sahdow hover:shadow-xl cursor-pointer transition-shadow duration-500">
             <div className="flex gap-x-3 mr-6">

@@ -4,3 +4,7 @@ export const truncateString = (str: string, maxLength: number) => {
   }
   return str;
 };
+
+export const formatNumberCommas = (num: number | string) => {
+  return num.toLocaleString('en-US');
+};

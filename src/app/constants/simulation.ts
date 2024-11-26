@@ -13,7 +13,7 @@ import {
 
 export const SEARCH_STOCK = '원하는 종목을 검색';
 
-export const CHART_TITLE = '차트';
+export const CHART_TITLE = ['차트', '종목정보'];
 
 export const CHART_VIEWTYPE: ChartViewType[] = ['일', '주', '월', '년'];
 
@@ -106,4 +106,28 @@ export const MODAL_TEXT_SELL = [
   '매도',
   '닫기',
   '매도가 체결되었습니다.',
+];
+
+export const STOCK_INFO_TEXT = [
+  '시가',
+  '고가',
+  '저가',
+  '종가',
+  '거래량',
+  '변동률',
+  '시가총액',
+  '거래대금',
+  '상장 주식 수',
+];
+
+export const STOCK_INFO_TOOLTIP = [
+  '주식이 장 시작 시 기록한 첫 번째 가격을 의미해요',
+  '해당 날짜 동안 주식이 거래된 최고 가격을 의미해요',
+  '해당 날짜 동안 주식이 거래된 최저 가격을 의미해요',
+  '주식이 장 마감 시 기록한 마지막 가격을 의미해요',
+  '해당 주식이 하루 동안 거래된 주식 수를 의미해요',
+  '주식 종가의 전일 대비 변동률(%)을 의미해요',
+  '주식의 (주식의 현재 가격 * 상장 주식 수)을 의미해요',
+  '해당 주식의 하루 총 거래 금액을 의미해요',
+  '시장에 상장된 주식 총 수를 의미해요',
 ];
