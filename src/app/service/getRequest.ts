@@ -15,8 +15,8 @@ const getRequest = async (url: string, req: Request) => {
   return response.json();
 };
 
-export const getLandingToday = async (req: Request) => {
-  const url = `/api/blogs/landings/today`;
+export const getLandingLatest = async (req: Request) => {
+  const url = `/api/blogs/landings/latest`;
   return getRequest(url, req);
 };
 
