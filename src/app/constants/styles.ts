@@ -19,7 +19,7 @@ export const BUTTON_STYLE = {
   notification: (className: string) =>
     `px-4 py-2 border border-gray-2 rounded-lg text-sm font-semibold ${className}`,
   checkName: (className: string) =>
-    `w-[90px] h-9 bg-main-1 text-white text-sm h-10 rounded-lg ${className}`,
+    `w-[90px] h-9 text-white text-sm h-10 rounded-lg ${className}`,
 } as const;
 
 export const INPUT_STYLE = {

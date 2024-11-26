@@ -13,19 +13,19 @@ import RecommendBlur from './RecommendBlur';
 
 const RecommendPost = () => {
   const { user } = useUserStore();
-  console.log(user);
+  const [datas, setDatas] = useState<RecommendPostResultTypes | null>({
+    content: [],
+    myInterests: [],
+  });
 
-  const [datas, setDatas] = useState<RecommendPostResultTypes | null>(null);
+  useEffect(() => {
+    const fetchPost = async () => {
+      const response = await callGet(`/api/main/recommend`);
+      response.isSuccess && setDatas(response.result);
+    };
 
-  // useEffect(() => {
-  //   const fetchPost = async () => {
-  //     const response = await callGet(`/api/main/recommend`);
-  //     console.log(response, '관심');
-  //     setDatas(response.result);
-  //   };
-
-  //   fetchPost();
-  // }, []);
+    fetchPost();
+  }, [user]);
 
   return (
     <div className="flex-col-center w-full gap-y-5">
@@ -44,7 +44,7 @@ const RecommendPost = () => {
         )}
       </div>
       {user?.isSuccess ? (
-        datas?.content.length === 0 ? (
+        datas?.content.length !== 0 ? (
           <div className="w-full flex flex-col gap-y-[18px]">
             {datas?.content.map((data, i) => (
               <Link

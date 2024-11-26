@@ -21,6 +21,7 @@ interface InputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: () => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onEnterPress?: () => void;
   isDisabled?: boolean;
   pattern?: string;
@@ -40,6 +41,7 @@ function Input({
   accept,
   onFocus,
   onBlur,
+  onKeyDown,
   onEnterPress,
   onChange,
   isDisabled,
@@ -50,7 +52,14 @@ function Input({
   onClick,
 }: InputProps) {
   const inputStyles = INPUT_STYLE[type](className || '');
-
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (onEnterPress && e.key === 'Enter') {
+      onEnterPress();
+    }
+    if (onKeyDown) {
+      onKeyDown(e);
+    }
+  };
   return (
     <input
       type={inputType}
@@ -59,7 +68,7 @@ function Input({
       name={name}
       onFocus={onFocus}
       onBlur={onBlur}
-      onKeyDown={(e) => e.key === 'Enter' && onEnterPress && onEnterPress()}
+      onKeyDown={handleKeyDown}
       onChange={onChange}
       className={inputStyles}
       accept={accept}

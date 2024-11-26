@@ -1,4 +1,4 @@
-import { getStockDetail } from '@/app/service/getRequest';
+import { getStockOffHour } from '@/app/service/getRequest';
 import { NextResponse } from 'next/server';
 
 export async function GET(req: Request) {
@@ -6,6 +6,6 @@ export async function GET(req: Request) {
   const code = searchParams.get('code');
   const date = searchParams.get('date');
 
-  const data = await getStockDetail(req, code || '', date || '');
+  const data = await getStockOffHour(req, code || '', date || '');
   return NextResponse.json(data);
 }

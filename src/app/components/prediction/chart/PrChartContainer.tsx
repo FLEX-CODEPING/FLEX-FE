@@ -1,9 +1,9 @@
 'use client';
 
+import ChartEmpty from '@/app/components/simulation/chart/ChartEmpty';
 import { CHART_TITLE, CHART_VIEWTYPE } from '@/app/constants/simulation';
 import { useState } from 'react';
-import StockChart from '@/app/components/simulation/chart/Chart';
-import ChartEmpty from '@/app/components/simulation/chart/ChartEmpty';
+import PrChart from './PrChart';
 
 const timeOptions = ['1분', '15분', '1시간', '4시간', '일'] as const;
 type TimeOption = (typeof timeOptions)[number];
@@ -60,7 +60,7 @@ const ChartContainer = () => {
 
       <div className="w-full">
         {chartData.length === 0 ? (
-          <StockChart
+          <PrChart
             viewType={clickedType}
             timeFrame={selectedTime}
             predictionData={predictionData}

@@ -1,5 +1,4 @@
 import { parse } from 'cookie';
-import { redirect } from 'next/dist/server/api-utils';
 import { callPost } from './callApi';
 
 let sessionTimeoutId: number | null = null;
@@ -9,8 +8,7 @@ const setSessionTimeout = (duration: number) => {
     clearTimeout(sessionTimeoutId);
   }
   sessionTimeoutId = window.setTimeout(() => {
-    alert('세션이 만료되었습니다. 다시 로그인해 주세요.');
-    window.location.href = '/sign-in';
+    window.location.href = '/auth';
   }, duration - 3000); // 만료 3초 전에 알림
 };
 
@@ -44,6 +42,7 @@ export const getCookie = (req: Request, name: string) => {
 export const handleLogout = async () => {
   const response = await callPost('/api/auth/logout');
   console.log(response);
-  // document.cookie = `accessToken=; expires=0; path=/;`;
-  // document.cookie = `refreshToken=; expires=0; path=/;`;
+  document.cookie = `accessToken=; expires=0; path=/;`;
+  document.cookie = `refreshToken=; expires=0; path=/;`;
+  window.location.href = '/'; // '/sign-in' 경로로 이동
 };

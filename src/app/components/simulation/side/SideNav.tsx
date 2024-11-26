@@ -12,7 +12,7 @@ const SideNav = () => {
   const { selectedItem, setSelectedItem } = useSidebarStore();
 
   return (
-    <div className="w-16 flex flex-col items-center pt-9 bg-white rounded-tl-lg border-l border-t border-gray-4 gap-y-6">
+    <div className="w-16 absolute flex flex-col items-center pt-9 bg-white rounded-tl-lg border-l border-t border-gray-4 gap-y-6 right-0 h-[calc(100vh-140px)] ">
       {SIDE_NAV_TYPES.map((type, i) => (
         <div
           key={type}

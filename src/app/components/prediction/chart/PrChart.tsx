@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { init, dispose, KLineData } from 'klinecharts';
 
-interface ChartProps {
+interface PrChartProps {
   viewType: '일' | '주' | '월' | '년';
   timeFrame: keyof typeof intervals;
   predictionData: { dates: string[]; predictions: number[] } | null;
@@ -25,7 +25,7 @@ const periods = {
   년: 365 * 24 * 60,
 };
 
-const StockChart: React.FC<ChartProps> = ({
+const PrChart: React.FC<PrChartProps> = ({
   viewType,
   timeFrame,
   predictionData,
@@ -104,4 +104,4 @@ const StockChart: React.FC<ChartProps> = ({
   return <div id="chart" style={{ width: '100%', height: 500 }} />;
 };
 
-export default StockChart;
+export default PrChart;

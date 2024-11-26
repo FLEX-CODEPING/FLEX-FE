@@ -15,8 +15,8 @@ const getRequest = async (url: string, req: Request) => {
   return response.json();
 };
 
-export const getLandingToday = async (req: Request) => {
-  const url = `/api/blogs/landings/today`;
+export const getLandingLatest = async (req: Request) => {
+  const url = `/api/blogs/landings/latest`;
   return getRequest(url, req);
 };
 
@@ -125,12 +125,12 @@ export const getMyLikedPosts = async (req: Request) => {
   return getRequest(url, req);
 };
 
-export const getStockInfo = async (req: Request, code: string) => {
+export const getStock = async (req: Request, code: string) => {
   const url = `/api/stocks/${code}`;
   return getRequest(url, req);
 };
 
-export const getStockDetail = async (
+export const getStockInfo = async (
   req: Request,
   code: string,
   date: string,
@@ -140,11 +140,25 @@ export const getStockDetail = async (
 };
 
 export const getInterestedStocks = async (req: Request) => {
-  const url = `/api/interestStocks?page=0&size=12`;
+  const url = `/api/interestStocks?page=0&size=20`;
   return getRequest(url, req);
 };
 
 export const getInterestedStatus = async (req: Request, code: string) => {
   const url = `/api/interestStocks/${code}`;
+  return getRequest(url, req);
+};
+
+export const getStockOffHour = async (
+  req: Request,
+  code: string,
+  date: string,
+) => {
+  const url = `/api/stocks/${code}/preOpen?date=${date}`;
+  return getRequest(url, req);
+};
+
+export const getStockSearch = async (req: Request, keyword: string) => {
+  const url = `/api/stocks/search/autoComplete/V1?keyword=${keyword}&size=12`;
   return getRequest(url, req);
 };

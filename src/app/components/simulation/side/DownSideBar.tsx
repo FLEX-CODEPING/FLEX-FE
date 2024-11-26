@@ -18,7 +18,7 @@ export default function DownSideBar() {
     cssEase: 'linear',
   };
   return (
-    <div className="w-[100%] h-10 flex">
+    <div className="w-[100%] h-10 flex fixed bottom-0">
       <Slider
         {...settings}
         className="w-full px-4 bg-[#fdfafa] flex items-center"
