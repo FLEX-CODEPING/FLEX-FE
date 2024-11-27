@@ -12,6 +12,7 @@ interface BlogInfoTypes {
   commentCount: number;
   createdAt: string;
   updatedAt: string;
+  following: boolean;
 }
 
 interface BlogPost {
@@ -88,6 +89,7 @@ interface MyBlogInfo {
   profileImageUrl: string | null;
   followingCount: number;
   followerCount: number;
+  following: boolean;
 }
 
 interface BlogDataTypes {

@@ -67,7 +67,9 @@ const BlogDetailContainer = ({ postId }: PostDetailProps) => {
         title={blogData.title}
         nickname={blogData.nickname}
         createdAt={blogData.createdAt}
+        userId={blogData.userId}
         onNicknameClick={handleNicknameClick}
+        following={blogData.following}
       />
       <BlogContent content={blogData.content} />
       <BlogComment postId={blogData.id} currentUserId={currentUserId} />

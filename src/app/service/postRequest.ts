@@ -51,6 +51,9 @@ export const postLike = async (req: Request, id: string) => {
   return postRequest(`/api/posts/${id}/like`, req);
 };
 
+export const postFollow = async (req: Request, id: string) => {
+  return postRequest(`/api/blogs/${id}/follow`, req);
+};
 export const interestStock = async (stockcode: string, req: Request) => {
   return postRequest(`/api/interestStocks?stockcode=${stockcode}`, req);
 };
