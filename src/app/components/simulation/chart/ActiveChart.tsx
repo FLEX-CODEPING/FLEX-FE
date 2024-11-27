@@ -23,7 +23,7 @@ const ActiveChart = ({ chartType }: ActiveChartProps) => {
     }
   };
 
-  return <div className="pt-[85px] mr-[1.5%]">{activeComponenet()}</div>;
+  return activeComponenet();
 };
 
 export default ActiveChart;

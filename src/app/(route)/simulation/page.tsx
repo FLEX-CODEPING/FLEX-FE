@@ -8,7 +8,7 @@ function SimulationPage() {
   return (
     <section className="relative w-full h-[calc(100vh] justify-between min-h-[800px] pr-16">
       <div className="flex w-full h-full pl-[5%] mt-[1%] justify-between">
-        <div className="flex w-full gap-x-[1%] pt-[2%] justify-between">
+        <div className="flex w-full gap-x-[1%] pt-[%] justify-between">
           <SimulationContainer />
           <TradeContainer />
           <ActiveSide />

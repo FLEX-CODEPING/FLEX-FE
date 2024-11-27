@@ -9,7 +9,7 @@ const Posession = () => {
   const textColor = (value: number) =>
     value < 0 ? 'text-blue-1' : 'text-red-1';
   return (
-    <div className="w-[260px] h-[620px] flex-col flex px-4 py-3.5 border border-gray-4 rounded-[10px]">
+    <div className="w-[260px] h-[628px] flex-col flex px-4 py-3.5 border border-gray-4 rounded-[10px]">
       <p className="text-base">{SIDE_NAV_TYPES[1]}</p>
       <div className="flex-col-center overflow-y-auto hide-scrollbar gap-y-3 pt-2">
         {STOCK_DATA.length === 0 ? (
