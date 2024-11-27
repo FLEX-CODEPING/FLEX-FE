@@ -3,14 +3,14 @@
 import { rightArrow } from '@/app/constants/iconPath';
 import { MAIN_CONTENTS_TITLE } from '@/app/constants/main';
 import { MOOK_ARTICLES } from '@/app/data/main';
-import { getTodayDate } from '@/app/utils/date';
+import { getTodayDateBar2 } from '@/app/utils/date';
 import { truncateString } from '@/app/utils/truncate';
 import { useState } from 'react';
 import Icons from '../../common/Icons';
 
 const DailyNews = () => {
   const [newsData, setNewsData] = useState<DailyArticleTypes[]>(MOOK_ARTICLES);
-  const today = getTodayDate();
+  const today = getTodayDateBar2();
 
   // useEffect(() => {
   //   const fetchPost = async () => {

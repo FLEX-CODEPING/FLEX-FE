@@ -2,14 +2,14 @@
 
 import { MAIN_CONTENTS_TITLE } from '@/app/constants/main';
 import { callGet } from '@/app/utils/callApi';
-import { getTodayDate } from '@/app/utils/date';
+import { getTodayDateBar2 } from '@/app/utils/date';
 import { useEffect, useState } from 'react';
 import NoneContent from '../NoneContent';
 import DailyPost from './DailyPost';
 
 const DailyPostContainer = () => {
   const [postData, setPostData] = useState<MainPostTypes[]>([]);
-  const today = getTodayDate();
+  const today = getTodayDateBar2();
 
   useEffect(() => {
     const fetchPost = async () => {

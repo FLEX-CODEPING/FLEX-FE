@@ -8,13 +8,13 @@ import {
   VOLUME_PARAMS,
 } from '@/app/constants/main';
 import { callPost } from '@/app/utils/callApi';
-import { getTodayDate } from '@/app/utils/date';
+import { getTodayDateBar2 } from '@/app/utils/date';
 import { useEffect, useState } from 'react';
 import FluctuationRank from './FluctuationRank';
 import VolumeRank from './VolumeRank';
 
 const StockRank = () => {
-  const today = getTodayDate();
+  const today = getTodayDateBar2();
   const [rankType, setRankType] = useState<StockRankingTypes>('거래량');
   const [volumeData, setVolumeData] = useState<VolumeRankTypes[]>([]);
   const [flucData, setFLucData] = useState<FluctuationRankTypes[]>([]);
@@ -45,12 +45,12 @@ const StockRank = () => {
           <p className="text-2xl font-semibold">{MAIN_CONTENTS_TITLE[2]}</p>
           <div className="flex border-b border-gray-2 text-sm">
             {STOCK_RANKING_TYPE.map((type, i) => (
-              <p
+              <div
                 className={`w-[58px] flex-center cursor-pointer ${rankType === type && 'font-semibold text-black border-black-0 border-b-2'}`}
                 onClick={() => setRankType(type)}
               >
                 {type}
-              </p>
+              </div>
             ))}
           </div>
         </div>

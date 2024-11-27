@@ -44,11 +44,7 @@ export const getTodayDateBar = () => {
     now.setDate(now.getDate() - 1);
   }
 
-  const dayOfWeek = now.getDay();
-
-  if (dayOfWeek === 0) {
-    now.setDate(now.getDate() - 2);
-  } else if (dayOfWeek === 6) {
+  while (now.getDay() === 0 || now.getDay() === 6) {
     now.setDate(now.getDate() - 1);
   }
 
@@ -81,4 +77,25 @@ export const isOpenTime = () => {
   }
 
   return true;
+};
+
+export const getTodayDateBar2 = () => {
+  const now = new Date();
+  const closeHour = 15;
+  const closeMinute = 30;
+
+  // 마감 시간을 기준으로 하루를 빼기
+  now.setDate(now.getDate() - 1);
+
+  // 가장 가까운 이전 평일을 계산
+  while (now.getDay() === 0 || now.getDay() === 6) {
+    now.setDate(now.getDate() - 1);
+  }
+
+  // 날짜 형식화
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
 };
