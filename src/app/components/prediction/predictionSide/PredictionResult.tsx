@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 import Icons from '../../common/Icons';
 import Button from '../../common/Button';
 import { blueArrow, infoIcon } from '../../../constants/iconPath';
@@ -45,15 +44,8 @@ const PredictionResult = ({
             {PREDICTION_SIDEBAR_RESULT[1]}
           </p>
           {isTooltipVisible && (
-            <div className="absolute top-[-150%] right-0 z-8 w-[288px] p-2 bg-gray-100 text-gray-700 rounded-md shadow-lg whitespace-pre-line">
+            <div className="absolute top-[-550%] right-[60px] z-8 w-[288px] p-2 bg-gray-100 text-gray-700 rounded-md shadow-lg whitespace-pre-line">
               <div className="flex items-center mb-1">
-                <Image
-                  src="/images/emer.png"
-                  alt="Alert Icon"
-                  width={13}
-                  height={13}
-                  className="mr-1 mb-0.5"
-                />
                 <strong className="text-[12px] font-bold">
                   {PREDICTION_SIDEBAR_RESULT[5]}
                 </strong>
