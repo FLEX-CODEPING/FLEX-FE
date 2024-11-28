@@ -36,9 +36,8 @@ const VolumeRank = ({ rankData }: VolumeRankProps) => {
           <p className="text-black-1 text-[13px] font-medium">
             거래량 : {formatNumberCommas(Number(rankData.accTradingVolume))}개
           </p>
-          <p className={`text-xs ${isPlus ? 'text-red-1' : 'text-blue-1'} `}>
-            {isPlus && '+' + formatNumberCommas((rankData.priceChange))} (
-            {rankData.prevPeriodPriceChangeRate}%)
+          <p className={`text-xs ${isPlus ? 'text-red-1' : 'text-blue-1'}`}>
+            {`${isPlus ? '+' : ''}${formatNumberCommas(rankData.priceChange)} (${rankData.prevPeriodPriceChangeRate}%)`}
           </p>
         </div>
       </div>

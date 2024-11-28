@@ -20,7 +20,7 @@ const StockRank = () => {
   const [flucData, setFLucData] = useState<FluctuationRankTypes[]>([]);
   const isVolume = rankType === '거래량';
   const requestBody = isVolume ? VOLUME_PARAMS : FLUCTUATION_PARAMS;
-  const tenDatas = volumeData.slice(0, 10);
+
   useEffect(() => {
     const fetchRank = async () => {
       const response = await callPost(
