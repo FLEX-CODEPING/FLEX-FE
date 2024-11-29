@@ -8,7 +8,7 @@ import ChartEmpty from '../../simulation/chart/ChartEmpty';
 const timeOptions = ['1분', '15분', '1시간', '4시간', '일'] as const;
 type TimeOption = (typeof timeOptions)[number];
 
-const ChartContainer = () => {
+const PrChartContainer = () => {
   const [clickedType, setClickedType] = useState<ChartViewType>('일');
   const [selectedTime, setSelectedTime] = useState<TimeOption>('1분');
   const [chartData, setChartData] = useState([]);
@@ -73,4 +73,4 @@ const ChartContainer = () => {
   );
 };
 
-export default ChartContainer;
+export default PrChartContainer;

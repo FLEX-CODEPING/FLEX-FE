@@ -17,9 +17,9 @@ export const PREDICTION_SIDEBAR_TEXT = [
 ];
 
 export const PREDICTION_INDICATION_SORT = [
-  '000을 기반으로 분석하는 예측법1',
-  '000을 기반으로 분석하는 예측법2',
-  '000을 기반으로 분석하는 예측법3',
+  'Random Forest 예측법',
+  'LSTM 예측법',
+  '지표 예측법',
 ];
 
 export const PREDICTION_SIDEBAR_RESULT = [

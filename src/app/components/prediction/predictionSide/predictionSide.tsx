@@ -11,7 +11,7 @@ interface PredictionResult {
   error?: string;
 }
 
-export const fetchPredictionData = async (
+export const predictionSide = async (
   indicators: string[],
 ): Promise<PredictionResult[]> => {
   const endpoints: { [key: string]: string } = {
