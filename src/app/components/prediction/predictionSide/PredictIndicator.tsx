@@ -1,14 +1,14 @@
 'use client';
 
-import { useState } from 'react';
 import { infoIcon } from '@/app/constants/iconPath';
 import {
-  PREDICTION_SIDEBAR_TEXT,
   PREDICTION_INDICATION_SORT,
+  PREDICTION_SIDEBAR_TEXT,
 } from '@/app/constants/prediction';
-import { fetchPredictionData } from './predictionSide';
+import { useState } from 'react';
 import Button from '../../common/Button';
 import Icons from '../../common/Icons';
+import { fetchPredictionData } from './predictionSide';
 
 interface PredictionData {
   dates: string[];

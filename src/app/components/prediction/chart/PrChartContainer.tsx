@@ -8,7 +8,7 @@ import PrChart from './PrChart';
 const timeOptions = ['1분', '15분', '1시간', '4시간', '일'] as const;
 type TimeOption = (typeof timeOptions)[number];
 
-const ChartContainer = () => {
+const PrChartContainer = () => {
   const [clickedType, setClickedType] = useState<ChartViewType>('일');
   const [selectedTime, setSelectedTime] = useState<TimeOption>('1분');
   const [chartData, setChartData] = useState([]);
@@ -20,7 +20,7 @@ const ChartContainer = () => {
   return (
     <div className="flex w-full px-10 py-5 rounded-[10px] border border-gray-4 flex-col justify-start items-start gap-y-10">
       <div className="flex w-full justify-between items-center">
-        <p className="text-xl font-semibold">{CHART_TITLE}</p>
+        <p className="text-xl font-semibold">{CHART_TITLE[0]}</p>
 
         <div className="flex gap-x-3 items-center">
           <div className="flex gap-x-2 items-center">
@@ -73,4 +73,4 @@ const ChartContainer = () => {
   );
 };
 
-export default ChartContainer;
+export default PrChartContainer;
