@@ -1,14 +1,15 @@
 import { STOCK_INFO_TITLE } from '@/app/constants/simulation';
-import useStockCodeStore from '@/app/store/store';
+import useStockStore from '@/app/store/store';
 import { useState } from 'react';
 import StockInfo from './StockInfo';
+import StockInfoEmpty from './StockInfoEmpty';
 
 const StockInfoContainer = () => {
   const [infoType, setInfoType] = useState('종목정보');
-  const { stockCode, stockName } = useStockCodeStore();
+  const { stockCode } = useStockStore();
 
   return (
-    <div className="flex-col flex py-6 px-10 w-full text-black-0 gap-y-5 rounded-[10px] border border-gray-4">
+    <div className="flex-col flex py-6 px-5 w-full text-black-0 gap-y-5 rounded-[10px] border border-gray-4">
       <div className="flex items-center gap-y-2 text-[15px]">
         {STOCK_INFO_TITLE.map((title, i) => (
           <div
@@ -19,7 +20,7 @@ const StockInfoContainer = () => {
           </div>
         ))}
       </div>
-      <StockInfo />
+      {!stockCode || stockCode === 'null' ? <StockInfoEmpty /> : <StockInfo />}
     </div>
   );
 };

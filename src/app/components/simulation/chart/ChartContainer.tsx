@@ -1,14 +1,14 @@
 'use client';
 
 import { CHART_TITLE, CHART_VIEWTYPE } from '@/app/constants/simulation';
-import useStockCodeStore from '@/app/store/store';
 import { useState } from 'react';
 import ChartEmpty from './ChartEmpty';
 import { StockChart } from './StockChart';
+import useStockStore from '@/app/store/store';
 
 const ChartContainer = () => {
   const [viewType, setViewType] = useState<ChartViewType>('일');
-  const { stockCode, stockName } = useStockCodeStore();
+  const { stockCode } = useStockStore();
 
   return (
     <div className="flex w-full px-5 py-5 rounded-[10px] border border-gray-4 flex-col justify-start items-start gap-y-5">
