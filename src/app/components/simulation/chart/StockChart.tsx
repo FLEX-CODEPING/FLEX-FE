@@ -65,7 +65,7 @@ export function StockChart() {
           },
         ]}
         width="100%"
-        height={500}
+        height={300}
         options={{
           theme: {
             mode: 'light',
@@ -92,5 +92,3 @@ export function StockChart() {
     </div>
   );
 }
-
-export default StockChart;

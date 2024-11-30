@@ -1,7 +1,5 @@
 import { StockChart } from './StockChart';
-import EnterpriseChart from './stockInfo/EnterpriseChart';
-import FinancialChart from './stockInfo/FinancialChart';
-import StockInfoChart from './stockInfo/StockInfoChart';
+import StockInfoChart from './stockInfo/StockInfoContainer';
 
 interface ActiveChartProps {
   chartType: string;
@@ -14,10 +12,6 @@ const ActiveChart = ({ chartType }: ActiveChartProps) => {
         return <StockChart />;
       case '종목정보':
         return <StockInfoChart />;
-      case '재무제표':
-        return <FinancialChart />;
-      case '기업정보':
-        return <EnterpriseChart />;
       default:
         return null;
     }
