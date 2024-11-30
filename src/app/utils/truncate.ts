@@ -8,3 +8,9 @@ export const truncateString = (str: string, maxLength: number) => {
 export const formatNumberCommas = (num: number | string) => {
   return num.toLocaleString('en-US');
 };
+
+export const plusUnit = (index: number) => {
+  if (index === 5) return '%';
+  if (index === 8) return '주';
+  return '원';
+};

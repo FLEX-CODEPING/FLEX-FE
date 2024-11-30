@@ -5,7 +5,7 @@ import useStockStore from '@/app/store/store';
 import { callGet } from '@/app/utils/callApi';
 import { getTodayDateBar } from '@/app/utils/date';
 import { formatStockData } from '@/app/utils/formatStock';
-import { formatNumberCommas } from '@/app/utils/truncate';
+import { formatNumberCommas, plusUnit } from '@/app/utils/truncate';
 import { useEffect, useRef, useState } from 'react';
 import { useHover } from 'usehooks-ts';
 import StockGuideModal from './StockGuideModal';
@@ -13,17 +13,10 @@ import StockGuideModal from './StockGuideModal';
 const StockInfo = () => {
   const [stockInfo, setStockInfo] = useState<null | StockDetailInfoTypes>(null);
   const [hoverRefs, setHoverRefs] = useState<(HTMLDivElement | null)[]>([]);
-  const { stockCode, stockName } = useStockStore();
-
-  const plusUnit = (index: number) => {
-    if (index === 5) return '%';
-    if (index === 8) return '주';
-    return '원';
-  };
+  const { stockCode } = useStockStore();
 
   const getStockDetail = async () => {
     const date = getTodayDateBar();
-
     const response = await callGet(
       `api/stocks/info?code=${stockCode}&date=${date}`,
     );

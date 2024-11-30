@@ -10,7 +10,7 @@ import { useHover } from 'usehooks-ts';
 import Icons from '../../../common/Icons';
 import StockGuideModal from './StockGuideModal';
 
-const FinancialChart = () => {
+const EnterpriseInfo = () => {
   const [stockInfo, setStockInfo] = useState<null | StockDetailInfoTypes>(null);
   const { stockCode, stockName } = useStockCodeStore();
   const [hoverRefs, setHoverRefs] = useState<(HTMLDivElement | null)[]>([]);
@@ -84,4 +84,4 @@ const FinancialChart = () => {
   );
 };
 
-export default FinancialChart;
+export default EnterpriseInfo;

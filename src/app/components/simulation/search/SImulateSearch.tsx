@@ -13,8 +13,6 @@ const SImulateSearch = () => {
   const [stockInfo, setStockInfo] = useState<null | StockInfoTypes>(null);
   const { setStockCode, stockCode } = useStockCodeStore();
 
-  console.log(isOpenTime(), '장 열렸나요');
-
   const apiURL = (code: string) => {
     return isOpenTime()
       ? `api/stocks?code=${code}`
@@ -23,6 +21,7 @@ const SImulateSearch = () => {
 
   const getStockInfo = async (code: string) => {
     const response = await callGet(apiURL(code));
+    console.log(response);
 
     if (response.isSuccess) {
       const statusRes: InterestedStautsTypes = await callGet(

@@ -1,7 +1,7 @@
 import { STOCK_INFO_TITLE } from '@/app/constants/simulation';
 import useStockStore from '@/app/store/store';
 import { useState } from 'react';
-import StockInfo from './StockInfo';
+import ActiveStockInfo from './ActiveStockInfo';
 import StockInfoEmpty from './StockInfoEmpty';
 
 const StockInfoContainer = () => {
@@ -20,7 +20,11 @@ const StockInfoContainer = () => {
           </div>
         ))}
       </div>
-      {!stockCode || stockCode === 'null' ? <StockInfoEmpty /> : <StockInfo />}
+      {!stockCode || stockCode === 'null' ? (
+        <StockInfoEmpty />
+      ) : (
+        <ActiveStockInfo chartType={infoType} />
+      )}
     </div>
   );
 };

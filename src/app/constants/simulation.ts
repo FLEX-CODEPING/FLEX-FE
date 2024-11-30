@@ -145,3 +145,5 @@ export const STOCK_INFO_TOOLTIP = [
   '기업이 주주들에게 지급한 총 배당금액을 의미해요',
   '기업이 주당 지급하는 배당금을 의미해요',
 ];
+
+export const FINANCIALINTO_TITLE = ['손익계산', '대차대조'];
