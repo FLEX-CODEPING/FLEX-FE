@@ -5,13 +5,13 @@ import {
   RANKING_COLOR,
 } from '@/app/constants/main';
 import { MOOK_RANKINGS } from '@/app/data/main';
-import { getTodayDateBar2 } from '@/app/utils/date';
+import { getTodayDateBar } from '@/app/utils/date';
 import Image from 'next/image';
 import Link from 'next/link';
 import Icons from '../../common/Icons';
 
 const SimulateRank = () => {
-  const today = getTodayDateBar2();
+  const today = getTodayDateBar();
   return (
     <div className="flex-col-center px-3 w-full gap-y-4">
       <div className="flex w-full justify-between items-end">

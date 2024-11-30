@@ -2,7 +2,7 @@ import { dotIcon, infoIcon } from '@/app/constants/iconPath';
 import { STOCK_INFO_TEXT } from '@/app/constants/simulation';
 import useStockCodeStore from '@/app/store/store';
 import { callGet } from '@/app/utils/callApi';
-import { getTodayDateBar2 } from '@/app/utils/date';
+import { getTodayDateBar } from '@/app/utils/date';
 import { formatStockData } from '@/app/utils/formatStock';
 import { formatNumberCommas } from '@/app/utils/truncate';
 import { useEffect, useRef, useState } from 'react';
@@ -24,7 +24,7 @@ const EnterpriseChart = () => {
   };
 
   const getStockDetail = async () => {
-    const date = getTodayDateBar2();
+    const date = getTodayDateBar();
     const response = await callGet(
       `api/stocks/info?code=${stockCode}&date=${date}`,
     );
