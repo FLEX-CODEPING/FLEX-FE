@@ -23,6 +23,7 @@ const StockInfo = () => {
 
   const getStockDetail = async () => {
     const date = getTodayDateBar();
+
     const response = await callGet(
       `api/stocks/info?code=${stockCode}&date=${date}`,
     );
@@ -37,24 +38,24 @@ const StockInfo = () => {
   const StockInfoArr = stockInfo ? formatStockData(stockInfo) : [];
 
   return (
-    <div className="flex flex-wrap w-full justify-between gap-y-6">
+    <div className="flex flex-wrap w-full gap-y-4">
       {STOCK_INFO_TEXT.map((info, i) => {
         const hoverRef = useRef(null);
         const isHover = useHover(hoverRef);
         hoverRefs[i] = hoverRef.current;
         return (
           <div
-            className="w-[48%] h-[72px] bg-gray-5 py-2 px-3 rounded-xl shadow-md flex flex-col gap-y-2 hover:bg-gray-3"
+            className="w-[108px] h-[66px] py-1 px-2 flex flex-col gap-y-2"
             key={info}
           >
-            <div className="flex gap-x-1 items-center">
-              <p className="text-sm text-black-1">{info}</p>
-              <div className="relative flex w-3 h-3" ref={hoverRef}>
+            <div className="gap-x-1 w-fit flex-auto flex items-center h-[26px] px-2 py-1 bg-gray-5 rounded-lg">
+              <p className="text-xs text-black-1">{info}</p>
+              <div className="relative flex w-[13px] h-[13px]" ref={hoverRef}>
                 <Icons name={infoIcon} />
                 {isHover && <StockGuideModal index={i} />}
               </div>
             </div>
-            <div className="text-xl font-semibold flex gap-x-1">
+            <div className="text-xs pl-1 font-medium flex gap-x-1 h-5">
               <p
                 className={`${i === 5 && (Number(info) > 0 ? 'text-red-1' : 'text-blue-1')}`}
               >

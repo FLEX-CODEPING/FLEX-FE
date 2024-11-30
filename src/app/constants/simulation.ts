@@ -120,6 +120,12 @@ export const STOCK_INFO_TEXT = [
   '시가총액',
   '거래대금',
   '상장 주식 수',
+  'BPS',
+  'PER',
+  'PBR',
+  'EPS',
+  '총 배당금',
+  '주당 배당금',
 ];
 
 export const STOCK_INFO_TOOLTIP = [
