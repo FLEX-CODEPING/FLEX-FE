@@ -2,6 +2,7 @@ import Icons from '@/app/components/common/Icons';
 import { infoIcon } from '@/app/constants/iconPath';
 import { BALANCE_TITLE } from '@/app/constants/simulation';
 import { formatYM } from '@/app/utils/date';
+import { formatCurrency } from '@/app/utils/formatNum';
 
 interface BalanceChartProps {
   balanceInfo: balanceTypes[];
@@ -30,14 +31,30 @@ const BalanceChart = ({ balanceInfo }: BalanceChartProps) => {
             <div className="w-[70px] py-1 flex-center h-[26px] font-medium flex items-center">
               {formatYM(data.yearMonth)}
             </div>
-            <p className="flex-center h-[26px]">{data.capitalStock}</p>
-            <p className="flex-center h-[26px]">{data.curAssets}</p>
-            <p className="flex-center h-[26px]">{data.curLiabilities}</p>
-            <p className="flex-center h-[26px]">{data.fixedAssets}</p>
-            <p className="flex-center h-[26px]">{data.fixedLiabilities}</p>
-            <p className="flex-center h-[26px]">{data.totalAssets}</p>
-            <p className="flex-center h-[26px]">{data.totalEquity}</p>
-            <p className="flex-center h-[26px]">{data.totalLiabilities}</p>
+            <p className="flex-center h-[26px]">
+              {formatCurrency(data.capitalStock)}
+            </p>
+            <p className="flex-center h-[26px]">
+              {formatCurrency(data.curAssets)}
+            </p>
+            <p className="flex-center h-[26px]">
+              {formatCurrency(data.curLiabilities)}
+            </p>
+            <p className="flex-center h-[26px]">
+              {formatCurrency(data.fixedAssets)}
+            </p>
+            <p className="flex-center h-[26px]">
+              {formatCurrency(data.fixedLiabilities)}
+            </p>
+            <p className="flex-center h-[26px]">
+              {formatCurrency(data.totalAssets)}
+            </p>
+            <p className="flex-center h-[26px]">
+              {formatCurrency(data.totalEquity)}
+            </p>
+            <p className="flex-center h-[26px]">
+              {formatCurrency(data.totalLiabilities)}
+            </p>
           </div>
         ))}
       </div>

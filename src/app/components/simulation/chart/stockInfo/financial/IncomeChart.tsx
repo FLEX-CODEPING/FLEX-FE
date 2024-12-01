@@ -2,6 +2,7 @@ import Icons from '@/app/components/common/Icons';
 import { infoIcon } from '@/app/constants/iconPath';
 import { PROFIT_LOSS_TITLE } from '@/app/constants/simulation';
 import { formatYM } from '@/app/utils/date';
+import { formatCurrency } from '@/app/utils/formatNum';
 
 interface IncomeChartProps {
   financialInfo: IncomesTypes[];
@@ -30,14 +31,24 @@ const IncomeChart = ({ financialInfo }: IncomeChartProps) => {
             <div className="w-[70px] py-1 flex-center h-[26px] font-medium flex items-center">
               {formatYM(data.yearMonth)}
             </div>
-            <p className="flex-center w-[70px] py-1 flex-center h-[26px]">
-              {data.costOfSales}
+            <p className="flex-center h-[26px]">
+              {formatCurrency(data.costOfSales)}
             </p>
-            <p className="flex-center h-[26px]">{data.grossProfit}</p>
-            <p className="flex-center h-[26px]">{data.netIncomeForThePeriod}</p>
-            <p className="flex-center h-[26px] ">{data.operatingProfit}</p>
-            <p className="flex-center h-[26px]">{data.ordinaryProfit}</p>
-            <p className="flex-center h-[26px]">{data.salesRevenue}</p>
+            <p className="flex-center h-[26px]">
+              {formatCurrency(data.grossProfit)}
+            </p>
+            <p className="flex-center h-[26px]">
+              {formatCurrency(data.netIncomeForThePeriod)}
+            </p>
+            <p className="flex-center h-[26px]">
+              {formatCurrency(data.operatingProfit)}
+            </p>
+            <p className="flex-center h-[26px]">
+              {formatCurrency(data.ordinaryProfit)}
+            </p>
+            <p className="flex-center h-[26px]">
+              {formatCurrency(data.salesRevenue)}
+            </p>
           </div>
         ))}
       </div>

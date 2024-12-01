@@ -4,11 +4,11 @@ import useStockCodeStore from '@/app/store/store';
 import { callGet } from '@/app/utils/callApi';
 import { getTodayDateBar } from '@/app/utils/date';
 import { formatStockData } from '@/app/utils/formatStock';
-import { formatNumberCommas } from '@/app/utils/truncate';
 import { useEffect, useRef, useState } from 'react';
 import { useHover } from 'usehooks-ts';
 import Icons from '../../../common/Icons';
 import StockGuideModal from './StockGuideModal';
+import { formatNumberCommas } from '@/app/utils/formatNum';
 
 const EnterpriseInfo = () => {
   const [stockInfo, setStockInfo] = useState<null | StockDetailInfoTypes>(null);
