@@ -11,8 +11,6 @@ const postRequest = async (url: string, req: Request, body: any = null) => {
     ...commonHeaders,
     ...(token && { Authorization: `Bearer ${token}` }),
   };
-  console.log(url, '요청 경로');
-  console.log(body, '요청 바디');
 
   const response = await fetch(`${SERVER_URL}${url}`, {
     method: 'POST',
@@ -96,4 +94,8 @@ export const postStockFinancial = async (
     `/api/kis/stocks/financial-statements?stockCode=${code}&classCode=${classCode}`,
     req,
   );
+};
+
+export const postDailyPrice = async (req: Request, body: any) => {
+  return postRequest('/api/kis/stocks/daily/item-chart-price', req, body);
 };

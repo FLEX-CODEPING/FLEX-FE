@@ -27,3 +27,22 @@ interface StockInfo {
   quantity: number;
   avg_purchase_price: number;
 }
+
+interface DailyPriceBodyTypes {
+  marketDivCode: string;
+  stockCode: string;
+  dateFrom: string;
+  dateTo: string;
+  periodDivCode: string;
+  orgAdjPrice: number;
+}
+
+
+interface DailyPriceResponseTypes {
+  marketDivCode: string;
+  stockCode: string;
+  dateFrom: string;
+  dateTo: string;
+  periodDivCode: string;
+  orgAdjPrice: number;
+}
