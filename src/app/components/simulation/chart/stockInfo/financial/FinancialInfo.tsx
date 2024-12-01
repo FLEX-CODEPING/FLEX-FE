@@ -3,35 +3,38 @@ import {
   STOCK_INFO_TEXT,
 } from '@/app/constants/simulation';
 import useStockStore from '@/app/store/store';
-import { callGet } from '@/app/utils/callApi';
-import { getTodayDateBar } from '@/app/utils/date';
-import { formatStockData } from '@/app/utils/formatStock';
+import { callPost } from '@/app/utils/callApi';
 import { useEffect, useState } from 'react';
 import FinancialViewDropdown from './FinancialViewDropdown';
+import IncomeChart from './IncomeChart';
 
 const FinancialInfo = () => {
-  const [stockInfo, setStockInfo] = useState<null | StockDetailInfoTypes>(null);
+  const [financialInfo, setFinancialInfo] = useState<null | FinancialDataTypes>(
+    null,
+  );
+  console.log(financialInfo);
+
   const [hoverRefs, setHoverRefs] = useState<(HTMLDivElement | null)[]>([]);
   const [infoType, setInfoType] = useState('손익계산');
+  const [option, setOption] = useState('분기');
   const { stockCode } = useStockStore();
 
-  const getStockDetail = async () => {
-    const date = getTodayDateBar();
-    const response = await callGet(
-      `api/stocks/info?code=${stockCode}&date=${date}`,
+  const classCode = option === '분기' ? '1' : '0';
+
+  const getStockFinancial = async () => {
+    const response = await callPost(
+      `api/stocks/info/financial?code=${stockCode}&classCode=${classCode}`,
     );
-    setStockInfo(response.result);
+    setFinancialInfo(response.result);
   };
 
   useEffect(() => {
     setHoverRefs((prev) => STOCK_INFO_TEXT.map(() => null));
-    getStockDetail();
+    getStockFinancial();
   }, [stockCode]);
 
-  const StockInfoArr = stockInfo ? formatStockData(stockInfo) : [];
-
   return (
-    <div className="flex flex-wrap w-full gap-y-4">
+    <div className="flex flex-col w-full gap-y-2">
       <div className="flex w-full justify-between">
         <div className="flex">
           {FINANCIALINTO_TITLE.map((title) => (
@@ -44,8 +47,9 @@ const FinancialInfo = () => {
             </div>
           ))}
         </div>
-        <FinancialViewDropdown />
+        <FinancialViewDropdown option={option} setOption={setOption} />
       </div>
+      <IncomeChart financialInfo={financialInfo?.incomeStatementInfo || []} />
     </div>
   );
 };

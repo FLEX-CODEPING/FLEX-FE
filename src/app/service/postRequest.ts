@@ -86,3 +86,14 @@ export const postLogout = async (req: Request) => {
 export const postStockRank = async (body: any, req: Request, type: string) => {
   return postRequest(`/api/kis/stocks/ranking/${type}`, req, body);
 };
+
+export const postStockFinancial = async (
+  req: Request,
+  code: string,
+  classCode: string,
+) => {
+  return postRequest(
+    `/api/kis/stocks/financial-statements?stockCode=${code}&classCode=${classCode}`,
+    req,
+  );
+};

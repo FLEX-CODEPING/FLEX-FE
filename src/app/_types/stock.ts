@@ -69,3 +69,30 @@ interface AutoCompleteTypes {
   stockName: string;
   market: string;
 }
+
+interface IncomesTypes {
+  yearMonth: string;
+  salesRevenue: string;
+  costOfSales: string;
+  grossProfit: string;
+  operatingProfit: string;
+  ordinaryProfit: string;
+  netIncomeForThePeriod: string;
+}
+
+interface balanceTypes {
+  yearMonth: string;
+  curAssets: string;
+  fixedAssets: string;
+  totalAssets: string;
+  curLiabilities: string;
+  fixedLiabilities: string;
+  totalLiabilities: string;
+  capitalStock: string;
+  totalEquity: string;
+}
+
+interface FinancialDataTypes {
+  incomeStatementInfo: IncomesTypes[];
+  balanceSheetInfo: balanceTypes[];
+}
