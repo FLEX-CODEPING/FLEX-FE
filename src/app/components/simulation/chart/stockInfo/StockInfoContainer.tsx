@@ -1,8 +1,8 @@
 import { STOCK_INFO_TITLE } from '@/app/constants/simulation';
 import useStockStore from '@/app/store/store';
 import { useState } from 'react';
-import StockInfoEmpty from './StockInfoEmpty';
 import ActiveStockInfo from './ActiveStockInfo';
+import StockInfoEmpty from './StockInfoEmpty';
 
 const StockInfoContainer = () => {
   const [infoType, setInfoType] = useState('종목정보');
@@ -20,7 +20,7 @@ const StockInfoContainer = () => {
           </div>
         ))}
       </div>
-      {stockCode || stockCode === 'null' ? (
+      {!stockCode || stockCode === 'null' ? (
         <StockInfoEmpty />
       ) : (
         <ActiveStockInfo chartType={infoType} />

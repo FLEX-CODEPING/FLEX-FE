@@ -31,30 +31,6 @@ export const getTodayDate = () => {
   return `${year}.${month}.${day}`;
 };
 
-// export const getTodayDateBar = () => {
-//   const now = new Date();
-//   const closeHour = 15;
-//   const closeMinute = 30;
-
-//   const isBeforeClose =
-//     now.getHours() < closeHour ||
-//     (now.getHours() === closeHour && now.getMinutes() < closeMinute);
-
-//   if (isBeforeClose) {
-//     now.setDate(now.getDate() - 1);
-//   }
-
-//   while (now.getDay() === 0 || now.getDay() === 6) {
-//     now.setDate(now.getDate() - 1);
-//   }
-
-//   const year = now.getFullYear();
-//   const month = String(now.getMonth() + 1).padStart(2, '0');
-//   const day = String(now.getDate()).padStart(2, '0');
-
-//   return `${year}-${month}-${day}`;
-// };
-
 export const isOpenTime = () => {
   const now = new Date();
   const day = now.getDay();
@@ -100,4 +76,11 @@ export const getTodayDateBar = () => {
   const day = String(now.getDate()).padStart(2, '0');
 
   return `${year}-${month}-${day}`;
+};
+
+export const formatYM = (dateString: string) => {
+  const year = dateString.slice(2, 4); // 3번째와 4번째 자리: 연도 마지막 두 자리
+  const month = dateString.slice(4, 6); // 5번째와 6번째 자리: 월
+
+  return `${year}년 ${parseInt(month, 10)}월`;
 };

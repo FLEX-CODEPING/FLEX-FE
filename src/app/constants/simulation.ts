@@ -149,3 +149,12 @@ export const STOCK_INFO_TOOLTIP = [
 export const FINANCIALINTO_TITLE = ['손익계산', '대차대조'];
 
 export const FINANCIALINTO_VIEWTYPE = ['분기', '연도'];
+
+export const PROFIT_LOSS_TITLE = [
+  '매출액',
+  '매출원가',
+  '매출총이익',
+  '영업이익',
+  '경상이익',
+  '당기순이익',
+];

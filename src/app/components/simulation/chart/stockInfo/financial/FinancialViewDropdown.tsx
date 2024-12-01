@@ -1,10 +1,17 @@
 import Icons from '@/app/components/common/Icons';
 import { fillter } from '@/app/constants/iconPath';
 import { FINANCIALINTO_VIEWTYPE } from '@/app/constants/simulation';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
-const FinancialViewDropdown = () => {
-  const [option, setOption] = useState('분기');
+interface FinancialViewDropdownProps {
+  option: string;
+  setOption: Dispatch<SetStateAction<string>>;
+}
+
+const FinancialViewDropdown = ({
+  option,
+  setOption,
+}: FinancialViewDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelectValue = (viewType: string) => {
