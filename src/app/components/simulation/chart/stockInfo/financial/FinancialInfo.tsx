@@ -5,6 +5,7 @@ import {
 import useStockStore from '@/app/store/store';
 import { callPost } from '@/app/utils/callApi';
 import { useEffect, useState } from 'react';
+import BalanceChart from './BalanceChart';
 import FinancialViewDropdown from './FinancialViewDropdown';
 import IncomeChart from './IncomeChart';
 
@@ -31,7 +32,7 @@ const FinancialInfo = () => {
   useEffect(() => {
     setHoverRefs((prev) => STOCK_INFO_TEXT.map(() => null));
     getStockFinancial();
-  }, [stockCode]);
+  }, [stockCode, option]);
 
   return (
     <div className="flex flex-col w-full gap-y-2">
@@ -49,7 +50,11 @@ const FinancialInfo = () => {
         </div>
         <FinancialViewDropdown option={option} setOption={setOption} />
       </div>
-      <IncomeChart financialInfo={financialInfo?.incomeStatementInfo || []} />
+      {infoType === '손익계산' ? (
+        <IncomeChart financialInfo={financialInfo?.incomeStatementInfo || []} />
+      ) : (
+        <BalanceChart balanceInfo={financialInfo?.balanceSheetInfo || []} />
+      )}
     </div>
   );
 };

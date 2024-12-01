@@ -158,3 +158,14 @@ export const PROFIT_LOSS_TITLE = [
   '경상이익',
   '당기순이익',
 ];
+
+export const BALANCE_TITLE = [
+  '유동자산',
+  '비유동자산',
+  '자산총계',
+  '유동부채',
+  '비유동부채',
+  '부채총계',
+  '자본금',
+  '자본총계',
+];
