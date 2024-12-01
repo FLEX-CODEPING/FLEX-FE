@@ -1,4 +1,4 @@
-import { formatNumberCommas } from '@/app/utils/truncate';
+import { formatNumberCommas } from '@/app/utils/formatNum';
 
 interface VolumeRankProps {
   rankData: VolumeRankTypes;
