@@ -25,3 +25,29 @@ export function formatStockData(
     listedShares, // 상장 주식 수
   ];
 }
+
+export function formatEntInfo(data: CorpInfoTypes): string[] {
+  const {
+    corpName,
+    ceoName,
+    corpRegistNo,
+    bsRegistNo,
+    address,
+    homeUrl,
+    establishmentDate,
+    accountingMonth,
+    industryName,
+  } = data;
+
+  return [
+    corpName,
+    ceoName,
+    establishmentDate,
+    accountingMonth,
+    bsRegistNo,
+    corpRegistNo,
+    homeUrl,
+    address,
+    industryName,
+  ];
+}
