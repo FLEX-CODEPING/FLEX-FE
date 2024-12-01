@@ -147,3 +147,5 @@ export const STOCK_INFO_TOOLTIP = [
 ];
 
 export const FINANCIALINTO_TITLE = ['손익계산', '대차대조'];
+
+export const FINANCIALINTO_VIEWTYPE = ['분기', '연도'];

@@ -1,6 +1,6 @@
 import EnterpriseInfo from './EnterpriseInfo';
-import FinancialInfo from './FinancialInfo';
-import StockInfoChart from './StockInfoContainer';
+import FinancialInfo from './financial/FinancialInfo';
+import StockInfo from './StockInfo';
 
 interface ActiveStockInfoProps {
   chartType: string;
@@ -10,7 +10,7 @@ const ActiveStockInfo = ({ chartType }: ActiveStockInfoProps) => {
   const activeComponenet = () => {
     switch (chartType) {
       case '종목정보':
-        return <StockInfoChart />;
+        return <StockInfo />;
       case '재무제표':
         return <FinancialInfo />;
       case '기업정보':

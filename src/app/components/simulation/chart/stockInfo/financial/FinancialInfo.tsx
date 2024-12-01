@@ -7,6 +7,7 @@ import { callGet } from '@/app/utils/callApi';
 import { getTodayDateBar } from '@/app/utils/date';
 import { formatStockData } from '@/app/utils/formatStock';
 import { useEffect, useState } from 'react';
+import FinancialViewDropdown from './FinancialViewDropdown';
 
 const FinancialInfo = () => {
   const [stockInfo, setStockInfo] = useState<null | StockDetailInfoTypes>(null);
@@ -31,15 +32,20 @@ const FinancialInfo = () => {
 
   return (
     <div className="flex flex-wrap w-full gap-y-4">
-      {FINANCIALINTO_TITLE.map((title) => (
-        <div
-          className={`w-[64px] h-[22px] pb-0.5 flex-center text-[13px] ${title === infoType && 'font-medium underline'}`}
-          onClick={() => setInfoType(title)}
-          key={title}
-        >
-          {title}
+      <div className="flex w-full justify-between">
+        <div className="flex">
+          {FINANCIALINTO_TITLE.map((title) => (
+            <div
+              className={`w-[64px] h-[22px] flex-center text-[13px] cursor-pointer ${title === infoType && 'box-border font-medium border-b-black-0 border-b pb-0'} `}
+              onClick={() => setInfoType(title)}
+              key={title}
+            >
+              {title}
+            </div>
+          ))}
         </div>
-      ))}
+        <FinancialViewDropdown />
+      </div>
     </div>
   );
 };

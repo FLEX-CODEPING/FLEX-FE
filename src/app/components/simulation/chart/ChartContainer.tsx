@@ -1,10 +1,10 @@
 'use client';
 
 import { CHART_TITLE, CHART_VIEWTYPE } from '@/app/constants/simulation';
+import useStockStore from '@/app/store/store';
 import { useState } from 'react';
 import ChartEmpty from './ChartEmpty';
 import { StockChart } from './StockChart';
-import useStockStore from '@/app/store/store';
 
 const ChartContainer = () => {
   const [viewType, setViewType] = useState<ChartViewType>('일');
