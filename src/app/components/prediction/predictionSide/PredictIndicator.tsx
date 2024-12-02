@@ -5,9 +5,10 @@ import {
   PREDICTION_INDICATION_SORT,
   PREDICTION_SIDEBAR_TEXT,
 } from '@/app/constants/prediction';
-import { predictionSide } from './predictionSide';
+import { useState } from 'react';
 import Button from '../../common/Button';
 import Icons from '../../common/Icons';
+import { predictionSide } from './predictionSide';
 
 interface PredictionData {
   dates: string[];

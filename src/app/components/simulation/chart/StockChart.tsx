@@ -1,6 +1,5 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import { Dispatch, SetStateAction } from 'react';
 
 interface StockChartProps {
@@ -9,11 +8,11 @@ interface StockChartProps {
   setValue: Dispatch<SetStateAction<string>>;
 }
 
-const ApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
+// const ApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 export function StockChart({ chartData, value, setValue }: StockChartProps) {
-  console.log(chartData,'데이터');
-  
+  console.log(chartData, '데이터');
+
   // const formattedData = chartData[1].map((data) => ({
   //   x: data.stck_bsop_date,
   //   y: [data.stck_oprc, data.stck_hgpr, data.stck_lwpr, data.stck_clpr],
@@ -23,7 +22,7 @@ export function StockChart({ chartData, value, setValue }: StockChartProps) {
 
   return (
     <div className="w-full flex flex-col">
-      <ApexChart
+      {/* <ApexChart
         type="candlestick"
         // series={[
         //   {
@@ -70,7 +69,7 @@ export function StockChart({ chartData, value, setValue }: StockChartProps) {
             show: false,
           },
         }}
-      />
+      /> */}
     </div>
   );
 }

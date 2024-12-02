@@ -5,7 +5,7 @@ import { formatYM } from '@/app/utils/date';
 import { formatCurrency } from '@/app/utils/formatNum';
 
 interface BalanceChartProps {
-  balanceInfo: balanceTypes[];
+  balanceInfo: BalanceTypes[];
 }
 
 const BalanceChart = ({ balanceInfo }: BalanceChartProps) => {

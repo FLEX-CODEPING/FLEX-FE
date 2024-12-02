@@ -28,9 +28,7 @@ export const useScrollFade = () => {
     element.addEventListener('scroll', handleScroll);
     handleScroll();
 
-    return () => {
-      element.removeEventListener('scroll', handleScroll);
-    };
+    element.removeEventListener('scroll', handleScroll);
   }, []);
 
   return { scrollRef, scrollState };

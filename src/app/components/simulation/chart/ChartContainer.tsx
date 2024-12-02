@@ -15,7 +15,7 @@ const ChartContainer = () => {
 
   const reqBody: DailyPriceBodyTypes = {
     marketDivCode: 'J',
-    stockCode: stockCode,
+    stockCode,
     dateFrom: '20180501',
     dateTo: '20241101',
     periodDivCode: 'M',

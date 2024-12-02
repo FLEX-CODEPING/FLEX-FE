@@ -80,7 +80,7 @@ interface IncomesTypes {
   netIncomeForThePeriod: string;
 }
 
-interface balanceTypes {
+interface BalanceTypes {
   yearMonth: string;
   curAssets: string;
   fixedAssets: string;
@@ -94,5 +94,5 @@ interface balanceTypes {
 
 interface FinancialDataTypes {
   incomeStatementInfo: IncomesTypes[];
-  balanceSheetInfo: balanceTypes[];
+  balanceSheetInfo: BalanceTypes[];
 }
