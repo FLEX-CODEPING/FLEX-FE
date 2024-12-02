@@ -5,10 +5,9 @@ import {
   PREDICTION_INDICATION_SORT,
   PREDICTION_SIDEBAR_TEXT,
 } from '@/app/constants/prediction';
-import { useState } from 'react';
+import { predictionSide } from './predictionSide';
 import Button from '../../common/Button';
 import Icons from '../../common/Icons';
-import { fetchPredictionData } from './predictionSide';
 
 interface PredictionData {
   dates: string[];
@@ -46,7 +45,7 @@ const PredictIndicator: React.FC<PredictIndicatorProps> = ({
 
     setLoading(true);
     console.info('분석 중...');
-    const results = await fetchPredictionData([selectedMethod]);
+    const results = await predictionSide([selectedMethod]);
     setLoading(false);
 
     if (results && results.length > 0) {
