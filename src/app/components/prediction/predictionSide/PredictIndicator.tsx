@@ -6,7 +6,7 @@ import {
   PREDICTION_SIDEBAR_TEXT,
   PREDICTION_INDICATION_SORT,
 } from '@/app/constants/prediction';
-import { fetchPredictionData } from './predictionSide';
+import { predictionSide } from './predictionSide';
 import Button from '../../common/Button';
 import Icons from '../../common/Icons';
 
@@ -46,7 +46,7 @@ const PredictIndicator: React.FC<PredictIndicatorProps> = ({
 
     setLoading(true);
     console.info('분석 중...');
-    const results = await fetchPredictionData([selectedMethod]);
+    const results = await predictionSide([selectedMethod]);
     setLoading(false);
 
     if (results && results.length > 0) {
