@@ -19,7 +19,7 @@ const SearchInfo = ({
     await callPost(`api/stocks/interest?code=${stockInfo?.stockcode}`);
     getStockInfo(stockInfo?.stockcode || '');
   };
-  console.log(stockInfo?.symbolImageUrl);
+  console.log(stockInfo, '정보');
 
   const deleteInterest = async () => {
     await callDelete(`api/stocks/interest?id=${stockInfo?.isInterested}`);
