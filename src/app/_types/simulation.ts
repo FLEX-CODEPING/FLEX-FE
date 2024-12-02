@@ -37,7 +37,6 @@ interface DailyPriceBodyTypes {
   orgAdjPrice: number;
 }
 
-
 interface DailyPriceResponseTypes {
   marketDivCode: string;
   stockCode: string;
@@ -45,4 +44,16 @@ interface DailyPriceResponseTypes {
   dateTo: string;
   periodDivCode: string;
   orgAdjPrice: number;
+}
+
+interface HoldStockTypes {
+  userId: number;
+  holdStockId: number;
+  corpName: string;
+  stockCode: string;
+  totalHoldings: number;
+  holdStatus: string;
+  avgPrice: number;
+  principal: number;
+  createdAt: string;
 }
