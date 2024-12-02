@@ -1,6 +1,6 @@
 'use client';
 
-import ChartContainer from '../simulation/chart/ChartContainer';
+import ChartContainer from './chart/PrChartContainer';
 import SImulateSearch from '../simulation/search/SImulateSearch';
 
 const PredictionConatiner = () => {
