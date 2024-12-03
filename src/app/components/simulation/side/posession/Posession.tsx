@@ -1,7 +1,6 @@
-import Icons from '@/app/components/common/Icons';
-import { interestLike } from '@/app/constants/iconPath';
 import { POSESSION_EMPTY, SIDE_NAV_TYPES } from '@/app/constants/simulation';
 import { callGet, callPost } from '@/app/utils/callApi';
+import { valueColor } from '@/app/utils/qualify';
 import { useEffect, useState } from 'react';
 import EmptyGuide from '../EmptyGuide';
 
@@ -57,17 +56,30 @@ const Posession = () => {
                     </p>
                   </div>
                   <p className="text-[10px] font-normal">
-                    평균 매수가 {stock.avgPrice}원
+                    평단가 {stock.avgPrice}원
                   </p>
                 </div>
               </div>
               <div className="flex-col">
-                <div className="flex text-xs items-center font-medium gap-x-0.5">
-                  <p>{stock.avgPrice}원</p>
-                  <Icons name={interestLike} className="cursor-pointer" />
+                <div className="flex text-sm items-center font-medium">
+                  <p>{Number(stockPrices[i].price) * stock.totalHoldings}원</p>
                 </div>
-                <div className="flex w-full justify-end text-[10px] gap-x-0.5">
-                  <p>{stock.principal}</p>
+                <div
+                  className={`flex w-full justify-end text-[10px] gap-x-0.5 ${valueColor(
+                    (Number(stockPrices[i].price) - stock.principal) *
+                      stock.totalHoldings,
+                  )}`}
+                >
+                  <p>
+                    {(Number(stockPrices[i].price) - stock.principal) *
+                      stock.totalHoldings}
+                  </p>
+                  <p>
+                    {(((Number(stockPrices[i].price) - stock.principal) *
+                      stock.totalHoldings) /
+                      Number(stockPrices[i].price)) *
+                      stock.totalHoldings}
+                  </p>
                 </div>
               </div>
             </div>
