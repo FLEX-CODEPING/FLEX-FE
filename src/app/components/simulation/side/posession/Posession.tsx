@@ -1,17 +1,36 @@
 import Icons from '@/app/components/common/Icons';
 import { interestLike } from '@/app/constants/iconPath';
 import { POSESSION_EMPTY, SIDE_NAV_TYPES } from '@/app/constants/simulation';
-import { callGet } from '@/app/utils/callApi';
+import { callGet, callPost } from '@/app/utils/callApi';
 import { useEffect, useState } from 'react';
 import EmptyGuide from '../EmptyGuide';
 
 const Posession = () => {
   const [holdStocks, setHoldStocks] = useState<HoldStockTypes[]>([]);
+  const [stockPrices, setStockPrices] = useState<
+    { stockCode: string; price: string }[]
+  >([]);
 
   const getHoldStocks = async () => {
-    const response = await callGet('api/stocks/hold');
-    setHoldStocks(response.result.content);
+    const response = await callGet(
+      `/api/stocks/hold?holdStatus=HOLDING&page=1&size=20&property=createdAt&direction=desc`,
+    );
+
+    const stocks = response.result.content;
+    setHoldStocks(stocks);
+
+    const prices = await Promise.all(
+      stocks.map(async (item: HoldStockTypes) => {
+        const data = await callPost(
+          `/api/stocks/price/inquire?stock_code=${item.stockCode}`,
+        );
+        return { stockCode: item.stockCode, price: data.result[0].stck_prpr };
+      }),
+    );
+
+    setStockPrices(prices);
   };
+  console.log(stockPrices, '보유주');
 
   useEffect(() => {
     getHoldStocks();
@@ -30,13 +49,6 @@ const Posession = () => {
               key={stock.holdStockId}
             >
               <div className="flex items-center gap-x-2">
-                {/* <Image
-                  src={stock.image_path}
-                  alt={stock.name}
-                  width={32}
-                  height={32}
-                  className="rounded-[25px]"
-                /> */}
                 <div className="flex-col gap-y-1">
                   <div className="flex items-center">
                     <p className="text-xs font-medium">{stock.corpName}</p>

@@ -99,3 +99,10 @@ export const postStockFinancial = async (
 export const postDailyPrice = async (req: Request, body: any) => {
   return postRequest('/api/kis/stocks/daily/item-chart-price', req, body);
 };
+
+export const postInquirePrice = async (req: Request, code: string) => {
+  return postRequest(
+    `/api/kis/stocks/{stock-code}/inquire-price?stock_code=${code}`,
+    req,
+  );
+};

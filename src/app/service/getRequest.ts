@@ -163,7 +163,14 @@ export const getStockSearch = async (req: Request, keyword: string) => {
   return getRequest(url, req);
 };
 
-export const getHoldStock = async (req: Request) => {
-  const url = '/api/hold-stock';
+export const getHoldStock = async (
+  req: Request,
+  holdStatus: string,
+  page: string,
+  size: string,
+  property: string,
+  direction: string,
+) => {
+  const url = `/api/hold-stocks?holdStatus=${holdStatus}&page=${page}&size=${size}&property=${property}&direction=${direction}`;
   return getRequest(url, req);
 };
