@@ -36,7 +36,7 @@ const AnalyzeContainer = () => {
         </div>
         <div className="pl-10 leading-9">
           <ol className="list-decimal tracking-wider">
-            <li>{ANALYZE_MOCK[0]}</li> 
+            <li>{ANALYZE_MOCK[0]}</li>
             <li>{ANALYZE_MOCK[1]}</li>
             <li>{ANALYZE_MOCK[2]}</li>
           </ol>
@@ -54,7 +54,7 @@ const AnalyzeContainer = () => {
         </div>
         <div className="pl-10 leading-9">
           <ol className="list-decimal tracking-wider">
-            <li>{ANALYZE_MOCK[0]}</li> 
+            <li>{ANALYZE_MOCK[0]}</li>
             <li>{ANALYZE_MOCK[1]}</li>
             <li>{ANALYZE_MOCK[2]}</li>
           </ol>
@@ -72,7 +72,7 @@ const AnalyzeContainer = () => {
         </div>
         <div className="pl-10 leading-9">
           <ol className="list-decimal tracking-wider">
-            <li>{ANALYZE_MOCK[0]}</li> 
+            <li>{ANALYZE_MOCK[0]}</li>
             <li>{ANALYZE_MOCK[1]}</li>
             <li>{ANALYZE_MOCK[2]}</li>
           </ol>

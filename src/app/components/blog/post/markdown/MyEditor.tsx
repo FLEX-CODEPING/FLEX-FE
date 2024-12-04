@@ -16,13 +16,14 @@ interface MyEditorProps {
 const MyEditor = ({ setContent }: MyEditorProps) => {
   const editorRef = useRef<Editor>(null);
 
-
   // 이미지 업로드 핸들러
   const handleImageUpload = async (blob: File, callback: Function) => {
     try {
       // 1. presigned URL을 얻기 위해 서버에 요청
-      console.log('fileName', blob.name)
-      const response = await fetch(`/api/blog/images?bucketName=dev-blog&fileName=${blob.name}`);
+      console.log('fileName', blob.name);
+      const response = await fetch(
+        `/api/blog/images?bucketName=dev-blog&fileName=${blob.name}`,
+      );
       if (!response.ok) {
         throw new Error('Failed to get presigned URL');
       }
