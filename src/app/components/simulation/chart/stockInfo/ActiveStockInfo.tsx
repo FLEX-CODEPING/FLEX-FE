@@ -1,6 +1,6 @@
 import EnterpriseInfo from './EnterpriseInfo';
 import FinancialInfo from './financial/FinancialInfo';
-import StockInfo from './StockInfo';
+import StockInfo from './entValue/StockInfo';
 
 interface ActiveStockInfoProps {
   chartType: string;

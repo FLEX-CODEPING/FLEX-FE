@@ -15,13 +15,13 @@ const ChartContainer = () => {
 
   const getDailyPrice = async () => {
     const response = await callPost('api/stocks/price', MockStockPriceReq);
-    console.log(response, '요청 데이터');
-    setData(response.result.output2);
+    setData(response.result);
   };
 
   useEffect(() => {
     getDailyPrice();
   }, [stockCode]);
+
   return (
     <div className="flex w-full px-5 py-5 rounded-[10px] border border-gray-4 flex-col justify-start items-start gap-y-5">
       {/* <div className="flex w-full justify-between">

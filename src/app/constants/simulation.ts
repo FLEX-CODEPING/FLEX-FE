@@ -120,6 +120,9 @@ export const STOCK_INFO_TEXT = [
   '시가총액',
   '거래대금',
   '상장 주식 수',
+];
+
+export const ENT_VALUE_TEXT = [
   'BPS',
   'PER',
   'PBR',
@@ -138,6 +141,9 @@ export const STOCK_INFO_TOOLTIP = [
   '주식의 (주식의 현재 가격 * 상장 주식 수)을 의미해요',
   '해당 주식의 하루 총 거래 금액을 의미해요',
   '시장에 상장된 주식 총 수를 의미해요',
+];
+
+export const ENT_VALUE_TOOLTIP = [
   '회사의 순자산(자산-부채)을 발행 주식 수로 나눈 값을 의미해요',
   '현재 주가를 주당 순이익(EPS)으로 나눈 값을 의미해요',
   '현재 주가를 주당 순자산(BPS)으로 나눈 값을 의미해요',
@@ -146,7 +152,9 @@ export const STOCK_INFO_TOOLTIP = [
   '기업이 주당 지급하는 배당금을 의미해요',
 ];
 
-export const FINANCIALINTO_TITLE = ['손익계산', '대차대조'];
+export const FINANCIALINFO_TITLE = ['손익계산', '대차대조'];
+
+export const STOCKINFO_TITLE = ['종목정보', '기업가치'];
 
 export const FINANCIALINTO_VIEWTYPE = ['분기', '연도'];
 

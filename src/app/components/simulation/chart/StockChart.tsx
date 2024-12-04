@@ -12,14 +12,10 @@ interface StockChartProps {
 const ApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 export function StockChart({ chartData, value, setValue }: StockChartProps) {
-  console.log(chartData, '데이터');
-
   const formattedData = chartData[1].map((data: any) => ({
     x: data.stck_bsop_date,
     y: [data.stck_oprc, data.stck_hgpr, data.stck_lwpr, data.stck_clpr],
   }));
-
-  // console.log(formattedData, '필터');
 
   return (
     <div className="w-full flex flex-col">

@@ -47,7 +47,7 @@ export const MAIN_LEFT_ETC = ['다른 뉴스 보러가기', '블로그 구경가
 export const RANKING_COLOR = ['bg-[#FEEAB4]', 'bg-[#e5e5e5]', 'bg-[#e5cbbc]'];
 
 export const MAIN_CONTENTS_TITLE = [
-  '오늘의 게시물',
+  '최신 게시물',
   '오늘의 뉴스',
   '주식 차트',
   '️인기 게시물',
