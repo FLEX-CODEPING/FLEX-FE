@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import PrChart from './PrChart'; 
+import PrChart from './PrChart';
 
 const PrChartContainer = () => {
   return (
