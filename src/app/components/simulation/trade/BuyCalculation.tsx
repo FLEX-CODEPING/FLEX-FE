@@ -2,7 +2,7 @@ import { MODAL_TEXT_BUY, TRADE_BUY_TEXT } from '@/app/constants/simulation';
 import { MODALDATA } from '@/app/data/simulation';
 import { useModal } from '@/app/hooks/useModal';
 import Button from '../../common/Button';
-import DoubleCheckModal from '../modal/DoubleCheckModal';
+import DoubleCheckModal from './modal/DoubleCheckModal';
 
 interface BuyCalculationProps {
   total: number;

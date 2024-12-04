@@ -18,6 +18,7 @@ const TradeBar = () => {
   const sellStyles = tradeType === '매수' ? 'text-red-1' : 'text-gray-1';
   const buyStyles = tradeType === '매도' ? 'text-blue-1' : 'text-gray-1';
 
+
   const selectAmountType = (type: AmountType) => {
     amountType === type ? setAmountType(null) : setAmountType(type);
   };

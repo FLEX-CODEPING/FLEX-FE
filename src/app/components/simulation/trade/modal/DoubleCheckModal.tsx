@@ -1,7 +1,9 @@
 'use client';
 
+import Button from '@/app/components/common/Button';
+import useStockStore from '@/app/store/store';
+import { callPost } from '@/app/utils/callApi';
 import { useState } from 'react';
-import Button from '../../common/Button';
 
 interface DoubleCheckModalProps {
   textArr: string[];
@@ -18,7 +20,26 @@ const DoubleCheckModal = ({
 }: DoubleCheckModalProps) => {
   const [isDone, setIsDone] = useState(false);
   const colorBefore = tradeType === '매수' ? 'bg-red-2' : 'bg-blue-2';
-  const colorAfter = tradeType === '매수' ? 'bg-red-1' : 'bg-blue-1';
+  const colorAfter =
+    tradeType === '매수' ? 'hover:bg-red-1' : 'hover:bg-blue-1';
+  const { stockCode, stockName } = useStockStore();
+
+  const buyReqBody = {
+    quantity: 1,
+    price: 20000,
+    totalPrice: 20000,
+    stockCode: stockCode,
+    corpName: stockName,
+  };
+
+  const getTradeRecord = async () => {
+    const response = await callPost('api/stocks/trade/buy', buyReqBody);
+    setIsDone(true);
+    console.log(response, '차트 결과');
+  };
+
+  
+
   return (
     <div className="fixed inset-0 flex-center bg-gray-1 bg-opacity-70 z-50">
       <div className="w-[640px] h-[284px] px-11 py-[52px] bg-white rounded-[20px] flex flex-col justify-between">
@@ -35,9 +56,9 @@ const DoubleCheckModal = ({
           {!isDone && (
             <Button
               buttonText={textArr[1]}
-              className={`${colorBefore} text-white hover:${colorAfter}`}
+              className={`${colorBefore} text-white ${colorAfter}`}
               type="tradeModal"
-              onClickHandler={() => setIsDone(true)}
+              onClickHandler={getTradeRecord}
             />
           )}
           <Button
