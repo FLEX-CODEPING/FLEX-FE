@@ -3,6 +3,7 @@ import { likeSmall } from '@/app/constants/iconPath';
 import { formatDate } from '@/app/utils/date';
 import { truncateString } from '@/app/utils/truncate';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface BlogPostProps {
   post: LandingPostTypes;
@@ -14,7 +15,8 @@ const BlogPost = ({ post }: BlogPostProps) => {
     : [];
 
   return (
-    <div
+    <Link
+      href={`blog/detail?id=${post.id}`}
       key={post.id}
       className="w-[382px] cursor-pointer bg-white rounded-md relative group"
     >
@@ -63,7 +65,7 @@ const BlogPost = ({ post }: BlogPostProps) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

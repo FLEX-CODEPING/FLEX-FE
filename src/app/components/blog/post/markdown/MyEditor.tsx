@@ -1,6 +1,7 @@
 'use client';
 
 import { TOOLBAR_ITEMS } from '@/app/constants/blog';
+import { callGet } from '@/app/utils/callApi';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
@@ -15,11 +16,35 @@ interface MyEditorProps {
 const MyEditor = ({ setContent }: MyEditorProps) => {
   const editorRef = useRef<Editor>(null);
 
-  const handleImageUpload = (blob: File, callback: Function) => {
-    const dummyUrl =
-      'https://www.kcie.or.kr/webbook_img?file=webbook/MjAyMTA2MzBfMTEg/MDAxNjI1MDE2Mzg0MDQ5.84-tA-RQkkuB_-bTpllTG2J7XQNGGqgxekJTuboeBQEg.8708-QyOZaPOvyf2l_3Z8tA9aZH2BMqAoeq_qeJWZwcg.PNG/Read_theChart_img_04.png';
-    const fileName = blob.name;
-    callback(dummyUrl, '이미지 설명');
+
+  // 이미지 업로드 핸들러
+  const handleImageUpload = async (blob: File, callback: Function) => {
+    try {
+      // 1. presigned URL을 얻기 위해 서버에 요청
+      console.log('fileName', blob.name)
+      const response = await fetch(`/api/blog/images?bucketName=dev-blog&fileName=${blob.name}`);
+      if (!response.ok) {
+        throw new Error('Failed to get presigned URL');
+      }
+      const resData = await response.json();
+      const presignedUrl = resData.result;
+
+      // 2. presigned URL로 이미지를 PUT 요청으로 업로드
+      await fetch(presignedUrl, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': blob.type,
+        },
+        body: blob,
+      });
+
+      // 3. presigned URL에서 파라미터 제거하고 이미지 URL을 콜백으로 전달
+      const imageUrl = presignedUrl.split('?')[0];
+      callback(imageUrl, '이미지 설명');
+    } catch (error) {
+      console.error('Error handling image upload:', error);
+      alert('이미지 업로드에 실패했습니다.');
+    }
   };
 
   const handleContentChange = () => {

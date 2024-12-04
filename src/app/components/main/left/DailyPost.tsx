@@ -15,7 +15,7 @@ const DailyPost = ({ post }: DailyPostProps) => {
 
   return (
     <Link
-      href="/"
+      href={`blog/detail?id=${post.id}`}
       key={post.id}
       className="w-[344px] flex flex-col gap-y-2.5 cursor-pointer bg-white rounded group"
     >
