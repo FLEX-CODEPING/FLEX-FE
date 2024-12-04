@@ -19,7 +19,7 @@ const config: Config = {
           4: '#ffeae0',
         },
         red: {
-          1: '#FF0000',
+          1: '#F12C2C',
           2: '#FF6A6A',
         },
         blue: {
