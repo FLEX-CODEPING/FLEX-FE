@@ -1,6 +1,6 @@
 'use client';
 
-import { CHART_TITLE, CHART_VIEWTYPE } from '@/app/constants/simulation';
+import { MockStockPriceReq } from '@/app/data/simulation';
 import useStockStore from '@/app/store/store';
 import { callPost } from '@/app/utils/callApi';
 import { useEffect, useState } from 'react';
@@ -13,18 +13,10 @@ const ChartContainer = () => {
   const [data, setData] = useState();
   const [selectedValue, setSelectedValue] = useState('');
 
-  const reqBody: DailyPriceBodyTypes = {
-    marketDivCode: 'J',
-    stockCode,
-    dateFrom: '20180501',
-    dateTo: '20241101',
-    periodDivCode: 'M',
-    orgAdjPrice: 0,
-  };
-
   const getDailyPrice = async () => {
-    const response = await callPost('api/stocks/price', reqBody);
-    setData(response.result);
+    const response = await callPost('api/stocks/price', MockStockPriceReq);
+    console.log(response, '요청 데이터');
+    setData(response.result.output2);
   };
 
   useEffect(() => {
@@ -32,7 +24,7 @@ const ChartContainer = () => {
   }, [stockCode]);
   return (
     <div className="flex w-full px-5 py-5 rounded-[10px] border border-gray-4 flex-col justify-start items-start gap-y-5">
-      <div className="flex w-full justify-between">
+      {/* <div className="flex w-full justify-between">
         <div className="px-3 h-9 p-1 flex-center font-medium text-lg">
           {CHART_TITLE[0]}
           {selectedValue}
@@ -48,15 +40,11 @@ const ChartContainer = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
       {!stockCode || stockCode === 'null' ? (
         <ChartEmpty />
       ) : (
-        <StockChart
-          chartData={data}
-          value={selectedValue}
-          setValue={setSelectedValue}
-        />
+        <StockChart chartData={data} value={''} setValue={setSelectedValue} />
       )}
     </div>
   );

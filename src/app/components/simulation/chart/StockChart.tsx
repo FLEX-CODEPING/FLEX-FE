@@ -1,5 +1,6 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { Dispatch, SetStateAction } from 'react';
 
 interface StockChartProps {
@@ -8,27 +9,27 @@ interface StockChartProps {
   setValue: Dispatch<SetStateAction<string>>;
 }
 
-// const ApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
+const ApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 export function StockChart({ chartData, value, setValue }: StockChartProps) {
   console.log(chartData, '데이터');
 
-  // const formattedData = chartData[1].map((data) => ({
-  //   x: data.stck_bsop_date,
-  //   y: [data.stck_oprc, data.stck_hgpr, data.stck_lwpr, data.stck_clpr],
-  // }));
+  const formattedData = chartData[1].map((data: any) => ({
+    x: data.stck_bsop_date,
+    y: [data.stck_oprc, data.stck_hgpr, data.stck_lwpr, data.stck_clpr],
+  }));
 
   // console.log(formattedData, '필터');
 
   return (
     <div className="w-full flex flex-col">
-      {/* <ApexChart
+      <ApexChart
         type="candlestick"
-        // series={[
-        //   {
-        //     data: formattedData,
-        //   },
-        // ]}
+        series={[
+          {
+            data: formattedData,
+          },
+        ]}
         width="100%"
         height={300}
         options={{
@@ -47,7 +48,6 @@ export function StockChart({ chartData, value, setValue }: StockChartProps) {
                   const seriesIndex = config.seriesIndex;
                   const hoveredData =
                     config.config.series[seriesIndex].data[dataIndex];
-
                   setValue(
                     `Date: ${hoveredData.x}, Open: ${hoveredData.y[0]}, High: ${hoveredData.y[1]}, Low: ${hoveredData.y[2]}, Close: ${hoveredData.y[3]}`,
                   );
@@ -69,7 +69,7 @@ export function StockChart({ chartData, value, setValue }: StockChartProps) {
             show: false,
           },
         }}
-      /> */}
+      />
     </div>
   );
 }
