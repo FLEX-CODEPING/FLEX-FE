@@ -84,3 +84,24 @@ export const formatYM = (dateString: string) => {
 
   return `${year}년 ${parseInt(month, 10)}월`;
 };
+
+export const getTodayAndSixMonthsAgo = (): {
+  today: string;
+  sixMonthsAgo: string;
+} => {
+  const today = new Date();
+  const sixMonthsAgo = new Date(today);
+  sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+
+  const formatDate = (date: Date): string => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  return {
+    today: formatDate(today),
+    sixMonthsAgo: formatDate(sixMonthsAgo),
+  };
+};

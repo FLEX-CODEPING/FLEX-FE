@@ -15,6 +15,7 @@ const ChartContainer = () => {
 
   const getDailyPrice = async () => {
     const response = await callPost('api/stocks/price', MockStockPriceReq);
+    console.log(response, '차트 그리는 데이터');
     setData(response.result);
   };
 
@@ -44,7 +45,9 @@ const ChartContainer = () => {
       {!stockCode || stockCode === 'null' ? (
         <ChartEmpty />
       ) : (
-        <StockChart chartData={data} value={''} setValue={setSelectedValue} />
+        <ChartEmpty />
+
+        // <StockChart chartData={data} value={''} setValue={setSelectedValue} />
       )}
     </div>
   );

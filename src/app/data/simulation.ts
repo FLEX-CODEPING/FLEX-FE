@@ -330,7 +330,7 @@ export const MockStockPriceReq: DailyPriceBodyTypes = {
   marketDivCode: 'J',
   stockCode: '005930',
   dateFrom: '20180501',
-  dateTo: '20241101',
+  dateTo: '20241204',
   periodDivCode: 'M',
   orgAdjPrice: 0,
 };

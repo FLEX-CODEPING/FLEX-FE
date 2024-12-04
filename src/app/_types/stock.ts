@@ -96,3 +96,19 @@ interface FinancialDataTypes {
   incomeStatementInfo: IncomesTypes[];
   balanceSheetInfo: BalanceTypes[];
 }
+
+interface TodayTradeTypes {
+  totalBuyVolume: string;
+  totalSellVolume: string;
+}
+
+interface TradeVolumeTypes {
+  tradingDate: string;
+  dailySellVolume: string;
+  dailyBuyVolume: string;
+}
+
+interface TradeRecordTypes {
+  output1: TodayTradeTypes[];
+  output2: TradeVolumeTypes[];
+}

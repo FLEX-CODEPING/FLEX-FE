@@ -189,3 +189,5 @@ export const ENTERPRISE_INFO = [
   '산업명',
   '주소',
 ];
+
+export const STOCK_TRADE_TEXT = ['날짜', '매수수량', '매도수량'];
