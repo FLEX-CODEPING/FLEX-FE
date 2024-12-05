@@ -5,7 +5,8 @@ import {
   TRADE_BUY_TEXT,
   TRADE_SELL_TEXT,
 } from '@/app/constants/simulation';
-import { useState } from 'react';
+import { callGet } from '@/app/utils/callApi';
+import { useEffect, useState } from 'react';
 import Input from '../../common/Input';
 import BuyCalculation from './BuyCalculation';
 import SellCalculation from './SellCalculation';
@@ -14,10 +15,10 @@ const TradeBar = () => {
   const [tradeType, setTradeType] = useState<TradeType>('매수');
   const [tradeCnt, setTradeCnt] = useState('');
   const [amountType, setAmountType] = useState<AmountType | null>(null);
+  const [balance, setBalance] = useState(0);
 
   const sellStyles = tradeType === '매수' ? 'text-red-1' : 'text-gray-1';
   const buyStyles = tradeType === '매도' ? 'text-blue-1' : 'text-gray-1';
-
 
   const selectAmountType = (type: AmountType) => {
     amountType === type ? setAmountType(null) : setAmountType(type);
@@ -38,6 +39,16 @@ const TradeBar = () => {
       setTradeCnt(value);
     }
   };
+
+  useEffect(() => {
+    const getDailyPrice = async () => {
+      const response = await callGet('api/stocks/trade/balance');
+      console.log(response, '가져온 잔액');
+
+      setBalance(response.result.balance);
+    };
+    getDailyPrice();
+  }, []);
 
   return (
     <div className="w-[300px] h-[475px] px-8 py-4 flex flex-col rounded-[10px] border border-gray-4">
@@ -98,13 +109,13 @@ const TradeBar = () => {
         {tradeType === '매수' ? (
           <BuyCalculation
             total={Number(tradeCnt) * 72000}
-            assets={100000}
+            assets={balance}
             stockId="005930"
           />
         ) : (
           <SellCalculation
             total={Number(tradeCnt) * 72000}
-            assets={100000}
+            assets={balance}
             stockId="005930"
           />
         )}

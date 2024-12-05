@@ -174,3 +174,8 @@ export const getHoldStock = async (
   const url = `/api/hold-stocks?holdStatus=${holdStatus}&page=${page}&size=${size}&property=${property}&direction=${direction}`;
   return getRequest(url, req);
 };
+
+export const getBalance = async (req: Request) => {
+  const url = '/api/transactions/summary';
+  return getRequest(url, req);
+};
