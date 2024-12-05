@@ -110,7 +110,7 @@ interface TradeVolumeTypes {
 
 interface TradeRecordTypes {
   output1: TodayTradeTypes[];
-  outputnumber: TradeVolumeTypes[];
+  output2: TradeVolumeTypes[];
 }
 
 interface TradeBuyTypes {

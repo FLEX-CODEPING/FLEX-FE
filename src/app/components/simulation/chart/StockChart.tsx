@@ -1,6 +1,5 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import { Dispatch, SetStateAction } from 'react';
 
 interface StockChartProps {
@@ -9,7 +8,7 @@ interface StockChartProps {
   setValue: Dispatch<SetStateAction<string>>;
 }
 
-const ApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
+// const ApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 export function StockChart({ chartData, value, setValue }: StockChartProps) {
   const formattedData = chartData[1].map((data: any) => ({
@@ -19,7 +18,7 @@ export function StockChart({ chartData, value, setValue }: StockChartProps) {
 
   return (
     <div className="w-full flex flex-col">
-      <ApexChart
+      {/* <ApexChart
         type="candlestick"
         series={[
           {
@@ -65,7 +64,7 @@ export function StockChart({ chartData, value, setValue }: StockChartProps) {
             show: false,
           },
         }}
-      />
+      /> */}
     </div>
   );
 }

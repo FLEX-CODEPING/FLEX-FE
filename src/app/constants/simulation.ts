@@ -43,6 +43,8 @@ export const SIDE_NAV_ICONS_SELECTED: IconPathTypes[] = [
   tradeActive,
 ];
 
+export const TRADE_TYPE: TradeType[] = ['매수', '매도'];
+
 export const TRADE_BUY_TEXT = [
   '주문하기',
   '매수',
