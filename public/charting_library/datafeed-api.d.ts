@@ -160,20 +160,13 @@ export interface DatafeedConfiguration {
  */
 export interface DatafeedQuoteValues {
 	/**
-	 * Price change. It is usually calculated as a difference between the current price and close price of the previous day (regular session).
-	 * In the UI, `ch` and {@link chp} are represented as the last day change parameter in *Data Window*.
-	 * You can also display these values in the [legend](https://www.tradingview.com/charting-library-docs/latest/ui_elements/Legend#last-day-change-values).
-	 * If `ch` and `chp` are not provided, `0.00 (0.00%)` is displayed instead.
-	 *
-	 * Note that `ch` and `chp` are **required** for mobile apps. Otherwise, [`NaN` values](https://www.tradingview.com/charting-library-docs/latest/ui_elements/Legend#nan-values-in-legend) will appear in the legend.
+	 * Price change (usually counts as an open price on a particular day).
+	 * Required for mobile apps. Otherwise, `NaN` values will appear in the [Legend](https://www.tradingview.com/charting-library-docs/latest/ui_elements/Legend).
 	 */
 	ch?: number;
 	/**
-	 * Price change percentage. In the UI, `chp` and {@link ch} are represented as the last day change parameter in *Data Window*.
-	 * You can also display these values in the [Legend](https://www.tradingview.com/charting-library-docs/latest/ui_elements/Legend#last-day-change-values).
-	 * If `ch` and `chp` are not provided, `0.00 (0.00%)` is displayed instead.
-	 *
-	 * Note that `ch` and `chp` are **required** for mobile apps. Otherwise, [`NaN` values](https://www.tradingview.com/charting-library-docs/latest/ui_elements/Legend#nan-values-in-legend) will appear in the Legend.
+	 * Price change percentage.
+	 * Required for mobile apps. Otherwise, `NaN` values will appear in the [Legend](https://www.tradingview.com/charting-library-docs/latest/ui_elements/Legend).
 	 */
 	chp?: number;
 	/** Short name for a symbol. Short name is used in the title for the [News](https://www.tradingview.com/charting-library-docs/latest/trading_terminal/news), [Watchlist](https://www.tradingview.com/charting-library-docs/latest/trading_terminal/Watch-List) and [Details](https://www.tradingview.com/charting-library-docs/latest/trading_terminal/#details) widgets. You can disable the [`prefer_quote_short_name`](https://www.tradingview.com/charting-library-docs/latest/customization/Featuresets#prefer_quote_short_name) to use the {@link LibrarySymbolInfo.ticker} value instead. */
@@ -1082,7 +1075,7 @@ export interface Unit {
 	/** Description */
 	description: string;
 }
-export type CustomTimezones = "Africa/Cairo" | "Africa/Casablanca" | "Africa/Johannesburg" | "Africa/Lagos" | "Africa/Nairobi" | "Africa/Tunis" | "America/Anchorage" | "America/Argentina/Buenos_Aires" | "America/Bogota" | "America/Caracas" | "America/Chicago" | "America/El_Salvador" | "America/Juneau" | "America/Lima" | "America/Los_Angeles" | "America/Mexico_City" | "America/New_York" | "America/Phoenix" | "America/Santiago" | "America/Sao_Paulo" | "America/Toronto" | "America/Vancouver" | "Asia/Almaty" | "Asia/Ashkhabad" | "Asia/Bahrain" | "Asia/Bangkok" | "Asia/Chongqing" | "Asia/Colombo" | "Asia/Dhaka" | "Asia/Dubai" | "Asia/Ho_Chi_Minh" | "Asia/Hong_Kong" | "Asia/Jakarta" | "Asia/Jerusalem" | "Asia/Karachi" | "Asia/Kathmandu" | "Asia/Kolkata" | "Asia/Kuala_Lumpur" | "Asia/Kuwait" | "Asia/Manila" | "Asia/Muscat" | "Asia/Nicosia" | "Asia/Qatar" | "Asia/Riyadh" | "Asia/Seoul" | "Asia/Shanghai" | "Asia/Singapore" | "Asia/Taipei" | "Asia/Tehran" | "Asia/Tokyo" | "Asia/Yangon" | "Atlantic/Azores" | "Atlantic/Reykjavik" | "Australia/Adelaide" | "Australia/Brisbane" | "Australia/Perth" | "Australia/Sydney" | "Europe/Amsterdam" | "Europe/Athens" | "Europe/Belgrade" | "Europe/Berlin" | "Europe/Bratislava" | "Europe/Brussels" | "Europe/Bucharest" | "Europe/Budapest" | "Europe/Copenhagen" | "Europe/Dublin" | "Europe/Helsinki" | "Europe/Istanbul" | "Europe/Lisbon" | "Europe/London" | "Europe/Luxembourg" | "Europe/Madrid" | "Europe/Malta" | "Europe/Moscow" | "Europe/Oslo" | "Europe/Paris" | "Europe/Prague" | "Europe/Riga" | "Europe/Rome" | "Europe/Stockholm" | "Europe/Tallinn" | "Europe/Vienna" | "Europe/Vilnius" | "Europe/Warsaw" | "Europe/Zurich" | "Pacific/Auckland" | "Pacific/Chatham" | "Pacific/Fakaofo" | "Pacific/Honolulu" | "Pacific/Norfolk" | "US/Mountain";
+export type CustomTimezones = "Africa/Cairo" | "Africa/Casablanca" | "Africa/Johannesburg" | "Africa/Lagos" | "Africa/Nairobi" | "Africa/Tunis" | "America/Anchorage" | "America/Argentina/Buenos_Aires" | "America/Bogota" | "America/Caracas" | "America/Chicago" | "America/El_Salvador" | "America/Juneau" | "America/Lima" | "America/Los_Angeles" | "America/Mexico_City" | "America/New_York" | "America/Phoenix" | "America/Santiago" | "America/Sao_Paulo" | "America/Toronto" | "America/Vancouver" | "Asia/Almaty" | "Asia/Ashkhabad" | "Asia/Bahrain" | "Asia/Bangkok" | "Asia/Chongqing" | "Asia/Colombo" | "Asia/Dhaka" | "Asia/Dubai" | "Asia/Ho_Chi_Minh" | "Asia/Hong_Kong" | "Asia/Jakarta" | "Asia/Jerusalem" | "Asia/Karachi" | "Asia/Kathmandu" | "Asia/Kolkata" | "Asia/Kuala_Lumpur" | "Asia/Kuwait" | "Asia/Manila" | "Asia/Muscat" | "Asia/Nicosia" | "Asia/Qatar" | "Asia/Riyadh" | "Asia/Seoul" | "Asia/Shanghai" | "Asia/Singapore" | "Asia/Taipei" | "Asia/Tehran" | "Asia/Tokyo" | "Asia/Yangon" | "Atlantic/Reykjavik" | "Australia/Adelaide" | "Australia/Brisbane" | "Australia/Perth" | "Australia/Sydney" | "Europe/Amsterdam" | "Europe/Athens" | "Europe/Belgrade" | "Europe/Berlin" | "Europe/Bratislava" | "Europe/Brussels" | "Europe/Bucharest" | "Europe/Budapest" | "Europe/Copenhagen" | "Europe/Dublin" | "Europe/Helsinki" | "Europe/Istanbul" | "Europe/Lisbon" | "Europe/London" | "Europe/Luxembourg" | "Europe/Madrid" | "Europe/Malta" | "Europe/Moscow" | "Europe/Oslo" | "Europe/Paris" | "Europe/Prague" | "Europe/Riga" | "Europe/Rome" | "Europe/Stockholm" | "Europe/Tallinn" | "Europe/Vienna" | "Europe/Vilnius" | "Europe/Warsaw" | "Europe/Zurich" | "Pacific/Auckland" | "Pacific/Chatham" | "Pacific/Fakaofo" | "Pacific/Honolulu" | "Pacific/Norfolk" | "US/Mountain";
 export type DOMCallback = (data: DOMData) => void;
 export type DatafeedErrorCallback = (reason: string) => void;
 export type GetMarksCallback<T> = (marks: T[]) => void;
