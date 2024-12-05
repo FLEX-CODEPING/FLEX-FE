@@ -2,6 +2,7 @@ import { STOCK_TRADE_TEXT } from '@/app/constants/simulation';
 import useStockStore from '@/app/store/store';
 import { callPost } from '@/app/utils/callApi';
 import { getTodayAndSixMonthsAgo } from '@/app/utils/date';
+import { formatNumberCommas } from '@/app/utils/formatNum';
 import { useEffect, useState } from 'react';
 
 const TradeRecord = () => {
@@ -35,14 +36,18 @@ const TradeRecord = () => {
           ))}
         </div>
       </div>
-      <div className="flex flex-col min-h-[130px] w-full">
+      <div className="flex flex-col h-[130px] w-full overflow-y-auto gap-y-2">
         {record?.output2.map((record) => (
-          <div className="text-xs font-medium">
+          <div className="text-xs font-medium flex w-full">
             <p className="flex-center font-light w-[24%]">
               {record.tradingDate}
             </p>
-            <p className="flex-center w-[38%]">{record.dailyBuyVolume}</p>
-            <p className="flex-center w-[38%]">{record.dailySellVolume}</p>
+            <p className="flex-center w-[38%]">
+              {formatNumberCommas(record.dailyBuyVolume)}
+            </p>
+            <p className="flex-center w-[38%]">
+              {formatNumberCommas(record.dailySellVolume)}
+            </p>
           </div>
         ))}
       </div>

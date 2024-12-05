@@ -37,9 +37,6 @@ const StockInfo = () => {
             </div>
           ))}
         </div>
-        {/* {infoType === '종목정보'
-        ? stockInfo && <StockDetail data={stockInfo} />
-        : stockInfo && <EntValue data={stockInfo} />} */}
         {infoType === '종목정보'
           ? stockInfo && <StockDetail data={stockInfo} />
           : stockInfo && <EntValue data={stockInfo} />}

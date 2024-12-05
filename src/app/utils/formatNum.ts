@@ -20,5 +20,8 @@ export const formatCurrency = (input: number | string) => {
 };
 
 export const formatNumberCommas = (num: number | string) => {
+  if (typeof num === 'string') {
+    num = Number(num);
+  }
   return num.toLocaleString('en-US');
 };

@@ -6,7 +6,7 @@ const ChartEmpty = () => {
   return (
     <div className="flex-col-center w-full justify-center text-black-0 h-[315px] gap-y-4">
       <Icons name={noneChart} className="animate-pulse" />
-      <p className="text-2xl font-normal mb-20">{CHART_EMPTY_TEXT}</p>
+      <p className="text-2xl font-light">{CHART_EMPTY_TEXT}</p>
     </div>
   );
 };

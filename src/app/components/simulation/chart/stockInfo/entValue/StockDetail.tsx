@@ -19,7 +19,6 @@ interface StockDetailProps {
 const StockDetail = ({ data }: StockDetailProps) => {
   const [stockInfo, setStockInfo] = useState<null | StockDetailInfoTypes>(null);
   const [hoverRefs, setHoverRefs] = useState<(HTMLDivElement | null)[]>([]);
-  const [infoType, setInfoType] = useState('종목정보');
   const { stockCode } = useStockStore();
 
   useEffect(() => {
