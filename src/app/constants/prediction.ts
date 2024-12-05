@@ -48,7 +48,7 @@ export const ANALYZE_HEADER_TEXT = [
 ];
 
 export const ANALYZE_CAUTION = [
-  '⚠ ️본 내용은 참고 자료일 뿐 실제 투자 시 리스크가 따를 수 있습니다',
+  '⚠️ ️본 내용은 참고 자료일 뿐 실제 투자 시 리스크가 따를 수 있습니다',
 ];
 
 export const ANALYZE_RESULT_TITLE = [
