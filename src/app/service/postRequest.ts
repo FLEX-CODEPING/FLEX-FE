@@ -5,10 +5,14 @@ const commonHeaders = {
   'Content-Type': 'application/json',
 };
 
-const postRequest = async (url: string, req: Request, body: any = null) => {
-  const token = getCookie(req, 'accessToken');
+const postRequest = async (
+  url: string,
+  req: Request | null,
+  body: any = null,
+) => {
+  const token = req ? getCookie(req, 'accessToken') : null;
   const headers = {
-    ...commonHeaders,
+    'Content-Type': 'application/json',
     ...(token && { Authorization: `Bearer ${token}` }),
   };
 
@@ -79,4 +83,21 @@ export const postCheckBlogName = async (blogName: any, req: Request) => {
 
 export const postLogout = async (req: Request) => {
   return postRequest('/api/auth/logout', req);
+};
+export const postStockRank = async (body: any, req: Request, type: string) => {
+  return postRequest(`/api/kis/stocks/ranking/${type}`, req, body);
+};
+export const postStockFinancial = async (
+  req: Request,
+  code: string,
+  classCode: string,
+) => {
+  return postRequest(
+    `/api/kis/stocks/financial-statements?stockCode=${code}&classCode=${classCode}`,
+    req,
+  );
+};
+
+export const postDailyPrice = async (req: Request, body: any) => {
+  return postRequest('/api/kis/stocks/daily/item-chart-price', req, body);
 };
