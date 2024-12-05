@@ -14,6 +14,8 @@ const BlogPost = ({ post }: BlogPostProps) => {
     ? post.tags.split(',').map((tag: string) => `#${tag}`)
     : [];
 
+    const textContent = post.content.replace(/!\[.*?\]\(.*?\)/g, '').trim();
+
   return (
     <Link
       href={`blog/detail?id=${post.id}`}
@@ -25,6 +27,7 @@ const BlogPost = ({ post }: BlogPostProps) => {
           src={post.imageUrls[0] || '/images/3c.png'}
           alt={post.title}
           fill
+          objectFit='cover'
           className="rounded-md transition-transform duration-300 ease-in-out group-hover:scale-110"
         />
       </div>
@@ -39,13 +42,13 @@ const BlogPost = ({ post }: BlogPostProps) => {
               height={20}
               className="rounded-full"
             />
-            <span>코드핑</span>
+            <span>{post.nickname}</span>
           </div>
           <span className="text-gray-1">{formatDate(post.createdAt)}</span>
         </div>
         <h2 className="font-semibold text-base">{post.title}</h2>
         <p className="text-sm text-gray-700 h-10">
-          {truncateString(post.content, 68)}
+          {truncateString(textContent, 68)}
         </p>
 
         <div className="flex justify-between items-center h-[30px]">

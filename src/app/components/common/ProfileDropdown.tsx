@@ -40,12 +40,12 @@ const ProfileDropdown = () => {
             </Link>
             {isHover && (
               <div className="absolute flex flex-col top-[26px] left-[103px] border border-gray-2 text-xs rounded-[8px] z-10 bg-white">
-                <div className="w-[90px] cursor-pointer h-[32px] flex-center border-b border-gray-2 hover:text-main-1">
+                <Link className="w-[90px] cursor-pointer h-[32px] flex-center border-b border-gray-2 hover:text-main-1" href="/mypage">
                   {HEADER_PROFILE_TEXT[0]}
-                </div>
-                <div className="w-[90px] cursor-pointer h-[32px] flex-center border-b border-gray-2 hover:text-main-1">
+                </Link>
+                <Link className="w-[90px] cursor-pointer h-[32px] flex-center border-b border-gray-2 hover:text-main-1" href="/myaccount">
                   {HEADER_PROFILE_TEXT[1]}
-                </div>
+                </Link>
                 <div
                   className="w-[90px] cursor-pointer h-[32px] flex-center border-b border-gray-2 hover:text-main-1"
                   onClick={handleLogout}

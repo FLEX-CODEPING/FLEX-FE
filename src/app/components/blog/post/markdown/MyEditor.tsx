@@ -36,7 +36,7 @@ const MyEditor = ({ setContent }: MyEditorProps) => {
       });
 
       const imageUrl = presignedUrl.split('?')[0];
-      callback(imageUrl, '이미지');
+      callback(imageUrl, 'image');
     } catch (error) {
       console.error('Error handling image upload:', error);
       alert('이미지 업로드에 실패했습니다.');

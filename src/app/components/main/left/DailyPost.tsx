@@ -13,24 +13,27 @@ const DailyPost = ({ post }: DailyPostProps) => {
     ? post.tags.split(',').map((tag: string) => `#${tag}`)
     : [];
 
+    const textContent = post.content.replace(/!\[.*?\]\(.*?\)/g, '').trim();
+
   return (
     <Link
       href={`blog/detail?id=${post.id}`}
       key={post.id}
       className="w-[344px] flex flex-col gap-y-2.5 cursor-pointer bg-white rounded group"
     >
-      <div className="relative w-full h-28 overflow-hidden rounded">
+      <div className="relative w-full h-32 overflow-hidden rounded">
         <Image
           src={post.imageUrls[0] || '/images/3c.png'}
           alt={post.title}
           fill
+          objectFit="cover"
           className="rounded transition-transform duration-300 ease-in-out group-hover:scale-110"
         />
       </div>
 
       <h2 className="font-semibold">{post.title}</h2>
       <p className="text-sm h-9 font-light text-black-0">
-        {truncateString(post.content, 66)}
+        {truncateString(textContent, 66)}
       </p>
       <div className="flex justify-between items-center h-5">
         <div className="flex gap-x-[5px]">
