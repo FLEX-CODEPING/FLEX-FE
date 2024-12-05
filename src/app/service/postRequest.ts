@@ -101,10 +101,7 @@ export const postDailyPrice = async (req: Request, body: any) => {
 };
 
 export const postInquirePrice = async (req: Request, code: string) => {
-  return postRequest(
-    `/api/kis/stocks/{stock-code}/inquire-price?stock_code=${code}`,
-    req,
-  );
+  return postRequest(`/api/kis/stocks/inquire-price?stockcode=${code}`, req);
 };
 
 export const postStockTrade = async (req: Request, body: any) => {

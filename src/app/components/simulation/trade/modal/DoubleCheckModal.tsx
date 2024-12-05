@@ -7,16 +7,16 @@ import { useState } from 'react';
 
 interface DoubleCheckModalProps {
   textArr: string[];
-  tradeData: TradeDataType;
   tradeType: TradeType;
   closeModal: () => void;
+  data: TradeBuyTypes;
 }
 
 const DoubleCheckModal = ({
   textArr,
-  tradeData,
   tradeType,
   closeModal,
+  data,
 }: DoubleCheckModalProps) => {
   const [isDone, setIsDone] = useState(false);
   const colorBefore = tradeType === '매수' ? 'bg-red-2' : 'bg-blue-2';
@@ -32,24 +32,20 @@ const DoubleCheckModal = ({
     corpName: stockName,
   };
 
-  const getTradeRecord = async () => {
+  const buyStock = async () => {
     const response = await callPost('api/stocks/trade/buy', buyReqBody);
     setIsDone(true);
-    console.log(response, '차트 결과');
   };
-
-  
 
   return (
     <div className="fixed inset-0 flex-center bg-gray-1 bg-opacity-70 z-50">
-      <div className="w-[640px] h-[284px] px-11 py-[52px] bg-white rounded-[20px] flex flex-col justify-between">
+      <div className="w-[640px] h-[244px] px-11 py-12 bg-white rounded-[20px] flex flex-col justify-between relative">
         <div className="flex flex-col gap-y-2">
-          <div className="text-2xl font-semibold">
+          <div className="text-2xl font-medium">
             {isDone ? textArr[3] : textArr[0]}
           </div>
           <div className="flex text-lg text-gray-1">
-            {tradeData.stockName} {tradeData.stockQuantity}주{' '}
-            {tradeData.stockPrice}원
+            {data.corpName} {data.quantity}주 {data.totalPrice}원
           </div>
         </div>
         <div className="flex w-full flex-row-reverse gap-x-4">
@@ -58,7 +54,7 @@ const DoubleCheckModal = ({
               buttonText={textArr[1]}
               className={`${colorBefore} text-white ${colorAfter}`}
               type="tradeModal"
-              onClickHandler={getTradeRecord}
+              onClickHandler={buyStock}
             />
           )}
           <Button

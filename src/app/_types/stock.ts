@@ -110,5 +110,13 @@ interface TradeVolumeTypes {
 
 interface TradeRecordTypes {
   output1: TodayTradeTypes[];
-  output2: TradeVolumeTypes[];
+  outputnumber: TradeVolumeTypes[];
+}
+
+interface TradeBuyTypes {
+  quantity: number;
+  price: number;
+  totalPrice: number;
+  stockCode: string;
+  corpName: string;
 }

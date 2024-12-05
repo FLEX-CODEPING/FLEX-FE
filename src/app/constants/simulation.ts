@@ -77,6 +77,8 @@ export const ANALYZEBAR_TEXT = [
 
 export const AMOUNT_TYPES: AmountType[] = ['10%', '25%', '50%', '최대'];
 
+export const AMOUNT_PERCENT: number[] = [0.1, 0.25, 0.5, 1];
+
 export const SIDE_STATUS_TEXT = ['실시간', '일간', '시간', '체결가', '체결량'];
 
 export const INTEREST_EMPTY = [
@@ -100,7 +102,7 @@ export const MODAL_TEXT_BUY = [
   '정말 매수하시겠습니까?',
   '매수',
   '닫기',
-  '매수가 체결되었습니다.',
+  '매수가 정상적으로 체결되었습니다!',
 ];
 
 export const MODAL_TEXT_SELL = [

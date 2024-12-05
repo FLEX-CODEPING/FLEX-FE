@@ -5,15 +5,15 @@ import Button from '../../common/Button';
 import DoubleCheckModal from './modal/DoubleCheckModal';
 
 interface SellCalculationProps {
-  total: number;
+  quantity: number;
   assets: number;
   stockId: string;
 }
 
-const SellCalculation = ({ total, assets, stockId }: SellCalculationProps) => {
+const SellCalculation = ({ quantity, assets, stockId }: SellCalculationProps) => {
   const { isOpen, openModal, closeModal } = useModal(false);
 
-  const isQualified = total > 0;
+  const isQualified = quantity > 0;
   return (
     <div className="flex w-full flex-col gap-y-3 text-sm">
       {isOpen && (
@@ -31,11 +31,11 @@ const SellCalculation = ({ total, assets, stockId }: SellCalculationProps) => {
       </div>
       <div className="flex items-center justify-between">
         <p>{TRADE_SELL_TEXT[7]}</p>
-        <p>{total}</p>
+        <p>{quantity}</p>
       </div>
       <div className="flex items-center justify-between mb-2">
         <p>{TRADE_SELL_TEXT[8]}</p>
-        <p>{assets + total}</p>
+        <p>{assets + quantity}</p>
       </div>
       <Button
         buttonText={TRADE_SELL_TEXT[9]}

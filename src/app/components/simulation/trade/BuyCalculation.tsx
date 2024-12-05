@@ -1,26 +1,42 @@
 import { MODAL_TEXT_BUY, TRADE_BUY_TEXT } from '@/app/constants/simulation';
-import { MODALDATA } from '@/app/data/simulation';
 import { useModal } from '@/app/hooks/useModal';
+import useStockStore from '@/app/store/store';
 import Button from '../../common/Button';
 import DoubleCheckModal from './modal/DoubleCheckModal';
 
 interface BuyCalculationProps {
-  total: number;
+  quantity: number;
   assets: number;
-  stockId: string;
+  price: number;
+  totalPrice: number;
 }
 
-const BuyCalculation = ({ total, assets, stockId }: BuyCalculationProps) => {
+const BuyCalculation = ({
+  quantity,
+  assets,
+  price,
+  totalPrice,
+}: BuyCalculationProps) => {
   const { isOpen, openModal, closeModal } = useModal(false);
-  const isLacked = assets - total < 0;
-  const isQualified = !isLacked && total > 0;
+  const { stockCode, stockName } = useStockStore();
+
+  const isLacked = assets - quantity < 0;
+  const isQualified = !isLacked && quantity > 0;
+
+  const reqBody: TradeBuyTypes = {
+    quantity,
+    price,
+    totalPrice,
+    stockCode,
+    corpName: stockName,
+  };
 
   return (
     <div className="flex w-full flex-col gap-y-3 text-sm">
       {isOpen && (
         <DoubleCheckModal
+          data={reqBody}
           textArr={MODAL_TEXT_BUY}
-          tradeData={MODALDATA}
           tradeType="매수"
           closeModal={closeModal}
         />
@@ -32,11 +48,11 @@ const BuyCalculation = ({ total, assets, stockId }: BuyCalculationProps) => {
       </div>
       <div className="flex items-center justify-between">
         <p>{TRADE_BUY_TEXT[7]}</p>
-        <p>{total}</p>
+        <p>{totalPrice}</p>
       </div>
       <div className="flex items-center justify-between mb-2">
         <p>{TRADE_BUY_TEXT[8]}</p>
-        <p className={`${isLacked && 'text-red-1'}`}>{assets - total}</p>
+        <p className={`${isLacked && 'text-red-1'}`}>{assets - totalPrice}</p>
       </div>
       <Button
         buttonText={TRADE_BUY_TEXT[9]}
