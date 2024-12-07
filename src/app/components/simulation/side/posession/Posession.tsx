@@ -2,10 +2,12 @@ import { POSESSION_EMPTY, SIDE_NAV_TYPES } from '@/app/constants/simulation';
 import useStockStore from '@/app/store/store';
 import { callGet, callPost } from '@/app/utils/callApi';
 import { useEffect, useState } from 'react';
+import HoldStockRecord from '../../trade/HoldStockRecord';
 import EmptyGuide from '../EmptyGuide';
 
 const Posession = () => {
   const [holdStocks, setHoldStocks] = useState<HoldStockTypes[]>([]);
+  const [isSelected, setIsSelected] = useState(false);
   const [stockPrices, setStockPrices] = useState<
     { stockCode: string; price: string }[]
   >([]);
@@ -29,6 +31,7 @@ const Posession = () => {
   };
   const handleCode = (code: string, name: string) => {
     setStockCode(code, name);
+    setIsSelected(true);
   };
 
   useEffect(() => {
@@ -37,31 +40,35 @@ const Posession = () => {
 
   return (
     <div className="w-[260px] h-[628px] flex-col flex px-4 py-3.5 border border-gray-4 rounded-[10px]">
-      <p className="text-base">{SIDE_NAV_TYPES[1]}</p>
-      <div className="flex-col-center overflow-y-auto hide-scrollbar gap-y-3 pt-2">
-        {holdStocks.length === 0 ? (
-          <EmptyGuide phraseArr={POSESSION_EMPTY} />
-        ) : (
-          holdStocks.map((stock, i) => (
-            <div
-              className="py-1.5 w-full flex justify-between cursor-pointer"
-              onClick={() => handleCode(stock.stockCode, stock.corpName)}
-              key={stock.holdStockId}
-            >
-              <div className="flex items-center gap-x-2">
-                <div className="flex-col gap-y-1">
-                  <div className="flex items-center">
-                    <p className="text-xs font-medium">{stock.corpName}</p>
-                    <p className="text-[10px] font-normal">
-                      ({stock.totalHoldings}주)
-                    </p>
+      {isSelected ? (
+        <HoldStockRecord closeDetail={setIsSelected} />
+      ) : (
+        <div>
+          <p className="text-base">{SIDE_NAV_TYPES[1]}</p>
+          <div className="flex-col-center overflow-y-auto hide-scrollbar gap-y-3 pt-2">
+            {holdStocks.length === 0 ? (
+              <EmptyGuide phraseArr={POSESSION_EMPTY} />
+            ) : (
+              holdStocks.map((stock, i) => (
+                <div
+                  className="py-1.5 w-full flex justify-between cursor-pointer"
+                  onClick={() => handleCode(stock.stockCode, stock.corpName)}
+                  key={stock.holdStockId}
+                >
+                  <div className="flex items-center gap-x-2">
+                    <div className="flex-col gap-y-1">
+                      <div className="flex items-center">
+                        <p className="text-xs font-medium">{stock.corpName}</p>
+                        <p className="text-[10px] font-normal">
+                          ({stock.totalHoldings}주)
+                        </p>
+                      </div>
+                      <p className="text-[10px] font-normal">
+                        평단가 {stock.avgPrice}원
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-[10px] font-normal">
-                    평단가 {stock.avgPrice}원
-                  </p>
-                </div>
-              </div>
-              {/* <div className="flex-col">
+                  {/* <div className="flex-col">
                 <div className="flex text-sm items-center font-medium">
                   <p>{Number(stockPrices[i].price) * stock.totalHoldings}원</p>
                 </div>
@@ -83,10 +90,12 @@ const Posession = () => {
                   </p>
                 </div>
               </div> */}
-            </div>
-          ))
-        )}
-      </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

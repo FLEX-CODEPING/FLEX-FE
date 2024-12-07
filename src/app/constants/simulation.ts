@@ -196,3 +196,10 @@ export const ENTERPRISE_INFO = [
 ];
 
 export const STOCK_TRADE_TEXT = ['날짜', '매수수량', '매도수량'];
+
+export const HOLDSTOCK_RECORD = ['1주 평균 금액', '보유 수량'];
+
+export const TRADETYPE_MAP: Record<string, string> = {
+  SELL: '매도',
+  BUY: '매수',
+};
