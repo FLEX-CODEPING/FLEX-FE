@@ -179,3 +179,20 @@ export const getBalance = async (req: Request) => {
   const url = '/api/transactions/summary';
   return getRequest(url, req);
 };
+
+export const getInvestmentRecord = async (
+  req: Request,
+  stockCode: string,
+  size: string,
+  page: string,
+  property: string,
+  direction: string,
+) => {
+  const url = `/api/investments?stockCode=${stockCode}&page=${page}&size=${size}&property=${property}&direction=${direction}`;
+  return getRequest(url, req);
+};
+
+export const getHoldStockInfo = async (req: Request, stockCode: string) => {
+  const url = `/api/hold-stocks/${stockCode}`;
+  return getRequest(url, req);
+};

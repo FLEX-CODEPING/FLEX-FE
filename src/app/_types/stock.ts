@@ -129,3 +129,25 @@ interface TradeSellTypes {
   stockCode: string;
   corpName: string;
 }
+
+interface HoldStockRecordTypes {
+  investmentId: number;
+  investType: string;
+  quantity: number;
+  price: number;
+  totalPrice: number;
+  createdAt: string;
+}
+
+interface HoldStockInfoTypes {
+  userId: number;
+  holdStockId: number;
+  corpName: string;
+  stockCode: string;
+  totalHoldings: number;
+  holdStatus: string;
+  avgPrice: number;
+  principal: number;
+  createdAt: string;
+  modifiedAt: string;
+}
