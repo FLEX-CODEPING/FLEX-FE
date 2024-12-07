@@ -120,3 +120,12 @@ interface TradeBuyTypes {
   stockCode: string;
   corpName: string;
 }
+
+interface TradeSellTypes {
+  holdStockId: number;
+  quantity: number;
+  price: number;
+  totalPrice: number;
+  stockCode: string;
+  corpName: string;
+}

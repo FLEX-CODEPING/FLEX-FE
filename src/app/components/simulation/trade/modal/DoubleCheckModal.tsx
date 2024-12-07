@@ -9,7 +9,7 @@ interface DoubleCheckModalProps {
   textArr: string[];
   tradeType: TradeType;
   closeModal: () => void;
-  data: TradeBuyTypes;
+  data: TradeBuyTypes | TradeSellTypes;
 }
 
 const DoubleCheckModal = ({
@@ -24,7 +24,10 @@ const DoubleCheckModal = ({
     tradeType === '매수' ? 'hover:bg-red-1' : 'hover:bg-blue-1';
 
   const buyStock = async () => {
-    const response = await callPost('api/stocks/trade/buy', data);
+    const url =
+      tradeType === '매수' ? 'api/stocks/trade/buy' : 'api/stocks/trade/sell';
+    const response = await callPost(url, data);
+    console.log('tradeType에 따른 응답', '요청데이터', data, response);
     setIsDone(true);
   };
 

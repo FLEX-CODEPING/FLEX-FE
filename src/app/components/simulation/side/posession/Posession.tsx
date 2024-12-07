@@ -1,6 +1,6 @@
 import { POSESSION_EMPTY, SIDE_NAV_TYPES } from '@/app/constants/simulation';
+import useStockStore from '@/app/store/store';
 import { callGet, callPost } from '@/app/utils/callApi';
-import { valueColor } from '@/app/utils/qualify';
 import { useEffect, useState } from 'react';
 import EmptyGuide from '../EmptyGuide';
 
@@ -9,15 +9,14 @@ const Posession = () => {
   const [stockPrices, setStockPrices] = useState<
     { stockCode: string; price: string }[]
   >([]);
+  const { setStockCode } = useStockStore();
 
   const getHoldStocks = async () => {
     const response = await callGet(
       `/api/stocks/hold?holdStatus=HOLDING&page=1&size=20&property=createdAt&direction=desc`,
     );
-
     const stocks = response.result.content;
     setHoldStocks(stocks);
-
     const prices = await Promise.all(
       stocks.map(async (item: HoldStockTypes) => {
         const data = await callPost(
@@ -26,10 +25,11 @@ const Posession = () => {
         return { stockCode: item.stockCode, price: data.result[0].stck_prpr };
       }),
     );
-
     setStockPrices(prices);
   };
-  console.log(stockPrices, '보유주');
+  const handleCode = (code: string, name: string) => {
+    setStockCode(code, name);
+  };
 
   useEffect(() => {
     getHoldStocks();
@@ -44,7 +44,8 @@ const Posession = () => {
         ) : (
           holdStocks.map((stock, i) => (
             <div
-              className="py-1.5 w-full flex justify-between"
+              className="py-1.5 w-full flex justify-between cursor-pointer"
+              onClick={() => handleCode(stock.stockCode, stock.corpName)}
               key={stock.holdStockId}
             >
               <div className="flex items-center gap-x-2">
@@ -60,7 +61,7 @@ const Posession = () => {
                   </p>
                 </div>
               </div>
-              <div className="flex-col">
+              {/* <div className="flex-col">
                 <div className="flex text-sm items-center font-medium">
                   <p>{Number(stockPrices[i].price) * stock.totalHoldings}원</p>
                 </div>
@@ -81,7 +82,7 @@ const Posession = () => {
                       stock.totalHoldings}
                   </p>
                 </div>
-              </div>
+              </div> */}
             </div>
           ))
         )}

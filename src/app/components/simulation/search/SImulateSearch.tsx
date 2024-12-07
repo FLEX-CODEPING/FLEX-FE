@@ -2,8 +2,8 @@
 
 import useStockCodeStore from '@/app/store/store';
 import { callGet } from '@/app/utils/callApi';
-import { getTodayDateBar, isOpenTime } from '@/app/utils/date';
-import { useState } from 'react';
+import { isOpenTime } from '@/app/utils/date';
+import { useEffect, useState } from 'react';
 import PreopenSearchInfo from './PreopenSearchInfo';
 import SearchInfo from './SearchInfo';
 import StockSearchBar from './StockSearchBar';
@@ -16,13 +16,11 @@ const SImulateSearch = () => {
   const apiURL = (code: string) => {
     return isOpenTime()
       ? `api/stocks?code=${code}`
-      : `api/stocks/offHour?code=${code}&date=${getTodayDateBar()}`;
+      : `api/stocks/offHour?code=${code}&date=${'2024-12-04'}`;
   };
 
   const getStockInfo = async (code: string) => {
     const response = await callGet(apiURL(code));
-    console.log(response, '코드 입력 전');
-
     if (response.isSuccess) {
       const statusRes: InterestedStautsTypes = await callGet(
         `api/stocks/interest/status?code=${code}`,
@@ -34,6 +32,10 @@ const SImulateSearch = () => {
     }
     setSearchText('');
   };
+
+  useEffect(() => {
+    stockCode && getStockInfo(stockCode);
+  }, [stockCode]);
 
   return (
     <div className="flex w-full justify-between items-end pb-2">

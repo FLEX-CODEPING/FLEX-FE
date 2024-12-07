@@ -17,6 +17,7 @@ import TradeToggle from './TradeToggle';
 const TradeBar = () => {
   const [isBuy, setIsBuy] = useState(true);
   const [tradeCnt, setTradeCnt] = useState('');
+  const [holdStock, setHoldStock] = useState<HoldStockTypes | null>(null);
   const [amountType, setAmountType] = useState<AmountType | null>(null);
   const [balance, setBalance] = useState(0);
   const [stockPrice, setStockPrice] = useState(0);
@@ -46,17 +47,39 @@ const TradeBar = () => {
     }
   };
 
+  const getBalance = async () => {
+    const response = await callGet('api/stocks/trade/balance');
+    setBalance(response.result.balance);
+  };
+
   useEffect(() => {
-    const getDailyPrice = async () => {
+    const initCalc = async () => {
       const response = await callGet('api/stocks/trade/balance');
       const price = await callPost(
         `/api/stocks/price/inquire?stock_code=${stockCode}`,
       );
+      if (!isBuy) {
+      }
+      const limitResponse = await callGet(
+        `/api/stocks/hold?holdStatus=HOLDING&page=1&size=20&property=createdAt&direction=desc`,
+      );
+      const stocks = limitResponse.result.content;
+      const holdStock: HoldStockTypes = stocks.find(
+        (item: HoldStockTypes) => item.stockCode === stockCode,
+      );
+
       setStockPrice(price.result[0].stck_prpr);
-      setBalance(response.result.balance);
+      if (!isBuy && holdStock) {
+        setStockPrice(Math.floor(holdStock.avgPrice));
+        setHoldStock(holdStock);
+        setTradeCnt(String(holdStock.totalHoldings));
+      } else if (!holdStock) {
+        setHoldStock(null);
+      }
     };
-    getDailyPrice();
-  }, [stockCode]);
+    stockCode && initCalc();
+    getBalance();
+  }, [stockCode, isBuy]);
 
   return (
     <div className="w-[300px] h-[475px] px-8 py-4 flex flex-col rounded-[10px] border border-gray-4">
@@ -108,9 +131,12 @@ const TradeBar = () => {
           />
         ) : (
           <SellCalculation
-            quantity={Number(tradeCnt) * stockPrice}
+            holdStockId={holdStock?.holdStockId || 0}
+            quantity={Number(tradeCnt)}
             assets={balance}
-            stockId="005930"
+            totalPrice={Number(tradeCnt) * stockPrice}
+            price={stockPrice}
+            holdStock={holdStock}
           />
         )}
       </div>

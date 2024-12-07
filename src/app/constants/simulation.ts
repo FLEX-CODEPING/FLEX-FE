@@ -69,6 +69,7 @@ export const TRADE_SELL_TEXT = [
   '총 금액',
   '거래 후 잔여 크레딧',
   '판매하기',
+  '보유하지 않은 종목',
 ];
 
 export const ANALYZEBAR_TEXT = [

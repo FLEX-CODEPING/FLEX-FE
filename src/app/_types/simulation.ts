@@ -46,7 +46,7 @@ interface DailyPriceResponseTypes {
   orgAdjPrice: number;
 }
 
-  interface HoldStockTypes {
+interface HoldStockTypes {
   userId: number;
   holdStockId: number;
   corpName: string;

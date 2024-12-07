@@ -18,7 +18,7 @@ const TradeToggle = ({ isBuy, chngeTradeType }: TradeToggleProps) => {
       <motion.div
         className="absolute top-1 left-5 w-24 h-[30px] bg-white rounded-[15px]"
         animate={{
-          x: isBuy ? 0 : 100,
+          x: isBuy ? 0 : 96,
         }}
         initial={false}
         transition={{
