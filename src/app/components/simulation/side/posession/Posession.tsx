@@ -1,7 +1,7 @@
 import { POSESSION_EMPTY, SIDE_NAV_TYPES } from '@/app/constants/simulation';
 import useStockStore from '@/app/store/store';
 import { callGet, callPost } from '@/app/utils/callApi';
-import { formatNumberCommas } from '@/app/utils/formatNum';
+import { formatNumberCommas, isProfit } from '@/app/utils/formatNum';
 import { valueColor } from '@/app/utils/qualify';
 import { useEffect, useState } from 'react';
 import HoldStockRecord from '../../trade/HoldStockRecord';
@@ -85,7 +85,7 @@ const Posession = () => {
                       )}`}
                     >
                       <p>
-                        {formatNumberCommas(
+                        {isProfit(
                           Math.floor(
                             Number(stockPrices[i].price) - stock.avgPrice,
                           ) * stock.totalHoldings,

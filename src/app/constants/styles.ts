@@ -34,4 +34,6 @@ export const INPUT_STYLE = {
     `w-[150px] h-[24px] px-3 rounded-md border-none font-light text-black-0 text-base outline-none ${className}`,
   blogName: (className: string) =>
     `w-[80%] pl-4 h-10 rounded-[10px] border border-gray-2 text-sm outline-none focus:border-main-1 ${className}`,
+  record: (className: string) =>
+    `w-full h-7 pl-2 pr-7 border border-gray-2 text-[11px] rounded-lg outline-none ${className}`,
 } as const;

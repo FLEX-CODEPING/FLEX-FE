@@ -194,3 +194,5 @@ export const TRADETYPE_MAP: Record<string, string> = {
   SELL: '매도',
   BUY: '매수',
 };
+
+export const TRADE_PLACEHOLDER = ['찾으려는 종목을 검색해보세요'];
