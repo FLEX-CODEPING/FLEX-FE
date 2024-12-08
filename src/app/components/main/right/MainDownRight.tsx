@@ -11,7 +11,6 @@ const MainDownRight = () => {
         nickname="코드핑"
         followers={17}
         profile=""
-        profit={+172000}
         views={932}
       />
       <PopularPost />

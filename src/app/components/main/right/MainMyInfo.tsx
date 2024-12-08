@@ -8,15 +8,18 @@ import {
 } from '@/app/constants/main';
 import { useUserStore } from '@/app/store/store';
 import Kakao from '@/app/styles/svgs/Kakao';
+import { callGet } from '@/app/utils/callApi';
+import { isProfit } from '@/app/utils/formatNum';
+import { valueColor } from '@/app/utils/qualify';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import Icons from '../../common/Icons';
 
 interface MainMyInfoProps {
   nickname: string;
   followers: number;
   profile: string;
-  profit: number;
   views: number;
 }
 
@@ -24,11 +27,18 @@ const MainMyInfo = ({
   nickname,
   followers,
   profile,
-  profit,
   views,
 }: MainMyInfoProps) => {
   const { user } = useUserStore();
+  const [profit, setProfit] = useState<UserBalanceTypes | null>();
 
+  useEffect(() => {
+    const getBalance = async () => {
+      const response = await callGet('/api/stocks/trade/balance');
+      response.isSuccess && setProfit(response.result);
+    };
+    getBalance();
+  }, []);
   return (
     <div className="flex-col flex w-full mt-8">
       {user?.isSuccess ? (
@@ -63,7 +73,11 @@ const MainMyInfo = ({
                 <p>{MAIN_MYINFO_TEXT[2]}</p>
               </div>
               <div className="flex text-xl gap-x-0.5">
-                <p className="text-red-1">+{profit}</p>
+                {profit && (
+                  <p className={`${valueColor(profit?.totalProfit)}`}>
+                    {isProfit(profit?.totalProfit)}
+                  </p>
+                )}
                 <p>원</p>
               </div>
             </div>

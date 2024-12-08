@@ -115,3 +115,9 @@ interface FluctuationRankTypes {
   periodPriceChange: string;
   periodPriceChangeRate: string;
 }
+
+interface UserBalanceTypes {
+  balance: number;
+  totalProfit: number;
+  recentTransactionAt: string;
+}

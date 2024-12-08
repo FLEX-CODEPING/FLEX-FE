@@ -31,5 +31,7 @@ export const formatNumberCommas = (num: number | string) => {
 };
 
 export const isProfit = (num: number | string): string => {
-  return transNum(num) > 0 ? `+${transNum(num)}` : `${transNum(num)}`;
+  const value = transNum(num);
+  return value > 0 ? `+${formatNumberCommas(value)}` : formatNumberCommas(value);
 };
+
