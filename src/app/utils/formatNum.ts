@@ -19,9 +19,17 @@ export const formatCurrency = (input: number | string) => {
     : `${hundredMillionUnit}억원`;
 };
 
-export const formatNumberCommas = (num: number | string) => {
+const transNum = (num: number | string) => {
   if (typeof num === 'string') {
     num = Number(num);
   }
-  return num.toLocaleString('en-US');
+  return num;
+};
+
+export const formatNumberCommas = (num: number | string) => {
+  return Math.floor(transNum(num)).toLocaleString('en-US');
+};
+
+export const isProfit = (num: number | string): string => {
+  return transNum(num) > 0 ? `+${transNum(num)}` : `${transNum(num)}`;
 };

@@ -1,6 +1,7 @@
 import { POSESSION_EMPTY, SIDE_NAV_TYPES } from '@/app/constants/simulation';
 import useStockStore from '@/app/store/store';
 import { callGet, callPost } from '@/app/utils/callApi';
+import { formatNumberCommas } from '@/app/utils/formatNum';
 import { valueColor } from '@/app/utils/qualify';
 import { useEffect, useState } from 'react';
 import HoldStockRecord from '../../trade/HoldStockRecord';
@@ -30,6 +31,7 @@ const Posession = () => {
     );
     setStockPrices(prices);
   };
+
   const handleCode = (code: string, name: string) => {
     setStockCode(code, name);
     setIsSelected(true);
@@ -66,31 +68,35 @@ const Posession = () => {
                         </p>
                       </div>
                       <p className="text-[10px] font-normal">
-                        평단가 {stock.avgPrice}원
+                        평단가 {formatNumberCommas(stock.avgPrice)}원
                       </p>
                     </div>
                   </div>
-                  <div className="flex-col">
-                    <div className="flex text-sm items-center font-medium">
-                      <p>
-                        {Number(stockPrices[i].price) * stock.totalHoldings}원
-                      </p>
-                    </div>
+                  <div className="flex flex-col items-end">
+                    <p className="flex text-sm items-center jutify-end font-medium">
+                      {formatNumberCommas(
+                        Number(stockPrices[i].price) * stock.totalHoldings,
+                      )}
+                      원
+                    </p>
                     <div
                       className={`flex w-full justify-end text-[10px] gap-x-0.5 ${valueColor(
-                        (Number(stockPrices[i].price) - stock.principal) *
-                          stock.totalHoldings,
+                        Number(stockPrices[i].price) - stock.avgPrice,
                       )}`}
                     >
                       <p>
-                        {(Number(stockPrices[i].price) - stock.principal) *
-                          stock.totalHoldings}
+                        {formatNumberCommas(
+                          Math.floor(
+                            Number(stockPrices[i].price) - stock.avgPrice,
+                          ) * stock.totalHoldings,
+                        )}
                       </p>
                       <p>
-                        {(((Number(stockPrices[i].price) - stock.principal) *
-                          stock.totalHoldings) /
-                          Number(stockPrices[i].price)) *
-                          stock.totalHoldings}
+                        {`( ${Math.floor(
+                          ((Number(stockPrices[i].price) - stock.avgPrice) /
+                            Number(stockPrices[i].price)) *
+                            100,
+                        )}% )`}
                       </p>
                     </div>
                   </div>
