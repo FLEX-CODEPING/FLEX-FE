@@ -5,3 +5,6 @@ export const isCorrect = (text: string) => {
 
 export const valueColor = (value: number) =>
   value < 0 ? 'text-blue-1' : 'text-red-1';
+
+export const tradeTypeColor = (tradeType: string) =>
+  tradeType === 'BUY' ? 'text-red-1' : 'text-blue-1';

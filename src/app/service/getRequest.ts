@@ -196,3 +196,14 @@ export const getHoldStockInfo = async (req: Request, stockCode: string) => {
   const url = `/api/hold-stocks/${stockCode}`;
   return getRequest(url, req);
 };
+
+export const getTransactions = async (
+  req: Request,
+  size: string,
+  page: string,
+  property: string,
+  direction: string,
+) => {
+  const url = `/api/transactions?page=${page}&size=${size}&property=${property}&direction=${direction}`;
+  return getRequest(url, req);
+};

@@ -1,6 +1,7 @@
 import { POSESSION_EMPTY, SIDE_NAV_TYPES } from '@/app/constants/simulation';
 import useStockStore from '@/app/store/store';
 import { callGet, callPost } from '@/app/utils/callApi';
+import { valueColor } from '@/app/utils/qualify';
 import { useEffect, useState } from 'react';
 import HoldStockRecord from '../../trade/HoldStockRecord';
 import EmptyGuide from '../EmptyGuide';
@@ -49,6 +50,7 @@ const Posession = () => {
             {holdStocks.length === 0 ? (
               <EmptyGuide phraseArr={POSESSION_EMPTY} />
             ) : (
+              stockPrices.length !== 0 &&
               holdStocks.map((stock, i) => (
                 <div
                   className="py-1.5 w-full flex justify-between cursor-pointer"
@@ -68,28 +70,30 @@ const Posession = () => {
                       </p>
                     </div>
                   </div>
-                  {/* <div className="flex-col">
-                <div className="flex text-sm items-center font-medium">
-                  <p>{Number(stockPrices[i].price) * stock.totalHoldings}원</p>
-                </div>
-                <div
-                  className={`flex w-full justify-end text-[10px] gap-x-0.5 ${valueColor(
-                    (Number(stockPrices[i].price) - stock.principal) *
-                      stock.totalHoldings,
-                  )}`}
-                >
-                  <p>
-                    {(Number(stockPrices[i].price) - stock.principal) *
-                      stock.totalHoldings}
-                  </p>
-                  <p>
-                    {(((Number(stockPrices[i].price) - stock.principal) *
-                      stock.totalHoldings) /
-                      Number(stockPrices[i].price)) *
-                      stock.totalHoldings}
-                  </p>
-                </div>
-              </div> */}
+                  <div className="flex-col">
+                    <div className="flex text-sm items-center font-medium">
+                      <p>
+                        {Number(stockPrices[i].price) * stock.totalHoldings}원
+                      </p>
+                    </div>
+                    <div
+                      className={`flex w-full justify-end text-[10px] gap-x-0.5 ${valueColor(
+                        (Number(stockPrices[i].price) - stock.principal) *
+                          stock.totalHoldings,
+                      )}`}
+                    >
+                      <p>
+                        {(Number(stockPrices[i].price) - stock.principal) *
+                          stock.totalHoldings}
+                      </p>
+                      <p>
+                        {(((Number(stockPrices[i].price) - stock.principal) *
+                          stock.totalHoldings) /
+                          Number(stockPrices[i].price)) *
+                          stock.totalHoldings}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               ))
             )}

@@ -25,11 +25,9 @@ const HoldStockRecord = ({ closeDetail }: HoldStockRecordProps) => {
       `/api/stocks/trade/investment?code=${stockCode}&page=${1}&size=${20}&property=createdAt&direction=desc`,
     );
     setRecord(response.result.content);
-    console.log(response, '거래내역 데이터 응답');
 
     const infoData = await callGet(`/api/stocks/hold/info?code=${stockCode}`);
     setStockInfo(infoData.result);
-    console.log(infoData, '보유종목 데이터 응답');
   };
 
   useEffect(() => {

@@ -151,3 +151,23 @@ interface HoldStockInfoTypes {
   createdAt: string;
   modifiedAt: string;
 }
+
+interface TransactionDataTypes {
+  transactionId: number;
+  userId: number;
+  investment: InvestmentDataTypes;
+  credit: number;
+  totalProfit: number;
+  balance: number;
+}
+
+interface InvestmentDataTypes {
+  investmentId: number;
+  corpName: string;
+  stockCode: string;
+  investType: string;
+  quantity: number;
+  price: number;
+  totalPrice: number;
+  profit: number;
+}
