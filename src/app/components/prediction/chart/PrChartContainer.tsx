@@ -1,52 +1,82 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import useStockStore from '@/app/store/store'; 
 import { callPost } from '@/app/utils/callApi';
 import PrChart from './PrChart';
-import StockSearchBar from '@/app/components/simulation/search/StockSearchBar'; // StockSearchBar 컴포넌트 가져오기
-import useStockStore from '@/app/store/store';
 
 const PrChartContainer = () => {
   const [data, setData] = useState<any[]>([]);
-  const [symbol, setSymbol] = useState('005930'); // 기본 심볼
-  const [searchText, setSearchText] = useState(''); // 검색 입력 상태
-  const { stockCode, stockName } = useStockStore();
+  const [symbol, setSymbol] = useState('005930');
+  const { stockCode: globalStockCode } = useStockStore();
 
-  // 데이터 로드
-  const fetchData = async () => {
-    const reqBody = {
+  const fetchData = useCallback(async () => {
+    const reqBodyTemplate = {
       marketDivCode: 'J',
-      stockCode: stockCode,
-      dateFrom: '20220101',
-      dateTo: '20241231',
+      stockCode: globalStockCode,
       periodDivCode: 'D',
       orgAdjPrice: 0,
     };
 
-    try {
-      const response = await callPost('/api/stocks/price', reqBody);
-      console.log(response, '받아온 주식데이터', stockName, '종목명');
-      if (response?.result) {
-        setData(response.result[1]);
-      }
-    } catch (error) {
-      console.error('Error fetching data:', error);
+    const batchDays = 100;
+    const allRequests = [];
+    let currentDateFrom = '20220101';
+
+    while (currentDateFrom <= '20241231') {
+      const startDate = new Date(
+        `${currentDateFrom.slice(0, 4)}-${currentDateFrom.slice(4, 6)}-${currentDateFrom.slice(6)}`
+      );
+
+      const endDate = new Date(startDate);
+      endDate.setDate(endDate.getDate() + batchDays - 1);
+      const currentDateTo = Math.min(
+        parseInt(endDate.toISOString().split('T')[0].replace(/-/g, ''), 10),
+        20241231
+      ).toString();
+
+      const request = ((dateFrom, dateTo) => {
+        const reqBody = {
+          ...reqBodyTemplate,
+          dateFrom,
+          dateTo,
+        };
+
+        return callPost('/api/stocks/price', reqBody)
+          .then((response) => {
+            if (response?.result && response.result[1].length > 0) {
+              return response.result[1];
+            }
+            return [];
+          })
+          .catch((error) => {
+            console.error(`Error fetching data for ${dateFrom} - ${dateTo}:`, error);
+            return [];
+          });
+      })(currentDateFrom, currentDateTo);
+
+      allRequests.push(request);
+
+      const nextStartDate = new Date(endDate);
+      nextStartDate.setDate(nextStartDate.getDate() + 1);
+      currentDateFrom = nextStartDate.toISOString().split('T')[0].replace(/-/g, '');
     }
-  };
+
+    const allData = (await Promise.all(allRequests)).flat();
+    setData(allData);
+  }, [globalStockCode]);
 
   useEffect(() => {
-    fetchData(); // 심볼 변경 시 데이터 로드
-  }, [stockCode]);
+    fetchData();
+  }, [fetchData]);
 
-  // 검색된 심볼 데이터를 로드
-  const handleGetStockInfo = async (stockCode: string) => {
-    setSymbol(stockCode); // 심볼 업데이트
-    fetchData(); // 데이터 로드
+  const handleGetStockInfo = async (newStockCode: string) => {
+    setSymbol(newStockCode);
+    await fetchData();
   };
 
   return (
     <div>
-      <PrChart chartData={data} symbol={stockCode || '005930'} />
+      <PrChart chartData={data} symbol={globalStockCode || '005930'} />
     </div>
   );
 };
