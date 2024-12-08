@@ -71,16 +71,6 @@ class MockFeed {
       onErrorCallback(error);
     }
   }
-
-  searchSymbols(
-    userInput: string,
-    exchange: string,
-    symbolType: string,
-    onResultReadyCallback: (symbols: any[]) => void,
-  ) {
-    // 아무 동작도 하지 않음
-    setTimeout(() => onResultReadyCallback([]), 0);
-  }
 }
 
 export default MockFeed;

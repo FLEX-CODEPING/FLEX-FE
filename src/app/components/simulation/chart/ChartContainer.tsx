@@ -3,11 +3,11 @@
 import useStockStore from '@/app/store/store';
 import { callPost } from '@/app/utils/callApi';
 import { useCallback, useEffect, useState } from 'react';
+import ChartEmpty from './ChartEmpty';
 import MockChart from './MockChart';
 
 const ChartContainer = () => {
   const [data, setData] = useState<any[]>([]);
-  const [symbol, setSymbol] = useState('005930');
   const { stockCode } = useStockStore();
 
   const fetchData = useCallback(async () => {
@@ -75,11 +75,6 @@ const ChartContainer = () => {
     fetchData();
   }, [fetchData]);
 
-  const handleGetStockInfo = async (newStockCode: string) => {
-    setSymbol(newStockCode);
-    await fetchData();
-  };
-
   return (
     <div className="flex w-full px-5 py-5 rounded-[10px] border border-gray-4 flex-col justify-start items-start gap-y-5">
       {/* <div className="flex w-full justify-between">
@@ -100,9 +95,9 @@ const ChartContainer = () => {
         </div>
       </div> */}
       {!stockCode || stockCode === 'null' ? (
-        <MockChart chartData={data} symbol={stockCode} />
+        <ChartEmpty />
       ) : (
-        <MockChart chartData={data} symbol={stockCode} />
+        <MockChart chartData={data} symbol={stockCode || '005930'} />
         // <StockChart chartData={data} value={''} setValue={setSelectedValue} />
       )}
     </div>

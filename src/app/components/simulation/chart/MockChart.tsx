@@ -37,7 +37,7 @@ const MockChart: React.FC<MockChartProps> = ({ chartData, symbol }) => {
           enabled_features: [],
         };
 
-        Widget(widgetOptions);
+        new Widget(widgetOptions);
       }
     };
 
