@@ -27,7 +27,7 @@ const TradeRecord = () => {
 
   return (
     <div className="flex-1 flex flex-col text-sm text-black-1 gap-y-3 px-2">
-      <p className="w-[15%] flex-center font-medium">거래현황</p>
+      <p className="w-full flex pl-2 font-medium">거래현황</p>
       <div className="flex border-b border-gray-2 pb-0.5">
         <div className="flex w-full">
           <p className="w-[24%] flex-center">{STOCK_TRADE_TEXT[0]}</p>

@@ -11,15 +11,16 @@ const StockInfo = () => {
   const [stockInfo, setStockInfo] = useState<null | StockDetailInfoTypes>(null);
   const [infoType, setInfoType] = useState('종목정보');
   const { stockCode } = useStockStore();
-  const getStockDetail = async () => {
-    const date = getTodayDateBar();
-    const response = await callGet(
-      `api/stocks/info?code=${stockCode}&date=${date}`,
-    );
-    setStockInfo(response.result);
-  };
 
   useEffect(() => {
+    const getStockDetail = async () => {
+      const date = getTodayDateBar();
+      const response = await callGet(
+        `api/stocks/info?code=${stockCode}&date=${date}`,
+      );
+      setStockInfo(response.result);
+    };
+
     getStockDetail();
   }, [stockCode]);
 

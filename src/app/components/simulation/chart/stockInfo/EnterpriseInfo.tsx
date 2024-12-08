@@ -5,14 +5,14 @@ import { formatEntInfo } from '@/app/utils/formatStock';
 import { useEffect, useState } from 'react';
 
 const EnterpriseInfo = () => {
-  const [stockInfo, setStockInfo] = useState<null | StockInfoTypes>(null);
+  const [corpInfo, setCorpInfo] = useState<null | CorpInfoTypes>(null);
   const { stockCode, stockName } = useStockCodeStore();
 
-  const infoArr = stockInfo && formatEntInfo(stockInfo?.corpInfo);
+  const infoArr = corpInfo && formatEntInfo(corpInfo);
 
   const getStockDetail = async () => {
-    const response = await callGet(`api/stocks?code=${stockCode}`);
-    setStockInfo(response.result);
+    const response = await callGet(`api/stocks/info/corp?code=${stockCode}`);
+    setCorpInfo(response.result);
   };
 
   useEffect(() => {

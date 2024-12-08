@@ -207,3 +207,8 @@ export const getTransactions = async (
   const url = `/api/transactions?page=${page}&size=${size}&property=${property}&direction=${direction}`;
   return getRequest(url, req);
 };
+
+export const getCorpInfo = async (req: Request, stockCode: string) => {
+  const url = `/api/stocks/${stockCode}/corpInfo`;
+  return getRequest(url, req);
+};
