@@ -1,27 +1,84 @@
 'use client';
 
-import { MockStockPriceReq } from '@/app/data/simulation';
 import useStockStore from '@/app/store/store';
 import { callPost } from '@/app/utils/callApi';
-import { useEffect, useState } from 'react';
-import ChartEmpty from './ChartEmpty';
-import { StockChart } from './StockChart';
+import { useCallback, useEffect, useState } from 'react';
+import MockChart from './MockChart';
 
 const ChartContainer = () => {
-  const [viewType, setViewType] = useState<ChartViewType>('일');
+  const [data, setData] = useState<any[]>([]);
+  const [symbol, setSymbol] = useState('005930');
   const { stockCode } = useStockStore();
-  const [data, setData] = useState();
-  const [selectedValue, setSelectedValue] = useState('');
 
-  const getDailyPrice = async () => {
-    const response = await callPost('api/stocks/price', MockStockPriceReq);
-    console.log(response, '차트 그리는 데이터');
-    setData(response.result);
-  };
+  const fetchData = useCallback(async () => {
+    const reqBodyTemplate = {
+      marketDivCode: 'J',
+      stockCode,
+      periodDivCode: 'D',
+      orgAdjPrice: 0,
+    };
+
+    const batchDays = 100;
+    const allRequests = [];
+    let currentDateFrom = '20220101';
+
+    while (currentDateFrom <= '20241231') {
+      const startDate = new Date(
+        `${currentDateFrom.slice(0, 4)}-${currentDateFrom.slice(4, 6)}-${currentDateFrom.slice(6)}`,
+      );
+
+      const endDate = new Date(startDate);
+      endDate.setDate(endDate.getDate() + batchDays - 1);
+      const currentDateTo = Math.min(
+        parseInt(endDate.toISOString().split('T')[0].replace(/-/g, ''), 10),
+        20241231,
+      ).toString();
+
+      const request = ((dateFrom, dateTo) => {
+        const reqBody = {
+          ...reqBodyTemplate,
+          dateFrom,
+          dateTo,
+        };
+
+        return callPost('/api/stocks/price', reqBody)
+          .then((response) => {
+            if (response?.result && response.result[1].length > 0) {
+              return response.result[1];
+            }
+            return [];
+          })
+          .catch((error) => {
+            console.error(
+              `Error fetching data for ${dateFrom} - ${dateTo}:`,
+              error,
+            );
+            return [];
+          });
+      })(currentDateFrom, currentDateTo);
+
+      allRequests.push(request);
+
+      const nextStartDate = new Date(endDate);
+      nextStartDate.setDate(nextStartDate.getDate() + 1);
+      currentDateFrom = nextStartDate
+        .toISOString()
+        .split('T')[0]
+        .replace(/-/g, '');
+    }
+
+    const allData = (await Promise.all(allRequests)).flat();
+    setData(allData);
+  }, [stockCode]);
 
   useEffect(() => {
-    getDailyPrice();
-  }, [stockCode]);
+    fetchData();
+  }, [fetchData]);
+
+  const handleGetStockInfo = async (newStockCode: string) => {
+    setSymbol(newStockCode);
+    await fetchData();
+  };
 
   return (
     <div className="flex w-full px-5 py-5 rounded-[10px] border border-gray-4 flex-col justify-start items-start gap-y-5">
@@ -43,10 +100,9 @@ const ChartContainer = () => {
         </div>
       </div> */}
       {!stockCode || stockCode === 'null' ? (
-        <ChartEmpty />
+        <MockChart chartData={data} symbol={stockCode} />
       ) : (
-        <ChartEmpty />
-
+        <MockChart chartData={data} symbol={stockCode} />
         // <StockChart chartData={data} value={''} setValue={setSelectedValue} />
       )}
     </div>

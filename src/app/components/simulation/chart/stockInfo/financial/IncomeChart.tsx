@@ -1,29 +1,24 @@
 import Icons from '@/app/components/common/Icons';
 import { infoIcon } from '@/app/constants/iconPath';
-import { PROFIT_LOSS_TITLE } from '@/app/constants/simulation';
-import { useScrollFade } from '@/app/hooks/useScrollFade';
+import { PROFIT_LOSS_TITLE, STOCK_INFO_TEXT } from '@/app/constants/simulation';
 import { formatYM } from '@/app/utils/date';
 import { formatCurrency } from '@/app/utils/formatNum';
+import { useEffect, useState } from 'react';
 
 interface IncomeChartProps {
   financialInfo: IncomesTypes[];
 }
 
 const IncomeChart = ({ financialInfo }: IncomeChartProps) => {
-  const { scrollRef, scrollState } = useScrollFade();
+  const [hoverRefs, setHoverRefs] = useState<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    setHoverRefs((prev) => STOCK_INFO_TEXT.map(() => null));
+  }, []);
 
   return (
     <div className="relative">
-      {!scrollState.isAtStart && (
-        <div className="absolute left-0 top-0 h-full w-5 bg-gradient-to-r from-gray-300 to-transparent pointer-events-none" />
-      )}
-      {!scrollState.isAtEnd && (
-        <div className="absolute right-0 top-0 h-full w-5 bg-gradient-to-l from-gray-300 to-transparent pointer-events-none" />
-      )}
-      <div
-        ref={scrollRef}
-        className="flex px-2 py-1 gap-x-2 w-full overflow-x-auto"
-      >
+      <div className="flex px-2 py-1 gap-x-2 w-full overflow-x-auto">
         <div className="flex-col-center text-xs gap-y-4">
           <div className="w-20 h-[26px] font-medium flex items-center">
             항목
