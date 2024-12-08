@@ -41,7 +41,7 @@ const StockInfo = () => {
           ? stockInfo && <StockDetail data={stockInfo} />
           : stockInfo && <EntValue data={stockInfo} />}
       </div>
-      <div className="w-[1px] h-full border-r border-gray-2"></div>
+      <div className="w-[1px] h-full border-r border-gray-2" />
       <TradeRecord />
     </div>
   );

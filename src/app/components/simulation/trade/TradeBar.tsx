@@ -56,24 +56,22 @@ const TradeBar = () => {
     const initCalc = async () => {
       const response = await callGet('api/stocks/trade/balance');
       const price = await callPost(
-        `/api/stocks/price/inquire?stock_code=${stockCode}`,
+        `/api/stocks/price/inquire?stockcode=${stockCode}`,
       );
-      if (!isBuy) {
-      }
       const limitResponse = await callGet(
         `/api/stocks/hold?holdStatus=HOLDING&page=1&size=20&property=createdAt&direction=desc`,
       );
       const stocks = limitResponse.result.content;
-      const holdStock: HoldStockTypes = stocks.find(
+      const hold: HoldStockTypes = stocks.find(
         (item: HoldStockTypes) => item.stockCode === stockCode,
       );
 
       setStockPrice(price.result[0].stck_prpr);
-      if (!isBuy && holdStock) {
-        setStockPrice(Math.floor(holdStock.avgPrice));
-        setHoldStock(holdStock);
-        setTradeCnt(String(holdStock.totalHoldings));
-      } else if (!holdStock) {
+      if (!isBuy && hold) {
+        setStockPrice(Math.floor(hold.avgPrice));
+        setHoldStock(hold);
+        setTradeCnt(String(hold.totalHoldings));
+      } else if (!hold) {
         setHoldStock(null);
       }
     };

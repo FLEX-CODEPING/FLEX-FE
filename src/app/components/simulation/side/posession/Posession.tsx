@@ -24,7 +24,7 @@ const Posession = () => {
     const prices = await Promise.all(
       stocks.map(async (item: HoldStockTypes) => {
         const data = await callPost(
-          `/api/stocks/price/inquire?stock_code=${item.stockCode}`,
+          `/api/stocks/price/inquire?stockcode=${item.stockCode}`,
         );
         return { stockCode: item.stockCode, price: data.result[0].stck_prpr };
       }),

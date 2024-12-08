@@ -20,10 +20,7 @@ export const formatCurrency = (input: number | string) => {
 };
 
 const transNum = (num: number | string) => {
-  if (typeof num === 'string') {
-    num = Number(num);
-  }
-  return num;
+  return Number(num);
 };
 
 export const formatNumberCommas = (num: number | string) => {
@@ -32,6 +29,7 @@ export const formatNumberCommas = (num: number | string) => {
 
 export const isProfit = (num: number | string): string => {
   const value = transNum(num);
-  return value > 0 ? `+${formatNumberCommas(value)}` : formatNumberCommas(value);
+  return value > 0
+    ? `+${formatNumberCommas(value)}`
+    : formatNumberCommas(value);
 };
-

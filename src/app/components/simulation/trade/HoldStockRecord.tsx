@@ -59,19 +59,19 @@ const HoldStockRecord = ({ closeDetail }: HoldStockRecordProps) => {
         </div>
       </div>
       <div className="flex flex-col w-full overflow-y-auto gap-y-2">
-        {record.map((record) => (
+        {record.map((data) => (
           <div
             className="text-xs font-medium flex w-full"
-            key={record.investmentId}
+            key={data.investmentId}
           >
             <p className="flex-center font-light w-[24%]">
-              {formatMD(record.createdAt)}
+              {formatMD(data.createdAt)}
             </p>
             <p className="flex-center w-[38%]">
-              {TRADETYPE_MAP[record.investType]} {record.quantity}주
+              {TRADETYPE_MAP[data.investType]} {data.quantity}주
             </p>
             <p className="flex-center w-[38%]">
-              주당 {formatNumberCommas(record.price)} 원
+              주당 {formatNumberCommas(data.price)} 원
             </p>
           </div>
         ))}

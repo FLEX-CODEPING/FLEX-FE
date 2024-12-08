@@ -78,7 +78,7 @@ export const getTodayAndSixMonthsAgo = (): {
   const sixMonthsAgo = new Date(today);
   sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
 
-  const formatDate = (date: Date): string => {
+  const formatYMD = (date: Date): string => {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
@@ -86,8 +86,8 @@ export const getTodayAndSixMonthsAgo = (): {
   };
 
   return {
-    today: formatDate(today),
-    sixMonthsAgo: formatDate(sixMonthsAgo),
+    today: formatYMD(today),
+    sixMonthsAgo: formatYMD(sixMonthsAgo),
   };
 };
 

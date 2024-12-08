@@ -18,7 +18,7 @@ class MockFeed {
    * 데이터피드의 기능과 설정을 초기화합니다.
    * @param callback - 설정 정보를 전달받을 콜백 함수
    */
-  onReady(
+  static onReady(
     callback: (config: {
       supported_resolutions: string[]; // 지원되는 시간봉 배열
       supports_search: boolean; // 심볼 검색 지원 여부
@@ -116,7 +116,6 @@ class MockFeed {
     onHistoryCallback: (bars: any[], meta: { noData: boolean }) => void,
     onErrorCallback: (error: any) => void,
   ) {
-    
     fetch(
       `https://api.upbit.com/v1/candles/minutes/${resolution}?market=${symbolInfo.name}&to=${new Date(
         to * 1000,
