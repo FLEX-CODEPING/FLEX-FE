@@ -1,6 +1,6 @@
 import DailyNews from './DailyNews';
 import DailyPostContainer from './DailyPostContainer';
-import StockRank from './StockRank';
+import StockRank from './rank/StockRank';
 
 const MainDownLeft = () => {
   return (

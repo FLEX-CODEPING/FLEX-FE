@@ -3,6 +3,7 @@
 import { useSidebarStore } from '@/app/store/store';
 import ChartContainer from './chart/ChartContainer';
 import SImulateSearch from './search/SImulateSearch';
+import StockInfoContainer from './chart/stockInfo/StockInfoContainer';
 
 const SimulationContainer = () => {
   const { selectedItem } = useSidebarStore();
@@ -12,6 +13,7 @@ const SimulationContainer = () => {
       <div className="w-full flex-col flex gap-y-1">
         <SImulateSearch />
         <ChartContainer />
+        <StockInfoContainer />
       </div>
     </div>
   );
