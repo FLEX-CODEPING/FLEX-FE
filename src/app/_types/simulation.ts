@@ -68,3 +68,12 @@ interface MinPriceTypes {
   transactionVolume: string;
   accTradeAmount: string;
 }
+
+interface ChartDataTypes {
+  time: number;
+  open: number;
+  high: number;
+  low: number;
+  close: number;
+  volume: number;
+}

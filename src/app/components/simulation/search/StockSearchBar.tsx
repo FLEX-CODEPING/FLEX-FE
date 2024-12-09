@@ -1,22 +1,17 @@
 import { dotIcon, searchStock } from '@/app/constants/iconPath';
 import { SEARCH_STOCK } from '@/app/constants/simulation';
 import { callGet } from '@/app/utils/callApi';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Icons from '../../common/Icons';
 import Input from '../../common/Input';
 
 interface StockSearchBarProps {
-  searchText: string;
-  setSearchText: Dispatch<SetStateAction<string>>;
   getStockInfo: (code: string) => Promise<void>;
 }
-const StockSearchBar = ({
-  searchText,
-  setSearchText,
-  getStockInfo,
-}: StockSearchBarProps) => {
+const StockSearchBar = ({ getStockInfo }: StockSearchBarProps) => {
   const [autoComplete, setAutoComplete] = useState<AutoCompleteTypes[]>([]);
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
+  const [searchText, setSearchText] = useState('');
 
   const searchAutoComplete = async () => {
     const response = await callGet(`/api/stocks/search?keyword=${searchText}`);

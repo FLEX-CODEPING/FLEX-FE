@@ -36,7 +36,7 @@ const TradeRecord = () => {
           ))}
         </div>
       </div>
-      <div className="flex flex-col h-[130px] w-full overflow-y-auto gap-y-2">
+      <div className="flex flex-col w-full max-h-[180px] overflow-y-auto gap-y-2">
         {record?.output2.map((data) => (
           <div className="text-xs font-medium flex w-full">
             <p className="flex-center font-light w-[24%]">{data.tradingDate}</p>
