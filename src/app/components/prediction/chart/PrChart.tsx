@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import PrChartContainer from './PrChartContainer';
+import PrDataFeed from './PrDataFeed';
 
 interface MockChartProps {
   chartData: any[];
@@ -23,7 +23,7 @@ const PrChart: React.FC<MockChartProps> = ({ chartData, symbol }) => {
           interval: '1D',
           container: 'chartContainer',
           library_path: '/charting_library/',
-          datafeed: new PrChartContainer(chartData), // 데이터 피드 연결
+          datafeed: new PrDataFeed(chartData), // 데이터 피드 연결
           timezone: 'Asia/Seoul',
           theme: 'Light',
           autosize: true,
