@@ -46,9 +46,9 @@ const MockChart: React.FC<MockChartProps> = ({ chartData, symbol }) => {
     return () => {
       document.body.removeChild(script);
     };
-  }, [chartData, symbol]); // 심볼 및 데이터 변경 시 차트 재렌더링
+  }, [chartData, symbol]);
 
-  return <div id="chartContainer" style={{ width: '98%', height: '570px' }} />;
+  return <div id="chartContainer" style={{ width: '98%', height: '360px' }} />;
 };
 
 export default MockChart;
