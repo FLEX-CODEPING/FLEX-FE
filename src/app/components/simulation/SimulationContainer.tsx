@@ -2,8 +2,8 @@
 
 import { useSidebarStore } from '@/app/store/store';
 import ChartContainer from './chart/ChartContainer';
-import SImulateSearch from './search/SImulateSearch';
 import StockInfoContainer from './chart/stockInfo/StockInfoContainer';
+import SImulateSearch from './search/SImulateSearch';
 
 const SimulationContainer = () => {
   const { selectedItem } = useSidebarStore();

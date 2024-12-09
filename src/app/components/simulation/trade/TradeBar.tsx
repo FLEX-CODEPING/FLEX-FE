@@ -24,7 +24,9 @@ const TradeBar = () => {
   const { stockCode } = useStockStore();
 
   const selectAmountType = (type: AmountType, i: number) => {
-    const possibleCnt = (balance / stockPrice) * AMOUNT_PERCENT[i];
+    const possibleCnt = isBuy
+      ? (balance / stockPrice) * AMOUNT_PERCENT[i]
+      : Number(holdStock?.totalHoldings) * AMOUNT_PERCENT[i];
     setTradeCnt(String(Math.floor(possibleCnt)));
     if (amountType === type) {
       setAmountType(null);
@@ -42,6 +44,13 @@ const TradeBar = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
+    if (
+      !isBuy &&
+      holdStock &&
+      Number(value) <= Number(holdStock.totalHoldings)
+    ) {
+      setTradeCnt(value);
+    }
     if (Number(value) <= 999) {
       setTradeCnt(value);
     }
