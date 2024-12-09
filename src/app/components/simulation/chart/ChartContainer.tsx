@@ -9,18 +9,18 @@ import MockChart from './MockChart';
 
 const ChartContainer = () => {
   const [data, setData] = useState<MinPriceTypes[]>([]);
-  const { stockCode } = useStockStore();
+  const { stockCode, stockName } = useStockStore();
 
   const fetchData = async (count: number) => {
     const allData: MinPriceTypes[] = [];
-
     for (let i = 0; i < count; i++) {
       const reqBody = {
         date: getTodayDate(),
-        stockCode: stockCode,
+        stockCode,
         time: '153000',
       };
       const response = await callPost('/api/stocks/price/minute', reqBody);
+
       allData.push(...response.result.output2);
     }
     setData((prevData) => [...prevData, ...allData]);
@@ -35,7 +35,7 @@ const ChartContainer = () => {
       {!stockCode || stockCode === 'null' ? (
         <ChartEmpty />
       ) : (
-        <MockChart chartData={data} symbol={stockCode} />
+        <MockChart chartData={data} symbol={stockName} />
       )}
     </div>
   );

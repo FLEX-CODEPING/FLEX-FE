@@ -1,6 +1,5 @@
 class MockFeed {
   private chartData: any[];
-
   constructor(chartData: any[]) {
     this.chartData = chartData;
   }
@@ -17,6 +16,15 @@ class MockFeed {
     }, 0);
   }
 
+  subscribeBars(
+    symbolInfo: any,
+    resolution: string,
+    onRealtimeCallback: (bar: any) => void,
+    subscriberUID: string,
+  ) {
+    return () => {};
+  }
+
   resolveSymbol(
     symbolName: string,
     onSymbolResolvedCallback: (symbolInfo: any) => void,
@@ -30,7 +38,7 @@ class MockFeed {
       timezone: 'Asia/Seoul',
       exchange: 'Default Exchange', // 기본값 설정
       has_intraday: true,
-      supported_resolutions: ['1D'],
+      supported_resolutions: ['1', '5', '30', '60', '1D'], // 분봉 및 일봉 추가
       pricescale: 100,
       volume_precision: 0,
       minmov: 1,
@@ -40,25 +48,32 @@ class MockFeed {
   }
 
   getBars(
-    symbolInfo: any,
-    resolution: string,
     { from, to }: any,
     onHistoryCallback: (bars: any[], meta: { noData: boolean }) => void,
     onErrorCallback: (error: any) => void,
   ) {
     try {
       const bars = this.chartData
-        .map((data) => ({
-          time: new Date(
-            `${data.stck_bsop_date.slice(0, 4)}-${data.stck_bsop_date.slice(4, 6)}-${data.stck_bsop_date.slice(6)}`,
-          ).getTime(),
-          open: parseFloat(data.stck_oprc),
-          high: parseFloat(data.stck_hgpr),
-          low: parseFloat(data.stck_lwpr),
-          close: parseFloat(data.stck_clpr),
-          volume: parseInt(data.acml_vol, 10),
-        }))
-        .filter((bar) => bar.time >= from * 1000 && bar.time <= to * 1000)
+        .map((data) => {
+          const year = data.tradingDate.slice(0, 4);
+          const month = data.tradingDate.slice(4, 6);
+          const day = data.tradingDate.slice(6);
+          const hour = data.transactionTime.slice(0, 2);
+          const minute = data.transactionTime.slice(2, 4);
+          const second = data.transactionTime.slice(4);
+          return {
+            time:
+              new Date(
+                `${year}-${month}-${day}T${hour}:${minute}:${second}`,
+              ).getTime() / 1000,
+            open: parseFloat(data.openPrice),
+            high: parseFloat(data.highPrice),
+            low: parseFloat(data.lowPrice),
+            close: parseFloat(data.curPrice),
+            volume: parseInt(data.transactionVolume, 10),
+          };
+        })
+        .filter((bar) => bar.time >= from && bar.time <= to)
         .sort((a, b) => a.time - b.time);
 
       if (bars.length === 0) {

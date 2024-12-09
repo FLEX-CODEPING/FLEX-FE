@@ -116,9 +116,10 @@ export const postStockSell = async (req: Request, body: any) => {
   return postRequest('/api/investments/trading/sell', req, body);
 };
 
-export const postMinData = async (req: Request) => {
+export const postMinData = async (req: Request, body: any) => {
   return postRequest(
     '/api/kis/stocks/daily/daily-chart-price/inquire-price',
     req,
+    body,
   );
 };

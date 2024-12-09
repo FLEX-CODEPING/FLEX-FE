@@ -20,7 +20,7 @@ const MockChart: React.FC<MockChartProps> = ({ chartData, symbol }) => {
 
         const widgetOptions = {
           symbol,
-          interval: '1D',
+          interval: '1',
           container: 'chartContainer',
           library_path: '/charting_library/',
           datafeed: new MockFeed(chartData), // 데이터 피드 연결
@@ -36,7 +36,7 @@ const MockChart: React.FC<MockChartProps> = ({ chartData, symbol }) => {
           ],
           enabled_features: [],
         };
-
+        console.log('Creating Widget with options:', widgetOptions); // 옵션 로깅 추가
         new Widget(widgetOptions);
       }
     };

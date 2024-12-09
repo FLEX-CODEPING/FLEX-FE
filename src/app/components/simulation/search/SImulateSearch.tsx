@@ -8,8 +8,7 @@ import PreopenSearchInfo from './PreopenSearchInfo';
 import SearchInfo from './SearchInfo';
 import StockSearchBar from './StockSearchBar';
 
-const SImulateSearch = () => {
-  const [searchText, setSearchText] = useState('');
+const SimulateSearch = () => {
   const [stockInfo, setStockInfo] = useState<null | StockInfoTypes>(null);
   const { setStockCode, stockCode } = useStockCodeStore();
 
@@ -30,7 +29,6 @@ const SImulateSearch = () => {
     } else {
       setStockCode('null', '');
     }
-    setSearchText('');
   };
 
   useEffect(() => {
@@ -52,13 +50,9 @@ const SImulateSearch = () => {
           getStockInfo={getStockInfo}
         />
       )}
-      <StockSearchBar
-        searchText={searchText}
-        setSearchText={setSearchText}
-        getStockInfo={getStockInfo}
-      />
+      <StockSearchBar getStockInfo={getStockInfo} />
     </div>
   );
 };
 
-export default SImulateSearch;
+export default SimulateSearch;
