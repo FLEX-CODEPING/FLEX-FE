@@ -11,6 +11,10 @@ interface NewsListProps {
 }
 
 const NewsList = ({ newsData, keyword }: NewsListProps) => {
+  const handleNewsClick = (url: string) => {
+    window.open(url, '_blank');
+  };
+
   return (
     <div className="max-w-[1200px] mx-auto mt-24">
       <div className="flex items-center mb-4 pl-4">
@@ -48,7 +52,11 @@ const NewsList = ({ newsData, keyword }: NewsListProps) => {
               <span className="text-left w-[500px] cursor-pointer">
                 {truncateString(news.content, 46)}
               </span>
-              <Icons name={k} />
+              <Icons
+                name={k}
+                className="cursor-pointer"
+                onClick={() => handleNewsClick(news.url)}
+              />
             </li>
           ))}
         </ul>

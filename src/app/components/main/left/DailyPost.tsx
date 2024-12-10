@@ -13,7 +13,7 @@ const DailyPost = ({ post }: DailyPostProps) => {
     ? post.tags.split(',').map((tag: string) => `#${tag}`)
     : [];
 
-    const textContent = post.content.replace(/!\[.*?\]\(.*?\)/g, '').trim();
+  const textContent = post.content.replace(/!\[.*?\]\(.*?\)/g, '').trim();
 
   return (
     <Link

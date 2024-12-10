@@ -14,7 +14,7 @@ const MyPostCard = ({ mypost }: MyPostCardsProps) => {
   const handleCardClick = () => {
     router.push(`/blog/detail?id=${mypost.postId}`);
   };
-  
+
   const textContent = mypost.content.replace(/!\[.*?\]\(.*?\)/g, '').trim();
 
   return (
@@ -25,7 +25,7 @@ const MyPostCard = ({ mypost }: MyPostCardsProps) => {
       <div className="w-full h-[400px] relative rounded-[10px]">
         <Image
           fill
-          objectFit='cover'
+          objectFit="cover"
           className="rounded-[10px]"
           src={
             mypost.imageUrls.length > 0 ? mypost.imageUrls[0] : '/images/3c.png'

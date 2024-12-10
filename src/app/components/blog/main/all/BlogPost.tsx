@@ -14,7 +14,7 @@ const BlogPost = ({ post }: BlogPostProps) => {
     ? post.tags.split(',').map((tag: string) => `#${tag}`)
     : [];
 
-    const textContent = post.content.replace(/!\[.*?\]\(.*?\)/g, '').trim();
+  const textContent = post.content.replace(/!\[.*?\]\(.*?\)/g, '').trim();
 
   return (
     <Link
@@ -27,7 +27,7 @@ const BlogPost = ({ post }: BlogPostProps) => {
           src={post.imageUrls[0] || '/images/3c.png'}
           alt={post.title}
           fill
-          objectFit='cover'
+          objectFit="cover"
           className="rounded-md transition-transform duration-300 ease-in-out group-hover:scale-110"
         />
       </div>

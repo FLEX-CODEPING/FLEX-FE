@@ -16,10 +16,11 @@ const BlogComment = ({ postId, currentUserId }: BlogCommentProps) => {
     try {
       const response = await callGet(`/api/comment?id=${postId}`);
       if (response.isSuccess) {
+        console.log('댓글 데이터 갱신:', response.result); // 디버깅
         setComments(response.result);
       }
     } catch (error) {
-      console.error('Failed to fetch comments:', error);
+      console.error('댓글 갱신 실패:', error);
     }
   };
 

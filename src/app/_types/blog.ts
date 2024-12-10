@@ -39,6 +39,7 @@ interface ChildCommentType {
   id: number;
   userId: number;
   nickname: string;
+  blogName: string;
   profileImageUrl: string | null;
   content: string;
   timeAgo: string;

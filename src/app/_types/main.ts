@@ -5,7 +5,7 @@ type MainPostViewApiTypes = 'CREATED_AT' | 'LIKE_COUNT' | 'FOLLOWING';
 interface LandingPostTypes {
   id: number;
   userId: number;
-  nickname:string;
+  nickname: string;
   title: string;
   content: string;
   tags: string;

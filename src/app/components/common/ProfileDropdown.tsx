@@ -40,10 +40,16 @@ const ProfileDropdown = () => {
             </Link>
             {isHover && (
               <div className="absolute flex flex-col top-[26px] left-[103px] border border-gray-2 text-xs rounded-[8px] z-10 bg-white">
-                <Link className="w-[90px] cursor-pointer h-[32px] flex-center border-b border-gray-2 hover:text-main-1" href="/mypage">
+                <Link
+                  className="w-[90px] cursor-pointer h-[32px] flex-center border-b border-gray-2 hover:text-main-1"
+                  href="/mypage"
+                >
                   {HEADER_PROFILE_TEXT[0]}
                 </Link>
-                <Link className="w-[90px] cursor-pointer h-[32px] flex-center border-b border-gray-2 hover:text-main-1" href="/myaccount">
+                <Link
+                  className="w-[90px] cursor-pointer h-[32px] flex-center border-b border-gray-2 hover:text-main-1"
+                  href="/myaccount"
+                >
                   {HEADER_PROFILE_TEXT[1]}
                 </Link>
                 <div

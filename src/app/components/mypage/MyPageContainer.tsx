@@ -38,6 +38,7 @@ const MyPageContainer = () => {
     const fetchPost = async () => {
       const response = await callGet(`/api/mypage/posts?blogName=${blogName}`);
       setMyPosts(response.result);
+      console.log(response);
     };
 
     const fetchLikedPost = async () => {
