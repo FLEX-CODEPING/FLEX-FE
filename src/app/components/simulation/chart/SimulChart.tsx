@@ -36,7 +36,7 @@ const SimulChart = ({ data }: SimulChartProps) => {
   console.log(amountData.slice(0, 358), '양');
 
   useLayoutEffect(() => {
-    if (!chartContainerRef.current) return;
+    if (!chartContainerRef.current || data.length === 0) return;
 
     const chart = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
@@ -44,6 +44,9 @@ const SimulChart = ({ data }: SimulChartProps) => {
       timeScale: {
         timeVisible: true, // 시간 세부 표시 활성화
         secondsVisible: false, // 초 단위 비활성화 (원하는 경우 true로 변경 가능)
+      },
+      rightPriceScale: {
+        borderVisible: false,
       },
     });
 
@@ -54,17 +57,45 @@ const SimulChart = ({ data }: SimulChartProps) => {
       borderDownColor: '#F12C2C',
       wickUpColor: '#0065D1',
       wickDownColor: '#F12C2C',
+      priceFormat: {
+        type: 'custom',
+        minMove: 1,
+        formatter: (price: number) => Math.round(price).toString(),
+      },
     });
 
     candleSeries.setData(candleData.slice(0, 358));
 
-    const areaSeries = chart.addAreaSeries({
-      lineColor: '#F95700',
-      topColor: '#F95700',
-      bottomColor: '#FFA474',
+    const volumeSeries = chart.addHistogramSeries({
+      color: '#FFA474',
+      priceFormat: {
+        type: 'volume',
+      },
+      priceScaleId: '',
+    });
+    volumeSeries.priceScale().applyOptions({
+      scaleMargins: {
+        top: 0.8, // highest point of the series will be 70% away from the top
+        bottom: 0,
+      },
     });
 
-    areaSeries.setData(amountData.slice(0, 358));
+    volumeSeries.setData(amountData.slice(0, 358));
+
+    const handleTimeRangeChange = () => {
+      const timeRange = chart.timeScale().getVisibleRange();
+      if (timeRange && timeRange.from <= candleData[0].time) {
+        console.log('왼쪽 끝에 도달', timeRange);
+      }
+    };
+
+    chart.timeScale().subscribeVisibleLogicalRangeChange(handleTimeRangeChange);
+
+    return () => {
+      chart
+        .timeScale()
+        .unsubscribeVisibleLogicalRangeChange(handleTimeRangeChange);
+    };
   }, [data]);
 
   return (
