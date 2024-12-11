@@ -97,3 +97,8 @@ export const formatMD = (dateString: string) => {
   const day = String(date.getDate()).padStart(2, '0');
   return `${month}.${day}`;
 };
+
+export const convertToUnixTimestamp = (dateString: string) => {
+  const formattedTime = `${dateString.slice(0, 4)}-${dateString.slice(4, 6)}-${dateString.slice(6, 8)}T${dateString.slice(8, 10)}:${dateString.slice(10, 12)}:${dateString.slice(12, 14)}Z`;
+  return Math.floor(new Date(formattedTime).getTime() / 1000);
+};

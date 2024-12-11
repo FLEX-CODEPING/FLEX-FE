@@ -21,6 +21,11 @@ const StockSearchBar = ({ getStockInfo }: StockSearchBarProps) => {
     }
   };
 
+  const searchKeyword = (keyword: string) => {
+    getStockInfo(keyword);
+    setSearchText('');
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowDown') {
       setSelectedIndex((prev) =>
@@ -31,9 +36,10 @@ const StockSearchBar = ({ getStockInfo }: StockSearchBarProps) => {
     } else if (e.key === 'Enter') {
       if (selectedIndex !== -1) {
         const selectedStock = autoComplete[selectedIndex];
-        getStockInfo(selectedStock.stockcode);
+        searchKeyword(selectedStock.stockcode);
       }
       getStockInfo(searchText);
+      setSearchText('');
     }
   };
 
@@ -51,12 +57,12 @@ const StockSearchBar = ({ getStockInfo }: StockSearchBarProps) => {
         }}
         textValue={searchText}
         onKeyDown={handleKeyDown}
-        onEnterPress={() => getStockInfo}
+        onEnterPress={() => searchKeyword(searchText)}
       />
       <Icons
         name={searchStock}
         className="absolute right-5 top-2 cursor-pointer"
-        onClick={() => getStockInfo}
+        onClick={() => searchKeyword(searchText)}
       />
       {autoComplete.length !== 0 && (
         <div className="absolute top-10 bg-white flex-col-center w-full px-2.5 py-3 rounded-lg border-x border-b border-gray-4 z-20 max-h-[312px] overflow-y-auto">
@@ -65,9 +71,7 @@ const StockSearchBar = ({ getStockInfo }: StockSearchBarProps) => {
               className={`flex w-full p-2.5 justify-between cursor-pointer rounded ${selectedIndex === i ? 'bg-gray-200' : ''}`}
               key={stockInfo.stockcode}
               onMouseEnter={() => setSelectedIndex(i)}
-              onClick={() => {
-                getStockInfo(stockInfo.stockcode);
-              }}
+              onClick={() => searchKeyword(stockInfo.stockcode)}
             >
               <p className="text-xs">{stockInfo.stockName}</p>
               <div className="flex items-center text-[10px] text-gray-1">

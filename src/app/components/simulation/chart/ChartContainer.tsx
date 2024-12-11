@@ -5,29 +5,57 @@ import { callPost } from '@/app/utils/callApi';
 import { getTodayDate } from '@/app/utils/date';
 import { useEffect, useState } from 'react';
 import ChartEmpty from './ChartEmpty';
-import MockChart from './MockChart';
+import SimulChart from './SimulChart';
 
 const ChartContainer = () => {
   const [data, setData] = useState<MinPriceTypes[]>([]);
   const { stockCode, stockName } = useStockStore();
+  console.log(data);
 
-  const fetchData = async (count: number) => {
-    const allData: MinPriceTypes[] = [];
-    for (let i = 0; i < count; i++) {
-      const reqBody = {
-        date: getTodayDate(),
+  const fetchData = async () => {
+    const arrData = [];
+    const reqBody = {
+      date: getTodayDate(),
+      stockCode,
+      time: '153000',
+    };
+
+    const response = await callPost('/api/stocks/price/minute', reqBody);
+    let currentData = response.result.output2;
+    arrData.push(...currentData);
+
+    let requestCount = 1;
+    let isDataAvailable = true;
+
+    while (isDataAvailable && requestCount < 3) {
+      const lastItem = currentData[currentData.length - 1];
+      let { tradingDate: date, transactionTime: time } = lastItem;
+      const beforeTime = (Number(time) - 100).toString();
+      const newReqBody = {
+        date,
         stockCode,
-        time: '153000',
+        time: beforeTime,
       };
-      const response = await callPost('/api/stocks/price/minute', reqBody);
 
-      allData.push(...response.result.output2);
+      const newResponse = await callPost(
+        '/api/stocks/price/minute',
+        newReqBody,
+      );
+      const newData = newResponse.result.output2;
+
+      if (newData.length > 0) {
+        currentData = [...currentData, ...newData];
+        arrData.push(...newData);
+        requestCount++;
+      } else {
+        isDataAvailable = false;
+      }
     }
-    setData((prevData) => [...prevData, ...allData]);
+    setData(arrData);
   };
 
   useEffect(() => {
-    stockCode && fetchData(3);
+    stockCode && fetchData();
   }, [stockCode]);
 
   return (
@@ -35,7 +63,7 @@ const ChartContainer = () => {
       {!stockCode || stockCode === 'null' ? (
         <ChartEmpty />
       ) : (
-        <MockChart chartData={data} symbol={stockName} />
+        <SimulChart data={data} />
       )}
     </div>
   );
