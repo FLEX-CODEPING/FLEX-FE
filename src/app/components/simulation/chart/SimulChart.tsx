@@ -1,13 +1,16 @@
 import { convertToUnixTimestamp } from '@/app/utils/date';
 import { createChart } from 'lightweight-charts';
-import { useLayoutEffect, useRef } from 'react';
+import { Dispatch, SetStateAction, useLayoutEffect, useRef } from 'react';
 
 interface SimulChartProps {
   data: MinPriceTypes[];
+  isLack: boolean;
+  setIsLack: Dispatch<SetStateAction<boolean>>;
 }
 
-const SimulChart = ({ data }: SimulChartProps) => {
+const SimulChart = ({ data, isLack, setIsLack }: SimulChartProps) => {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
+  const chartRef = useRef<ReturnType<typeof createChart> | null>(null); // 차트를 저장할 ref
 
   const transformCandle = (arr: MinPriceTypes[]) => {
     return arr
@@ -32,8 +35,6 @@ const SimulChart = ({ data }: SimulChartProps) => {
 
   const candleData = transformCandle(data);
   const amountData = transformAmount(data);
-  console.log(candleData.slice(0, 358), '캔들');
-  console.log(amountData.slice(0, 358), '양');
 
   useLayoutEffect(() => {
     if (!chartContainerRef.current || data.length === 0) return;
@@ -42,13 +43,14 @@ const SimulChart = ({ data }: SimulChartProps) => {
       width: chartContainerRef.current.clientWidth,
       height: chartContainerRef.current.clientHeight,
       timeScale: {
-        timeVisible: true, // 시간 세부 표시 활성화
-        secondsVisible: false, // 초 단위 비활성화 (원하는 경우 true로 변경 가능)
+        timeVisible: true,
+        secondsVisible: false,
       },
       rightPriceScale: {
         borderVisible: false,
       },
     });
+    chartRef.current = chart;
 
     const candleSeries = chart.addCandlestickSeries({
       upColor: '#0065D1',
@@ -64,7 +66,7 @@ const SimulChart = ({ data }: SimulChartProps) => {
       },
     });
 
-    candleSeries.setData(candleData.slice(0, 358));
+    candleSeries.setData(candleData);
 
     const volumeSeries = chart.addHistogramSeries({
       color: '#FFA474',
@@ -75,17 +77,20 @@ const SimulChart = ({ data }: SimulChartProps) => {
     });
     volumeSeries.priceScale().applyOptions({
       scaleMargins: {
-        top: 0.8, // highest point of the series will be 70% away from the top
+        top: 0.8,
         bottom: 0,
       },
     });
 
-    volumeSeries.setData(amountData.slice(0, 358));
+    volumeSeries.setData(amountData);
 
     const handleTimeRangeChange = () => {
       const timeRange = chart.timeScale().getVisibleRange();
       if (timeRange && timeRange.from <= candleData[0].time) {
-        console.log('왼쪽 끝에 도달', timeRange);
+        setIsLack(true);
+        if (!isLack) {
+          console.log('왼쪽 끝에 도달', timeRange);
+        }
       }
     };
 
@@ -95,13 +100,14 @@ const SimulChart = ({ data }: SimulChartProps) => {
       chart
         .timeScale()
         .unsubscribeVisibleLogicalRangeChange(handleTimeRangeChange);
+      chart.remove();
     };
   }, [data]);
 
   return (
     <div
       ref={chartContainerRef}
-      style={{ position: 'relative', width: '100%', height: '400px' }}
+      style={{ position: 'relative', width: '100%', height: '380px' }}
     />
   );
 };
