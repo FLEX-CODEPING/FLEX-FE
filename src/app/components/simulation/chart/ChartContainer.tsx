@@ -87,7 +87,7 @@ const ChartContainer = () => {
   }, [isLack]);
 
   return (
-    <div className="flex w-full px-5 py-5 rounded-[10px] border border-gray-4 flex-col justify-start items-start gap-y-5">
+    <div className="flex w-full px-3 py-3 rounded-[10px] border border-gray-4 flex-col justify-start items-start gap-y-5">
       {!stockCode || stockCode === 'null' ? (
         <ChartEmpty />
       ) : (

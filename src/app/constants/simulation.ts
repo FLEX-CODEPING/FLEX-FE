@@ -15,7 +15,7 @@ export const CHART_TITLE = ['차트', '종목정보'];
 
 export const STOCK_INFO_TITLE = ['종목정보', '재무제표', '기업정보'];
 
-export const CHART_VIEWTYPE: ChartViewType[] = ['일', '주', '월', '년'];
+export const CHART_VIEWTYPE = ['일', '주', '월', '년'];
 
 export const SIDE_NAV_TYPES: SideNavType[] = [
   '관심종목',
@@ -196,3 +196,5 @@ export const TRADETYPE_MAP: Record<string, string> = {
 };
 
 export const TRADE_PLACEHOLDER = ['찾으려는 종목을 검색해보세요'];
+
+export const CHART_MIN_NUM = [1, 5, 15, 60];

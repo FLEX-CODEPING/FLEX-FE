@@ -7,6 +7,7 @@ import {
   useRef,
   useState,
 } from 'react';
+import MinTypeDropdown from './MinTypeDropdown';
 
 interface SimulChartProps {
   data: MinPriceTypes[];
@@ -18,7 +19,7 @@ const SimulChart = ({ data, isLack, setIsLack }: SimulChartProps) => {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
   const chartRef = useRef<ReturnType<typeof createChart> | null>(null);
 
-  const [timeFrame, setTimeFrame] = useState(1);
+  const [timeFrame, setTimeFrame] = useState<number | string>(1);
 
   const transformCandle = (arr: MinPriceTypes[]) => {
     return arr
@@ -121,12 +122,10 @@ const SimulChart = ({ data, isLack, setIsLack }: SimulChartProps) => {
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '380px' }}>
-      <div className="flex items-center h-6">
-        <button onClick={() => setTimeFrame(1)}>1분봉</button>
-        <button onClick={() => setTimeFrame(5)}>5분봉</button>
-        <button onClick={() => setTimeFrame(15)}>15분봉</button>
+      <div className="w-full flex justify-end pr-12">
+        <MinTypeDropdown option={timeFrame} setOption={setTimeFrame} />
       </div>
-      <div ref={chartContainerRef} style={{ width: '100%', height: '356px' }} />
+      <div ref={chartContainerRef} className="w-full h-[356px] mt-2" />
     </div>
   );
 };
