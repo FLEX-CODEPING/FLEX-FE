@@ -471,3 +471,17 @@ export const goBack = {
   height: 17,
   fill: '#434343',
 };
+
+export const plusIcon = {
+  path: 'M12.9163 8.66536H8.91634V12.6654H7.58301V8.66536H3.58301V7.33203H7.58301V3.33203H8.91634V7.33203H12.9163V8.66536Z',
+  width: 16,
+  height: 16,
+  fill: '#7A7A7A',
+};
+
+export const minusIcon = {
+  path: 'M12.9163 8.66536H3.58301V7.33203H12.9163V8.66536Z',
+  width: 17,
+  height: 16,
+  fill: '#7A7A7A',
+};

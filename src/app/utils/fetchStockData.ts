@@ -72,7 +72,7 @@ export const fetchInitialDay = async (stockCode: string, dayType: string) => {
     orgAdjPrice: 0,
   };
   console.log(reqBody, '현재요청 바디');
-  
+
   const response = await callPost('/api/stocks/price', reqBody);
   return response;
 };

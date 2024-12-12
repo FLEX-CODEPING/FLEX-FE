@@ -205,3 +205,23 @@ export const DAY_DIVCODE_MAP: Record<string, string> = {
   월: 'M',
   년: 'Y',
 };
+
+export const BACKTEST_TEXT = [
+  '시작날짜',
+  '종료날짜',
+  '주문타입',
+  '주문수량',
+  '백테스팅 결과',
+  '총 주식 수',
+  '총 소요 금액',
+  '총 소요일',
+  '초기자산',
+  '최종자산',
+  '손익',
+  '손익율',
+  '매매 횟수',
+];
+
+export const BACKTEST_BTN_TEXT = ['시작하기', '다시하기'];
+
+export const ORDER_TYPE = ['매일', '매주', '매월', '매년'];
