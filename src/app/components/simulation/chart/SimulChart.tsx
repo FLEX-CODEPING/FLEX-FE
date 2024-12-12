@@ -10,7 +10,7 @@ interface SimulChartProps {
 
 const SimulChart = ({ data, isLack, setIsLack }: SimulChartProps) => {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
-  const chartRef = useRef<ReturnType<typeof createChart> | null>(null); // 차트를 저장할 ref
+  const chartRef = useRef<ReturnType<typeof createChart> | null>(null);
 
   const transformCandle = (arr: MinPriceTypes[]) => {
     return arr
@@ -75,6 +75,7 @@ const SimulChart = ({ data, isLack, setIsLack }: SimulChartProps) => {
       },
       priceScaleId: '',
     });
+
     volumeSeries.priceScale().applyOptions({
       scaleMargins: {
         top: 0.8,
@@ -84,15 +85,41 @@ const SimulChart = ({ data, isLack, setIsLack }: SimulChartProps) => {
 
     volumeSeries.setData(amountData);
 
+    let savedLogicalRange = null;
+
     const handleTimeRangeChange = () => {
       const timeRange = chart.timeScale().getVisibleRange();
-      if (timeRange && timeRange.from <= candleData[0].time) {
+      if (timeRange && timeRange.from <= candleData[20].time) {
         setIsLack(true);
         if (!isLack) {
           console.log('왼쪽 끝에 도달', timeRange);
         }
       }
     };
+    const handleLoadMoreData = () => {
+      savedLogicalRange = chart.timeScale().getVisibleLogicalRange();
+    };
+
+    const restoreSavedRange = () => {
+      if (savedLogicalRange) {
+        setTimeout(() => {
+          chart.timeScale().setVisibleLogicalRange(savedLogicalRange);
+          savedLogicalRange = null; // 복원 후 초기화
+        }, 0);
+      }
+    };
+
+    // 새 데이터를 로드할 때 이벤트 트리거
+    chart.timeScale().subscribeVisibleTimeRangeChange(() => {
+      if (isLack) {
+        handleLoadMoreData();
+      }
+    });
+
+    // 데이터를 갱신할 때 복원
+    if (isLack) {
+      restoreSavedRange();
+    }
 
     chart.timeScale().subscribeVisibleLogicalRangeChange(handleTimeRangeChange);
 

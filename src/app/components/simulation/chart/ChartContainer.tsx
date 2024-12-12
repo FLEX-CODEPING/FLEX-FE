@@ -23,7 +23,6 @@ const ChartContainer = () => {
       time: '153000',
     };
     console.log(isLack, '현재 lack값ㄴ');
-    console.log(isLack, '현재 lack값ㄴ');
 
     const response = await callPost('/api/stocks/price/minute', reqBody);
     let currentData = response.result.output2;
@@ -67,48 +66,18 @@ const ChartContainer = () => {
 
     let { tradingDate: date, transactionTime: time } = lastItem;
     const beforeDate = (Number(date) - 1).toString();
+    const beforeHM = (Number(time) - 100).toString();
     const newReqBody = {
-      date: beforeDate,
+      date,
       stockCode,
-      time: '153000',
+      time: beforeHM,
     };
-    console.log(newReqBody, ' 새 요청 바디');
 
     const newResponse = await callPost('/api/stocks/price/minute', newReqBody);
     const newData = newResponse.result.output2;
-    console.log(newData, '새로요청 배열 아이템');
 
-    let requestCount = 0;
-    let isDataAvailable = true;
     setData([...additionalData, ...newData]);
-
-    // while (isDataAvailable && requestCount < 2) {
-    //   const newReqBody = {
-    //     date,
-    //     stockCode,
-    //     time: beforeTime,
-    //   };
-
-    //   const newResponse = await callPost(
-    //     '/api/stocks/price/minute',
-    //     newReqBody,
-    //   );
-    //   const newData = newResponse.result.output2;
-    //   console.log(newData, '새로요청 배열 아이템');
-
-    //   if (newData.length > 0) {
-    //     additionalData = [...newData, ...additionalData]; // 새로운 데이터를 기존 데이터 앞에 추가
-    //     const earliestItem = newData[0]; // 가장 이른 데이터로 업데이트
-    //     date = earliestItem.tradingDate;
-    //     time = earliestItem.transactionTime;
-    //     requestCount++;
-    //   } else {
-    //     isDataAvailable = false; // 더 이상 데이터가 없을 경우 종료
-    //   }
-    // }
-
-    // setData(additionalData); // 새로운 데이터를 state에 업데이트
-    setIsLack(false); // 데이터 요청이 완료되었으므로 상태를 초기화
+    setIsLack(false);
   };
 
   useEffect(() => {
