@@ -6,14 +6,12 @@ import { getTodayDate } from '@/app/utils/date';
 import { useEffect, useState } from 'react';
 import ChartEmpty from './ChartEmpty';
 import SimulChart from './SimulChart';
+import WebSocketChart from './SocketChart';
 
 const ChartContainer = () => {
   const [data, setData] = useState<MinPriceTypes[]>([]);
   const { stockCode, stockName } = useStockStore();
   const [isLack, setIsLack] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); // 로딩 상태 추가
-
-  console.log(data);
 
   const fetchData = async () => {
     const arrData = [];
@@ -22,8 +20,6 @@ const ChartContainer = () => {
       stockCode,
       time: '153000',
     };
-    console.log(isLack, '현재 lack값ㄴ');
-
     const response = await callPost('/api/stocks/price/minute', reqBody);
     let currentData = response.result.output2;
     arrData.push(...currentData);
@@ -55,14 +51,12 @@ const ChartContainer = () => {
     }
     setData(arrData);
   };
-  console.log(data, '바뀐 데이터 상탠');
 
   const fetchAdditionalData = async () => {
     if (data.length === 0) return;
 
     let additionalData = [...data];
     const lastItem = additionalData[data.length - 1];
-    console.log(lastItem, '마지막 아이템');
 
     let { tradingDate: date, transactionTime: time } = lastItem;
     const beforeDate = (Number(date) - 1).toString();
@@ -99,6 +93,7 @@ const ChartContainer = () => {
       ) : (
         <SimulChart data={data} isLack={isLack} setIsLack={setIsLack} />
       )}
+      <WebSocketChart stockCode={stockCode} />
     </div>
   );
 };

@@ -18,7 +18,6 @@ const StockInfo = () => {
       const response = await callGet(
         `api/stocks/info?code=${stockCode}&date=${date}`,
       );
-      console.log(response);
       setStockInfo(response.result);
     };
 
