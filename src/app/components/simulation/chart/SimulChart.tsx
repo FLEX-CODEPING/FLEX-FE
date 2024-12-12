@@ -18,8 +18,35 @@ interface SimulChartProps {
 const SimulChart = ({ data, isLack, setIsLack }: SimulChartProps) => {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
   const chartRef = useRef<ReturnType<typeof createChart> | null>(null);
+  const candleSeriesRef = useRef<any>(null); // 캔들 데이터 참조
+  const volumeSeriesRef = useRef<any>(null); // 거래량 데이터 참조
 
   const [timeFrame, setTimeFrame] = useState<number | string>(1);
+
+  // 데이터 그룹화 (분봉에 따라 데이터 합산)
+  const groupDataByInterval = (arr: MinPriceTypes[], interval: number) => {
+    const groupedData: MinPriceTypes[] = [];
+    for (let i = 0; i < arr.length; i += interval) {
+      const slice = arr.slice(i, i + interval);
+
+      if (slice.length > 0) {
+        const groupedItem = {
+          tradingDate: slice[0].tradingDate,
+          transactionTime: slice[0].transactionTime,
+          openPrice: slice[0].openPrice,
+          highPrice: Math.max(...slice.map((item) => Number(item.highPrice))),
+          lowPrice: Math.min(...slice.map((item) => Number(item.lowPrice))),
+          curPrice: slice[slice.length - 1].curPrice,
+          transactionVolume: slice.reduce(
+            (sum, item) => sum + Number(item.transactionVolume),
+            0,
+          ),
+        };
+        groupedData.push(groupedItem);
+      }
+    }
+    return groupedData;
+  };
 
   const transformCandle = (arr: MinPriceTypes[]) => {
     return arr
@@ -42,8 +69,18 @@ const SimulChart = ({ data, isLack, setIsLack }: SimulChartProps) => {
       .reverse();
   };
 
-  const candleData = transformCandle(data);
-  const amountData = transformAmount(data);
+  // const candleData = transformCandle(data);
+  // const amountData = transformAmount(data);
+
+  const getTransformedData = () => {
+    const groupedData =
+      timeFrame === 1 ? data : groupDataByInterval(data, timeFrame);
+
+    return {
+      candles: transformCandle(groupedData),
+      volumes: transformAmount(groupedData),
+    };
+  };
 
   useLayoutEffect(() => {
     if (!chartContainerRef.current || data.length === 0) return;
@@ -68,14 +105,15 @@ const SimulChart = ({ data, isLack, setIsLack }: SimulChartProps) => {
       borderDownColor: '#F12C2C',
       wickUpColor: '#0065D1',
       wickDownColor: '#F12C2C',
-      priceFormat: {
-        type: 'custom',
-        minMove: 1,
-        formatter: (price: number) => Math.round(price).toString(),
-      },
+      // priceFormat: {
+      //   type: 'custom',
+      //   minMove: 1,
+      //   formatter: (price: number) => Math.round(price).toString(),
+      // },
     });
+    candleSeriesRef.current = candleSeries;
 
-    candleSeries.setData(candleData);
+    // candleSeries.setData(candleData);
 
     const volumeSeries = chart.addHistogramSeries({
       color: '#FFA474',
@@ -84,6 +122,7 @@ const SimulChart = ({ data, isLack, setIsLack }: SimulChartProps) => {
       },
       priceScaleId: '',
     });
+    volumeSeriesRef.current = volumeSeries;
 
     volumeSeries.priceScale().applyOptions({
       scaleMargins: {
@@ -92,33 +131,50 @@ const SimulChart = ({ data, isLack, setIsLack }: SimulChartProps) => {
       },
     });
 
-    volumeSeries.setData(amountData);
+    // volumeSeries.setData(amountData);
 
-    const handleTimeRangeChange = () => {
-      const timeRange = chart.timeScale().getVisibleRange();
-      if (timeRange && timeRange.from <= candleData[20].time) {
-        setIsLack(true);
-        if (!isLack) {
-          console.log('왼쪽 끝에 도달', timeRange);
-        }
-      }
-    };
-
-    chart.timeScale().subscribeVisibleTimeRangeChange(() => {
-      if (isLack) {
-        handleTimeRangeChange();
-      }
-    });
-
-    chart.timeScale().subscribeVisibleLogicalRangeChange(handleTimeRangeChange);
+    const { candles, volumes } = getTransformedData();
+    candleSeries.setData(candles);
+    volumeSeries.setData(volumes);
 
     return () => {
-      chart
-        .timeScale()
-        .unsubscribeVisibleLogicalRangeChange(handleTimeRangeChange);
       chart.remove();
     };
   }, [data]);
+
+  useLayoutEffect(() => {
+    if (!candleSeriesRef.current || !volumeSeriesRef.current) return;
+
+    const { candles, volumes } = getTransformedData();
+    candleSeriesRef.current.setData(candles);
+    volumeSeriesRef.current.setData(volumes);
+  }, [timeFrame]);
+
+  //   const handleTimeRangeChange = () => {
+  //     const timeRange = chart.timeScale().getVisibleRange();
+  //     if (timeRange && timeRange.from <= candleData[20].time) {
+  //       setIsLack(true);
+  //       if (!isLack) {
+  //         console.log('왼쪽 끝에 도달', timeRange);
+  //       }
+  //     }
+  //   };
+
+  //   chart.timeScale().subscribeVisibleTimeRangeChange(() => {
+  //     if (isLack) {
+  //       handleTimeRangeChange();
+  //     }
+  //   });
+
+  //   chart.timeScale().subscribeVisibleLogicalRangeChange(handleTimeRangeChange);
+
+  //   return () => {
+  //     chart
+  //       .timeScale()
+  //       .unsubscribeVisibleLogicalRangeChange(handleTimeRangeChange);
+  //     chart.remove();
+  //   };
+  // }, [data]);
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '380px' }}>
