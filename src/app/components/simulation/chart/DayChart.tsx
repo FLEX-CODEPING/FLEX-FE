@@ -1,52 +1,34 @@
+import {
+  candleChartOptions,
+  groupDataByInterval,
+  volumeChartOptions,
+} from '@/app/utils/chart';
 import { convertToUnixTimestamp } from '@/app/utils/date';
 import { createChart } from 'lightweight-charts';
-import {
-  Dispatch,
-  SetStateAction,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react';
-import MinTypeDropdown from './MinTypeDropdown';
+import { Dispatch, SetStateAction, useLayoutEffect, useRef } from 'react';
+import ChartTypeDropdown from './ChartTypeDropdown';
 
-interface SimulChartProps {
+interface DayChartProps {
   data: MinPriceTypes[];
   isLack: boolean;
   setIsLack: Dispatch<SetStateAction<boolean>>;
+  timeFrame: string | number;
+  setTimeFrame: Dispatch<SetStateAction<string | number>>;
 }
 
-const SimulChart = ({ data, isLack, setIsLack }: SimulChartProps) => {
+const DayChart = ({
+  data,
+  isLack,
+  setIsLack,
+  timeFrame,
+  setTimeFrame,
+}: DayChartProps) => {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
   const chartRef = useRef<ReturnType<typeof createChart> | null>(null);
   const candleSeriesRef = useRef<any>(null); // 캔들 데이터 참조
   const volumeSeriesRef = useRef<any>(null); // 거래량 데이터 참조
 
-  const [timeFrame, setTimeFrame] = useState<number | string>(1);
-
   // 데이터 그룹화 (분봉에 따라 데이터 합산)
-  const groupDataByInterval = (arr: MinPriceTypes[], interval: number) => {
-    const groupedData: MinPriceTypes[] = [];
-    for (let i = 0; i < arr.length; i += interval) {
-      const slice = arr.slice(i, i + interval);
-
-      if (slice.length > 0) {
-        const groupedItem = {
-          tradingDate: slice[0].tradingDate,
-          transactionTime: slice[0].transactionTime,
-          openPrice: slice[0].openPrice,
-          highPrice: Math.max(...slice.map((item) => Number(item.highPrice))),
-          lowPrice: Math.min(...slice.map((item) => Number(item.lowPrice))),
-          curPrice: slice[slice.length - 1].curPrice,
-          transactionVolume: slice.reduce(
-            (sum, item) => sum + Number(item.transactionVolume),
-            0,
-          ),
-        };
-        groupedData.push(groupedItem);
-      }
-    }
-    return groupedData;
-  };
 
   const transformCandle = (arr: MinPriceTypes[]) => {
     return arr
@@ -68,9 +50,6 @@ const SimulChart = ({ data, isLack, setIsLack }: SimulChartProps) => {
       }))
       .reverse();
   };
-
-  // const candleData = transformCandle(data);
-  // const amountData = transformAmount(data);
 
   const getTransformedData = () => {
     const groupedData =
@@ -98,40 +77,14 @@ const SimulChart = ({ data, isLack, setIsLack }: SimulChartProps) => {
     });
     chartRef.current = chart;
 
-    const candleSeries = chart.addCandlestickSeries({
-      upColor: '#0065D1',
-      downColor: '#F12C2C',
-      borderUpColor: '#0065D1',
-      borderDownColor: '#F12C2C',
-      wickUpColor: '#0065D1',
-      wickDownColor: '#F12C2C',
-      // priceFormat: {
-      //   type: 'custom',
-      //   minMove: 1,
-      //   formatter: (price: number) => Math.round(price).toString(),
-      // },
-    });
+    const candleSeries = chart.addCandlestickSeries(candleChartOptions);
+    //외부에서 옵션 선언후 삽입
     candleSeriesRef.current = candleSeries;
 
-    // candleSeries.setData(candleData);
-
-    const volumeSeries = chart.addHistogramSeries({
-      color: '#FFA474',
-      priceFormat: {
-        type: 'volume',
-      },
-      priceScaleId: '',
-    });
+    const volumeSeries = chart.addHistogramSeries();
     volumeSeriesRef.current = volumeSeries;
 
-    volumeSeries.priceScale().applyOptions({
-      scaleMargins: {
-        top: 0.8,
-        bottom: 0,
-      },
-    });
-
-    // volumeSeries.setData(amountData);
+    volumeSeries.priceScale().applyOptions(volumeChartOptions);
 
     const { candles, volumes } = getTransformedData();
     candleSeries.setData(candles);
@@ -179,11 +132,11 @@ const SimulChart = ({ data, isLack, setIsLack }: SimulChartProps) => {
   return (
     <div style={{ position: 'relative', width: '100%', height: '380px' }}>
       <div className="w-full flex justify-end pr-12">
-        <MinTypeDropdown option={timeFrame} setOption={setTimeFrame} />
+        <ChartTypeDropdown option={timeFrame} setOption={setTimeFrame} />
       </div>
       <div ref={chartContainerRef} className="w-full h-[356px] mt-2" />
     </div>
   );
 };
 
-export default SimulChart;
+export default DayChart;

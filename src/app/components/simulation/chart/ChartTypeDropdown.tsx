@@ -3,12 +3,12 @@ import { fillter } from '@/app/constants/iconPath';
 import { CHART_MIN_NUM, CHART_VIEWTYPE } from '@/app/constants/simulation';
 import { Dispatch, SetStateAction, useState } from 'react';
 
-interface MinTypeDropdownProps {
+interface ChartTypeDropdownProps {
   option: number | string;
   setOption: Dispatch<SetStateAction<number | string>>;
 }
 
-const MinTypeDropdown = ({ option, setOption }: MinTypeDropdownProps) => {
+const ChartTypeDropdown = ({ option, setOption }: ChartTypeDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelectValue = (type: string | number) => {
@@ -34,9 +34,8 @@ const MinTypeDropdown = ({ option, setOption }: MinTypeDropdownProps) => {
       {isOpen && (
         <div className="absolute w-[80px] top-8 py-1 bg-white border border-gray-2 rounded z-10">
           {CHART_MIN_NUM.map((minType, i) => (
-            <div className="w-full flex-center">
+            <div className="w-full flex-center" key={minType}>
               <div
-                key={minType}
                 className={`w-[90%] h-[95%] flex px-2 py-2 hover:bg-gray-100 rounded  cursor-pointer`}
                 onClick={() => handleSelectValue(minType)}
               >
@@ -61,4 +60,4 @@ const MinTypeDropdown = ({ option, setOption }: MinTypeDropdownProps) => {
   );
 };
 
-export default MinTypeDropdown;
+export default ChartTypeDropdown;
