@@ -98,7 +98,58 @@ export const formatMD = (dateString: string) => {
   return `${month}.${day}`;
 };
 
+//unix 시간대로 변환
 export const convertToUnixTimestamp = (dateString: string) => {
   const formattedTime = `${dateString.slice(0, 4)}-${dateString.slice(4, 6)}-${dateString.slice(6, 8)}T${dateString.slice(8, 10)}:${dateString.slice(10, 12)}:${dateString.slice(12, 14)}Z`;
   return Math.floor(new Date(formattedTime).getTime() / 1000);
+};
+
+// 1. 전일로부터 4개월 전 날짜 반환
+export function getFourMonthsAgo(): string {
+  const now = new Date();
+  now.setDate(now.getDate() - 1); // 전일
+  now.setMonth(now.getMonth() - 4); // 4개월 전
+  return commonFormat(now);
+}
+
+// 2. 이전의 가장 가까운 월요일로부터 80주 전 날짜 반환
+export function getEightyWeeksAgoFromNearestMonday(): string {
+  const now = new Date();
+  const day = now.getDay(); // 현재 요일 (0: 일요일, 1: 월요일, ...)
+  const daysToMonday = (day === 0 ? -6 : 1) - day; // 가장 가까운 월요일까지의 차이 계산
+  now.setDate(now.getDate() + daysToMonday); // 가장 가까운 월요일로 설정
+  now.setDate(now.getDate() - 80 * 7); // 80주 전으로 이동
+  return commonFormat(now);
+}
+
+// 3. 4년 전 전월 1일 반환
+export function getFourYearsAgoFirstDay(): string {
+  const now = new Date();
+  now.setFullYear(now.getFullYear() - 4); // 4년 전
+  now.setMonth(now.getMonth() - 1); // 전월
+  now.setDate(1); // 1일로 설정
+  return commonFormat(now);
+}
+
+// 날짜를 YYYYMMDD 형식으로 포맷하는 유틸리티 함수
+function commonFormat(date: Date): string {
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 +1
+  const day = date.getDate().toString().padStart(2, '0');
+  return `${year}${month}${day}`;
+}
+
+export const switchDateFunc = (dayType: string) => {
+  switch (dayType) {
+    case '일':
+      return getFourMonthsAgo();
+    case '주':
+      return getEightyWeeksAgoFromNearestMonday();
+    case '월':
+      return getFourYearsAgoFirstDay();
+    case '년':
+      return '19800101';
+    default:
+      break;
+  }
 };

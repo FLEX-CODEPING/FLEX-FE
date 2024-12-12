@@ -198,3 +198,10 @@ export const TRADETYPE_MAP: Record<string, string> = {
 export const TRADE_PLACEHOLDER = ['찾으려는 종목을 검색해보세요'];
 
 export const CHART_MIN_NUM = [1, 5, 15, 60];
+
+export const DAY_DIVCODE_MAP: Record<string, string> = {
+  일: 'D',
+  주: 'W',
+  월: 'M',
+  년: 'Y',
+};
