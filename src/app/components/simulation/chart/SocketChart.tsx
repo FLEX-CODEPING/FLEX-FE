@@ -87,17 +87,7 @@ const WebSocketChart = ({ stockCode }: { stockCode: string }) => {
     return <div>WebSocket 에러: {socketError}</div>;
   }
 
-  return (
-    <div>
-      <h1>WebSocket 데이터</h1>
-      <div>연결 상태: {isConnected ? '연결됨' : '연결 안 됨'}</div>
-      <ul>
-        {messages.map((message, index) => (
-          <li key={index}>{JSON.stringify(message)}</li>
-        ))}
-      </ul>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default WebSocketChart;

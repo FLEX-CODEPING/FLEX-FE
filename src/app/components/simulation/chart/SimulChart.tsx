@@ -1,6 +1,12 @@
 import { convertToUnixTimestamp } from '@/app/utils/date';
 import { createChart } from 'lightweight-charts';
-import { Dispatch, SetStateAction, useLayoutEffect, useRef } from 'react';
+import {
+  Dispatch,
+  SetStateAction,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 
 interface SimulChartProps {
   data: MinPriceTypes[];
@@ -11,6 +17,8 @@ interface SimulChartProps {
 const SimulChart = ({ data, isLack, setIsLack }: SimulChartProps) => {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
   const chartRef = useRef<ReturnType<typeof createChart> | null>(null);
+
+  const [timeFrame, setTimeFrame] = useState(1);
 
   const transformCandle = (arr: MinPriceTypes[]) => {
     return arr
@@ -85,8 +93,6 @@ const SimulChart = ({ data, isLack, setIsLack }: SimulChartProps) => {
 
     volumeSeries.setData(amountData);
 
-    let savedLogicalRange = null;
-
     const handleTimeRangeChange = () => {
       const timeRange = chart.timeScale().getVisibleRange();
       if (timeRange && timeRange.from <= candleData[20].time) {
@@ -96,30 +102,12 @@ const SimulChart = ({ data, isLack, setIsLack }: SimulChartProps) => {
         }
       }
     };
-    const handleLoadMoreData = () => {
-      savedLogicalRange = chart.timeScale().getVisibleLogicalRange();
-    };
 
-    const restoreSavedRange = () => {
-      if (savedLogicalRange) {
-        setTimeout(() => {
-          chart.timeScale().setVisibleLogicalRange(savedLogicalRange);
-          savedLogicalRange = null; // 복원 후 초기화
-        }, 0);
-      }
-    };
-
-    // 새 데이터를 로드할 때 이벤트 트리거
     chart.timeScale().subscribeVisibleTimeRangeChange(() => {
       if (isLack) {
-        handleLoadMoreData();
+        handleTimeRangeChange();
       }
     });
-
-    // 데이터를 갱신할 때 복원
-    if (isLack) {
-      restoreSavedRange();
-    }
 
     chart.timeScale().subscribeVisibleLogicalRangeChange(handleTimeRangeChange);
 
@@ -132,10 +120,14 @@ const SimulChart = ({ data, isLack, setIsLack }: SimulChartProps) => {
   }, [data]);
 
   return (
-    <div
-      ref={chartContainerRef}
-      style={{ position: 'relative', width: '100%', height: '380px' }}
-    />
+    <div style={{ position: 'relative', width: '100%', height: '380px' }}>
+      <div className="flex items-center h-6">
+        <button onClick={() => setTimeFrame(1)}>1분봉</button>
+        <button onClick={() => setTimeFrame(5)}>5분봉</button>
+        <button onClick={() => setTimeFrame(15)}>15분봉</button>
+      </div>
+      <div ref={chartContainerRef} style={{ width: '100%', height: '356px' }} />
+    </div>
   );
 };
 
