@@ -3,7 +3,7 @@ import { extractDateTimeAndPrice } from '@/app/utils/formatStock';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 interface WebSocketChartProps {
-  setLiveData: Dispatch<SetStateAction<LivePriceTypes | null>>;
+  setLiveData: Dispatch<SetStateAction<ChartDataTypes | null>>;
   stockCode: string;
 }
 
@@ -47,7 +47,7 @@ const WebSocketChart = ({ stockCode, setLiveData }: WebSocketChartProps) => {
           const currentTime = Date.now();
 
           if (
-            currentTime - lastUpdateTime >= 2000 &&
+            currentTime - lastUpdateTime >= 1000 &&
             event.data.trim().startsWith('0')
           ) {
             lastUpdateTime = currentTime;
@@ -84,7 +84,7 @@ const WebSocketChart = ({ stockCode, setLiveData }: WebSocketChartProps) => {
     return <div>WebSocket 에러: {socketError}</div>;
   }
 
-  return <div></div>;
+  return <div />;
 };
 
 export default WebSocketChart;

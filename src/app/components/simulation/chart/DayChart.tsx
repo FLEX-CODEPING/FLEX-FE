@@ -14,6 +14,7 @@ interface DayChartProps {
   setIsLack: Dispatch<SetStateAction<boolean>>;
   timeFrame: string | number;
   setTimeFrame: Dispatch<SetStateAction<string | number>>;
+  liveData: ChartDataTypes | null;
 }
 
 const DayChart = ({
@@ -22,6 +23,7 @@ const DayChart = ({
   setIsLack,
   timeFrame,
   setTimeFrame,
+  liveData,
 }: DayChartProps) => {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
   const chartRef = useRef<ReturnType<typeof createChart> | null>(null);
@@ -29,8 +31,6 @@ const DayChart = ({
   const volumeSeriesRef = useRef<any>(null); // 거래량 데이터 참조
 
   const transformCandle = (arr: DailyPriceTypes[]) => {
-    console.log(arr, '받아온 배열');
-
     return arr
       .map((item) => ({
         time: convertToUnixTimesDay(item.stck_bsop_date),

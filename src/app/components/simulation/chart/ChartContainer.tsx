@@ -12,7 +12,7 @@ import WebSocketChart from './SocketChart';
 const ChartContainer = () => {
   const [mindata, setMinData] = useState<MinPriceTypes[]>([]);
   const [dailyData, setDailyData] = useState<DailyPriceTypes[]>([]);
-  const [liveData, setLiveData] = useState<LivePriceTypes | null>(null);
+  const [liveData, setLiveData] = useState<ChartDataTypes | null>(null);
   const { stockCode } = useStockStore();
   const [isLack, setIsLack] = useState(false);
   const [timeFrame, setTimeFrame] = useState<number | string>(1);
@@ -34,7 +34,7 @@ const ChartContainer = () => {
     fetchData();
   }, [stockCode, timeFrame]);
   console.log(dailyData, '일주월연 데이터');
-  console.log(isDay, '이즈 데이 값');
+  console.log(liveData, '라이브데이터 변환');
   console.log(mindata, '분봉 데이터');
 
   // useEffect(() => {
@@ -60,6 +60,7 @@ const ChartContainer = () => {
           setIsLack={setIsLack}
           timeFrame={timeFrame}
           setTimeFrame={setTimeFrame}
+          liveData={liveData}
         />
       ) : (
         <MinChart
@@ -68,6 +69,7 @@ const ChartContainer = () => {
           setIsLack={setIsLack}
           timeFrame={timeFrame}
           setTimeFrame={setTimeFrame}
+          liveData={liveData}
         />
       )}
       {isOpen && (

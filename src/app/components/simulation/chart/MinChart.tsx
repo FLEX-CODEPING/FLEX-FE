@@ -6,7 +6,13 @@ import {
 } from '@/app/utils/chart';
 import { convertToUnixTimestamp } from '@/app/utils/date';
 import { createChart } from 'lightweight-charts';
-import { Dispatch, SetStateAction, useLayoutEffect, useRef } from 'react';
+import {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+} from 'react';
 import ChartTypeDropdown from './ChartTypeDropdown';
 
 interface MinChartProps {
@@ -15,6 +21,7 @@ interface MinChartProps {
   setIsLack: Dispatch<SetStateAction<boolean>>;
   timeFrame: string | number;
   setTimeFrame: Dispatch<SetStateAction<string | number>>;
+  liveData: ChartDataTypes | null;
 }
 
 const MinChart = ({
@@ -23,6 +30,7 @@ const MinChart = ({
   setIsLack,
   timeFrame,
   setTimeFrame,
+  liveData,
 }: MinChartProps) => {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
   const chartRef = useRef<ReturnType<typeof createChart> | null>(null);
@@ -53,7 +61,6 @@ const MinChart = ({
   const getTransformedData = () => {
     const groupedData =
       timeFrame === 1 ? data : groupDataByInterval(data, timeFrame);
-
     return {
       candles: transformCandle(groupedData),
       volumes: transformAmount(groupedData),
@@ -100,6 +107,23 @@ const MinChart = ({
     candleSeriesRef.current.setData(candles);
     volumeSeriesRef.current.setData(volumes);
   }, [timeFrame]);
+
+  useEffect(() => {
+    if (!liveData || !candleSeriesRef.current) return;
+    const existingData = candleSeriesRef.current.data();
+    const lastCandle = existingData[existingData.length - 1];
+    console.log(lastCandle, '마지막');
+
+    const newCandle = {
+      time: lastCandle.time,
+      open: lastCandle.open,
+      close: liveData.close,
+      low: Math.min(lastCandle.low, liveData.close),
+      high: Math.max(lastCandle.high, liveData.close),
+    };
+
+    candleSeriesRef.current.update(newCandle);
+  }, [liveData]);
 
   //   const handleTimeRangeChange = () => {
   //     const timeRange = chart.timeScale().getVisibleRange();
