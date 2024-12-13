@@ -1,9 +1,14 @@
 import Icons from '@/app/components/common/Icons';
 import { infoIcon } from '@/app/constants/iconPath';
-import { PROFIT_LOSS_TITLE, STOCK_INFO_TEXT } from '@/app/constants/simulation';
+import {
+  PROFIT_LOSS_TITLE,
+  PROFIT_LOSS_TOOLTIP,
+} from '@/app/constants/simulation';
 import { formatYM } from '@/app/utils/date';
 import { formatCurrency } from '@/app/utils/formatNum';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useHover } from 'usehooks-ts';
+import StockGuideModal from '../entValue/StockGuideModal';
 
 interface IncomeChartProps {
   financialInfo: IncomesTypes[];
@@ -13,7 +18,7 @@ const IncomeChart = ({ financialInfo }: IncomeChartProps) => {
   const [hoverRefs, setHoverRefs] = useState<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    setHoverRefs((prev) => STOCK_INFO_TEXT.map(() => null));
+    setHoverRefs((prev) => PROFIT_LOSS_TITLE.map(() => null));
   }, []);
 
   return (
@@ -23,14 +28,29 @@ const IncomeChart = ({ financialInfo }: IncomeChartProps) => {
           <div className="w-20 h-[26px] font-medium flex items-center">
             항목
           </div>
-          {PROFIT_LOSS_TITLE.map((title) => (
-            <div className="w-20" key={title}>
-              <div className="flex items-center h-[26px] rounded-lg bg-gray-6 px-1 gap-x-1 w-fit">
-                <p className="text-black-1 ">{title}</p>
-                <Icons name={infoIcon} />
+          {PROFIT_LOSS_TITLE.map((title, i) => {
+            const hoverRef = useRef(null);
+            const isHover = useHover(hoverRef);
+            hoverRefs[i] = hoverRef.current;
+            return (
+              <div className="w-20" key={title}>
+                <div className="flex items-center h-[26px] rounded-lg bg-gray-6 px-1 gap-x-1 w-fit">
+                  <p className="text-black-1 ">{title}</p>
+                  <div className="relative flex" ref={hoverRef}>
+                    <Icons name={infoIcon} />
+                    {isHover && (
+                      <StockGuideModal
+                        isLong
+                        index={i}
+                        text={PROFIT_LOSS_TITLE}
+                        tooltip={PROFIT_LOSS_TOOLTIP}
+                      />
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
         <div className="w-full overflow-x-auto flex">
           {financialInfo?.map((data) => (

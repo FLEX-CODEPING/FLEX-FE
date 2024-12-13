@@ -6,9 +6,9 @@ import {
   STOCK_INFO_TEXT,
 } from '@/app/constants/simulation';
 import useStockStore from '@/app/store/store';
-import { formatNumberCommas } from '@/app/utils/formatNum';
+import { formatCurrencyNoUnit } from '@/app/utils/formatNum';
 import { formatStockData } from '@/app/utils/formatStock';
-import { plusUnit } from '@/app/utils/truncate';
+import { plusUnitforEnt } from '@/app/utils/truncate';
 import { useEffect, useRef, useState } from 'react';
 import { useHover } from 'usehooks-ts';
 import StockGuideModal from './StockGuideModal';
@@ -18,7 +18,6 @@ interface EntValueProps {
 }
 
 const EntValue = ({ data }: EntValueProps) => {
-  const [stockInfo, setStockInfo] = useState<null | StockDetailInfoTypes>(null);
   const [hoverRefs, setHoverRefs] = useState<(HTMLDivElement | null)[]>([]);
   const { stockCode } = useStockStore();
 
@@ -26,7 +25,7 @@ const EntValue = ({ data }: EntValueProps) => {
     setHoverRefs((prev) => STOCK_INFO_TEXT.map(() => null));
   }, [stockCode]);
 
-  const StockInfoArr = stockInfo ? formatStockData(data) : [];
+  const StockInfoArr = data ? formatStockData(data) : [];
 
   return (
     <div className="flex flex-wrap w-full gap-y-4">
@@ -52,13 +51,13 @@ const EntValue = ({ data }: EntValueProps) => {
                 )}
               </div>
             </div>
-            <div className="text-xs pl-1 font-medium flex gap-x-1 h-5">
+            <div className="text-xs pl-1.5 font-medium flex gap-x-1 h-5">
               <p
                 className={`${i === 5 && (Number(info) > 0 ? 'text-red-1' : 'text-blue-1')}`}
               >
-                {formatNumberCommas(Number(StockInfoArr[i]))}
+                {formatCurrencyNoUnit(Number(StockInfoArr[i]))}
+                {plusUnitforEnt(i)}
               </p>
-              <p>{plusUnit(i)}</p>
             </div>
           </div>
         );

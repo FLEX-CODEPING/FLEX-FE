@@ -5,7 +5,7 @@ import {
   STOCK_INFO_TOOLTIP,
 } from '@/app/constants/simulation';
 import useStockStore from '@/app/store/store';
-import { formatCurrency, formatCurrencyNoUnit, formatNumberCommas } from '@/app/utils/formatNum';
+import { formatCurrencyNoUnit } from '@/app/utils/formatNum';
 import { formatStockData } from '@/app/utils/formatStock';
 import { plusUnit } from '@/app/utils/truncate';
 import { useEffect, useRef, useState } from 'react';
@@ -25,7 +25,6 @@ const StockDetail = ({ data }: StockDetailProps) => {
   }, [stockCode]);
 
   const StockInfoArr = data ? formatStockData(data) : [];
-  console.log(data, '현재 배열');
 
   return (
     <div className="flex flex-wrap w-full gap-y-4">
