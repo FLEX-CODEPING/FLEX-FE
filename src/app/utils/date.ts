@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 export const formatDate = (dateString: string) => {
   const date = new Date(dateString);
 
@@ -156,5 +158,27 @@ export const switchDateFunc = (dayType: string) => {
       return '19800101';
     default:
       break;
+  }
+};
+
+//요청 시작날짜, 끝날짜를 일/주/월/년에 맞게 변경
+export const calculateDateFrom = (
+  lastDate: string,
+  timeFrame: number | string,
+): string => {
+  const parsedLastDate = dayjs(lastDate);
+
+  switch (timeFrame) {
+    case 'day': // 일봉
+      return parsedLastDate.subtract(4, 'month').format('YYYY-MM-DD');
+    case 'week': // 주봉
+      return parsedLastDate.subtract(80, 'week').format('YYYY-MM-DD');
+    case 'month': // 월봉
+      return parsedLastDate
+        .subtract(4, 'year')
+        .startOf('month')
+        .format('YYYY-MM-DD');
+    default:
+      throw new Error(`Unsupported timeFrame: ${timeFrame}`);
   }
 };

@@ -76,3 +76,27 @@ export const fetchInitialDay = async (stockCode: string, dayType: string) => {
   const response = await callPost('/api/stocks/price', reqBody);
   return response;
 };
+
+export const fetchDailyAdditional = async (
+  data: DailyPriceTypes[],
+  stockCode: string,
+  timeFrame: number | string,
+) => {
+  if (data.length === 0) return [];
+
+  const additionalData = [...data];
+  const lastItem = additionalData[data.length - 1];
+
+  const reqBody = {
+    marketDivCode: 'J',
+    stockCode: stockCode,
+    dateFrom: switchDateFunc(lastItem.stck_bsop_date),
+    dateTo: getTodayDate(),
+    periodDivCode: DAY_DIVCODE_MAP[timeFrame],
+    orgAdjPrice: 0,
+  };
+
+  const newResponse = await callPost('/api/stocks/price', reqBody);
+  const newData = newResponse.result.output2;
+  return newData;
+};
