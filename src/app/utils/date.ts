@@ -167,17 +167,16 @@ export const calculateDateFrom = (
   timeFrame: number | string,
 ): string => {
   const parsedLastDate = dayjs(lastDate);
-
   switch (timeFrame) {
-    case 'day': // 일봉
-      return parsedLastDate.subtract(4, 'month').format('YYYY-MM-DD');
-    case 'week': // 주봉
-      return parsedLastDate.subtract(80, 'week').format('YYYY-MM-DD');
-    case 'month': // 월봉
+    case '일':
+      return parsedLastDate.subtract(4, 'month').format('YYYYMMDD');
+    case '주':
+      return parsedLastDate.subtract(80, 'week').format('YYYYMMDD');
+    case '월':
       return parsedLastDate
         .subtract(4, 'year')
         .startOf('month')
-        .format('YYYY-MM-DD');
+        .format('YYYYMMDD');
     default:
       throw new Error(`Unsupported timeFrame: ${timeFrame}`);
   }

@@ -14,7 +14,6 @@ interface DayChartProps {
   setIsLack: Dispatch<SetStateAction<boolean>>;
   timeFrame: string | number;
   setTimeFrame: Dispatch<SetStateAction<string | number>>;
-  liveData: ChartDataTypes | null;
 }
 
 const DayChart = ({
@@ -23,7 +22,6 @@ const DayChart = ({
   setIsLack,
   timeFrame,
   setTimeFrame,
-  liveData,
 }: DayChartProps) => {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
   const chartRef = useRef<ReturnType<typeof createChart> | null>(null);
@@ -32,6 +30,7 @@ const DayChart = ({
 
   const transformCandle = (arr: DailyPriceTypes[]) => {
     return arr
+      .filter((item) => item && Object.keys(item).length > 0)
       .map((item) => ({
         time: convertToUnixTimesDay(item.stck_bsop_date),
         open: Number(item.stck_oprc),
@@ -44,6 +43,7 @@ const DayChart = ({
 
   const transformAmount = (arr: DailyPriceTypes[]) => {
     return arr
+      .filter((item) => item && Object.keys(item).length > 0)
       .map((item) => ({
         time: convertToUnixTimesDay(item.stck_bsop_date),
         value: Number(item.acml_vol),
@@ -78,43 +78,37 @@ const DayChart = ({
     candleSeries.setData(transformCandle(data));
     volumeSeries.setData(transformAmount(data));
 
+    const handleTimeRangeChange = () => {
+      const timeRange = chart.timeScale().getVisibleRange();
+      if (
+        timeRange &&
+        timeRange.from <= candleSeriesRef.current.data()[5].time
+      ) {
+        if (!isLack) {
+          setIsLack(true);
+          console.log('왼쪽 끝에 도달', timeRange);
+        }
+      }
+    };
+
+    timeFrame !== '연' &&
+      chart
+        .timeScale()
+        .subscribeVisibleLogicalRangeChange(handleTimeRangeChange);
+
     return () => {
+      chart
+        .timeScale()
+        .unsubscribeVisibleLogicalRangeChange(handleTimeRangeChange);
       chart.remove();
     };
   }, [data]);
 
   useLayoutEffect(() => {
     if (!candleSeriesRef.current || !volumeSeriesRef.current) return;
-
     candleSeriesRef.current.setData(transformCandle(data));
     volumeSeriesRef.current.setData(transformAmount(data));
   }, [timeFrame]);
-
-  //   const handleTimeRangeChange = () => {
-  //     const timeRange = chart.timeScale().getVisibleRange();
-  //     if (timeRange && timeRange.from <= candleData[20].time) {
-  //       setIsLack(true);
-  //       if (!isLack) {
-  //         console.log('왼쪽 끝에 도달', timeRange);
-  //       }
-  //     }
-  //   };
-
-  //   chart.timeScale().subscribeVisibleTimeRangeChange(() => {
-  //     if (isLack) {
-  //       handleTimeRangeChange();
-  //     }
-  //   });
-
-  //   chart.timeScale().subscribeVisibleLogicalRangeChange(handleTimeRangeChange);
-
-  //   return () => {
-  //     chart
-  //       .timeScale()
-  //       .unsubscribeVisibleLogicalRangeChange(handleTimeRangeChange);
-  //     chart.remove();
-  //   };
-  // }, [data]);
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '380px' }}>

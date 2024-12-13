@@ -2,7 +2,12 @@
 
 import useStockStore from '@/app/store/store';
 import { isOpenTime } from '@/app/utils/date';
-import { fetchInitialData, fetchInitialDay } from '@/app/utils/fetchStockData';
+import {
+  fetchAdditionalData,
+  fetchDailyAdditional,
+  fetchInitialData,
+  fetchInitialDay,
+} from '@/app/utils/fetchStockData';
 import { useEffect, useState } from 'react';
 import ChartEmpty from './ChartEmpty';
 import DayChart from './DayChart';
@@ -25,7 +30,7 @@ const ChartContainer = () => {
       if (!stockCode) return;
       if (isDay) {
         const initData = await fetchInitialDay(stockCode, timeFrame);
-        setDailyData(initData.result[1]);
+        setDailyData(initData);
       } else {
         const initData = await fetchInitialData(stockCode);
         setMinData(initData);
@@ -33,21 +38,35 @@ const ChartContainer = () => {
     };
     fetchData();
   }, [stockCode, timeFrame]);
+
   console.log(dailyData, '일주월연 데이터');
   console.log(liveData, '라이브데이터 변환');
   console.log(mindata, '분봉 데이터');
 
-  // useEffect(() => {
-  //   const fetchMoreData = async () => {
-  //     if (!isLack || !stockCode) return;
+  useEffect(() => {
+    const fetchMoreData = async () => {
+      if (!isLack || !stockCode) return;
+      console.log('새로 요청 발생', isDay, '상황');
 
-  //     const additionalData = await fetchAdditionalData(data, stockCode);
-  //     setData((prev) => [...prev, ...additionalData]);
-  //     setIsLack(false);
-  //   };
+      if (!isDay) {
+        const additionalData = await fetchAdditionalData(mindata, stockCode);
+        console.log('새로 요청 발생', additionalData, '새로 받아온 일 데이터');
+        setMinData((prev) => [...prev, ...additionalData]);
+      } else {
+        const additionalData = await fetchDailyAdditional(
+          dailyData,
+          stockCode,
+          timeFrame,
+        );
+        setDailyData((prev) => [...prev, ...additionalData]);
+        console.log('새로 요청 발생', additionalData, '새로 받아온 분 데이터');
+      }
 
-  //   fetchMoreData();
-  // }, [isLack]);
+      setIsLack(false);
+    };
+
+    fetchMoreData();
+  }, [isLack]);
 
   return (
     <div className="flex w-full px-3 py-3 rounded-[10px] border border-gray-4 flex-col justify-start items-start gap-y-5">
@@ -60,7 +79,6 @@ const ChartContainer = () => {
           setIsLack={setIsLack}
           timeFrame={timeFrame}
           setTimeFrame={setTimeFrame}
-          liveData={liveData}
         />
       ) : (
         <MinChart

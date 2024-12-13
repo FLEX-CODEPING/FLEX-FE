@@ -95,7 +95,25 @@ const MinChart = ({
     candleSeries.setData(candles);
     volumeSeries.setData(volumes);
 
+    const handleTimeRangeChange = () => {
+      const timeRange = chart.timeScale().getVisibleRange();
+      if (
+        timeRange &&
+        timeRange.from <= candleSeriesRef.current.data()[5].time
+      ) {
+        if (!isLack) {
+          setIsLack(true);
+          console.log('왼쪽 끝에 도달', timeRange);
+        }
+      }
+    };
+
+    chart.timeScale().subscribeVisibleLogicalRangeChange(handleTimeRangeChange);
+
     return () => {
+      chart
+        .timeScale()
+        .unsubscribeVisibleLogicalRangeChange(handleTimeRangeChange);
       chart.remove();
     };
   }, [data]);
@@ -112,7 +130,6 @@ const MinChart = ({
     if (!liveData || !candleSeriesRef.current) return;
     const existingData = candleSeriesRef.current.data();
     const lastCandle = existingData[existingData.length - 1];
-    console.log(lastCandle, '마지막');
 
     const newCandle = {
       time: lastCandle.time,
@@ -124,32 +141,6 @@ const MinChart = ({
 
     candleSeriesRef.current.update(newCandle);
   }, [liveData]);
-
-  //   const handleTimeRangeChange = () => {
-  //     const timeRange = chart.timeScale().getVisibleRange();
-  //     if (timeRange && timeRange.from <= candleData[20].time) {
-  //       setIsLack(true);
-  //       if (!isLack) {
-  //         console.log('왼쪽 끝에 도달', timeRange);
-  //       }
-  //     }
-  //   };
-
-  //   chart.timeScale().subscribeVisibleTimeRangeChange(() => {
-  //     if (isLack) {
-  //       handleTimeRangeChange();
-  //     }
-  //   });
-
-  //   chart.timeScale().subscribeVisibleLogicalRangeChange(handleTimeRangeChange);
-
-  //   return () => {
-  //     chart
-  //       .timeScale()
-  //       .unsubscribeVisibleLogicalRangeChange(handleTimeRangeChange);
-  //     chart.remove();
-  //   };
-  // }, [data]);
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '380px' }}>

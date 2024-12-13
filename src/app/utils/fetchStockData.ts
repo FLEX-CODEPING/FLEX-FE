@@ -1,5 +1,10 @@
 import { callPost } from '@/app/utils/callApi';
-import { getTodayDate, switchDateFunc } from '@/app/utils/date';
+import {
+  calculateDateFrom,
+  getTodayDate,
+  switchDateFunc,
+} from '@/app/utils/date';
+import dayjs from 'dayjs';
 import { DAY_DIVCODE_MAP } from '../constants/simulation';
 
 export const fetchInitialData = async (stockCode: string) => {
@@ -71,10 +76,9 @@ export const fetchInitialDay = async (stockCode: string, dayType: string) => {
     periodDivCode: DAY_DIVCODE_MAP[dayType],
     orgAdjPrice: 0,
   };
-  console.log(reqBody, '현재요청 바디');
 
   const response = await callPost('/api/stocks/price', reqBody);
-  return response;
+  return response.result[1];
 };
 
 export const fetchDailyAdditional = async (
@@ -90,13 +94,15 @@ export const fetchDailyAdditional = async (
   const reqBody = {
     marketDivCode: 'J',
     stockCode: stockCode,
-    dateFrom: switchDateFunc(lastItem.stck_bsop_date),
-    dateTo: getTodayDate(),
+    dateFrom: calculateDateFrom(lastItem.stck_bsop_date, timeFrame),
+    dateTo: dayjs(lastItem.stck_bsop_date)
+      .subtract(1, 'day')
+      .format('YYYYMMDD'),
     periodDivCode: DAY_DIVCODE_MAP[timeFrame],
     orgAdjPrice: 0,
   };
 
   const newResponse = await callPost('/api/stocks/price', reqBody);
-  const newData = newResponse.result.output2;
+  const newData = newResponse.result[1];
   return newData;
 };
