@@ -6,8 +6,11 @@ import {
   BACKTEST_BTN_TEXT,
   BACKTEST_TEXT,
   ORDER_TYPE,
+  ORDER_TYPE_MAP,
   SIDE_NAV_TYPES,
 } from '@/app/constants/simulation';
+import useStockStore from '@/app/store/store';
+import { callPost } from '@/app/utils/callApi';
 import { useState } from 'react';
 
 const BackTest = () => {
@@ -15,6 +18,7 @@ const BackTest = () => {
   const [endDate, setEndDate] = useState('');
   const [orderType, setOrderType] = useState('');
   const [orderCnt, setOrderSnt] = useState('');
+  const { stockName, stockCode } = useStockStore();
 
   const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedDate = e.target.value;
@@ -32,6 +36,21 @@ const BackTest = () => {
     } else {
       alert('종료 날짜는 시작 날짜보다 이전으로 지정할 수 없습니다.');
     }
+  };
+
+  const backReq = {
+    corpName: stockName,
+    endDate: endDate,
+    periodType: ORDER_TYPE_MAP[orderType],
+    quantity: Number(orderCnt),
+    startDate: startDate,
+    stockcode: stockCode,
+  };
+
+  const postBackTest = async () => {
+    const res = await callPost('/api/stocks/backtest', backReq);
+    console.log(backReq, '로 요청');
+    console.log(res, '응답');
   };
 
   return (
@@ -99,7 +118,7 @@ const BackTest = () => {
           buttonText={BACKTEST_BTN_TEXT[0]}
           type={'backTest'}
           className="bg-main-1"
-          onClickHandler={() => console.log('실행')}
+          onClickHandler={postBackTest}
         />
         <div className="w-[100%] border-b border-b-gray-2 my-5" />
       </div>

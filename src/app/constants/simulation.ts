@@ -225,3 +225,10 @@ export const BACKTEST_TEXT = [
 export const BACKTEST_BTN_TEXT = ['시작하기', '다시하기'];
 
 export const ORDER_TYPE = ['매일', '매주', '매월', '매년'];
+
+export const ORDER_TYPE_MAP: Record<string, string> = {
+  매일: 'DAILY',
+  매주: 'WEEKLY',
+  매월: 'MONTHLY',
+  매년: 'YEARLY',
+};
