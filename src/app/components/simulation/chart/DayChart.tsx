@@ -1,16 +1,15 @@
 import {
   applyOptions,
   candleChartOptions,
-  groupDataByInterval,
   volumeChartOptions,
 } from '@/app/utils/chart';
-import { convertToUnixTimestamp } from '@/app/utils/date';
+import { convertToUnixTimesDay } from '@/app/utils/date';
 import { createChart } from 'lightweight-charts';
 import { Dispatch, SetStateAction, useLayoutEffect, useRef } from 'react';
 import ChartTypeDropdown from './ChartTypeDropdown';
 
 interface DayChartProps {
-  data: MinPriceTypes[];
+  data: DailyPriceTypes[];
   isLack: boolean;
   setIsLack: Dispatch<SetStateAction<boolean>>;
   timeFrame: string | number;
@@ -29,37 +28,27 @@ const DayChart = ({
   const candleSeriesRef = useRef<any>(null); // 캔들 데이터 참조
   const volumeSeriesRef = useRef<any>(null); // 거래량 데이터 참조
 
-  // 데이터 그룹화 (분봉에 따라 데이터 합산)
+  const transformCandle = (arr: DailyPriceTypes[]) => {
+    console.log(arr, '받아온 배열');
 
-  const transformCandle = (arr: MinPriceTypes[]) => {
     return arr
       .map((item) => ({
-        time: convertToUnixTimestamp(item.tradingDate + item.transactionTime),
-        open: Number(item.openPrice),
-        high: Number(item.highPrice),
-        low: Number(item.lowPrice),
-        close: Number(item.curPrice),
+        time: convertToUnixTimesDay(item.stck_bsop_date),
+        open: Number(item.stck_oprc),
+        high: Number(item.stck_hgpr),
+        low: Number(item.stck_lwpr),
+        close: Number(item.stck_clpr),
       }))
       .reverse();
   };
 
-  const transformAmount = (arr: MinPriceTypes[]) => {
+  const transformAmount = (arr: DailyPriceTypes[]) => {
     return arr
       .map((item) => ({
-        time: convertToUnixTimestamp(item.tradingDate + item.transactionTime),
-        value: Number(item.transactionVolume),
+        time: convertToUnixTimesDay(item.stck_bsop_date),
+        value: Number(item.acml_vol),
       }))
       .reverse();
-  };
-
-  const getTransformedData = () => {
-    const groupedData =
-      timeFrame === 1 ? data : groupDataByInterval(data, timeFrame);
-
-    return {
-      candles: transformCandle(groupedData),
-      volumes: transformAmount(groupedData),
-    };
   };
 
   useLayoutEffect(() => {
@@ -79,7 +68,6 @@ const DayChart = ({
     chartRef.current = chart;
 
     const candleSeries = chart.addCandlestickSeries(candleChartOptions);
-    //외부에서 옵션 선언후 삽입
     candleSeriesRef.current = candleSeries;
 
     const volumeSeries = chart.addHistogramSeries(volumeChartOptions);
@@ -87,9 +75,8 @@ const DayChart = ({
 
     volumeSeries.priceScale().applyOptions(applyOptions);
 
-    const { candles, volumes } = getTransformedData();
-    candleSeries.setData(candles);
-    volumeSeries.setData(volumes);
+    candleSeries.setData(transformCandle(data));
+    volumeSeries.setData(transformAmount(data));
 
     return () => {
       chart.remove();
@@ -99,9 +86,8 @@ const DayChart = ({
   useLayoutEffect(() => {
     if (!candleSeriesRef.current || !volumeSeriesRef.current) return;
 
-    const { candles, volumes } = getTransformedData();
-    candleSeriesRef.current.setData(candles);
-    volumeSeriesRef.current.setData(volumes);
+    candleSeriesRef.current.setData(transformCandle(data));
+    volumeSeriesRef.current.setData(transformAmount(data));
   }, [timeFrame]);
 
   //   const handleTimeRangeChange = () => {

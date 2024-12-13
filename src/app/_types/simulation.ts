@@ -77,3 +77,19 @@ interface ChartDataTypes {
   close: number;
   volume: number;
 }
+
+interface DailyPriceTypes {
+  stck_bsop_date: string;
+  stck_clpr: string;
+  stck_oprc: string;
+  stck_hgpr: string;
+  stck_lwpr: string;
+  acml_vol: string;
+  acml_tr_pbmn: string;
+  flng_cls_code: string;
+  prtt_rate: string;
+  mod_yn: string;
+  prdy_vrss_sign: string;
+  prdy_vrss: string;
+  revl_issu_reas: string;
+}

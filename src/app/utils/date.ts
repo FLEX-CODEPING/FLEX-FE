@@ -104,6 +104,11 @@ export const convertToUnixTimestamp = (dateString: string) => {
   return Math.floor(new Date(formattedTime).getTime() / 1000);
 };
 
+export const convertToUnixTimesDay = (dateString: string) => {
+  const formattedDate = `${dateString.slice(0, 4)}-${dateString.slice(4, 6)}-${dateString.slice(6, 8)}T00:00:00Z`;
+  return Math.floor(new Date(formattedDate).getTime() / 1000);
+};
+
 // 1. 전일로부터 4개월 전 날짜 반환
 export function getFourMonthsAgo(): string {
   const now = new Date();
