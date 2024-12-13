@@ -45,6 +45,7 @@ const ChartContainer = () => {
 
   useEffect(() => {
     const fetchMoreData = async () => {
+      if (timeFrame === '년') return;
       if (!isLack || !stockCode) return;
       console.log('새로 요청 발생', isDay, '상황');
 
