@@ -11,7 +11,6 @@ const postRequest = async (url: string, req: Request, body: any = null) => {
     ...commonHeaders,
     ...(token && { Authorization: `Bearer ${token}` }),
   };
-
   const response = await fetch(`${SERVER_URL}${url}`, {
     method: 'POST',
     headers,
@@ -122,4 +121,8 @@ export const postMinData = async (req: Request, body: any) => {
     req,
     body,
   );
+};
+
+export const postBackTest = async (req: Request, body: any) => {
+  return postRequest('/api/back-test', req, body);
 };

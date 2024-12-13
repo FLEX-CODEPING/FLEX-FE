@@ -1,4 +1,5 @@
 import {
+  applyOptions,
   candleChartOptions,
   groupDataByInterval,
   volumeChartOptions,
@@ -27,8 +28,6 @@ const MinChart = ({
   const chartRef = useRef<ReturnType<typeof createChart> | null>(null);
   const candleSeriesRef = useRef<any>(null); // 캔들 데이터 참조
   const volumeSeriesRef = useRef<any>(null); // 거래량 데이터 참조
-
-  // 데이터 그룹화 (분봉에 따라 데이터 합산)
 
   const transformCandle = (arr: MinPriceTypes[]) => {
     return arr
@@ -78,13 +77,12 @@ const MinChart = ({
     chartRef.current = chart;
 
     const candleSeries = chart.addCandlestickSeries(candleChartOptions);
-    //외부에서 옵션 선언후 삽입
     candleSeriesRef.current = candleSeries;
 
-    const volumeSeries = chart.addHistogramSeries();
+    const volumeSeries = chart.addHistogramSeries(volumeChartOptions);
     volumeSeriesRef.current = volumeSeries;
 
-    volumeSeries.priceScale().applyOptions(volumeChartOptions);
+    volumeSeries.priceScale().applyOptions(applyOptions);
 
     const { candles, volumes } = getTransformedData();
     candleSeries.setData(candles);

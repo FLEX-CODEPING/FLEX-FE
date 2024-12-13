@@ -43,3 +43,10 @@ export const volumeChartOptions = {
   },
   priceScaleId: '',
 };
+
+export const applyOptions = {
+  scaleMargins: {
+    top: 0.8,
+    bottom: 0,
+  },
+};

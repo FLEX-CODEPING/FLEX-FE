@@ -26,7 +26,7 @@ const ChartContainer = () => {
       const initialData = isDay
         ? await fetchInitialDay(stockCode, timeFrame)
         : await fetchInitialData(stockCode);
-      setDatas(initialData);
+      setData(initialData);
     };
 
     fetchData();

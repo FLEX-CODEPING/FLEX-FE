@@ -1,4 +1,5 @@
 import {
+  applyOptions,
   candleChartOptions,
   groupDataByInterval,
   volumeChartOptions,
@@ -81,10 +82,10 @@ const DayChart = ({
     //외부에서 옵션 선언후 삽입
     candleSeriesRef.current = candleSeries;
 
-    const volumeSeries = chart.addHistogramSeries();
+    const volumeSeries = chart.addHistogramSeries(volumeChartOptions);
     volumeSeriesRef.current = volumeSeries;
 
-    volumeSeries.priceScale().applyOptions(volumeChartOptions);
+    volumeSeries.priceScale().applyOptions(applyOptions);
 
     const { candles, volumes } = getTransformedData();
     candleSeries.setData(candles);
