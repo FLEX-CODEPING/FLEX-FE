@@ -3,10 +3,10 @@
 import useStockStore from '@/app/store/store';
 import { callPost } from '@/app/utils/callApi';
 import { useCallback, useEffect, useState } from 'react';
-import ChartEmpty from '@/app/components/simulation/chart/ChartEmpty';
+import PrChartEmpty from './PrChartEmpty';
 import PrChart from './PrChart';
 
-const ChartContainer = () => {
+const PrChartContainer = () => {
   const [data, setData] = useState<any[]>([]);
   const { stockCode } = useStockStore();
 
@@ -20,7 +20,7 @@ const ChartContainer = () => {
 
     const batchDays = 100;
     const allRequests = [];
-    let currentDateFrom = '20220101';
+    let currentDateFrom = '20240809';
 
     while (currentDateFrom <= '20241231') {
       const startDate = new Date(
@@ -78,7 +78,7 @@ const ChartContainer = () => {
   return (
     <div className="flex w-full px-5 py-5 rounded-[10px] border border-gray-4 flex-col justify-start items-start gap-y-5">
       {!stockCode || stockCode === 'null' ? (
-        <ChartEmpty />
+        <PrChartEmpty />
       ) : (
         <PrChart chartData={data} symbol={stockCode || '005930'} />
       )}
@@ -86,4 +86,4 @@ const ChartContainer = () => {
   );
 };
 
-export default ChartContainer;
+export default PrChartContainer;

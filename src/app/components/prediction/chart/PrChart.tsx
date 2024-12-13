@@ -3,12 +3,12 @@
 import React, { useEffect } from 'react';
 import PrDataFeed from './PrDataFeed';
 
-interface MockChartProps {
+interface PrChartProps {
   chartData: any[];
   symbol: string;
 }
 
-const PrChart: React.FC<MockChartProps> = ({ chartData, symbol }) => {
+const PrChart: React.FC<PrChartProps> = ({ chartData, symbol }) => {
   useEffect(() => {
     const script = document.createElement('script');
     script.src = '/charting_library/charting_library.standalone.js';
@@ -23,15 +23,15 @@ const PrChart: React.FC<MockChartProps> = ({ chartData, symbol }) => {
           interval: '1D',
           container: 'chartContainer',
           library_path: '/charting_library/',
-          datafeed: new PrDataFeed(chartData), // 데이터 피드 연결
+          datafeed: new PrDataFeed(chartData),
           timezone: 'Asia/Seoul',
           theme: 'Light',
           autosize: true,
           toolbar_bg: '#f4f7f9',
           disabled_features: [
-            'header_symbol_search', // 심볼 검색 버튼 제거
-            'symbol_search_hot_key', // 검색 단축키 비활성화
-            'symbol_info', // 심볼 정보 툴팁 제거
+            'header_symbol_search',
+            'symbol_search_hot_key',
+            'symbol_info',
             'header_compare',
           ],
           enabled_features: [],
@@ -46,7 +46,7 @@ const PrChart: React.FC<MockChartProps> = ({ chartData, symbol }) => {
     return () => {
       document.body.removeChild(script);
     };
-  }, [chartData, symbol]); // 심볼 및 데이터 변경 시 차트 재렌더링
+  }, [chartData, symbol]);
 
   return <div id="chartContainer" style={{ width: '98%', height: '570px' }} />;
 };

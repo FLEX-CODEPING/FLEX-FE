@@ -1,116 +1,75 @@
 class PrDataFeed {
-  private static baseUrl: string = 'http://localhost:3000/api';
+  private chartData: any[];
 
-  static onReady(
-    callback: (config: {
-      supported_resolutions: string[];
-      supports_search: boolean;
-      supports_group_request: boolean;
-      supports_marks: boolean;
-      supports_timescale_marks: boolean;
-    }) => void,
-  ): void {
+  constructor(chartData: any[]) {
+    this.chartData = chartData;
+  }
+
+  onReady(callback: (config: any) => void) {
     setTimeout(() => {
       callback({
+        supported_resolutions: ['1', '5', '15', '30', '60', '1D'],
         supports_search: true,
         supports_group_request: false,
-        supported_resolutions: ['1', '5', '15', '30', '60', '1D', '1W', '1M'],
         supports_marks: false,
         supports_timescale_marks: false,
       });
     }, 0);
   }
 
-  static resolveSymbol(
+  resolveSymbol(
     symbolName: string,
     onSymbolResolvedCallback: (symbolInfo: any) => void,
-  ): void {
+  ) {
     const symbolInfo = {
       ticker: symbolName,
       name: symbolName,
-      description: `Symbol: ${symbolName}`,
-      type: 'crypto',
-      session: '24x7',
+      description: `${symbolName} Stock`,
+      type: 'stock',
+      session: '0900-1530',
       timezone: 'Asia/Seoul',
+      exchange: 'Default Exchange',
       has_intraday: true,
-      supported_resolutions: ['1', '5', '15', '30', '60', '1D', '1W', '1M'],
+      supported_resolutions: ['1D'],
       pricescale: 100,
-      volume_precision: 2,
-      exchange: 'Dummy Exchange',
+      volume_precision: 0,
       minmov: 1,
     };
+
     setTimeout(() => onSymbolResolvedCallback(symbolInfo), 0);
   }
 
-  static getBars(
+  getBars(
     symbolInfo: any,
     resolution: string,
-    { from, to }: { from: number; to: number },
+    { from, to }: any,
     onHistoryCallback: (bars: any[], meta: { noData: boolean }) => void,
     onErrorCallback: (error: any) => void,
-  ): void {
-    const bars = [];
-    let currentTime = from * 1000;
-    const barInterval = PrDataFeed.getBarInterval(resolution);
-
+  ) {
     try {
-      while (currentTime <= to * 1000) {
-        const open = Math.random() * 100 + 5000;
-        const close = open + Math.random() * 10 - 5;
-        const high = Math.max(open, close) + Math.random() * 5;
-        const low = Math.min(open, close) - Math.random() * 5;
-        const volume = Math.random() * 100;
+      const bars = this.chartData
+        .map((data) => ({
+          time: new Date(
+            `${data.stck_bsop_date.slice(0, 4)}-${data.stck_bsop_date.slice(4, 6)}-${data.stck_bsop_date.slice(6)}`,
+          ).getTime(),
+          open: parseFloat(data.stck_oprc),
+          high: parseFloat(data.stck_hgpr),
+          low: parseFloat(data.stck_lwpr),
+          close: parseFloat(data.stck_clpr),
+          volume: parseInt(data.acml_vol, 10),
+        }))
+        .filter((bar) => bar.time >= from * 1000 && bar.time <= to * 1000)
+        .sort((a, b) => a.time - b.time);
 
-        bars.push({
-          time: currentTime,
-          open,
-          high,
-          low,
-          close,
-          volume,
-        });
-
-        currentTime += barInterval;
+      if (bars.length === 0) {
+        onHistoryCallback([], { noData: true });
+      } else {
+        onHistoryCallback(bars, { noData: false });
       }
-      onHistoryCallback(bars, { noData: bars.length === 0 });
     } catch (error) {
+      console.error('Error in getBars:', error);
       onErrorCallback(error);
     }
-  }
-
-  static subscribeBars(
-    symbolInfo: any,
-    resolution: string,
-    onRealtimeCallback: (bar: any) => void,
-  ): void {
-    setInterval(() => {
-      const open = Math.random() * 100 + 5000;
-      const close = open + Math.random() * 10 - 5;
-      const high = Math.max(open, close) + Math.random() * 5;
-      const low = Math.min(open, close) - Math.random() * 5;
-      const volume = Math.random() * 100;
-      const bar = {
-        time: Date.now(),
-        open,
-        high,
-        low,
-        close,
-        volume,
-      };
-      onRealtimeCallback(bar);
-    }, PrDataFeed.getBarInterval(resolution));
-  }
-
-  static getBarInterval(resolution: string): number {
-    const resolutionMap: { [key: string]: number } = {
-      '1': 60 * 1000,
-      '5': 5 * 60 * 1000,
-      '15': 15 * 60 * 1000,
-      '30': 30 * 60 * 1000,
-      '60': 60 * 60 * 1000,
-      '1D': 24 * 60 * 60 * 1000,
-    };
-    return resolutionMap[resolution] || 60 * 1000; // 기본값 1분
   }
 }
 
