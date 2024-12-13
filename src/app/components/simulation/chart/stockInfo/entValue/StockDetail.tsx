@@ -5,7 +5,7 @@ import {
   STOCK_INFO_TOOLTIP,
 } from '@/app/constants/simulation';
 import useStockStore from '@/app/store/store';
-import { formatNumberCommas } from '@/app/utils/formatNum';
+import { formatCurrency, formatCurrencyNoUnit, formatNumberCommas } from '@/app/utils/formatNum';
 import { formatStockData } from '@/app/utils/formatStock';
 import { plusUnit } from '@/app/utils/truncate';
 import { useEffect, useRef, useState } from 'react';
@@ -17,7 +17,6 @@ interface StockDetailProps {
 }
 
 const StockDetail = ({ data }: StockDetailProps) => {
-  const [stockInfo, setStockInfo] = useState<null | StockDetailInfoTypes>(null);
   const [hoverRefs, setHoverRefs] = useState<(HTMLDivElement | null)[]>([]);
   const { stockCode } = useStockStore();
 
@@ -25,7 +24,8 @@ const StockDetail = ({ data }: StockDetailProps) => {
     setHoverRefs((prev) => STOCK_INFO_TEXT.map(() => null));
   }, [stockCode]);
 
-  const StockInfoArr = stockInfo ? formatStockData(data) : [];
+  const StockInfoArr = data ? formatStockData(data) : [];
+  console.log(data, '현재 배열');
 
   return (
     <div className="flex flex-wrap w-full gap-y-4">
@@ -51,13 +51,14 @@ const StockDetail = ({ data }: StockDetailProps) => {
                 )}
               </div>
             </div>
-            <div className="text-xs pl-1 font-medium flex gap-x-1 h-5">
+            <div className="text-xs pl-1.5 font-medium flex gap-x-1 h-5">
               <p
                 className={`${i === 5 && (Number(info) > 0 ? 'text-red-1' : 'text-blue-1')}`}
               >
-                {formatNumberCommas(Number(StockInfoArr[i]))}
+                {formatCurrencyNoUnit(Number(StockInfoArr[i]))}
+                {plusUnit(i)}
               </p>
-              <p>{plusUnit(i)}</p>
+              <p></p>
             </div>
           </div>
         );
