@@ -72,7 +72,7 @@ const ChartContainer = () => {
           liveData={liveData}
         />
       )}
-      {isOpen && (
+      {isOpen && !isDay && (
         <WebSocketChart stockCode={stockCode} setLiveData={setLiveData} />
       )}
     </div>
