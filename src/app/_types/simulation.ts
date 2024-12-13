@@ -93,3 +93,8 @@ interface DailyPriceTypes {
   prdy_vrss: string;
   revl_issu_reas: string;
 }
+
+interface LivePriceTypes {
+  currentPrice: string;
+  dateTime: string;
+}

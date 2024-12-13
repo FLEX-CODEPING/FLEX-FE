@@ -1,20 +1,24 @@
 'use client';
 
 import useStockStore from '@/app/store/store';
+import { isOpenTime } from '@/app/utils/date';
 import { fetchInitialData, fetchInitialDay } from '@/app/utils/fetchStockData';
 import { useEffect, useState } from 'react';
 import ChartEmpty from './ChartEmpty';
 import DayChart from './DayChart';
 import MinChart from './MinChart';
+import WebSocketChart from './SocketChart';
 
 const ChartContainer = () => {
   const [mindata, setMinData] = useState<MinPriceTypes[]>([]);
   const [dailyData, setDailyData] = useState<DailyPriceTypes[]>([]);
+  const [liveData, setLiveData] = useState<LivePriceTypes | null>(null);
   const { stockCode } = useStockStore();
   const [isLack, setIsLack] = useState(false);
   const [timeFrame, setTimeFrame] = useState<number | string>(1);
 
   const isDay = typeof timeFrame === 'string';
+  const isOpen = isOpenTime();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,7 +70,9 @@ const ChartContainer = () => {
           setTimeFrame={setTimeFrame}
         />
       )}
-      {/* <WebSocketChart stockCode={stockCode} /> */}
+      {isOpen && (
+        <WebSocketChart stockCode={stockCode} setLiveData={setLiveData} />
+      )}
     </div>
   );
 };

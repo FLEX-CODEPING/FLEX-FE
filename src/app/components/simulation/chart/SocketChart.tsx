@@ -1,8 +1,13 @@
 import { callPost } from '@/app/utils/callApi';
-import { useEffect, useState } from 'react';
+import { extractDateTimeAndPrice } from '@/app/utils/formatStock';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
-const WebSocketChart = ({ stockCode }: { stockCode: string }) => {
-  const [messages, setMessages] = useState<any[]>([]);
+interface WebSocketChartProps {
+  setLiveData: Dispatch<SetStateAction<LivePriceTypes | null>>;
+  stockCode: string;
+}
+
+const WebSocketChart = ({ stockCode, setLiveData }: WebSocketChartProps) => {
   const [isConnected, setIsConnected] = useState(false);
   const [socketError, setSocketError] = useState<null | string>(null);
 
@@ -10,13 +15,11 @@ const WebSocketChart = ({ stockCode }: { stockCode: string }) => {
     if (!stockCode) return;
 
     let socket: WebSocket;
+    let lastUpdateTime = 0;
 
     const connectWebSocket = async () => {
       try {
         const tokenResponse = await callPost('/api/socket');
-
-        console.log('받아온 토큰:', tokenResponse);
-
         socket = new WebSocket(
           'ws://ops.koreainvestment.com:21000/tryitout/H0STCNT0',
         );
@@ -33,30 +36,24 @@ const WebSocketChart = ({ stockCode }: { stockCode: string }) => {
             body: {
               input: {
                 tr_id: 'H0STCNT0',
-                tr_key: '005930',
+                tr_key: stockCode,
               },
             },
           };
-          console.log(tokenResponse.approval_key, 'WebSocket 연결 성공');
-          console.log(requestData, '이렇게 요청');
-
           socket.send(JSON.stringify(requestData));
         };
 
         socket.onmessage = (event) => {
-          const message = event.data;
-          console.log(message, '응답');
+          const currentTime = Date.now();
 
-          try {
-            const jsonData = JSON.parse(message);
-
-            if (jsonData.body?.msg1 === 'SUBSCRIBE SUCCESS') {
-              console.log('구독 성공:', jsonData);
-            } else {
-              setMessages((prev) => [...prev, jsonData]);
-            }
-          } catch (error) {
-            console.error('메시지 파싱 중 오류:', error);
+          if (
+            currentTime - lastUpdateTime >= 2000 &&
+            event.data.trim().startsWith('0')
+          ) {
+            lastUpdateTime = currentTime;
+            const message = event.data;
+            const formattedData = extractDateTimeAndPrice(message);
+            setLiveData(formattedData);
           }
         };
 

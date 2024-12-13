@@ -51,3 +51,18 @@ export function formatEntInfo(data: CorpInfoTypes): string[] {
     industryName,
   ];
 }
+
+export const extractDateTimeAndPrice = (
+  data: string,
+): { dateTime: string; currentPrice: string } => {
+  const parts = data.split('|');
+  const executionData = parts[3];
+  const executionParts = executionData.split('^');
+  const executionTime = executionParts[1];
+  const currentPrice = executionParts[2];
+  const date = executionParts[33];
+
+  const dateTime = `${date}${executionTime}`;
+
+  return { dateTime, currentPrice };
+};
