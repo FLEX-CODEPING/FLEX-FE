@@ -131,6 +131,10 @@ export const postStockPredictions = async (
 ) => {
   return postRequest(
     `/api/stock-predictions?operation=${operation}`,
+    req,
+    body,
+  );
+};
 
 export const postMinData = async (req: Request, body: any) => {
   return postRequest(
@@ -139,7 +143,7 @@ export const postMinData = async (req: Request, body: any) => {
     body,
   );
 };
-  
+
 export const postStockNotification = async (
   req: Request,
   body: any,
@@ -150,6 +154,7 @@ export const postStockNotification = async (
     req,
     body,
   );
+};
 
 export const postBackTest = async (req: Request, body: any) => {
   return postRequest('/api/back-test', req, body);

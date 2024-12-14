@@ -184,7 +184,8 @@ export const getAnalysis = async (req: Request) => {
 
 export const getSearchPost = async (req: Request, query: string) => {
   const url = `/api/blogs/search?query=${query}&page=1&size=12
-`};
+`;
+};
 
 export const getHoldStock = async (
   req: Request,

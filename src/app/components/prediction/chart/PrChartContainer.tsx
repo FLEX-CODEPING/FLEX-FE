@@ -1,15 +1,10 @@
 'use client';
 
-<<<<<<< HEAD
-import React from 'react';
-=======
 import useStockStore from '@/app/store/store';
 import { callPost } from '@/app/utils/callApi';
-import Button from '@/app/components/common/Button';
 import { useCallback, useEffect, useState } from 'react';
-import PrChartEmpty from './PrChartEmpty';
->>>>>>> 9775722308a1d214ac8f91e06cc8e4fb15c95732
 import PrChart from './PrChart';
+import PrChartEmpty from './PrChartEmpty';
 
 const PrChartContainer = () => {
   const [data, setData] = useState<any[]>([]);

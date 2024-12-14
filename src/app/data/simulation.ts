@@ -322,4 +322,3 @@ export const MODALDATA: TradeDataType = {
   stockQuantity: 12,
   stockPrice: 723000,
 };
-
