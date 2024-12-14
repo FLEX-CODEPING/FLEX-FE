@@ -3,9 +3,8 @@
 import useStockStore from '@/app/store/store';
 import { useState } from 'react';
 import Input from '../../../common/Input';
-import Button from '../../../common/Button';
-import SetWebhook from './SetWebhook';
 import PredictionResult from '../PredictionResult';
+import SetWebhook from './SetWebhook';
 
 interface PredictResultAlertProps {
   result: string;
