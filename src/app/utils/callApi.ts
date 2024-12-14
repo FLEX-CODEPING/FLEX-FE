@@ -37,3 +37,13 @@ export async function callDelete(url: string) {
   const data = await response.json();
   return data;
 }
+
+export async function callDeleteBody(url: string, body?: any) {
+  const response = await fetch(url, {
+    method: 'DELETE',
+    headers,
+    body: JSON.stringify(body),
+  });
+  const data = await response.json();
+  return data;
+}

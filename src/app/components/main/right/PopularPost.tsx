@@ -36,12 +36,14 @@ const PopularPost = () => {
         <div className="w-full flex flex-col gap-y-3">
           {postDatas.map((data, i) => (
             <Link
-              href={`/blog/detail?postId=${data.id}`}
+              href={`/blog/detail?id=${data.id}`}
               className="w-full flex-col flex py-3 px-2 gap-y-1 cursor-pointer border-b border-b-gray-3 hover:border-b-main-1 transition duration-500"
               key={data.id}
             >
               <div className="w-full flex justify-between">
-                <p className="text-[10px]">{data.nickname}</p>
+                <p className="text-[12px] text-orange-500 font-semibold">
+                  조회수 {data.viewCount}회
+                </p>
                 <div className="flex w-[48px] justify-between items-center">
                   <Icons name={likeSmall} />
                   <p className="text-sm font-medium">{data.likeCount}</p>

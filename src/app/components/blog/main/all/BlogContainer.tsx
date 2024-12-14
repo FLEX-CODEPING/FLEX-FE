@@ -9,6 +9,7 @@ import {
 } from '@/app/constants/blog';
 import { callGet } from '@/app/utils/callApi';
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import FollowerFilter from '../following/FollowerFilter';
 import RecommendFilter from '../recommend/RecommendFilter';
 import BlogPost from './BlogPost';
@@ -66,25 +67,32 @@ const BlogContainer = () => {
 
   return (
     <div className="w-full flex flex-col items-center">
-      <div className="w-full flex flex-col items-start max-w-[1280px]">
-        <Navigation
-          selectedNav={selectedNav}
-          setSelectedNav={setSelectedNav}
-          selectedOption={selectedOption}
-          setSelectedOption={setSelectedOption}
+      <motion.div
+        className="w-full flex flex-col items-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <div className="w-full flex flex-col items-start max-w-[1280px]">
+          <Navigation
+            selectedNav={selectedNav}
+            setSelectedNav={setSelectedNav}
+            selectedOption={selectedOption}
+            setSelectedOption={setSelectedOption}
+          />
+          {optionsBar(selectedNav)}
+        </div>
+        <div className="w-full flex flex-wrap max-w-[1280px] gap-y-10 gap-x-[67px] mt-8">
+          {postDatas &&
+            postDatas.content.map((post) => (
+              <BlogPost key={post.id} post={post} />
+            ))}
+        </div>
+        <Pagination
+          onPageChange={handlePageChange}
+          totalPages={postDatas?.totalPages || 1}
         />
-        {optionsBar(selectedNav)}
-      </div>
-      <div className="w-full flex flex-wrap max-w-[1280px] gap-y-10 gap-x-[67px] mt-8">
-        {postDatas &&
-          postDatas.content.map((post) => (
-            <BlogPost key={post.id} post={post} />
-          ))}
-      </div>
-      <Pagination
-        onPageChange={handlePageChange}
-        totalPages={postDatas?.totalPages || 1}
-      />
+      </motion.div>
     </div>
   );
 };

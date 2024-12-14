@@ -23,11 +23,14 @@ const CommentInput = ({
           parentCommentId,
         });
         if (response.isSuccess) {
+          console.log('댓글 작성 성공:', response.result);
           setCommentInput('');
           onAddComment();
+        } else {
+          console.error('댓글 작성 실패:', response);
         }
       } catch (error) {
-        console.error('Failed to add comment:', error);
+        console.error('댓글 작성 중 오류:', error);
       }
     }
   };
@@ -44,7 +47,7 @@ const CommentInput = ({
         <button
           type="button"
           onClick={handleAddComment}
-          className="bg-black-0 text-white px-8 py-2 rounded-lg font-semibold"
+          className="bg-black-0 text-white px-6 py-1 rounded-lg font-semibold"
         >
           {COMMENT[2]}
         </button>

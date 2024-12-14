@@ -2,24 +2,33 @@
 
 import Icons from '@/app/components/common/Icons';
 import { searchBig } from '@/app/constants/iconPath';
+import SearchPost from './SearchPost';
 
 interface ResultsProps {
-  results: BlogPost[];
+  results: SearchPostTypes[]; // SearchPostTypes로 변경
   searchExecuted: boolean;
   loading: boolean;
+  totalResults: number;
+  currentPage: number;
+  totalPages: number;
+  handlePageChange: (page: number) => void;
 }
 
 const Results: React.FC<ResultsProps> = ({
   results,
   searchExecuted,
   loading,
+  totalResults,
+  currentPage,
+  totalPages,
+  handlePageChange,
 }) => {
   return (
-    <div className="w-full">
-      {searchExecuted && results.length > -1 && (
-        <div className="flex justify-center mt-[27px] text-[20px]">
+    <div className="w-full overflow-x-hidden">
+      {searchExecuted && (
+        <div className="flex justify-center mt-[15px] text-[17px] mb-[24px]">
           <p>
-            총 <span className="font-bold">{results.length}</span>개의 포스트를
+            총 <span className="font-bold">{totalResults}</span>개의 포스트를
             찾았습니다.
           </p>
         </div>
@@ -35,10 +44,12 @@ const Results: React.FC<ResultsProps> = ({
           <p>검색 결과가 없습니다.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-[4px] ml-8 p-4">
-          {/* {results.map((post) => (
-            // <PostCard key={post.id} post={post} />
-          ))} */}
+        <div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-[4px] ml-8 p-4">
+            {results.map((post) => (
+              <SearchPost key={post.id} post={post} />
+            ))}
+          </div>
         </div>
       )}
     </div>

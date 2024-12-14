@@ -163,6 +163,30 @@ export const getStockSearch = async (req: Request, keyword: string) => {
   return getRequest(url, req);
 };
 
+export const getPresignedUrl = async (
+  req: Request,
+  bucketName: string,
+  fileName: string,
+) => {
+  const url = `/api/presigned-url?bucketName=${bucketName}&fileName=${fileName}`;
+  return getRequest(url, req);
+};
+
+export const getUsersProfile = async (req: Request) => {
+  const url = '/api/users/profile';
+  return getRequest(url, req);
+};
+
+export const getAnalysis = async (req: Request) => {
+  const url = '/api/investment-analysis';
+  return getRequest(url, req);
+};
+
+export const getSearchPost = async (req: Request, query: string) => {
+  const url = `/api/blogs/search?query=${query}&page=1&size=12
+`;
+};
+
 export const getHoldStock = async (
   req: Request,
   holdStatus: string,

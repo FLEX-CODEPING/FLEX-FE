@@ -35,8 +35,8 @@ export const deleteLike = async (id: string, req: Request) => {
   return deleteRequest(`/api/posts/${id}/like`, req);
 };
 
-export const deleteFollow = async (id: string, req: Request) => {
-  return deleteRequest(`/api/blogs/${id}/follow`, req);
+export const deleteFollow = async (req: Request, id: string) => {
+  return deleteRequest(`/api/follow`, req);
 };
 export const deleteInterest = async (id: string, req: Request) => {
   return deleteRequest(`/api/interestStocks/${id}`, req);

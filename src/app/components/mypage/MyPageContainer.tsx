@@ -5,6 +5,8 @@ import { callGet } from '@/app/utils/callApi';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { handleLogout } from '@/app/utils/setToken';
 import LikedPosts from './LikedPosts';
 import MyPosts from './MyPosts';
 
@@ -51,21 +53,35 @@ const MyPageContainer = () => {
   }, [blogName]);
 
   return (
-    <div className="mb-[200px] px-[10%]">
+    <motion.div
+      className="mb-[200px] px-[10%]"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
       <div className=" flex flex-col  px-[5%] text-[20px] relative">
-        <div className="text-black text-[24px] font-bold ">
+        <div className="text-black-0 text-[24px] font-bold ">
           {myData?.blogName}
         </div>
         <div className="h-[130px] flex items-center justify-center gap-[70px]">
-          <div className="flex flex-col items-center justify-center ">
+          <div className="relative flex flex-col items-center justify-center">
             <Image
               src={myData?.profileImageUrl || '/images/profile.png'}
               alt="profile"
               width={80}
               height={80}
-              className="rounded-[32px]"
+              className="rounded-full"
+              objectFit="contain"
             />
-            <div className="text-black font-semibold">{myData?.nickname}</div>
+            {/* <div className="absolute bottom-6 right-0 w-6 h-6 bg-gray-500 rounded-full flex items-center justify-center border border-gray-300 shadow-md z-10">
+              <Icons
+                name={cameraIcon}
+                className="w-4 h-4 text-gray-600 cursor-pointer"
+              />
+            </div>           */}
+            <div className="text-black-0 font-semibold text-[15px] mt-1">
+              {myData?.nickname}
+            </div>
           </div>
           <div className="flex items-center space-x-[50px]">
             <div className="flex flex-col items-center">
@@ -115,6 +131,7 @@ const MyPageContainer = () => {
             <button
               type="button"
               className="py-1 px-4 rounded-[20px] border bg-black-0 text-white text-sm font-medium"
+              onClick={handleLogout}
             >
               {MYPAGE_TEXT[3]}
             </button>
@@ -126,7 +143,7 @@ const MyPageContainer = () => {
           {activeTab === 'likedPosts' && <LikedPosts posts={likedPosts} />}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

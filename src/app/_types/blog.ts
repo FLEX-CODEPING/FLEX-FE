@@ -39,6 +39,7 @@ interface ChildCommentType {
   id: number;
   userId: number;
   nickname: string;
+  blogName: string;
   profileImageUrl: string | null;
   content: string;
   timeAgo: string;
@@ -110,4 +111,20 @@ interface CommentRequestTypes {
 
 interface CommentRequestTypes2 {
   content: string;
+}
+
+interface SearchPostTypes {
+  id: string;
+  userId: string;
+  nickname: string;
+  profileImageUrl: string | null;
+  title: string;
+  content: string;
+  tags: string; // 콤마로 구분된 태그 문자열
+  createdAt: string; // ISO 형식 날짜
+  updatedAt: string; // ISO 형식 날짜
+  imageUrls: string[]; // 이미지 URL 배열
+  likeCount: number;
+  viewCount: number;
+  thumbnailUrl: string | null;
 }

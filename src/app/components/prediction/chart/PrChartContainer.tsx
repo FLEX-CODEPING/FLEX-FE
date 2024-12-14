@@ -2,10 +2,9 @@
 
 import useStockStore from '@/app/store/store';
 import { callPost } from '@/app/utils/callApi';
-import Button from '@/app/components/common/Button';
 import { useCallback, useEffect, useState } from 'react';
-import PrChartEmpty from './PrChartEmpty';
 import PrChart from './PrChart';
+import PrChartEmpty from './PrChartEmpty';
 
 const PrChartContainer = () => {
   const [data, setData] = useState<any[]>([]);
