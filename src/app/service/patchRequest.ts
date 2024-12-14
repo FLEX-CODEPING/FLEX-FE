@@ -38,3 +38,10 @@ export const patchComment = async (
     commentinfo,
   );
 };
+
+export const patchProfile = async (
+  profileinfo: AccountFormTypes,
+  req: Request,
+) => {
+  return patchRequest(`/api/users/profile`, req, profileinfo);
+};

@@ -33,3 +33,12 @@ interface BlogNameCheckTypes {
   text: string;
   textColor: string;
 }
+
+interface AccountFormTypes {
+  birth: string;
+  nickname: string;
+  blogName: string;
+  salaryRange: string;
+  interestKeywords: string[];
+  profileImageUrl: string;
+}

@@ -15,6 +15,11 @@ const DailyPost = ({ post }: DailyPostProps) => {
 
   const textContent = post.content.replace(/!\[.*?\]\(.*?\)/g, '').trim();
 
+  const thumbnailUrl =
+    post.imageUrls && post.imageUrls.length > 0
+      ? post.imageUrls[0]
+      : '/images/3c.png';
+
   return (
     <Link
       href={`blog/detail?id=${post.id}`}
@@ -23,7 +28,7 @@ const DailyPost = ({ post }: DailyPostProps) => {
     >
       <div className="relative w-full h-32 overflow-hidden rounded">
         <Image
-          src={post.imageUrls[0] || '/images/3c.png'}
+          src={thumbnailUrl}
           alt={post.title}
           fill
           objectFit="cover"

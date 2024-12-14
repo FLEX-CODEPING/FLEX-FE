@@ -1,6 +1,5 @@
 import Icons from '@/app/components/common/Icons';
 import { blogSearch } from '@/app/constants/iconPath';
-import Image from 'next/image';
 
 interface SearchBarProps {
   query: string;
@@ -14,9 +13,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
 }) => {
   return (
     <div className="flex items-center border border-[#F95700] rounded-full p-4 w-[687px] h-[58px] mx-auto my-2.5">
-      <div className="p-2.5">
-        <Image src="/images/logo.png" alt="logoImg" width={40} height={40} />
-      </div>
       <input
         type="text"
         placeholder="검색어를 입력해 주세요."

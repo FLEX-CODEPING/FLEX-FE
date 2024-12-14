@@ -28,9 +28,8 @@ const NewsPick = ({
     }
   };
 
-  const handleSelectValue = (e: BaseSyntheticEvent) => {
-    const current = e.target.getAttribute('value');
-    setSelectedOption(current);
+  const handleSelectValue = (option: string) => {
+    setSelectedOption(option);
     setDropdownOpen(false);
   };
 
@@ -60,19 +59,21 @@ const NewsPick = ({
       <div className="relative flex text-sm">
         <button
           type="button"
-          className="flex w-[119px] h-[30px] items-center px-3 py-[10px] rounded-[5px] border bg-white border-gray-300"
+          className="flex  h-[30px] items-center px-1 py-[10px] rounded-[5px] border bg-white border-gray-300"
           onClick={toggleFilterDropdown}
         >
-          <span className="mr-4">{selectedOption}</span>
+          <span className=" w-[60px] items-start flex ml-2">
+            {selectedOption}
+          </span>
           <Icons name={fillter} />
         </button>
         {dropdownOpen && (
-          <div className="absolute w-[119px] top-[30px] bg-white border border-gray-300 rounded-[5px] shadow-lg z-10">
+          <div className="absolute w-[97px] top-[30px] bg-white border border-gray-300 rounded-[5px] shadow-lg z-10">
             {NEWS_VIEW_TYPE.map((option) => (
               <div
                 key={option}
-                className="w-full text-left px-4 py-1 hover:bg-gray-100"
-                onClick={handleSelectValue}
+                className="w-full text-center px-4 py-1 hover:bg-gray-100"
+                onClick={() => handleSelectValue(option)}
               >
                 {option}
               </div>

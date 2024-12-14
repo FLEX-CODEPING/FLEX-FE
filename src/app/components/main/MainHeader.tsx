@@ -7,11 +7,11 @@ const MainHeader = () => {
   return (
     <div className="w-full h-44 mt-4 px-[5%] pb-4 justify-center items-center flex flex-col">
       <div>
-        <span className="text-[#424242] text-[35px] font-semibold">
+        <span className="text-[#424242] text-[35px] font-semibold whitespace-nowrap">
           {CATCH_PHRASE[0]}
         </span>
       </div>
-      <div className="text-[50px]">
+      <div className="text-[50px] mt-2">
         <span className={`text-main-1 ${dela.className}`}>
           {CATCH_PHRASE[1]}
         </span>
