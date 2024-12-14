@@ -91,10 +91,8 @@ const DayChart = ({
       }
     };
 
-    timeFrame !== '연' &&
-      chart
-        .timeScale()
-        .subscribeVisibleLogicalRangeChange(handleTimeRangeChange);
+    // timeFrame !== '연' &&
+    chart.timeScale().subscribeVisibleLogicalRangeChange(handleTimeRangeChange);
 
     return () => {
       chart

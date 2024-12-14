@@ -21,9 +21,9 @@ const ChartTypeDropdown = ({ option, setOption }: ChartTypeDropdownProps) => {
   };
 
   return (
-    <div className="relative flex text-[13px] h-7 cursor-pointer gap-x-2">
+    <div className="relative flex text-[13px] h-7 cursor-pointer gap-x-4">
       <div
-        className={`flex justify-between w-[60px] items-center px-1 py-0.5  rounded  ${typeof option === 'number' ? 'bg-gray-5' : 'bg-white border border-gray-2 box-border'}`}
+        className={`flex justify-between w-[66px] items-center pl-2.5 pr-1.5 py-0.5  rounded  ${typeof option === 'number' ? 'bg-gray-5' : 'bg-white border border-gray-2 box-border'}`}
         onClick={toggleFilterDropdown}
       >
         <div className="text-black-1">

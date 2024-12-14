@@ -22,7 +22,7 @@ export const fetchInitialData = async (stockCode: string) => {
   let requestCount = 1;
   let isDataAvailable = true;
 
-  while (isDataAvailable && requestCount < 3) {
+  while (isDataAvailable && requestCount < 4) {
     const lastItem = currentData[currentData.length - 1];
     const newReqBody = {
       date: lastItem.tradingDate,

@@ -108,23 +108,44 @@ const MinChart = ({
       }
     };
 
+    const resizeObserver = new ResizeObserver(() => {
+      if (chartContainerRef.current) {
+        chart.resize(
+          chartContainerRef.current.clientWidth,
+          chartContainerRef.current.clientHeight,
+        );
+      }
+    });
+    resizeObserver.observe(chartContainerRef.current);
+
+    //브라우저 크기에 따른 동적 사이즈 변화
+    window.addEventListener('resize', () => {
+      if (chartContainerRef.current) {
+        chart.resize(
+          chartContainerRef.current.clientWidth,
+          chartContainerRef.current.clientHeight,
+        );
+      }
+    });
+
     chart.timeScale().subscribeVisibleLogicalRangeChange(handleTimeRangeChange);
 
     return () => {
       chart
         .timeScale()
         .unsubscribeVisibleLogicalRangeChange(handleTimeRangeChange);
+      resizeObserver.disconnect();
       chart.remove();
     };
-  }, [data]);
+  }, [data, isLack]);
 
-  useLayoutEffect(() => {
-    if (!candleSeriesRef.current || !volumeSeriesRef.current) return;
+  // useLayoutEffect(() => {
+  //   if (!candleSeriesRef.current || !volumeSeriesRef.current) return;
 
-    const { candles, volumes } = getTransformedData();
-    candleSeriesRef.current.setData(candles);
-    volumeSeriesRef.current.setData(volumes);
-  }, [timeFrame]);
+  //   const { candles, volumes } = getTransformedData();
+  //   candleSeriesRef.current.setData(candles);
+  //   volumeSeriesRef.current.setData(volumes);
+  // }, [timeFrame]);
 
   useEffect(() => {
     if (!liveData || !candleSeriesRef.current) return;
@@ -143,7 +164,7 @@ const MinChart = ({
   }, [liveData]);
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '380px' }}>
+    <div className="relative w-full h-[380px]">
       <div className="w-full flex justify-end pr-12">
         <ChartTypeDropdown option={timeFrame} setOption={setTimeFrame} />
       </div>
