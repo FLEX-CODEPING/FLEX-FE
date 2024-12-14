@@ -1,5 +1,6 @@
 class MockFeed {
   private chartData: any[];
+
   constructor(chartData: any[]) {
     this.chartData = chartData;
   }

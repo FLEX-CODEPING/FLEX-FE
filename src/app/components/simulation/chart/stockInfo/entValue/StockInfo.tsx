@@ -20,7 +20,6 @@ const StockInfo = () => {
       );
       setStockInfo(response.result);
       console.log(response, '종목정보');
-      
     };
 
     getStockDetail();

@@ -1,11 +1,6 @@
-import {
-  applyOptions,
-  candleChartOptions,
-  groupDataByInterval,
-  volumeChartOptions,
-} from '@/app/utils/chart';
+import { applyOptions, groupDataByInterval } from '@/app/utils/chart';
 import { convertToUnixTimestamp } from '@/app/utils/date';
-import { createChart } from 'lightweight-charts';
+import { createChart, Time } from 'lightweight-charts';
 import {
   Dispatch,
   SetStateAction,
@@ -40,7 +35,9 @@ const MinChart = ({
   const transformCandle = (arr: MinPriceTypes[]) => {
     return arr
       .map((item) => ({
-        time: convertToUnixTimestamp(item.tradingDate + item.transactionTime),
+        time: convertToUnixTimestamp(
+          item.tradingDate + item.transactionTime,
+        ) as Time,
         open: Number(item.openPrice),
         high: Number(item.highPrice),
         low: Number(item.lowPrice),
@@ -52,19 +49,24 @@ const MinChart = ({
   const transformAmount = (arr: MinPriceTypes[]) => {
     return arr
       .map((item) => ({
-        time: convertToUnixTimestamp(item.tradingDate + item.transactionTime),
+        time: convertToUnixTimestamp(
+          item.tradingDate + item.transactionTime,
+        ) as Time,
         value: Number(item.transactionVolume),
       }))
       .reverse();
   };
 
   const getTransformedData = () => {
-    const groupedData =
-      timeFrame === 1 ? data : groupDataByInterval(data, timeFrame);
-    return {
-      candles: transformCandle(groupedData),
-      volumes: transformAmount(groupedData),
-    };
+    if (typeof timeFrame === 'number') {
+      const groupedData =
+        timeFrame === 1 ? data : groupDataByInterval(data, timeFrame);
+      return {
+        candles: transformCandle(groupedData),
+        volumes: transformAmount(groupedData),
+      };
+    }
+    return { candles: [], volumes: [] };
   };
 
   useLayoutEffect(() => {
@@ -83,10 +85,29 @@ const MinChart = ({
     });
     chartRef.current = chart;
 
-    const candleSeries = chart.addCandlestickSeries(candleChartOptions);
+    const candleSeries = chart.addCandlestickSeries({
+      upColor: '#0065D1',
+      downColor: '#F12C2C',
+      borderUpColor: '#0065D1',
+      borderDownColor: '#F12C2C',
+      wickUpColor: '#0065D1',
+      wickDownColor: '#F12C2C',
+      priceFormat: {
+        type: 'custom',
+        minMove: 1,
+        formatter: (price: number) => Math.round(price).toString(),
+      },
+    });
     candleSeriesRef.current = candleSeries;
 
-    const volumeSeries = chart.addHistogramSeries(volumeChartOptions);
+    const volumeSeries = chart.addHistogramSeries({
+      color: '#FFA474',
+      priceFormat: {
+        type: 'volume',
+      },
+      priceScaleId: '',
+    });
+
     volumeSeriesRef.current = volumeSeries;
 
     volumeSeries.priceScale().applyOptions(applyOptions);
@@ -118,7 +139,7 @@ const MinChart = ({
     });
     resizeObserver.observe(chartContainerRef.current);
 
-    //브라우저 크기에 따른 동적 사이즈 변화
+    // 브라우저 크기에 따른 동적 사이즈 변화
     window.addEventListener('resize', () => {
       if (chartContainerRef.current) {
         chart.resize(

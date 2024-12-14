@@ -57,7 +57,6 @@ const StockDetail = ({ data }: StockDetailProps) => {
                 {formatCurrencyNoUnit(Number(StockInfoArr[i]))}
                 {plusUnit(i)}
               </p>
-              <p></p>
             </div>
           </div>
         );

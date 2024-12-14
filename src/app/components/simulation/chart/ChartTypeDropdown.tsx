@@ -36,7 +36,7 @@ const ChartTypeDropdown = ({ option, setOption }: ChartTypeDropdownProps) => {
           {CHART_MIN_NUM.map((minType, i) => (
             <div className="w-full flex-center" key={minType}>
               <div
-                className={`w-[90%] h-[95%] flex px-2 py-2 hover:bg-gray-100 rounded  cursor-pointer`}
+                className="w-[90%] h-[95%] flex px-2 py-2 hover:bg-gray-100 rounded  cursor-pointer"
                 onClick={() => handleSelectValue(minType)}
               >
                 {minType}분

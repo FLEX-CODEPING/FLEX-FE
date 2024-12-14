@@ -36,7 +36,7 @@ export const fetchInitialData = async (stockCode: string) => {
     if (newData.length > 0) {
       currentData = [...currentData, ...newData];
       arrData.push(...newData);
-      requestCount++;
+      requestCount += 1;
     } else {
       isDataAvailable = false;
     }
@@ -70,7 +70,7 @@ export const fetchAdditionalData = async (
 export const fetchInitialDay = async (stockCode: string, dayType: string) => {
   const reqBody = {
     marketDivCode: 'J',
-    stockCode: stockCode,
+    stockCode,
     dateFrom: switchDateFunc(dayType),
     dateTo: getTodayDate(),
     periodDivCode: DAY_DIVCODE_MAP[dayType],
@@ -93,7 +93,7 @@ export const fetchDailyAdditional = async (
 
   const reqBody = {
     marketDivCode: 'J',
-    stockCode: stockCode,
+    stockCode,
     dateFrom: calculateDateFrom(lastItem.stck_bsop_date, timeFrame),
     dateTo: dayjs(lastItem.stck_bsop_date)
       .subtract(1, 'day')

@@ -100,7 +100,7 @@ export const formatMD = (dateString: string) => {
   return `${month}.${day}`;
 };
 
-//unix 시간대로 변환
+// unix 시간대로 변환
 export const convertToUnixTimestamp = (dateString: string) => {
   const formattedTime = `${dateString.slice(0, 4)}-${dateString.slice(4, 6)}-${dateString.slice(6, 8)}T${dateString.slice(8, 10)}:${dateString.slice(10, 12)}:${dateString.slice(12, 14)}Z`;
   return Math.floor(new Date(formattedTime).getTime() / 1000);
@@ -110,6 +110,14 @@ export const convertToUnixTimesDay = (dateString: string) => {
   const formattedDate = `${dateString.slice(0, 4)}-${dateString.slice(4, 6)}-${dateString.slice(6, 8)}T00:00:00Z`;
   return Math.floor(new Date(formattedDate).getTime() / 1000);
 };
+
+// 날짜를 YYYYMMDD 형식으로 포맷하는 유틸리티 함수
+function commonFormat(date: Date): string {
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 +1
+  const day = date.getDate().toString().padStart(2, '0');
+  return `${year}${month}${day}`;
+}
 
 // 1. 전일로부터 4개월 전 날짜 반환
 export function getFourMonthsAgo(): string {
@@ -138,14 +146,6 @@ export function getFourYearsAgoFirstDay(): string {
   return commonFormat(now);
 }
 
-// 날짜를 YYYYMMDD 형식으로 포맷하는 유틸리티 함수
-function commonFormat(date: Date): string {
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 +1
-  const day = date.getDate().toString().padStart(2, '0');
-  return `${year}${month}${day}`;
-}
-
 export const switchDateFunc = (dayType: string) => {
   switch (dayType) {
     case '일':
@@ -157,11 +157,11 @@ export const switchDateFunc = (dayType: string) => {
     case '년':
       return '19800101';
     default:
-      break;
+      return '';
   }
 };
 
-//요청 시작날짜, 끝날짜를 일/주/월/년에 맞게 변경
+// 요청 시작날짜, 끝날짜를 일/주/월/년에 맞게 변경
 export const calculateDateFrom = (
   lastDate: string,
   timeFrame: number | string,

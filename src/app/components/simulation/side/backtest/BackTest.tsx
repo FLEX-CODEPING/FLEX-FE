@@ -40,10 +40,10 @@ const BackTest = () => {
 
   const backReq = {
     corpName: stockName,
-    endDate: endDate,
+    endDate,
     periodType: ORDER_TYPE_MAP[orderType],
     quantity: Number(orderCnt),
-    startDate: startDate,
+    startDate,
     stockcode: stockCode,
   };
 
@@ -61,7 +61,7 @@ const BackTest = () => {
           <p className="text-[13px] pl-1">{BACKTEST_TEXT[0]}</p>
           <Input
             inputType="date"
-            type={'calendar'}
+            type="calendar"
             textValue={startDate}
             onChange={handleStartDateChange}
           />
@@ -70,7 +70,7 @@ const BackTest = () => {
           <p className="text-[13px] pl-1">{BACKTEST_TEXT[1]}</p>
           <Input
             inputType="date"
-            type={'calendar'}
+            type="calendar"
             textValue={endDate || ''}
             onChange={handleEndDateChange}
           />
@@ -94,7 +94,7 @@ const BackTest = () => {
         <p className="text-[13px] pl-1">{BACKTEST_TEXT[3]}</p>
         <div className="flex relative">
           <Input
-            type={'orderCnt'}
+            type="orderCnt"
             className="text-right outline-none"
             textValue={orderCnt}
             inputType="number"
@@ -116,7 +116,7 @@ const BackTest = () => {
       <div className="w-full flex-col-center">
         <Button
           buttonText={BACKTEST_BTN_TEXT[0]}
-          type={'backTest'}
+          type="backTest"
           className="bg-main-1"
           onClickHandler={postBackTest}
         />

@@ -19,31 +19,32 @@ export const formatCurrency = (input: number | string) => {
     : `${hundredMillionUnit}억원`;
 };
 
-export const formatCurrencyNoUnit = (amount: number): string => {
-  if (amount >= 1_0000_0000_0000) {
-    const value = (amount / 1_0000_0000_0000).toFixed(1);
-    return value.length > 4
-      ? `${Math.round(amount / 1_0000_0000_0000)}조`
-      : `${value}조`;
-  } else if (amount >= 1_0000_0000) {
-    const value = (amount / 1_0000_0000).toFixed(1);
-    return value.length > 4
-      ? `${Math.round(amount / 1_0000_0000)}억`
-      : `${value}억`;
-  } else if (amount >= 100000) {
-    const value = (amount / 10000).toFixed(0);
-    return value.length > 4 ? `${amount / 10000}만` : `${value}만`;
-  } else {
-    return `${formatNumberCommas(amount)}`;
-  }
-};
-
 const transNum = (num: number | string) => {
   return Number(num);
 };
 
 export const formatNumberCommas = (num: number | string) => {
   return Math.floor(transNum(num)).toLocaleString('en-US');
+};
+
+export const formatCurrencyNoUnit = (amount: number): string => {
+  if (amount >= 1_0000_0000_0000) {
+    const value = (amount / 1_0000_0000_0000).toFixed(1);
+    return value.length > 4
+      ? `${Math.round(amount / 1_0000_0000_0000)}조`
+      : `${value}조`;
+  }
+  if (amount >= 1_0000_0000) {
+    const value = (amount / 1_0000_0000).toFixed(1);
+    return value.length > 4
+      ? `${Math.round(amount / 1_0000_0000)}억`
+      : `${value}억`;
+  }
+  if (amount >= 100000) {
+    const value = (amount / 10000).toFixed(0);
+    return value.length > 4 ? `${amount / 10000}만` : `${value}만`;
+  }
+  return `${formatNumberCommas(amount)}`;
 };
 
 export const isProfit = (num: number | string): string => {
