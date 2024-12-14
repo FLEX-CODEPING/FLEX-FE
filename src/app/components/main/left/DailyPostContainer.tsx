@@ -8,7 +8,7 @@ import NoneContent from '../NoneContent';
 import DailyPost from './DailyPost';
 
 const DailyPostContainer = () => {
-  const [postData, setPostData] = useState<MainPostTypes[]>([]);
+  const [postData, setPostData] = useState<LandingPostTypes[]>([]);
   const today = getTodayDateBar();
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const DailyPostContainer = () => {
         </div>
       ) : (
         <div className="w-full flex-wrap flex gap-x-12 gap-y-5">
-          {postData.map((post, i) => (
+          {postData.map((post) => (
             <DailyPost key={post.id} post={post} />
           ))}
         </div>

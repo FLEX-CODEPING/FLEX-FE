@@ -48,7 +48,7 @@ export const RANKING_COLOR = ['bg-[#FEEAB4]', 'bg-[#e5e5e5]', 'bg-[#e5cbbc]'];
 
 export const MAIN_CONTENTS_TITLE = [
   '최신 게시물',
-  '오늘의 뉴스',
+  '최신 뉴스',
   '주식 차트',
   '️인기 게시물',
   '추천 게시물',

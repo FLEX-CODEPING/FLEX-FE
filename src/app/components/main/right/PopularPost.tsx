@@ -11,7 +11,7 @@ import Icons from '../../common/Icons';
 import NoneContent from '../NoneContent';
 
 const PopularPost = () => {
-  const [postDatas, setPostData] = useState<MainPostTypes[]>([]);
+  const [postDatas, setPostData] = useState<LandingPostTypes[]>([]);
   const today = getTodayDateBar();
 
   useEffect(() => {

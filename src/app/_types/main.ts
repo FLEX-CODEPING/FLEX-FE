@@ -3,8 +3,10 @@ type MainPostViewTypes = '최신' | '인기' | '팔로잉';
 type MainPostViewApiTypes = 'CREATED_AT' | 'LIKE_COUNT' | 'FOLLOWING';
 
 interface LandingPostTypes {
-  id: number;
-  userId: number;
+  id: string;
+  userId: string;
+  nickname: string;
+  profileImageUrl: string;
   title: string;
   content: string;
   tags: string;
@@ -12,6 +14,8 @@ interface LandingPostTypes {
   updatedAt: string;
   imageUrls: string[];
   likeCount: number;
+  viewCount: number;
+  thumbnailUrl: string;
 }
 
 interface MainPostTypes {
@@ -29,9 +33,10 @@ interface MainPostTypes {
 }
 
 interface DailyArticleTypes {
+  date: string;
   title: string;
   content: string;
-  media: string;
+  url: string;
 }
 
 interface RankingTypes {

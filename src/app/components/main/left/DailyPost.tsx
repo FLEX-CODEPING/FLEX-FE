@@ -21,7 +21,7 @@ const DailyPost = ({ post }: DailyPostProps) => {
     >
       <div className="relative w-full h-28 overflow-hidden rounded">
         <Image
-          src={post.imageUrls[0] || '/images/3c.png'}
+          src={post.imageUrls ? post.imageUrls[0] : '/images/3c.png'}
           alt={post.title}
           fill
           className="rounded transition-transform duration-300 ease-in-out group-hover:scale-110"

@@ -212,3 +212,8 @@ export const getCorpInfo = async (req: Request, stockCode: string) => {
   const url = `/api/stocks/${stockCode}/corpInfo`;
   return getRequest(url, req);
 };
+
+export const getLandingNews = async (req: Request) => {
+  const url = '/api/news-summary/todaynews';
+  return getRequest(url, req);
+};
