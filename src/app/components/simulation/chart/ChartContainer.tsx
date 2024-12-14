@@ -39,19 +39,13 @@ const ChartContainer = () => {
     fetchData();
   }, [stockCode, timeFrame]);
 
-  console.log(dailyData, '일주월연 데이터');
-  console.log(liveData, '라이브데이터 변환');
-  console.log(mindata, '분봉 데이터');
-
   useEffect(() => {
     const fetchMoreData = async () => {
       if (timeFrame === '년') return;
       if (!isLack || !stockCode) return;
-      console.log('새로 요청 발생', isDay, '상황');
 
       if (!isDay) {
         const additionalData = await fetchAdditionalData(mindata, stockCode);
-        console.log('새로 요청 발생', additionalData, '새로 받아온 일 데이터');
         setMinData((prev) => [...prev, ...additionalData]);
       } else {
         const additionalData = await fetchDailyAdditional(
@@ -60,7 +54,6 @@ const ChartContainer = () => {
           timeFrame,
         );
         setDailyData((prev) => [...prev, ...additionalData]);
-        console.log('새로 요청 발생', additionalData, '새로 받아온 분 데이터');
       }
 
       setIsLack(false);

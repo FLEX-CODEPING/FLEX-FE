@@ -103,12 +103,10 @@ const DayChart = ({
       ) {
         if (!isLack) {
           setIsLack(true);
-          console.log('왼쪽 끝에 도달', timeRange);
         }
       }
     };
 
-    // timeFrame !== '연' &&
     chart.timeScale().subscribeVisibleLogicalRangeChange(handleTimeRangeChange);
 
     return () => {

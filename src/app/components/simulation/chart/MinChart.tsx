@@ -124,7 +124,6 @@ const MinChart = ({
       ) {
         if (!isLack) {
           setIsLack(true);
-          console.log('왼쪽 끝에 도달', timeRange);
         }
       }
     };

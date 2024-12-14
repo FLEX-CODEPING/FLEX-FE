@@ -32,7 +32,6 @@ const StockRank = () => {
       response.isSuccess && isVolume
         ? setVolumeData(response.result)
         : setFLucData(response.result);
-      console.log(response);
     };
 
     fetchRank();

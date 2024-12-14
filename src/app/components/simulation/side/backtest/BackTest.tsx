@@ -49,7 +49,6 @@ const BackTest = () => {
 
   const postBackTest = async () => {
     const res = await callPost('/api/stocks/backtest', backReq);
-    console.log(backReq, '로 요청');
     console.log(res, '응답');
   };
 

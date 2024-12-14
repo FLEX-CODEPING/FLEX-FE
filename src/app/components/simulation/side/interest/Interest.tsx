@@ -33,8 +33,6 @@ const Interest = () => {
     setStockPrices(prices);
   };
 
-  console.log(stockPrices, '가공완료');
-
   const deleteInterest = async (id: string) => {
     const response = await callDelete(`api/stocks/interest?id=${id}`);
     getStockInfo();
