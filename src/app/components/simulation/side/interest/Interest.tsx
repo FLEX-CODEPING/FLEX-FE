@@ -1,18 +1,36 @@
 import Icons from '@/app/components/common/Icons';
 import { interestLike } from '@/app/constants/iconPath';
 import { INTEREST_EMPTY, SIDE_NAV_TYPES } from '@/app/constants/simulation';
-import { callDelete, callGet } from '@/app/utils/callApi';
-import { valueColor } from '@/app/utils/qualify';
+import { callDelete, callGet, callPost } from '@/app/utils/callApi';
+import { isProfit } from '@/app/utils/formatNum';
+import { vrssSignColor } from '@/app/utils/qualify';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import EmptyGuide from '../EmptyGuide';
 
 const Interest = () => {
   const [stocks, setStocks] = useState<InterestedStockTypes[]>([]);
-
+  const [stockPrices, setStockPrices] = useState<InterestedPriceTypes[]>([]);
   const getStockInfo = async () => {
     const response = await callGet(`api/stocks/interest`);
-    setStocks(response.result.content);
+    const interestDatas = response.result.content;
+    setStocks(interestDatas);
+    const prices = await Promise.all(
+      interestDatas.map(async (item: InterestedStockTypes) => {
+        const data = await callPost(
+          `/api/stocks/price/inquire?stockcode=${item.stockcode}`,
+        );
+        const priceData = data.result[0];
+        return {
+          stockCode: item.stockcode,
+          currentPrice: priceData.stck_prpr,
+          changeAmount: priceData.prdy_vrss,
+          changePercent: priceData.prdy_ctrt,
+          changeSign: priceData.prdy_vrss_sign,
+        };
+      }),
+    );
+    setStockPrices(prices);
   };
 
   const deleteInterest = async (id: string) => {
@@ -31,7 +49,8 @@ const Interest = () => {
         {stocks.length === 0 ? (
           <EmptyGuide phraseArr={INTEREST_EMPTY} />
         ) : (
-          stocks.map((stock) => (
+          stockPrices.length !== 0 &&
+          stocks.map((stock, i) => (
             <div
               className="py-1.5 w-full flex justify-between"
               key={stock.interestStockId}
@@ -48,7 +67,7 @@ const Interest = () => {
               </div>
               <div className="flex-col">
                 <div className="flex text-xs items-center font-medium gap-x-0.5">
-                  <p>{100}원</p>
+                  <p>{stockPrices[i].currentPrice}원</p>
                   <Icons
                     name={interestLike}
                     className="cursor-pointer"
@@ -56,10 +75,10 @@ const Interest = () => {
                   />
                 </div>
                 <div
-                  className={`flex w-full justify-end text-[10px] gap-x-0.5 ${valueColor(30)}`}
+                  className={`flex w-full justify-end text-[10px] gap-x-0.5 ${vrssSignColor(stockPrices[i].changeSign)}`}
                 >
-                  <p>{10}</p>
-                  <p>({10}%)</p>
+                  <p>{isProfit(stockPrices[i].changeAmount)}</p>
+                  <p>({stockPrices[i].changePercent}%)</p>
                 </div>
               </div>
             </div>

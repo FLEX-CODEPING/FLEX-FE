@@ -51,3 +51,30 @@ export function formatEntInfo(data: CorpInfoTypes): string[] {
     industryName,
   ];
 }
+
+export const extractDateTimeAndPrice = (data: string) => {
+  const parts = data.split('|');
+  const executionData = parts[3];
+  const executionParts = executionData.split('^');
+  console.log(executionParts, '쪼갠 값들');
+  const executionTime = executionParts[1];
+  const close = executionParts[2];
+  const open = executionParts[7];
+  const high = executionParts[8];
+  const low = executionParts[9];
+  const amount = executionParts[12];
+  const date = executionParts[33];
+  const formattedTime = `${executionTime.slice(0, 4)}00`;
+  const dateTime = `${date}${formattedTime}`;
+
+  const realData: ChartDataTypes = {
+    open: Number(open),
+    high: Number(high),
+    low: Number(low),
+    close: Number(close),
+    time: Number(dateTime),
+    volume: Number(amount),
+  };
+
+  return realData;
+};

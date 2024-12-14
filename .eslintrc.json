@@ -23,6 +23,8 @@
     "react-hooks/rules-of-hooks": "off",
     "class-methods-use-this": "off",
     "no-new": "off",
+    "no-await-in-loop": "off",
+    "consistent-return": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {

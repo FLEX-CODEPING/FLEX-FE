@@ -7,6 +7,11 @@ export const truncateString = (str: string, maxLength: number) => {
 
 export const plusUnit = (index: number) => {
   if (index === 5) return '%';
-  if (index === 8) return '주';
+  if (index === 8 || index === 4) return '주';
+  return '원';
+};
+
+export const plusUnitforEnt = (index: number) => {
+  if (index === 5) return '%';
   return '원';
 };

@@ -16,10 +16,10 @@ const StockInfo = () => {
     const getStockDetail = async () => {
       const date = getTodayDateBar();
       const response = await callGet(
-        `api/stocks/info?code=${stockCode}&date=${date}`,
+        `api/stocks/info?code=${stockCode}&date=${'2024-12-11'}`,
       );
-      console.log(response);
       setStockInfo(response.result);
+      console.log(response, '종목정보');
     };
 
     getStockDetail();

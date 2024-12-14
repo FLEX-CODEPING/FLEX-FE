@@ -92,11 +92,11 @@ const Posession = () => {
                         )}
                       </p>
                       <p>
-                        {`( ${Math.floor(
+                        {`(${Math.floor(
                           ((Number(stockPrices[i].price) - stock.avgPrice) /
                             Number(stockPrices[i].price)) *
                             100,
-                        )}% )`}
+                        )}%)`}
                       </p>
                     </div>
                   </div>
