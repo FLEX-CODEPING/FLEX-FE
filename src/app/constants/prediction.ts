@@ -14,20 +14,23 @@ export const PREDICTION_SIDEBAR_TEXT = [
   '예측하기',
   '각기 다른 예측 결과를 확인해보세요',
   '분석하기',
+  '• 데이터 패턴을 활용한 랜덤 포레스트 기반 예측법',
+  '• 시계열 데이터를 학습하는 순환 신경망 기반 예측법',
+  '• 기술 지표와 랜덤 포레스트를 결합한 복합 예측법',
 ];
 
-export const PREDICTION_INDICATION_SORT = [
-  'Random Forest 예측법',
-  'LSTM 예측법',
-  '지표 예측법',
-];
+export const PREDICTION_INDICATION_SORT = ['RD', 'RNN', 'ID'];
 
 export const PREDICTION_SIDEBAR_RESULT = [
   '예측결과',
   '투자 유의사항',
-  '주가의 예측결과 :',
+  '의 예측결과 :',
   '예상 변동액 :',
   '저장하기',
+  '⚠️ 투자 유의 사항',
+  '본 서비스의 주가 예측은 데이터 기반으로 제공되지만, 실제 시장의 변동성과 예측의 한계, 그리고 예기치 않은 요소들이 반영되지 않을 수 있습니다.',
+  '모든 투자 결정',
+  '은 사용자의 책임이며, 신중한 판단을 권장드립니다.',
 ];
 
 export const PREDICTION_RESULT_TYPE = ['상승', '하락'];

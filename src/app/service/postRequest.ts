@@ -16,6 +16,7 @@ const postRequest = async (url: string, req: Request, body: any = null) => {
     headers,
     body: JSON.stringify(body),
   });
+
   return response.json();
 };
 
@@ -115,6 +116,14 @@ export const postStockSell = async (req: Request, body: any) => {
   return postRequest('/api/investments/trading/sell', req, body);
 };
 
+export const postStockPredictions = async (
+  req: Request,
+  body: any,
+  operation: string,
+) => {
+  return postRequest(
+    `/api/stock-predictions?operation=${operation}`,
+
 export const postMinData = async (req: Request, body: any) => {
   return postRequest(
     '/api/kis/stocks/daily/daily-chart-price/inquire-price',
@@ -122,6 +131,17 @@ export const postMinData = async (req: Request, body: any) => {
     body,
   );
 };
+  
+export const postStockNotification = async (
+  req: Request,
+  body: any,
+  operation: string,
+) => {
+  return postRequest(
+    `/api/stock-predictions/notification?operation=${operation}`,
+    req,
+    body,
+  );
 
 export const postBackTest = async (req: Request, body: any) => {
   return postRequest('/api/back-test', req, body);
