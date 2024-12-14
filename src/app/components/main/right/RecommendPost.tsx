@@ -34,7 +34,10 @@ const RecommendPost = () => {
         {user?.isSuccess ? (
           <div className="flex gap-x-3 text-[11px] font-medium">
             {datas?.myInterests.map((interest) => (
-              <div className="flex-center bg-main-4 px-2.5 py-1 rounded-xl">
+              <div
+                className="flex-center bg-main-4 px-2.5 py-1 rounded-xl"
+                key={interest}
+              >
                 {interest}
               </div>
             ))}
@@ -59,7 +62,7 @@ const RecommendPost = () => {
                   <p className="text-[15px] font-semibold">{data.title}</p>
                   <div className="flex py-[5px] w-full justify-between items-center mt-2">
                     <div className="flex items-center gap-x-1">
-                      {data.commonInterests.map((interest, index) => (
+                      {data.commonInterests.map((interest) => (
                         <div
                           className="bg-gray-3 text-xs px-1 py-0.5 rounded"
                           key={data.id}

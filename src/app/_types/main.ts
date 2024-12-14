@@ -58,8 +58,8 @@ interface PopularPostTypes {
 }
 
 interface RecommendPostTypes {
-  id: number;
-  userId: number;
+  id: string;
+  userId: string;
   title: string;
   tags: string;
   imageUrls: string[];
