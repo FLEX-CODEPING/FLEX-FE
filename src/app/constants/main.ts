@@ -47,7 +47,7 @@ export const MAIN_LEFT_ETC = ['다른 뉴스 보러가기', '블로그 구경가
 export const RANKING_COLOR = ['bg-[#FEEAB4]', 'bg-[#e5e5e5]', 'bg-[#e5cbbc]'];
 
 export const MAIN_CONTENTS_TITLE = [
-  '오늘의 게시물',
+  '최신 게시물',
   '오늘의 뉴스',
   '주식 차트',
   '️인기 게시물',
@@ -98,3 +98,34 @@ export const NONE_MAIN_INFO = [
   '해당 컨텐츠가 존재하지 않습니다',
   '새로고침 또는 잠시후 시도해보세요',
 ];
+
+export const STOCK_RANKING_TYPE: StockRankingTypes[] = ['거래량', '등락률'];
+
+export const RANK_TYPE_MAP: Record<StockRankingTypes, string> = {
+  등락률: 'fluctuation',
+  거래량: 'volume',
+};
+
+export const VOLUME_PARAMS = {
+  belongCode: '0',
+  classCode: '0',
+  priceMax: '',
+  priceMin: '',
+  stockCode: '0000',
+  volCount: '',
+};
+
+export const FLUCTUATION_PARAMS = {
+  market_code: '',
+  fluctuation_rate_min: '',
+  fluctuation_rate_max: '',
+  market_type: 'string',
+  sort_order: 'string',
+  result_limit: 'string',
+  price_type: '',
+  price_min: '',
+  price_max: '',
+  volume_threshold: '',
+  exclude_type: '0',
+  category_type: '0',
+};

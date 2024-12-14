@@ -20,6 +20,8 @@ export const BUTTON_STYLE = {
     `px-4 py-2 border border-gray-2 rounded-lg text-sm font-semibold ${className}`,
   checkName: (className: string) =>
     `w-[90px] h-9 text-white text-sm h-10 rounded-lg ${className}`,
+  backTest: (className: string) =>
+    `w-[200px] h-8 text-white text-sm rounded-lg ${className}`,
 } as const;
 
 export const INPUT_STYLE = {
@@ -34,4 +36,10 @@ export const INPUT_STYLE = {
     `w-[150px] h-[24px] px-3 rounded-md border-none font-light text-black-0 text-base outline-none ${className}`,
   blogName: (className: string) =>
     `w-[80%] pl-4 h-10 rounded-[10px] border border-gray-2 text-sm outline-none focus:border-main-1 ${className}`,
+  record: (className: string) =>
+    `w-full h-7 pl-2 pr-7 border border-gray-2 text-[11px] rounded-lg outline-none ${className}`,
+  calendar: (className: string) =>
+    `w-[105px] h-[28px] px-2 py-2 rounded-md border-[1.5px] border-gray-2 text-black-1 text-[11px] ${className}`,
+  orderCnt: (className: string) =>
+    `w-full pr-16 pl-4 h-8 rounded border border-gray-2 text-gray-1 text-sm ${className}`,
 } as const;

@@ -1,50 +1,83 @@
 'use client';
 
-import Button from '@/app/components/common/Button';
+import Input from '@/app/components/common/Input';
 import {
   SIDE_NAV_TYPES,
-  SIDE_STATUS_TEXT,
   TRADE_EMPTY,
+  TRADE_PLACEHOLDER,
+  TRADETYPE_MAP,
 } from '@/app/constants/simulation';
-import { TRADE_DATA } from '@/app/data/simulation';
-import { useState } from 'react';
+import { callGet } from '@/app/utils/callApi';
+import { formatNumberCommas } from '@/app/utils/formatNum';
+import { tradeTypeColor } from '@/app/utils/qualify';
+import { useEffect, useState } from 'react';
 import EmptyGuide from '../EmptyGuide';
 
 const Trade = () => {
-  const [isNow, setIsNow] = useState(true);
+  const [record, setRecord] = useState<TransactionDataTypes[]>([]);
+  const [text, setText] = useState('');
+  const [filteredRecord, setFilteredRecord] = useState<TransactionDataTypes[]>(
+    [],
+  );
+
+  const getTradeRecord = async () => {
+    const response = await callGet(
+      `/api/stocks/trade/transactions?page=${1}&size=${20}&property=createdAt&direction=desc`,
+    );
+    setRecord(response.result.content);
+  };
+
+  useEffect(() => {
+    getTradeRecord();
+  }, []);
+
+  useEffect(() => {
+    const filtered = record.filter((data) =>
+      data.investment.corpName.includes(text),
+    );
+    setFilteredRecord(filtered);
+  }, [text, record]);
+
   return (
-    <div className="w-[260px] h-[620px] flex-col flex px-4 py-3.5 border border-gray-4 rounded-[10px]">
+    <div className="w-[260px] h-[628px] flex-col flex px-4 py-3.5 border border-gray-4 rounded-[10px] gap-y-4">
       <div className="w-full flex justify-between items-end">
-        <p className="text-base">{SIDE_NAV_TYPES[4]}</p>
-        <div className="flex gap-x-1">
-          <Button
-            buttonText={SIDE_STATUS_TEXT[0]}
-            type={isNow ? 'statusClicked' : 'status'}
-            onClickHandler={() => setIsNow(true)}
-          />
-          <Button
-            buttonText={SIDE_STATUS_TEXT[1]}
-            type={!isNow ? 'statusClicked' : 'status'}
-            onClickHandler={() => setIsNow(false)}
-          />
-        </div>
+        <p className="text-base">{SIDE_NAV_TYPES[3]}</p>
       </div>
-      <div className="w-full flex gap-x-10 justify-center text-xs font-semibold text-black-1 border-b border-gray-1 pt-6 pb-1">
-        <p>{SIDE_STATUS_TEXT[2]}</p>
-        <p>{SIDE_STATUS_TEXT[3]}</p>
-        <p>{SIDE_STATUS_TEXT[4]}</p>
+      <div className="relative">
+        <Input
+          type="record"
+          onChange={(e) => setText(e.target.value)}
+          placeholder={TRADE_PLACEHOLDER[0]}
+        />
       </div>
-      <div className="w-full flex flex-col py-3 px-5 gap-y-2 overflow-y-auto">
-        {TRADE_DATA.length === 0 ? (
+      <div className="w-full flex flex-col gap-y-4 overflow-y-auto hide-scrollbar">
+        {filteredRecord.length === 0 ? (
           <EmptyGuide phraseArr={TRADE_EMPTY} />
         ) : (
-          TRADE_DATA.map((data, i) => (
-            <div className="w-full flex text-[11px] text-black-1 justify-between">
-              <p className="w-[44px] font-medium text-center">
-                {data.trade_time}
-              </p>
-              <p className="w-[54px] text-center">{data.trade_price}원</p>
-              <p className="w-[50px] text-center">{data.trade_amount}개</p>
+          filteredRecord.map((data, i) => (
+            <div
+              className="w-full flex px-2 text-black-0 justify-between"
+              key={data.transactionId}
+            >
+              <div className="flex flex-col gap-y-0.5">
+                <p className="text-xs text-black-1">{11.12}</p>
+                <p className="flex text-sm font-medium">
+                  {data.investment.corpName}
+                </p>
+              </div>
+              <div className="items-end flex flex-col gap-y-0.5">
+                <div className="flex gap-x-0.5 text-xs">
+                  <p className="text-[10px]">{data.investment.quantity}주</p>
+                  <p
+                    className={`${tradeTypeColor(data.investment.investType)}`}
+                  >
+                    {TRADETYPE_MAP[data.investment.investType]}
+                  </p>
+                </div>
+                <p className="text-sm text-black-0">
+                  {formatNumberCommas(data.investment.totalPrice)}원
+                </p>
+              </div>
             </div>
           ))
         )}

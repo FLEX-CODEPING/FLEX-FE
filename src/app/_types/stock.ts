@@ -69,3 +69,113 @@ interface AutoCompleteTypes {
   stockName: string;
   market: string;
 }
+
+interface IncomesTypes {
+  yearMonth: string;
+  salesRevenue: string;
+  costOfSales: string;
+  grossProfit: string;
+  operatingProfit: string;
+  ordinaryProfit: string;
+  netIncomeForThePeriod: string;
+}
+
+interface BalanceTypes {
+  yearMonth: string;
+  curAssets: string;
+  fixedAssets: string;
+  totalAssets: string;
+  curLiabilities: string;
+  fixedLiabilities: string;
+  totalLiabilities: string;
+  capitalStock: string;
+  totalEquity: string;
+}
+
+interface FinancialDataTypes {
+  incomeStatementInfo: IncomesTypes[];
+  balanceSheetInfo: BalanceTypes[];
+}
+
+interface TodayTradeTypes {
+  totalBuyVolume: string;
+  totalSellVolume: string;
+}
+
+interface TradeVolumeTypes {
+  tradingDate: string;
+  dailySellVolume: string;
+  dailyBuyVolume: string;
+}
+
+interface TradeRecordTypes {
+  output1: TodayTradeTypes[];
+  output2: TradeVolumeTypes[];
+}
+
+interface TradeBuyTypes {
+  quantity: number;
+  price: number;
+  totalPrice: number;
+  stockCode: string;
+  corpName: string;
+}
+
+interface TradeSellTypes {
+  holdStockId: number;
+  quantity: number;
+  price: number;
+  totalPrice: number;
+  stockCode: string;
+  corpName: string;
+}
+
+interface HoldStockRecordTypes {
+  investmentId: number;
+  investType: string;
+  quantity: number;
+  price: number;
+  totalPrice: number;
+  createdAt: string;
+}
+
+interface HoldStockInfoTypes {
+  userId: number;
+  holdStockId: number;
+  corpName: string;
+  stockCode: string;
+  totalHoldings: number;
+  holdStatus: string;
+  avgPrice: number;
+  principal: number;
+  createdAt: string;
+  modifiedAt: string;
+}
+
+interface TransactionDataTypes {
+  transactionId: number;
+  userId: number;
+  investment: InvestmentDataTypes;
+  credit: number;
+  totalProfit: number;
+  balance: number;
+}
+
+interface InvestmentDataTypes {
+  investmentId: number;
+  corpName: string;
+  stockCode: string;
+  investType: string;
+  quantity: number;
+  price: number;
+  totalPrice: number;
+  profit: number;
+}
+
+interface InterestedPriceTypes {
+  stockcode: string;
+  currentPrice: string;
+  changeAmount: string;
+  changePercent: string;
+  changeSign: string;
+}

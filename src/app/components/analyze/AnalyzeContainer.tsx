@@ -8,7 +8,6 @@ import {
   ANALYZE_RESULT_GUIDE,
   ANALYZE_RESULT_TITLE,
 } from '@/app/constants/prediction';
-import { ANALYZE_MOCK } from '@/app/data/simulation';
 import { useEffect, useState } from 'react';
 import { callGet } from '@/app/utils/callApi';
 import Icons from '../common/Icons';

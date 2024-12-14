@@ -3,7 +3,7 @@
 import { likeSmall } from '@/app/constants/iconPath';
 import { MAIN_CONTENTS_TITLE } from '@/app/constants/main';
 import { callGet } from '@/app/utils/callApi';
-import { getTodayDate } from '@/app/utils/date';
+import { getTodayDateBar } from '@/app/utils/date';
 import { truncateString } from '@/app/utils/truncate';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -12,7 +12,7 @@ import NoneContent from '../NoneContent';
 
 const PopularPost = () => {
   const [postDatas, setPostData] = useState<MainPostTypes[]>([]);
-  const today = getTodayDate();
+  const today = getTodayDateBar();
 
   useEffect(() => {
     const fetchPost = async () => {
