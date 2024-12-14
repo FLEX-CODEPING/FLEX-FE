@@ -171,3 +171,11 @@ interface InvestmentDataTypes {
   totalPrice: number;
   profit: number;
 }
+
+interface InterestedPriceTypes {
+  stockcode: string;
+  currentPrice: string;
+  changeAmount: string;
+  changePercent: string;
+  changeSign: string;
+}
