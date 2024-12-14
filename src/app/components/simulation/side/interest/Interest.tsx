@@ -2,21 +2,21 @@ import Icons from '@/app/components/common/Icons';
 import { interestLike } from '@/app/constants/iconPath';
 import { INTEREST_EMPTY, SIDE_NAV_TYPES } from '@/app/constants/simulation';
 import { callDelete, callGet, callPost } from '@/app/utils/callApi';
+import { isProfit } from '@/app/utils/formatNum';
 import { vrssSignColor } from '@/app/utils/qualify';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import EmptyGuide from '../EmptyGuide';
-import { isProfit } from '@/app/utils/formatNum';
 
 const Interest = () => {
   const [stocks, setStocks] = useState<InterestedStockTypes[]>([]);
   const [stockPrices, setStockPrices] = useState<InterestedPriceTypes[]>([]);
   const getStockInfo = async () => {
     const response = await callGet(`api/stocks/interest`);
-    const stocks = response.result.content;
-    setStocks(stocks);
+    const interestDatas = response.result.content;
+    setStocks(interestDatas);
     const prices = await Promise.all(
-      stocks.map(async (item: InterestedStockTypes) => {
+      interestDatas.map(async (item: InterestedStockTypes) => {
         const data = await callPost(
           `/api/stocks/price/inquire?stockcode=${item.stockcode}`,
         );
