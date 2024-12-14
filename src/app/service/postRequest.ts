@@ -11,12 +11,12 @@ const postRequest = async (url: string, req: Request, body: any = null) => {
     ...commonHeaders,
     ...(token && { Authorization: `Bearer ${token}` }),
   };
-
   const response = await fetch(`${SERVER_URL}${url}`, {
     method: 'POST',
     headers,
     body: JSON.stringify(body),
   });
+
   return response.json();
 };
 
@@ -114,4 +114,26 @@ export const postStockBuy = async (req: Request, body: any) => {
 
 export const postStockSell = async (req: Request, body: any) => {
   return postRequest('/api/investments/trading/sell', req, body);
+};
+export const postStockPredictions = async (
+  req: Request,
+  body: any,
+  operation: string,
+) => {
+  return postRequest(
+    `/api/stock-predictions?operation=${operation}`,
+    req,
+    body,
+  );
+};
+export const postStockNotification = async (
+  req: Request,
+  body: any,
+  operation: string,
+) => {
+  return postRequest(
+    `/api/stock-predictions/notification?operation=${operation}`,
+    req,
+    body,
+  );
 };
