@@ -1,5 +1,6 @@
 'use client';
 
+import useStockStore from '@/app/store/store';
 import { useState } from 'react';
 import Input from '../../../common/Input';
 import Button from '../../../common/Button';
@@ -7,19 +8,19 @@ import SetWebhook from './SetWebhook';
 import PredictionResult from '../PredictionResult';
 
 interface PredictResultAlertProps {
-  stockName: string;
   result: string;
   resultPrice: number;
   resultPercent: number;
 }
 
 const PredictionAlert = ({
-  stockName,
   result,
   resultPrice,
   resultPercent,
 }: PredictResultAlertProps) => {
+  const { stockName, stockCode } = useStockStore();
   const [targetPrice, setTargetPrice] = useState('');
+  const [selectedIndicator, setSelectedIndicator] = useState('PR');
   const [isDiscordModalOpen, setIsDiscordModalOpen] = useState(false);
   const [isTelegramModalOpen, setIsTelegramModalOpen] = useState(false);
 
@@ -30,6 +31,10 @@ const PredictionAlert = ({
     }
   };
 
+  const handleIndicatorChange = (indicator: string) => {
+    setSelectedIndicator(indicator);
+  };
+
   const toggleDiscordModal = () => setIsDiscordModalOpen(!isDiscordModalOpen);
   const toggleTelegramModal = () =>
     setIsTelegramModalOpen(!isTelegramModalOpen);
@@ -37,29 +42,55 @@ const PredictionAlert = ({
   return (
     <div className="flex-col-center gap-y-3">
       <PredictionResult
-        stockName={stockName}
+        stockName={stockName || ''}
         result={result}
         resultPrice={resultPrice}
         resultPercent={resultPercent}
       />
 
       <div className="w-full px-5 py-3.5 flex-col-center gap-y-2.5 rounded-[10px] border border-gray-4">
-        <div className="flex w-full justify-between items-end border-b border-b-gray-2 pb-1 px-1">
-          <p>알림 설정</p>
-        </div>
-        <div className="flex px-2 w-full justify-between items-center mb-0.5 mt-3.5 text-xs">
-          <p className="text-sm">알림 기준가:</p>
-          <Input
-            className="text-right outline-none"
-            type="trade"
-            textValue={targetPrice}
-            inputType="number"
-            placeholder="0"
-            onChange={handleChange}
-          />
+        <div className="flex w-full justify-between items-end border-b border-b-gray-2 px-1">
+          <p className="">알림 설정</p>
         </div>
 
-        <div className="flex justify-center gap-10">
+        <div className="flex w-full px-2 items-end gap-x-1">
+          <p className="text-[13px]">{stockName}</p>
+          <p className="text-[10px] font-light text-gray-1">{stockCode}</p>
+        </div>
+
+        <div className="flex w-full justify-between px-2">
+          {['PR', 'RSI', 'CCI', 'ATR'].map((indicator) => (
+            <button
+              key={indicator}
+              type="button"
+              onClick={() => handleIndicatorChange(indicator)}
+              className={`px-3 py-1 border rounded text-xs ${
+                selectedIndicator === indicator
+                  ? 'border-orange-500 text-orange-500'
+                  : 'border-gray-300 text-gray-500'
+              }`}
+            >
+              {indicator}
+            </button>
+          ))}
+        </div>
+
+        <div className="flex flex-col px-2 w-full justify-between gap-y-1 text-xs">
+          <p className="text-xs">알림 기준가</p>
+          <div className="w-full flex relative">
+            <Input
+              className="text-right outline-none border border-gray-2 h-8 rounded-md pr-6"
+              type="default"
+              textValue={targetPrice}
+              inputType="number"
+              placeholder="0"
+              onChange={handleChange}
+            />
+            <p className="absolute right-3 top-2 text-gray-1">원</p>
+          </div>
+        </div>
+
+        <div className="flex justify-center gap-10 pt-1">
           <button
             type="button"
             onClick={toggleDiscordModal}
@@ -86,17 +117,15 @@ const PredictionAlert = ({
             <span className="text-sm">Telegram</span>
           </button>
         </div>
-
-        <Button
-          buttonText="알림 등록"
-          type="prediction"
-          onClickHandler={() => console.log('알림 등록...')}
-          className="mt-1"
-        />
       </div>
 
       {isDiscordModalOpen && (
-        <SetWebhook type="discord" onClose={toggleDiscordModal} />
+        <SetWebhook
+          type="discord"
+          onClose={toggleDiscordModal}
+          target={targetPrice}
+          selectedIndicator={selectedIndicator}
+        />
       )}
       {isTelegramModalOpen && (
         <SetWebhook type="telegram" onClose={toggleTelegramModal} />
