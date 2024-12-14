@@ -5,3 +5,12 @@ export const isCorrect = (text: string) => {
 
 export const valueColor = (value: number) =>
   value < 0 ? 'text-blue-1' : 'text-red-1';
+
+export const tradeTypeColor = (tradeType: string) =>
+  tradeType === 'BUY' ? 'text-red-1' : 'text-blue-1';
+
+export const vrssSignColor = (value: string) => {
+  if (value === '5') return 'text-blue-1';
+  if (value === '2') return 'text-red-1';
+  return 'text-black-0';
+};

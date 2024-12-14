@@ -162,3 +162,53 @@ export const getStockSearch = async (req: Request, keyword: string) => {
   const url = `/api/stocks/search/autoComplete/V1?keyword=${keyword}&size=12`;
   return getRequest(url, req);
 };
+
+export const getHoldStock = async (
+  req: Request,
+  holdStatus: string,
+  page: string,
+  size: string,
+  property: string,
+  direction: string,
+) => {
+  const url = `/api/hold-stocks?holdStatus=${holdStatus}&page=${page}&size=${size}&property=${property}&direction=${direction}`;
+  return getRequest(url, req);
+};
+
+export const getBalance = async (req: Request) => {
+  const url = '/api/transactions/summary';
+  return getRequest(url, req);
+};
+
+export const getInvestmentRecord = async (
+  req: Request,
+  stockCode: string,
+  size: string,
+  page: string,
+  property: string,
+  direction: string,
+) => {
+  const url = `/api/investments?stockCode=${stockCode}&page=${page}&size=${size}&property=${property}&direction=${direction}`;
+  return getRequest(url, req);
+};
+
+export const getHoldStockInfo = async (req: Request, stockCode: string) => {
+  const url = `/api/hold-stocks/${stockCode}`;
+  return getRequest(url, req);
+};
+
+export const getTransactions = async (
+  req: Request,
+  size: string,
+  page: string,
+  property: string,
+  direction: string,
+) => {
+  const url = `/api/transactions?page=${page}&size=${size}&property=${property}&direction=${direction}`;
+  return getRequest(url, req);
+};
+
+export const getCorpInfo = async (req: Request, stockCode: string) => {
+  const url = `/api/stocks/${stockCode}/corpInfo`;
+  return getRequest(url, req);
+};

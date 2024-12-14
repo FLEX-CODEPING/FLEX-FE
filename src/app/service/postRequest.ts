@@ -11,7 +11,6 @@ const postRequest = async (url: string, req: Request, body: any = null) => {
     ...commonHeaders,
     ...(token && { Authorization: `Bearer ${token}` }),
   };
-
   const response = await fetch(`${SERVER_URL}${url}`, {
     method: 'POST',
     headers,
@@ -79,4 +78,51 @@ export const postCheckBlogName = async (blogName: any, req: Request) => {
 
 export const postLogout = async (req: Request) => {
   return postRequest('/api/auth/logout', req);
+};
+
+export const postStockRank = async (body: any, req: Request, type: string) => {
+  return postRequest(`/api/kis/stocks/ranking/${type}`, req, body);
+};
+
+export const postStockFinancial = async (
+  req: Request,
+  code: string,
+  classCode: string,
+) => {
+  return postRequest(
+    `/api/kis/stocks/financial-statements?stockCode=${code}&classCode=${classCode}`,
+    req,
+  );
+};
+
+export const postDailyPrice = async (req: Request, body: any) => {
+  return postRequest('/api/kis/stocks/daily/item-chart-price', req, body);
+};
+
+export const postInquirePrice = async (req: Request, code: string) => {
+  return postRequest(`/api/kis/stocks/inquire-price?stockcode=${code}`, req);
+};
+
+export const postStockTrade = async (req: Request, body: any) => {
+  return postRequest('/api/kis/stocks/daily/trade-volume', req, body);
+};
+
+export const postStockBuy = async (req: Request, body: any) => {
+  return postRequest('/api/investments/trading/buy', req, body);
+};
+
+export const postStockSell = async (req: Request, body: any) => {
+  return postRequest('/api/investments/trading/sell', req, body);
+};
+
+export const postMinData = async (req: Request, body: any) => {
+  return postRequest(
+    '/api/kis/stocks/daily/daily-chart-price/inquire-price',
+    req,
+    body,
+  );
+};
+
+export const postBackTest = async (req: Request, body: any) => {
+  return postRequest('/api/back-test', req, body);
 };

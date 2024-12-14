@@ -1,25 +1,45 @@
 import { MODAL_TEXT_SELL, TRADE_SELL_TEXT } from '@/app/constants/simulation';
-import { MODALDATA } from '@/app/data/simulation';
 import { useModal } from '@/app/hooks/useModal';
+import useStockStore from '@/app/store/store';
 import Button from '../../common/Button';
-import DoubleCheckModal from '../modal/DoubleCheckModal';
+import DoubleCheckModal from './modal/DoubleCheckModal';
 
 interface SellCalculationProps {
-  total: number;
+  quantity: number;
   assets: number;
-  stockId: string;
+  price: number;
+  totalPrice: number;
+  holdStock: HoldStockTypes | null;
+  holdStockId: number;
 }
 
-const SellCalculation = ({ total, assets, stockId }: SellCalculationProps) => {
+const SellCalculation = ({
+  quantity,
+  assets,
+  price,
+  totalPrice,
+  holdStock,
+  holdStockId,
+}: SellCalculationProps) => {
   const { isOpen, openModal, closeModal } = useModal(false);
+  const { stockCode, stockName } = useStockStore();
+  const isQualified = quantity > 0 && holdStock;
 
-  const isQualified = total > 0;
+  const reqBody: TradeSellTypes = {
+    holdStockId,
+    quantity,
+    price,
+    totalPrice,
+    stockCode,
+    corpName: stockName,
+  };
+
   return (
     <div className="flex w-full flex-col gap-y-3 text-sm">
       {isOpen && (
         <DoubleCheckModal
+          data={reqBody}
           textArr={MODAL_TEXT_SELL}
-          tradeData={MODALDATA}
           tradeType="매도"
           closeModal={closeModal}
         />
@@ -31,14 +51,14 @@ const SellCalculation = ({ total, assets, stockId }: SellCalculationProps) => {
       </div>
       <div className="flex items-center justify-between">
         <p>{TRADE_SELL_TEXT[7]}</p>
-        <p>{total}</p>
+        <p>{totalPrice}</p>
       </div>
       <div className="flex items-center justify-between mb-2">
         <p>{TRADE_SELL_TEXT[8]}</p>
-        <p>{assets + total}</p>
+        <p>{assets + totalPrice}</p>
       </div>
       <Button
-        buttonText={TRADE_SELL_TEXT[9]}
+        buttonText={holdStock ? TRADE_SELL_TEXT[9] : TRADE_SELL_TEXT[10]}
         isDisabled={!isQualified}
         type="trade"
         className={isQualified ? 'bg-blue-1' : 'bg-gray-1 cursor-not-allowed'}

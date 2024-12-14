@@ -1,22 +1,17 @@
 import { dotIcon, searchStock } from '@/app/constants/iconPath';
 import { SEARCH_STOCK } from '@/app/constants/simulation';
 import { callGet } from '@/app/utils/callApi';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Icons from '../../common/Icons';
 import Input from '../../common/Input';
 
 interface StockSearchBarProps {
-  searchText: string;
-  setSearchText: Dispatch<SetStateAction<string>>;
   getStockInfo: (code: string) => Promise<void>;
 }
-const StockSearchBar = ({
-  searchText,
-  setSearchText,
-  getStockInfo,
-}: StockSearchBarProps) => {
+const StockSearchBar = ({ getStockInfo }: StockSearchBarProps) => {
   const [autoComplete, setAutoComplete] = useState<AutoCompleteTypes[]>([]);
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
+  const [searchText, setSearchText] = useState('');
 
   const searchAutoComplete = async () => {
     const response = await callGet(`/api/stocks/search?keyword=${searchText}`);
@@ -24,6 +19,11 @@ const StockSearchBar = ({
       setAutoComplete(response.result);
       setSelectedIndex(-1);
     }
+  };
+
+  const searchKeyword = (keyword: string) => {
+    getStockInfo(keyword);
+    setSearchText('');
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -36,9 +36,10 @@ const StockSearchBar = ({
     } else if (e.key === 'Enter') {
       if (selectedIndex !== -1) {
         const selectedStock = autoComplete[selectedIndex];
-        getStockInfo(selectedStock.stockcode);
+        searchKeyword(selectedStock.stockcode);
       }
       getStockInfo(searchText);
+      setSearchText('');
     }
   };
 
@@ -56,12 +57,12 @@ const StockSearchBar = ({
         }}
         textValue={searchText}
         onKeyDown={handleKeyDown}
-        onEnterPress={() => getStockInfo}
+        onEnterPress={() => searchKeyword(searchText)}
       />
       <Icons
         name={searchStock}
         className="absolute right-5 top-2 cursor-pointer"
-        onClick={() => getStockInfo}
+        onClick={() => searchKeyword(searchText)}
       />
       {autoComplete.length !== 0 && (
         <div className="absolute top-10 bg-white flex-col-center w-full px-2.5 py-3 rounded-lg border-x border-b border-gray-4 z-20 max-h-[312px] overflow-y-auto">
@@ -70,9 +71,7 @@ const StockSearchBar = ({
               className={`flex w-full p-2.5 justify-between cursor-pointer rounded ${selectedIndex === i ? 'bg-gray-200' : ''}`}
               key={stockInfo.stockcode}
               onMouseEnter={() => setSelectedIndex(i)}
-              onClick={() => {
-                getStockInfo(stockInfo.stockcode);
-              }}
+              onClick={() => searchKeyword(stockInfo.stockcode)}
             >
               <p className="text-xs">{stockInfo.stockName}</p>
               <div className="flex items-center text-[10px] text-gray-1">

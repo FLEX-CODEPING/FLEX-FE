@@ -1,52 +1,91 @@
 'use client';
 
-import { CHART_TITLE, CHART_VIEWTYPE } from '@/app/constants/simulation';
-import useStockCodeStore from '@/app/store/store';
-import { useState } from 'react';
+import useStockStore from '@/app/store/store';
+import { isOpenTime } from '@/app/utils/date';
+import {
+  fetchAdditionalData,
+  fetchDailyAdditional,
+  fetchInitialData,
+  fetchInitialDay,
+} from '@/app/utils/fetchStockData';
+import { useEffect, useState } from 'react';
 import ChartEmpty from './ChartEmpty';
-import { StockChart } from './StockChart';
-import StockInfoChart from './stockInfo/StockInfoChart';
+import DayChart from './DayChart';
+import MinChart from './MinChart';
+import WebSocketChart from './SocketChart';
 
 const ChartContainer = () => {
-  const [viewType, setViewType] = useState<ChartViewType>('일');
-  const [chartData, setChartData] = useState([]);
-  const [isChart, setIsChart] = useState('차트');
-  const { stockCode, stockName } = useStockCodeStore();
+  const [mindata, setMinData] = useState<MinPriceTypes[]>([]);
+  const [dailyData, setDailyData] = useState<DailyPriceTypes[]>([]);
+  const [liveData, setLiveData] = useState<ChartDataTypes | null>(null);
+  const { stockCode } = useStockStore();
+  const [isLack, setIsLack] = useState(false);
+  const [timeFrame, setTimeFrame] = useState<number | string>(1);
+
+  const isDay = typeof timeFrame === 'string';
+  const isOpen = isOpenTime();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!stockCode) return;
+      if (isDay) {
+        const initData = await fetchInitialDay(stockCode, timeFrame);
+        setDailyData(initData);
+      } else {
+        const initData = await fetchInitialData(stockCode);
+        setMinData(initData);
+      }
+    };
+    fetchData();
+  }, [stockCode, timeFrame]);
+
+  useEffect(() => {
+    const fetchMoreData = async () => {
+      if (timeFrame === '년') return;
+      if (!isLack || !stockCode) return;
+
+      if (!isDay) {
+        const additionalData = await fetchAdditionalData(mindata, stockCode);
+        setMinData((prev) => [...prev, ...additionalData]);
+      } else {
+        const additionalData = await fetchDailyAdditional(
+          dailyData,
+          stockCode,
+          timeFrame,
+        );
+        setDailyData((prev) => [...prev, ...additionalData]);
+      }
+
+      setIsLack(false);
+    };
+
+    fetchMoreData();
+  }, [isLack]);
 
   return (
-    <div className="flex w-full px-5 pt-5 pb-9 rounded-[10px] border border-gray-4 flex-col justify-start items-start gap-y-5">
-      <div className="flex w-full justify-between">
-        <div className="text-lg flex gap-x-1">
-          {CHART_TITLE.map((chartType: string) => (
-            <div
-              key={chartType}
-              className={`w-20 h-9 p-1 flex-center cursor-pointer ${isChart === chartType ? 'bg-gray-100 rounded-xl text-black-0 font-medium' : 'text-black-1'} `}
-              onClick={() => setIsChart(chartType)}
-            >
-              {chartType}
-            </div>
-          ))}
-        </div>
-        {isChart === '차트' && (
-          <div className="flex gap-x-3">
-            {CHART_VIEWTYPE.map((type) => (
-              <div
-                key={type}
-                className={`w-[25px] h-[25px] text-sm font-medium rounded-lg border border-gray-4 flex-center cursor-pointer ${type === viewType && 'bg-main-1 text-white border-none'}`}
-                onClick={() => setViewType(type)}
-              >
-                {type}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+    <div className="flex w-full px-3 py-3 rounded-[10px] border border-gray-4 flex-col justify-start items-start gap-y-5">
       {!stockCode || stockCode === 'null' ? (
         <ChartEmpty />
-      ) : isChart === '차트' ? (
-        <StockChart />
+      ) : isDay ? (
+        <DayChart
+          data={dailyData}
+          isLack={isLack}
+          setIsLack={setIsLack}
+          timeFrame={timeFrame}
+          setTimeFrame={setTimeFrame}
+        />
       ) : (
-        <StockInfoChart />
+        <MinChart
+          data={mindata}
+          isLack={isLack}
+          setIsLack={setIsLack}
+          timeFrame={timeFrame}
+          setTimeFrame={setTimeFrame}
+          liveData={liveData}
+        />
+      )}
+      {isOpen && !isDay && (
+        <WebSocketChart stockCode={stockCode} setLiveData={setLiveData} />
       )}
     </div>
   );
