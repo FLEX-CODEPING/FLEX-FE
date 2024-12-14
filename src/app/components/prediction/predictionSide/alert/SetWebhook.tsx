@@ -3,36 +3,51 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { WEBHOOK_GUIDE_LINKS, WEBHOOK_TEXTS } from '@/app/constants/webhook';
+import useStockStore from '@/app/store/store';
+import { callPost } from '@/app/utils/callApi';
 
 interface SetWebhookProps {
   type: 'discord' | 'telegram';
   onClose: () => void;
+  target?: string;
+  selectedIndicator?: string;
 }
 
-const SetWebhook: React.FC<SetWebhookProps> = ({ type, onClose }) => {
+const SetWebhook: React.FC<SetWebhookProps> = ({
+  type,
+  onClose,
+  target,
+  selectedIndicator,
+}) => {
   const [webhookUrl, setWebhookUrl] = useState('');
-
+  const { stockCode, stockName } = useStockStore();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setWebhookUrl(e.target.value);
   };
 
-  const saveWebhookUrl = async () => {
-    const apiUrl = '/api/save-webhook';
-    try {
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ webhookUrl }),
-      });
-      if (response.ok) {
-        alert(type === 'discord' ? WEBHOOK_TEXTS[4] : WEBHOOK_TEXTS[5]);
-        onClose();
-      } else {
-        alert(WEBHOOK_TEXTS[6]);
-      }
-    } catch (error) {
-      console.error('웹훅 저장 중 오류:', error);
-      alert(WEBHOOK_TEXTS[7]);
+  const handleRegisterAlert = async () => {
+    if (!stockCode || !target || !selectedIndicator) {
+      window.alert('모든 필드를 입력해주세요.');
+      return;
+    }
+
+    const payload = {
+      stockcode: stockCode,
+      target: Number(target),
+      webhookUrl,
+    };
+
+    const response = await callPost(
+      `/api/stocks/predictions/notification?operation=${selectedIndicator}`,
+      payload,
+    );
+    console.log(response, '요청완료 다음 값으로 요청함', payload);
+
+    if (response.isSuccess) {
+      window.alert('알림이 성공적으로 등록되었습니다.');
+      onClose();
+    } else {
+      window.alert(`등록 실패: ${response?.message || '알 수 없는 에러'}`);
     }
   };
 
@@ -83,7 +98,7 @@ const SetWebhook: React.FC<SetWebhookProps> = ({ type, onClose }) => {
           </button>
           <button
             type="button"
-            onClick={saveWebhookUrl}
+            onClick={handleRegisterAlert}
             className="px-6 py-2 text-sm bg-blue-500 text-white rounded-[6px] hover:bg-blue-700"
           >
             저장
