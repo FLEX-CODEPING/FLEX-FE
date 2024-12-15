@@ -102,25 +102,30 @@ interface VolumeRankTypes {
 }
 
 interface FluctuationRankTypes {
-  rank: string;
+  stockCode: string;
+  dataRank: string;
   stockName: string;
-  cumulativeVolume: string;
+  curPrice: string;
+  priceChange: string;
+  priceChangeSign: string;
+  priceChangeRate: string;
+  accVolume: string;
   highPrice: string;
   highPriceTime: string;
   highPriceDate: string;
   lowPrice: string;
   lowPriceTime: string;
   lowPriceDate: string;
-  currentPriceToLowRate: string;
-  currentPriceToClosingRate: string;
-  consecutiveRisingDays: string;
-  currentPriceToHighRate: string;
-  consecutiveFallingDays: string;
-  priceChangeFromOpenSign: string;
-  priceChangeFromOpen: string;
-  priceChangeFromOpenRate: string;
-  periodPriceChange: string;
-  periodPriceChangeRate: string;
+  lowPriceToCurRate: string;
+  closingPriceToCurRate: string;
+  continuousRiseDays: string;
+  highPriceToCurRate: string;
+  continuousFallDays: string;
+  openPriceChangeSign: string;
+  openPriceChange: string;
+  openPriceChangeRate: string;
+  periodChange: string;
+  periodChangeRate: string;
 }
 
 interface UserBalanceTypes {
