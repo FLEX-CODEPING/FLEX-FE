@@ -3,7 +3,7 @@
 import { likeSmall, viewsIcon } from '@/app/constants/iconPath';
 import { MAIN_CONTENTS_TITLE } from '@/app/constants/main';
 import { callGet } from '@/app/utils/callApi';
-import { formatDate, getTodayDateBar } from '@/app/utils/date';
+import { formatDate } from '@/app/utils/date';
 import { truncateString } from '@/app/utils/truncate';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -12,7 +12,6 @@ import NoneContent from '../NoneContent';
 
 const PopularPost = () => {
   const [postDatas, setPostData] = useState<LandingPostTypes[]>([]);
-  const today = getTodayDateBar();
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -26,7 +25,6 @@ const PopularPost = () => {
     <div className="flex-col-center w-full gap-y-5">
       <div className="w-full flex items-end justify-between px-3 py-4 border-b border-gray-2">
         <p className="text-2xl font-semibold">{MAIN_CONTENTS_TITLE[3]}</p>
-        <p className="text-xs">{today}</p>
       </div>
       {postDatas?.length === 0 ? (
         <div className="w-full h-[328px]">
