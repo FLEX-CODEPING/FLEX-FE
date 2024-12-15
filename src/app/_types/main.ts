@@ -6,30 +6,32 @@ interface LandingPostTypes {
   id: string;
   userId: string;
   nickname: string;
-  profileImageUrl: string;
+  profileImageUrl: string | null;
   title: string;
   content: string;
-  tags: string;
-  createdAt: string;
-  updatedAt: string;
-  imageUrls: string[];
+  tags: string; // 콤마로 구분된 태그 문자열
+  createdAt: string; // ISO 형식 날짜
+  updatedAt: string; // ISO 형식 날짜
+  imageUrls: string[]; // 이미지 URL 배열
   likeCount: number;
   viewCount: number;
-  thumbnailUrl: string;
+  thumbnailUrl: string | null;
 }
 
 interface MainPostTypes {
-  id: number;
-  userId: number;
+  id: string;
+  userId: string;
   nickname: string;
-  profileImageUrl: string;
+  profileImageUrl: string | null;
   title: string;
   content: string;
-  tags: string;
-  createdAt: string;
-  updatedAt: string;
-  imageUrls: string[];
+  tags: string; // 콤마로 구분된 태그 문자열
+  createdAt: string; // ISO 형식 날짜
+  updatedAt: string; // ISO 형식 날짜
+  imageUrls: string[]; // 이미지 URL 배열
   likeCount: number;
+  viewCount: number;
+  thumbnailUrl: string | null;
 }
 
 interface DailyArticleTypes {

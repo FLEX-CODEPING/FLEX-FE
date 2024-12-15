@@ -1,6 +1,6 @@
 'use client';
 
-import BlogDetail from '@/app/components/blog/detail/BlogDetailContainer';
+import BlogDetailContainer from '@/app/components/blog/detail/BlogDetailContainer';
 import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
@@ -14,7 +14,7 @@ const ClientOnlyBlogDetail = () => {
 
   return (
     <section className="w-full h-full flex flex-col-center mt-10">
-      <BlogDetail postId={postId} />
+      <BlogDetailContainer postId={postId} />
     </section>
   );
 };

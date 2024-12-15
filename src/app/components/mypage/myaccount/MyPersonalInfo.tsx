@@ -9,7 +9,7 @@ import { ACCOUNT_TEXT } from '@/app/constants/mypage';
 import Input from '../../common/Input';
 
 interface MyPersonalInfoProps {
-  formData: SignUpFormTypes;
+  formData: AccountFormTypes;
   updateFormData: (key: string, value: any) => void;
 }
 
@@ -55,17 +55,9 @@ const MyPersonalInfo = ({ formData, updateFormData }: MyPersonalInfoProps) => {
       <div className="w-full flex flex-col gap-x-2.5 gap-y-1">
         <div className="text-sm pl-2.5">{BIRTH[0]}</div>
         <div className="w-full flex gap-x-2.5">
-          <Input
-            className="cursor-pointer pr-8 rounded-[10px]"
-            type="signUp"
-            inputType="date"
-            onClick={(e) => (e.target as HTMLInputElement).showPicker()}
-            min="1900-01-01"
-            max={new Date().toISOString().split('T')[0]}
-            textValue={formData.birth}
-            onChange={(e) => updateFormData('birth', e.target.value)}
-            placeholder={BIRTH_DATE}
-          />
+          <div className="w-full rounded-[10px] py-2 px-4 border border-gray-300 bg-gray-50 text-gray-700 text-sm">
+            {formData.birth || '생년월일 정보 없음'}
+          </div>
         </div>
       </div>
     </div>

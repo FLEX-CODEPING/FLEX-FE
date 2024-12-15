@@ -51,9 +51,17 @@ export const postLike = async (req: Request, id: string) => {
   return postRequest(`/api/posts/${id}/like`, req);
 };
 
-export const postFollow = async (req: Request, id: string) => {
-  return postRequest(`/api/blogs/${id}/follow`, req);
+export const postFollow = async (req: Request, userId: string) => {
+  try {
+    const body = { userId }; // 요청 본문에 userId 포함
+    const response = await postRequest('/api/follow', req, body);
+    return response; // 응답 반환
+  } catch (error) {
+    console.error('팔로우 요청 중 오류 발생:', error);
+    return { isSuccess: false, message: '팔로우 요청 실패' };
+  }
 };
+
 export const interestStock = async (stockcode: string, req: Request) => {
   return postRequest(`/api/interestStocks?stockcode=${stockcode}`, req);
 };

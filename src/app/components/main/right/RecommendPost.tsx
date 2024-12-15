@@ -51,7 +51,7 @@ const RecommendPost = () => {
           <div className="w-full flex flex-col gap-y-[18px]">
             {datas?.content.map((data, i) => (
               <Link
-                href={`/blog/detail?postId=${data.id}`}
+                href={`/blog/detail?id=${data.id}`}
                 className="w-full flex gap-x-5 py-2 px-4 gap-y-1 cursor-pointer border-b border-b-gray-2 group"
                 key={data.id}
               >

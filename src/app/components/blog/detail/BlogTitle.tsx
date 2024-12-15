@@ -1,7 +1,7 @@
 'use client';
 
 import { USERPAGE_TEXT } from '@/app/constants/mypage';
-import { callDelete, callPost } from '@/app/utils/callApi';
+import { callDelete, callDeleteBody, callPost } from '@/app/utils/callApi';
 import { useState } from 'react';
 
 interface BlogTitleProps {
@@ -26,12 +26,12 @@ const BlogTitle = ({
   const handleFollowClick = async () => {
     try {
       if (isFollowing) {
-        const response = await callDelete(`/api/follow/delete?id=${userId}`);
+        const response = await callDeleteBody(`/api/follow/delete`, { userId });
         if (response.isSuccess) {
           setIsFollowing(false);
         }
       } else {
-        const response = await callPost(`/api/follow?id=${userId}`);
+        const response = await callPost(`/api/follow`, { userId });
         if (response.isSuccess) {
           setIsFollowing(true);
         }

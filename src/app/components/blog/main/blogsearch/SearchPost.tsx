@@ -5,26 +5,31 @@ import { truncateString } from '@/app/utils/truncate';
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface BlogPostProps {
-  post: LandingPostTypes;
+interface SearchPostProps {
+  post: SearchPostTypes;
 }
 
-const BlogPost = ({ post }: BlogPostProps) => {
+const SearchPost = ({ post }: SearchPostProps) => {
   const formattedTags = post.tags
-    ? post.tags.split(',').map((tag: string) => `#${tag}`)
+    ? post.tags.split(',').map((tag: string) => `#${tag.trim()}`)
     : [];
 
   const textContent = post.content.replace(/!\[.*?\]\(.*?\)/g, '').trim();
 
+  const thumbnailUrl =
+    post.imageUrls && post.imageUrls.length > 0
+      ? post.imageUrls[0]
+      : '/images/3c.png';
+
   return (
     <Link
-      href={`blog/detail?id=${post.id}`}
+      href={`/blog/detail?id=${post.id}`}
       key={post.id}
       className="w-[382px] cursor-pointer bg-white rounded-md relative group"
     >
       <div className="relative w-full h-40 overflow-hidden rounded-md">
         <Image
-          src={post.imageUrls[0] || '/images/3c.png'}
+          src={thumbnailUrl}
           alt={post.title}
           fill
           objectFit="cover"
@@ -37,7 +42,7 @@ const BlogPost = ({ post }: BlogPostProps) => {
           <div className="flex items-center text-sm gap-x-2 text-black-0">
             <Image
               src="/images/complete1.png"
-              alt={post.title}
+              alt={post.nickname}
               width={20}
               height={20}
               className="rounded-full"
@@ -72,4 +77,4 @@ const BlogPost = ({ post }: BlogPostProps) => {
   );
 };
 
-export default BlogPost;
+export default SearchPost;

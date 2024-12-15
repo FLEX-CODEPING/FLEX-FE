@@ -1,11 +1,9 @@
-import { AUTH_BTN_TEXT, INITIAL_SIGNUP_DATA } from '@/app/constants/auth';
-import { callPost } from '@/app/utils/callApi';
-import { isCorrect } from '@/app/utils/qualify';
-import { setTokens } from '@/app/utils/setToken';
-import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { callGet, callPatch } from '@/app/utils/callApi';
+import { INCOME_RANGE_MAP, INTEREST_MAP } from '@/app/constants/auth';
 import { ACCOUNT_TEXT } from '@/app/constants/mypage';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import Button from '../../common/Button';
 import MyPersonalInfo from './MyPersonalInfo';
 import MyInterest from './MyInterest';
@@ -13,16 +11,21 @@ import SaveModal from './SaveModal';
 import SaveFinModal from './SaveFinModal';
 
 function AccountContainer() {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const [formData, setFormData] =
-    useState<SignUpFormTypes>(INITIAL_SIGNUP_DATA);
+  const [formData, setFormData] = useState<AccountFormTypes>({
+    birth: '',
+    nickname: '',
+    blogName: '',
+    salaryRange: '',
+    interestKeywords: [],
+    profileImageUrl: '',
+  });
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
   const [isSaveFinModalOpen, setIsSaveFinModalOpen] = useState(false);
-  const id = searchParams.get('id');
+  const router = useRouter();
+
   const isSatisfied =
-    isCorrect(formData.blogName) &&
-    isCorrect(formData.nickname) &&
+    formData.blogName &&
+    formData.nickname &&
     formData.interestKeywords.length !== 0;
 
   const updateFormData = (key: string, value: any) => {
@@ -33,9 +36,37 @@ function AccountContainer() {
   };
 
   useEffect(() => {
-    updateFormData('socialId', Number(id));
-    console.log(id);
-  }, [id]);
+    const fetchProfileData = async () => {
+      try {
+        const response = await callGet('/api/users/profile');
+        if (response.isSuccess) {
+          const {
+            nickname,
+            blogName,
+            birth,
+            salaryRange,
+            interests,
+            profileImageUrl,
+          } = response.result;
+
+          setFormData({
+            nickname,
+            blogName,
+            birth,
+            salaryRange,
+            interestKeywords: interests,
+            profileImageUrl,
+          });
+        } else {
+          console.error('프로필 정보를 불러오지 못했습니다.');
+        }
+      } catch (error) {
+        console.error('프로필 데이터 요청 중 오류 발생:', error);
+      }
+    };
+
+    fetchProfileData();
+  }, []);
 
   const handleSignUpClick = () => {
     if (isSatisfied) {
@@ -44,22 +75,44 @@ function AccountContainer() {
   };
 
   const handleSave = async () => {
-    const response = await callPost('/api/auth/signup', { ...formData });
-    if (response.isSuccess) {
-      setTokens(response.result.accessToken, response.result.refreshToken);
-      setIsSaveModalOpen(false);
-      setIsSaveFinModalOpen(true);
+    const mappedInterests = formData.interestKeywords.map(
+      (keyword) => INTEREST_MAP[keyword],
+    );
+    const mappedSalaryRange = INCOME_RANGE_MAP[formData.salaryRange];
+
+    const payload = {
+      nickname: formData.nickname,
+      blogName: formData.blogName,
+      birth: formData.birth,
+      salary: mappedSalaryRange,
+      interestKeywords: mappedInterests,
+      profileImageUrl: formData.profileImageUrl,
+    };
+
+    try {
+      const response = await callPatch('/api/users', { payload });
+      if (response.isSuccess) {
+        setIsSaveModalOpen(false);
+        setIsSaveFinModalOpen(true);
+        alert('프로필이 성공적으로 저장되었습니다.');
+      } else {
+        alert('프로필 저장에 실패했습니다.');
+        console.error('응답 실패:', response.message);
+      }
+    } catch (error) {
+      console.error('프로필 저장 중 오류 발생:', error);
+      alert('프로필 저장 중 오류가 발생했습니다.');
     }
   };
 
   return (
-    <div className="w-[500px] gap-y-5 flex flex-col ">
+    <div className="w-[500px] gap-y-5 flex flex-col">
       <div className="text-black-0 font-bold text-[26px] flex justify-center">
         {ACCOUNT_TEXT[0]}
       </div>
       <div className="flex justify-center">
         <Image
-          src="/images/profile.png"
+          src={formData.profileImageUrl || '/images/profile.png'}
           alt="profile"
           width={80}
           height={80}
