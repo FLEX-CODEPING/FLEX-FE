@@ -42,17 +42,17 @@ const ProfileDropdown = () => {
               {user?.result.nickname}
             </Link>
             {isHover && (
-              <div className="absolute px-1.5 py-1 flex flex-col top-7 left-[83px] border border-gray-2 gap-y-1 text-xs text-gray-1 rounded z-10 bg-white">
+              <div className="absolute px-2 py-1 flex flex-col top-7 left-[83px] border border-gray-2 gap-y-1 text-xs text-gray-1 rounded z-10 bg-white">
                 {HEADER_PROFILE_TEXT.map((text, i) => (
                   <Link
-                    className="w-[90px] rounded cursor-pointer h-[32px] flex-center hover:bg-gray-5 hover:text-black-0 hover:font-medium"
+                    className="w-[84px] rounded cursor-pointer h-[32px] flex-center hover:bg-gray-5 hover:text-black-1 hover:font-semibold"
                     href={HEADER_PROFILE_LINK[i]}
                   >
                     {text}
                   </Link>
                 ))}
                 <div
-                  className="w-[90px] rounded cursor-pointer h-[32px] flex-center hover:bg-gray-3 hover:text-black-1 hover:font-medium"
+                  className="w-[84px] rounded cursor-pointer h-[32px] flex-center hover:bg-gray-3 hover:text-black-1  hover:font-semibold"
                   onClick={handleLogout}
                 >
                   {LOGIN_TEXT[3]}
