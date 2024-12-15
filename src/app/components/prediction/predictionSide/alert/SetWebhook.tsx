@@ -1,5 +1,6 @@
 'use client';
 
+import { ALARM_STANDARD } from '@/app/constants/prediction';
 import { WEBHOOK_GUIDE_LINKS, WEBHOOK_TEXTS } from '@/app/constants/webhook';
 import useStockStore from '@/app/store/store';
 import { callPost } from '@/app/utils/callApi';
@@ -9,15 +10,15 @@ import { useState } from 'react';
 interface SetWebhookProps {
   type: 'discord' | 'telegram';
   onClose: () => void;
+  selectedIndex: number;
   target?: string;
-  selectedIndicator?: string;
 }
 
 const SetWebhook: React.FC<SetWebhookProps> = ({
   type,
   onClose,
+  selectedIndex,
   target,
-  selectedIndicator,
 }) => {
   const [webhookUrl, setWebhookUrl] = useState('');
   const { stockCode, stockName } = useStockStore();
@@ -26,7 +27,9 @@ const SetWebhook: React.FC<SetWebhookProps> = ({
   };
 
   const handleRegisterAlert = async () => {
-    if (!stockCode || !target || !selectedIndicator) {
+    const standard = selectedIndex === 0 ? 'PR' : ALARM_STANDARD[selectedIndex];
+
+    if (!stockCode || !target || !selectedIndex) {
       window.alert('모든 필드를 입력해주세요.');
       return;
     }
@@ -38,7 +41,7 @@ const SetWebhook: React.FC<SetWebhookProps> = ({
     };
 
     const response = await callPost(
-      `/api/stocks/predictions/notification?operation=${selectedIndicator}`,
+      `/api/stocks/predictions/notification?operation=${standard}`,
       payload,
     );
     console.log(response, '요청완료 다음 값으로 요청함', payload);

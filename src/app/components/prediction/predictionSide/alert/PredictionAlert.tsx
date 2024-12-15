@@ -1,5 +1,6 @@
 'use client';
 
+import { ALARM_STANDARD } from '@/app/constants/prediction';
 import useStockStore from '@/app/store/store';
 import { useState } from 'react';
 import Input from '../../../common/Input';
@@ -19,7 +20,7 @@ const PredictionAlert = ({
 }: PredictResultAlertProps) => {
   const { stockName, stockCode } = useStockStore();
   const [targetPrice, setTargetPrice] = useState('');
-  const [selectedIndicator, setSelectedIndicator] = useState('PR');
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [isDiscordModalOpen, setIsDiscordModalOpen] = useState(false);
   const [isTelegramModalOpen, setIsTelegramModalOpen] = useState(false);
 
@@ -28,10 +29,6 @@ const PredictionAlert = ({
     if (Number(value) <= 9999999) {
       setTargetPrice(value);
     }
-  };
-
-  const handleIndicatorChange = (indicator: string) => {
-    setSelectedIndicator(indicator);
   };
 
   const toggleDiscordModal = () => setIsDiscordModalOpen(!isDiscordModalOpen);
@@ -49,27 +46,30 @@ const PredictionAlert = ({
 
       <div className="w-full px-5 py-3.5 flex-col-center gap-y-2.5 rounded-[10px] border border-gray-4">
         <div className="flex w-full justify-between items-end border-b border-b-gray-2 px-1">
-          <p className="">알림 설정</p>
+          알림 설정
         </div>
-
-        <div className="flex w-full px-2 items-end gap-x-1">
-          <p className="text-[13px]">{stockName}</p>
-          <p className="text-[10px] font-light text-gray-1">{stockCode}</p>
-        </div>
+        {stockName ? (
+          <div className="flex w-full px-2 items-end gap-x-1">
+            <p className="text-[13px]">{stockName}</p>
+            <p className="text-[10px] font-light text-gray-1">{stockCode}</p>
+          </div>
+        ) : (
+          <div className="flex w-full h-5 pl-2 text-sm text-gray-4">주식을 검색해주세요</div>
+        )}
 
         <div className="flex w-full justify-between px-2">
-          {['PR', 'RSI', 'CCI', 'ATR'].map((indicator) => (
+          {ALARM_STANDARD.map((standard, i) => (
             <button
-              key={indicator}
+              key={standard}
               type="button"
-              onClick={() => handleIndicatorChange(indicator)}
+              onClick={() => setSelectedIndex(i)}
               className={`px-3 py-1 border rounded text-xs ${
-                selectedIndicator === indicator
+                selectedIndex === i
                   ? 'border-orange-500 text-orange-500'
                   : 'border-gray-300 text-gray-500'
               }`}
             >
-              {indicator}
+              {standard}
             </button>
           ))}
         </div>
@@ -78,7 +78,7 @@ const PredictionAlert = ({
           <p className="text-xs">알림 기준가</p>
           <div className="w-full flex relative">
             <Input
-              className="text-right outline-none border border-gray-2 h-8 rounded-md pr-6"
+              className="text-right outline-none border text-gray-1 border-gray-2 h-8 rounded-md pr-6"
               type="default"
               textValue={targetPrice}
               inputType="number"
@@ -123,11 +123,16 @@ const PredictionAlert = ({
           type="discord"
           onClose={toggleDiscordModal}
           target={targetPrice}
-          selectedIndicator={selectedIndicator}
+          selectedIndex={selectedIndex}
         />
       )}
       {isTelegramModalOpen && (
-        <SetWebhook type="telegram" onClose={toggleTelegramModal} />
+        <SetWebhook
+          type="telegram"
+          onClose={toggleTelegramModal}
+          target={targetPrice}
+          selectedIndex={selectedIndex}
+        />
       )}
     </div>
   );

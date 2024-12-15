@@ -3,7 +3,6 @@
 import { useModal } from '@/app/hooks/useModal';
 import { useState } from 'react';
 import PredictIndicator from './PredictIndicator';
-import PredictionEmpty from './PredictionEmpty';
 import PredictResultAlert from './alert/PredictionAlert';
 
 const PredictionSideContainer = () => {
@@ -39,7 +38,6 @@ const PredictionSideContainer = () => {
           onPredictionResult={handlePredictionResult}
         />
         <PredictResultAlert
-          stockName={predictionResult.stockName || '종목 선택'}
           result={predictionResult.result || '결과 없음'}
           resultPrice={predictionResult.resultPrice || 0}
           resultPercent={predictionResult.resultPercent || 0}
