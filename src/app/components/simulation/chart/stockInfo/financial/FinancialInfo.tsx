@@ -4,6 +4,7 @@ import {
 } from '@/app/constants/simulation';
 import useStockStore from '@/app/store/store';
 import { callPost } from '@/app/utils/callApi';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import BalanceChart from './BalanceChart';
 import FinancialViewDropdown from './FinancialViewDropdown';
@@ -38,11 +39,18 @@ const FinancialInfo = () => {
         <div className="flex">
           {FINANCIALINFO_TITLE.map((title) => (
             <div
-              className={`w-[64px] h-[22px] flex-center text-[13px] cursor-pointer ${title === infoType && 'box-border font-medium border-b-black-0 border-b pb-0'} `}
+              className={`w-[64px] relative pb-1 h-[22px] flex-center text-[13px] cursor-pointer`}
               onClick={() => setInfoType(title)}
               key={title}
             >
               {title}
+              {title === infoType && (
+                <motion.div
+                  layoutId="underline"
+                  className="absolute bottom-0 left-0 w-full h-[1px] bg-black-1"
+                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                />
+              )}
             </div>
           ))}
         </div>

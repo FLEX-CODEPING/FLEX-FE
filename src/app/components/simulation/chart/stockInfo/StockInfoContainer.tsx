@@ -9,7 +9,7 @@ const StockInfoContainer = () => {
   const { stockCode } = useStockStore();
 
   return (
-    <div className="flex-col flex py-6 px-5 w-full text-black-0 gap-y-5 rounded-[10px] border border-gray-4">
+    <div className="flex-col flex py-6 mb-8 px-5 w-full text-black-0 gap-y-5 rounded-[10px] border border-gray-4">
       <div className="flex items-center gap-y-2 text-[15px]">
         {STOCK_INFO_TITLE.map((title, i) => (
           <div

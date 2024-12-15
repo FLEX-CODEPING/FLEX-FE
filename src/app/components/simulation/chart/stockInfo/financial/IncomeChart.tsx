@@ -23,7 +23,7 @@ const IncomeChart = ({ financialInfo }: IncomeChartProps) => {
 
   return (
     <div className="relative">
-      <div className="flex px-2 py-1 gap-x-2 w-full overflow-x-auto">
+      <div className="flex px-2 pt-1 gap-x-2 w-full overflow-x-auto">
         <div className="flex-col-center text-xs gap-y-4">
           <div className="w-full h-7 font-medium flex items-center border-b-gray-4 border-b pl-1">
             항목
