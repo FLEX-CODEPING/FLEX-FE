@@ -27,7 +27,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def envVars = readJSON file: '/var/lib/jenkins/jobs/dev-web/.env'
+                    def envVars = readJSON file: '/var/lib/jenkins/jobs/dev-web/env.json'
                     envVars.each { key, value ->
                         echo "Environment Variable: ${key} = ${value}"
                     }
