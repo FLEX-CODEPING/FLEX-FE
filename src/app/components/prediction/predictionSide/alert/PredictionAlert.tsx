@@ -54,7 +54,9 @@ const PredictionAlert = ({
             <p className="text-[10px] font-light text-gray-1">{stockCode}</p>
           </div>
         ) : (
-          <div className="flex w-full h-5 pl-2 text-sm text-gray-4">주식을 검색해주세요</div>
+          <div className="flex w-full h-5 pl-2 text-sm text-gray-4">
+            주식을 검색해주세요
+          </div>
         )}
 
         <div className="flex w-full justify-between px-2">

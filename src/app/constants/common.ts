@@ -2,16 +2,9 @@ export const HEADER_TEXT = ['블로그', '모의 투자', '주가 예측', '뉴�
 
 export const LOGIN_TEXT = ['글 작성', '로그인', '홈으로', '로그아웃'];
 
-export const HEADER_PROFILE_TEXT = [
-  '내 블로그',
-  '정보 수정',
-];
+export const HEADER_PROFILE_TEXT = ['내 블로그', '정보 수정'];
 
-export const HEADER_PROFILE_LINK = [
-  '/mypage',
-  '/myaccount',
-];
-
+export const HEADER_PROFILE_LINK = ['/mypage', '/myaccount'];
 
 export const HEADER_PATH = ['/blog', '/simulation', '/prediction', '/news'];
 

@@ -39,7 +39,7 @@ const FinancialInfo = () => {
         <div className="flex">
           {FINANCIALINFO_TITLE.map((title) => (
             <div
-              className={`w-[64px] relative pb-1 h-[22px] flex-center text-[13px] cursor-pointer`}
+              className="w-[64px] relative pb-1 h-[22px] flex-center text-[13px] cursor-pointer"
               onClick={() => setInfoType(title)}
               key={title}
             >

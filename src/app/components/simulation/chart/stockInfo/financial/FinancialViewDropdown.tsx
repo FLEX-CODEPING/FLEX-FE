@@ -37,7 +37,7 @@ const FinancialViewDropdown = ({
           {FINANCIALINTO_VIEWTYPE.map((type, i) => (
             <div
               key={type}
-              className={`w-full flex px-1 py-1 hover:bg-gray-3 text-black-1 hover:text-black-0 cursor-pointer rounded`}
+              className="w-full flex px-1 py-1 hover:bg-gray-3 text-black-1 hover:text-black-0 cursor-pointer rounded"
               onClick={() => handleSelectValue(type)}
             >
               {type}

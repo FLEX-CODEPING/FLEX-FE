@@ -39,7 +39,7 @@ const DailyNews = () => {
               whileHover={{
                 scale: 1.03,
               }}
-              transition={{ type: 'spring', stiffness: 150, damping: 20 }} 
+              transition={{ type: 'spring', stiffness: 150, damping: 20 }}
               className="w-full flex-col-center pl-3 pr-2 gap-y-3 cursor-pointer"
             >
               <div className="w-full flex items-center justify-between font-semibold">
