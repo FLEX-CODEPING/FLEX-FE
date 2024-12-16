@@ -15,7 +15,25 @@ const MyPostCard = ({ mypost }: MyPostCardsProps) => {
     router.push(`/blog/detail?id=${mypost.postId}`);
   };
 
-  const textContent = mypost.content.replace(/!\[.*?\]\(.*?\)/g, '').trim();
+  const removeHtmlTags = (content: string) => {
+    return content.replace(/<[^>]*>?/gm, '');
+  };
+  
+  const removeMarkdownTags = (content: string) => {
+    return content
+      .replace(/[#*~`>+-]/g, '') // Markdown 기호 제거
+      .replace(/\n/g, ' ') // 줄바꿈을 공백으로 변경
+      .trim(); // 앞뒤 공백 제거
+  };
+  
+  const removeImageTags = (content: string) => {
+    return content.replace(/!\[.*?\]\(.*?\)/g, ''); // 이미지 태그 제거
+  };
+  
+  // 결과 출력 시 처리
+  const textContent = mypost.content
+    ? removeImageTags(removeHtmlTags(removeMarkdownTags(mypost.content))).trim()
+    : '';
 
   return (
     <div

@@ -182,9 +182,9 @@ export const getAnalysis = async (req: Request) => {
   return getRequest(url, req);
 };
 
-export const getSearchPost = async (req: Request, query: string) => {
-  const url = `/api/blogs/search?query=${query}&page=1&size=12
-`;
+export const getSearchPost = async (req: Request,page:number, query?: string) => {
+  const url = `/api/blogs/search?query=${query}&page=${page}&size=9`;
+  return getRequest(url, req)
 };
 
 export const getHoldStock = async (
