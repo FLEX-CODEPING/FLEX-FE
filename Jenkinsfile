@@ -36,7 +36,13 @@ pipeline {
                     }
 
                     sh '''
-                    docker build --build-arg $(cat .env) -t ${IMAGE_NAME}:${IMAGE_TAG} .
+                    docker buildx build \
+                        --build-arg NEXT_PUBLIC_KAKAO_API_KEY=${envVars.NEXT_PUBLIC_KAKAO_API_KEY} \
+                        --build-arg NEXT_PUBLIC_KAKAO_SECRET=${envVars.NEXT_PUBLIC_KAKAO_SECRET} \
+                        --build-arg NEXT_PUBLIC_KAKAO_REDIRECT_URI=${envVars.NEXT_PUBLIC_KAKAO_REDIRECT_URI} \
+                        --build-arg NEXT_PUBLIC_SERVER=${envVars.NEXT_PUBLIC_SERVER} \
+                        --build-arg NEXT_PUBLIC_LOCAL_SERVER=${envVars.NEXT_PUBLIC_LOCAL_SERVER} \
+                        -t ${IMAGE_NAME}:${IMAGE_TAG} .
                     '''
                 }
             }
