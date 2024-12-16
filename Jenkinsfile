@@ -12,7 +12,11 @@ pipeline {
         SLACK_CHANNEL = '#frontend-jenkins'
         IMAGE_NAME = "${DOCKER_USERNAME}/flex-frontend"
         IMAGE_TAG = "${BUILD_NUMBER}"
-        envFile = credentials('frontend-env')
+        NEXT_PUBLIC_KAKAO_API_KEY = credentials('next-public-kakao-api-key')
+        NEXT_PUBLIC_KAKAO_SECRET = credentials('next-public-kakao-secret')
+        NEXT_PUBLIC_KAKAO_REDIRECT_URI = credentials('next-public-kakao-redirect-uri')
+        NEXT_PUBLIC_SERVER = credentials('next-public-server')
+        NEXT_PUBLIC_LOCAL_SERVER = credentials('next-public-local-server')
     }
 
     stages {
@@ -27,46 +31,21 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def envVars = readJSON file: '/var/lib/jenkins/jobs/dev-web/env.json'
-
-                    envVars.each { key, value ->
-                        echo "Environment Variable: ${key} = ${value}"
-                    }
-
-                    // Bash 스크립트 실행
-                    sh '''
-                    #!/bin/bash
-
-                    # 환경 변수 설정
-                    NEXT_PUBLIC_KAKAO_API_KEY="${envVars.NEXT_PUBLIC_KAKAO_API_KEY}"
-                    NEXT_PUBLIC_KAKAO_SECRET="${envVars.NEXT_PUBLIC_KAKAO_SECRET}"
-                    NEXT_PUBLIC_KAKAO_REDIRECT_URI="${envVars.NEXT_PUBLIC_KAKAO_REDIRECT_URI}"
-                    NEXT_PUBLIC_SERVER="${envVars.NEXT_PUBLIC_SERVER}"
-                    NEXT_PUBLIC_LOCAL_SERVER="${envVars.NEXT_PUBLIC_LOCAL_SERVER}"
-                    NEXT_RUNTIME="${envVars.NEXT_RUNTIME}"
-                    DATADOG_ENV="${envVars.DATADOG_ENV}"
-                    NEXT_PUBLIC_APPLICATION_ID="${envVars.NEXT_PUBLIC_APPLICATION_ID}"
-                    NEXT_PUBLIC_CLIENT_TOKEN="${envVars.NEXT_PUBLIC_CLIENT_TOKEN}"
-
-                    # Docker 빌드 명령어 실행
-                    docker buildx build \
-                        --build-arg NEXT_PUBLIC_KAKAO_API_KEY="$NEXT_PUBLIC_KAKAO_API_KEY" \
-                        --build-arg NEXT_PUBLIC_KAKAO_SECRET="$NEXT_PUBLIC_KAKAO_SECRET" \
-                        --build-arg NEXT_PUBLIC_KAKAO_REDIRECT_URI="$NEXT_PUBLIC_KAKAO_REDIRECT_URI" \
-                        --build-arg NEXT_PUBLIC_SERVER="$NEXT_PUBLIC_SERVER" \
-                        --build-arg NEXT_PUBLIC_LOCAL_SERVER="$NEXT_PUBLIC_LOCAL_SERVER" \
-                        --build-arg NEXT_RUNTIME="$NEXT_RUNTIME" \
-                        --build-arg DATADOG_ENV="$DATADOG_ENV" \
-                        --build-arg NEXT_PUBLIC_APPLICATION_ID="$NEXT_PUBLIC_APPLICATION_ID" \
-                        --build-arg NEXT_PUBLIC_CLIENT_TOKEN="$NEXT_PUBLIC_CLIENT_TOKEN" \
-                        -t "${IMAGE_NAME}:${IMAGE_TAG}" .
-                    '''
+                    sh """
+                    docker build --build-arg NEXT_PUBLIC_KAKAO_API_KEY=${NEXT_PUBLIC_KAKAO_API_KEY} \
+                                 --build-arg NEXT_PUBLIC_KAKAO_SECRET=${NEXT_PUBLIC_KAKAO_SECRET} \
+                                 --build-arg NEXT_PUBLIC_KAKAO_REDIRECT_URI=${NEXT_PUBLIC_KAKAO_REDIRECT_URI} \
+                                 --build-arg NEXT_PUBLIC_SERVER=${NEXT_PUBLIC_SERVER} \
+                                 --build-arg NEXT_PUBLIC_LOCAL_SERVER=${NEXT_PUBLIC_LOCAL_SERVER} \
+                                 --build-arg NEXT_RUNTIME="nodejs" \
+                                 --build-arg DATADOG_ENV="dev" \
+                                 --build-arg NEXT_PUBLIC_APPLICATION_ID=${NEXT_PUBLIC_APPLICATION_ID} \
+                                 --build-arg NEXT_PUBLIC_CLIENT_TOKEN=${NEXT_PUBLIC_CLIENT_TOKEN} \
+                                 -t ${IMAGE_NAME}:${IMAGE_TAG} .
+                    """
                 }
             }
         }
-
-
-
 
         stage('Docker Build & Push') {
             steps {
