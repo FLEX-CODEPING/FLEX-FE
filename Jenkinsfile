@@ -28,12 +28,7 @@ pipeline {
             steps {
                 echo 'Building Docker image...'
                 script {
-                    def envFileContent = readFile file: envFile.path
-                    def envVars = [:]
-                    envFileContent.split('\n').each {
-                        def (key, value) = it.split('=')
-                        envVars[key] = value
-                    }
+                    def envVars = readJSON text: credentials('frontend-env')
                     envVars.each { key, value ->
                         echo "Environment Variable: ${key} = ${value}"
                     }
