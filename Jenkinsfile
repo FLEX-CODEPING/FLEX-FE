@@ -39,6 +39,10 @@ pipeline {
                         --build-arg NEXT_PUBLIC_KAKAO_REDIRECT_URI=${envVars.NEXT_PUBLIC_KAKAO_REDIRECT_URI} \
                         --build-arg NEXT_PUBLIC_SERVER=${envVars.NEXT_PUBLIC_SERVER} \
                         --build-arg NEXT_PUBLIC_LOCAL_SERVER=${envVars.NEXT_PUBLIC_LOCAL_SERVER} \
+                        --build-arg NEXT_RUNTIME=${envVars.NEXT_RUNTIME} \
+                        --build-arg DATADOG_ENV=${envVars.DATADOG_ENV} \
+                        --build-arg NEXT_PUBLIC_APPLICATION_ID=${envVars.NEXT_PUBLIC_APPLICATION_ID} \
+                        --build-arg NEXT_PUBLIC_CLIENT_TOKEN=${envVars.NEXT_PUBLIC_CLIENT_TOKEN} \
                         -t ${IMAGE_NAME}:${IMAGE_TAG} .
                     '''
                 }
