@@ -16,12 +16,15 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# 빌드 인자 정의
+# 빌드 인자 정의 및 .env 파일 복사
 ARG NEXT_PUBLIC_KAKAO_API_KEY
 ARG NEXT_PUBLIC_KAKAO_SECRET
 ARG NEXT_PUBLIC_KAKAO_REDIRECT_URI
 ARG NEXT_PUBLIC_SERVER
 ARG NEXT_PUBLIC_LOCAL_SERVER
+
+# .env 파일 복사
+COPY .env .env
 
 # Next.js 애플리케이션 빌드
 RUN npm run build
@@ -44,6 +47,7 @@ COPY --from=builder /app/next.config.mjs ./
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
+COPY .env .env  # 추가: 빌드 과정에서 .env 파일 복사
 
 # 사용자 변경
 USER nextjs
@@ -51,4 +55,17 @@ USER nextjs
 # 포트 설정
 EXPOSE 3000
 
+# .env 파일에서 환경 변수 가져오기
+ENV NEXT_PUBLIC_KAKAO_API_KEY=${NEXT_PUBLIC_KAKAO_API_KEY}
+ENV NEXT_PUBLIC_KAKAO_SECRET=${NEXT_PUBLIC_KAKAO_SECRET}
+ENV NEXT_PUBLIC_KAKAO_REDIRECT_URI=${NEXT_PUBLIC_KAKAO_REDIRECT_URI}
+ENV NEXT_PUBLIC_SERVER=${NEXT_PUBLIC_SERVER}
+ENV NEXT_PUBLIC_LOCAL_SERVER=${NEXT_PUBLIC_LOCAL_SERVER}
+ENV NEXT_RUNTIME=nodejs
+ENV DATADOG_ENV=dev
+ENV NEXT_PUBLIC_APPLICATION_ID=${NEXT_PUBLIC_APPLICATION_ID}
+ENV NEXT_PUBLIC_CLIENT_TOKEN=${NEXT_PUBLIC_CLIENT_TOKEN}
+
+# 실행 커맨드
 CMD ["node", "server.js"]
+

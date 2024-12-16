@@ -12,6 +12,7 @@ pipeline {
         SLACK_CHANNEL = '#frontend-jenkins'
         IMAGE_NAME = "${DOCKER_USERNAME}/flex-frontend"
         IMAGE_TAG = "${BUILD_NUMBER}"
+        envFile = credentials('frontend-env')
     }
 
     stages {
@@ -27,6 +28,13 @@ pipeline {
             steps {
                 echo 'Building Docker image...'
                 script {
+                    def envFileContent = readFile file: envFile.path
+                    def envVars = [:]
+                    envFileContent.split('\n').each {
+                        def (key, value) = it.split('=')
+                        envVars[key] = value
+                    }
+
                     sh '''
                     docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
                     '''
@@ -55,8 +63,7 @@ pipeline {
                             ssh -J ${REMOTE_USER}@${BASTION_HOST} ${REMOTE_USER}@${REMOTE_HOST} '
                                 set -e
 
-                                # .env 파일을 사용하여 환경 변수 설정
-                                export \$(cat ./.env | xargs)
+                                export \$(cat .jenkins/secrets/frontend-env | xargs)
 
                                 # 기존 컨테이너 중지 및 제거
                                 docker compose down --remove-orphans
