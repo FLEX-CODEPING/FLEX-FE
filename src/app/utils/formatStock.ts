@@ -56,7 +56,6 @@ export const extractDateTimeAndPrice = (data: string) => {
   const parts = data.split('|');
   const executionData = parts[3];
   const executionParts = executionData.split('^');
-  console.log(executionParts, '쪼갠 값들');
   const executionTime = executionParts[1];
   const close = executionParts[2];
   const open = executionParts[7];
@@ -78,3 +77,9 @@ export const extractDateTimeAndPrice = (data: string) => {
 
   return realData;
 };
+
+export function formatEntValue(data: EntValueTypes): (string | number)[] {
+  const { date, stockcode, BPS, PER, PBR, EPS, DIV, DPS } = data;
+
+  return [BPS, PER, PBR, EPS, DIV, DPS];
+}

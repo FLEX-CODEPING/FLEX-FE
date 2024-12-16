@@ -123,8 +123,8 @@ export const ENT_VALUE_TEXT = [
   'PER',
   'PBR',
   'EPS',
-  '총 배당금',
-  '주당 배당금',
+  'DIV',
+  'DPS',
 ];
 
 export const STOCK_INFO_TOOLTIP = [
@@ -144,8 +144,8 @@ export const ENT_VALUE_TOOLTIP = [
   '현재 주가를 주당 순이익(EPS)으로 나눈 값을 의미해요',
   '현재 주가를 주당 순자산(BPS)으로 나눈 값을 의미해요',
   '기업이 일정 기간 동안 벌어들인 순이익을 발행 주식 수로 나눈 값을 의미해요',
-  '기업이 주주들에게 지급한 총 배당금액을 의미해요',
-  '기업이 주당 지급하는 배당금을 의미해요',
+  '현재 종목의 주가 대비 배당금의 비율을 의미해요',
+  '현재 기업이 주식 1주당 지급하는 원 단위 배당금을 의미해요',
 ];
 
 export const FINANCIALINFO_TITLE = ['손익계산', '대차대조'];

@@ -19,7 +19,6 @@ const StockInfo = () => {
         `api/stocks/info?code=${stockCode}&date=${'2024-12-11'}`,
       );
       setStockInfo(response.result);
-      console.log(response, '종목정보');
     };
 
     getStockDetail();
@@ -48,7 +47,7 @@ const StockInfo = () => {
         </div>
         {infoType === '종목정보'
           ? stockInfo && <StockDetail data={stockInfo} />
-          : stockInfo && <EntValue data={stockInfo} />}
+          : stockInfo && <EntValue/>}
       </div>
       <div className="w-[1px] h-full border-r border-gray-2" />
       <TradeRecord />

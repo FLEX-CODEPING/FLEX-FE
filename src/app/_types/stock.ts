@@ -43,6 +43,17 @@ interface StockDetailInfoTypes {
   };
 }
 
+interface EntValueTypes {
+  date: string;
+  stockcode: string;
+  BPS: number;
+  PER: number;
+  PBR: number;
+  EPS: number;
+  DIV: number;
+  DPS: number;
+}
+
 interface InterestedStockTypes {
   interestStockId: string;
   stockcode: string;

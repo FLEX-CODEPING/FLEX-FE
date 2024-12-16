@@ -4,7 +4,6 @@ import {
   STOCK_INFO_TEXT,
   STOCK_INFO_TOOLTIP,
 } from '@/app/constants/simulation';
-import useStockStore from '@/app/store/store';
 import { formatCurrencyNoUnit } from '@/app/utils/formatNum';
 import { formatStockData } from '@/app/utils/formatStock';
 import { plusUnit } from '@/app/utils/truncate';
@@ -18,11 +17,10 @@ interface StockDetailProps {
 
 const StockDetail = ({ data }: StockDetailProps) => {
   const [hoverRefs, setHoverRefs] = useState<(HTMLDivElement | null)[]>([]);
-  const { stockCode } = useStockStore();
 
   useEffect(() => {
     setHoverRefs((prev) => STOCK_INFO_TEXT.map(() => null));
-  }, [stockCode]);
+  }, []);
 
   const StockInfoArr = data ? formatStockData(data) : [];
 

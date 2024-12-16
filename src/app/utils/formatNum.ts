@@ -53,3 +53,13 @@ export const isProfit = (num: number | string): string => {
     ? `+${formatNumberCommas(value)}`
     : formatNumberCommas(value);
 };
+
+export const formatEntValueUnit = (i: number): string => {
+  if (i === 0 || i === 3 || i === 5) {
+    return '원';
+  }
+  if (i === 4) {
+    return '%';
+  }
+  return '배';
+};
