@@ -17,6 +17,8 @@ pipeline {
         NEXT_PUBLIC_KAKAO_REDIRECT_URI = credentials('next-public-kakao-redirect-uri')
         NEXT_PUBLIC_SERVER = credentials('next-public-server')
         NEXT_PUBLIC_LOCAL_SERVER = credentials('next-public-local-server')
+        NEXT_PUBLIC_APPLICATION_ID = credentials('next-public-application-id')
+        NEXT_PUBLIC_CLIENT_TOKEN = credentials('next-public-client-token')
     }
 
     stages {
