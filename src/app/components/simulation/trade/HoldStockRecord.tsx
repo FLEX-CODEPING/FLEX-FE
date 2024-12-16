@@ -4,6 +4,7 @@ import {
   SIDE_NAV_TYPES,
   TRADETYPE_MAP,
 } from '@/app/constants/simulation';
+import { useHoldStock } from '@/app/hooks/useHoldStock';
 import useStockStore from '@/app/store/store';
 import { callGet } from '@/app/utils/callApi';
 import { formatMD } from '@/app/utils/date';
@@ -16,16 +17,12 @@ interface HoldStockRecordProps {
 }
 
 const HoldStockRecord = ({ closeDetail }: HoldStockRecordProps) => {
-  const [record, setRecord] = useState<HoldStockRecordTypes[]>([]);
+  const { data: holdStock = [] } = useHoldStock();
   const [stockInfo, setStockInfo] = useState<HoldStockInfoTypes | null>(null);
   const { stockCode } = useStockStore();
+  console.log(holdStock, '거래 데이터');
 
   const getTradeRecord = async () => {
-    const response = await callGet(
-      `/api/stocks/trade/investment?code=${stockCode}&page=${1}&size=${20}&property=createdAt&direction=desc`,
-    );
-    setRecord(response.result.content);
-
     const infoData = await callGet(`/api/stocks/hold/info?code=${stockCode}`);
     setStockInfo(infoData.result);
   };
@@ -59,7 +56,7 @@ const HoldStockRecord = ({ closeDetail }: HoldStockRecordProps) => {
         </div>
       </div>
       <div className="flex flex-col w-full overflow-y-auto gap-y-2">
-        {record.map((data) => (
+        {holdStock.map((data) => (
           <div
             className="text-xs font-medium flex w-full"
             key={data.investmentId}
