@@ -6,6 +6,7 @@ import {
   TRADE_BUY_TEXT,
   TRADE_SELL_TEXT,
 } from '@/app/constants/simulation';
+import { useBalance } from '@/app/hooks/useBalance';
 import useStockStore from '@/app/store/store';
 import { callGet, callPost } from '@/app/utils/callApi';
 import { useEffect, useState } from 'react';
@@ -15,14 +16,13 @@ import SellCalculation from './SellCalculation';
 import TradeToggle from './TradeToggle';
 
 const TradeBar = () => {
+  const { data: balance = 0 } = useBalance(); // 잔액 데이터를 가져옴
   const [isBuy, setIsBuy] = useState(true);
   const [tradeCnt, setTradeCnt] = useState('');
   const [holdStock, setHoldStock] = useState<HoldStockTypes | null>(null);
   const [amountType, setAmountType] = useState<AmountType | null>(null);
-  const [balance, setBalance] = useState(0);
   const [stockPrice, setStockPrice] = useState(0);
   const { stockCode } = useStockStore();
-
   const selectAmountType = (type: AmountType, i: number) => {
     const possibleCnt = isBuy
       ? (balance / stockPrice) * AMOUNT_PERCENT[i]
@@ -56,14 +56,8 @@ const TradeBar = () => {
     }
   };
 
-  const getBalance = async () => {
-    const response = await callGet('api/stocks/trade/balance');
-    setBalance(response.result.balance);
-  };
-
   useEffect(() => {
     const initCalc = async () => {
-      const response = await callGet('api/stocks/trade/balance');
       const price = await callPost(
         `/api/stocks/price/inquire?stockcode=${stockCode}`,
       );
@@ -85,7 +79,6 @@ const TradeBar = () => {
       }
     };
     stockCode && initCalc();
-    getBalance();
   }, [stockCode, isBuy]);
 
   return (

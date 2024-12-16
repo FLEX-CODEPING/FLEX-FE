@@ -1,6 +1,7 @@
 'use client';
 
 import Button from '@/app/components/common/Button';
+import { useInvalidateBalance } from '@/app/hooks/useBalance';
 import { callPost } from '@/app/utils/callApi';
 import { motion } from 'motion/react';
 import { useState } from 'react';
@@ -19,16 +20,22 @@ const DoubleCheckModal = ({
   data,
 }: DoubleCheckModalProps) => {
   const [isDone, setIsDone] = useState(false);
+  const invalidateBalance = useInvalidateBalance();
+
   const colorBefore = tradeType === '매수' ? 'bg-red-2' : 'bg-blue-2';
   const colorAfter =
     tradeType === '매수' ? 'hover:bg-red-1' : 'hover:bg-blue-1';
 
   const buyStock = async () => {
-    const url =
-      tradeType === '매수' ? 'api/stocks/trade/buy' : 'api/stocks/trade/sell';
-    const response = await callPost(url, data);
-    console.log('tradeType에 따른 응답', '요청데이터', data, response);
-    setIsDone(true);
+    try {
+      const url =
+        tradeType === '매수' ? 'api/stocks/trade/buy' : 'api/stocks/trade/sell';
+      const response = await callPost(url, data);
+      invalidateBalance.mutate();
+      setIsDone(true);
+    } catch (error) {
+      console.error('매수 실패:', error);
+    }
   };
 
   return (
