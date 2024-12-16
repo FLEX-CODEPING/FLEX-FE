@@ -20,15 +20,17 @@ const BalanceChart = ({ balanceInfo }: BalanceChartProps) => {
   return (
     <div className="flex px-2 py-1 gap-x-2 w-full overflow-x-auto">
       <div className="flex-col-center text-xs gap-y-4">
-        <div className="w-20 h-[26px] font-medium flex items-center">항목</div>
+        <div className="w-full border-b-gray-4 border-b h-7 font-medium flex items-center pl-1">
+          항목
+        </div>
         {BALANCE_TITLE.map((title, i) => {
           const hoverRef = useRef(null);
           const isHover = useHover(hoverRef);
           hoverRefs[i] = hoverRef.current;
           return (
-            <div className="w-20" key={title}>
-              <div className="flex items-center h-[26px] rounded-lg bg-gray-6 px-1 gap-x-1 w-fit">
-                <p className="text-black-1 ">{title}</p>
+            <div className="w-[88px]" key={title}>
+              <div className="flex items-center h-7 rounded-lg bg-gray-6 px-2 py-1 gap-x-1 w-fit">
+                <p className="text-black-1">{title}</p>
                 <div className="relative flex" ref={hoverRef}>
                   <Icons name={infoIcon} />
                   {isHover && (
@@ -45,37 +47,35 @@ const BalanceChart = ({ balanceInfo }: BalanceChartProps) => {
           );
         })}
       </div>
-      <div className="w-full overflow-x-auto flex">
+      <div className="w-full overflow-x-auto flex gap-x-2">
         {balanceInfo?.map((data) => (
           <div
             className="flex-col-center text-xs gap-y-4 text-black-1"
             key={data.yearMonth}
           >
-            <div className="w-[70px] py-1 flex-center h-[26px] font-medium flex items-center">
+            <div className="w-[70px] py-1 flex-center h-7 font-medium flex items-center border-b border-b-gray-4">
               {formatYM(data.yearMonth)}
             </div>
-            <p className="flex-center h-[26px]">
+            <p className="flex-center h-7">
               {formatCurrency(data.capitalStock)}
             </p>
-            <p className="flex-center h-[26px]">
-              {formatCurrency(data.curAssets)}
-            </p>
-            <p className="flex-center h-[26px]">
+            <p className="flex-center h-7">{formatCurrency(data.curAssets)}</p>
+            <p className="flex-center h-7">
               {formatCurrency(data.curLiabilities)}
             </p>
-            <p className="flex-center h-[26px]">
+            <p className="flex-center h-7">
               {formatCurrency(data.fixedAssets)}
             </p>
-            <p className="flex-center h-[26px]">
+            <p className="flex-center h-7">
               {formatCurrency(data.fixedLiabilities)}
             </p>
-            <p className="flex-center h-[26px]">
+            <p className="flex-center h-7">
               {formatCurrency(data.totalAssets)}
             </p>
-            <p className="flex-center h-[26px]">
+            <p className="flex-center h-7">
               {formatCurrency(data.totalEquity)}
             </p>
-            <p className="flex-center h-[26px]">
+            <p className="flex-center h-7">
               {formatCurrency(data.totalLiabilities)}
             </p>
           </div>

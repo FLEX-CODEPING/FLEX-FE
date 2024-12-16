@@ -22,10 +22,6 @@ const patchRequest = async (url: string, req: Request, body: any = null) => {
   return response.json();
 };
 
-export const patchMain = async (mainInfo: any, req: Request) => {
-  return patchRequest('/api/v1/quotations/quotation/1', mainInfo, req);
-};
-
 export const patchComment = async (
   commentinfo: CommentRequestTypes,
   req: Request,

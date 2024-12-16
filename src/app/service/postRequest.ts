@@ -20,10 +20,6 @@ const postRequest = async (url: string, req: Request, body: any = null) => {
   return response.json();
 };
 
-export const postMain = async (mainContent: any, req: Request) => {
-  return postRequest('/api/v1/main', mainContent, req);
-};
-
 export const postLogin = async (loginContent: any, req: Request) => {
   return postRequest('/api/auth/login/KAKAO', req, loginContent);
 };
