@@ -37,9 +37,12 @@ pipeline {
                     envVars.each { key, value ->
                         echo "Environment Variable: ${key} = ${value}"
                     }
+                    envVars.each { key, value ->
+                        sh "echo '${key}=${value}' >> .env"
+                    }
 
                     sh '''
-                    docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
+                    docker build --build-arg $(cat .env) -t ${IMAGE_NAME}:${IMAGE_TAG} .
                     '''
                 }
             }
