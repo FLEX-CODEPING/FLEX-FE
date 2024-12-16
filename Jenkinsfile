@@ -31,9 +31,6 @@ pipeline {
                     envVars.each { key, value ->
                         echo "Environment Variable: ${key} = ${value}"
                     }
-                    envVars.each { key, value ->
-                        sh "echo '${key}=${value}' >> .env"
-                    }
 
                     sh '''
                     docker buildx build \
