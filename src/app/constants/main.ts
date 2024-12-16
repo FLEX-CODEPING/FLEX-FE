@@ -48,7 +48,7 @@ export const RANKING_COLOR = ['bg-[#FEEAB4]', 'bg-[#e5e5e5]', 'bg-[#e5cbbc]'];
 
 export const MAIN_CONTENTS_TITLE = [
   '최신 게시물',
-  '오늘의 뉴스',
+  '최신 뉴스',
   '주식 차트',
   '️인기 게시물',
   '추천 게시물',
@@ -108,24 +108,24 @@ export const RANK_TYPE_MAP: Record<StockRankingTypes, string> = {
 
 export const VOLUME_PARAMS = {
   belongCode: '0',
-  classCode: '0',
+  classCode: '1',
   priceMax: '',
   priceMin: '',
-  stockCode: '0000',
+  stockCode: '0001',
   volCount: '',
 };
 
 export const FLUCTUATION_PARAMS = {
-  market_code: '',
-  fluctuation_rate_min: '',
-  fluctuation_rate_max: '',
-  market_type: 'string',
-  sort_order: 'string',
-  result_limit: 'string',
-  price_type: '',
-  price_min: '',
-  price_max: '',
-  volume_threshold: '',
-  exclude_type: '0',
-  category_type: '0',
+  marketCode: '0001',
+  fluctuationRateMin: '',
+  fluctuationRateMax: '',
+  sortOrder: '4',
+  resultLimit: '0',
+  priceType: '1',
+  priceMin: '',
+  priceMax: '',
+  volumeThreshold: '',
+  targetType: '0',
+  excludeType: '0',
+  categoryType: '0',
 };

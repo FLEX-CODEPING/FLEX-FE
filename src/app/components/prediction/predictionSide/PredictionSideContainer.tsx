@@ -3,7 +3,6 @@
 import { useModal } from '@/app/hooks/useModal';
 import { useState } from 'react';
 import PredictIndicator from './PredictIndicator';
-import PredictionEmpty from './PredictionEmpty';
 import PredictResultAlert from './alert/PredictionAlert';
 
 const PredictionSideContainer = () => {

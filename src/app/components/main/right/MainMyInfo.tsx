@@ -60,8 +60,8 @@ const MainMyInfo = ({
                   <p className="font-semibold">{followers}명</p>
                 </div>
               </div>
-              <Link className="flex items-center gap-x-2.5" href="/mypage">
-                <p className="text-[15px]">{MAIN_MYINFO_TEXT[1]}</p>
+              <Link className="flex w-20 items-center gap-x-2.5" href="/mypage">
+                <p className="text-sm">{MAIN_MYINFO_TEXT[1]}</p>
                 <Icons name={mainRightArrow} />
               </Link>
             </div>

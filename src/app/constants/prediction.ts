@@ -65,3 +65,5 @@ export const ANALYZE_RESULT_GUIDE = [
   '사용자의 성향에 맞춘 구체적인 투자 방식을 제안합니다.',
   '최신 시장 흐름을 반영해 투자 방향을 제공합니다.',
 ];
+
+export const ALARM_STANDARD = ['주가', 'RSI', 'CCI', 'ATR'];

@@ -23,9 +23,9 @@ const IncomeChart = ({ financialInfo }: IncomeChartProps) => {
 
   return (
     <div className="relative">
-      <div className="flex px-2 py-1 gap-x-2 w-full overflow-x-auto">
+      <div className="flex px-2 pt-1 gap-x-2 w-full overflow-x-auto">
         <div className="flex-col-center text-xs gap-y-4">
-          <div className="w-20 h-[26px] font-medium flex items-center">
+          <div className="w-full h-7 font-medium flex items-center border-b-gray-4 border-b pl-1">
             항목
           </div>
           {PROFIT_LOSS_TITLE.map((title, i) => {
@@ -33,9 +33,9 @@ const IncomeChart = ({ financialInfo }: IncomeChartProps) => {
             const isHover = useHover(hoverRef);
             hoverRefs[i] = hoverRef.current;
             return (
-              <div className="w-20" key={title}>
-                <div className="flex items-center h-[26px] rounded-lg bg-gray-6 px-1 gap-x-1 w-fit">
-                  <p className="text-black-1 ">{title}</p>
+              <div className="w-[88px]" key={title}>
+                <div className="flex items-center h-7 rounded-lg bg-gray-6 px-2 py-1 gap-x-1 w-fit">
+                  <p className="text-black-1">{title}</p>
                   <div className="relative flex" ref={hoverRef}>
                     <Icons name={infoIcon} />
                     {isHover && (
@@ -52,31 +52,31 @@ const IncomeChart = ({ financialInfo }: IncomeChartProps) => {
             );
           })}
         </div>
-        <div className="w-full overflow-x-auto flex">
+        <div className="w-full overflow-x-auto flex gap-x-2">
           {financialInfo?.map((data) => (
             <div
               className="flex-col-center text-xs gap-y-4 text-black-1"
               key={data.yearMonth}
             >
-              <div className="w-[70px] py-1 flex-center h-[26px] font-medium flex items-center">
+              <div className="w-[70px] py-1 flex-center h-7 font-medium flex items-center border-b-gray-4 border-b">
                 {formatYM(data.yearMonth)}
               </div>
-              <p className="flex-center h-[26px]">
+              <p className="flex-center h-7">
                 {formatCurrency(data.costOfSales)}
               </p>
-              <p className="flex-center h-[26px]">
+              <p className="flex-center h-7">
                 {formatCurrency(data.grossProfit)}
               </p>
-              <p className="flex-center h-[26px]">
+              <p className="flex-center h-7">
                 {formatCurrency(data.netIncomeForThePeriod)}
               </p>
-              <p className="flex-center h-[26px]">
+              <p className="flex-center h-7">
                 {formatCurrency(data.operatingProfit)}
               </p>
-              <p className="flex-center h-[26px]">
+              <p className="flex-center h-7">
                 {formatCurrency(data.ordinaryProfit)}
               </p>
-              <p className="flex-center h-[26px]">
+              <p className="flex-center h-7">
                 {formatCurrency(data.salesRevenue)}
               </p>
             </div>

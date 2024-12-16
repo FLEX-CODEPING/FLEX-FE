@@ -28,7 +28,7 @@ const PreopenSearchInfo = ({
 
   return stockInfo && stockCode !== 'null' ? (
     <div className="flex px-[15.5px] py-3 justify-between w-[360px]">
-      <div className="flex gap-x-2.5">
+      <div className="flex gap-x-2.5 h-11">
         <div className="w-10 h-10 relative rounded-[18px]">
           {stockInfo.symbolImageUrl === null ? (
             <Icons name={noneStockSearch} />
@@ -59,9 +59,9 @@ const PreopenSearchInfo = ({
           </div>
         </div>
       </div>
-      <div className="flex-col flex h-10 text-[10px] text-black justify-between">
-        <div className="flex gap-x-2">
-          <div className="h-4 px-1 py-0.5 rounded flex-center border border-gray-1">
+      <div className="flex-col flex h- text-[11px] text-black justify-between">
+        <div className="flex gap-x-2 items-center">
+          <div className="h-5 px-2 py-2 rounded flex-center bg-gray-3 text-black-1">
             코스피
           </div>
           <Icons

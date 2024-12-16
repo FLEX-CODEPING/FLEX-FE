@@ -51,9 +51,7 @@ const StockDetail = ({ data }: StockDetailProps) => {
               </div>
             </div>
             <div className="text-xs pl-1.5 font-medium flex gap-x-1 h-5">
-              <p
-                className={`${i === 5 && (Number(info) > 0 ? 'text-red-1' : 'text-blue-1')}`}
-              >
+              <p>
                 {formatCurrencyNoUnit(Number(StockInfoArr[i]))}
                 {plusUnit(i)}
               </p>

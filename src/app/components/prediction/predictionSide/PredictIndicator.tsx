@@ -5,8 +5,8 @@ import {
   PREDICTION_INDICATION_SORT,
   PREDICTION_SIDEBAR_TEXT,
 } from '@/app/constants/prediction';
-import { callPost } from '@/app/utils/callApi';
 import useStockStore from '@/app/store/store';
+import { callPost } from '@/app/utils/callApi';
 import { useState } from 'react';
 import Button from '../../common/Button';
 import Icons from '../../common/Icons';
@@ -157,9 +157,7 @@ const PredictIndicator: React.FC<PredictIndicatorProps> = ({
           <label
             key={method}
             htmlFor={method}
-            className={`flex w-full flex-col gap-1 cursor-pointer ${
-              selectedMethod === method ? 'text-orange-500' : ''
-            }`}
+            className="flex w-full flex-col gap-1 cursor-pointer"
           >
             <div className="flex items-center gap-2">
               <input
