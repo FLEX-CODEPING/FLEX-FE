@@ -29,6 +29,7 @@ const TradeToggle = ({ isBuy, chngeTradeType }: TradeToggleProps) => {
         <div
           className={`w-24 h-[30px] flex-center cursor-pointer ${textStyles(type)} z-[1]`}
           onClick={chngeTradeType}
+          key={type}
         >
           {type}
         </div>

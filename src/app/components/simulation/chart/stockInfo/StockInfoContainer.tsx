@@ -13,6 +13,7 @@ const StockInfoContainer = () => {
       <div className="flex items-center gap-y-2 text-[15px]">
         {STOCK_INFO_TITLE.map((title, i) => (
           <div
+            key={title}
             onClick={() => setInfoType(title)}
             className={`w-[76px] h-8 text-black-0 flex-center cursor-pointer font-light ${infoType === title && 'bg-gray-5 font-medium rounded-lg'}`}
           >
