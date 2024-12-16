@@ -16,7 +16,7 @@ import SellCalculation from './SellCalculation';
 import TradeToggle from './TradeToggle';
 
 const TradeBar = () => {
-  const { data: balance = 0 } = useBalance(); // 잔액 데이터를 가져옴
+  const { data: balance = 0 } = useBalance();
   const [isBuy, setIsBuy] = useState(true);
   const [tradeCnt, setTradeCnt] = useState('');
   const [holdStock, setHoldStock] = useState<HoldStockTypes | null>(null);
