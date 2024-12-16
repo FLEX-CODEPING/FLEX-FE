@@ -23,6 +23,7 @@ const TradeBar = () => {
   const [amountType, setAmountType] = useState<AmountType | null>(null);
   const [stockPrice, setStockPrice] = useState(0);
   const { stockCode } = useStockStore();
+  
   const selectAmountType = (type: AmountType, i: number) => {
     const possibleCnt = isBuy
       ? (balance / stockPrice) * AMOUNT_PERCENT[i]

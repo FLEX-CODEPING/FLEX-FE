@@ -5,11 +5,9 @@ import {
   TRADETYPE_MAP,
 } from '@/app/constants/simulation';
 import { useHoldStock } from '@/app/hooks/useHoldStock';
-import useStockStore from '@/app/store/store';
-import { callGet } from '@/app/utils/callApi';
 import { formatMD } from '@/app/utils/date';
 import { formatNumberCommas } from '@/app/utils/formatNum';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import Icons from '../../common/Icons';
 
 interface HoldStockRecordProps {
@@ -17,19 +15,9 @@ interface HoldStockRecordProps {
 }
 
 const HoldStockRecord = ({ closeDetail }: HoldStockRecordProps) => {
-  const { data: holdStock = [] } = useHoldStock();
-  const [stockInfo, setStockInfo] = useState<HoldStockInfoTypes | null>(null);
-  const { stockCode } = useStockStore();
-  console.log(holdStock, '거래 데이터');
-
-  const getTradeRecord = async () => {
-    const infoData = await callGet(`/api/stocks/hold/info?code=${stockCode}`);
-    setStockInfo(infoData.result);
-  };
-
-  useEffect(() => {
-    getTradeRecord();
-  }, [stockCode]);
+  const { data } = useHoldStock();
+  const holdStock = data?.holdStock || [];
+  const stockInfo = data?.stockInfo || null;
 
   return (
     <div className="w-full flex flex-col gap-y-2">
