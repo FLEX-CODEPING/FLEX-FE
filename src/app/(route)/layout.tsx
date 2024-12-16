@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import Header from '../components/common/layout/Header';
-import Rum from '../components/common/layout/Rum';
+import TanStackProvider from '../components/common/layout/TanstackProvider';
 import UserProvider from '../components/common/layout/useProvider';
 import '../styles/globals.css';
 
@@ -27,12 +27,12 @@ export default function RootLayout({
       <body
         className={`${pretendard.variable} min-w-[1100px] mx-auto font-pretendard`}
       >
-        <Rum>
+        <TanStackProvider>
           <UserProvider>
             <Header />
             {children}
           </UserProvider>
-        </Rum>
+        </TanStackProvider>
       </body>
     </html>
   );
