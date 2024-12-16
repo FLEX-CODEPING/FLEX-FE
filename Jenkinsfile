@@ -12,6 +12,7 @@ pipeline {
         SLACK_CHANNEL = '#frontend-jenkins'
         IMAGE_NAME = "${DOCKER_USERNAME}/flex-frontend"
         IMAGE_TAG = "${BUILD_NUMBER}"
+        envFile = credentials('frontend-env')
     }
 
     stages {
@@ -27,6 +28,16 @@ pipeline {
             steps {
                 echo 'Building Docker image...'
                 script {
+                    def envFileContent = readFile file: envFile.path
+                    def envVars = [:]
+                    envFileContent.split('\n').each {
+                        def (key, value) = it.split('=')
+                        envVars[key] = value
+                    }
+                    envVars.each { key, value ->
+                        echo "Environment Variable: ${key} = ${value}"
+                    }
+
                     sh '''
                     docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
                     '''
@@ -55,24 +66,12 @@ pipeline {
                             ssh -J ${REMOTE_USER}@${BASTION_HOST} ${REMOTE_USER}@${REMOTE_HOST} '
                                 set -e
 
-                                # .env 파일을 사용하여 환경 변수 설정
-                                export \$(cat ./.env | xargs)
-
-                                # 기존 컨테이너 중지 및 제거
-                                docker compose down --remove-orphans
-
-                                # Docker Compose 파일에 IMAGE_TAG 적용
-                                sed -i "s|image: ${IMAGE_NAME}:.*|image: ${IMAGE_NAME}:${IMAGE_TAG}|" docker-compose.yml
-
-                                # 새로운 이미지 풀 및 시작
-                                docker compose pull
-                                docker compose up -d
-
-                                # 불필요한 이미지 정리
-                                docker image prune -a
-
-                                # 현재 컨테이너 상태 확인
-                                docker compose ps
+                                docker stop frontend
+                                docker rm frontend
+                                docker run -d \
+                                    --name frontend \
+                                    -p 3000:3000 \
+                                    ${IMAGE_NAME}:${IMAGE_TAG}
                             '
                         """
                         slackSend(channel: SLACK_CHANNEL, message: "🚀 NEXT.JS Deployment SUCCEEDED for Build #${env.BUILD_NUMBER}.")
