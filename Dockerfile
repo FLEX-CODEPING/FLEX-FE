@@ -22,6 +22,8 @@ ARG NEXT_PUBLIC_KAKAO_SECRET
 ARG NEXT_PUBLIC_KAKAO_REDIRECT_URI
 ARG NEXT_PUBLIC_SERVER
 ARG NEXT_PUBLIC_LOCAL_SERVER
+ARG NEXT_PUBLIC_APPLICATION_ID
+ARG NEXT_PUBLIC_CLIENT_TOKEN
 
 # .env 파일 복사
 COPY .env .env
@@ -47,7 +49,7 @@ COPY --from=builder /app/next.config.mjs ./
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
-COPY .env .env  # 추가: 빌드 과정에서 .env 파일 복사
+COPY .env .env
 
 # 사용자 변경
 USER nextjs
@@ -68,4 +70,3 @@ ENV NEXT_PUBLIC_CLIENT_TOKEN=${NEXT_PUBLIC_CLIENT_TOKEN}
 
 # 실행 커맨드
 CMD ["node", "server.js"]
-
