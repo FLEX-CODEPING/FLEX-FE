@@ -12,13 +12,6 @@ pipeline {
         SLACK_CHANNEL = '#frontend-jenkins'
         IMAGE_NAME = "${DOCKER_USERNAME}/flex-frontend"
         IMAGE_TAG = "${BUILD_NUMBER}"
-        NEXT_PUBLIC_KAKAO_API_KEY = credentials('next-public-kakao-api-key')
-        NEXT_PUBLIC_KAKAO_SECRET = credentials('next-public-kakao-secret')
-        NEXT_PUBLIC_KAKAO_REDIRECT_URI = credentials('next-public-kakao-redirect-uri')
-        NEXT_PUBLIC_SERVER = credentials('next-public-server')
-        NEXT_PUBLIC_LOCAL_SERVER = credentials('next-public-local-server')
-        NEXT_PUBLIC_APPLICATION_ID = credentials('next-public-application-id')
-        NEXT_PUBLIC_CLIENT_TOKEN = credentials('next-public-client-token')
     }
 
     stages {
@@ -32,19 +25,11 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
+                echo 'Building Docker image...'
                 script {
-                    sh """
-                    docker build --build-arg NEXT_PUBLIC_KAKAO_API_KEY=${NEXT_PUBLIC_KAKAO_API_KEY} \
-                                 --build-arg NEXT_PUBLIC_KAKAO_SECRET=${NEXT_PUBLIC_KAKAO_SECRET} \
-                                 --build-arg NEXT_PUBLIC_KAKAO_REDIRECT_URI=${NEXT_PUBLIC_KAKAO_REDIRECT_URI} \
-                                 --build-arg NEXT_PUBLIC_SERVER=${NEXT_PUBLIC_SERVER} \
-                                 --build-arg NEXT_PUBLIC_LOCAL_SERVER=${NEXT_PUBLIC_LOCAL_SERVER} \
-                                 --build-arg NEXT_RUNTIME="nodejs" \
-                                 --build-arg DATADOG_ENV="dev" \
-                                 --build-arg NEXT_PUBLIC_APPLICATION_ID=${NEXT_PUBLIC_APPLICATION_ID} \
-                                 --build-arg NEXT_PUBLIC_CLIENT_TOKEN=${NEXT_PUBLIC_CLIENT_TOKEN} \
-                                 -t ${IMAGE_NAME}:${IMAGE_TAG} .
-                    """
+                    sh '''
+                    docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
+                    '''
                 }
             }
         }
@@ -70,12 +55,24 @@ pipeline {
                             ssh -J ${REMOTE_USER}@${BASTION_HOST} ${REMOTE_USER}@${REMOTE_HOST} '
                                 set -e
 
-                                docker stop frontend
-                                docker rm frontend
-                                docker run -d \
-                                    --name frontend \
-                                    -p 3000:3000 \
-                                    ${IMAGE_NAME}:${IMAGE_TAG}
+                                # .env 파일을 사용하여 환경 변수 설정
+                                export \$(cat ./.env | xargs)
+
+                                # 기존 컨테이너 중지 및 제거
+                                docker compose down --remove-orphans
+
+                                # Docker Compose 파일에 IMAGE_TAG 적용
+                                sed -i "s|image: ${IMAGE_NAME}:.*|image: ${IMAGE_NAME}:${IMAGE_TAG}|" docker-compose.yml
+
+                                # 새로운 이미지 풀 및 시작
+                                docker compose pull
+                                docker compose up -d
+
+                                # 불필요한 이미지 정리
+                                docker image prune -a
+
+                                # 현재 컨테이너 상태 확인
+                                docker compose ps
                             '
                         """
                         slackSend(channel: SLACK_CHANNEL, message: "🚀 NEXT.JS Deployment SUCCEEDED for Build #${env.BUILD_NUMBER}.")
