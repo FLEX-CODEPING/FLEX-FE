@@ -14,8 +14,18 @@ import Icons from '../common/Icons';
 
 const AnalyzeContainer = () => {
   const fadeInVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { 
+      opacity: 0, 
+      y: -30 
+    },
+    visible: {
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.8, 
+        ease: 'easeOut', 
+      }
+    }
   };
 
   const [nickname, setNickname] = useState<string>('');
@@ -105,9 +115,18 @@ const AnalyzeContainer = () => {
               </div>
             </div>
             <div className="pl-10 leading-9">
-              <p>위험도: {analysisData.investmentStyle.riskLevel}</p>
-              <p>거래 패턴: {analysisData.investmentStyle.tradingPattern}</p>
-              <p>분석: {analysisData.investmentStyle.analysis}</p>
+              <p>
+                <span className="font-bold">위험도 :</span>{' '}
+                {analysisData.investmentStyle.riskLevel}
+              </p>
+              <p>
+                <span className="font-bold">거래 패턴 :</span>{' '}
+                {analysisData.investmentStyle.tradingPattern}
+              </p>
+              <p>
+                <span className="font-bold">분석 :</span>{' '}
+                {analysisData.investmentStyle.analysis}
+              </p>
             </div>
           </motion.div>
 
@@ -126,11 +145,18 @@ const AnalyzeContainer = () => {
               </div>
             </div>
             <div className="pl-10 leading-9">
-              <p>추천 전략: {analysisData.investmentStrategy.recommendation}</p>
               <p>
-                리스크 관리: {analysisData.investmentStrategy.riskManagement}
+                <span className="font-bold">추천 전략 :</span>{' '}
+                {analysisData.investmentStrategy.recommendation}
               </p>
-              <p>분석: {analysisData.investmentStrategy.analysis}</p>
+              <p>
+                <span className="font-bold">리스크 관리 :</span>{' '}
+                {analysisData.investmentStrategy.riskManagement}
+              </p>
+              <p>
+                <span className="font-bold">분석 :</span>{' '}
+                {analysisData.investmentStrategy.analysis}
+              </p>
             </div>
           </motion.div>
         </>
