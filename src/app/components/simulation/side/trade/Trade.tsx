@@ -7,10 +7,7 @@ import {
   TRADE_PLACEHOLDER,
   TRADETYPE_MAP,
 } from '@/app/constants/simulation';
-import {
-  useInvalidateTrade,
-  useRefreshTrade,
-} from '@/app/hooks/useRefreshTrade';
+import { useRefreshTrade } from '@/app/hooks/useRefreshTrade';
 import { formatNumberCommas } from '@/app/utils/formatNum';
 import { tradeTypeColor } from '@/app/utils/qualify';
 import { useEffect, useState } from 'react';
