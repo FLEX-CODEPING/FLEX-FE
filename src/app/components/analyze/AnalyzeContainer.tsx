@@ -106,15 +106,15 @@ const AnalyzeContainer = () => {
             </div>
             <div className="pl-10 leading-9 tracking-wide">
               <p>
-                <span className="font-bold">위험도 :</span>{' '}
+                <span className="font-bold">1. 위험도 :</span>{' '}
                 {analysisData.investmentStyle.riskLevel}
               </p>
               <p>
-                <span className="font-bold">거래 패턴 :</span>{' '}
+                <span className="font-bold">2. 거래 패턴 :</span>{' '}
                 {analysisData.investmentStyle.tradingPattern}
               </p>
               <p>
-                <span className="font-bold">분석 :</span>{' '}
+                <span className="font-bold">3. 분석 :</span>{' '}
                 {analysisData.investmentStyle.analysis}
               </p>
             </div>
@@ -136,15 +136,15 @@ const AnalyzeContainer = () => {
             </div>
             <div className="pl-10 leading-9 tracking-wide">
               <p>
-                <span className="font-bold">추천 전략 :</span>{' '}
+                <span className="font-bold">1. 추천 전략 :</span>{' '}
                 {analysisData.investmentStrategy.recommendation}
               </p>
               <p>
-                <span className="font-bold">리스크 관리 :</span>{' '}
+                <span className="font-bold">2. 리스크 관리 :</span>{' '}
                 {analysisData.investmentStrategy.riskManagement}
               </p>
               <p>
-                <span className="font-bold">분석 :</span>{' '}
+                <span className="font-bold">3. 분석 :</span>{' '}
                 {analysisData.investmentStrategy.analysis}
               </p>
             </div>
