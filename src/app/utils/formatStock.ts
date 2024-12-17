@@ -83,3 +83,37 @@ export function formatEntValue(data: EntValueTypes): (string | number)[] {
 
   return [BPS, PER, PBR, EPS, DIV, DPS];
 }
+
+export const backTestPurchaseCnt = (
+  startDate: string,
+  endDate: string,
+  unit: '매일' | '매주' | '매월' | '매년',
+): number => {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+
+  let count = 0;
+  const current = new Date(start);
+
+  while (current <= end) {
+    const isWeekday = current.getDay() >= 1 && current.getDay() <= 5;
+    if (isWeekday) {
+      if (unit === '매일') {
+        count++;
+      } else if (unit === '매주' && current.getDay() === 1) {
+        count++;
+      } else if (unit === '매월' && current.getDate() === 1) {
+        count++;
+      } else if (
+        unit === '매년' &&
+        current.getMonth() === 0 &&
+        current.getDate() === 1
+      ) {
+        count++;
+      }
+    }
+    current.setDate(current.getDate() + 1);
+  }
+
+  return count;
+};

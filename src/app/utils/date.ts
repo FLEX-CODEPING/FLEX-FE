@@ -181,3 +181,13 @@ export const calculateDateFrom = (
       throw new Error(`Unsupported timeFrame: ${timeFrame}`);
   }
 };
+
+export const howManyDays = (startDate: string, endDate: string) => {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+
+  const timeDifference = end.getTime() - start.getTime();
+  const daysDifference = timeDifference / (1000 * 3600 * 24);
+
+  return daysDifference;
+};

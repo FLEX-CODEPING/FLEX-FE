@@ -118,14 +118,7 @@ export const STOCK_INFO_TEXT = [
   '상장 주식 수',
 ];
 
-export const ENT_VALUE_TEXT = [
-  'BPS',
-  'PER',
-  'PBR',
-  'EPS',
-  'DIV',
-  'DPS',
-];
+export const ENT_VALUE_TEXT = ['BPS', 'PER', 'PBR', 'EPS', 'DIV', 'DPS'];
 
 export const STOCK_INFO_TOOLTIP = [
   '주식이 장 시작 시 기록한 첫 번째 가격을 의미해요',
@@ -244,7 +237,12 @@ export const BACKTEST_TEXT = [
 
 export const BACKTEST_BTN_TEXT = ['시작하기', '다시하기'];
 
-export const ORDER_TYPE = ['매일', '매주', '매월', '매년'];
+export const ORDER_TYPE: BackTestOrderTypes[] = [
+  '매일',
+  '매주',
+  '매월',
+  '매년',
+];
 
 export const ORDER_TYPE_MAP: Record<string, string> = {
   매일: 'DAILY',

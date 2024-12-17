@@ -12,13 +12,19 @@ import {
 import useStockStore from '@/app/store/store';
 import { callPost } from '@/app/utils/callApi';
 import { useState } from 'react';
+import BackTestResult from './BackTestResult';
 
 const BackTest = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [orderType, setOrderType] = useState('');
+  const [orderType, setOrderType] = useState<BackTestOrderTypes>('매일');
   const [orderCnt, setOrderSnt] = useState('');
   const { stockName, stockCode } = useStockStore();
+  const [testResult, setTestResult] = useState<BackTestTypes | null>(null);
+  const [isFinish, setIsFinish] = useState(false);
+
+  const isQualified =
+    orderCnt !== '0' && startDate !== '' && endDate !== '' && stockName;
 
   const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedDate = e.target.value;
@@ -40,22 +46,33 @@ const BackTest = () => {
 
   const backReq = {
     corpName: stockName,
+    startDate,
     endDate,
     periodType: ORDER_TYPE_MAP[orderType],
     quantity: Number(orderCnt),
-    startDate,
     stockcode: stockCode,
   };
 
   const postBackTest = async () => {
     const res = await callPost('/api/stocks/backtest', backReq);
-    console.log(res, '응답');
+    console.log(res, backReq);
+    setTestResult(res.result);
+    setIsFinish(true);
+  };
+
+  const resetTest = () => {
+    setStartDate('');
+    setEndDate('');
+    setOrderType('매일');
+    setOrderSnt('0');
+    setIsFinish(false);
+    setTestResult(null)
   };
 
   return (
-    <div className="w-[260px] h-[628px] flex-col flex px-4 py-3.5 border border-gray-4 rounded-[10px] gap-y-5">
+    <div className="w-[260px] h-[628px] flex-col flex px-4 py-3.5 border border-gray-4 rounded-[10px] gap-y-4">
       {SIDE_NAV_TYPES[2]}
-      <div className="flex mt-5 text-black-0 gap-x-4">
+      <div className="flex mt-1 text-black-0 gap-x-4">
         <div className="flex flex-col gap-y-0.5">
           <p className="text-[13px] pl-1">{BACKTEST_TEXT[0]}</p>
           <Input
@@ -114,13 +131,22 @@ const BackTest = () => {
       </div>
       <div className="w-full flex-col-center">
         <Button
-          buttonText={BACKTEST_BTN_TEXT[0]}
+          buttonText={isFinish ? BACKTEST_BTN_TEXT[1] : BACKTEST_BTN_TEXT[0]}
           type="backTest"
-          className="bg-main-1"
-          onClickHandler={postBackTest}
+          className={isQualified ? 'bg-main-1/90' : 'bg-gray-2'}
+          onClickHandler={isFinish ? resetTest : postBackTest}
         />
-        <div className="w-[100%] border-b border-b-gray-2 my-5" />
+        <div className="w-[100%] border-b border-b-gray-2 mt-2 py-2" />
       </div>
+      {testResult ? (
+        <BackTestResult testResult={testResult} orderType={orderType} />
+      ) : (
+        <div className="flex-1 flex-center flex-col gap-y-1 animate-pulse font-light pb-8 bg-gray-6 rounded-lg duratio 2s ease-in-out">
+          <p className="text-lg">✏️</p>
+          <p>백테스팅 조건 입력 후</p>
+          <p> 결과를 확인하세요</p>
+        </div>
+      )}
     </div>
   );
 };
