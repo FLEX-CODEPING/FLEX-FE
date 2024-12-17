@@ -1,6 +1,9 @@
 import { likeSmall, noneStockSearch } from '@/app/constants/iconPath';
 import { STOCK_SEARCH_EMPTY_TEXT } from '@/app/constants/prediction';
-import { callDelete, callPost } from '@/app/utils/callApi';
+import {
+  useAddInterestStock,
+  useDeleteInterestStock,
+} from '@/app/hooks/useInterestStock';
 import Image from 'next/image';
 import Icons from '../../common/Icons';
 
@@ -15,13 +18,15 @@ const SearchInfo = ({
   stockCode,
   getStockInfo,
 }: SearchInfoProps) => {
-  const interestStock = async () => {
-    await callPost(`api/stocks/interest?code=${stockInfo?.stockcode}`);
-    getStockInfo(stockInfo?.stockcode || '');
-  };
+  const { mutate: addInterestStock } = useAddInterestStock();
+  const { mutate: removeInterestStock } = useDeleteInterestStock();
 
-  const deleteInterest = async () => {
-    await callDelete(`api/stocks/interest?id=${stockInfo?.isInterested}`);
+  const handleInterestClick = () => {
+    if (stockInfo?.isInterested) {
+      removeInterestStock(stockInfo.isInterested);
+    } else {
+      addInterestStock(stockInfo?.stockcode || '');
+    }
     getStockInfo(stockInfo?.stockcode || '');
   };
 
@@ -53,7 +58,7 @@ const SearchInfo = ({
           fill: stockInfo.isInterested ? '#F95700' : likeSmall.fill,
         }}
         className="cursor-pointer"
-        onClick={stockInfo.isInterested ? deleteInterest : interestStock}
+        onClick={handleInterestClick}
       />
     </div>
   ) : (

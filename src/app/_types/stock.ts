@@ -3,7 +3,7 @@ interface StockInfoTypes {
   stockName: string;
   symbolImageUrl: string;
   corpInfo: CorpInfoTypes;
-  isInterested: boolean;
+  isInterested: string | null;
   date: string;
   closePrice: 0;
   volume: 0;

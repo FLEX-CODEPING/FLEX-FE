@@ -1,46 +1,19 @@
 import Icons from '@/app/components/common/Icons';
 import { interestLike } from '@/app/constants/iconPath';
 import { INTEREST_EMPTY, SIDE_NAV_TYPES } from '@/app/constants/simulation';
-import { callDelete, callGet, callPost } from '@/app/utils/callApi';
+import {
+  useDeleteInterestStock,
+  useInterestStocks,
+} from '@/app/hooks/useInterestStock';
 import { isProfit } from '@/app/utils/formatNum';
 import { vrssSignColor } from '@/app/utils/qualify';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 import EmptyGuide from '../EmptyGuide';
 
 const Interest = () => {
-  const [stocks, setStocks] = useState<InterestedStockTypes[]>([]);
-  const [stockPrices, setStockPrices] = useState<InterestedPriceTypes[]>([]);
-  const getStockInfo = async () => {
-    const response = await callGet(`api/stocks/interest`);
-    const interestDatas = response.result.content;
-    setStocks(interestDatas);
-    const prices = await Promise.all(
-      interestDatas.map(async (item: InterestedStockTypes) => {
-        const data = await callPost(
-          `/api/stocks/price/inquire?stockcode=${item.stockcode}`,
-        );
-        const priceData = data.result[0];
-        return {
-          stockCode: item.stockcode,
-          currentPrice: priceData.stck_prpr,
-          changeAmount: priceData.prdy_vrss,
-          changePercent: priceData.prdy_ctrt,
-          changeSign: priceData.prdy_vrss_sign,
-        };
-      }),
-    );
-    setStockPrices(prices);
-  };
-
-  const deleteInterest = async (id: string) => {
-    const response = await callDelete(`api/stocks/interest?id=${id}`);
-    getStockInfo();
-  };
-
-  useEffect(() => {
-    getStockInfo();
-  }, []);
+  const { data } = useInterestStocks();
+  const deleteInterestStock = useDeleteInterestStock();
+  const { stocks, stockPrices } = data || { stocks: [], stockPrices: [] };
 
   return (
     <div className="w-[260px] h-[628px] flex-col flex px-4 py-3.5 border border-gray-4 rounded-[10px]">
@@ -71,7 +44,9 @@ const Interest = () => {
                   <Icons
                     name={interestLike}
                     className="cursor-pointer"
-                    onClick={() => deleteInterest(stock.interestStockId)}
+                    onClick={() =>
+                      deleteInterestStock.mutate(stock.interestStockId)
+                    }
                   />
                 </div>
                 <div
