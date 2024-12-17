@@ -115,17 +115,17 @@ function AccountContainer() {
 
       // formData에 이미지 URL 업데이트
       updateFormData('profileImageUrl', imageUrl);
-      alert('프로필 이미지가 성공적으로 업로드되었습니다.');
+      toast.success('프로필 이미지가 성공적으로 업로드되었습니다.');
     } catch (error) {
       console.error('Error uploading profile image:', error);
-      alert('이미지 업로드에 실패했습니다.');
+      toast.error('이미지 업로드에 실패했습니다.');
     }
   };
 
   const handleSignUpClick = () => {
     if (isSatisfied) {
       setIsSaveModalOpen(true);
-    } else alert('입력정보를 확인해주세요!');
+    } else toast.error('입력정보를 확인해주세요!');
   };
 
   const handleSave = async () => {
