@@ -3,6 +3,7 @@
 import Button from '@/app/components/common/Button';
 import { useInvalidateBalance } from '@/app/hooks/useBalance';
 import { useInvalidateHoldStock } from '@/app/hooks/useHoldStock';
+import { useInvalidateTrade } from '@/app/hooks/useRefreshTrade';
 import { callPost } from '@/app/utils/callApi';
 import { motion } from 'motion/react';
 import { useState } from 'react';
@@ -23,6 +24,7 @@ const DoubleCheckModal = ({
   const [isDone, setIsDone] = useState(false);
   const invalidateBalance = useInvalidateBalance();
   const invalidateHoldStock = useInvalidateHoldStock();
+  const invalidateTrade = useInvalidateTrade();
 
   const colorBefore = tradeType === '매수' ? 'bg-red-2' : 'bg-blue-2';
   const colorAfter =
@@ -35,6 +37,7 @@ const DoubleCheckModal = ({
       const response = await callPost(url, data);
       invalidateBalance.mutate();
       invalidateHoldStock.mutate();
+      invalidateTrade.mutate();
       setIsDone(true);
     } catch (error) {
       console.error('매수 실패:', error);

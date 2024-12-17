@@ -7,19 +7,14 @@ import {
   TRADE_PLACEHOLDER,
   TRADETYPE_MAP,
 } from '@/app/constants/simulation';
+import {
+  useInvalidateTrade,
+  useRefreshTrade,
+} from '@/app/hooks/useRefreshTrade';
 import { formatNumberCommas } from '@/app/utils/formatNum';
 import { tradeTypeColor } from '@/app/utils/qualify';
-import { useInfiniteQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import EmptyGuide from '../EmptyGuide';
-
-const fetchTradeRecords = async ({ pageParam = 1 }) => {
-  const response = await fetch(
-    `/api/stocks/trade/transactions?page=${pageParam}&size=21&property=createdAt&direction=desc`,
-  );
-  const data = await response.json();
-  return data.result;
-};
 
 const Trade = () => {
   const [text, setText] = useState('');
@@ -27,35 +22,15 @@ const Trade = () => {
     TransactionDataTypes[]
   >([]);
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
-    useInfiniteQuery({
-      queryKey: ['tradeRecords'],
-      queryFn: fetchTradeRecords,
-      initialPageParam: 1,
-      getNextPageParam: (lastPage) => {
-        if (!lastPage.hasNext) return undefined;
-        return lastPage.page + 1;
-      },
-    });
-  const records = data?.pages.flatMap((page) => page.content) || [];
+  const { data } = useRefreshTrade();
 
   useEffect(() => {
-    const filtered = records.filter((data) =>
-      data.investment.corpName.includes(text),
+    const records = data || [];
+    const filtered = records.filter((item) =>
+      item.investment.corpName.includes(text),
     );
     setFilteredRecords(filtered);
-  }, [text]);
-
-  // const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-  //   const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
-  //   if (
-  //     scrollHeight - scrollTop <= clientHeight * 1.5 &&
-  //     hasNextPage &&
-  //     !isFetchingNextPage
-  //   ) {
-  //     fetchNextPage();
-  //   }
-  // };
+  }, [data, text]);
 
   return (
     <div className="w-[260px] h-[628px] flex-col flex px-4 py-3.5 border border-gray-4 rounded-[10px] gap-y-4">
@@ -69,14 +44,11 @@ const Trade = () => {
           placeholder={TRADE_PLACEHOLDER[0]}
         />
       </div>
-      <div
-        className="w-full flex flex-col gap-y-4 overflow-y-auto hide-scrollbar"
-        // onScroll={handleScroll}
-      >
-        {records.length === 0 ? (
+      <div className="w-full flex flex-col gap-y-4 overflow-y-auto hide-scrollbar">
+        {filteredRecords.length === 0 ? (
           <EmptyGuide phraseArr={TRADE_EMPTY} />
         ) : (
-          records.map((data, i) => (
+          filteredRecords.map((data, i) => (
             <div
               className="w-full flex px-2 text-black-0 justify-between"
               key={data.transactionId}
