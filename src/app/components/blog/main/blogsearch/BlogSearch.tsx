@@ -20,7 +20,7 @@ const BlogSearch = () => {
 
     try {
       const response = await callGet(
-        `/api/blog/search?query=${query}&page=${page}&size=9`
+        `/api/blog/search?query=${query}&page=${page}&size=9`,
       );
       if (response.isSuccess) {
         const {
@@ -84,7 +84,6 @@ const BlogSearch = () => {
           results={results}
           searchExecuted={searchExecuted}
           totalResults={totalResults}
-          
         />
         {/* 검색 실행 후에만 페이지네이션 표시 */}
         {searchExecuted && totalResults > 0 && (

@@ -4,9 +4,6 @@ import { truncateString } from '@/app/utils/truncate';
 import Image from 'next/image';
 import Link from 'next/link';
 import 'github-markdown-css';
-import ReactMarkdown from 'react-markdown';
-import rehypeRaw from 'rehype-raw';
-import remarkGfm from 'remark-gfm';
 
 interface DailyPostProps {
   post: LandingPostTypes;
@@ -17,25 +14,25 @@ const DailyPost = ({ post }: DailyPostProps) => {
     ? post.tags.split(',').map((tag: string) => `#${tag}`)
     : [];
 
-    const removeHtmlTags = (content: string) => {
-      return content.replace(/<[^>]*>?/gm, '');
-    };
-    
-    const removeMarkdownTags = (content: string) => {
-      return content
-        .replace(/[#*~`>+-]/g, '') // Markdown 기호 제거
-        .replace(/\n/g, ' ') // 줄바꿈을 공백으로 변경
-        .trim(); // 앞뒤 공백 제거
-    };
-    
-    const removeImageTags = (content: string) => {
-      return content.replace(/!\[.*?\]\(.*?\)/g, ''); // 이미지 태그 제거
-    };
-    
-    // 결과 출력 시 처리
-    const textContent = post.content
-      ? removeImageTags(removeHtmlTags(removeMarkdownTags(post.content))).trim()
-      : '';
+  const removeHtmlTags = (content: string) => {
+    return content.replace(/<[^>]*>?/gm, '');
+  };
+
+  const removeMarkdownTags = (content: string) => {
+    return content
+      .replace(/[#*~`>+-]/g, '') // Markdown 기호 제거
+      .replace(/\n/g, ' ') // 줄바꿈을 공백으로 변경
+      .trim(); // 앞뒤 공백 제거
+  };
+
+  const removeImageTags = (content: string) => {
+    return content.replace(/!\[.*?\]\(.*?\)/g, ''); // 이미지 태그 제거
+  };
+
+  // 결과 출력 시 처리
+  const textContent = post.content
+    ? removeImageTags(removeHtmlTags(removeMarkdownTags(post.content))).trim()
+    : '';
 
   return (
     <Link

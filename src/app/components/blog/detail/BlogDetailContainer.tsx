@@ -52,23 +52,25 @@ const BlogDetailContainer = ({ postId }: PostDetailProps) => {
 
   if (!blogData) {
     console.log(blogData);
-    return <div className="flex gap-3 justify-center items-center mt-7">
-    {[0, 1, 2].map((index) => (
-      <motion.div
-        key={index}
-        className="w-4 h-4 bg-main-1 rounded-full"
-        animate={{
-          y: [0, -10, 0],
-          opacity: [1, 0.5, 1],
-        }}
-        transition={{
-          duration: 1.5,
-          repeat: Infinity,
-          delay: index * 0.2,
-        }}
-      />
-    ))}
-  </div>;
+    return (
+      <div className="flex gap-3 justify-center items-center mt-7">
+        {[0, 1, 2].map((index) => (
+          <motion.div
+            key={index}
+            className="w-4 h-4 bg-main-1 rounded-full"
+            animate={{
+              y: [0, -10, 0],
+              opacity: [1, 0.5, 1],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              delay: index * 0.2,
+            }}
+          />
+        ))}
+      </div>
+    );
   }
 
   const handleNicknameClick = () => {

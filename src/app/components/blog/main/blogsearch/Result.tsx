@@ -11,7 +11,11 @@ interface ResultsProps {
   totalResults: number;
 }
 
-const Results: React.FC<ResultsProps> = ({ results, searchExecuted, totalResults }) => {
+const Results: React.FC<ResultsProps> = ({
+  results,
+  searchExecuted,
+  totalResults,
+}) => {
   const containerVariants = {
     hidden: { opacity: 0, y: -20 }, // 초기 상태
     visible: {
@@ -47,12 +51,11 @@ const Results: React.FC<ResultsProps> = ({ results, searchExecuted, totalResults
       {searchExecuted && totalResults > 0 && (
         <div className="flex justify-center mt-[15px] text-[17px] mb-[24px]">
           <p>
-            총 <span className="font-bold">{totalResults}</span>개의 포스트를 찾았습니다.
+            총 <span className="font-bold">{totalResults}</span>개의 포스트를
+            찾았습니다.
           </p>
         </div>
       )}
-
-      
 
       {/* 검색 결과 리스트 */}
       {searchExecuted && totalResults > 0 && (
