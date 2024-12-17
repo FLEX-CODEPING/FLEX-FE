@@ -246,3 +246,8 @@ export const getEntInfo = async (req: Request, stockCode: string) => {
   const url = `/api/stock-predictions/fundamental-data?stockcode=${stockCode}`;
   return getRequest(url, req);
 };
+
+export const getUserRanking = async (req: Request) => {
+  const url = '/api/transactions/rankings';
+  return getRequest(url, req);
+};

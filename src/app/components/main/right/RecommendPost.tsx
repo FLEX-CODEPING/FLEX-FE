@@ -21,8 +21,6 @@ const RecommendPost = () => {
   useEffect(() => {
     const fetchPost = async () => {
       const response = await callGet(`/api/main/recommend`);
-      console.log(response, '데이터 배열');
-
       response.isSuccess && setDatas(response.result);
     };
 
