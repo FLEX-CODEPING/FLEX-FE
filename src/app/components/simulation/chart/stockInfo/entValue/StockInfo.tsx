@@ -47,7 +47,7 @@ const StockInfo = () => {
         </div>
         {infoType === '종목정보'
           ? stockInfo && <StockDetail data={stockInfo} />
-          : stockInfo && <EntValue/>}
+          : stockInfo && <EntValue />}
       </div>
       <div className="w-[1px] h-full border-r border-gray-2" />
       <TradeRecord />

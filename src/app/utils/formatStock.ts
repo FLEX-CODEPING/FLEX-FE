@@ -99,17 +99,17 @@ export const backTestPurchaseCnt = (
     const isWeekday = current.getDay() >= 1 && current.getDay() <= 5;
     if (isWeekday) {
       if (unit === '매일') {
-        count++;
+        count += 1;
       } else if (unit === '매주' && current.getDay() === 1) {
-        count++;
+        count += 1;
       } else if (unit === '매월' && current.getDate() === 1) {
-        count++;
+        count += 1;
       } else if (
         unit === '매년' &&
         current.getMonth() === 0 &&
         current.getDate() === 1
       ) {
-        count++;
+        count += 1;
       }
     }
     current.setDate(current.getDate() + 1);

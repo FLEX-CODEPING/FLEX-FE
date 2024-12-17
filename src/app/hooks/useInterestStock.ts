@@ -33,7 +33,7 @@ export const useDeleteInterestStock = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
-      return await callDelete(`api/stocks/interest?id=${id}`);
+      return callDelete(`api/stocks/interest?id=${id}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['interestStocks'] });
@@ -41,15 +41,14 @@ export const useDeleteInterestStock = () => {
   });
 };
 
-
 export const useAddInterestStock = () => {
-    const queryClient = useQueryClient();
-    return useMutation({
-      mutationFn: async (stockcode: string) => {
-        return await callPost(`api/stocks/interest?code=${stockcode}`);
-      },
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ['interestStocks'] });
-      },
-    });
-  };
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (stockcode: string) => {
+      return callPost(`api/stocks/interest?code=${stockcode}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['interestStocks'] });
+    },
+  });
+};
