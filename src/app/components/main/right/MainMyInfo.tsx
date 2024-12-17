@@ -45,10 +45,11 @@ const MainMyInfo = ({
         <div className="w-full flex-col-center gap-y-5">
           <div className="flex gap-x-5 px-2 w-full">
             <Image
-              src="/images/complete2.png"
+              src={user.result.profileImageUrl || '/images/profile.png'}
               width={54}
               height={54}
               alt="profile"
+              className="rounded-full"
             />
             <div className="flex w-full justify-between">
               <div className="flex flex-col gap-y-1">

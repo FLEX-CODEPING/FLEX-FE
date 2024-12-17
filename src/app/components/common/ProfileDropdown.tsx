@@ -33,10 +33,11 @@ const ProfileDropdown = () => {
             onMouseLeave={() => setIsHover(false)}
           >
             <Image
-              src="/images/complete1.png"
+              src={user.result.profileImageUrl || '/images/profile.png'}
               alt="profile"
               width={20}
               height={20}
+              className="rounded-full"
             />
             <Link className="text-sm font-medium" href="/">
               {user?.result.nickname}

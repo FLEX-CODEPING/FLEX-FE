@@ -2,8 +2,10 @@
 
 import { TOOLBAR_ITEMS } from '@/app/constants/blog';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
+import chart from '@toast-ui/editor-plugin-chart';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
+import '@toast-ui/chart/dist/toastui-chart.min.css'; // Chart 스타일
 import { Editor } from '@toast-ui/react-editor';
 import { useRef } from 'react';
 import 'tui-color-picker/dist/tui-color-picker.css';
