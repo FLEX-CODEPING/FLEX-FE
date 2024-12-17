@@ -1,7 +1,11 @@
-'use client';
-
 import { CATCH_PHRASE } from '@/app/constants/main';
-import { dela } from '../common/layout/Header';
+import { Dela_Gothic_One } from 'next/font/google';
+
+export const dela = Dela_Gothic_One({
+  subsets: ['latin'],
+  weight: '400',
+  display: 'swap',
+});
 
 const MainHeader = () => {
   return (
@@ -11,7 +15,7 @@ const MainHeader = () => {
           {CATCH_PHRASE[0]}
         </span>
       </div>
-      <div className="text-[50px] mt-2">
+      <div className="text-5xl mt-3">
         <span className={`text-main-1 ${dela.className}`}>
           {CATCH_PHRASE[1]}
         </span>

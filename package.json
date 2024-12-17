@@ -22,7 +22,6 @@
     "@toast-ui/editor-plugin-color-syntax": "^3.1.0",
     "@toast-ui/react-editor": "^3.2.3",
     "apexcharts": "^4.1.0",
-    "axios": "^1.7.7",
     "cookie": "^1.0.1",
     "dayjs": "^1.11.13",
     "dd-trace": "^5.26.0",
