@@ -167,9 +167,14 @@ interface TransactionDataTypes {
   transactionId: number;
   userId: number;
   investment: InvestmentDataTypes;
-  credit: number;
+  credit: {
+    creditId: number;
+    credits: number;
+    creditType: string;
+  };
   totalProfit: number;
   balance: number;
+  createdAt: string;
 }
 
 interface InvestmentDataTypes {
@@ -181,6 +186,13 @@ interface InvestmentDataTypes {
   price: number;
   totalPrice: number;
   profit: number;
+}
+
+interface TransactionResponse {
+  content: TransactionDataTypes[];
+  hasNext: true;
+  first: true;
+  last: true;
 }
 
 interface InterestedPriceTypes {

@@ -7,36 +7,55 @@ import {
   TRADE_PLACEHOLDER,
   TRADETYPE_MAP,
 } from '@/app/constants/simulation';
-import { callGet } from '@/app/utils/callApi';
 import { formatNumberCommas } from '@/app/utils/formatNum';
 import { tradeTypeColor } from '@/app/utils/qualify';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import EmptyGuide from '../EmptyGuide';
 
-const Trade = () => {
-  const [record, setRecord] = useState<TransactionDataTypes[]>([]);
-  const [text, setText] = useState('');
-  const [filteredRecord, setFilteredRecord] = useState<TransactionDataTypes[]>(
-    [],
+const fetchTradeRecords = async ({ pageParam = 1 }) => {
+  const response = await fetch(
+    `/api/stocks/trade/transactions?page=${pageParam}&size=21&property=createdAt&direction=desc`,
   );
+  const data = await response.json();
+  return data.result;
+};
 
-  const getTradeRecord = async () => {
-    const response = await callGet(
-      `/api/stocks/trade/transactions?page=${1}&size=${20}&property=createdAt&direction=desc`,
-    );
-    setRecord(response.result.content);
-  };
+const Trade = () => {
+  const [text, setText] = useState('');
+  const [filteredRecords, setFilteredRecords] = useState<
+    TransactionDataTypes[]
+  >([]);
+
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
+    useInfiniteQuery({
+      queryKey: ['tradeRecords'],
+      queryFn: fetchTradeRecords,
+      initialPageParam: 1,
+      getNextPageParam: (lastPage) => {
+        if (!lastPage.hasNext) return undefined;
+        return lastPage.page + 1;
+      },
+    });
+  const records = data?.pages.flatMap((page) => page.content) || [];
 
   useEffect(() => {
-    getTradeRecord();
-  }, []);
-
-  useEffect(() => {
-    const filtered = record.filter((data) =>
+    const filtered = records.filter((data) =>
       data.investment.corpName.includes(text),
     );
-    setFilteredRecord(filtered);
-  }, [text, record]);
+    setFilteredRecords(filtered);
+  }, [text]);
+
+  // const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+  //   const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+  //   if (
+  //     scrollHeight - scrollTop <= clientHeight * 1.5 &&
+  //     hasNextPage &&
+  //     !isFetchingNextPage
+  //   ) {
+  //     fetchNextPage();
+  //   }
+  // };
 
   return (
     <div className="w-[260px] h-[628px] flex-col flex px-4 py-3.5 border border-gray-4 rounded-[10px] gap-y-4">
@@ -50,34 +69,42 @@ const Trade = () => {
           placeholder={TRADE_PLACEHOLDER[0]}
         />
       </div>
-      <div className="w-full flex flex-col gap-y-4 overflow-y-auto hide-scrollbar">
-        {filteredRecord.length === 0 ? (
+      <div
+        className="w-full flex flex-col gap-y-4 overflow-y-auto hide-scrollbar"
+        // onScroll={handleScroll}
+      >
+        {records.length === 0 ? (
           <EmptyGuide phraseArr={TRADE_EMPTY} />
         ) : (
-          filteredRecord.map((data, i) => (
+          records.map((data, i) => (
             <div
               className="w-full flex px-2 text-black-0 justify-between"
               key={data.transactionId}
             >
               <div className="flex flex-col gap-y-0.5">
-                <p className="text-xs text-black-1">{11.12}</p>
+                <p className="text-xs text-black-1">
+                  {data?.createdAt &&
+                    new Date(data.createdAt).toLocaleDateString()}
+                </p>
                 <p className="flex text-sm font-medium">
                   {data.investment.corpName}
                 </p>
               </div>
-              <div className="items-end flex flex-col gap-y-0.5">
-                <div className="flex gap-x-0.5 text-xs">
-                  <p className="text-[10px]">{data.investment.quantity}주</p>
-                  <p
-                    className={`${tradeTypeColor(data.investment.investType)}`}
-                  >
-                    {TRADETYPE_MAP[data.investment.investType]}
+              {data?.investment && (
+                <div className="items-end flex flex-col gap-y-0.5">
+                  <div className="flex gap-x-0.5 text-xs">
+                    <p className="text-[10px]">{data.investment.quantity}주</p>
+                    <p
+                      className={`${tradeTypeColor(data.investment.investType)}`}
+                    >
+                      {TRADETYPE_MAP[data.investment.investType]}
+                    </p>
+                  </div>
+                  <p className="text-sm text-black-0">
+                    {formatNumberCommas(data.investment.totalPrice)}원
                   </p>
                 </div>
-                <p className="text-sm text-black-0">
-                  {formatNumberCommas(data.investment.totalPrice)}원
-                </p>
-              </div>
+              )}
             </div>
           ))
         )}
