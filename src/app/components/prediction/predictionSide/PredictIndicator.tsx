@@ -1,6 +1,5 @@
 'use client';
 
-import { infoIcon } from '@/app/constants/iconPath';
 import {
   PREDICTION_INDICATION_SORT,
   PREDICTION_SIDEBAR_TEXT,
@@ -9,7 +8,6 @@ import useStockStore from '@/app/store/store';
 import { callPost } from '@/app/utils/callApi';
 import { useState } from 'react';
 import Button from '../../common/Button';
-import Icons from '../../common/Icons';
 
 interface PredictionData {
   time: number;
@@ -71,8 +69,6 @@ const PredictIndicator: React.FC<PredictIndicatorProps> = ({
       );
 
       if (response?.result) {
-        console.log('API 응답 데이터:', response.result);
-
         const newChartData = response.result.dates.map(
           (date: string, index: number) => ({
             time: new Date(date).getTime() / 1000,
@@ -97,7 +93,6 @@ const PredictIndicator: React.FC<PredictIndicatorProps> = ({
           chartData: newChartData,
         });
       } else {
-        console.error('API 응답 에러:', response);
         window.alert('예측 데이터를 가져오지 못했습니다.');
       }
     } catch (error) {
@@ -124,35 +119,12 @@ const PredictIndicator: React.FC<PredictIndicatorProps> = ({
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <Icons name={infoIcon} />
           <p className="text-[10px] text-gray-1">
             각기 다른 예측 결과를 확인해보세요
           </p>
-          {isTooltipVisible && (
-            <div className="absolute top-[-58px] right-[145px] w-[240px] p-3 bg-gray-100 text-gray-800 rounded-lg shadow-lg z-10">
-              <p className="text-[10px] font-bold">
-                {PREDICTION_SIDEBAR_TEXT[3]}
-                <span className="text-[8px] font-normal">
-                  {PREDICTION_SIDEBAR_TEXT[4]}
-                </span>
-              </p>
-              <p className="text-[10px] font-bold">
-                {PREDICTION_SIDEBAR_TEXT[5]}
-                <span className="text-[8px] font-normal">
-                  {PREDICTION_SIDEBAR_TEXT[6]}
-                </span>
-              </p>
-              <p className="text-[10px] font-bold">
-                {PREDICTION_SIDEBAR_TEXT[7]}
-                <span className="text-[8px] font-normal">
-                  {PREDICTION_SIDEBAR_TEXT[8]}
-                </span>
-              </p>
-            </div>
-          )}
         </div>
       </div>
-      <div className="w-full py-3 px-5 flex-col flex gap-y-3 rounded mb-1">
+      <div className="w-full py-3 px-5 flex-col flex gap-y-2 rounded mb-1">
         {PREDICTION_INDICATION_SORT.map((method, index) => (
           <label
             key={method}
@@ -167,9 +139,9 @@ const PredictIndicator: React.FC<PredictIndicatorProps> = ({
                 checked={selectedMethod === method}
                 onChange={() => handleCheckboxChange(method)}
               />
-              <span className="text-[11px] font-semibold">{method}</span>
+              <span className="text-xs font-medium">{method}</span>
             </div>
-            <p className="text-[10px] text-gray-500 pl-3">
+            <p className="text-[11px] text-gray-1 pl-2">
               {PREDICTION_SIDEBAR_TEXT[index + 3]}
             </p>
           </label>

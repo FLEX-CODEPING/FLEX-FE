@@ -44,20 +44,20 @@ const PredictionResult = ({
             {PREDICTION_SIDEBAR_RESULT[1]}
           </p>
           {isTooltipVisible && (
-            <div className="absolute top-[-550%] right-[60px] z-8 w-[288px] p-2 bg-gray-100 text-gray-700 rounded-md shadow-lg whitespace-pre-line">
+            <div className="absolute top-[-550%] right-[60px] z-8 w-[480px] p-2 bg-gray-100 text-black-0 rounded-md shadow-lg whitespace-pre-line">
               <div className="flex items-center mb-1">
-                <strong className="text-[12px] font-bold">
+                <strong className="text-sm font-bold">
                   {PREDICTION_SIDEBAR_RESULT[5]}
                 </strong>
               </div>
-              <p className="text-[8px] text-gray-800">
+              <p className="text-[11px] text-gray-800">
                 {PREDICTION_SIDEBAR_RESULT[6]}
               </p>
               <div className="mt-2">
-                <strong className="text-[10px] font-semibold">
+                <strong className="text-xs font-semibold">
                   {PREDICTION_SIDEBAR_RESULT[7]}
                 </strong>
-                <span className="text-[8px] text-gray-800">
+                <span className="text-[10px] text-gray-800">
                   {PREDICTION_SIDEBAR_RESULT[8]}
                 </span>
               </div>
