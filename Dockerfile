@@ -39,7 +39,7 @@ RUN apk add --no-cache libc6-compat
 RUN addgroup --system --gid 1001 nodejs \
     && adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app /app
+COPY --from=builder /app ./
 
 # 사용자 변경
 USER nextjs
