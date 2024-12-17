@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import HoldStockRecord from '../../trade/HoldStockRecord';
 import EmptyGuide from '../EmptyGuide';
+import LoadingPossesion from './\bLoadingPossesion';
 
 const Posession = () => {
   const [isSelected, setIsSelected] = useState(false);
@@ -19,7 +20,7 @@ const Posession = () => {
     setIsSelected(true);
   };
   if (isLoading) {
-    return;
+    return <LoadingPossesion />;
   }
 
   const { stocks, stockPrices } = data as {

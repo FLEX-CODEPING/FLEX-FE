@@ -23,7 +23,7 @@ const TradeBar = () => {
   const [amountType, setAmountType] = useState<AmountType | null>(null);
   const [stockPrice, setStockPrice] = useState(0);
   const { stockCode } = useStockStore();
-  
+
   const selectAmountType = (type: AmountType, i: number) => {
     const possibleCnt = isBuy
       ? (balance / stockPrice) * AMOUNT_PERCENT[i]
@@ -65,11 +65,11 @@ const TradeBar = () => {
       const limitResponse = await callGet(
         `/api/stocks/hold?holdStatus=HOLDING&page=1&size=20&property=createdAt&direction=desc`,
       );
+
       const stocks = limitResponse.result.content;
       const hold: HoldStockTypes = stocks.find(
         (item: HoldStockTypes) => item.stockCode === stockCode,
       );
-
       setStockPrice(price.result[0].stck_prpr);
       if (!isBuy && hold) {
         setStockPrice(Math.floor(hold.avgPrice));

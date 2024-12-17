@@ -15,8 +15,6 @@ const fetchHoldStocks = async () => {
       return { stockCode: item.stockCode, price: data.result[0].stck_prpr };
     }),
   );
-  console.log(stockPrices, '받아온 가격들');
-
   return { stocks, stockPrices };
 };
 
