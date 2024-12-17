@@ -6,6 +6,8 @@ import {
 } from '@/app/constants/auth';
 import { isCorrect } from '@/app/utils/qualify';
 import { ACCOUNT_TEXT } from '@/app/constants/mypage';
+import { useState } from 'react';
+import { callPost } from '@/app/utils/callApi';
 import Input from '../../common/Input';
 
 interface MyPersonalInfoProps {
@@ -14,6 +16,45 @@ interface MyPersonalInfoProps {
 }
 
 const MyPersonalInfo = ({ formData, updateFormData }: MyPersonalInfoProps) => {
+  const [checkStatus, setCheckStatus] = useState<{
+    text: string;
+    textColor: string;
+  }>({ text: '', textColor: 'gray-1' });
+
+  const handleBlogNameCheck = async () => {
+    // 입력값 검증
+    if (!isCorrect(formData.blogName)) {
+      setCheckStatus({
+        text: '유효하지 않은 블로그명입니다.',
+        textColor: 'red-1',
+      });
+      return;
+    }
+
+    try {
+      const response = await callPost('/api/auth/signup/blogname', {
+        blogName: formData.blogName,
+      });
+
+      if (response.isSuccess) {
+        setCheckStatus({
+          text: '사용 가능한 블로그명입니다.',
+          textColor: 'blue-1',
+        });
+        updateFormData('isPossible', true); // 사용 가능 상태 업데이트
+      } else {
+        setCheckStatus({
+          text: '이미 사용 중인 블로그명입니다.',
+          textColor: 'red-1',
+        });
+        updateFormData('isPossible', false); // 사용 불가능 상태 업데이트
+      }
+    } catch (error) {
+      console.error('블로그명 중복 확인 실패:', error);
+      setCheckStatus({ text: '서버 오류가 발생했습니다.', textColor: 'red-1' });
+    }
+  };
+
   return (
     <div className="w-full flex flex-col gap-y-4">
       <div className="w-full flex flex-col gap-x-2.5 gap-y-1">
@@ -22,7 +63,7 @@ const MyPersonalInfo = ({ formData, updateFormData }: MyPersonalInfoProps) => {
           type="signUp"
           textValue={formData.nickname}
           onChange={(e) => updateFormData('nickname', e.target.value)}
-          placeholder="NAKDO"
+          placeholder="NICKNAME"
           maxLength={8}
           className="pr-8 rounded-[10px]"
         />
@@ -33,23 +74,24 @@ const MyPersonalInfo = ({ formData, updateFormData }: MyPersonalInfoProps) => {
           <Input
             type="blogName"
             textValue={formData.blogName}
-            onChange={(e) => updateFormData('blogName', e.target.value)}
+            onChange={(e) => {
+              updateFormData('blogName', e.target.value);
+              updateFormData('isPossible', false); // 입력값 변경 시 상태 초기화
+              setCheckStatus({ text: '', textColor: 'gray-1' });
+            }}
             placeholder={BLOGNAME_TEXT[1]}
             maxLength={8}
           />
           <button
             type="button"
+            onClick={handleBlogNameCheck}
             className="py-2 px-4 rounded-[10px] border bg-black-0 text-white text-sm font-medium"
           >
             {ACCOUNT_TEXT[2]}
           </button>
         </div>
-        <div
-          className={`text-xs pl-2.5 text-gray-1 ${
-            !isCorrect(formData.blogName) && 'text-red-1'
-          }`}
-        >
-          {BLOGNAME_TEXT[2]}
+        <div className={`text-xs pl-2.5 text-${checkStatus.textColor}`}>
+          {checkStatus.text}
         </div>
       </div>
       <div className="w-full flex flex-col gap-x-2.5 gap-y-1">

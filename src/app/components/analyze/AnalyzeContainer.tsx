@@ -15,7 +15,7 @@ import Icons from '../common/Icons';
 const AnalyzeContainer = () => {
   const fadeInVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1 } },
   };
 
   const [nickname, setNickname] = useState<string>('');
@@ -96,7 +96,7 @@ const AnalyzeContainer = () => {
             className="px-[6%] w-full h-auto flex-col flex gap-3"
           >
             <div className="w-full px-3 pt-3 pb-1.5 bg-white border-b border-main-1 justify-between items-end flex">
-              <div className="text-center text-black text-2xl font-bold font-['Plus Jakarta Sans'] leading-9">
+              <div className="text-center text-black text-2xl font-bold leading-9">
                 {ANALYZE_RESULT_TITLE[0]}
               </div>
               <div className="text-center text-gray-1 text-xs flex items-center gap-1 tracking-wide">
@@ -104,10 +104,19 @@ const AnalyzeContainer = () => {
                 <p>{ANALYZE_RESULT_GUIDE[0]}</p>
               </div>
             </div>
-            <div className="pl-10 leading-9">
-              <p>위험도: {analysisData.investmentStyle.riskLevel}</p>
-              <p>거래 패턴: {analysisData.investmentStyle.tradingPattern}</p>
-              <p>분석: {analysisData.investmentStyle.analysis}</p>
+            <div className="pl-10 leading-9 tracking-wide">
+              <p>
+                <span className="font-bold">위험도 :</span>{' '}
+                {analysisData.investmentStyle.riskLevel}
+              </p>
+              <p>
+                <span className="font-bold">거래 패턴 :</span>{' '}
+                {analysisData.investmentStyle.tradingPattern}
+              </p>
+              <p>
+                <span className="font-bold">분석 :</span>{' '}
+                {analysisData.investmentStyle.analysis}
+              </p>
             </div>
           </motion.div>
 
@@ -117,7 +126,7 @@ const AnalyzeContainer = () => {
             className="px-[6%] w-full h-auto flex-col flex gap-3"
           >
             <div className="w-full px-3 pt-3 pb-1.5 bg-white border-b border-main-1 justify-between items-end flex">
-              <div className="text-center text-black text-2xl font-bold font-['Plus Jakarta Sans'] leading-9">
+              <div className="text-center text-black text-2xl font-bold leading-9">
                 {ANALYZE_RESULT_TITLE[1]}
               </div>
               <div className="text-center text-gray-1 text-xs flex items-center gap-1 tracking-wide">
@@ -125,19 +134,48 @@ const AnalyzeContainer = () => {
                 <p>{ANALYZE_RESULT_GUIDE[1]}</p>
               </div>
             </div>
-            <div className="pl-10 leading-9">
-              <p>추천 전략: {analysisData.investmentStrategy.recommendation}</p>
+            <div className="pl-10 leading-9 tracking-wide">
               <p>
-                리스크 관리: {analysisData.investmentStrategy.riskManagement}
+                <span className="font-bold">추천 전략 :</span>{' '}
+                {analysisData.investmentStrategy.recommendation}
               </p>
-              <p>분석: {analysisData.investmentStrategy.analysis}</p>
+              <p>
+                <span className="font-bold">리스크 관리 :</span>{' '}
+                {analysisData.investmentStrategy.riskManagement}
+              </p>
+              <p>
+                <span className="font-bold">분석 :</span>{' '}
+                {analysisData.investmentStrategy.analysis}
+              </p>
             </div>
           </motion.div>
         </>
       ) : (
-        <p className="text-center mt-10 text-gray-500">
-          분석 데이터를 불러오는 중...
-        </p>
+        <div>
+          <motion.div
+            className="font-bold flex items-center justify-center mt-[100px] tracking-wide text-[20px]"
+            variants={fadeInVariants}
+          >
+            📈 {nickname}님의 제테크 타입을 분석중입니다...
+          </motion.div>
+          <div className="flex gap-3 justify-center items-center mt-[70px]">
+            {[0, 1, 2].map((index) => (
+              <motion.div
+                key={index}
+                className="w-4 h-4 bg-main-1 rounded-full"
+                animate={{
+                  y: [0, -10, 0],
+                  opacity: [1, 0.5, 1],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  delay: index * 0.2,
+                }}
+              />
+            ))}
+          </div>
+        </div>
       )}
     </motion.div>
   );

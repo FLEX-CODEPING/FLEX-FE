@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import Icons from '@/app/components/common/Icons';
 import { searchBig } from '@/app/constants/iconPath';
 import SearchPost from './SearchPost';
@@ -7,25 +8,47 @@ import SearchPost from './SearchPost';
 interface ResultsProps {
   results: SearchPostTypes[]; // SearchPostTypes로 변경
   searchExecuted: boolean;
-  loading: boolean;
   totalResults: number;
-  currentPage: number;
-  totalPages: number;
-  handlePageChange: (page: number) => void;
 }
 
 const Results: React.FC<ResultsProps> = ({
   results,
   searchExecuted,
-  loading,
   totalResults,
-  currentPage,
-  totalPages,
-  handlePageChange,
 }) => {
+  const containerVariants = {
+    hidden: { opacity: 0, y: -20 }, // 초기 상태
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8, // 애니메이션 지속 시간
+        ease: 'easeOut',
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.9 }, // 초기 상태
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.3,
+        ease: 'easeOut',
+      },
+    },
+  };
+
   return (
-    <div className="w-full overflow-x-hidden">
-      {searchExecuted && (
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+      className="w-full overflow-x-hidden"
+    >
+      {/* 검색 결과 개수 */}
+      {searchExecuted && totalResults > 0 && (
         <div className="flex justify-center mt-[15px] text-[17px] mb-[24px]">
           <p>
             총 <span className="font-bold">{totalResults}</span>개의 포스트를
@@ -34,25 +57,24 @@ const Results: React.FC<ResultsProps> = ({
         </div>
       )}
 
-      {loading ? (
-        <div className="flex justify-center items-center h-[60px]">
-          <p>로딩 중...</p>
-        </div>
-      ) : searchExecuted && results.length === 0 ? (
-        <div className="flex flex-col items-center text-center mt-[193px]">
-          <Icons name={searchBig} />
-          <p>검색 결과가 없습니다.</p>
-        </div>
-      ) : (
-        <div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-[4px] ml-8 p-4">
-            {results.map((post) => (
+      {/* 검색 결과 리스트 */}
+      {searchExecuted && totalResults > 0 && (
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-[28px] gap-y-[20px] ml-8 p-4"
+          variants={containerVariants}
+        >
+          {results.map((post) => (
+            <motion.div
+              key={post.id}
+              variants={itemVariants}
+              className="search-post"
+            >
               <SearchPost key={post.id} post={post} />
-            ))}
-          </div>
-        </div>
+            </motion.div>
+          ))}
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

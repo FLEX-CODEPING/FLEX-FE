@@ -3,6 +3,7 @@ import { likeSmall } from '@/app/constants/iconPath';
 import { truncateString } from '@/app/utils/truncate';
 import Image from 'next/image';
 import Link from 'next/link';
+import 'github-markdown-css';
 
 interface DailyPostProps {
   post: LandingPostTypes;
@@ -13,12 +14,25 @@ const DailyPost = ({ post }: DailyPostProps) => {
     ? post.tags.split(',').map((tag: string) => `#${tag}`)
     : [];
 
-  const textContent = post.content.replace(/!\[.*?\]\(.*?\)/g, '').trim();
+  const removeHtmlTags = (content: string) => {
+    return content.replace(/<[^>]*>?/gm, '');
+  };
 
-  const thumbnailUrl =
-    post.imageUrls && post.imageUrls.length > 0
-      ? post.imageUrls[0]
-      : '/images/3c.png';
+  const removeMarkdownTags = (content: string) => {
+    return content
+      .replace(/[#*~`>+-]/g, '') // Markdown 기호 제거
+      .replace(/\n/g, ' ') // 줄바꿈을 공백으로 변경
+      .trim(); // 앞뒤 공백 제거
+  };
+
+  const removeImageTags = (content: string) => {
+    return content.replace(/!\[.*?\]\(.*?\)/g, ''); // 이미지 태그 제거
+  };
+
+  // 결과 출력 시 처리
+  const textContent = post.content
+    ? removeImageTags(removeHtmlTags(removeMarkdownTags(post.content))).trim()
+    : '';
 
   return (
     <Link
@@ -28,14 +42,13 @@ const DailyPost = ({ post }: DailyPostProps) => {
     >
       <div className="relative w-full h-32 overflow-hidden rounded">
         <Image
-          src={thumbnailUrl}
+          src={post.thumbnailUrl || '/images/3c.png'}
           alt={post.title}
           fill
           objectFit="cover"
           className="rounded transition-transform duration-300 ease-in-out group-hover:scale-110"
         />
       </div>
-
       <h2 className="font-semibold">{post.title}</h2>
       <p className="text-sm h-9 font-light text-black-0">
         {truncateString(textContent, 66)}
