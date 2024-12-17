@@ -11,6 +11,7 @@ import {
 } from '@/app/constants/simulation';
 import useStockStore from '@/app/store/store';
 import { callPost } from '@/app/utils/callApi';
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import BackTestResult from './BackTestResult';
 
@@ -66,7 +67,7 @@ const BackTest = () => {
     setOrderType('매일');
     setOrderSnt('0');
     setIsFinish(false);
-    setTestResult(null)
+    setTestResult(null);
   };
 
   return (
@@ -139,7 +140,14 @@ const BackTest = () => {
         <div className="w-[100%] border-b border-b-gray-2 mt-2 py-2" />
       </div>
       {testResult ? (
-        <BackTestResult testResult={testResult} orderType={orderType} />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="w-full h-full"
+        >
+          <BackTestResult testResult={testResult} orderType={orderType} />
+        </motion.div>
       ) : (
         <div className="flex-1 flex-center flex-col gap-y-1 animate-pulse font-light pb-8 bg-gray-6 rounded-lg duratio 2s ease-in-out">
           <p className="text-lg">✏️</p>
