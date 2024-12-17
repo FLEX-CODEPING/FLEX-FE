@@ -14,12 +14,25 @@ const SearchPost = ({ post }: SearchPostProps) => {
     ? post.tags.split(',').map((tag: string) => `#${tag.trim()}`)
     : [];
 
-  const textContent = post.content.replace(/!\[.*?\]\(.*?\)/g, '').trim();
+  const removeHtmlTags = (content: string) => {
+    return content.replace(/<[^>]*>?/gm, '');
+  };
 
-  const thumbnailUrl =
-    post.imageUrls && post.imageUrls.length > 0
-      ? post.imageUrls[0]
-      : '/images/thumbnail/stock3.png';
+  const removeMarkdownTags = (content: string) => {
+    return content
+      .replace(/[#*~`>+-]/g, '') // Markdown 기호 제거
+      .replace(/\n/g, ' ') // 줄바꿈을 공백으로 변경
+      .trim(); // 앞뒤 공백 제거
+  };
+
+  const removeImageTags = (content: string) => {
+    return content.replace(/!\[.*?\]\(.*?\)/g, ''); // 이미지 태그 제거
+  };
+
+  // 결과 출력 시 처리
+  const textContent = post.content
+    ? removeImageTags(removeHtmlTags(removeMarkdownTags(post.content))).trim()
+    : '';
 
   return (
     <Link
@@ -29,7 +42,7 @@ const SearchPost = ({ post }: SearchPostProps) => {
     >
       <div className="relative w-full h-40 overflow-hidden rounded-md">
         <Image
-          src={thumbnailUrl}
+          src={post.imageUrls[0] || '/images/3c.png'}
           alt={post.title}
           fill
           objectFit="cover"

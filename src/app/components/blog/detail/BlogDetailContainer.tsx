@@ -20,13 +20,6 @@ const BlogDetailContainer = ({ postId }: PostDetailProps) => {
   const currentUserId = user?.result?.nickname;
   const router = useRouter();
 
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
   // Scroll to top before the component is painted
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -59,7 +52,25 @@ const BlogDetailContainer = ({ postId }: PostDetailProps) => {
 
   if (!blogData) {
     console.log(blogData);
-    return <div>Loading...</div>;
+    return (
+      <div className="flex gap-3 justify-center items-center mt-7">
+        {[0, 1, 2].map((index) => (
+          <motion.div
+            key={index}
+            className="w-4 h-4 bg-main-1 rounded-full"
+            animate={{
+              y: [0, -10, 0],
+              opacity: [1, 0.5, 1],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              delay: index * 0.2,
+            }}
+          />
+        ))}
+      </div>
+    );
   }
 
   const handleNicknameClick = () => {
@@ -68,36 +79,57 @@ const BlogDetailContainer = ({ postId }: PostDetailProps) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      initial={{ opacity: 0, scale: 0.95, y: 50 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95, y: -50 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
       className="relative"
     >
-      {/* 스크롤 진행바 */}
       <motion.div
-        style={{ scaleX }}
-        className="fixed top-0 left-0 right-0 h-2 bg-main-1 origin-left z-50"
-      />
-
-      {/* 콘텐츠 */}
-      <div>
+        className="container mx-auto p-4"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.3,
+          duration: 0.6,
+          ease: 'easeOut',
+        }}
+      >
         <BlogHeader
           tags={blogData.tags}
           likeStatus={blogData.likeStatus}
           likeCount={blogData.likeCount}
           postId={blogData.id}
         />
-        <BlogTitle
-          title={blogData.title}
-          nickname={blogData.nickname}
-          createdAt={blogData.createdAt}
-          userId={blogData.userId}
-          onNicknameClick={handleNicknameClick}
-          following={blogData.following}
-        />
-        <BlogContent content={blogData.content} />
-        <BlogComment postId={blogData.id} currentUserId={currentUserId} />
-      </div>
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+        >
+          <BlogTitle
+            title={blogData.title}
+            nickname={blogData.nickname}
+            createdAt={blogData.createdAt}
+            userId={blogData.userId}
+            onNicknameClick={handleNicknameClick}
+            following={blogData.following}
+          />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.6, ease: 'easeOut' }}
+        >
+          <BlogContent content={blogData.content} />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.6, ease: 'easeOut' }}
+        >
+          <BlogComment postId={blogData.id} currentUserId={currentUserId} />
+        </motion.div>
+      </motion.div>
     </motion.div>
   );
 };

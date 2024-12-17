@@ -5,11 +5,14 @@ interface SearchBarProps {
   query: string;
   setQuery: (query: string) => void;
   handleSearch: () => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void; // onKeyDown 추가
 }
+
 const SearchBar: React.FC<SearchBarProps> = ({
   query,
   setQuery,
   handleSearch,
+  onKeyDown, // 추가된 prop
 }) => {
   return (
     <div className="flex items-center border border-[#F95700] rounded-full p-4 w-[687px] h-[58px] mx-auto my-2.5">
@@ -18,6 +21,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         placeholder="검색어를 입력해 주세요."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={onKeyDown} // onKeyDown 이벤트 추가
         className="flex-1 border-none outline-none p-3 text-base rounded-full"
       />
       <button
@@ -30,4 +34,5 @@ const SearchBar: React.FC<SearchBarProps> = ({
     </div>
   );
 };
+
 export default SearchBar;

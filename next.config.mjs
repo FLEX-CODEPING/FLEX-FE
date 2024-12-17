@@ -10,6 +10,7 @@ const nextConfig = {
       '308b-203-249-127-39.ngrok-free.app',
       '4870-203-249-127-39.ngrok-free.app',
       '308b-203-249-127-39.ngrok-free.app',
+      'opgg-com-image.akamaized.net',
     ],
     remotePatterns: [
       {

@@ -14,7 +14,25 @@ const BlogPost = ({ post }: BlogPostProps) => {
     ? post.tags.split(',').map((tag: string) => `#${tag}`)
     : [];
 
-  const textContent = post.content.replace(/!\[.*?\]\(.*?\)/g, '').trim();
+  const removeHtmlTags = (content: string) => {
+    return content.replace(/<[^>]*>?/gm, '');
+  };
+
+  const removeMarkdownTags = (content: string) => {
+    return content
+      .replace(/[#*~`>+-]/g, '') // Markdown 기호 제거
+      .replace(/\n/g, ' ') // 줄바꿈을 공백으로 변경
+      .trim(); // 앞뒤 공백 제거
+  };
+
+  const removeImageTags = (content: string) => {
+    return content.replace(/!\[.*?\]\(.*?\)/g, ''); // 이미지 태그 제거
+  };
+
+  // 결과 출력 시 처리
+  const textContent = post.content
+    ? removeImageTags(removeHtmlTags(removeMarkdownTags(post.content))).trim()
+    : '';
 
   return (
     <Link

@@ -59,7 +59,7 @@ pipeline {
                                 export \$(cat ./.env | xargs)
 
                                 # 기존 컨테이너 중지 및 제거
-                                docker compose down --remove-orphans
+                                docker compose down
 
                                 # Docker Compose 파일에 IMAGE_TAG 적용
                                 sed -i "s|image: ${IMAGE_NAME}:.*|image: ${IMAGE_NAME}:${IMAGE_TAG}|" docker-compose.yml
