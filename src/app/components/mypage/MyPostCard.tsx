@@ -28,7 +28,7 @@ const MyPostCard = ({ mypost }: MyPostCardsProps) => {
           objectFit="cover"
           className="rounded-[10px]"
           src={
-            mypost.imageUrls.length > 0 ? mypost.imageUrls[0] : '/images/3c.png'
+            mypost.imageUrls.length > 0 ? mypost.imageUrls[0] : '/images/thumbnail/stock3.png'
           }
           alt="thumbnail"
         />

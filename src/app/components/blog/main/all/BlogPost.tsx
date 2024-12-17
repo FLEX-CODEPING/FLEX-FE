@@ -24,7 +24,7 @@ const BlogPost = ({ post }: BlogPostProps) => {
     >
       <div className="relative w-full h-40 overflow-hidden rounded-md">
         <Image
-          src={post.imageUrls[0] || '/images/3c.png'}
+          src={post.imageUrls[0] || '/images/thumbnail/stock3.png'}
           alt={post.title}
           fill
           objectFit="cover"

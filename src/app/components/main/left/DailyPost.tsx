@@ -14,11 +14,10 @@ const DailyPost = ({ post }: DailyPostProps) => {
     : [];
 
   const textContent = post.content.replace(/!\[.*?\]\(.*?\)/g, '').trim();
-
   const thumbnailUrl =
-    post.imageUrls && post.imageUrls.length > 0
-      ? post.imageUrls[0]
-      : '/images/3c.png';
+    post.thumbnailUrl && post.thumbnailUrl.length > 0
+      ? post.thumbnailUrl
+      : '/images/thumbnail/stock3.png';
 
   return (
     <Link

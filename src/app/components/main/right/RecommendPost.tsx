@@ -21,6 +21,8 @@ const RecommendPost = () => {
   useEffect(() => {
     const fetchPost = async () => {
       const response = await callGet(`/api/main/recommend`);
+      console.log(response, '데이터 배열');
+
       response.isSuccess && setDatas(response.result);
     };
 
@@ -81,7 +83,7 @@ const RecommendPost = () => {
                   <Image
                     fill
                     className="rounded transition-transform duration-300 ease-in-out group-hover:scale-110 "
-                    src={data.imageUrls[0] || '/images/3c.png'}
+                    src={data.imageUrls[0] || `/images/thumbnail/stock${i+1}.png`}
                     alt="thumbnail"
                     loading="lazy"
                   />

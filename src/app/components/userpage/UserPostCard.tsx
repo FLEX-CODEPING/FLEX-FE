@@ -25,7 +25,7 @@ const UserPostCard = ({ userpost }: UserPostCardProps) => {
           src={
             userpost.imageUrls.length > 0
               ? userpost.imageUrls[0]
-              : '/images/3c.png'
+              : '/images/thumbnail/stock3.png'
           }
           alt="thumbnail"
         />
