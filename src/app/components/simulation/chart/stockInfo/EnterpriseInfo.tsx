@@ -18,7 +18,6 @@ const EnterpriseInfo = () => {
   useEffect(() => {
     getStockDetail();
   }, [stockCode]);
-  console.log(corpInfo, '기업정보');
 
   return (
     <div className="flex flex-wrap w-full text-xs pl-3">

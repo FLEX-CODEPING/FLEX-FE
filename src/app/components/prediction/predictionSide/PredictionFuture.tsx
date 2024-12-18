@@ -30,7 +30,6 @@ export const predictionSide = async (
       const endpoint = endpoints[indicator];
 
       if (!endpoint) {
-        console.log('전달된 indicator:', endpoint);
         console.error(`유효하지 않은 indicator: ${indicator}`);
         return Promise.resolve({
           indicator,
@@ -38,14 +37,8 @@ export const predictionSide = async (
         });
       }
 
-      console.log(
-        `API 요청 URL: /api/stocks/predictions?operation=${endpoint}`,
-        reqBody,
-      );
-
       return callPost(`/api/stocks/predictions?operation=${endpoint}`, reqBody)
         .then((response) => {
-          console.log('API 응답:', response);
           if (response?.isSuccess && response.result) {
             return {
               indicator,
@@ -72,7 +65,6 @@ export const predictionSide = async (
     });
 
     const results = await Promise.all(promises);
-    console.log('최종 예측 결과:', results);
     return results;
   } catch (error) {
     console.error('전체 예측 처리 중 에러 발생:', error);

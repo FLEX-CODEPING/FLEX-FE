@@ -58,7 +58,11 @@ const BuyCalculation = ({
         buttonText={TRADE_BUY_TEXT[9]}
         isDisabled={!isQualified}
         type="trade"
-        className={isQualified ? 'bg-red-1' : 'cursor-not-allowed bg-gray-1 dark:bg-black-1'}
+        className={
+          isQualified
+            ? 'bg-red-1'
+            : 'cursor-not-allowed bg-gray-1 dark:bg-black-1'
+        }
         onClickHandler={openModal}
       />
     </div>

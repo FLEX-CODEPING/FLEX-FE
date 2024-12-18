@@ -18,7 +18,6 @@ export const useUserStore = create<UserState>((set) => ({
       const data = await callGet('/api/auth/user');
       if (data.code === 'JWT_006') {
         const response = await callPost('/api/auth/refresh');
-        console.log(response);
       }
       set({ user: data, isLoading: false, error: null });
     } catch (err) {

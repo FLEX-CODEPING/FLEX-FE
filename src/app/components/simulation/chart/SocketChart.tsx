@@ -64,7 +64,6 @@ const WebSocketChart = ({ stockCode }: WebSocketChartProps) => {
         };
 
         socket.onclose = () => {
-          console.log('WebSocket 연결 종료');
           setIsConnected(false);
         };
       } catch (error) {
@@ -77,7 +76,6 @@ const WebSocketChart = ({ stockCode }: WebSocketChartProps) => {
 
     return () => {
       if (socket) {
-        console.log('기존 WebSocket 연결 종료');
         socket.close();
         socket = null;
       }
@@ -85,10 +83,10 @@ const WebSocketChart = ({ stockCode }: WebSocketChartProps) => {
   }, [stockCode]);
 
   if (socketError) {
-    return <div></div>;
+    return <div />;
   }
 
-  return <div></div>;
+  return <div />;
 };
 
 export default WebSocketChart;

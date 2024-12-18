@@ -44,7 +44,6 @@ const SetWebhook: React.FC<SetWebhookProps> = ({
       `/api/stocks/predictions/notification?operation=${standard}`,
       payload,
     );
-    console.log(response, '요청완료 다음 값으로 요청함', payload);
 
     if (response.isSuccess) {
       window.alert('알림이 성공적으로 등록되었습니다.');

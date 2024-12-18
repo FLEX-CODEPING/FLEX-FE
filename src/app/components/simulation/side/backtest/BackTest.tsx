@@ -56,7 +56,6 @@ const BackTest = () => {
 
   const postBackTest = async () => {
     const res = await callPost('/api/stocks/backtest', backReq);
-    console.log(res, backReq);
     setTestResult(res.result);
     setIsFinish(true);
   };
@@ -134,7 +133,11 @@ const BackTest = () => {
         <Button
           buttonText={isFinish ? BACKTEST_BTN_TEXT[1] : BACKTEST_BTN_TEXT[0]}
           type="backTest"
-          className={isQualified ? 'bg-main-1/90' : 'bg-gray-2 dark:bg-gray-2 dark:border-gray-1 dark:text-black-1'}
+          className={
+            isQualified
+              ? 'bg-main-1/90'
+              : 'bg-gray-2 dark:bg-gray-2 dark:border-gray-1 dark:text-black-1'
+          }
           onClickHandler={isFinish ? resetTest : postBackTest}
         />
         <div className="w-[100%] border-b border-b-gray-2 mt-2 py-2" />

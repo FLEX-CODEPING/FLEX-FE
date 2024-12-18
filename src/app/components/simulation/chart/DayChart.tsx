@@ -50,7 +50,6 @@ const DayChart = ({
   useLayoutEffect(() => {
     if (!chartContainerRef.current || data.length === 0) return;
     const isDarkMode = document.documentElement.classList.contains('dark');
-    console.log(isDarkMode, '값');
 
     const chart = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,

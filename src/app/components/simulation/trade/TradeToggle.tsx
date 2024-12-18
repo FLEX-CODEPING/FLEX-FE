@@ -8,7 +8,8 @@ interface TradeToggleProps {
 
 const TradeToggle = ({ isBuy, chngeTradeType }: TradeToggleProps) => {
   const textStyles = (type: TradeType) => {
-    if (isBuy) return type === '매수' ? 'text-red-1' : 'text-gray-1 dark:text-gray-3';
+    if (isBuy)
+      return type === '매수' ? 'text-red-1' : 'text-gray-1 dark:text-gray-3';
     return type === '매도' ? 'text-blue-1' : 'text-gray-1 dark:text-gray-3';
   };
   return (

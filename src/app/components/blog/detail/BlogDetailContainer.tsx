@@ -26,8 +26,6 @@ const BlogDetailContainer = ({ postId }: PostDetailProps) => {
   }, []);
 
   useEffect(() => {
-    console.log(postId, '받아온 아이디');
-
     const fetchData = async () => {
       try {
         const resData = await callGet(`/api/detail?id=${postId}`);
@@ -42,7 +40,6 @@ const BlogDetailContainer = ({ postId }: PostDetailProps) => {
           tags: tagsArray,
           createdAt: formattedCreatedAt,
         });
-        console.log(resData.result.content);
       } catch (error) {
         console.error('Error fetching post details:', error);
       }
@@ -51,7 +48,6 @@ const BlogDetailContainer = ({ postId }: PostDetailProps) => {
   }, [postId]);
 
   if (!blogData) {
-    console.log(blogData);
     return (
       <div className="flex gap-3 justify-center items-center mt-7">
         {[0, 1, 2].map((index) => (
