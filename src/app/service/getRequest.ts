@@ -101,7 +101,7 @@ export const getLandingPopular = async (req: Request) => {
 };
 
 export const getLandingRecommend = async (req: Request) => {
-  const url = '/api/blogs/landings/recommend';
+  const url = '/api/blogs/landings/recommend?filter=CREATED_AT&page=1&size=3';
   return getRequest(url, req);
 };
 
