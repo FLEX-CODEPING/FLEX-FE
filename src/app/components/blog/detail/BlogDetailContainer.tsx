@@ -20,7 +20,6 @@ const BlogDetailContainer = ({ postId }: PostDetailProps) => {
   const currentUserId = user?.result?.nickname;
   const router = useRouter();
 
-  // Scroll to top before the component is painted
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -65,6 +64,9 @@ const BlogDetailContainer = ({ postId }: PostDetailProps) => {
             }}
           />
         ))}
+        {/* <div className="absolute top-[200px] font-semibold text-[20px]">
+          게시물을 찾을 수 없습니다.
+        </div> */}
       </div>
     );
   }
@@ -107,6 +109,7 @@ const BlogDetailContainer = ({ postId }: PostDetailProps) => {
             nickname={blogData.nickname}
             createdAt={blogData.createdAt}
             userId={blogData.userId}
+            currentUserId={currentUserId}
             onNicknameClick={handleNicknameClick}
             following={blogData.following}
           />

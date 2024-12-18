@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { deleteIcon, pencilIcon } from '@/app/constants/iconPath';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+import { toast } from 'react-toastify';
 import Icons from '../../common/Icons';
 import CommentInput from './CommentInput';
 
@@ -23,7 +24,7 @@ const CommentItem = ({
     comment.content,
   );
   const [replyOpen, setReplyOpen] = useState<boolean>(false);
-  const [isDeleting, setIsDeleting] = useState<boolean>(false); // 삭제 상태 추가
+  const [isDeleting, setIsDeleting] = useState<boolean>(false);
   const router = useRouter();
 
   const handleEditClick = () => {
@@ -41,6 +42,7 @@ const CommentItem = ({
       if (response.isSuccess) {
         setIsEditing(false);
         onUpdateComments();
+        toast.success('댓글이 수정되었습니다.');
       }
     } catch (error) {
       console.error('Failed to edit comment:', error);
@@ -49,22 +51,23 @@ const CommentItem = ({
 
   const handleDeleteComment = async () => {
     try {
-      setIsDeleting(true); // 삭제 애니메이션 시작
+      setIsDeleting(true);
       setTimeout(async () => {
         const response = await callDelete(
           `/api/comment/delete?postId=${comment.postId}&commentId=${comment.id}`,
         );
         if (response && response.isSuccess) {
           onUpdateComments();
+          toast.success('댓글이 삭제되었습니다.');
         }
-      }, 300); // 애니메이션 지속 시간과 일치
+      }, 300);
     } catch (error) {
       console.error('Failed to delete comment:', error);
     }
   };
 
   const handleProfileClick = () => {
-    router.push(`/user/${comment.blogName}`); // 이동 경로 설정
+    router.push(`/user/${comment.blogName}`);
   };
 
   return (

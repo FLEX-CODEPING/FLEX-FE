@@ -85,7 +85,6 @@ function AccountContainer() {
       const resData = await response.json();
       const presignedUrl = resData.result;
 
-      // 이미지 PUT 요청
       const uploadResponse = await fetch(presignedUrl, {
         method: 'PUT',
         headers: {
@@ -98,13 +97,15 @@ function AccountContainer() {
         throw new Error('이미지 업로드 실패');
       }
 
-      // 업로드된 이미지 URL 생성
       const imageUrl = presignedUrl.split('?')[0];
+      console.log('Uploaded Image URL:', imageUrl);
+
       // 이미지 URL 확인 (선택적 검증)
       const verifyResponse = await fetch(imageUrl);
       if (!verifyResponse.ok) {
         throw new Error('이미지 확인 실패');
       }
+
 
       // formData에 이미지 URL 업데이트
       updateFormData('profileImageUrl', imageUrl);
@@ -122,21 +123,19 @@ function AccountContainer() {
   };
 
   const handleSave = async () => {
-    // 관심 키워드 배열 변환
     const mappedInterests = formData.interestKeywords.map(
       (keyword) => INTEREST_MAP[keyword] || keyword,
     );
 
     const mappedSalaryRange = INCOME_RANGE_MAP[formData.salaryRange];
 
-    // 기존 이미지 유지 로직
     const payload = {
       nickname: formData.nickname,
       blogName: formData.blogName,
       birth: formData.birth,
       salary: mappedSalaryRange,
       interestKeywords: mappedInterests,
-      profileImageUrl: formData.profileImageUrl || '/images/profile.png', // 기존 이미지 유지
+      profileImageUrl: formData.profileImageUrl || '/images/profile.png',
     };
 
     try {
