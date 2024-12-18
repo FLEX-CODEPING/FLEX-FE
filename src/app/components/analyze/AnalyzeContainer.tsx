@@ -11,6 +11,7 @@ import {
 import { useEffect, useState } from 'react';
 import { callGet } from '@/app/utils/callApi';
 import Icons from '../common/Icons';
+import Link from 'next/link';
 
 const AnalyzeContainer = () => {
   const fadeInVariants = {
@@ -20,6 +21,7 @@ const AnalyzeContainer = () => {
 
   const [nickname, setNickname] = useState<string>('');
   const [analysisData, setAnalysisData] = useState<any>(null);
+  const [errorMessage, setErrorMessage] = useState<string>(''); 
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -45,13 +47,24 @@ const AnalyzeContainer = () => {
         if (response.isSuccess) {
           setAnalysisData(response.result);
         } else {
-          console.error(
-            '분석 데이터를 가져오는데 실패했습니다:',
-            response.message,
-          );
+          switch (response.code) {
+            case 'INVESTMENT_ANALYSIS_001':
+              setErrorMessage('최소 투자 내역 수를 충족하지 못했습니다.');
+              break;
+            case 'INVESTMENT_ANALYSIS_002':
+            case 'INVESTMENT_ANALYSIS_003':
+            case 'INVESTMENT_ANALYSIS_004':
+            case 'INVESTMENT_ANALYSIS_005':
+              setErrorMessage('서버 요청 중 오류가 발생했습니다.');
+              break;
+            default:
+              setErrorMessage('알 수 없는 오류가 발생했습니다.');
+              break;
+          }
         }
       } catch (error) {
         console.error('API 요청 중 오류 발생:', error);
+        setErrorMessage('서버 요청 중 오류가 발생했습니다.');
       }
     };
 
@@ -86,8 +99,21 @@ const AnalyzeContainer = () => {
         </div>
       </motion.div>
 
-      {analysisData ? (
+      {errorMessage ? ( 
+        <div className="text-center mt-[100px] text-black font-bold text-xl flex flex-col ">
+          ⚠️ {errorMessage}
+          <Link href="/simulation">
+          <button
+            type="button"
+            className="text-sm text-white bg-main-1 px-4 py-2 rounded hover:bg-main-2 transition-all mt-[100px]"
+          >
+            모의 투자 하러 가기
+          </button>
+        </Link>
+        </div>
+      ) : analysisData ? ( 
         <>
+          
           <motion.div
             variants={fadeInVariants}
             className="px-[6%] w-full h-auto flex-col flex gap-3"
@@ -116,38 +142,10 @@ const AnalyzeContainer = () => {
               </p>
             </div>
           </motion.div>
-
-          <motion.div
-            variants={fadeInVariants}
-            className="px-[6%] w-full h-auto flex-col flex gap-3"
-          >
-            <div className="w-full px-3 pt-3 pb-1.5 bg-white border-b border-main-1 justify-between items-end flex">
-              <div className="text-center text-black text-2xl font-bold leading-9">
-                {ANALYZE_RESULT_TITLE[1]}
-              </div>
-              <div className="text-center text-gray-1 text-xs flex items-center gap-1 tracking-wide">
-                <Icons name={infoIcon} />
-                <p>{ANALYZE_RESULT_GUIDE[1]}</p>
-              </div>
-            </div>
-            <div className="pl-10 leading-9 tracking-wide">
-              <p>
-                <span className="font-bold">1. 추천 전략 :</span>{' '}
-                {analysisData.investmentStrategy.recommendation}
-              </p>
-              <p>
-                <span className="font-bold">2. 리스크 관리 :</span>{' '}
-                {analysisData.investmentStrategy.riskManagement}
-              </p>
-              <p>
-                <span className="font-bold">3. 분석 :</span>{' '}
-                {analysisData.investmentStrategy.analysis}
-              </p>
-            </div>
-          </motion.div>
         </>
       ) : (
         <div>
+          {/* 로딩 애니메이션 */}
           <motion.div
             className="font-bold flex items-center justify-center mt-[100px] tracking-wide text-[20px]"
             variants={fadeInVariants}
