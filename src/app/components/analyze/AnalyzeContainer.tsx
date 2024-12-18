@@ -10,8 +10,8 @@ import {
 } from '@/app/constants/prediction';
 import { useEffect, useState } from 'react';
 import { callGet } from '@/app/utils/callApi';
-import Icons from '../common/Icons';
 import Link from 'next/link';
+import Icons from '../common/Icons';
 
 const AnalyzeContainer = () => {
   const fadeInVariants = {
@@ -21,7 +21,7 @@ const AnalyzeContainer = () => {
 
   const [nickname, setNickname] = useState<string>('');
   const [analysisData, setAnalysisData] = useState<any>(null);
-  const [errorMessage, setErrorMessage] = useState<string>(''); 
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -99,53 +99,49 @@ const AnalyzeContainer = () => {
         </div>
       </motion.div>
 
-      {errorMessage ? ( 
+      {errorMessage ? (
         <div className="text-center mt-[100px] text-black font-bold text-xl flex flex-col ">
           ⚠️ {errorMessage}
           <Link href="/simulation">
-          <button
-            type="button"
-            className="text-sm text-white bg-main-1 px-4 py-2 rounded hover:bg-main-2 transition-all mt-[100px]"
-          >
-            모의 투자 하러 가기
-          </button>
-        </Link>
+            <button
+              type="button"
+              className="text-sm text-white bg-main-1 px-4 py-2 rounded hover:bg-main-2 transition-all mt-[100px]"
+            >
+              모의 투자 하러 가기
+            </button>
+          </Link>
         </div>
-      ) : analysisData ? ( 
-        <>
-          
-          <motion.div
-            variants={fadeInVariants}
-            className="px-[6%] w-full h-auto flex-col flex gap-3"
-          >
-            <div className="w-full px-3 pt-3 pb-1.5 bg-white border-b border-main-1 justify-between items-end flex">
-              <div className="text-center text-black text-2xl font-bold leading-9">
-                {ANALYZE_RESULT_TITLE[0]}
-              </div>
-              <div className="text-center text-gray-1 text-xs flex items-center gap-1 tracking-wide">
-                <Icons name={infoIcon} />
-                <p>{ANALYZE_RESULT_GUIDE[0]}</p>
-              </div>
+      ) : analysisData ? (
+        <motion.div
+          variants={fadeInVariants}
+          className="px-[6%] w-full h-auto flex-col flex gap-3"
+        >
+          <div className="w-full px-3 pt-3 pb-1.5 bg-white border-b border-main-1 justify-between items-end flex">
+            <div className="text-center text-black text-2xl font-bold leading-9">
+              {ANALYZE_RESULT_TITLE[0]}
             </div>
-            <div className="pl-10 leading-9 tracking-wide">
-              <p>
-                <span className="font-bold">1. 위험도 :</span>{' '}
-                {analysisData.investmentStyle.riskLevel}
-              </p>
-              <p>
-                <span className="font-bold">2. 거래 패턴 :</span>{' '}
-                {analysisData.investmentStyle.tradingPattern}
-              </p>
-              <p>
-                <span className="font-bold">3. 분석 :</span>{' '}
-                {analysisData.investmentStyle.analysis}
-              </p>
+            <div className="text-center text-gray-1 text-xs flex items-center gap-1 tracking-wide">
+              <Icons name={infoIcon} />
+              <p>{ANALYZE_RESULT_GUIDE[0]}</p>
             </div>
-          </motion.div>
-        </>
+          </div>
+          <div className="pl-10 leading-9 tracking-wide">
+            <p>
+              <span className="font-bold">1. 위험도 :</span>{' '}
+              {analysisData.investmentStyle.riskLevel}
+            </p>
+            <p>
+              <span className="font-bold">2. 거래 패턴 :</span>{' '}
+              {analysisData.investmentStyle.tradingPattern}
+            </p>
+            <p>
+              <span className="font-bold">3. 분석 :</span>{' '}
+              {analysisData.investmentStyle.analysis}
+            </p>
+          </div>
+        </motion.div>
       ) : (
         <div>
-          {/* 로딩 애니메이션 */}
           <motion.div
             className="font-bold flex items-center justify-center mt-[100px] tracking-wide text-[20px]"
             variants={fadeInVariants}
