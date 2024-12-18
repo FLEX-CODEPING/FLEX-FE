@@ -66,7 +66,7 @@ const PreopenSearchInfo = ({
       </div>
       <div className="flex-col flex h- text-[11px] text-black justify-between">
         <div className="flex gap-x-2 items-center">
-          <div className="h-5 px-2 py-2 rounded flex-center bg-gray-3 text-black-1">
+          <div className="h-5 px-2 py-2 rounded flex-center bg-gray-3 dark:bg-gray-1 dark:text-gray-3 text-black-1">
             코스피
           </div>
           <Icons

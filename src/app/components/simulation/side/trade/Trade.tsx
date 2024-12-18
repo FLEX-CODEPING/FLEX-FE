@@ -30,7 +30,7 @@ const Trade = () => {
   }, [data, text]);
 
   return (
-    <div className="w-[260px] h-[628px] flex-col flex px-4 py-3.5 border border-gray-4 rounded-[10px] gap-y-4 ">
+    <div className="w-[260px] h-[628px] flex-col flex px-4 py-3.5 border border-gray-4  dark:border-black-1 rounded-[10px] gap-y-4 ">
       <div className="w-full flex justify-between items-end">
         <p className="text-base">{SIDE_NAV_TYPES[3]}</p>
       </div>

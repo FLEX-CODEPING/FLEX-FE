@@ -116,12 +116,12 @@ const MinChart = ({
     chartRef.current = chart;
 
     const candleSeries = chart.addCandlestickSeries({
-      upColor: '#0065D1',
-      downColor: '#F12C2C',
-      borderUpColor: '#0065D1',
-      borderDownColor: '#F12C2C',
-      wickUpColor: '#0065D1',
-      wickDownColor: '#F12C2C',
+      upColor: isDarkMode ?'#3363CB' : '#0065D1',
+      downColor: isDarkMode ?'#DB3D2A' : '#F12C2C',
+      borderUpColor:isDarkMode ? '#3363CB' : '#0065D1',
+      borderDownColor:isDarkMode ? '#DB3D2A' : '#F12C2C',
+      wickUpColor: isDarkMode ?'#3363CB' : '#0065D1',
+      wickDownColor: isDarkMode ?'#DB3D2A' : '#F12C2C',
       priceFormat: {
         type: 'custom',
         minMove: 1,

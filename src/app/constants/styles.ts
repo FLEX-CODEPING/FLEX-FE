@@ -29,9 +29,9 @@ export const INPUT_STYLE = {
   signUp: (className: string) =>
     `w-full pl-4 h-10 rounded border border-gray-2 text-sm outline-none focus:border-main-1 ${className}`,
   simulation: (className: string) =>
-    `w-80 pl-3 pr-12 h-10 rounded-xl border border-gray-4 font-light text-sm outline-none dark:bg-black-0 dark:text-gray-4 ${className}`,
+    `w-80 pl-3 pr-12 h-10 rounded-xl border border-gray-4 font-light text-sm outline-none dark:bg-black-0 dark:border-black-1 dark:text-gray-4 ${className}`,
   trade: (className: string) =>
-    `w-[140px] h-[33px] px-3 py-2 rounded-md border border-gray-2 font-light text-black-1 dark:text-gray-3 dark:bg-black-0 text-sm ${className}`,
+    `w-[140px] h-[33px] px-3 py-2 rounded-md border border-gray-2 font-light text-black-1 dark:text-gray-3 dark:bg-black-0 dark:border-gray-1 text-sm ${className}`,
   search: (className: string) =>
     `w-[150px] h-[24px] px-3 rounded-md border-none font-light text-black-0 text-base outline-none ${className}`,
   blogName: (className: string) =>

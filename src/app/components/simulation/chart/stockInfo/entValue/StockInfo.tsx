@@ -1,6 +1,7 @@
 import { STOCKINFO_TITLE } from '@/app/constants/simulation';
 import useStockStore from '@/app/store/store';
 import { callGet } from '@/app/utils/callApi';
+import { getTodayDateBar } from '@/app/utils/date';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import EntValue from './EntValue';
@@ -14,9 +15,9 @@ const StockInfo = () => {
 
   useEffect(() => {
     const getStockDetail = async () => {
-      // const date = getTodayDateBar();
+      const date = getTodayDateBar();
       const response = await callGet(
-        `api/stocks/info?code=${stockCode}&date=${'2024-12-11'}`,
+        `api/stocks/info?code=${stockCode}&date=${date}`,
       );
       setStockInfo(response.result);
     };

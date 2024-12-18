@@ -44,9 +44,9 @@ const EntValue = () => {
             className="w-[108px] h-[66px] py-1 px-2 flex flex-col gap-y-2"
             key={info}
           >
-            <div className="gap-x-1 w-fit flex-auto flex items-center h-[26px] px-2 py-1 bg-gray-5 rounded-lg">
-              <p className="text-xs text-black-1">{info}</p>
-              <div className="relative flex w-[13px] h-[13px]" ref={hoverRef}>
+            <div className="gap-x-1 w-fit flex-auto flex items-center h-[26px] px-2 py-1 dark:text-gray-2 bg-gray-5 dark:bg-black-1 rounded-lg">
+              <p className="text-xs dark:text-gray-2 text-black-1">{info}</p>
+              <div className="relative flex w-[13px] dark:text-gray-2 h-[13px]" ref={hoverRef}>
                 <Icons name={infoIcon} />
                 {isHover && (
                   <StockGuideModal

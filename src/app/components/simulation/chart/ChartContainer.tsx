@@ -62,7 +62,7 @@ const ChartContainer = () => {
   }, [isLack]);
 
   return (
-    <div className="flex w-full px-3 py-3 rounded-[10px] border border-gray-4 flex-col justify-start items-start gap-y-5 dark:bg-black-0 dark:text-gray-4">
+    <div className="flex w-full px-3 py-3 rounded-[10px] border border-gray-4 dark:border-black-1 flex-col justify-start items-start gap-y-5 dark:bg-black-0 dark:text-gray-4">
       {!stockCode || stockCode === 'null' ? (
         <ChartEmpty />
       ) : isDay ? (

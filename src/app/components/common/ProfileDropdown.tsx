@@ -21,7 +21,7 @@ const ProfileDropdown = () => {
     <div className="flex flex-col relative">
       <div className="flex items-center gap-x-4">
         <Link
-          className="flex-center w-[64px] h-[30px] px-1.5 py-1 bg-main-1 text-white text-xs font-semibold rounded-[14px]"
+          className="flex-center w-[64px] h-[30px] px-1.5 py-1 dark:bg-main-1/90 bg-main-1 text-white text-xs font-semibold rounded-[14px]"
           href="/blog/post"
         >
           {LOGIN_TEXT[0]}
