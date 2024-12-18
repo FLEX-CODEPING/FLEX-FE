@@ -24,8 +24,8 @@ const createStockDataQueryOptions = (
     queryFn: async () => {
       if (!stockCode) return [];
       return isDay
-        ? await fetchInitialDay(stockCode, timeFrame as string)
-        : await fetchInitialData(stockCode);
+        ? fetchInitialDay(stockCode, timeFrame as string)
+        : fetchInitialData(stockCode);
     },
     enabled: !!stockCode && (isDay ? true : typeof timeFrame === 'number'),
     staleTime: 1000 * 60 * 5, // 5분 캐싱

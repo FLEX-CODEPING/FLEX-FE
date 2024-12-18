@@ -106,7 +106,6 @@ function AccountContainer() {
         throw new Error('이미지 확인 실패');
       }
 
-
       // formData에 이미지 URL 업데이트
       updateFormData('profileImageUrl', imageUrl);
       toast.success('프로필 이미지가 성공적으로 업로드되었습니다.');

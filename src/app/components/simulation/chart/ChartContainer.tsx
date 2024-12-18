@@ -1,14 +1,12 @@
 'use client';
 
-import { useInvalidateStockData, useStockData } from '@/app/hooks/useStockChart';
+import {
+  useInvalidateStockData,
+  useStockData,
+} from '@/app/hooks/useStockChart';
 import useStockStore, { useLiveDataStore } from '@/app/store/store';
 import { isOpenTime } from '@/app/utils/date';
-import {
-  fetchDailyAdditional,
-  fetchInitialData,
-  fetchInitialDay,
-} from '@/app/utils/fetchStockData';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ChartEmpty from './ChartEmpty';
 import DayChart from './DayChart';
 import MinChart from './MinChart';
