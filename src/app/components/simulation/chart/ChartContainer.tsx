@@ -1,9 +1,9 @@
 'use client';
 
+import { useInvalidateStockData, useStockData } from '@/app/hooks/useStockChart';
 import useStockStore, { useLiveDataStore } from '@/app/store/store';
 import { isOpenTime } from '@/app/utils/date';
 import {
-  fetchAdditionalData,
   fetchDailyAdditional,
   fetchInitialData,
   fetchInitialDay,
@@ -15,8 +15,6 @@ import MinChart from './MinChart';
 import WebSocketChart from './SocketChart';
 
 const ChartContainer = () => {
-  const [mindata, setMinData] = useState<MinPriceTypes[]>([]);
-  const [dailyData, setDailyData] = useState<DailyPriceTypes[]>([]);
   const { liveData } = useLiveDataStore();
   const { stockCode } = useStockStore();
   const [isLack, setIsLack] = useState(false);
@@ -24,42 +22,17 @@ const ChartContainer = () => {
   const isDay = typeof timeFrame === 'string';
   const isOpen = isOpenTime();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!stockCode) return;
-      if (isDay) {
-        const initData = await fetchInitialDay(stockCode, timeFrame);
-        setDailyData(initData);
-      } else {
-        const initData = await fetchInitialData(stockCode);
-        setMinData(initData);
-      }
-    };
-    fetchData();
-  }, [stockCode, timeFrame]);
+  const { data, isLoading, fetchAdditionalData, isFetchingAdditionalData } =
+    useStockData(stockCode, timeFrame);
 
-  useEffect(() => {
-    const fetchMoreData = async () => {
-      if (timeFrame === '년') return;
-      if (!isLack || !stockCode) return;
+  const { invalidateMinData } = useInvalidateStockData();
 
-      if (!isDay) {
-        const additionalData = await fetchAdditionalData(mindata, stockCode);
-        setMinData((prev) => [...prev, ...additionalData]);
-      } else {
-        const additionalData = await fetchDailyAdditional(
-          dailyData,
-          stockCode,
-          timeFrame,
-        );
-        setDailyData((prev) => [...prev, ...additionalData]);
-      }
-
-      setIsLack(false);
-    };
-
-    fetchMoreData();
-  }, [isLack]);
+  const handleRefresh = () => {
+    fetchAdditionalData();
+    if (stockCode) {
+      invalidateMinData(stockCode);
+    }
+  };
 
   return (
     <div className="flex w-full px-3 py-3 rounded-[10px] border border-gray-4 dark:border-black-1 flex-col justify-start items-start gap-y-5 dark:bg-black-0 dark:text-gray-4">
@@ -67,7 +40,7 @@ const ChartContainer = () => {
         <ChartEmpty />
       ) : isDay ? (
         <DayChart
-          data={dailyData}
+          data={data}
           isLack={isLack}
           setIsLack={setIsLack}
           timeFrame={timeFrame}
@@ -75,7 +48,7 @@ const ChartContainer = () => {
         />
       ) : (
         <MinChart
-          data={mindata}
+          data={data}
           isLack={isLack}
           setIsLack={setIsLack}
           timeFrame={timeFrame}
