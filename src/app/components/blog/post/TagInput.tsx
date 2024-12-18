@@ -17,7 +17,7 @@ export default function TagInput({ tags, setTags }: TagInputProps) {
   const addTag = () => {
     if (inputValue.trim() !== '' && !tags.includes(inputValue.trim())) {
       const updatedTags = [...tags, inputValue.trim()];
-      setTags(updatedTags); // 여기서 EditBlogContainer로 전달된 setTags 함수를 사용합니다.
+      setTags(updatedTags);
       console.log(tags);
       setInputValue('');
     }

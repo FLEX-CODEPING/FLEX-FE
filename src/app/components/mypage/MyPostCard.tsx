@@ -21,16 +21,15 @@ const MyPostCard = ({ mypost }: MyPostCardsProps) => {
 
   const removeMarkdownTags = (content: string) => {
     return content
-      .replace(/[#*~`>+-]/g, '') // Markdown 기호 제거
-      .replace(/\n/g, ' ') // 줄바꿈을 공백으로 변경
-      .trim(); // 앞뒤 공백 제거
+      .replace(/[#*~`>+-]/g, '')
+      .replace(/\n/g, ' ')
+      .trim();
   };
 
   const removeImageTags = (content: string) => {
-    return content.replace(/!\[.*?\]\(.*?\)/g, ''); // 이미지 태그 제거
+    return content.replace(/!\[.*?\]\(.*?\)/g, '');
   };
 
-  // 결과 출력 시 처리
   const textContent = mypost.content
     ? removeImageTags(removeHtmlTags(removeMarkdownTags(mypost.content))).trim()
     : '';

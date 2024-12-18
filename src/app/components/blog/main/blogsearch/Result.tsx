@@ -6,7 +6,7 @@ import { searchBig } from '@/app/constants/iconPath';
 import SearchPost from './SearchPost';
 
 interface ResultsProps {
-  results: SearchPostTypes[]; // SearchPostTypes로 변경
+  results: SearchPostTypes[];
   searchExecuted: boolean;
   totalResults: number;
 }
@@ -17,19 +17,19 @@ const Results: React.FC<ResultsProps> = ({
   totalResults,
 }) => {
   const containerVariants = {
-    hidden: { opacity: 0, y: -20 }, // 초기 상태
+    hidden: { opacity: 0, y: -20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8, // 애니메이션 지속 시간
+        duration: 0.8,
         ease: 'easeOut',
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, scale: 0.9 }, // 초기 상태
+    hidden: { opacity: 0, scale: 0.9 },
     visible: {
       opacity: 1,
       scale: 1,

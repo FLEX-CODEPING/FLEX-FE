@@ -16,7 +16,6 @@ const UserPageContainer = ({ blogName }: UserPageContainerProps) => {
   const [userPosts, setUserPosts] = useState<MyPostCardTypes[]>([]);
   const [isFollowing, setIsFollowing] = useState<boolean | null>(null);
 
-  // 사용자 블로그 정보 및 작성한 게시물 가져오기
   useEffect(() => {
     if (blogName) {
       const fetchUserBlogInfo = async () => {

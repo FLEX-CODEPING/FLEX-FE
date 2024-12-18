@@ -30,9 +30,8 @@ const News = () => {
   };
 
   const calculateDateRange = (days: number | undefined): string => {
-    // 기본값이 없거나 잘못된 경우 처리
     if (!days || days <= 0) {
-      return '기간 선택'; // 기본값을 명시적으로 설정
+      return '기간 선택';
     }
 
     const today = new Date();
@@ -57,7 +56,7 @@ const News = () => {
   const getNews = async () => {
     setLoading(true);
     try {
-      const periodDays = NEWS_VIEW_TYPE_MAP[selectedOption] || 1; // 기본값 1일로 설정
+      const periodDays = NEWS_VIEW_TYPE_MAP[selectedOption] || 1;
       const calculatedRange = calculateDateRange(periodDays);
       setDateRange(calculatedRange);
 

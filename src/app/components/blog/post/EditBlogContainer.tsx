@@ -5,6 +5,7 @@ import { POST_BTN_TEXT } from '@/app/constants/blog';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import BlogInfoContainer from './BlogInfoContainer';
 import PostFinModal from './postFinModal';
 import PostModal from './postModal';
@@ -53,7 +54,7 @@ const EditBlogContainer = () => {
       !postDataToSubmit.content ||
       postDataToSubmit.tags === ''
     ) {
-      alert('필수정보를 입력해주세요!');
+      toast.error('필수정보를 입력해주세요!');
       return;
     }
 
