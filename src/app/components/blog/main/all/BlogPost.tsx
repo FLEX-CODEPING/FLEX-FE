@@ -54,7 +54,7 @@ const BlogPost = ({ post }: BlogPostProps) => {
         <div className="flex justify-between items-center text-xs h-6">
           <div className="flex items-center text-sm gap-x-2 text-black-0">
             <Image
-              src="/images/complete1.png"
+              src={post.profileImageUrl || '/images/profile.png'}
               alt={post.title}
               width={20}
               height={20}
