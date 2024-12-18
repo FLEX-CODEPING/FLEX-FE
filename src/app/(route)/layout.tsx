@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { ToastContainer } from 'react-toastify';
-import Header from '../components/common/layout/Header';
-import Rum from '../components/common/layout/Rum';
-import UserProvider from '../components/common/layout/useProvider';
 import 'react-toastify/dist/ReactToastify.css';
+import Header from '../components/common/layout/Header';
+import TanStackProvider from '../components/common/layout/TanstackProvider';
+import UserProvider from '../components/common/layout/useProvider';
 import '../styles/globals.css';
 
 export const metadata: Metadata = {
@@ -29,13 +29,13 @@ export default function RootLayout({
       <body
         className={`${pretendard.variable} min-w-[1100px] mx-auto font-pretendard`}
       >
-        <Rum>
+        <TanStackProvider>
           <UserProvider>
             <Header />
             {children}
             <ToastContainer
-              position="top-right" // 알림 위치
-              autoClose={3000} // 3초 후 자동 닫힘
+              position="top-right"
+              autoClose={3000}
               hideProgressBar={false}
               newestOnTop
               closeOnClick
@@ -45,7 +45,7 @@ export default function RootLayout({
               pauseOnHover
             />
           </UserProvider>
-        </Rum>
+        </TanStackProvider>
       </body>
     </html>
   );

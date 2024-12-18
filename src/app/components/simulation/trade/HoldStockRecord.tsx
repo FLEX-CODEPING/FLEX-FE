@@ -4,11 +4,10 @@ import {
   SIDE_NAV_TYPES,
   TRADETYPE_MAP,
 } from '@/app/constants/simulation';
-import useStockStore from '@/app/store/store';
-import { callGet } from '@/app/utils/callApi';
+import { useHoldStock } from '@/app/hooks/useHoldStock';
 import { formatMD } from '@/app/utils/date';
 import { formatNumberCommas } from '@/app/utils/formatNum';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import Icons from '../../common/Icons';
 
 interface HoldStockRecordProps {
@@ -16,23 +15,9 @@ interface HoldStockRecordProps {
 }
 
 const HoldStockRecord = ({ closeDetail }: HoldStockRecordProps) => {
-  const [record, setRecord] = useState<HoldStockRecordTypes[]>([]);
-  const [stockInfo, setStockInfo] = useState<HoldStockInfoTypes | null>(null);
-  const { stockCode } = useStockStore();
-
-  const getTradeRecord = async () => {
-    const response = await callGet(
-      `/api/stocks/trade/investment?code=${stockCode}&page=${1}&size=${20}&property=createdAt&direction=desc`,
-    );
-    setRecord(response.result.content);
-
-    const infoData = await callGet(`/api/stocks/hold/info?code=${stockCode}`);
-    setStockInfo(infoData.result);
-  };
-
-  useEffect(() => {
-    getTradeRecord();
-  }, [stockCode]);
+  const { data } = useHoldStock();
+  const holdStock = data?.holdStock || [];
+  const stockInfo = data?.stockInfo || null;
 
   return (
     <div className="w-full flex flex-col gap-y-2">
@@ -59,19 +44,19 @@ const HoldStockRecord = ({ closeDetail }: HoldStockRecordProps) => {
         </div>
       </div>
       <div className="flex flex-col w-full overflow-y-auto gap-y-2">
-        {record.map((data) => (
+        {holdStock.map((stockData) => (
           <div
             className="text-xs font-medium flex w-full"
-            key={data.investmentId}
+            key={stockData.investmentId}
           >
             <p className="flex-center font-light w-[24%]">
-              {formatMD(data.createdAt)}
+              {formatMD(stockData.createdAt)}
             </p>
             <p className="flex-center w-[38%]">
-              {TRADETYPE_MAP[data.investType]} {data.quantity}주
+              {TRADETYPE_MAP[stockData.investType]} {stockData.quantity}주
             </p>
             <p className="flex-center w-[38%]">
-              주당 {formatNumberCommas(data.price)} 원
+              주당 {formatNumberCommas(stockData.price)} 원
             </p>
           </div>
         ))}

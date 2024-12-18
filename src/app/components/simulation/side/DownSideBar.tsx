@@ -18,10 +18,10 @@ export default function DownSideBar() {
     cssEase: 'linear',
   };
   return (
-    <div className="w-[100%] h-10 flex fixed bottom-0">
+    <div className="w-[100%] h-10 flex fixed bottom-0 dark:bg-black-0/90">
       <Slider
         {...settings}
-        className="w-full px-4 bg-[#fdfafa] flex items-center"
+        className="w-full px-4 bg-[#fdfafa] dark:bg-black-0/90 flex items-center dark:text-gray-3 dark:border-t dark:border-t-gray-1"
       >
         {MARKET_CONDITIONS.map((data, index) => (
           <DownSideItem

@@ -73,8 +73,7 @@ function AccountContainer() {
 
   const handleProfileImageUpload = async (file: File) => {
     try {
-      console.log('Uploading File:', file.name);
-
+      // Presigned URL 요청
       const response = await fetch(
         `/api/blog/images?bucketName=dev-user&fileName=${file.name}`,
       );
@@ -85,7 +84,6 @@ function AccountContainer() {
 
       const resData = await response.json();
       const presignedUrl = resData.result;
-      console.log('Presigned URL:', presignedUrl);
 
       const uploadResponse = await fetch(presignedUrl, {
         method: 'PUT',
@@ -102,13 +100,13 @@ function AccountContainer() {
       const imageUrl = presignedUrl.split('?')[0];
       console.log('Uploaded Image URL:', imageUrl);
 
+      // 이미지 URL 확인 (선택적 검증)
       const verifyResponse = await fetch(imageUrl);
       if (!verifyResponse.ok) {
         throw new Error('이미지 확인 실패');
       }
 
-      console.log('Image Verified Successfully');
-
+      // formData에 이미지 URL 업데이트
       updateFormData('profileImageUrl', imageUrl);
       toast.success('프로필 이미지가 성공적으로 업로드되었습니다.');
     } catch (error) {

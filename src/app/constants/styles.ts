@@ -29,17 +29,17 @@ export const INPUT_STYLE = {
   signUp: (className: string) =>
     `w-full pl-4 h-10 rounded border border-gray-2 text-sm outline-none focus:border-main-1 ${className}`,
   simulation: (className: string) =>
-    `w-80 pl-3 pr-12 h-10 rounded-xl border border-gray-4 font-light text-sm outline-none ${className}`,
+    `w-80 pl-3 pr-12 h-10 rounded-xl border border-gray-4 font-light text-sm outline-none dark:bg-black-0 dark:border-black-1 dark:text-gray-4 ${className}`,
   trade: (className: string) =>
-    `w-[140px] h-[33px] px-3 py-2 rounded-md border border-gray-2 font-light text-black-1 text-sm ${className}`,
+    `w-[140px] h-[33px] px-3 py-2 rounded-md border border-gray-2 font-light text-black-1 dark:text-gray-3 dark:bg-black-0 dark:border-gray-1 text-sm ${className}`,
   search: (className: string) =>
     `w-[150px] h-[24px] px-3 rounded-md border-none font-light text-black-0 text-base outline-none ${className}`,
   blogName: (className: string) =>
     `w-[80%] pl-4 h-10 rounded-[10px] border border-gray-2 text-sm outline-none focus:border-main-1 ${className}`,
   record: (className: string) =>
-    `w-full h-7 pl-2 pr-7 border border-gray-2 text-[11px] rounded-lg outline-none ${className}`,
+    `w-full h-7 pl-2 pr-7 border border-gray-2 text-[11px] dark:text-gray-1 rounded-lg outline-none ${className}`,
   calendar: (className: string) =>
-    `w-[105px] h-[28px] px-2 py-2 rounded-md border-[1.5px] border-gray-2 text-black-1 text-[11px] ${className}`,
+    `w-[105px] h-[28px] px-2 py-2 rounded-md border-[1.5px] dark:bg-black-1 dark:text-gray-3  border-gray-2 text-black-1 text-[11px] ${className}`,
   orderCnt: (className: string) =>
-    `w-full pr-16 pl-4 h-8 rounded border border-gray-2 text-gray-1 text-sm ${className}`,
+    `w-full dark:bg-gray-2 dark:border-gray-1 dark:text-black-1 pr-16 pl-4 h-8 rounded border border-gray-2 text-gray-1 text-sm ${className}`,
 } as const;

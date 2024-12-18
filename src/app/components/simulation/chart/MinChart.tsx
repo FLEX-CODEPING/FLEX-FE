@@ -1,12 +1,13 @@
 import { applyOptions, groupDataByInterval } from '@/app/utils/chart';
 import { convertToUnixTimestamp } from '@/app/utils/date';
-import { createChart, Time } from 'lightweight-charts';
+import { ColorType, createChart, Time } from 'lightweight-charts';
 import {
   Dispatch,
   SetStateAction,
   useEffect,
   useLayoutEffect,
   useRef,
+  useState,
 } from 'react';
 import ChartTypeDropdown from './ChartTypeDropdown';
 
@@ -31,6 +32,19 @@ const MinChart = ({
   const chartRef = useRef<ReturnType<typeof createChart> | null>(null);
   const candleSeriesRef = useRef<any>(null); // 캔들 데이터 참조
   const volumeSeriesRef = useRef<any>(null); // 거래량 데이터 참조
+  const [isDarkMode, setIsDarkMode] = useState(
+    window.matchMedia('(prefers-color-scheme: dark)').matches,
+  );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsDarkMode(e.matches);
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   const transformCandle = (arr: MinPriceTypes[]) => {
     return arr
@@ -71,10 +85,24 @@ const MinChart = ({
 
   useLayoutEffect(() => {
     if (!chartContainerRef.current || data.length === 0) return;
-
     const chart = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
       height: chartContainerRef.current.clientHeight,
+      layout: {
+        background: {
+          type: ColorType.Solid,
+          color: isDarkMode ? '#1E1E1E' : '#FFFFFF',
+        },
+        textColor: isDarkMode ? '#CBCACA' : '#000000',
+      },
+      grid: {
+        vertLines: {
+          color: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)', // 다크모드: 밝은 세로선, 라이트모드: 어두운 세로선
+        },
+        horzLines: {
+          color: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)', // 다크모드: 밝은 가로선, 라이트모드: 어두운 가로선
+        },
+      },
       timeScale: {
         timeVisible: true,
         secondsVisible: false,
@@ -86,12 +114,12 @@ const MinChart = ({
     chartRef.current = chart;
 
     const candleSeries = chart.addCandlestickSeries({
-      upColor: '#0065D1',
-      downColor: '#F12C2C',
-      borderUpColor: '#0065D1',
-      borderDownColor: '#F12C2C',
-      wickUpColor: '#0065D1',
-      wickDownColor: '#F12C2C',
+      upColor: isDarkMode ? '#3363CB' : '#0065D1',
+      downColor: isDarkMode ? '#DB3D2A' : '#F12C2C',
+      borderUpColor: isDarkMode ? '#3363CB' : '#0065D1',
+      borderDownColor: isDarkMode ? '#DB3D2A' : '#F12C2C',
+      wickUpColor: isDarkMode ? '#3363CB' : '#0065D1',
+      wickDownColor: isDarkMode ? '#DB3D2A' : '#F12C2C',
       priceFormat: {
         type: 'custom',
         minMove: 1,

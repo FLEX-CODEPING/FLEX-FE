@@ -1,12 +1,10 @@
 'use client';
 
-import { useModal } from '@/app/hooks/useModal';
 import { useState } from 'react';
 import PredictIndicator from './PredictIndicator';
 import PredictResultAlert from './alert/PredictionAlert';
 
 const PredictionSideContainer = () => {
-  const { isOpen, openModal, closeModal } = useModal(false);
   const [predictionResult, setPredictionResult] = useState({
     stockName: '',
     result: '',

@@ -1,20 +1,21 @@
+import { useLiveDataStore } from '@/app/store/store';
 import { callPost } from '@/app/utils/callApi';
 import { extractDateTimeAndPrice } from '@/app/utils/formatStock';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface WebSocketChartProps {
-  setLiveData: Dispatch<SetStateAction<ChartDataTypes | null>>;
   stockCode: string;
 }
 
-const WebSocketChart = ({ stockCode, setLiveData }: WebSocketChartProps) => {
+const WebSocketChart = ({ stockCode }: WebSocketChartProps) => {
   const [isConnected, setIsConnected] = useState(false);
   const [socketError, setSocketError] = useState<null | string>(null);
+  const { setLiveData } = useLiveDataStore();
 
   useEffect(() => {
     if (!stockCode) return;
 
-    let socket: WebSocket;
+    let socket: WebSocket | null = null;
     let lastUpdateTime = 0;
 
     const connectWebSocket = async () => {
@@ -40,7 +41,7 @@ const WebSocketChart = ({ stockCode, setLiveData }: WebSocketChartProps) => {
               },
             },
           };
-          socket.send(JSON.stringify(requestData));
+          socket?.send(JSON.stringify(requestData));
         };
 
         socket.onmessage = (event) => {
@@ -63,7 +64,6 @@ const WebSocketChart = ({ stockCode, setLiveData }: WebSocketChartProps) => {
         };
 
         socket.onclose = () => {
-          console.log('WebSocket 연결 종료');
           setIsConnected(false);
         };
       } catch (error) {
@@ -77,11 +77,13 @@ const WebSocketChart = ({ stockCode, setLiveData }: WebSocketChartProps) => {
     return () => {
       if (socket) {
         socket.close();
+        socket = null;
       }
     };
   }, [stockCode]);
+
   if (socketError) {
-    return <div>WebSocket 에러: {socketError}</div>;
+    return <div />;
   }
 
   return <div />;

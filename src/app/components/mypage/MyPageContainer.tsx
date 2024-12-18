@@ -66,19 +66,13 @@ const MyPageContainer = () => {
         <div className="h-[130px] flex items-center justify-center gap-[70px]">
           <div className="relative flex flex-col items-center justify-center">
             <Image
-              src={myData?.profileImageUrl || '/images/profile.png'}
+              src={myData?.profileImageUrl || '/images/complete2.png'}
               alt="profile"
               width={80}
               height={80}
               className="rounded-full"
               objectFit="contain"
             />
-            {/* <div className="absolute bottom-6 right-0 w-6 h-6 bg-gray-500 rounded-full flex items-center justify-center border border-gray-300 shadow-md z-10">
-              <Icons
-                name={cameraIcon}
-                className="w-4 h-4 text-gray-600 cursor-pointer"
-              />
-            </div>           */}
             <div className="text-black-0 font-semibold text-[15px] mt-1">
               {myData?.nickname}
             </div>

@@ -31,12 +31,12 @@ const MainContainer = () => {
         <MainHeader />
       </motion.div>
       <motion.div className="flex gap-x-16" variants={fadeInVariants}>
-        <motion.div variants={fadeInVariants}>
+        <div>
           <MainDownLeft />
-        </motion.div>
-        <motion.div variants={fadeInVariants}>
+        </div>
+        <div>
           <MainDownRight />
-        </motion.div>
+        </div>
       </motion.div>
     </motion.div>
   );

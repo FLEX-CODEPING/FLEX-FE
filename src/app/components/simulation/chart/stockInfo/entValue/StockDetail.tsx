@@ -4,7 +4,6 @@ import {
   STOCK_INFO_TEXT,
   STOCK_INFO_TOOLTIP,
 } from '@/app/constants/simulation';
-import useStockStore from '@/app/store/store';
 import { formatCurrencyNoUnit } from '@/app/utils/formatNum';
 import { formatStockData } from '@/app/utils/formatStock';
 import { plusUnit } from '@/app/utils/truncate';
@@ -18,11 +17,10 @@ interface StockDetailProps {
 
 const StockDetail = ({ data }: StockDetailProps) => {
   const [hoverRefs, setHoverRefs] = useState<(HTMLDivElement | null)[]>([]);
-  const { stockCode } = useStockStore();
 
   useEffect(() => {
     setHoverRefs((prev) => STOCK_INFO_TEXT.map(() => null));
-  }, [stockCode]);
+  }, []);
 
   const StockInfoArr = data ? formatStockData(data) : [];
 
@@ -37,8 +35,8 @@ const StockDetail = ({ data }: StockDetailProps) => {
             className="w-[108px] h-[66px] py-1 px-2 flex flex-col gap-y-2"
             key={info}
           >
-            <div className="gap-x-1 w-fit flex-auto flex items-center h-[26px] px-2 py-1 bg-gray-5 rounded-lg">
-              <p className="text-xs text-black-1">{info}</p>
+            <div className="gap-x-1 w-fit flex-auto flex items-center h-[26px] px-2 py-1 bg-gray-5 dark:bg-black-1 rounded-lg">
+              <p className="text-xs text-black-1 dark:text-gray-2">{info}</p>
               <div className="relative flex w-[13px] h-[13px]" ref={hoverRef}>
                 <Icons name={infoIcon} />
                 {isHover && (

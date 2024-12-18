@@ -6,26 +6,32 @@ import {
   STOCK_INFO_TEXT,
 } from '@/app/constants/simulation';
 import useStockStore from '@/app/store/store';
-import { formatCurrencyNoUnit } from '@/app/utils/formatNum';
-import { formatStockData } from '@/app/utils/formatStock';
-import { plusUnitforEnt } from '@/app/utils/truncate';
+import { callGet } from '@/app/utils/callApi';
+import {
+  formatCurrencyNoUnit,
+  formatEntValueUnit,
+} from '@/app/utils/formatNum';
+import { formatEntValue } from '@/app/utils/formatStock';
 import { useEffect, useRef, useState } from 'react';
 import { useHover } from 'usehooks-ts';
 import StockGuideModal from './StockGuideModal';
 
-interface EntValueProps {
-  data: StockDetailInfoTypes;
-}
-
-const EntValue = ({ data }: EntValueProps) => {
+const EntValue = () => {
+  const [entValue, setEntValue] = useState<EntValueTypes | null>(null);
   const [hoverRefs, setHoverRefs] = useState<(HTMLDivElement | null)[]>([]);
   const { stockCode } = useStockStore();
 
   useEffect(() => {
-    setHoverRefs((prev) => STOCK_INFO_TEXT.map(() => null));
+    const getStockDetail = async () => {
+      const response = await callGet(`api/stocks/info/ent?code=${stockCode}`);
+      setEntValue(response.result);
+    };
+    getStockDetail();
   }, [stockCode]);
 
-  const StockInfoArr = data ? formatStockData(data) : [];
+  useEffect(() => {
+    setHoverRefs((prev) => STOCK_INFO_TEXT.map(() => null));
+  }, []);
 
   return (
     <div className="flex flex-wrap w-full gap-y-4">
@@ -38,9 +44,12 @@ const EntValue = ({ data }: EntValueProps) => {
             className="w-[108px] h-[66px] py-1 px-2 flex flex-col gap-y-2"
             key={info}
           >
-            <div className="gap-x-1 w-fit flex-auto flex items-center h-[26px] px-2 py-1 bg-gray-5 rounded-lg">
-              <p className="text-xs text-black-1">{info}</p>
-              <div className="relative flex w-[13px] h-[13px]" ref={hoverRef}>
+            <div className="gap-x-1 w-fit flex-auto flex items-center h-[26px] px-2 py-1 dark:text-gray-2 bg-gray-5 dark:bg-black-1 rounded-lg">
+              <p className="text-xs dark:text-gray-2 text-black-1">{info}</p>
+              <div
+                className="relative flex w-[13px] dark:text-gray-2 h-[13px]"
+                ref={hoverRef}
+              >
                 <Icons name={infoIcon} />
                 {isHover && (
                   <StockGuideModal
@@ -53,8 +62,11 @@ const EntValue = ({ data }: EntValueProps) => {
             </div>
             <div className="text-xs pl-1.5 font-medium flex gap-x-1 h-5">
               <p>
-                {formatCurrencyNoUnit(Number(StockInfoArr[i]))}
-                {plusUnitforEnt(i)}
+                {entValue &&
+                  formatCurrencyNoUnit(
+                    Math.floor(Number(formatEntValue(entValue)[i])),
+                  )}
+                {formatEntValueUnit(i)}
               </p>
             </div>
           </div>

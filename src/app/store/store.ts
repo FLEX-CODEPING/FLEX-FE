@@ -18,10 +18,6 @@ export const useUserStore = create<UserState>((set) => ({
       const data = await callGet('/api/auth/user');
       if (data.code === 'JWT_006') {
         const response = await callPost('/api/auth/refresh');
-        console.log(response);
-        // const { accessToken: accessToken, refreshToken: newRefreshToken } =
-        //   response.result;
-        // setTokens(accessToken, newRefreshToken, true);
       }
       set({ user: data, isLoading: false, error: null });
     } catch (err) {
@@ -56,3 +52,13 @@ const useStockStore = create<StockCodeStoreState>((set) => ({
 }));
 
 export default useStockStore;
+
+interface LiveStoreState {
+  liveData: ChartDataTypes | null;
+  setLiveData: (data: ChartDataTypes | null) => void;
+}
+
+export const useLiveDataStore = create<LiveStoreState>((set) => ({
+  liveData: null,
+  setLiveData: (data) => set({ liveData: data }),
+}));

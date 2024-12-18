@@ -8,8 +8,8 @@ import {
   SALARY_RANGE_MAP,
 } from '@/app/constants/blog';
 import { callGet } from '@/app/utils/callApi';
-import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import FollowerFilter from '../following/FollowerFilter';
 import RecommendFilter from '../recommend/RecommendFilter';
 import BlogPost from './BlogPost';

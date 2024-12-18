@@ -23,7 +23,8 @@ const SellCalculation = ({
 }: SellCalculationProps) => {
   const { isOpen, openModal, closeModal } = useModal(false);
   const { stockCode, stockName } = useStockStore();
-  const isQualified = quantity > 0 && holdStock;
+  const isQualified =
+    quantity > 0 && holdStock && holdStock.totalHoldings >= quantity;
 
   const reqBody: TradeSellTypes = {
     holdStockId,

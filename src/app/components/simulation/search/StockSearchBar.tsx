@@ -65,10 +65,10 @@ const StockSearchBar = ({ getStockInfo }: StockSearchBarProps) => {
         onClick={() => searchKeyword(searchText)}
       />
       {autoComplete.length !== 0 && (
-        <div className="absolute top-10 bg-white flex-col-center w-full px-2.5 py-3 rounded-lg border-x border-b border-gray-4 z-20 max-h-[312px] overflow-y-auto">
+        <div className="absolute top-10 bg-white dark:bg-black-0 dark:text-gray-4 flex-col-center w-full px-2.5 py-3 rounded-lg border-x border-b border-gray-4 z-20 max-h-[312px] overflow-y-auto">
           {autoComplete.map((stockInfo, i) => (
             <div
-              className={`flex w-full p-2.5 justify-between cursor-pointer rounded ${selectedIndex === i ? 'bg-gray-200' : ''}`}
+              className={`flex w-full p-2.5 justify-between cursor-pointer rounded ${selectedIndex === i ? 'bg-gray-200 dark:bg-black-1 dark:text-gray-4' : ''}`}
               key={stockInfo.stockcode}
               onMouseEnter={() => setSelectedIndex(i)}
               onClick={() => searchKeyword(stockInfo.stockcode)}

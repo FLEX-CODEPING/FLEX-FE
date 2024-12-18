@@ -23,7 +23,6 @@ const CommentInput = ({
           parentCommentId,
         });
         if (response.isSuccess) {
-          console.log('댓글 작성 성공:', response.result);
           setCommentInput('');
           onAddComment();
         } else {

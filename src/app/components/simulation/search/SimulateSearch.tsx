@@ -2,7 +2,7 @@
 
 import useStockCodeStore from '@/app/store/store';
 import { callGet } from '@/app/utils/callApi';
-import { isOpenTime } from '@/app/utils/date';
+import { getTodayDateBar, isOpenTime } from '@/app/utils/date';
 import { useEffect, useState } from 'react';
 import PreopenSearchInfo from './PreopenSearchInfo';
 import SearchInfo from './SearchInfo';
@@ -11,11 +11,11 @@ import StockSearchBar from './StockSearchBar';
 const SimulateSearch = () => {
   const [stockInfo, setStockInfo] = useState<null | StockInfoTypes>(null);
   const { setStockCode, stockCode } = useStockCodeStore();
-
+  const today = getTodayDateBar();
   const apiURL = (code: string) => {
     return isOpenTime()
       ? `api/stocks?code=${code}`
-      : `api/stocks/offHour?code=${code}&date=${'2024-12-04'}`;
+      : `api/stocks/offHour?code=${code}&date=${today}`;
   };
 
   const getStockInfo = async (code: string) => {

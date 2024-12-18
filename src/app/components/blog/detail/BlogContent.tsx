@@ -25,7 +25,6 @@ const CustomLi = ({ node, ...props }: any) => (
 
 const BlogContent = ({ content }: BlogContentProps) => {
   const sanitizedContent = content ? DOMPurify.sanitize(content) : '';
-  console.log(content);
   return (
     <div className="w-[880px] mt-5 mb-[100px] flex flex-col gap-11">
       <ReactMarkdown

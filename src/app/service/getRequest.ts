@@ -101,7 +101,7 @@ export const getLandingPopular = async (req: Request) => {
 };
 
 export const getLandingRecommend = async (req: Request) => {
-  const url = '/api/blogs/landings/recommend';
+  const url = '/api/blogs/landings/recommend?filter=CREATED_AT&page=1&size=3';
   return getRequest(url, req);
 };
 
@@ -243,5 +243,15 @@ export const getCorpInfo = async (req: Request, stockCode: string) => {
 
 export const getLandingNews = async (req: Request) => {
   const url = '/api/news-summary/todaynews';
+  return getRequest(url, req);
+};
+
+export const getEntInfo = async (req: Request, stockCode: string) => {
+  const url = `/api/stock-predictions/fundamental-data?stockcode=${stockCode}`;
+  return getRequest(url, req);
+};
+
+export const getUserRanking = async (req: Request) => {
+  const url = '/api/transactions/rankings';
   return getRequest(url, req);
 };

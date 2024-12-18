@@ -23,10 +23,10 @@ const ChartTypeDropdown = ({ option, setOption }: ChartTypeDropdownProps) => {
   return (
     <div className="relative flex text-[13px] h-7 cursor-pointer gap-x-4">
       <div
-        className={`flex justify-between w-[66px] items-center pl-2.5 pr-1.5 py-0.5  rounded  ${typeof option === 'number' ? 'bg-gray-5' : 'bg-white border border-gray-2 box-border'}`}
+        className={`flex justify-between w-[66px] items-center pl-2.5 pr-1.5 py-0.5  rounded dark:bg-black-1 dark:text-gray-2  ${typeof option === 'number' ? 'bg-gray-5' : 'bg-white border border-gray-2 box-border'}`}
         onClick={toggleFilterDropdown}
       >
-        <div className="text-black-1">
+        <div className="text-black-1 dark:text-gray-2">
           {typeof option !== 'number' ? 1 : option}분
         </div>
         <Icons name={fillter} />
@@ -50,7 +50,7 @@ const ChartTypeDropdown = ({ option, setOption }: ChartTypeDropdownProps) => {
           <div
             key={dayType}
             onClick={() => handleSelectValue(dayType)}
-            className={`flex-center w-7 h-7 rounded hover:bg-gray-5 text-black-1 ${option === dayType && 'bg-gray-5'}`}
+            className={`flex-center w-7 h-7 rounded hover:bg-gray-5 text-black-1 dark:bg-black-1 dark:text-gray-2  ${option === dayType && 'bg-gray-5'}`}
           >
             {dayType}
           </div>

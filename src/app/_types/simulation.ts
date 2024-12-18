@@ -56,6 +56,7 @@ interface HoldStockTypes {
   avgPrice: number;
   principal: number;
   createdAt: string;
+  symbolImageUrl: string;
 }
 
 interface MinPriceTypes {
@@ -98,3 +99,19 @@ interface LivePriceTypes {
   currentPrice: string;
   dateTime: string;
 }
+
+interface BackTestTypes {
+  startDate: string;
+  endDate: string;
+  periodType: string;
+  totalPrice: number;
+  totalProfit: number;
+  profit: number;
+}
+
+type BackTestOrderTypes = '매일' | '매주' | '매월' | '매년';
+
+type StockPriceTypes = {
+  stockCode: string;
+  price: string;
+};

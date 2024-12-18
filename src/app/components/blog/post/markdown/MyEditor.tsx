@@ -19,7 +19,6 @@ const MyEditor = ({ setContent }: MyEditorProps) => {
 
   const handleImageUpload = async (blob: File, callback: Function) => {
     try {
-      console.log('fileName', blob.name);
       const response = await fetch(
         `/api/blog/images?bucketName=dev-blog&fileName=${blob.name}`,
       );
@@ -28,8 +27,6 @@ const MyEditor = ({ setContent }: MyEditorProps) => {
       }
       const resData = await response.json();
       const presignedUrl = resData.result;
-      console.log(presignedUrl);
-
       await fetch(presignedUrl, {
         method: 'PUT',
         headers: {
@@ -46,7 +43,6 @@ const MyEditor = ({ setContent }: MyEditorProps) => {
               `Failed to fetch image: ${res.status} ${res.statusText}`,
             );
           }
-          console.log('GET Request Successful', res);
           return res.blob();
         })
         .catch((error) => {

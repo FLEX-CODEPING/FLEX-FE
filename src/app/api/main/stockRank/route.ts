@@ -6,7 +6,6 @@ export async function POST(req: Request) {
   const { searchParams } = new URL(req.url);
   const type = searchParams.get('type') || '';
 
-  const response = await postStockRank(body, req, type);
-
-  return NextResponse.json(response);
+  const data = await postStockRank(body, req, type);
+  return NextResponse.json(data);
 }

@@ -133,3 +133,12 @@ interface UserBalanceTypes {
   totalProfit: number;
   recentTransactionAt: string;
 }
+
+interface RankDataTypes {
+  rank: number;
+  userId: number;
+  nickname: string;
+  blogName: string;
+  profileImageUrl: string;
+  totalProfit: number;
+}

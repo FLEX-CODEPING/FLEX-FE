@@ -63,7 +63,6 @@ const useWebSocket = ({ stockCode, setLiveData }: UseWebSocketProps) => {
         };
 
         socket.onclose = () => {
-          console.log('WebSocket 연결 종료');
           setIsConnected(false);
         };
       } catch (error) {

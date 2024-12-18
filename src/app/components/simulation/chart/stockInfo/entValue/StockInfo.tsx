@@ -1,6 +1,7 @@
 import { STOCKINFO_TITLE } from '@/app/constants/simulation';
 import useStockStore from '@/app/store/store';
 import { callGet } from '@/app/utils/callApi';
+import { getTodayDateBar } from '@/app/utils/date';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import EntValue from './EntValue';
@@ -14,12 +15,11 @@ const StockInfo = () => {
 
   useEffect(() => {
     const getStockDetail = async () => {
-      // const date = getTodayDateBar();
+      const date = getTodayDateBar();
       const response = await callGet(
-        `api/stocks/info?code=${stockCode}&date=${'2024-12-11'}`,
+        `api/stocks/info?code=${stockCode}&date=${date}`,
       );
       setStockInfo(response.result);
-      console.log(response, '종목정보');
     };
 
     getStockDetail();
@@ -48,7 +48,7 @@ const StockInfo = () => {
         </div>
         {infoType === '종목정보'
           ? stockInfo && <StockDetail data={stockInfo} />
-          : stockInfo && <EntValue data={stockInfo} />}
+          : stockInfo && <EntValue />}
       </div>
       <div className="w-[1px] h-full border-r border-gray-2" />
       <TradeRecord />

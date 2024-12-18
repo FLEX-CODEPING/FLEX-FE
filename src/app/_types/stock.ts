@@ -3,7 +3,7 @@ interface StockInfoTypes {
   stockName: string;
   symbolImageUrl: string;
   corpInfo: CorpInfoTypes;
-  isInterested: boolean;
+  isInterested: string | null;
   date: string;
   closePrice: 0;
   volume: 0;
@@ -41,6 +41,17 @@ interface StockDetailInfoTypes {
     volume: number;
     changeRate: number;
   };
+}
+
+interface EntValueTypes {
+  date: string;
+  stockcode: string;
+  BPS: number;
+  PER: number;
+  PBR: number;
+  EPS: number;
+  DIV: number;
+  DPS: number;
 }
 
 interface InterestedStockTypes {
@@ -156,9 +167,14 @@ interface TransactionDataTypes {
   transactionId: number;
   userId: number;
   investment: InvestmentDataTypes;
-  credit: number;
+  credit: {
+    creditId: number;
+    credits: number;
+    creditType: string;
+  };
   totalProfit: number;
   balance: number;
+  createdAt: string;
 }
 
 interface InvestmentDataTypes {
@@ -170,6 +186,13 @@ interface InvestmentDataTypes {
   price: number;
   totalPrice: number;
   profit: number;
+}
+
+interface TransactionResponse {
+  content: TransactionDataTypes[];
+  hasNext: true;
+  first: true;
+  last: true;
 }
 
 interface InterestedPriceTypes {

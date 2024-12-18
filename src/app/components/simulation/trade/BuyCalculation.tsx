@@ -41,7 +41,7 @@ const BuyCalculation = ({
           closeModal={closeModal}
         />
       )}
-      <div className="w-full border border-gray-3" />
+      <div className="w-full border border-gray-3  dark:border-black-1" />
       <div className="flex items-center justify-between">
         <p>{TRADE_BUY_TEXT[6]}</p>
         <p>{assets}</p>
@@ -58,7 +58,11 @@ const BuyCalculation = ({
         buttonText={TRADE_BUY_TEXT[9]}
         isDisabled={!isQualified}
         type="trade"
-        className={isQualified ? 'bg-red-1' : 'cursor-not-allowed bg-gray-1'}
+        className={
+          isQualified
+            ? 'bg-red-1'
+            : 'cursor-not-allowed bg-gray-1 dark:bg-black-1'
+        }
         onClickHandler={openModal}
       />
     </div>

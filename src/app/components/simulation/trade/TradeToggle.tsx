@@ -8,13 +8,14 @@ interface TradeToggleProps {
 
 const TradeToggle = ({ isBuy, chngeTradeType }: TradeToggleProps) => {
   const textStyles = (type: TradeType) => {
-    if (isBuy) return type === '매수' ? 'text-red-1' : 'text-gray-1';
-    return type === '매도' ? 'text-blue-1' : 'text-gray-1';
+    if (isBuy)
+      return type === '매수' ? 'text-red-1' : 'text-gray-1 dark:text-gray-3';
+    return type === '매도' ? 'text-blue-1' : 'text-gray-1 dark:text-gray-3';
   };
   return (
-    <div className="w-full flex px-5 py-1 bg-[#e6e6e6] rounded-[25px] text-sm font-semibold relative">
+    <div className="w-full flex px-5 py-1 bg-[#e6e6e6] dark:bg-black-1  rounded-[25px] text-sm font-semibold relative">
       <motion.div
-        className="absolute top-1 left-5 w-24 h-[30px] bg-white rounded-[15px]"
+        className="absolute top-1 left-5 w-24 h-[30px] bg-white dark:text-gray-3  dark:bg-black-0/80 rounded-[15px]"
         animate={{
           x: isBuy ? 0 : 96,
         }}
@@ -29,6 +30,7 @@ const TradeToggle = ({ isBuy, chngeTradeType }: TradeToggleProps) => {
         <div
           className={`w-24 h-[30px] flex-center cursor-pointer ${textStyles(type)} z-[1]`}
           onClick={chngeTradeType}
+          key={type}
         >
           {type}
         </div>

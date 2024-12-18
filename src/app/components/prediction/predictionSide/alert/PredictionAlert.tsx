@@ -108,14 +108,9 @@ const PredictionAlert = ({
           <button
             type="button"
             onClick={toggleTelegramModal}
-            className="flex items-center px-2 py-1 border rounded-lg border-[#0088cc] text-[#0088cc] hover:bg-[#e6f7ff] w-24"
+            className="flex-center px-2 py-1 border rounded-lg border-gray-4 text-black-0 hover:bg-gray-3 w-24"
           >
-            <img
-              src="/images/Telegram.png"
-              alt="Telegram"
-              className="w-4 h-4 mr-1"
-            />
-            <span className="text-sm">Telegram</span>
+            <span className="text-sm">알림종료</span>
           </button>
         </div>
       </div>

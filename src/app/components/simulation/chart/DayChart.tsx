@@ -1,6 +1,6 @@
 import { applyOptions } from '@/app/utils/chart';
 import { convertToUnixTimesDay } from '@/app/utils/date';
-import { createChart, Time } from 'lightweight-charts';
+import { ColorType, createChart, Time } from 'lightweight-charts';
 import { Dispatch, SetStateAction, useLayoutEffect, useRef } from 'react';
 import ChartTypeDropdown from './ChartTypeDropdown';
 
@@ -49,11 +49,26 @@ const DayChart = ({
 
   useLayoutEffect(() => {
     if (!chartContainerRef.current || data.length === 0) return;
+    const isDarkMode = document.documentElement.classList.contains('dark');
 
-    // 차트 초기 생성
     const chart = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
       height: chartContainerRef.current.clientHeight,
+      layout: {
+        background: {
+          type: ColorType.Solid,
+          color: isDarkMode ? '#1E1E1E' : '#FFFFFF',
+        },
+        textColor: isDarkMode ? '#CBCACA' : '#000000',
+      },
+      grid: {
+        vertLines: {
+          color: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)', // 다크모드: 밝은 세로선, 라이트모드: 어두운 세로선
+        },
+        horzLines: {
+          color: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)', // 다크모드: 밝은 가로선, 라이트모드: 어두운 가로선
+        },
+      },
       timeScale: {
         timeVisible: true,
         secondsVisible: false,

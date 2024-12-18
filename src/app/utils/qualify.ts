@@ -4,7 +4,9 @@ export const isCorrect = (text: string) => {
 };
 
 export const valueColor = (value: number) =>
-  value < 0 ? 'text-blue-1' : 'text-red-1';
+  value < 0
+    ? 'text-blue-1 dark:text-blue-1/80'
+    : 'text-red-1 dark:text-red-1/80';
 
 export const tradeTypeColor = (tradeType: string) =>
   tradeType === 'BUY' ? 'text-red-1' : 'text-blue-1';
