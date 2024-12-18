@@ -28,7 +28,7 @@ function Header() {
     path === '/auth/complete';
 
   return (
-    <header className="w-full flex items-center justify-between h-[80px] px-[5%] text-[20px]">
+    <header className="w-full flex items-center justify-between h-[80px] px-[5%] text-[20px] dark:bg-black-0 dark:text-gray-2">
       {!isChecked && <LoginModal />}
       <Link className="flex gap-x-2 items-center" href="/">
         <p className={`${dela.className} text-[28px] text-main-1`}>{TITLE}</p>

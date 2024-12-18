@@ -2,6 +2,7 @@
 
 import { likeSmall } from '@/app/constants/iconPath';
 import { MAIN_CONTENTS_TITLE } from '@/app/constants/main';
+import { MockHashTag, MockTag, MockTitle } from '@/app/data/blogdata';
 import { useUserStore } from '@/app/store/store';
 import { callGet } from '@/app/utils/callApi';
 import Image from 'next/image';
@@ -57,12 +58,12 @@ const RecommendPost = () => {
               >
                 <div className="w-[300px] flex flex-col">
                   <p className="text-[10px] font-bold text-main-1">
-                    {data.tags}
+                    {MockTag[i]}
                   </p>
-                  <p className="text-[15px] font-semibold">{data.title}</p>
+                  <p className="text-[15px] font-semibold">{MockTitle[i]}</p>
                   <div className="flex py-[5px] w-full justify-between items-center mt-2">
                     <div className="flex items-center gap-x-1">
-                      {data.commonInterests.map((interest) => (
+                      {MockHashTag[i].map((interest) => (
                         <div
                           className="bg-gray-3 text-xs px-1 py-0.5 rounded"
                           key={data.id}

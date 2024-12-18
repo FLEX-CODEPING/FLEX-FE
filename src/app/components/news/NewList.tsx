@@ -67,17 +67,17 @@ const NewsList = ({ newsData, keyword, dateRange }: NewsListProps) => {
               variants={fadeInVariants}
               className="flex justify-between items-start pb-2 text-sm text-gray-500"
             >
-              <span className="text-left w-[150px]">
+              <span className="text-left w-[120px] pl-3">
                 {formatDate(news.date)}
               </span>
               <span className="font-semibold text-gray-700 text-left w-[400px]">
-                {truncateString(news.title, 40)}
+                {truncateString(news.title, 36)}
               </span>
               <span
                 className="text-left w-[500px] cursor-pointer"
                 onClick={() => handleNewsClick(news.url)}
               >
-                {truncateString(news.content, 46)}
+                {truncateString(news.content, 42)}
               </span>
               <Icons
                 name={k}

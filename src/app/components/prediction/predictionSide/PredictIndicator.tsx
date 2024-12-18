@@ -53,9 +53,7 @@ const PredictIndicator: React.FC<PredictIndicatorProps> = ({
       window.alert('예측 방법과 종목을 선택해 주세요.');
       return;
     }
-
     setLoading(true);
-
     const reqBody = {
       dateFrom: '20240101',
       dateTo: '20241231',
@@ -124,7 +122,7 @@ const PredictIndicator: React.FC<PredictIndicatorProps> = ({
           </p>
         </div>
       </div>
-      <div className="w-full py-3 px-5 flex-col flex gap-y-2 rounded mb-1">
+      <div className="w-full py-3 px-3 flex-col flex gap-y-3 rounded mb-1">
         {PREDICTION_INDICATION_SORT.map((method, index) => (
           <label
             key={method}
@@ -147,7 +145,7 @@ const PredictIndicator: React.FC<PredictIndicatorProps> = ({
           </label>
         ))}
       </div>
-      <div className="w-full px-5">
+      <div className="w-full px-5 pb-3">
         <Button
           buttonText={loading ? '분석 중...' : '예측하기'}
           type="default"

@@ -87,10 +87,10 @@ const TradeBar = () => {
       <div className="flex flex-col gap-y-4">
         <p>{TRADE_BUY_TEXT[0]}</p>
         <TradeToggle isBuy={isBuy} chngeTradeType={chngeTradeType} />
-        <div className="flex w-full flex-col gap-y-3 text-sm">
+        <div className="flex w-full flex-col gap-y-3 text-sm dark:text-gray-3">
           <div className=" flex w-full justify-between items-center">
             <p>{isBuy ? TRADE_BUY_TEXT[3] : TRADE_SELL_TEXT[3]}</p>
-            <div className="w-[140px] h-[33px] px-3 py-2 flex items-center justify-end rounded-md border border-gray-2 font-light text-black-1 text-sm">
+            <div className="w-[140px] h-[33px] px-3 py-2 flex items-center justify-end rounded-md border border-gray-2 font-light text-black-1 text-sm dark:text-gray-3">
               {stockPrice}
             </div>
           </div>
@@ -105,11 +105,11 @@ const TradeBar = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="flex w-full justify-end gap-x-1">
+          <div className="flex w-full justify-end gap-x-1 dark:text-gray-3">
             {AMOUNT_TYPES.map((amount, i) => (
               <div
                 key={amount}
-                className={`w-8 h-8 flex-center rounded-md text-[10px] cursor-pointer ${amountType === amount ? 'font-medium text-black border border-black-1' : 'text-black-1 font-light border border-gray-2'}`}
+                className={`w-8 h-8 flex-center rounded-md text-[10px] cursor-pointer ${amountType === amount ? 'font-medium text-black dark:text-gray-3 border border-black-1' : 'text-black-1 dark:text-gray-3 font-light border border-gray-2'}`}
                 onClick={() => selectAmountType(amount, i)}
               >
                 {amount}
@@ -118,7 +118,7 @@ const TradeBar = () => {
           </div>
           <div className=" flex w-full justify-between items-center">
             <p>{TRADE_BUY_TEXT[5]}</p>
-            <div className="w-[140px] h-[33px] px-3 py-2 flex items-center justify-end rounded-md border border-gray-2 font-light text-black-1 text-sm">
+            <div className="w-[140px] h-[33px] px-3 py-2 flex items-center justify-end rounded-md border border-gray-2 font-light text-black-1 text-sm dark:text-gray-3">
               {Number(tradeCnt) * stockPrice || 0}원
             </div>
           </div>

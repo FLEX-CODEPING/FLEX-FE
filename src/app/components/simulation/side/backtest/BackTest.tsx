@@ -73,7 +73,7 @@ const BackTest = () => {
   return (
     <div className="w-[260px] h-[628px] flex-col flex px-4 py-3.5 border border-gray-4 rounded-[10px] gap-y-4">
       {SIDE_NAV_TYPES[2]}
-      <div className="flex mt-1 text-black-0 gap-x-4">
+      <div className="flex mt-1 text-black-0 gap-x-4 dark:text-gray-3 ">
         <div className="flex flex-col gap-y-0.5">
           <p className="text-[13px] pl-1">{BACKTEST_TEXT[0]}</p>
           <Input
@@ -100,7 +100,7 @@ const BackTest = () => {
             <div
               key={type}
               onClick={() => setOrderType(type)}
-              className={`rounded-lg  flex-center w-12 h-7 cursor-pointer ${orderType === type ? 'bg-main-1/90 text-white' : 'bg-white border-[1.5px] border-gray-2'}`}
+              className={`rounded-lg  flex-center w-12 h-7 cursor-pointer ${orderType === type ? 'bg-main-1/90 text-white' : 'bg-white border-[1.5px] dark:bg-gray-1  border-gray-2 dark:border-gray-1 '}`}
             >
               {type}
             </div>
@@ -134,7 +134,7 @@ const BackTest = () => {
         <Button
           buttonText={isFinish ? BACKTEST_BTN_TEXT[1] : BACKTEST_BTN_TEXT[0]}
           type="backTest"
-          className={isQualified ? 'bg-main-1/90' : 'bg-gray-2'}
+          className={isQualified ? 'bg-main-1/90' : 'bg-gray-2 dark:bg-gray-2 dark:border-gray-1 dark:text-black-1'}
           onClickHandler={isFinish ? resetTest : postBackTest}
         />
         <div className="w-[100%] border-b border-b-gray-2 mt-2 py-2" />
@@ -149,7 +149,7 @@ const BackTest = () => {
           <BackTestResult testResult={testResult} orderType={orderType} />
         </motion.div>
       ) : (
-        <div className="flex-1 flex-center flex-col gap-y-1 animate-pulse font-light pb-8 bg-gray-6 rounded-lg duratio 2s ease-in-out">
+        <div className="flex-1 flex-center flex-col gap-y-1 animate-pulse font-light pb-8 bg-gray-6 dark:bg-gray-1 dark:border-gray-1 dark:text-gray-3 rounded-lg duratio 2s ease-in-out">
           <p className="text-lg">✏️</p>
           <p>백테스팅 조건 입력 후</p>
           <p> 결과를 확인하세요</p>

@@ -8,7 +8,7 @@ const LoadingPossesion = () => {
       <div className="w-[226px] h-11 bg-gray-4 animate-pulse rounded-md" />
       <div className="w-[226px] h-11 bg-gray-4/90 animate-pulse rounded-md" />
       <div className="w-[226px] h-11 bg-gray-4/85 animate-pulse rounded-md" />
-      <div className="w-[226px] h-11 bg-npmgray-4/80 animate-pulse rounded-md" />
+      <div className="w-[226px] h-11 bg-gray-4/80 animate-pulse rounded-md" />
       <div className="w-[226px] h-11 bg-gray-4/75 animate-pulse rounded-md" />
       <div className="w-[226px] h-11 bg-gray-4/70 animate-pulse rounded-md" />
       <div className="w-[226px] h-11 bg-gray-4/65 animate-pulse rounded-md" />

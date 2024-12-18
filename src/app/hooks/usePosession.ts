@@ -6,7 +6,6 @@ const fetchHoldStocks = async () => {
     `/api/stocks/hold?holdStatus=HOLDING&page=1&size=20&property=createdAt&direction=desc`,
   );
   const stocks = response.result.content;
-
   const stockPrices = await Promise.all(
     stocks.map(async (item: HoldStockTypes) => {
       const data = await callPost(

@@ -14,7 +14,7 @@ const AnalyzeBar = () => {
       </div>
       <p className="text-xs flex w-full ">{ANALYZEBAR_TEXT[1]}</p>
       <Link
-        className="bg-black-0 text-white mt-6 w-60 h-8 rounded-lg font-semibold text-[15px] flex-center"
+        className="bg-black-0 dark:bg-gray-7 text-white mt-6 w-60 h-8 rounded-lg font-medium text-[15px] flex-center"
         href="/analyze"
       >
         {ANALYZEBAR_TEXT[2]}

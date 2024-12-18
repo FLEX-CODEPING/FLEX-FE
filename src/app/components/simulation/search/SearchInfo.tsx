@@ -4,6 +4,8 @@ import {
   useAddInterestStock,
   useDeleteInterestStock,
 } from '@/app/hooks/useInterestStock';
+import { useLiveDataStore } from '@/app/store/store';
+import { valueColor } from '@/app/utils/qualify';
 import Image from 'next/image';
 import Icons from '../../common/Icons';
 
@@ -20,6 +22,7 @@ const SearchInfo = ({
 }: SearchInfoProps) => {
   const { mutate: addInterestStock } = useAddInterestStock();
   const { mutate: removeInterestStock } = useDeleteInterestStock();
+  const { liveData } = useLiveDataStore();
 
   const handleInterestClick = () => {
     if (stockInfo?.isInterested) {
@@ -31,7 +34,7 @@ const SearchInfo = ({
   };
 
   return stockInfo && stockCode !== 'null' ? (
-    <div className="flex px-[15.5px] py-3 justify-between w-[360px] items-end">
+    <div className="flex px-[15.5px] py-3 justify-between w-[320px] items-end">
       <div className="flex gap-x-2.5">
         <div className="w-10 h-10 relative rounded-[18px]">
           {stockInfo.symbolImageUrl === null ? (
@@ -50,16 +53,38 @@ const SearchInfo = ({
             <p className="text-sm font-bold">{stockInfo.stockName}</p>
             <p className="text-xs font-normal">{stockInfo.stockcode}</p>
           </div>
+          <div
+            className={`flex gap-x-1 ${valueColor(liveData?.close || 0 - (liveData?.open || 0))} text-xs items-end`}
+          >
+            <p className="text-base font-medium">{liveData?.close || 0}원</p>
+            <div className="flex pb-0.5 gap-1">
+              <p>
+                +{Math.floor((liveData?.close || 0) - (liveData?.open || 0))}
+              </p>
+              <p>
+                {`(+${Math.floor(
+                  (((liveData?.close || 0) - (liveData?.open || 0)) /
+                    (liveData?.open || 0)) *
+                    100,
+                )}%)`}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-      <Icons
-        name={{
-          ...likeSmall,
-          fill: stockInfo.isInterested ? '#F95700' : likeSmall.fill,
-        }}
-        className="cursor-pointer"
-        onClick={handleInterestClick}
-      />
+      <div className="flex flex-col gap-y-1.5 gap-x-2 items-center pb-1">
+        <div className="h-5 px-2 py-2 text-[11px] rounded flex-center bg-gray-3 text-black-1">
+          코스피
+        </div>
+        <Icons
+          name={{
+            ...likeSmall,
+            fill: stockInfo.isInterested ? '#F95700' : likeSmall.fill,
+          }}
+          className="cursor-pointer"
+          onClick={handleInterestClick}
+        />
+      </div>
     </div>
   ) : (
     <div className="flex px-8 py-[14px] justify-between rounded-xl w-[360px] items-center border-dashed border border-gray-2">

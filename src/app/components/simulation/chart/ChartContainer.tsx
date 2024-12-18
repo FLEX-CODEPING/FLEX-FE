@@ -1,6 +1,6 @@
 'use client';
 
-import useStockStore from '@/app/store/store';
+import useStockStore, { useLiveDataStore } from '@/app/store/store';
 import { isOpenTime } from '@/app/utils/date';
 import {
   fetchAdditionalData,
@@ -17,11 +17,10 @@ import WebSocketChart from './SocketChart';
 const ChartContainer = () => {
   const [mindata, setMinData] = useState<MinPriceTypes[]>([]);
   const [dailyData, setDailyData] = useState<DailyPriceTypes[]>([]);
-  const [liveData, setLiveData] = useState<ChartDataTypes | null>(null);
+  const { liveData } = useLiveDataStore();
   const { stockCode } = useStockStore();
   const [isLack, setIsLack] = useState(false);
   const [timeFrame, setTimeFrame] = useState<number | string>(1);
-
   const isDay = typeof timeFrame === 'string';
   const isOpen = isOpenTime();
 
@@ -63,7 +62,7 @@ const ChartContainer = () => {
   }, [isLack]);
 
   return (
-    <div className="flex w-full px-3 py-3 rounded-[10px] border border-gray-4 flex-col justify-start items-start gap-y-5">
+    <div className="flex w-full px-3 py-3 rounded-[10px] border border-gray-4 flex-col justify-start items-start gap-y-5 dark:bg-black-0 dark:text-gray-4">
       {!stockCode || stockCode === 'null' ? (
         <ChartEmpty />
       ) : isDay ? (
@@ -84,9 +83,7 @@ const ChartContainer = () => {
           liveData={liveData}
         />
       )}
-      {isOpen && !isDay && (
-        <WebSocketChart stockCode={stockCode} setLiveData={setLiveData} />
-      )}
+      {isOpen && !isDay && <WebSocketChart stockCode={stockCode} />}
     </div>
   );
 };

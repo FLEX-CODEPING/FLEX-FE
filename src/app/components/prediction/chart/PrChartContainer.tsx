@@ -3,40 +3,13 @@
 import useStockStore from '@/app/store/store';
 import { callPost } from '@/app/utils/callApi';
 import { useCallback, useEffect, useState } from 'react';
+import WebSocketChart from '../../simulation/chart/SocketChart';
 import PrChart from './PrChart';
 import PrChartEmpty from './PrChartEmpty';
 
 const PrChartContainer = () => {
   const [data, setData] = useState<any[]>([]);
   const { stockCode } = useStockStore();
-
-  // const addFutureData = () => {
-  //   const startDate = new Date(2024, 11, 9);
-
-  //   const futureData = [];
-  //   for (let i = 1; i <= 10; i++) {
-  //     const futureDate = new Date(startDate);
-  //     futureDate.setDate(startDate.getDate() + i);
-
-  //     const formattedDate = `${futureDate.getFullYear()}${String(
-  //       futureDate.getMonth() + 1,
-  //     ).padStart(2, '0')}${String(futureDate.getDate()).padStart(2, '0')}`;
-
-  //     futureData.push({
-  //       stck_bsop_date: String(formattedDate),
-  //       stck_oprc: String(Math.floor(Math.random() * 1000 + 24000)), // 랜덤 데이터 예시
-  //       stck_hgpr: String(Math.floor(Math.random() * 1000 + 25000)),
-  //       stck_lwpr: String(Math.floor(Math.random() * 1000 + 23900)),
-  //       stck_clpr: String(Math.floor(Math.random() * 1000 + 24000)),
-  //       acml_vol: Math.floor(Math.random() * 1000),
-  //     });
-  //   }
-  //   console.log(futureData,'생성된 추가 데이터');
-
-  //   setData((prevData) => [...prevData, ...futureData]); // 기존 데이터에 추가
-  // };
-
-  // console.log(data, '합쳐진 데이터');
 
   const fetchData = useCallback(async () => {
     const reqBodyTemplate = {
@@ -105,17 +78,12 @@ const PrChartContainer = () => {
 
   return (
     <div className="flex w-full px-5 py-5 rounded-[10px] border border-gray-4 flex-col justify-start items-start gap-y-5">
-      {/* <Button
-            buttonText="5일 추가 데이터 생성"
-            type="default"
-            onClickHandler={addFutureData} // 버튼 클릭 시 5일 데이터 추가
-            className="mt-5"
-          /> */}
       {!stockCode || stockCode === 'null' ? (
         <PrChartEmpty />
       ) : (
         <PrChart chartData={data} symbol={stockCode || '005930'} />
       )}
+      {stockCode && <WebSocketChart stockCode={stockCode} />}
     </div>
   );
 };

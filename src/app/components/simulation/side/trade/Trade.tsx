@@ -30,7 +30,7 @@ const Trade = () => {
   }, [data, text]);
 
   return (
-    <div className="w-[260px] h-[628px] flex-col flex px-4 py-3.5 border border-gray-4 rounded-[10px] gap-y-4">
+    <div className="w-[260px] h-[628px] flex-col flex px-4 py-3.5 border border-gray-4 rounded-[10px] gap-y-4 ">
       <div className="w-full flex justify-between items-end">
         <p className="text-base">{SIDE_NAV_TYPES[3]}</p>
       </div>
@@ -47,11 +47,11 @@ const Trade = () => {
         ) : (
           filteredRecords.map((filteredData, i) => (
             <div
-              className="w-full flex px-2 text-black-0 justify-between"
+              className="w-full flex px-2 text-black-0 dark:text-gray-3 justify-between"
               key={filteredData.transactionId}
             >
               <div className="flex flex-col gap-y-0.5">
-                <p className="text-xs text-black-1">
+                <p className="text-xs text-black-1 dark:text-gray-3 ">
                   {filteredData?.createdAt &&
                     new Date(filteredData.createdAt).toLocaleDateString()}
                 </p>

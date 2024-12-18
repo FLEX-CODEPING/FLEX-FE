@@ -31,7 +31,7 @@ const PredictionResult = ({
   const handleMouseLeave = () => setIsTooltipVisible(false);
 
   return (
-    <div className="w-full px-5 py-3 flex-col-center rounded-[10px] border border-gray-4">
+    <div className="w-full px-5 pt-3 pb-5 flex-col-center rounded-[10px] border border-gray-4">
       <div className="flex w-full justify-between items-end border-b border-b-gray-2 pb-1 px-1">
         <p>{PREDICTION_SIDEBAR_RESULT[0]}</p>
         <div
