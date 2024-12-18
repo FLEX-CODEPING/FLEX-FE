@@ -53,3 +53,13 @@ const useStockStore = create<StockCodeStoreState>((set) => ({
 }));
 
 export default useStockStore;
+
+interface LiveStoreState {
+  liveData: ChartDataTypes | null;
+  setLiveData: (data: ChartDataTypes | null) => void;
+}
+
+export const useLiveDataStore = create<LiveStoreState>((set) => ({
+  liveData: null,
+  setLiveData: (data) => set({ liveData: data }),
+}));
