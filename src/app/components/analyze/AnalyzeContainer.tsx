@@ -21,7 +21,6 @@ const AnalyzeContainer = () => {
   const [nickname, setNickname] = useState<string>('');
   const [analysisData, setAnalysisData] = useState<any>(null);
 
-  // Fetch user nickname
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -39,7 +38,6 @@ const AnalyzeContainer = () => {
     fetchUser();
   }, []);
 
-  // Fetch analysis data
   useEffect(() => {
     const fetchAnalysisData = async () => {
       try {
@@ -90,7 +88,6 @@ const AnalyzeContainer = () => {
 
       {analysisData ? (
         <>
-          {/* Investment Style */}
           <motion.div
             variants={fadeInVariants}
             className="px-[6%] w-full h-auto flex-col flex gap-3"
@@ -120,7 +117,6 @@ const AnalyzeContainer = () => {
             </div>
           </motion.div>
 
-          {/* Investment Strategy */}
           <motion.div
             variants={fadeInVariants}
             className="px-[6%] w-full h-auto flex-col flex gap-3"

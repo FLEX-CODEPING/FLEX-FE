@@ -7,14 +7,13 @@ import { callGet } from '@/app/utils/callApi';
 import Pagination from '@/app/components/common/Pagination';
 
 const BlogSearch = () => {
-  const [query, setQuery] = useState(''); // 검색어
-  const [results, setResults] = useState<SearchPostTypes[]>([]); // 검색 결과
-  const [searchExecuted, setSearchExecuted] = useState(false); // 검색 여부
-  const [totalResults, setTotalResults] = useState(0); // 전체 결과 수
-  const [totalPages, setTotalPages] = useState(0); // 전체 페이지 수
-  const [currentPage, setCurrentPage] = useState(0); // 현재 페이지
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState<SearchPostTypes[]>([]);
+  const [searchExecuted, setSearchExecuted] = useState(false);
+  const [totalResults, setTotalResults] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
 
-  // 검색 실행 함수
   const handleSearch = async (page = 0) => {
     setSearchExecuted(true);
 
@@ -41,31 +40,29 @@ const BlogSearch = () => {
           updatedAt: post.updatedAt,
           imageUrls: post.imageUrls,
           likeCount: post.likeCount,
-          thumbnailUrl: post.thumbnailUrl, // 썸네일 추가
+          thumbnailUrl: post.thumbnailUrl,
         }));
 
-        setResults(transformedResults); // 검색 결과 설정
-        setTotalResults(totalElements); // 총 결과 수 설정
-        setTotalPages(responseTotalPages); // 총 페이지 수 설정
-        setCurrentPage(page); // 현재 페이지 설정
+        setResults(transformedResults);
+        setTotalResults(totalElements);
+        setTotalPages(responseTotalPages);
+        setCurrentPage(page);
       }
     } catch (error) {
       console.error('Error fetching the data', error);
     }
   };
 
-  // 페이지 변경 함수
   const handlePageChange = ({ selected }: { selected: number }) => {
-    const newPage = selected; // 0-based 페이지
-    setCurrentPage(newPage); // 현재 페이지 업데이트
-    handleSearch(newPage); // 새 페이지 데이터 요청
+    const newPage = selected;
+    setCurrentPage(newPage);
+    handleSearch(newPage);
   };
 
-  // 검색어 변경 시 검색 실행
   useEffect(() => {
     const debounceSearch = setTimeout(() => {
       if (query.trim()) {
-        handleSearch(0); // 페이지 0부터 검색
+        handleSearch(0);
       }
     }, 500);
 
@@ -78,14 +75,14 @@ const BlogSearch = () => {
         <SearchBar
           query={query}
           setQuery={setQuery}
-          handleSearch={() => handleSearch(0)} // 수동 검색
+          handleSearch={() => handleSearch(0)}
         />
         <Results
           results={results}
           searchExecuted={searchExecuted}
           totalResults={totalResults}
         />
-        {/* 검색 실행 후에만 페이지네이션 표시 */}
+
         {searchExecuted && totalResults > 0 && (
           <div className="mt-[80px] mb-[50px]">
             <Pagination

@@ -1,14 +1,16 @@
 'use client';
 
 import { USERPAGE_TEXT } from '@/app/constants/mypage';
-import { callDelete, callDeleteBody, callPost } from '@/app/utils/callApi';
+import { callDeleteBody, callPost } from '@/app/utils/callApi';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 interface BlogTitleProps {
   title: string;
   nickname: string;
   createdAt: string;
   userId: string;
+  currentUserId?: string;
   onNicknameClick: () => void;
   following: boolean;
 }
@@ -18,6 +20,7 @@ const BlogTitle = ({
   nickname,
   createdAt,
   userId,
+  currentUserId,
   onNicknameClick,
   following,
 }: BlogTitleProps) => {
@@ -25,24 +28,32 @@ const BlogTitle = ({
 
   const handleFollowClick = async () => {
     try {
+      if (nickname === currentUserId) {
+        toast.error('자기 자신을 팔로우할 수 없습니다.');
+        return;
+      }
+
       if (isFollowing) {
         const response = await callDeleteBody(`/api/follow/delete`, { userId });
         if (response.isSuccess) {
           setIsFollowing(false);
+          toast.info('팔로우를 해제했습니다.');
         }
       } else {
         const response = await callPost(`/api/follow`, { userId });
         if (response.isSuccess) {
           setIsFollowing(true);
+          toast.success('팔로우 했습니다.');
         }
       }
     } catch (error) {
       console.error('팔로우/팔로우 해제 요청 중 오류가 발생했습니다:', error);
+      toast.error('요청 중 오류가 발생했습니다.');
     }
   };
 
   return (
-    <div className="w-[880px] h-[111px]  border-b border-[#7a7a7a] flex flex-col gap-6">
+    <div className="w-[880px] h-[111px] border-b border-[#7a7a7a] flex flex-col gap-6">
       <div className="w-full text-5xl font-bold">{title}</div>
       <div className="ml-1 w-full flex justify-between items-center">
         <div className="flex items-center font-bold">
@@ -69,4 +80,5 @@ const BlogTitle = ({
     </div>
   );
 };
+
 export default BlogTitle;

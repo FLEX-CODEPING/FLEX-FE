@@ -43,7 +43,7 @@ const NewsList = ({ newsData, keyword, dateRange }: NewsListProps) => {
         <ul className="list-none space-y-2">
           {newsData.summaries.map((summary) => (
             <motion.li
-              key={`${summary.title}-${summary.content}`} // 고유한 값 사용
+              key={`${summary.title}-${summary.content}`}
               variants={fadeInVariants}
               className="flex"
             >
@@ -63,7 +63,7 @@ const NewsList = ({ newsData, keyword, dateRange }: NewsListProps) => {
         <ul className="space-y-4">
           {newsData.sources.map((news) => (
             <motion.li
-              key={`${news.title}-${news.date}`} // 고유한 값 사용
+              key={`${news.title}-${news.date}`}
               variants={fadeInVariants}
               className="flex justify-between items-start pb-2 text-sm text-gray-500"
             >

@@ -32,9 +32,9 @@ const MyInterest = ({ formData, updateFormData }: IncomeInterestProps) => {
           {INCOME_RANGE.map((income) => (
             <div
               key={income}
-              onClick={() => updateFormData('salaryRange', income)} // 바로 받아온 데이터로 설정
+              onClick={() => updateFormData('salaryRange', income)}
               className={`w-20 h-8 flex-center text-[11px] border rounded-2xl cursor-pointer ${
-                formData.salaryRange === income // 받아온 데이터와 비교
+                formData.salaryRange === income
                   ? 'border-main-1 bg-main-1 text-white'
                   : 'border-gray-1'
               }`}

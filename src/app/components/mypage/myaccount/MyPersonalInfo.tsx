@@ -41,13 +41,13 @@ const MyPersonalInfo = ({ formData, updateFormData }: MyPersonalInfoProps) => {
           text: '사용 가능한 블로그명입니다.',
           textColor: 'blue-1',
         });
-        updateFormData('isPossible', true); // 사용 가능 상태 업데이트
+        updateFormData('isPossible', true);
       } else {
         setCheckStatus({
           text: '이미 사용 중인 블로그명입니다.',
           textColor: 'red-1',
         });
-        updateFormData('isPossible', false); // 사용 불가능 상태 업데이트
+        updateFormData('isPossible', false);
       }
     } catch (error) {
       console.error('블로그명 중복 확인 실패:', error);
@@ -76,7 +76,7 @@ const MyPersonalInfo = ({ formData, updateFormData }: MyPersonalInfoProps) => {
             textValue={formData.blogName}
             onChange={(e) => {
               updateFormData('blogName', e.target.value);
-              updateFormData('isPossible', false); // 입력값 변경 시 상태 초기화
+              updateFormData('isPossible', false);
               setCheckStatus({ text: '', textColor: 'gray-1' });
             }}
             placeholder={BLOGNAME_TEXT[1]}
