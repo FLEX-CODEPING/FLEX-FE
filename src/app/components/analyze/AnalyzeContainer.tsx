@@ -1,4 +1,5 @@
 'use client';
+
 import { infoIcon } from '@/app/constants/iconPath';
 import {
   ANALYZE_CAUTION,
@@ -11,6 +12,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Icons from '../common/Icons';
+
 const AnalyzeContainer = () => {
   const fadeInVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -37,7 +39,9 @@ const AnalyzeContainer = () => {
   useEffect(() => {
     const fetchAnalysisData = async () => {
       try {
-        await new Promise((resolve) => setTimeout(resolve, 1200));
+        await new Promise((resolve) => {
+          setTimeout(resolve, 1200);
+        });
         const response = await callGet('/api/analysis');
         if (response.isSuccess) {
           setAnalysisData(response.result);

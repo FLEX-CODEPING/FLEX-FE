@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import EntValue from './EntValue';
 import StockDetail from './StockDetail';
+import TradeRecord from './TradeRecord';
 
 const StockInfo = () => {
   const [stockInfo, setStockInfo] = useState<null | StockDetailInfoTypes>(null);
@@ -50,7 +51,7 @@ const StockInfo = () => {
           : stockInfo && <EntValue />}
       </div>
       <div className="w-[1px] h-full border-r border-gray-2" />
-      {/* <TradeRecord /> */}
+      <TradeRecord />
     </div>
   );
 };

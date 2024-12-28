@@ -7,10 +7,10 @@ import {
   TRADE_PLACEHOLDER,
   TRADETYPE_MAP,
 } from '@/app/constants/simulation';
-import { useRefreshTrade } from '@/app/hooks/useRefreshTrade';
+import { useInfiniteTrade } from '@/app/hooks/useInfiniteTrade';
 import { formatNumberCommas } from '@/app/utils/formatNum';
 import { tradeTypeColor } from '@/app/utils/qualify';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import EmptyGuide from '../EmptyGuide';
 
 const Trade = () => {
@@ -18,16 +18,47 @@ const Trade = () => {
   const [filteredRecords, setFilteredRecords] = useState<
     TransactionDataTypes[]
   >([]);
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
+    useInfiniteTrade();
+  const observerRef = useRef<HTMLDivElement | null>(null);
 
-  const { data } = useRefreshTrade();
+  console.log(data, '가져온 데이터');
+  console.log(hasNextPage, '로딩 상태 데이터');
 
   useEffect(() => {
-    const records = data || [];
-    const filtered = records.filter((item) =>
-      item.investment.corpName.includes(text),
-    );
-    setFilteredRecords(filtered);
+    if (data) {
+      const allRecords = data.pages.flatMap((page) => page.content || []);
+      const filtered = allRecords.filter((item) =>
+        item.investment.corpName.includes(text),
+      );
+      setFilteredRecords(filtered);
+    }
   }, [data, text]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
+          fetchNextPage();
+        }
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1,
+      },
+    );
+
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
+    }
+
+    return () => {
+      if (observerRef.current) {
+        observer.unobserve(observerRef.current);
+      }
+    };
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   return (
     <div className="w-[260px] h-[628px] flex-col flex px-4 py-3.5 border border-gray-4  dark:border-black-1 rounded-[10px] gap-y-4 ">
@@ -41,7 +72,7 @@ const Trade = () => {
           placeholder={TRADE_PLACEHOLDER[0]}
         />
       </div>
-      <div className="w-full flex flex-col gap-y-4 overflow-y-auto hide-scrollbar">
+      <div className="w-full flex flex-col overflow-y-auto gap-y-4">
         {filteredRecords.length === 0 ? (
           <EmptyGuide phraseArr={TRADE_EMPTY} />
         ) : (
@@ -78,6 +109,14 @@ const Trade = () => {
               )}
             </div>
           ))
+        )}
+        {filteredRecords.length > 0 && (
+          <div
+            ref={observerRef}
+            className="h-8 w-full flex justify-center items-center"
+          >
+            {isFetchingNextPage ? <p>Loading...</p> : <p>더 보기</p>}
+          </div>
         )}
       </div>
     </div>
