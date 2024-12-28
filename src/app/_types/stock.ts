@@ -190,9 +190,9 @@ interface InvestmentDataTypes {
 
 interface TransactionResponse {
   content: TransactionDataTypes[];
-  hasNext: true;
-  first: true;
-  last: true;
+  hasNext: boolean;
+  first: boolean;
+  last: boolean;
 }
 
 interface InterestedPriceTypes {
