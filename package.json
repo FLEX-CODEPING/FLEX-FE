@@ -28,7 +28,6 @@
     "cookie": "^1.0.1",
     "dayjs": "^1.11.13",
     "dd-trace": "^5.26.0",
-    "dompurify": "^3.1.7",
     "framer-motion": "^11.13.3",
     "github-markdown-css": "^5.7.0",
     "jquery": "^3.7.1",
@@ -60,7 +59,6 @@
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.60.1",
-    "@types/dompurify": "^3.0.5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
