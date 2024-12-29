@@ -11,41 +11,6 @@ type SideNavType =
   | '거래현황'
   | '내 거래내역';
 
-interface TradeDataType {
-  stockName: string;
-  stockQuantity: number;
-  stockPrice: number;
-}
-
-interface StockInfo {
-  image_path: string;
-  name: string;
-  price: number;
-  change_amount: number;
-  change_percent: number;
-  liked: boolean;
-  quantity: number;
-  avg_purchase_price: number;
-}
-
-interface DailyPriceBodyTypes {
-  marketDivCode: string;
-  stockCode: string;
-  dateFrom: string;
-  dateTo: string;
-  periodDivCode: string;
-  orgAdjPrice: number;
-}
-
-interface DailyPriceResponseTypes {
-  marketDivCode: string;
-  stockCode: string;
-  dateFrom: string;
-  dateTo: string;
-  periodDivCode: string;
-  orgAdjPrice: number;
-}
-
 interface HoldStockTypes {
   userId: number;
   holdStockId: number;
@@ -93,11 +58,6 @@ interface DailyPriceTypes {
   prdy_vrss_sign: string;
   prdy_vrss: string;
   revl_issu_reas: string;
-}
-
-interface LivePriceTypes {
-  currentPrice: string;
-  dateTime: string;
 }
 
 interface BackTestTypes {
