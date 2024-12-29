@@ -25,7 +25,6 @@ const nextConfig = {
   },
   experimental: {
     instrumentationHook: true,
-    serverComponentsExternalPackages: ['dd-trace'],
   },
 };
 
