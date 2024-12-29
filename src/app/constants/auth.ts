@@ -14,9 +14,6 @@ export const INITIAL_SIGNUP_DATA: SignUpFormTypes = {
 
 export const BIRTH = ['생년월일', '본인의 생년월일을 기입해주세요'];
 
-export const BIRTH_DATE = 'YYYY. MM. DD';
-export const BIRTH_GUIDE = '';
-
 export const NICKNAME_TEXT = [
   '닉네임',
   '홍길동',

@@ -29,19 +29,6 @@ export const CATCH_PHRASE = [
   '와 함께',
 ];
 
-export const MAIN_POST_TAG: MainPostViewTypes[] = ['최신', '인기', '팔로잉'];
-
-export const LANDING_VIEWTYPE_MAP: Record<
-  MainPostViewTypes,
-  MainPostViewApiTypes
-> = {
-  최신: 'CREATED_AT',
-  인기: 'LIKE_COUNT',
-  팔로잉: 'FOLLOWING',
-};
-
-export const MAIN_BLOG_BTN = '글 더 보러가기';
-
 export const MAIN_LEFT_ETC = ['다른 뉴스 보러가기', '블로그 구경가기'];
 
 export const RANKING_COLOR = ['bg-[#FEEAB4]', 'bg-[#e5e5e5]', 'bg-[#e5cbbc]'];

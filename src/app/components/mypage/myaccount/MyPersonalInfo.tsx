@@ -1,13 +1,8 @@
-import {
-  BIRTH,
-  BIRTH_DATE,
-  BLOGNAME_TEXT,
-  NICKNAME_TEXT,
-} from '@/app/constants/auth';
-import { isCorrect } from '@/app/utils/qualify';
+import { BIRTH, BLOGNAME_TEXT, NICKNAME_TEXT } from '@/app/constants/auth';
 import { ACCOUNT_TEXT } from '@/app/constants/mypage';
-import { useState } from 'react';
 import { callPost } from '@/app/utils/callApi';
+import { isCorrect } from '@/app/utils/qualify';
+import { useState } from 'react';
 import Input from '../../common/Input';
 
 interface MyPersonalInfoProps {

@@ -9,7 +9,7 @@ const setSessionTimeout = (duration: number) => {
   }
   sessionTimeoutId = window.setTimeout(() => {
     window.location.href = '/auth';
-  }, duration - 3000); // 만료 3초 전에 알림
+  }, duration - 3000);
 };
 
 export const setTokens = (
@@ -43,5 +43,5 @@ export const handleLogout = async () => {
   const response = await callPost('/api/auth/logout');
   document.cookie = `accessToken=; expires=0; path=/;`;
   document.cookie = `refreshToken=; expires=0; path=/;`;
-  window.location.href = '/'; // '/sign-in' 경로로 이동
+  window.location.href = '/';
 };

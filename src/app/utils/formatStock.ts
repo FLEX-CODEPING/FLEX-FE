@@ -79,7 +79,7 @@ export const extractDateTimeAndPrice = (data: string) => {
 };
 
 export function formatEntValue(data: EntValueTypes): (string | number)[] {
-  const { date, stockcode, BPS, PER, PBR, EPS, DIV, DPS } = data;
+  const { BPS, PER, PBR, EPS, DIV, DPS } = data;
 
   return [BPS, PER, PBR, EPS, DIV, DPS];
 }

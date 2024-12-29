@@ -1,8 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Icons from '@/app/components/common/Icons';
-import { searchBig } from '@/app/constants/iconPath';
 import SearchPost from './SearchPost';
 
 interface ResultsProps {
