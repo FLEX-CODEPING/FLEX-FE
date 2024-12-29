@@ -73,7 +73,7 @@ const BlogHeader = ({
         ))}
       </div>
 
-      <div className="flex flex-col items-center">
+      <div className="flex-col-center">
         <button
           type="button"
           onClick={handleLikeClick}

@@ -64,7 +64,7 @@ const MyPageContainer = () => {
           {myData?.blogName}
         </div>
         <div className="h-[130px] flex items-center justify-center gap-[70px]">
-          <div className="relative flex flex-col items-center justify-center">
+          <div className="relative flex-col-center justify-center">
             <Image
               src={myData?.profileImageUrl || '/images/complete2.png'}
               alt="profile"
@@ -78,14 +78,14 @@ const MyPageContainer = () => {
             </div>
           </div>
           <div className="flex items-center space-x-[50px]">
-            <div className="flex flex-col items-center">
+            <div className="flex-col-center">
               <span className="text-black-0 font-bold">
                 {myData?.followingCount}
               </span>
               <span className="text-black-0 text-sm">{FOLLOW_TEXT[0]}</span>
             </div>
             <div className="w-[1px] h-8 bg-gray-600" />
-            <div className="flex flex-col items-center">
+            <div className="flex-col-center">
               <span className="text-black-0 font-bold">
                 {myData?.followerCount}
               </span>

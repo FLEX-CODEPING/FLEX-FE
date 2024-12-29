@@ -102,7 +102,7 @@ const News = () => {
         setSelectedOption={setSelectedOption}
       />
       {loading ? (
-        <div className="flex flex-col items-center justify-center text-2xl font-semibold w-[800px] h-[360px] gap-y-10 z-5">
+        <div className="flex-col-center justify-center text-2xl font-semibold w-[800px] h-[360px] gap-y-10 z-5">
           <motion.div
             className="text-center text-2xl font-semibold"
             animate={{ opacity: [0.4, 1, 0.4] }}

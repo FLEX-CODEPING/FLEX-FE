@@ -19,7 +19,7 @@ function Complete() {
   return (
     <section className="w-full h-[calc(100vh-80px)] flex-center flex-col gap-y-[100px]">
       <p className="text-6xl font-semibold">{COMPLETE_TITLE}</p>
-      <div className="flex flex-col items-center text-3xl gap-y-2">
+      <div className="flex-col-center text-3xl gap-y-2">
         <div className="flex">
           <p>주식핑</p>
           <p>{COMPLETE_TEXT[0]}</p>

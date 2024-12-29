@@ -13,7 +13,7 @@ const ClientOnlyBlogDetail = () => {
   }
 
   return (
-    <section className="w-full h-full flex flex-col-center mt-10">
+    <section className="wh-fullex flex-col-center mt-10">
       <BlogDetailContainer postId={postId} />
     </section>
   );

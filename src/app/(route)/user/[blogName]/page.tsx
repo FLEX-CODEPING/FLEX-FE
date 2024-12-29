@@ -7,7 +7,7 @@ const UserPage = () => {
   const { blogName } = useParams();
   const decodedBlogName = decodeURIComponent(blogName as string);
   return (
-    <section className="w-full h-full flex flex-col mt-[40px]">
+    <section className="wh-fullex flex-col mt-[40px]">
       <UserPageContainer blogName={decodedBlogName} />
     </section>
   );

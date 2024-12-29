@@ -70,7 +70,7 @@ const BlogSearch = () => {
   }, [query]);
 
   return (
-    <div className="w-full flex flex-col items-center mt-[99px]">
+    <div className="w-full flex-col-center mt-[99px]">
       <div className="w-full max-w-[1400px]">
         <SearchBar
           query={query}

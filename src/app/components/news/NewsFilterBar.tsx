@@ -13,8 +13,8 @@ const NewsFilterBar: React.FC<FilterBarProps> = ({
   setSelectedFilter,
 }) => {
   return (
-    <div className="flex flex-col items-center w-full mt-[50px] justify-center gap-y-[30px]">
-      <div className="flex flex-col items-center gap-y-[18px]">
+    <div className="flex-col-center w-full mt-[50px] justify-center gap-y-[30px]">
+      <div className="flex-col-center gap-y-[18px]">
         <div className="flex flex-wrap justify-center gap-x-10 gap-y-5 w-[580px]">
           {INTEREST_LIST.map((interest) => (
             <button
