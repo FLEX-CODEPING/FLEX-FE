@@ -47,7 +47,7 @@ const Posession = () => {
                 >
                   <div className="flex items-center gap-x-2">
                     <Image
-                      src={stock.symbolImageUrl || `/images/stocks/${i}.png`}
+                      src={stock.symbolImageUrl || '/images/stocks/none.png'}
                       alt="종목썸네일"
                       width={32}
                       height={32}
