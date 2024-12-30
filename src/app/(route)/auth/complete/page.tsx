@@ -21,7 +21,6 @@ function Complete() {
       <p className="text-6xl font-semibold">{COMPLETE_TITLE}</p>
       <div className="flex-col-center text-3xl gap-y-2">
         <div className="flex">
-          <p>주식핑</p>
           <p>{COMPLETE_TEXT[0]}</p>
         </div>
         <div className="flex">

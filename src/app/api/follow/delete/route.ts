@@ -1,4 +1,4 @@
-import { deleteFollow } from '@/app/service/deleteBodyReq';
+import { deleteFollow } from '@/app/service/deleteRequest';
 import { NextResponse } from 'next/server';
 
 export async function DELETE(req: Request) {
