@@ -22,7 +22,6 @@ const PredictionAlert = ({
   const [targetPrice, setTargetPrice] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isDiscordModalOpen, setIsDiscordModalOpen] = useState(false);
-  const [isTelegramModalOpen, setIsTelegramModalOpen] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -32,8 +31,6 @@ const PredictionAlert = ({
   };
 
   const toggleDiscordModal = () => setIsDiscordModalOpen(!isDiscordModalOpen);
-  const toggleTelegramModal = () =>
-    setIsTelegramModalOpen(!isTelegramModalOpen);
 
   return (
     <div className="flex-col-center gap-y-3">
@@ -104,29 +101,12 @@ const PredictionAlert = ({
             />
             <span className="text-sm">Discord</span>
           </button>
-
-          <button
-            type="button"
-            onClick={toggleTelegramModal}
-            className="flex-center px-2 py-1 border rounded-lg border-gray-4 text-black-0 hover:bg-gray-3 w-24"
-          >
-            <span className="text-sm">알림종료</span>
-          </button>
         </div>
       </div>
 
       {isDiscordModalOpen && (
         <SetWebhook
-          type="discord"
           onClose={toggleDiscordModal}
-          target={targetPrice}
-          selectedIndex={selectedIndex}
-        />
-      )}
-      {isTelegramModalOpen && (
-        <SetWebhook
-          type="telegram"
-          onClose={toggleTelegramModal}
           target={targetPrice}
           selectedIndex={selectedIndex}
         />
