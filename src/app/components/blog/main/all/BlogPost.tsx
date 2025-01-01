@@ -44,8 +44,7 @@ const BlogPost = ({ post }: BlogPostProps) => {
           src={post.imageUrls[0] || '/images/thumbnail/stock3.png'}
           alt={post.title}
           fill
-          objectFit="cover"
-          className="rounded-md transition-transform duration-300 ease-in-out group-hover:scale-110"
+          className="rounded-md object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
         />
       </div>
 

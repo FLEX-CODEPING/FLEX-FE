@@ -45,7 +45,6 @@ const DailyPost = ({ post }: DailyPostProps) => {
           src={post.thumbnailUrl || '/images/3c.png'}
           alt={post.title}
           fill
-          objectFit="cover"
           className="rounded transition-transform duration-300 ease-in-out group-hover:scale-110"
         />
       </div>

@@ -42,8 +42,7 @@ const MyPostCard = ({ mypost }: MyPostCardsProps) => {
       <div className="w-full h-[400px] relative rounded-[10px]">
         <Image
           fill
-          objectFit="cover"
-          className="rounded-[10px]"
+          className="rounded-[10px] object-cover"
           src={
             mypost.imageUrls.length > 0
               ? mypost.imageUrls[0]

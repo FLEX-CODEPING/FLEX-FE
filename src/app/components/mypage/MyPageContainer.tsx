@@ -71,7 +71,6 @@ const MyPageContainer = () => {
               width={80}
               height={80}
               className="rounded-full"
-              objectFit="contain"
             />
             <div className="text-black-0 font-semibold text-[15px] mt-1">
               {myData?.nickname}
