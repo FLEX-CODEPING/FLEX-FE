@@ -4,6 +4,7 @@ import { ALARM_STANDARD } from '@/app/constants/prediction';
 import { WEBHOOK_GUIDE_LINKS, WEBHOOK_TEXTS } from '@/app/constants/webhook';
 import useStockStore from '@/app/store/store';
 import { callPost } from '@/app/utils/callApi';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -52,11 +53,9 @@ const SetWebhook: React.FC<SetWebhookProps> = ({
     <div className="fixed inset-0 bg-gray-1 bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-50">
       <div className="flex flex-col items-start p-6 gap-4 w-[600px] h-auto bg-white rounded-[12px] shadow-lg">
         <div className="flex items-center gap-2">
-          <img
-            src="/images/Discord.png"
-            alt="discord logo"
-            className="w-6 h-4.5"
-          />
+          <div className="relative w-6 h-4.5 mr-1">
+            <Image src="/images/Discord.png" alt="Discord" fill />
+          </div>
           <h2 className="text-lg font-semibold text-gray-900">
             {WEBHOOK_TEXTS[0]}
           </h2>

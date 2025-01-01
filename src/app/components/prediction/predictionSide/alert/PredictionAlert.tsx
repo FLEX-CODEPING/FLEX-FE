@@ -2,6 +2,7 @@
 
 import { ALARM_STANDARD } from '@/app/constants/prediction';
 import useStockStore from '@/app/store/store';
+import Image from 'next/image';
 import { useState } from 'react';
 import Input from '../../../common/Input';
 import PredictionResult from '../PredictionResult';
@@ -94,11 +95,9 @@ const PredictionAlert = ({
             onClick={toggleDiscordModal}
             className="flex items-center px-2.5 py-1 border rounded-lg border-[#5865F2] text-[#5865F2] hover:bg-[#f0f4ff] w-24"
           >
-            <img
-              src="/images/Discord.png"
-              alt="Discord"
-              className="w-4 h-3 mr-1"
-            />
+            <div className="relative w-4 h-3 mr-1">
+              <Image src="/images/Discord.png" alt="Discord" fill />
+            </div>
             <span className="text-sm">Discord</span>
           </button>
         </div>
