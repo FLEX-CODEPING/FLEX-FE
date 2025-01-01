@@ -45,9 +45,8 @@ const Results: React.FC<ResultsProps> = ({
       variants={containerVariants}
       className="w-full overflow-x-hidden"
     >
-      {/* 검색 결과 개수 */}
       {searchExecuted && totalResults > 0 && (
-        <div className="flex justify-center mt-[15px] text-[17px] mb-[24px]">
+        <div className="flex justify-center mt-[15px] text-[17px] mb-6">
           <p>
             총 <span className="font-bold">{totalResults}</span>개의 포스트를
             찾았습니다.
@@ -55,10 +54,9 @@ const Results: React.FC<ResultsProps> = ({
         </div>
       )}
 
-      {/* 검색 결과 리스트 */}
       {searchExecuted && totalResults > 0 && (
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-[28px] gap-y-[20px] ml-8 p-4"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-7 gap-y-[20px] ml-8 p-4"
           variants={containerVariants}
         >
           {results.map((post) => (

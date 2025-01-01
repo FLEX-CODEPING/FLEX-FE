@@ -17,7 +17,7 @@ export default function TagInput({ tags, setTags }: TagInputProps) {
   const addTag = () => {
     if (inputValue.trim() !== '' && !tags.includes(inputValue.trim())) {
       const updatedTags = [...tags, inputValue.trim()];
-      setTags(updatedTags); // 여기서 EditBlogContainer로 전달된 setTags 함수를 사용합니다.
+      setTags(updatedTags);
       setInputValue('');
     }
   };
@@ -43,7 +43,7 @@ export default function TagInput({ tags, setTags }: TagInputProps) {
   };
 
   return (
-    <div className="w-[1200px] h-[80px] mt-[10px] ">
+    <div className="w-[1200px] h-20 mt-2.5">
       <div className="flex items-center flex-wrap space-x-2 py-3 border-b border-black/25">
         <input
           type="text"
@@ -53,7 +53,7 @@ export default function TagInput({ tags, setTags }: TagInputProps) {
           onCompositionStart={handleCompositionStart}
           onCompositionEnd={handleCompositionEnd}
           placeholder={EDITBLOG_TEXT[1]}
-          className="focus:outline-none focus:ring-0 w-[200px] h-[32px] text-black text-xl ml-[17px] "
+          className="focus:outline-none focus:ring-0 w-[200px] h-8 text-black text-xl ml-[17px] "
         />
         {tags.map((tag, index) => (
           <div
@@ -65,7 +65,7 @@ export default function TagInput({ tags, setTags }: TagInputProps) {
           </div>
         ))}
       </div>
-      <p className="text-gray-400 mt-[10px] ml-[17px] mb-2 text-sm">
+      <p className="text-gray-400 mt-2.5 ml-[17px] mb-2 text-sm">
         {EDITBLOG_TEXT[2]}
       </p>
     </div>

@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
-import { callGet, callPatch } from '@/app/utils/callApi';
 import { INCOME_RANGE_MAP, INTEREST_MAP } from '@/app/constants/auth';
+import { cameraIcon } from '@/app/constants/iconPath';
 import { ACCOUNT_TEXT } from '@/app/constants/mypage';
+import { callGet, callPatch } from '@/app/utils/callApi';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { cameraIcon } from '@/app/constants/iconPath';
 import Button from '../../common/Button';
-import MyPersonalInfo from './MyPersonalInfo';
-import MyInterest from './MyInterest';
-import SaveModal from './SaveModal';
-import SaveFinModal from './SaveFinModal';
 import Icons from '../../common/Icons';
+import MyInterest from './MyInterest';
+import MyPersonalInfo from './MyPersonalInfo';
+import SaveFinModal from './SaveFinModal';
+import SaveModal from './SaveModal';
 
 function AccountContainer() {
   const [formData, setFormData] = useState<AccountFormTypes>({
@@ -73,7 +73,6 @@ function AccountContainer() {
 
   const handleProfileImageUpload = async (file: File) => {
     try {
-      // Presigned URL 요청
       const response = await fetch(
         `/api/blog/images?bucketName=dev-user&fileName=${file.name}`,
       );
@@ -98,7 +97,6 @@ function AccountContainer() {
       }
 
       const imageUrl = presignedUrl.split('?')[0];
-      console.log('Uploaded Image URL:', imageUrl);
 
       // 이미지 URL 확인 (선택적 검증)
       const verifyResponse = await fetch(imageUrl);
@@ -145,10 +143,8 @@ function AccountContainer() {
         toast.success('프로필이 성공적으로 저장되었습니다.');
       } else {
         toast.error('프로필 저장에 실패했습니다.');
-        console.error('응답 실패:', response.message);
       }
     } catch (error) {
-      console.error('프로필 저장 중 오류 발생:', error);
       toast.error('프로필 저장 중 오류가 발생했습니다.');
     }
   };

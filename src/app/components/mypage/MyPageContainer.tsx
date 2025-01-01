@@ -2,11 +2,11 @@
 
 import { FOLLOW_TEXT, MYPAGE_TEXT } from '@/app/constants/mypage';
 import { callGet } from '@/app/utils/callApi';
+import { handleLogout } from '@/app/utils/setToken';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { handleLogout } from '@/app/utils/setToken';
 import LikedPosts from './LikedPosts';
 import MyPosts from './MyPosts';
 

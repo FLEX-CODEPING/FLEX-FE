@@ -23,8 +23,8 @@ const NewsFilterBar: React.FC<FilterBarProps> = ({
               onClick={() => setSelectedFilter(interest)}
               className={`w-[80px] py-2 px-2 rounded-full ${
                 selectedFilters.includes(interest)
-                  ? 'bg-[#F95700] text-white'
-                  : 'bg-[#E8E8E8] text-black'
+                  ? 'bg-main-1 text-white'
+                  : 'bg-white text-black'
               } text-base font-medium text-center`}
             >
               {interest}

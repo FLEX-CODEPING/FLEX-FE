@@ -1,28 +1,13 @@
 import { callPost } from '@/app/utils/callApi';
 
-interface PredictionData {
-  dates: string[];
-  predictions: number[];
-}
-
-interface PredictionResult {
-  indicator: string;
-  data?: PredictionData;
-  error?: string;
-}
-
-const RD = 'RD';
-const RNN = 'RNN';
-const ID = 'ID';
-
 export const predictionSide = async (
   indicators: string[],
   reqBody: { dateFrom: string; dateTo: string; stockcode: string },
 ): Promise<PredictionResult[]> => {
   const endpoints: { [key: string]: string } = {
-    예측법1: RD,
-    예측법2: RNN,
-    예측법3: ID,
+    예측법1: 'RD',
+    예측법2: 'RNN',
+    예측법3: 'ID',
   };
 
   try {

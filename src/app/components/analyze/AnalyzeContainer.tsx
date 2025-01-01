@@ -25,11 +25,7 @@ const AnalyzeContainer = () => {
     const fetchUser = async () => {
       try {
         const response = await callGet('/api/auth/user');
-        if (response.isSuccess) {
-          setNickname(response.result.nickname);
-        } else {
-          console.error('닉네임을 불러오는데 실패했습니다:', response.message);
-        }
+        if (response.isSuccess) setNickname(response.result.nickname);
       } catch (error) {
         console.error('닉네임 요청 중 오류 발생:', error);
       }
@@ -62,7 +58,6 @@ const AnalyzeContainer = () => {
           }
         }
       } catch (error) {
-        console.error('API 요청 중 오류 발생:', error);
         setErrorMessage('서버 요청 중 오류가 발생했습니다.');
       }
     };

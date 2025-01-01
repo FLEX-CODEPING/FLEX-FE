@@ -15,7 +15,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   onKeyDown,
 }) => {
   return (
-    <div className="flex items-center border border-[#F95700] rounded-full p-4 w-[687px] h-[58px] mx-auto my-2.5">
+    <div className="flex items-center border border-main-1 rounded-full p-4 w-[687px] h-[58px] mx-auto my-2.5">
       <input
         type="text"
         placeholder="검색어를 입력해 주세요."

@@ -1,8 +1,8 @@
 'use client';
 
 import { likeIcon } from '@/app/constants/iconPath';
-import { useState } from 'react';
 import { callDelete, callPost } from '@/app/utils/callApi';
+import { useState } from 'react';
 import Icons from '../../common/Icons';
 
 interface BlogHeaderProps {
@@ -63,7 +63,7 @@ const BlogHeader = ({
   return (
     <div className="w-[880px] flex justify-between items-center py-4">
       <div className="flex flex-wrap gap-4">
-        {tags?.map((tag, index) => (
+        {tags?.map((tag) => (
           <div
             key={tag}
             className="bg-main-1/20 text-black-0/70 font-semibold px-3 py-1 rounded-full cursor-pointer"

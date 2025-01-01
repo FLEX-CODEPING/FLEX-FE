@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
-import useStockStore from '@/app/store/store';
-import Icons from '../../common/Icons';
-import { blueArrow, redArrow, infoIcon } from '../../../constants/iconPath';
+import { useState } from 'react';
+import { blueArrow, infoIcon, redArrow } from '../../../constants/iconPath';
 import { PREDICTION_SIDEBAR_RESULT } from '../../../constants/prediction';
+import Icons from '../../common/Icons';
 
 interface PredictionSidebarProps {
   stockName: string;

@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { callGet } from '@/app/utils/callApi';
 import { COMMENT } from '@/app/constants/blog';
+import { callGet } from '@/app/utils/callApi';
+import { useEffect, useState } from 'react';
 import CommentInput from './CommentInput';
 import CommentList from './CommentList';
 

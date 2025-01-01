@@ -22,9 +22,6 @@ const Trade = () => {
     useInfiniteTrade();
   const observerRef = useRef<HTMLDivElement | null>(null);
 
-  console.log(data, '가져온 데이터');
-  console.log(hasNextPage, '로딩 상태 데이터');
-
   useEffect(() => {
     if (data) {
       const allRecords = data.pages.flatMap((page) => page.content || []);

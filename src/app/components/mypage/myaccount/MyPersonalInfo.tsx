@@ -17,7 +17,6 @@ const MyPersonalInfo = ({ formData, updateFormData }: MyPersonalInfoProps) => {
   }>({ text: '', textColor: 'gray-1' });
 
   const handleBlogNameCheck = async () => {
-    // 입력값 검증
     if (!isCorrect(formData.blogName)) {
       setCheckStatus({
         text: '유효하지 않은 블로그명입니다.',
