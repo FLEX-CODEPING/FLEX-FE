@@ -4,6 +4,7 @@ import { USERPAGE_TEXT } from '@/app/constants/mypage';
 import { callDeleteBody, callPost } from '@/app/utils/callApi';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import Toastify from '../../common/Toastify';
 
 interface BlogTitleProps {
   title: string;
@@ -54,6 +55,7 @@ const BlogTitle = ({
 
   return (
     <div className="w-[880px] h-[111px] border-b border-[#7a7a7a] flex flex-col gap-6">
+      <Toastify />
       <div className="w-full text-5xl font-bold">{title}</div>
       <div className="ml-1 w-full flex justify-between items-center">
         <div className="flex items-center font-bold">

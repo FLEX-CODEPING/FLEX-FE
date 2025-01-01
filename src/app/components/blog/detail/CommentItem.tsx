@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import Icons from '../../common/Icons';
 import CommentInput from './CommentInput';
+import Toastify from '../../common/Toastify';
 
 interface CommentItemProps {
   comment: CommentTypes;
@@ -78,6 +79,7 @@ const CommentItem = ({
           transition={{ duration: 0.3 }}
           className="mb-10"
         >
+          <Toastify />
           <div className="flex items-start gap-4">
             <div className="flex justify-between w-full">
               <div className="inline-flex items-center gap-3">

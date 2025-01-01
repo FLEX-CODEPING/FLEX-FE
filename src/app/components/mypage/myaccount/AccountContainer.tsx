@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import Button from '../../common/Button';
 import Icons from '../../common/Icons';
+import Toastify from '../../common/Toastify';
 import MyInterest from './MyInterest';
 import MyPersonalInfo from './MyPersonalInfo';
 import SaveFinModal from './SaveFinModal';
@@ -151,6 +152,7 @@ function AccountContainer() {
 
   return (
     <div className="w-[500px] gap-y-5 flex flex-col">
+      <Toastify />
       <div className="text-black-0 font-bold text-[26px] flex justify-center">
         {ACCOUNT_TEXT[0]}
       </div>
