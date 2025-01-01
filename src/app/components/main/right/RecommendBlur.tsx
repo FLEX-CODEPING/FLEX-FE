@@ -8,7 +8,13 @@ const RecommendBlur = () => {
   return (
     <div className="w-full h-[424px] flex-col-center justify-center shadow rounded-2xl bg-gray-5 gap-y-6">
       <div className="relative w-[120px] h-[120px]">
-        <Image src="/images/keys2.png" alt="로그인 사진" fill loading="lazy" />
+        <Image
+          src="/images/keys2.png"
+          alt="로그인 사진"
+          fill
+          loading="lazy"
+          sizes="120px, 120px"
+        />
       </div>
       <p className="w-[190px] text-lg flex flex-wrap font-medium text-center">
         {RECOMMEND_LOGIN}

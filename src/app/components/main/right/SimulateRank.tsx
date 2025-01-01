@@ -46,6 +46,7 @@ const SimulateRank = () => {
                   className="rounded-full"
                   fill
                   loading="lazy"
+                  sizes='40 40'
                 />
               </div>
             </div>

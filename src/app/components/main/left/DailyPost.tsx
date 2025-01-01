@@ -1,9 +1,9 @@
 import Icons from '@/app/components/common/Icons';
 import { likeSmall } from '@/app/constants/iconPath';
 import { truncateString } from '@/app/utils/truncate';
+import 'github-markdown-css';
 import Image from 'next/image';
 import Link from 'next/link';
-import 'github-markdown-css';
 
 interface DailyPostProps {
   post: LandingPostTypes;
@@ -45,7 +45,8 @@ const DailyPost = ({ post }: DailyPostProps) => {
           src={post.thumbnailUrl || '/images/3c.png'}
           alt={post.title}
           fill
-          className="rounded transition-transform duration-300 ease-in-out group-hover:scale-110"
+          sizes="w-full h-32"
+          className="rounded object-cover w-full h-32 transition-transform duration-300 ease-in-out group-hover:scale-110"
         />
       </div>
       <h2 className="font-semibold">{post.title}</h2>

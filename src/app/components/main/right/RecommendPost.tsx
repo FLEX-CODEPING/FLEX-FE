@@ -84,6 +84,7 @@ const RecommendPost = () => {
                     className="rounded transition-transform duration-300 ease-in-out group-hover:scale-110 "
                     src={data.imageUrls[0] || `/images/thumbnail/stock3.png`}
                     alt="thumbnail"
+                    sizes="w-[120px] h-16"
                     loading="lazy"
                   />
                 </div>
