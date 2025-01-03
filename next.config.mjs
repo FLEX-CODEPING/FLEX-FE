@@ -26,6 +26,12 @@ const nextConfig = {
   experimental: {
     instrumentationHook: true,
   },
+  webpack: (config, { dev, isServer }) => {
+    if (dev) {
+      config.cache = false;
+    }
+    return config;
+  },
 };
 
 export default withBundleAnalyzer({
