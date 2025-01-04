@@ -3,5 +3,11 @@ import { NextResponse } from 'next/server';
 
 export async function GET(req: Request) {
   const data = await getLandingLatest(req);
-  return NextResponse.json(data);
+  const response = NextResponse.json(data, {
+    headers: {
+      'Cache-Control': 'public, max-age=60',
+    },
+  });
+
+  return response;
 }

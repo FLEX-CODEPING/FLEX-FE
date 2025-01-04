@@ -1,22 +1,15 @@
-'use client';
-
 import { MAIN_CONTENTS_TITLE } from '@/app/constants/main';
 import { callGet } from '@/app/utils/callApi';
-import { useEffect, useState } from 'react';
 import NoneContent from '../NoneContent';
 import DailyPost from './DailyPost';
 
-const DailyPostContainer = () => {
-  const [postData, setPostData] = useState<LandingPostTypes[]>([]);
-
-  useEffect(() => {
-    const fetchPost = async () => {
-      const response = await callGet('/api/main/dailyPost');
-      response.isSuccess && setPostData(response.result);
-    };
-
-    fetchPost();
-  }, []);
+const DailyPostContainer = async () => {
+  const response = await callGet(
+    `${process.env.NEXT_PUBLIC_LOCAL}/api/main/dailyPost`,
+  );
+  const postData: LandingPostTypes[] = response.isSuccess
+    ? response.result
+    : [];
 
   return (
     <div className="flex-col-center w-full gap-y-5">
