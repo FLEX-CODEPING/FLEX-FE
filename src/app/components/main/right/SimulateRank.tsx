@@ -10,19 +10,14 @@ import { getTodayDateBar } from '@/app/utils/date';
 import { formatCurrency } from '@/app/utils/formatNum';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import Icons from '../../common/Icons';
 
-const SimulateRank = () => {
+const SimulateRank = async () => {
   const today = getTodayDateBar();
-  const [rank, setRank] = useState<RankDataTypes[]>([]);
-  useEffect(() => {
-    const fetchPost = async () => {
-      const response = await callGet(`/api/main/userRank`);
-      response.isSuccess && setRank(response.result);
-    };
-    fetchPost();
-  }, []);
+  const response = await callGet(
+    `${process.env.NEXT_PUBLIC_LOCAL}/api/main/userRank`,
+  );
+  const rank: RankDataTypes[] = response.isSuccess ? response.result : [];
 
   return (
     <div className="flex-col-center px-3 w-full gap-y-4">

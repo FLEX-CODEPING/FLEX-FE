@@ -1,26 +1,17 @@
-'use client';
-
 import { rightArrow } from '@/app/constants/iconPath';
 import { MAIN_CONTENTS_TITLE } from '@/app/constants/main';
 import { callGet } from '@/app/utils/callApi';
-import { getTodayDateBar } from '@/app/utils/date';
 import { truncateString } from '@/app/utils/truncate';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import Icons from '../../common/Icons';
 
-const DailyNews = () => {
-  const [newsData, setNewsData] = useState<DailyArticleTypes[]>([]);
-  const today = getTodayDateBar();
-
-  useEffect(() => {
-    const fetchPost = async () => {
-      const response = await callGet(`/api/main/dailyNews`);
-      setNewsData(response.result.sources.slice(0, 4));
-    };
-    fetchPost();
-  }, []);
+const DailyNews = async () => {
+  const response = await callGet(
+    `${process.env.NEXT_PUBLIC_LOCAL}/api/main/dailyNews`,
+  );
+  const newsData: DailyArticleTypes[] = response.isSuccess
+    ? response.result.sources.slice(0, 4)
+    : [];
 
   return (
     <div className="flex-col-center w-full gap-y-5 text-black-0/85">
@@ -34,12 +25,8 @@ const DailyNews = () => {
             className="w-full flex-col-center border-b border-gray-2 pb-3"
             key={news.title}
           >
-            <motion.div
+            <div
               key={news.title}
-              whileHover={{
-                scale: 1.03,
-              }}
-              transition={{ type: 'spring', stiffness: 150, damping: 20 }}
               className="w-full flex-col-center pl-3 pr-2 gap-y-3 cursor-pointer"
             >
               <div className="w-full flex items-center justify-between font-semibold">
@@ -52,7 +39,7 @@ const DailyNews = () => {
                 </p>
                 <Icons name={rightArrow} />
               </div>
-            </motion.div>
+            </div>
           </Link>
         ))}
       </div>
