@@ -9,7 +9,7 @@ import NoneContent from '../NoneContent';
 
 const PopularPost = async () => {
   const response = await callGet(
-    `${process.env.NEXT_PUBLIC_LOCAL}/api/main/popular`,
+    `${process.env.NEXT_PUBLIC_LOCAL_SERVER}/api/main/popular`,
   );
   const postDatas: LandingPostTypes[] = response.isSuccess
     ? response.result

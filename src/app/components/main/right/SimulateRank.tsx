@@ -15,7 +15,7 @@ import Icons from '../../common/Icons';
 const SimulateRank = async () => {
   const today = getTodayDateBar();
   const response = await callGet(
-    `${process.env.NEXT_PUBLIC_LOCAL}/api/main/userRank`,
+    `${process.env.NEXT_PUBLIC_LOCAL_SERVER}/api/main/userRank`,
   );
   const rank: RankDataTypes[] = response.isSuccess ? response.result : [];
 

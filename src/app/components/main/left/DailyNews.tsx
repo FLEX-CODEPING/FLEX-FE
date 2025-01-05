@@ -7,7 +7,7 @@ import Icons from '../../common/Icons';
 
 const DailyNews = async () => {
   const response = await callGet(
-    `${process.env.NEXT_PUBLIC_LOCAL}/api/main/dailyNews`,
+    `${process.env.NEXT_PUBLIC_LOCAL_SERVER}/api/main/dailyNews`,
   );
   const newsData: DailyArticleTypes[] = response.isSuccess
     ? response.result.sources.slice(0, 4)

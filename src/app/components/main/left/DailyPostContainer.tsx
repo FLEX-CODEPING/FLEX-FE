@@ -5,7 +5,7 @@ import DailyPost from './DailyPost';
 
 const DailyPostContainer = async () => {
   const response = await callGet(
-    `${process.env.NEXT_PUBLIC_LOCAL}/api/main/dailyPost`,
+    `${process.env.NEXT_PUBLIC_LOCAL_SERVER}/api/main/dailyPost`,
   );
   const postData: LandingPostTypes[] = response.isSuccess
     ? response.result
