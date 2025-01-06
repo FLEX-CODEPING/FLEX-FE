@@ -11,8 +11,6 @@ import {
 
 export const SEARCH_STOCK = '원하는 종목을 검색';
 
-export const CHART_TITLE = ['차트', '종목정보'];
-
 export const STOCK_INFO_TITLE = ['종목정보', '재무제표', '기업정보'];
 
 export const CHART_VIEWTYPE = ['일', '주', '월', '년'];

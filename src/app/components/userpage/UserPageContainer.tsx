@@ -85,7 +85,7 @@ const UserPageContainer = ({ blogName }: UserPageContainerProps) => {
           {userData?.blogName}
         </div>
         <div className="h-[130px] flex items-center justify-center gap-[70px]">
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex-col-center justify-center">
             <Image
               src={userData?.profileImageUrl || '/images/profile.png'}
               alt="profile"
@@ -98,12 +98,12 @@ const UserPageContainer = ({ blogName }: UserPageContainerProps) => {
             </div>
           </div>
           <div className="flex items-center space-x-[50px]">
-            <div className="flex flex-col items-center text-black-0">
+            <div className="flex-col-center text-black-0">
               <span className="font-bold">{userData?.followingCount}</span>
               <span className="text-sm">{FOLLOW_TEXT[0]}</span>
             </div>
             <div className="w-[1px] h-8 bg-gray-600" />
-            <div className="flex flex-col items-center text-black-0">
+            <div className="flex-col-center text-black-0">
               <span className="font-bold">{userData?.followerCount}</span>
               <span className="text-sm">{FOLLOW_TEXT[1]}</span>
             </div>

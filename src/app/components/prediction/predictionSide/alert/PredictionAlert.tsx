@@ -2,6 +2,7 @@
 
 import { ALARM_STANDARD } from '@/app/constants/prediction';
 import useStockStore from '@/app/store/store';
+import Image from 'next/image';
 import { useState } from 'react';
 import Input from '../../../common/Input';
 import PredictionResult from '../PredictionResult';
@@ -22,7 +23,6 @@ const PredictionAlert = ({
   const [targetPrice, setTargetPrice] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isDiscordModalOpen, setIsDiscordModalOpen] = useState(false);
-  const [isTelegramModalOpen, setIsTelegramModalOpen] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -32,8 +32,6 @@ const PredictionAlert = ({
   };
 
   const toggleDiscordModal = () => setIsDiscordModalOpen(!isDiscordModalOpen);
-  const toggleTelegramModal = () =>
-    setIsTelegramModalOpen(!isTelegramModalOpen);
 
   return (
     <div className="flex-col-center gap-y-3">
@@ -97,36 +95,17 @@ const PredictionAlert = ({
             onClick={toggleDiscordModal}
             className="flex items-center px-2.5 py-1 border rounded-lg border-[#5865F2] text-[#5865F2] hover:bg-[#f0f4ff] w-24"
           >
-            <img
-              src="/images/Discord.png"
-              alt="Discord"
-              className="w-4 h-3 mr-1"
-            />
+            <div className="relative w-4 h-3 mr-1">
+              <Image src="/images/Discord.png" alt="Discord" fill />
+            </div>
             <span className="text-sm">Discord</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={toggleTelegramModal}
-            className="flex-center px-2 py-1 border rounded-lg border-gray-4 text-black-0 hover:bg-gray-3 w-24"
-          >
-            <span className="text-sm">알림종료</span>
           </button>
         </div>
       </div>
 
       {isDiscordModalOpen && (
         <SetWebhook
-          type="discord"
           onClose={toggleDiscordModal}
-          target={targetPrice}
-          selectedIndex={selectedIndex}
-        />
-      )}
-      {isTelegramModalOpen && (
-        <SetWebhook
-          type="telegram"
-          onClose={toggleTelegramModal}
           target={targetPrice}
           selectedIndex={selectedIndex}
         />

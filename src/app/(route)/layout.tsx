@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Header from '../components/common/layout/Header';
 import TanStackProvider from '../components/common/layout/TanstackProvider';
 import UserProvider from '../components/common/layout/useProvider';
@@ -33,17 +31,6 @@ export default function RootLayout({
           <UserProvider>
             <Header />
             {children}
-            <ToastContainer
-              position="top-right"
-              autoClose={3000}
-              hideProgressBar={false}
-              newestOnTop
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-            />
           </UserProvider>
         </TanStackProvider>
       </body>

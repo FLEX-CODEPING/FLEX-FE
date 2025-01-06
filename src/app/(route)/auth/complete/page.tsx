@@ -1,7 +1,7 @@
 'use client';
 
 import Icons from '@/app/components/common/Icons';
-import { dela } from '@/app/components/common/layout/Header';
+import { delaGothic } from '@/app/components/common/layout/Header';
 import {
   COMPLETE_RECOMMEND_D,
   COMPLETE_RECOMMEND_IMG,
@@ -19,13 +19,12 @@ function Complete() {
   return (
     <section className="w-full h-[calc(100vh-80px)] flex-center flex-col gap-y-[100px]">
       <p className="text-6xl font-semibold">{COMPLETE_TITLE}</p>
-      <div className="flex flex-col items-center text-3xl gap-y-2">
+      <div className="flex-col-center text-3xl gap-y-2">
         <div className="flex">
-          <p>주식핑</p>
           <p>{COMPLETE_TEXT[0]}</p>
         </div>
         <div className="flex">
-          <p className={`${dela.className} text-main-1`}>{TITLE}</p>
+          <p className={`${delaGothic.className} text-main-1`}>{TITLE}</p>
           <p>{COMPLETE_TEXT[1]}</p>
         </div>
       </div>

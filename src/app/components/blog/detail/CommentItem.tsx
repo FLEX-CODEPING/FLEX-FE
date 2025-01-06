@@ -1,12 +1,13 @@
-import { useState } from 'react';
-import { callDelete, callPatch } from '@/app/utils/callApi';
-import Image from 'next/image';
 import { deleteIcon, pencilIcon } from '@/app/constants/iconPath';
+import { callDelete, callPatch } from '@/app/utils/callApi';
+import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 import Icons from '../../common/Icons';
 import CommentInput from './CommentInput';
+import Toastify from '../../common/Toastify';
 
 interface CommentItemProps {
   comment: CommentTypes;
@@ -19,12 +20,10 @@ const CommentItem = ({
   currentUserId,
   onUpdateComments,
 }: CommentItemProps) => {
-  const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [editedCommentInput, setEditedCommentInput] = useState<string>(
-    comment.content,
-  );
-  const [replyOpen, setReplyOpen] = useState<boolean>(false);
-  const [isDeleting, setIsDeleting] = useState<boolean>(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedCommentInput, setEditedCommentInput] = useState(comment.content);
+  const [replyOpen, setReplyOpen] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const router = useRouter();
 
   const handleEditClick = () => {
@@ -80,6 +79,7 @@ const CommentItem = ({
           transition={{ duration: 0.3 }}
           className="mb-10"
         >
+          <Toastify />
           <div className="flex items-start gap-4">
             <div className="flex justify-between w-full">
               <div className="inline-flex items-center gap-3">

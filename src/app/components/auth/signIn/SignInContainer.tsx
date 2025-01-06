@@ -38,7 +38,7 @@ function SignInContainer() {
   }, [code]);
 
   return (
-    <div className="gap-y-[48px] flex flex-col mt-4">
+    <div className="gap-y-12 flex flex-col mt-4">
       <div className="flex flex-col gap-y-1 items-center pr-6">
         {MAIN_FEAT.map((feat, i) => (
           <div className="flex items-center" key={feat}>

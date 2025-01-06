@@ -61,13 +61,6 @@ interface InterestedStockTypes {
   symbolImageUrl: string;
 }
 
-interface InterestedStockDatasTypes {
-  content: InterestedStockTypes[];
-  hasNext: boolean;
-  first: boolean;
-  last: boolean;
-}
-
 interface InterestedStautsTypes {
   isSuccess: boolean;
   code: string;
@@ -190,9 +183,9 @@ interface InvestmentDataTypes {
 
 interface TransactionResponse {
   content: TransactionDataTypes[];
-  hasNext: true;
-  first: true;
-  last: true;
+  hasNext: boolean;
+  first: boolean;
+  last: boolean;
 }
 
 interface InterestedPriceTypes {

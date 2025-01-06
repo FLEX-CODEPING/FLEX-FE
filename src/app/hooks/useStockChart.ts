@@ -11,7 +11,6 @@ import {
   useQueryClient,
 } from '@tanstack/react-query';
 
-// 쿼리 옵션 생성 함수
 const createStockDataQueryOptions = (
   stockCode: string | null,
   timeFrame: number | string,

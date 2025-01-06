@@ -58,12 +58,6 @@ interface UserTypes {
   result: UserResultTypes;
 }
 
-interface PopularPostTypes {
-  title: string;
-  likeCount: number;
-  nickname: string;
-}
-
 interface RecommendPostTypes {
   id: string;
   userId: string;

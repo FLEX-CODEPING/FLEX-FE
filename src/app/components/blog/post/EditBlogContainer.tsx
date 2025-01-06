@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import BlogInfoContainer from './BlogInfoContainer';
 import PostFinModal from './postFinModal';
 import PostModal from './postModal';
+import Toastify from '../../common/Toastify';
 
 const MyEditor = dynamic(() => import('./markdown/MyEditor'), { ssr: false });
 const EditBlogContainer = () => {
@@ -91,6 +92,7 @@ const EditBlogContainer = () => {
 
   return (
     <div className="mb-12.5">
+      <Toastify />
       <BlogInfoContainer setTitle={setTitle} setTags={setTags} tags={tags} />
       <div className="mt-5 mb-10">
         <MyEditor setContent={setContent} />

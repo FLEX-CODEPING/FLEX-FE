@@ -1,8 +1,6 @@
 'use client';
 
-import DOMPurify from 'dompurify';
 import 'github-markdown-css';
-import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
@@ -24,7 +22,6 @@ const CustomLi = ({ node, ...props }: any) => (
 );
 
 const BlogContent = ({ content }: BlogContentProps) => {
-  const sanitizedContent = content ? DOMPurify.sanitize(content) : '';
   return (
     <div className="w-[880px] mt-5 mb-[100px] flex flex-col gap-11">
       <ReactMarkdown

@@ -1,13 +1,8 @@
-import {
-  BIRTH,
-  BIRTH_DATE,
-  BLOGNAME_TEXT,
-  NICKNAME_TEXT,
-} from '@/app/constants/auth';
-import { isCorrect } from '@/app/utils/qualify';
+import { BIRTH, BLOGNAME_TEXT, NICKNAME_TEXT } from '@/app/constants/auth';
 import { ACCOUNT_TEXT } from '@/app/constants/mypage';
-import { useState } from 'react';
 import { callPost } from '@/app/utils/callApi';
+import { isCorrect } from '@/app/utils/qualify';
+import { useState } from 'react';
 import Input from '../../common/Input';
 
 interface MyPersonalInfoProps {
@@ -22,7 +17,6 @@ const MyPersonalInfo = ({ formData, updateFormData }: MyPersonalInfoProps) => {
   }>({ text: '', textColor: 'gray-1' });
 
   const handleBlogNameCheck = async () => {
-    // 입력값 검증
     if (!isCorrect(formData.blogName)) {
       setCheckStatus({
         text: '유효하지 않은 블로그명입니다.',

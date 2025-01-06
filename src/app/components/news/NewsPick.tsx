@@ -1,7 +1,7 @@
 import Icons from '@/app/components/common/Icons';
 import { fillter, news } from '@/app/constants/iconPath';
 import { NEWS_VIEW_TYPE, PRESS_TYPES } from '@/app/constants/news';
-import { BaseSyntheticEvent, Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 interface NewsPickProps {
   selectedNews: string[];

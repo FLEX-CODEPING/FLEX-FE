@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+import withBundleAnalyzer from '@next/bundle-analyzer';
 
 const nextConfig = {
   reactStrictMode: false,
@@ -24,8 +25,15 @@ const nextConfig = {
   },
   experimental: {
     instrumentationHook: true,
-    serverComponentsExternalPackages: ['dd-trace'],
+  },
+  webpack: (config, { dev, isServer }) => {
+    if (dev) {
+      config.cache = false;
+    }
+    return config;
   },
 };
 
-export default nextConfig;
+export default withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+})(nextConfig);

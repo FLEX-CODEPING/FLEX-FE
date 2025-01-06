@@ -9,26 +9,6 @@ import { callPost } from '@/app/utils/callApi';
 import { useState } from 'react';
 import Button from '../../common/Button';
 
-interface PredictionData {
-  time: number;
-  open: number;
-  high: number;
-  low: number;
-  close: number;
-  volume: number;
-}
-
-interface PredictIndicatorProps {
-  onIndicatorsChange: (indicators: string[]) => void;
-  onPredictionResult: (result: {
-    stockName: string;
-    result: string;
-    resultPrice: number;
-    resultPercent: number;
-    chartData: PredictionData[];
-  }) => void;
-}
-
 const PredictIndicator: React.FC<PredictIndicatorProps> = ({
   onIndicatorsChange,
   onPredictionResult,

@@ -39,8 +39,7 @@ const TagsFilter = ({
             ))}
           </div>
         </div>
-
-        <div className=" px-5 bg-white flex-center gap-2.5 border border-[#F95700] rounded-full h-10">
+        <div className="px-5 bg-white flex-center gap-2.5 border border-[#F95700] rounded-full h-10">
           <Icons name={salaryIcon} />
           <h3 className="font-semibold">급여</h3>
           <div className="flex gap-x-4">
@@ -48,7 +47,7 @@ const TagsFilter = ({
               <button
                 type="button"
                 key={salaryOption}
-                className={` px-2.5 py-1 rounded-full cursor-pointer font-normal transition-colors duration-300 ease-in-out ${
+                className={`px-2.5 py-1 rounded-full cursor-pointer font-normal transition-colors duration-300 ease-in-out ${
                   selectedSalaries === salaryOption
                     ? 'bg-[#FFEBE0]'
                     : 'bg-white'

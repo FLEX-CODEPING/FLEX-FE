@@ -1,12 +1,9 @@
 'use client';
 
-import {
-  useInvalidateStockData,
-  useStockData,
-} from '@/app/hooks/useStockChart';
+import { useStockData } from '@/app/hooks/useStockChart';
 import useStockStore, { useLiveDataStore } from '@/app/store/store';
 import { isOpenTime } from '@/app/utils/date';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ChartEmpty from './ChartEmpty';
 import DayChart from './DayChart';
 import MinChart from './MinChart';
@@ -20,17 +17,13 @@ const ChartContainer = () => {
   const isDay = typeof timeFrame === 'string';
   const isOpen = isOpenTime();
 
-  const { data, isLoading, fetchAdditionalData, isFetchingAdditionalData } =
-    useStockData(stockCode, timeFrame);
+  const { data, fetchAdditionalData } = useStockData(stockCode, timeFrame);
 
-  const { invalidateMinData } = useInvalidateStockData();
-
-  const handleRefresh = () => {
+  useEffect(() => {
+    if (!isLack || !stockCode) return;
     fetchAdditionalData();
-    if (stockCode) {
-      invalidateMinData(stockCode);
-    }
-  };
+    setIsLack(false);
+  }, [isLack, stockCode]);
 
   return (
     <div className="flex w-full px-3 py-3 rounded-[10px] border border-gray-4 dark:border-black-1 flex-col justify-start items-start gap-y-5 dark:bg-black-0 dark:text-gray-4">

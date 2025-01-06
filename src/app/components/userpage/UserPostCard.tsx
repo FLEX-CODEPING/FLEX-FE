@@ -1,4 +1,5 @@
 import { likeSmall } from '@/app/constants/iconPath';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Icons from '../common/Icons';
 
@@ -20,14 +21,14 @@ const UserPostCard = ({ userpost }: UserPostCardProps) => {
       onClick={handleCardClick}
     >
       <div className="w-full h-[400px] relative rounded-[10px]">
-        <img
-          className="w-full h-[400px] rounded-[10px]"
+        <Image
           src={
             userpost.imageUrls.length > 0
               ? userpost.imageUrls[0]
               : '/images/thumbnail/stock3.png'
           }
-          alt="thumbnail"
+          alt="Discord"
+          fill
         />
       </div>
       <div className="w-full px-3 py-[18px] flex-col gap-2 flex">

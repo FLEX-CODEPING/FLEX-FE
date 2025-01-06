@@ -1,5 +1,4 @@
 import { searchSmall } from '@/app/constants/iconPath';
-import { v4 as uuidv4 } from 'uuid';
 import Icons from '../common/Icons';
 import Input from '../common/Input';
 import MyPostCard from './MyPostCard';
@@ -15,7 +14,7 @@ const MyPosts = ({ posts }: MyPostsProps) => {
         <div className="text-black-0 font-bold text-xl">
           포스팅 ({posts.length})
         </div>
-        <div className="w-[200px]  py-2 items-center flex  border-gray-500 border rounded-lg pl-3">
+        <div className="w-[200px] py-2 items-center flex  border-gray-500 border rounded-lg pl-3">
           <Icons name={searchSmall} />
           <Input type="search" onChange={(e) => {}} className="ml-1" />
         </div>

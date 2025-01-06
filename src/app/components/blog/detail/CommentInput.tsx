@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { callPost } from '@/app/utils/callApi';
 import { COMMENT } from '@/app/constants/blog';
+import { callPost } from '@/app/utils/callApi';
+import { useState } from 'react';
 
 interface CommentInputProps {
   postId: string;

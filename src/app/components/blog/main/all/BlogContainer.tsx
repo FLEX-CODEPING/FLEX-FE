@@ -66,9 +66,9 @@ const BlogContainer = () => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex-col-center">
       <motion.div
-        className="w-full flex flex-col items-center"
+        className="w-full flex-col-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}

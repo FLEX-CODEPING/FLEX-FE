@@ -1,4 +1,3 @@
-import { MODAL_TEXT } from '@/app/constants/blog';
 import { MY_MODAL_TEXT } from '@/app/constants/mypage';
 
 interface SaveModalProps {
@@ -22,14 +21,14 @@ const SaveModal = ({ onClose, onSave }: SaveModalProps) => {
           <button
             type="button"
             onClick={onClose}
-            className="h-[42px] px-[40px] rounded-md border border-black text-black text-sm font-medium"
+            className="h-[42px] px-10 rounded-md border border-black text-black text-sm font-medium"
           >
             {MY_MODAL_TEXT[2]}
           </button>
           <button
             type="button"
             onClick={onSave}
-            className="h-[42px] px-[40px] bg-main-1/90 rounded-md text-white text-sm font-bold"
+            className="h-[42px] px-10 bg-main-1/90 rounded-md text-white text-sm font-bold"
           >
             {MY_MODAL_TEXT[3]}
           </button>

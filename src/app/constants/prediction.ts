@@ -33,17 +33,6 @@ export const PREDICTION_SIDEBAR_RESULT = [
   '은 사용자의 책임이며, 신중한 판단을 권장드립니다.',
 ];
 
-export const PREDICTION_RESULT_TYPE = ['상승', '하락'];
-
-export const PREDICTION_ALARM_TEXT = [
-  '알림지정',
-  '목표값에 도달하면 알려드려요',
-  '목표값',
-  '알림등록',
-  'Discord',
-  'Telegram',
-];
-
 export const ANALYZE_HEADER_TEXT = [
   '님의 모의투자 내역을 통한',
   'AI 재테크 분석 결과',

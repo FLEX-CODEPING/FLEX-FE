@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { infoIcon } from '@/app/constants/iconPath';
 import {
   ANALYZE_CAUTION,
@@ -8,9 +7,10 @@ import {
   ANALYZE_RESULT_GUIDE,
   ANALYZE_RESULT_TITLE,
 } from '@/app/constants/prediction';
-import { useEffect, useState } from 'react';
 import { callGet } from '@/app/utils/callApi';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import Icons from '../common/Icons';
 
 const AnalyzeContainer = () => {
@@ -18,31 +18,26 @@ const AnalyzeContainer = () => {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 1 } },
   };
-
   const [nickname, setNickname] = useState<string>('');
   const [analysisData, setAnalysisData] = useState<any>(null);
   const [errorMessage, setErrorMessage] = useState<string>('');
-
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const response = await callGet('/api/auth/user');
-        if (response.isSuccess) {
-          setNickname(response.result.nickname);
-        } else {
-          console.error('닉네임을 불러오는데 실패했습니다:', response.message);
-        }
+        if (response.isSuccess) setNickname(response.result.nickname);
       } catch (error) {
         console.error('닉네임 요청 중 오류 발생:', error);
       }
     };
-
     fetchUser();
   }, []);
-
   useEffect(() => {
     const fetchAnalysisData = async () => {
       try {
+        await new Promise((resolve) => {
+          setTimeout(resolve, 1200);
+        });
         const response = await callGet('/api/analysis');
         if (response.isSuccess) {
           setAnalysisData(response.result);
@@ -63,14 +58,11 @@ const AnalyzeContainer = () => {
           }
         }
       } catch (error) {
-        console.error('API 요청 중 오류 발생:', error);
         setErrorMessage('서버 요청 중 오류가 발생했습니다.');
       }
     };
-
     fetchAnalysisData();
   }, []);
-
   return (
     <motion.div
       initial="hidden"
@@ -98,10 +90,9 @@ const AnalyzeContainer = () => {
           </p>
         </div>
       </motion.div>
-
       {errorMessage ? (
         <div className="text-center mt-[100px] text-black font-bold text-xl flex flex-col ">
-          ⚠️ {errorMessage}
+          :경고: {errorMessage}
           <Link href="/simulation">
             <button
               type="button"
@@ -112,34 +103,92 @@ const AnalyzeContainer = () => {
           </Link>
         </div>
       ) : analysisData ? (
-        <motion.div
-          variants={fadeInVariants}
-          className="px-[6%] w-full h-auto flex-col flex gap-3"
-        >
-          <div className="w-full px-3 pt-3 pb-1.5 bg-white border-b border-main-1 justify-between items-end flex">
-            <div className="text-center text-black text-2xl font-bold leading-9">
-              {ANALYZE_RESULT_TITLE[0]}
+        <div>
+          <motion.div
+            variants={fadeInVariants}
+            className="px-[6%] w-full h-auto flex-col flex gap-3"
+          >
+            <div className="w-full px-3 pt-3 pb-1.5 bg-white border-b border-main-1 justify-between items-end flex">
+              <div className="text-center text-black text-2xl font-bold leading-9">
+                {ANALYZE_RESULT_TITLE[0]}
+              </div>
+              <div className="text-center text-gray-1 text-xs flex items-center gap-1 tracking-wide">
+                <Icons name={infoIcon} />
+                <p>{ANALYZE_RESULT_GUIDE[0]}</p>
+              </div>
             </div>
-            <div className="text-center text-gray-1 text-xs flex items-center gap-1 tracking-wide">
-              <Icons name={infoIcon} />
-              <p>{ANALYZE_RESULT_GUIDE[0]}</p>
+            <div className="pl-10 leading-9 tracking-wide">
+              <p>
+                <span className="font-bold">1. 위험도 :</span>{' '}
+                {analysisData.investmentStyle.riskLevel}
+              </p>
+              <p>
+                <span className="font-bold">2. 거래 패턴 :</span>{' '}
+                {analysisData.investmentStyle.tradingPattern}
+              </p>
+              <p>
+                <span className="font-bold">3. 분석 :</span>{' '}
+                {analysisData.investmentStyle.analysis}
+              </p>
             </div>
-          </div>
-          <div className="pl-10 leading-9 tracking-wide">
-            <p>
-              <span className="font-bold">1. 위험도 :</span>{' '}
-              {analysisData.investmentStyle.riskLevel}
-            </p>
-            <p>
-              <span className="font-bold">2. 거래 패턴 :</span>{' '}
-              {analysisData.investmentStyle.tradingPattern}
-            </p>
-            <p>
-              <span className="font-bold">3. 분석 :</span>{' '}
-              {analysisData.investmentStyle.analysis}
-            </p>
-          </div>
-        </motion.div>
+          </motion.div>
+          <motion.div
+            variants={fadeInVariants}
+            className="px-[6%] w-full h-auto flex-col flex gap-3"
+          >
+            <div className="w-full px-3 pt-3 pb-1.5 bg-white border-b border-main-1 justify-between items-end flex">
+              <div className="text-center text-black text-2xl font-bold leading-9">
+                {ANALYZE_RESULT_TITLE[1]}
+              </div>
+              <div className="text-center text-gray-1 text-xs flex items-center gap-1 tracking-wide">
+                <Icons name={infoIcon} />
+                <p>{ANALYZE_RESULT_GUIDE[1]}</p>
+              </div>
+            </div>
+            <div className="pl-10 leading-9 tracking-wide">
+              <p>
+                <span className="font-bold">1. 추천 전략 :</span>{' '}
+                {analysisData.investmentStrategy.recommendation}
+              </p>
+              <p>
+                <span className="font-bold">2. 리스크 관리 :</span>{' '}
+                {analysisData.investmentStrategy.riskManagement}
+              </p>
+              <p>
+                <span className="font-bold">3. 분석 :</span>{' '}
+                {analysisData.investmentStrategy.analysis}
+              </p>
+            </div>
+          </motion.div>
+          <motion.div
+            variants={fadeInVariants}
+            className="px-[6%] w-full h-auto flex-col flex gap-3"
+          >
+            <div className="w-full px-3 pt-3 pb-1.5 bg-white border-b border-main-1 justify-between items-end flex">
+              <div className="text-center text-black text-2xl font-bold leading-9">
+                {ANALYZE_RESULT_TITLE[2]}
+              </div>
+              <div className="text-center text-gray-1 text-xs flex items-center gap-1 tracking-wide">
+                <Icons name={infoIcon} />
+                <p>{ANALYZE_RESULT_GUIDE[2]}</p>
+              </div>
+            </div>
+            <div className="pl-10 leading-9 tracking-wide">
+              <p>
+                <span className="font-bold">1. 추천 전략 :</span>{' '}
+                {analysisData.investmentTrend.recommendation}
+              </p>
+              <p>
+                <span className="font-bold">2. 리스크 관리 :</span>{' '}
+                {analysisData.investmentTrend.riskManagement}
+              </p>
+              <p>
+                <span className="font-bold">3. 분석 :</span>{' '}
+                {analysisData.investmentTrend.analysis}
+              </p>
+            </div>
+          </motion.div>
+        </div>
       ) : (
         <div>
           <motion.div
@@ -170,5 +219,4 @@ const AnalyzeContainer = () => {
     </motion.div>
   );
 };
-
 export default AnalyzeContainer;

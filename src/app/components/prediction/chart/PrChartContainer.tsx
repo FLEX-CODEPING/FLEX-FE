@@ -1,91 +1,62 @@
 'use client';
 
-import useStockStore from '@/app/store/store';
-import { callPost } from '@/app/utils/callApi';
-import { useCallback, useEffect, useState } from 'react';
+import {
+  useInvalidateStockData,
+  useStockData,
+} from '@/app/hooks/useStockChart';
+import useStockStore, { useLiveDataStore } from '@/app/store/store';
+import { isOpenTime } from '@/app/utils/date';
+import { useState } from 'react';
+import DayChart from '../../simulation/chart/DayChart';
+import MinChart from '../../simulation/chart/MinChart';
 import WebSocketChart from '../../simulation/chart/SocketChart';
-import PrChart from './PrChart';
-import PrChartEmpty from './PrChartEmpty';
+import ChartEmpty from './PrChartEmpty';
 
-const PrChartContainer = () => {
-  const [data, setData] = useState<any[]>([]);
+const ChartContainer = () => {
+  const { liveData } = useLiveDataStore();
   const { stockCode } = useStockStore();
+  const [isLack, setIsLack] = useState(false);
+  const [timeFrame, setTimeFrame] = useState<number | string>(1);
+  const isDay = typeof timeFrame === 'string';
+  const isOpen = isOpenTime();
 
-  const fetchData = useCallback(async () => {
-    const reqBodyTemplate = {
-      marketDivCode: 'J',
-      stockCode,
-      periodDivCode: 'D',
-      orgAdjPrice: 0,
-    };
+  const { data, isLoading, fetchAdditionalData, isFetchingAdditionalData } =
+    useStockData(stockCode, timeFrame);
 
-    const batchDays = 100;
-    const allRequests = [];
-    let currentDateFrom = '20240101';
+  const { invalidateMinData } = useInvalidateStockData();
 
-    while (currentDateFrom <= '20241231') {
-      const startDate = new Date(
-        `${currentDateFrom.slice(0, 4)}-${currentDateFrom.slice(4, 6)}-${currentDateFrom.slice(6)}`,
-      );
-
-      const endDate = new Date(startDate);
-      endDate.setDate(endDate.getDate() + batchDays - 1);
-      const currentDateTo = Math.min(
-        parseInt(endDate.toISOString().split('T')[0].replace(/-/g, ''), 10),
-        20241231,
-      ).toString();
-
-      const request = ((dateFrom, dateTo) => {
-        const reqBody = {
-          ...reqBodyTemplate,
-          dateFrom,
-          dateTo,
-        };
-
-        return callPost('/api/stocks/price', reqBody)
-          .then((response) => {
-            if (response?.result && response.result[1].length > 0) {
-              return response.result[1];
-            }
-            return [];
-          })
-          .catch((error) => {
-            console.error(
-              `Error fetching data for ${dateFrom} - ${dateTo}:`,
-              error,
-            );
-            return [];
-          });
-      })(currentDateFrom, currentDateTo);
-
-      allRequests.push(request);
-
-      const nextStartDate = new Date(endDate);
-      nextStartDate.setDate(nextStartDate.getDate() + 1);
-      currentDateFrom = nextStartDate
-        .toISOString()
-        .split('T')[0]
-        .replace(/-/g, '');
+  const handleRefresh = () => {
+    fetchAdditionalData();
+    if (stockCode) {
+      invalidateMinData(stockCode);
     }
-
-    const allData = (await Promise.all(allRequests)).flat();
-    setData(allData);
-  }, [stockCode]);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+  };
 
   return (
-    <div className="flex w-full px-5 py-5 rounded-[10px] border border-gray-4 flex-col justify-start items-start gap-y-5">
+    <div className="flex w-full px-3 py-3 rounded-[10px] border border-gray-4 dark:border-black-1 flex-col justify-start items-start gap-y-5 dark:bg-black-0 dark:text-gray-4">
       {!stockCode || stockCode === 'null' ? (
-        <PrChartEmpty />
+        <ChartEmpty />
+      ) : isDay ? (
+        <DayChart
+          data={data}
+          isLack={isLack}
+          setIsLack={setIsLack}
+          timeFrame={timeFrame}
+          setTimeFrame={setTimeFrame}
+        />
       ) : (
-        <PrChart chartData={data} symbol={stockCode || '005930'} />
+        <MinChart
+          data={data}
+          isLack={isLack}
+          setIsLack={setIsLack}
+          timeFrame={timeFrame}
+          setTimeFrame={setTimeFrame}
+          liveData={liveData}
+        />
       )}
-      {stockCode && <WebSocketChart stockCode={stockCode} />}
+      {isOpen && !isDay && <WebSocketChart stockCode={stockCode} />}
     </div>
   );
 };
 
-export default PrChartContainer;
+export default ChartContainer;

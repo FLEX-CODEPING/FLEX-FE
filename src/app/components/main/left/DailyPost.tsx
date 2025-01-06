@@ -1,9 +1,9 @@
 import Icons from '@/app/components/common/Icons';
 import { likeSmall } from '@/app/constants/iconPath';
 import { truncateString } from '@/app/utils/truncate';
+import 'github-markdown-css';
 import Image from 'next/image';
 import Link from 'next/link';
-import 'github-markdown-css';
 
 interface DailyPostProps {
   post: LandingPostTypes;
@@ -20,16 +20,15 @@ const DailyPost = ({ post }: DailyPostProps) => {
 
   const removeMarkdownTags = (content: string) => {
     return content
-      .replace(/[#*~`>+-]/g, '') // Markdown 기호 제거
-      .replace(/\n/g, ' ') // 줄바꿈을 공백으로 변경
-      .trim(); // 앞뒤 공백 제거
+      .replace(/[#*~`>+-]/g, '')
+      .replace(/\n/g, ' ')
+      .trim();
   };
 
   const removeImageTags = (content: string) => {
-    return content.replace(/!\[.*?\]\(.*?\)/g, ''); // 이미지 태그 제거
+    return content.replace(/!\[.*?\]\(.*?\)/g, '');
   };
 
-  // 결과 출력 시 처리
   const textContent = post.content
     ? removeImageTags(removeHtmlTags(removeMarkdownTags(post.content))).trim()
     : '';
@@ -45,8 +44,8 @@ const DailyPost = ({ post }: DailyPostProps) => {
           src={post.thumbnailUrl || '/images/3c.png'}
           alt={post.title}
           fill
-          objectFit="cover"
-          className="rounded transition-transform duration-300 ease-in-out group-hover:scale-110"
+          sizes="w-full h-32"
+          className="rounded object-cover w-full h-32 transition-transform duration-300 ease-in-out group-hover:scale-110"
         />
       </div>
       <h2 className="font-semibold">{post.title}</h2>

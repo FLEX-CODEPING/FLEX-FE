@@ -1,14 +1,14 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { callGet } from '@/app/utils/callApi';
 import { useUserStore } from '@/app/store/store';
+import { callGet } from '@/app/utils/callApi';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import BlogComment from './BlogComment';
 import BlogContent from './BlogContent';
 import BlogHeader from './BlogHeader';
 import BlogTitle from './BlogTitle';
-import BlogComment from './BlogComment';
 
 interface PostDetailProps {
   postId: string;
