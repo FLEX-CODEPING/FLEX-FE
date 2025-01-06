@@ -19,7 +19,7 @@ const DailyNews = async () => {
         <p className="text-2xl font-semibold">{MAIN_CONTENTS_TITLE[1]}</p>
       </div>
       <div className="w-full flex-wrap flex gap-x-12 gap-y-5">
-        {newsData.map((news, i) => (
+        {newsData.map((news) => (
           <Link
             href={news.url}
             className="w-full flex-col-center border-b border-gray-2 pb-3"
