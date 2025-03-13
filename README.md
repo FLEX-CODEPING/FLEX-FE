@@ -8,7 +8,7 @@
 
 <br>
 
-## 프로젝트 소개
+## 1. 프로젝트 소개
 재테크에 대한 관심이 높아지는 시대 속에서, 초보 투자자들이 보다 쉽고 편리하게 재테크를 경험할 수 있도록 제작되었습니다.
 <br>
 
@@ -32,7 +32,7 @@
 
 <br>
 
-## 팀원 구성 (FLEX의 FE팀원들)
+## 2. 팀원 구성 (FLEX의 FE팀원들)
 
 <div>
 
@@ -45,7 +45,7 @@
 
 <br>
 
-## 1. 개발 환경
+## 3. 개발 환경
 
 <table>
     <thead>
@@ -91,9 +91,10 @@
     </tbody>
 
 </table>
+
 <br>
 
-## 2.개발 기술
+## 4.개발 기술
 
 ### Next.js
 - SSR을 활용해, 유저의 페이지 초기 진입 시, 지연을 최소화 해 유저의 초기 경험을 개선
@@ -119,8 +120,10 @@
 - 타입 정의가 명확하기 때문에, 리팩토링 시 오류를 줄이고 코드를 체계적으로 변경 가능
 - 타입 정의 덕분에 함수나 컴포넌트의 입력/출력을 명확하게 명시가능
 - 팀원들이 코드를 더 쉽게 이해할 수 있고, 예상치 못한 사용을 방지 가능
+
+<br>
   
-## 3.브랜치 전략
+## 5.브랜치 전략
 - Git-flow 전략을 기반으로 main, develop 브랜치와 feature 보조 브랜치를 운용했습니다.
 - main, develop, Feat 브랜치로 나누어 개발을 하였습니다.
 -  새로운 기능을 분류하는 **feature** 브랜치
@@ -130,7 +133,7 @@
 <br>
 
 
-## 3. 프로젝트 구조
+## 6. 프로젝트 구조
 
 ```
 flex-frontend/
@@ -163,6 +166,99 @@ flex-frontend/
 │   ├── utils/       # 유틸리티 함수 (날짜 변환, 문자열 처리, 차트 데이터 요청)
 |
 ```
+
+<br>
+
+## 7. 페이지별 기능
+
+### [메인화면]
+- 서비스 초기 접속화면
+<table>
+  <tr>
+    <td align="center"><b>메인 화면</b></td>
+  </tr>
+  <tr>
+    <td><img width="840" alt="image" src="https://github.com/user-attachments/assets/1f67c9ef-1f53-47fa-a5bf-a68200aa37d2" />
+</td>
+  </tr>
+</table>
+
+<br>
+
+### [블로그]
+- 블로그 조회 및 작성
+<table>
+  <tr>
+    <td align="center"><b>블로그 메인화면</b></td>
+  </tr>
+  <tr>
+    <td><img width="840" alt="image" src="https://github.com/user-attachments/assets/f159bdea-8980-4aee-9b45-72f87a608537" /></td>
+  </tr>
+  <tr>
+    <td align="center"><b>글 작성 화면</b></td>
+  </tr>
+  <tr>
+    <td><img width="840" alt="image" src="https://github.com/user-attachments/assets/ff65019a-50a1-421d-9d37-89ea8e5f0834" /></td>
+  </tr>
+</table>
+
+<br>
+
+### [모의투자]
+- 종목 검색, 차트 조회, 종목 정보, 모의투자(매수/매도), 관심종목, 보유종목, 백테스팅, 거래내역 조회 가능, 재테크 분석
+<table>
+  <tr>
+    <td align="center"><b>검색 전 화면</b></td>
+  </tr>
+  <tr>
+    <td><img width="840" alt="image" src="https://github.com/user-attachments/assets/0e115cf3-ad5a-443f-89f7-cbaa055dbfc0"/></td>
+  </tr>
+   <tr>
+    <td align="center"><b>검색 후 화면</b></td>
+  </tr>
+  <tr>
+    <td><img width="840" alt="image" src="https://github.com/user-attachments/assets/18f8ea4b-1d32-4282-8b81-e27dfc1f10f0" /></td>
+  </tr>
+   <tr>
+    <td align="center"><b>재테크 분석</b></td>
+  </tr>
+  <tr>
+    <td><img width="840" alt="image" src="https://github.com/user-attachments/assets/c27034d7-043d-429d-a611-c65715558f08" /></td>
+  </tr>
+</table>
+
+<br>
+
+
+### [주가예측]
+- 종목 검색, 차트 조회, 주가 예측 및 목표가 알림 설정
+<table>
+  <tr>
+    <td align="center"><b>검색 전 화면</b></td>
+  </tr>
+  <tr>
+    <td><img width="840" alt="image" src="https://github.com/user-attachments/assets/02536b71-f4c5-46ef-82e5-756ef549b8bf" /></td>
+  </tr>
+   <tr>
+    <td align="center"><b>검색 후 화면</b></td>
+  </tr>
+  <tr>
+    <td><img width="840" alt="image" src="https://github.com/user-attachments/assets/66e4b24e-d847-415f-8715-31ea44e4331a" />
+</td>
+  </tr>
+</table>
+
+<br>
+
+### [AI 뉴스요약]
+<table>
+  <tr>
+    <td align="center"><b>뉴스요약 화면</b></td>
+  </tr>
+  <tr>
+    <td><img width="840" alt="image" src="https://github.com/user-attachments/assets/f278e39a-894a-4aea-bbbb-3edec409d148" /></td>
+  </tr>
+</table>
 
 <br>
 
