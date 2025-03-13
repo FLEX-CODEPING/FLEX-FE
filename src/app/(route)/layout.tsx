@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import Header from '../components/common/layout/Header';
+import TanStackProvider from '../components/common/layout/TanstackProvider';
+import UserProvider from '../components/common/layout/useProvider';
 import '../styles/globals.css';
 
 export const metadata: Metadata = {
@@ -21,13 +23,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ko"
-      className={`${pretendard.variable} min-h-screen min-w-[800px] mx-auto font-pretendard`}
-    >
-      <body className="w-full h-full">
-        <Header />
-        {children}
+    <html lang="ko">
+      <body
+        className={`${pretendard.variable} min-w-[1100px] mx-auto font-pretendard`}
+      >
+        <TanStackProvider>
+          <UserProvider>
+            <Header />
+            {children}
+          </UserProvider>
+        </TanStackProvider>
       </body>
     </html>
   );

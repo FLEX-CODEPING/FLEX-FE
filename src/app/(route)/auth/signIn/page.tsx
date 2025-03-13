@@ -1,13 +1,22 @@
+'use client';
+
 import SignInContainer from '@/app/components/auth/signIn/SignInContainer';
-import { dela } from '@/app/components/common/layout/Header';
+import { delaGothic } from '@/app/components/common/layout/Header';
 import { CATCHPHRASE, TITLE } from '@/app/constants/main';
+import { Suspense } from 'react';
 
 function SignInPage() {
   return (
-    <section className="w-full h-full flex items-center flex-col mt-[40px]">
-      <p className={`${dela.className} text-[96px] text-main-1`}>{TITLE}</p>
-      <p className="text-4xl font-bold">{CATCHPHRASE}</p>
-      <SignInContainer />
+    <section className="relative w-full h-[calc(100vh-80px)]">
+      <div className="relative w-full h-full flex-center flex-col">
+        <p className={`${delaGothic.className} text-[84px] text-main-1`}>
+          {TITLE}
+        </p>
+        <p className="text-3xl font-bold">{CATCHPHRASE}</p>
+        <Suspense fallback={<div>Loading...</div>}>
+          <SignInContainer />
+        </Suspense>
+      </div>
     </section>
   );
 }

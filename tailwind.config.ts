@@ -16,9 +16,10 @@ const config: Config = {
           1: '#F95700',
           2: '#FFA474',
           3: '#FFF3EC',
+          4: '#ffeae0',
         },
         red: {
-          1: '#FF0000',
+          1: '#F12C2C',
           2: '#FF6A6A',
         },
         blue: {
@@ -29,10 +30,21 @@ const config: Config = {
           1: '#7A7A7A',
           2: '#CBCACA',
           3: '#EEEEEE',
+          4: '#AAAAAA',
+          5: '#f6f6f6',
+          6: '#F9F9F9',
+          7: '#616161',
         },
+        black: {
+          0: '#1C1C1C',
+          1: '#434343',
+        },
+      },
+      spacing: {
+        '12.5': '50px',
       },
     },
   },
-  plugins: [],
 };
+
 export default config;

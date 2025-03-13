@@ -1,41 +1,53 @@
-import { HEADER_TEXT, LOGIN_TEXT } from '@/app/constants/layout';
-import { Dela_Gothic_One } from 'next/font/google';
-import Image from 'next/image';
-import Link from 'next/link';
+'use client';
 
-export const dela = Dela_Gothic_One({
-  subsets: ['latin'],
+import { HEADER_PATH, HEADER_TEXT } from '@/app/constants/common';
+import { TITLE } from '@/app/constants/main';
+import { useUserStore } from '@/app/store/store';
+import localFont from 'next/font/local';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import LoginModal from '../LoginModal';
+import ProfileDropdown from '../ProfileDropdown';
+
+export const delaGothic = localFont({
+  src: '../../../static/fonts/DelaGothicOne-Regular.woff2',
   weight: '400',
+  display: 'swap',
+  variable: '--font-dela',
 });
 
 function Header() {
+  const path = usePathname();
+  const { user } = useUserStore();
+
+  if (path === '/blog/post') return null;
+
+  const isChecked =
+    user?.isSuccess ||
+    path === '/' ||
+    path === '/auth/signIn' ||
+    path === '/auth/signUp' ||
+    path === '/auth/complete';
+
   return (
-    <header className="w-full flex items-center justify-between h-[108px] px-[5%] text-2xl">
-      <div className="flex gap-x-2 items-center">
-        <Image width={40} height={40} src="/Images/logo.png" alt="logo" />
-        <p className={`${dela.className} text-[28px] text-main-1`}>FLEX</p>
-      </div>
-      <div className="flex">
+    <header className="w-full flex items-center justify-between h-[80px] px-[5%] text-[20px] dark:bg-black-0 dark:text-gray-2">
+      {!isChecked && <LoginModal />}
+      <Link className="flex gap-x-2 items-center" href="/">
+        <p
+          className={`${delaGothic.className} text-[28px] text-main-1 dark:text-main-1/80`}
+        >
+          {TITLE}
+        </p>
+      </Link>
+      <div className="flex gap-x-[50px]">
         {HEADER_TEXT.map((text, i) => (
-          <p className="mr-[50px]" key={text}>
+          <Link key={text} href={HEADER_PATH[i]}>
             {text}
-          </p>
+          </Link>
         ))}
       </div>
-      <div className="flex items-center gap-x-4">
-        <Link
-          className="flex-center w-[72px] h-[36px] px-1.5 py-1 bg-main-1 text-white text-base font-semibold rounded-[15px]"
-          href="/auth/signIn"
-        >
-          {LOGIN_TEXT[0]}
-        </Link>
-        <div className="text-main-1 text-[28px] font-light">|</div>
-        <Link className="text-base font-bold" href="/auth/signUp">
-          {LOGIN_TEXT[1]}
-        </Link>
-      </div>
+      <ProfileDropdown />
     </header>
   );
 }
-
 export default Header;

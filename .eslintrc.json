@@ -20,10 +20,23 @@
     "react/function-component-definition": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-static-element-interactions": "off",
+    "react-hooks/rules-of-hooks": "off",
+    "class-methods-use-this": "off",
+    "no-new": "off",
+    "no-await-in-loop": "off",
+    "consistent-return": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
     "@typescript-eslint/no-unused-vars": [
       "off",
       { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
-    ]
+    ],
+    "@typescript-eslint/no-unused-expressions": "off",
+    "no-nested-ternary": "off"
   },
   "overrides": [
     {

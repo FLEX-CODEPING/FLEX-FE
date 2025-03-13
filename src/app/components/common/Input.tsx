@@ -5,20 +5,30 @@ import { INPUT_STYLE } from '@/app/constants/styles';
 interface InputProps {
   type: keyof typeof INPUT_STYLE;
   textValue?: string | number;
-  inputType?: string;
+  inputType?:
+    | 'text'
+    | 'number'
+    | 'password'
+    | 'email'
+    | 'file'
+    | 'checkbox'
+    | 'radio'
+    | 'date';
   name?: string;
   placeholder?: string;
   className?: string;
   accept?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocus?: () => void;
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: () => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onEnterPress?: () => void;
   isDisabled?: boolean;
+  pattern?: string;
   min?: string | number;
   max?: string | number;
   maxLength?: number;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
 }
 
 function Input({
@@ -27,20 +37,29 @@ function Input({
   textValue,
   placeholder,
   className,
-  inputType,
+  inputType = 'text',
   accept,
   onFocus,
   onBlur,
+  onKeyDown,
   onEnterPress,
   onChange,
   isDisabled,
+  pattern,
   min,
   max,
   maxLength,
   onClick,
 }: InputProps) {
-  const buttonStyles = INPUT_STYLE[type](className || '');
-
+  const inputStyles = INPUT_STYLE[type](className || '');
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (onEnterPress && e.key === 'Enter') {
+      onEnterPress();
+    }
+    if (onKeyDown) {
+      onKeyDown(e);
+    }
+  };
   return (
     <input
       type={inputType}
@@ -49,11 +68,12 @@ function Input({
       name={name}
       onFocus={onFocus}
       onBlur={onBlur}
-      onKeyDown={(e) => e.key === 'Enter' && onEnterPress && onEnterPress()}
+      onKeyDown={handleKeyDown}
       onChange={onChange}
-      className={buttonStyles}
+      className={inputStyles}
       accept={accept}
       disabled={isDisabled}
+      pattern={pattern}
       min={min}
       max={max}
       maxLength={maxLength}
